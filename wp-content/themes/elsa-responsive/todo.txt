@@ -1,0 +1,34 @@
+-recherche
+////////filtre format
+ligne -> vignette format
+
+//////// pagination
+
+-fiche 
+///////commentaire
+/// vote
+mise en forme logo + liens
+lien crips
+
+//////// footer logo partenaires
+//////// blocs de textes
+
+///////flux rss
+google map / infos bulles
+
+contact
+newsletter
+
+///////// blocs de droite
+//////// moteur de recherche footer
+
+menu déroulant
+
+////////fiche retour / suivant - prec
+
+home 
+page texte
+google analytics
+
+//////////////annuaire structure
+//////////imports

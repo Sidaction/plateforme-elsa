@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="fr">
+<head><link rel="stylesheet" type="text/css" href="http://www.plateforme-elsa.org/wp-content/cache/minify/000000/fctREoIwDIThCwnRQ3gOJpZVwnRS7UawtxeHZ3zc-b-9yNpos3aOlRkRqJREyqLZRg0rfvWHOfr59UZtp7MgU7sKPovTFsjw49tGHMX92t_VU7uVzxEjMlL8BVrT9AU.css" media="all" />
+
+  <meta charset="utf-8">
+  <title>Fonctionnement et Activités d&rsquo;ELSA  - Plateforme Elsa</title> 
+<meta name="description" content="ELSA est pilotée collégialement par un Comité Exécutif composé de représentant.e.s de chaque association membre. La mise en œuvre des activités est assurée par une équipe de 2 permanentes salariées.ELSA fonctionne par projets triennaux. Pour chaque période, une des associations memb..." />
+
+	<script type="text/javascript">var ajaxurl = 'http://www.plateforme-elsa.org/wp-admin/admin-ajax.php';</script>
+	  
+  
+  <!--[if lt IE 9]>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" type="image/png" href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/favicon.png" />
+ 
+  <!-- STYLES -->
+  
+  <link href='http://fonts.googleapis.com/css?family=Dosis:400,600,700' rel='stylesheet' type='text/css'>
+  
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/global.css?v=3" rel="stylesheet" type="text/css">
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/responsive.css?v=3" rel="stylesheet" type="text/css">
+  <!-- STYLES -->
+  
+  <!-- JS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.5/TweenMax.min.js"></script>
+	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectbox.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/freetiles.js"></script>
+  <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/interface.js"></script>
+  <!-- JS -->
+  
+    <!--[if lt IE 9]>
+    	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  
+    <![endif]-->
+    
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectivizr.js"></script>
+    	<noscript><link rel="stylesheet" href="[fallback css]" /></noscript>
+    <![endif]-->
+  
+</head>
+<body>
+
+<header>
+
+<div id="menuResp"></div>
+
+    <div id="topFollow">
+        <div id="topFollowWrapper">
+            <ul>
+                <li><a href="/nous-contacter">NOUS CONTACTER</a></li>
+                <li class="newsletterTop">NEWSLETTER</li>
+                <li><a href="#">NOUS SUIVRE</a></li>
+                  <li class="facebookTop"><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"></a></li>
+                <li class="twitterTop"><a href="https://twitter.com/PlateformeELSA" target="_blank"></a></li>
+                <!-- <li class="youtubeTop"><a href="#"></a></li> -->
+                <li class="rssTop"><a href="/rss-plateforme-elsa" target="_blank"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="newsletterTop">
+        <div id="newsletterTopWrapper">
+            <ul>
+                <li>Pour recevoir notre newsletter, veuillez renseigner votre email :</li>
+                <li>
+                
+
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<script type="text/javascript">
+                /* <![CDATA[ */
+                var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http://www.plateforme-elsa.org/wp-admin/admin-ajax.php","loadingTrans":"Chargement..."};
+                /* ]]> */
+                </script><script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<!--END Scripts-->
+
+<div class="widget_wysija_cont html_wysija"><div id="msg-form-wysija-html53511c8a3fd9d-1" class="wysija-msg ajax"></div><form id="form-wysija-html53511c8a3fd9d-1" method="post" action="/confirmation-dinscription/#wysija" class="newsletter">
+   
+    	<input type="text" name="wysija[user][email]" class="wysija-input validate[required,custom[email]]" title="E-mail"  value="" />
+   
+    
+
+<button>OK</button>
+
+    <input type="hidden" name="form_id" value="1" />
+    <input type="hidden" name="action" value="save" />
+    <input type="hidden" name="controller" value="subscribers" />
+    <input type="hidden" value="1" name="wysija-page" />
+
+    
+        <input type="hidden" name="wysija[user_list][list_ids]" value="1" />
+    
+ </form></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="logoWrapper">
+        <div id="logo">
+            <a href="/">
+                <h1>Centre de <strong>ressources francophones</strong><br>
+                sur le <strong>VIH/sida</strong> en <strong>Afrique</strong></h1>
+            </a>
+        </div>
+        <a href="/plateforme-elsa/" class="plateforme">La plateforme ELSA</a>
+    </div>
+    <div id="menu">
+        <nav id="menuWrapper">
+            <ul>
+                <li class="home"><a href="/"></a></li>
+                <li><h2><a href="http://www.plateforme-elsa.org/dossiers-thematiques/">Dossiers Thématiques</a></h2>
+                <div class="ssMenu">
+                    	<ul>
+                        		<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+                        </ul>
+                    </div>
+                </li>
+                <li><h2><a href="http://www.plateforme-elsa.org/pays-dafrique/">Pays d'Afrique</a></h2></li>
+                <li>
+                	<h2><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Associations africaines</a></h2>
+                    <div class="ssMenu">
+                    	<ul>
+                        	<li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Par nom / par pays</a></li>
+                            <li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/annuaire/">Annuaire</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="agenda"><h2><a href="http://www.plateforme-elsa.org/agenda-elsa/">Agenda</a></h2></li>
+                <li class="recherche"><h2><a href="http://www.plateforme-elsa.org/recherche-documentaire">Recherche documentaire</a></h2></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+ <section id="contentSite" class="orange">
+	<div id="breadcrumb">
+    	<div id="breadcrumbWrapper">Vous êtes ici » <a href="/">Accueil</a> » <a href="/plateforme-elsa/">Plateforme Elsa</a> » <a href="#">Fonctionnement et Activités d&rsquo;ELSA</a></div>
+    </div>
+     <div id="contentWrapper">
+     	<div class="shadowLeft"></div>
+        <div class="shadowRight"></div>
+        <article>
+        <h1>Fonctionnement et Activités d&rsquo;ELSA</h1>
+           <p>La plateforme <em><strong>ELSA est un consortium associatif de 5 associations françaises membres (Sidaction, SIS Association, Solidarité Sida, Solthis et le Planning Familial)</strong></em>. Elle est coordonnée par 2 salariées et pilotée par un Comité Exécutif composé d’un.e membre de chaque association française membre. ELSA joue <strong><em>un rôle de facilitateur dans les échanges d’informations et d’expériences en premier lieu</em> <em>entre acteurs français</em></strong> (coopération Nord-Nord),<strong><em> mais également</em> <em>entre acteurs français et africains</em> </strong>(coopération Nord-Sud et Sud-Nord) <strong><em>et entre acteurs africains</em></strong> (coopération Sud-Sud). Elle repose sur la mise en commun des moyens et des expériences des associations membres / partenaires, et permet de capitaliser sur les &laquo;&nbsp;bonnes pratiques&nbsp;&raquo; expérimentées par la société civile.</p>
+<p><img class="wp-image-7571 aligncenter" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/03/SchemaELSA5-1.png" alt="" width="658" height="465" /></p>
+<p><strong><em>Le projet de la plateforme ELSA est donc par essence un projet collectif, dans le sens ou il est co-construit avec ses membres et partenaires</em></strong>. Il est par conséquent entièrement tourné vers un objectif d’autonomisation et d’appropriation par ses parties prenantes. Ce sont elles qui décident des grandes orientations stratégiques de la plateforme (et donc de son positionnement en tant que centre de ressources), et des thématiques qui seront développées dans le cadre des programmes de renforcement de compétences.</p>
+<p>&nbsp;</p>
+<h4 style="text-align: justify;"><strong>Des projets triennaux </strong></h4>
+<p style="text-align: justify;">Pour chaque période, une des associations membres est chef de file du projet, ce qui veut dire qu’elle reçoit et gère les fonds dédiés à ELSA.</p>
+<ul>
+<li>2002/05 : projet « ELSA 1 » hébergé chez AIDES</li>
+<li>2005/08 : projet « ELSA 2 » hébergé chez Sida Info Service</li>
+<li>2009/12 : projet « ELSA 3 » hébergé chez Solidarité Sida</li>
+<li>2012/16 : projet « ELSA 4 » hébergé chez Sida Info Service      <a href="http://www.plateforme-elsa.org/rapport-dactivites-du-projet-elsa-4/" target="_blank">&gt;&gt; Rapport d&rsquo;activité d&rsquo;ELSA 4</a></li>
+<li>2016/18 : projet « ELSA 5 » hébergé chez Sidaction      <a href="http://www.plateforme-elsa.org/presentation-du-projet-elsa-4/?preview=true&amp;preview_id=5109&amp;preview_nonce=c250f5c9be" target="_blank">&gt;&gt; Présentation d&rsquo;ELSA 5</a></li>
+</ul>
+<p>&nbsp;</p>
+<h4 style="text-align: justify;"><strong>Bref bilan du projet « ELSA 4 »</strong></h4>
+<p><strong>Sur le centre de ressources francophones en ligne : </strong>Le principal enjeu auquel la plateforme ELSA entend répondre est le renforcement de la société civile impliquée dans la lutte contre le VIH en Afrique francophone. De ce point de vue, l’élaboration du centre de ressources francophones en ligne répondait aux évolutions technologiques mondiales (meilleur accès internet) et a permis la diffusion des savoirs et des pratiques à l’échelle de tout l’espace francophone.</p>
+<p><strong>Sur les échanges inter-associatifs : </strong>Le développement des espaces d’échanges entre les membres de la plateforme et les autres acteurs français et internationaux (y compris institutionnels), contribue à une meilleure efficacité de la réponse française aux enjeux de l’épidémie et à l’atteinte des Objectifs du Développement Durable.</p>
+<p><strong>Sur les programmes thématiques de renforcement de compétences : </strong>Le choix de travailler sur des thématiques transversales qui touchent à la structuration des associations partenaires africaines (intégration du genre, capitalisation des expériences), contribue à l’amélioration qualitative des services, à la meilleure intégration de la société civile africaine dans les systèmes de santé, et à la pérennisation de la réponse à l’épidémie. Ces enjeux ont nourri la réflexion de la plateforme et de ses membres autour de l’évolution des relations qui les lient à leurs partenaires africains et qui s’inscrivent de plus en plus dans une logique multidirectionnelle (nord-sud, sud-nord, sud-sud) et favorisent la co-construction et l’échange des savoirs et des pratiques.</p>
+<p>&nbsp;</p>
+<h4 style="text-align: justify;"><strong>Brève présentation du projet « ELSA 5 »</strong></h4>
+<p>La finalité de l’action de la Plateforme ELSA est de <strong>renforcer, promouvoir et valoriser l’expertise des acteurs associatifs de la lutte contre le sida en France et en Afrique francophone</strong>, en :</p>
+<ul>
+<li>Favorisant les complémentarités et améliorant le soutien de ses membres auprès de leurs partenaires respectifs en Afrique ;</li>
+<li>Proposant des activités de renforcement de capacités complémentaires de celles des associations membres ;</li>
+<li>Animant un centre de ressources en ligne permettant à tou.te.s l’accès à une information de qualité sur les enjeux et les pratiques de la lutte contre le VIH en Afrique.</li>
+</ul>
+<p>Il s&rsquo;agira donc de poursuivre 3 objectifs spécifiques :</p>
+<ol>
+<li><strong><em>OS1 :</em></strong> Améliorer les approches et les pratiques des structures membres et partenaires en leur proposant des cadres d’échange et de renforcement de compétences sur des thématiques répondant aux enjeux de l’épidémie de VIH/sida</li>
+</ol>
+<p><span style="text-decoration: underline;">Principales actions :</span> organisation et animation de groupes de travail thématiques au nord / conception et organisation de formations à destination des structures membres (équipes internationales, comités …) / programme d’appui à l’intégration du genre dans les approches et pratiques des structures partenaires / autre programme thématique de renforcement des structures partenaires / stages sud-sud</p>
+<ol>
+<li><strong><em>OS2 :</em> </strong>Modéliser des approches et des pratiques réutilisables par d’autres acteurs en appuyant la capitalisation, la diffusion et la promotion de l’expertise des structures membres et partenaires</li>
+</ol>
+<p><span style="text-decoration: underline;">Principales actions :</span> Programme d’appui à la capitalisation des approches et pratiques des structures partenaires  / Organisation et co-animation de rencontres pluri-acteurs (réunions thématiques et réunions pays) / Participation aux conférences internationales<strong><em> </em></strong></p>
+<ol>
+<li><em><strong>OS3 :</strong></em> Partager des savoirs, savoir-faire et des savoir-être par l’animation, le développement et la promotion du Centre de ressources francophones en ligne sur le VIH/sida en Afrique.</li>
+</ol>
+<p><span style="text-decoration: underline;">Principales actions :</span> animation du site (veille documentaire, mise à jour des ressources, ajouts de contenus)  / maintenance et développement du site (ajout de nouvelles fonctionnalités) / promotion du site du Centre de ressources francophones<strong><em> </em></strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+            
+           	<div id="sharebottom">
+    <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+     </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+                 
+        </article>
+        <aside id="sidebarCms">
+        	<div class="shadowRight"></div>
+        	 <div class="thematique">
+            	<p style="text-align: center;"><strong>DOSSIERS THÉMATIQUES</strong></p>
+<p style="text-align: left;"><a title="Dossiers thématiques" href="http://www.plateforme-elsa.org/dossiers-thematiques/">En lien avec les enjeux de lutte contre le VIH/sida en Afrique</a></p>            </div>        	 <div class="reseau">
+                
+                <strong>La Plateforme ELSA, c'est plus
+de 80 associations africaines</strong>
+<div class="thumbImg"><img alt="" src="/wp-content/themes/elsa/_img/reseau.png" width="87" height="64" /></div>
+<ul>
+	<li><a href="/associations-africaines-du-reseau-elsa/">Voir les associations</a></li>
+	<li><a href="/associations-africaines-du-reseau-elsa/annuaire/">Voir l’annuaire des associations</a></li>
+</ul>                <div class="clear"></div>
+                
+             </div>            
+  <div class="fichePays">
+           	  <a href="#">
+              <div>FICHE PAYS</div>
+              <div class="thumbImg"><img src="/wp-content/themes/elsa/_img/fichePays.png" alt="" width="64" height="87" /></div>
+<a href="/pays-dafrique/">Epidémiologie, chiffres clés, acteurs locaux
+de la lutte contre le VIH</a>
+
+&nbsp;              <div class="clear"></div>
+              </a>
+</div>           
+            <div class="ressources"> <a href="/soumettre-une-ressource/"> Le centre de ressources<br>
+  s'enrichit aussi <strong>grâce à vous...</strong><br>
+  N'hésitez pas à nous <span>SOUMETTRE <strong>UNE RESSOURCE</strong></span> </a> </div>
+        </aside>
+        <div class="clear"></div>     </div>
+</section>
+<footer>
+	<div id="partenaires">
+    	<div class="titreSoul"><span>Les membres de la plateforme ELSA</span></div>
+        <ul>
+        					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="109" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_aides.png" class="attachment-medium wp-post-image" alt="Logo Aides" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="80" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Planning.png" class="attachment-medium wp-post-image" alt="Logo Le planning familial" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="75" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Sidaction.png" class="attachment-medium wp-post-image" alt="Logo Sidaction" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="138" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_SIS.png" class="attachment-medium wp-post-image" alt="Logo SIS Réseau" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="97" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Solidarite.png" class="attachment-medium wp-post-image" alt="Logo_Solidarite" /></a></li>
+				          
+                </ul>
+        <div class="clear"></div>
+    </div>
+    
+    <div id="footer">
+    	<div id="footerWrapper">
+            <div id="leftBottom">
+            <div id="logo"></div>
+    
+            <p style="text-align: justify;">La plateforme ELSA met à la disposition des personnes engagées dans la lutte contre le sida, un accès centralisé aux documents de référence sur les enjeux nationaux et internationaux au cœur des préoccupations des acteurs. Des thématiques de fond sont déclinées et reliées à des ressources variées, on y trouve également des guides et autres outils pratiques pour appuyer les associations dans leur travail. Alliant contenus théoriques et mises en œuvre pratiques, le site offre un appui technique en libre accès.
+Avec le soutien de :</p>
+<p style="text-align: justify;"><a href="http://www.afd.fr/home" target="_blank"><img class=" wp-image-5652" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/logo-AFD_100.png" alt="logo-AFD_100" width="66" height="57" /></a> <img class="alignnone wp-image-7050" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/03/FDF_Siege_Quadri3-300x300.jpg" alt="" width="54" height="54" /> <a href="http://www.paris.fr/politiques/paris-a-l-international/solidarite-cooperation/la-lutte-contre-le-sida/rub_6589_stand_16479_port_14980" target="_blank"><img class=" wp-image-5651" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Logo_mairiedeparis_180.png" alt="Logo_mairiedeparis_180" width="132" height="17" /></a></p>			<div class="clear"></div>
+            <hr />
+            <h2>RESTONS EN CONTACT VIA</h2>
+            <div class="clear"></div>
+            <div class="contactvia">
+            Notre newsletter
+                <form class="newsletter footer">
+                    <input type="text" placeholder="votre email">
+                    <button>OK</button>
+                </form>
+                <div class="clear"></div>
+            </div>
+            <div>
+            Les réseaux sociaux / rss
+            <ul id="reseaux">
+            	<li><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/facebook-footer.png" width="20" height="20"></a></li>
+                <li><a href="https://twitter.com/PlateformeELSA" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/twitter-footer.png" width="20" height="20"></a></li>
+                <li><a href="#"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/youtube-footer.png" width="20" height="20"></a></li>
+                <li><a href="/rss-plateforme-elsa" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/rss-footer.png" width="20" height="20"></a></li>
+            </ul>
+            <div class="clear"></div>
+            </div>
+            <hr />
+            <!-- AddThis Button BEGIN -->
+            <h2>PARTAGER</h2>
+            <div class="addthis_toolbox addthis_default_style" id="shareFooter">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+            <!-- AddThis Button END -->
+			</div>
+            <div id="colsBottom"> 
+                <div class="colFooter">
+                    <h2>THÉMATIQUES</h2>
+                    <ul>
+                        	<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+
+                    </ul>
+                </div>
+                <div class="colFooter">
+                <h2>PAYS D'AFRIQUE<br>
+                FRANCOPHONE</h2> 
+                    <ul>
+                        <li><a href="/pays/algerie" title="Algérie">Algérie</a></li><li><a href="/pays/benin" title="Bénin">Bénin</a></li><li><a href="/pays/burkina-faso" title="Burkina Faso">Burkina Faso</a></li><li><a href="/pays/burundi" title="Burundi">Burundi</a></li><li><a href="/pays/cameroun" title="Cameroun">Cameroun</a></li><li><a href="/pays/cote-divoire" title="Côte d&rsquo;Ivoire">Côte d&rsquo;Ivoire</a></li><li><a href="/pays/djibouti" title="Djibouti">Djibouti</a></li><li><a href="/pays/guinee" title="Guinée">Guinée</a></li><li><a href="/pays/guinee-equatoriale" title="Guinée équatoriale">Guinée équatoriale</a></li><li><a href="/pays/ile-maurice" title="Île Maurice">Île Maurice</a></li><li><a href="/pays/madagascar" title="Madagascar">Madagascar</a></li><li><a href="/pays/mali" title="Mali">Mali</a></li><li><a href="/pays/maroc" title="Maroc">Maroc</a></li><li><a href="/pays/niger" title="Niger">Niger</a></li><li><a href="/pays/centrafrique" title="République Centrafricaine">République Centrafricaine</a></li><li><a href="/pays/republique-democratique-du-congo" title="République démocratique du Congo">République démocratique du Congo</a></li><li><a href="/pays/republique-du-congo" title="République du Congo">République du Congo</a></li><li><a href="/pays/rwanda" title="Rwanda">Rwanda</a></li><li><a href="/pays/senegal" title="Sénégal">Sénégal</a></li><li><a href="/pays/tchad" title="Tchad">Tchad</a></li><li><a href="/pays/togo" title="Togo">Togo</a></li><li><a href="/pays/tunisie" title="Tunisie">Tunisie</a></li>                    </ul>
+              </div>
+                 <div class="colFooter">
+                 <h2>ELSA</h2>
+                    <ul>
+                        <li><a href="/plateforme-elsa/qui-sommes-nous/">Qui sommes-nous ?</a></li>
+                        <li><a href="/plateforme-elsa/fonctionnement-et-activites-delsa/">Activités</a></li>
+                        <li><a href="/associations-africaines-du-reseau-elsa/">Associations partenaires</a></li>
+                        <li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/">Associations membres</a></li>
+                        <li><a href="http://www.plateforme-elsa.org/extranet/" target="_blank">Accès intranet (membres ELSA)</a></li>
+                    </ul>
+                 <h2>SERVICES</h2>   
+                    <ul>
+                        <li><a href="/soumettre-une-ressource">Soumettre une ressource</a></li>
+                        <li><a href="/recherche-documentaire">Rechercher une ressource</a></li>
+                        <li><a href="/foire-aux-questions/">FAQ</a></li>
+                        <li><a href="/nous-contacter/">Contact</a></li>
+                        <li><a href="/nous-contacter/">Signaler un lien cassé</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+        		<div id="credits">Réalisation du site : <a href="http://www.clair-et-net.com/" target="_blank">Clair et Net.</a> / <a href="/conditions-generales-dutilisation/">CGU</a>  / <a href="/mentions-legales/">Mentions légales</a>  /© Plateforme ELSA 2014</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+     </footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43730500-1', 'plateforme-elsa.org');
+  ga('send', 'pageview');
+
+</script>
+<div id="toolTip"></div>
+
+</body>
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Mibnifié utilisant disk
+Mise en cache utilisant disk: enhanced 
+Mise en cache de base de données 22/44 requêtes dans 0.036 secondes utilisant disk
+
+ Served from: www.plateforme-elsa.org @ 2017-01-03 11:16:34 by W3 Total Cache -->

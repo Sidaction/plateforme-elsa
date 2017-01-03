@@ -1,0 +1,714 @@
+ <!doctype html>
+<html lang="fr">
+<head><link rel="stylesheet" type="text/css" href="http://www.plateforme-elsa.org/wp-content/cache/minify/000000/fctREoIwDIThCwnRQ3gOJpZVwnRS7UawtxeHZ3zc-b-9yNpos3aOlRkRqJREyqLZRg0rfvWHOfr59UZtp7MgU7sKPovTFsjw49tGHMX92t_VU7uVzxEjMlL8BVrT9AU.css" media="all" />
+
+  <meta charset="utf-8">
+  <title>Mobilisation des Ressources | Plateforme Elsa</title> 
+<meta name="description" content="" />
+
+	<script type="text/javascript">var ajaxurl = 'http://www.plateforme-elsa.org/wp-admin/admin-ajax.php';</script>
+	  
+  
+  <!--[if lt IE 9]>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" type="image/png" href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/favicon.png" />
+ 
+  <!-- STYLES -->
+  
+  <link href='http://fonts.googleapis.com/css?family=Dosis:400,600,700' rel='stylesheet' type='text/css'>
+  
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/global.css?v=3" rel="stylesheet" type="text/css">
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/responsive.css?v=3" rel="stylesheet" type="text/css">
+  <!-- STYLES -->
+  
+  <!-- JS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.5/TweenMax.min.js"></script>
+	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectbox.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/freetiles.js"></script>
+  <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/interface.js"></script>
+  <!-- JS -->
+  
+    <!--[if lt IE 9]>
+    	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  
+    <![endif]-->
+    
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectivizr.js"></script>
+    	<noscript><link rel="stylesheet" href="[fallback css]" /></noscript>
+    <![endif]-->
+  
+</head>
+<body>
+
+<header>
+
+<div id="menuResp"></div>
+
+    <div id="topFollow">
+        <div id="topFollowWrapper">
+            <ul>
+                <li><a href="/nous-contacter">NOUS CONTACTER</a></li>
+                <li class="newsletterTop">NEWSLETTER</li>
+                <li><a href="#">NOUS SUIVRE</a></li>
+                  <li class="facebookTop"><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"></a></li>
+                <li class="twitterTop"><a href="https://twitter.com/PlateformeELSA" target="_blank"></a></li>
+                <!-- <li class="youtubeTop"><a href="#"></a></li> -->
+                <li class="rssTop"><a href="/rss-plateforme-elsa" target="_blank"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="newsletterTop">
+        <div id="newsletterTopWrapper">
+            <ul>
+                <li>Pour recevoir notre newsletter, veuillez renseigner votre email :</li>
+                <li>
+                
+
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<script type="text/javascript">
+                /* <![CDATA[ */
+                var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http://www.plateforme-elsa.org/wp-admin/admin-ajax.php","loadingTrans":"Chargement..."};
+                /* ]]> */
+                </script><script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<!--END Scripts-->
+
+<div class="widget_wysija_cont html_wysija"><div id="msg-form-wysija-html53511c8a3fd9d-1" class="wysija-msg ajax"></div><form id="form-wysija-html53511c8a3fd9d-1" method="post" action="/confirmation-dinscription/#wysija" class="newsletter">
+   
+    	<input type="text" name="wysija[user][email]" class="wysija-input validate[required,custom[email]]" title="E-mail"  value="" />
+   
+    
+
+<button>OK</button>
+
+    <input type="hidden" name="form_id" value="1" />
+    <input type="hidden" name="action" value="save" />
+    <input type="hidden" name="controller" value="subscribers" />
+    <input type="hidden" value="1" name="wysija-page" />
+
+    
+        <input type="hidden" name="wysija[user_list][list_ids]" value="1" />
+    
+ </form></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="logoWrapper">
+        <div id="logo">
+            <a href="/">
+                <h1>Centre de <strong>ressources francophones</strong><br>
+                sur le <strong>VIH/sida</strong> en <strong>Afrique</strong></h1>
+            </a>
+        </div>
+        <a href="/plateforme-elsa/" class="plateforme">La plateforme ELSA</a>
+    </div>
+    <div id="menu">
+        <nav id="menuWrapper">
+            <ul>
+                <li class="home"><a href="/"></a></li>
+                <li><h2><a href="http://www.plateforme-elsa.org/dossiers-thematiques/">Dossiers Thématiques</a></h2>
+                <div class="ssMenu">
+                    	<ul>
+                        		<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77 current-cat"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+                        </ul>
+                    </div>
+                </li>
+                <li><h2><a href="http://www.plateforme-elsa.org/pays-dafrique/">Pays d'Afrique</a></h2></li>
+                <li>
+                	<h2><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Associations africaines</a></h2>
+                    <div class="ssMenu">
+                    	<ul>
+                        	<li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Par nom / par pays</a></li>
+                            <li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/annuaire/">Annuaire</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="agenda"><h2><a href="http://www.plateforme-elsa.org/agenda-elsa/">Agenda</a></h2></li>
+                <li class="recherche"><h2><a href="http://www.plateforme-elsa.org/recherche-documentaire">Recherche documentaire</a></h2></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section id="contentSite" class="bleu">
+	<div id="breadcrumb">
+    	<div id="breadcrumbWrapper">Vous êtes ici » <a href="#">Accueil</a> » <a href="/dossiers-thematiques/">Dossiers thématiques</a> » <a href="#">Mobilisation des Ressources</a></div>
+    </div>
+     <div id="contentWrapper">
+     	<div class="shadowLeft"></div>
+        <div class="shadowRight"></div>
+        <article>
+		<h1>Mobilisation des Ressources</h1>           
+        
+            <p style="text-align: justify;"><strong>Pour mener à bien vos activités et faire fonctionner votre association, vous avez besoin de ressources financières. Ces ressources doivent être considérées avant tout comme des moyens d’action, et ne sont pas des fins en soi.<br />
+</strong><br />
+Elles peuvent être de plusieurs types :</p>
+<ul style="text-align: justify;">
+<li>Dons financiers (ponctuels ou réguliers)</li>
+<li>Legs (don fait par testament)</li>
+<li>Prêts</li>
+<li>Recettes d’activités génératrices de revenus au bénéfice de l’association, ou de prestations de services (par exemple : formations)</li>
+<li>Cotisations / droits d’adhésion</li>
+<li>Subventions annuelles</li>
+<li>Subventions pluriannuelles</li>
+</ul>
+<p style="text-align: justify;"><strong>Il est important de diversifier</strong> autant que faire se peut ces différents types de ressources financières pour vous permettre de gagner en liberté d’action et en sécurité face aux aléas chez les partenaires.</p>
+<p style="text-align: justify;"><strong>Plusieurs types d’organismes peuvent être sollicités pour obtenir ces ressources financières :</strong></p>
+<ul>
+<li>Organismes privés : entreprises, fondations, ONG, associations professionnelles…</li>
+<li>Organismes publics : collectivités territoriales, ministères, agences de développement, ambassades…</li>
+<li>Organismes multilatéraux : Fonds Mondial, Banque Mondiale, agences des Nations Unies…</li>
+<li>Particuliers / donateurs</li>
+</ul>
+<p style="text-align: justify;"><strong>Une veille permanente est nécessaire</strong> pour vous permettre de connaître les calendriers ou les procédures de ces organismes, sachant que ceux-ci peuvent évoluer dans le temps. Cela va vous demander anticipation, proactivité et réactivité dans la prospection et les contacts avec les partenaires potentiels, mais également dans le suivi des ressources, une fois que celles-ci auront été obtenues.</p>
+<p style="text-align: justify;"><strong>Pour obtenir ces ressources financières, vous pouvez, entre autres :</strong></p>
+<ul style="text-align: justify;">
+<li> Répondre à un appel à projets ou appel d’offres</li>
+<li>Négocier un partenariat</li>
+<li>Envoyer une demande spontanée</li>
+<li>Organiser une initiative de collecte ou de récolte de fonds</li>
+<li>Solliciter vos membres et mettre en place un système de suivi de l’entrée des cotisations statutaires</li>
+<li>Proposer vos services contre une rémunération</li>
+<li>Mettre en place une activité génératrice de revenus</li>
+</ul>
+<p style="text-align: justify;">Bien que les bailleurs de fonds soient une source majeure de ressources financières, les associations ont souvent des idées reçues concernant ces ressources et les bailleurs eux-mêmes.</p>
+<p style="text-align: justify;"><strong>Peut-être vous retrouvez-vous dans certaines de ces <em><span style="text-decoration: underline;">idées reçues</span></em> ?</strong></p>
+<h5 style="text-align: justify;"><strong>« Je ne parle pas d’autres langues, il est impossible pour moi de rentrer en contact avec des bailleurs non francophones ! »</strong></h5>
+<p style="text-align: justify;"><strong># Faux !</strong> Les bailleurs attirent un personnel international et multilingue, donc il est fort probable que même chez un bailleur américain, allemand, néerlandais, espagnol, etc., qui intervient dans un pays francophone, au moins une personne dans le staff aura un minimum de notions en français. Ceci peut suffire pour rentrer en contact ; ne laissez pas l’absence de connaissances en anglais ou en d’autres langues vous empêcher de nouer des liens avec des bailleurs non francophones.</p>
+<h5 style="text-align: justify;"><strong>« Pour pérenniser mes activités dans la durée, il faut que je trouve des financements pérennes »</strong></h5>
+<p style="text-align: justify;"><strong style="line-height: 1.5em;"># Faux !</strong><span style="line-height: 1.5em;"> En réalité, il n’existe pas de financements pérennes, c’est-à-dire, qui perdurent indéfiniment. Tout bailleur rencontre des hauts et des bas qui peuvent influer sur les montants de leurs enveloppes de redistribution et sur leur stratégie au fil du temps. Si un financement ne peut pas être pérenne, c’est en revanche le partenariat qui peut l’être : en gardant des liens au-delà d’un financement spécifique, vous pourrez être mieux placé pour suivre le bailleur dans ces hauts comme dans ces bas.</span></p>
+<h5 style="text-align: justify;"><strong>« Les bailleurs n’aiment pas financer les frais de fonctionnement »</strong></h5>
+<p style="text-align: justify;"><strong style="line-height: 1.5em;"># Faux !</strong><span style="line-height: 1.5em;"> Ou plutôt : il n’y a pas de règle précise en la matière. Certains bailleurs acceptent les frais de fonctionnement sans limite, d’autres les prennent en charge dans la limite d’un pourcentage établi, et d’autres encore n’accepteront pas ce genre de dépense. Le plus important est de connaître les politiques de vos partenaires : posez-leur la question de façon explicite, et profitez des bailleurs qui prennent en charge le fonctionnement sans limites pour sécuriser des salaires et d’autres frais généraux.</span></p>
+<h5 style="text-align: justify;"><strong>« Les bailleurs veulent avoir leurs propres projets, il est donc conseillé de ne pas avoir de co-financements dans un budget soumis à un bailleur »</strong></h5>
+<p style="text-align: justify;"><strong style="line-height: 1.5em;"># Faux !</strong><span style="line-height: 1.5em;"> Les co-financements sont un gage de pérennité d’une action ou d’un projet ; plus il y a de co-financements, moins grand est le risque d’arrêt des activités en cas de désistement d’un partenaire. Avoir des co-financements renvoie un signe de crédibilité aux bailleurs, et vous protège aussi en cas de retard dans les décaissements, de difficultés financières ou de réorientations stratégiques des bailleurs.</span></p>
+<h5 style="text-align: justify;"><strong>« Le bailleur me dit de faire quelque chose, je suis donc obligé de le faire, même si je ne suis pas d’accord avec l’action »</strong></h5>
+<p style="text-align: justify;"><strong style="line-height: 1.5em;"># Faux !</strong><span style="line-height: 1.5em;"> Chaque association est libre de choisir sa propre voie de développement, et les bailleurs doivent soutenir ces décisions et orientations, non pas les définir ou imposer. Certes, vous avez besoin de ressources pour mener à bien vos activités, mais rechercher des financements ne doit pas vous amener à renier vos valeurs et à compromettre votre vision. L’approche du bailleur doit être en cohérence avec votre projet associatif, et non l’inverse. Certains bailleurs sont même à la recherche de partenaires qui oseront dire « non » quand une exigence devient trop lourde, car cette ouverture leur permettra aussi d’améliorer leurs soutiens aux associations. Et si un bailleur insiste dans ces exigences, même si vous exprimez votre désaccord, peut-être faudrait-il mieux chercher d’autres partenaires qui vous respectent plus.</span></p>
+<p style="text-align: justify;">
+		
+        <div id="recommandations">
+	    <h3>La plateforme ELSA vous recommande</h3>
+        <!-- Recommande -->
+         <div class="recomWrapper">
+                             <div class="recom">
+					<a href="http://www.plateforme-elsa.org/financements-detudes-epidemiologiques-sur-le-canal-1-de-linitiative-5/">
+					<div class="leftProg">
+						<img width="250" height="144" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/07/IPC_études_épidémio.png" class="attachment-medium wp-post-image" alt="IPC_études_épidémio" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org"></span><br />
+                        
+                                                                    <span class="category">Mobilisation des Ressources </span><br />                       
+                        <span class="title">Financements d&rsquo;études épidémiologiques sur le Canal 1 de l&rsquo;Initiative 5%</span><br />
+                        <span class="excerpt">Avec la mise en place du Nouveau Modèle de Financement du Fonds mondial de lutte contre le ...</span>
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+                              <div class="recom">
+					<a href="http://www.plateforme-elsa.org/la-mobilisation-des-ressources-cest-quoi-enfin-des-reponses-a-vos-questions/">
+					<div class="leftProg">
+						<img width="300" height="228" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/06/video_Matthew-300x228.png" class="attachment-medium wp-post-image" alt="video_Matthew" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org">Solidarité Sida</span><br />
+                        
+                                                                    <span class="category">Mobilisation des Ressources </span><br />                       
+                        <span class="title">La mobilisation des ressources, c&rsquo;est quoi ? Enfin des réponses à vos questions</span><br />
+                        <span class="excerpt">La mobilisation des ressources pour les associations de lutte contre le sida en Afrique : enfin ...</span>
+                        <!-- video -->
+                    </div>
+                    </a>  
+                </div> 
+                              <div class="recom">
+					<a href="http://www.plateforme-elsa.org/repertoire-des-bailleurs/">
+					<div class="leftProg">
+						<img width="210" height="300" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Répertoire_Bailleurs-210x300.png" class="attachment-medium wp-post-image" alt="Répertoire_Bailleurs" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org">Plateforme ELSA</span><br />
+                        
+                                                                    <span class="category">Mobilisation des Ressources </span><br />                       
+                        <span class="title">Répertoire des Bailleurs</span><br />
+                        <span class="excerpt">Cette liste alphabétique, composée de structures privées ou publiques finançant des projets de ...</span>
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+                              <div class="recom">
+					<a href="http://www.plateforme-elsa.org/associations-et-fonds-propres-pourquoi-les-associations-doivent-elles-gagner-de-largent/">
+					<div class="leftProg">
+						<img width="214" height="300" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Fonds_propres_infos-214x300.png" class="attachment-medium wp-post-image" alt="Fonds_propres_infos" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org"></span><br />
+                        
+                                                                    <span class="category">Mobilisation des Ressources </span><br />                       
+                        <span class="title">Associations et Fonds propres, pourquoi les associations doivent-elles gagner de l&rsquo;argent ?</span><br />
+                        <span class="excerpt">L’objectif de ce guide est d’expliquer, de façon claire et synthétique, ce que sont les fonds ...</span>
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+                              <div class="recom">
+					<a href="http://www.plateforme-elsa.org/fiche-de-procedure-de-demande-au-canal-1-de-linitiative-5-faire-une-demande-dexpertise/">
+					<div class="leftProg">
+						<img width="243" height="300" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/03/Procédure-CANAL1-022014-243x300.png" class="attachment-medium wp-post-image" alt="Procédure-CANAL1-022014" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org"></span><br />
+                        
+                                                                    <span class="category">Mobilisation des Ressources </span><br />                       
+                        <span class="title">Fiche de procédure de demande au Canal 1 de l&rsquo;Initiative 5% : Faire une demande d&rsquo;expertise</span><br />
+                        <span class="excerpt">Cette fiche pratique rappelle les modalités des demandes et vous aide à la préparation des ...</span>
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+                     </div> 
+        <!-- Recommande -->
+        
+
+         <!-- dernier -->
+         <div class="derniersDocuments"> 
+         <div class="dernierWrapper">
+         <h4 class="derRes"><span>Dernières</span> ressources</h4>			
+                            
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/apres-la-note-conceptuelle-occasions-dimplication-des-communautes-et-de-la-societe-civile-dans-le-processus-detablissement-des-subventions-du-fonds-mondial/">
+                    <div class="titleDernier">Après la note conceptuelle : Occasions d’implication des communautés et de la société civile dans le processus d’établissement des subventions du Fonds mondial</div>
+                   <!-- <div class="sllDernier">Publié le 15 fév 2016</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier"></div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/activites-generatrices-de-revenus-lecons-tirees-de-lexperience-du-jade/">
+                    <div class="titleDernier">Activités génératrices de revenus : leçons tirées de l&rsquo;expérience du JADE</div>
+                   <!-- <div class="sllDernier">Publié le 8 fév 2016</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier">togo</div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/le-co-financement-des-projets-et-programmes-dinteret-general/">
+                    <div class="titleDernier">Le co-financement des projets et programmes d&rsquo;intérêt général</div>
+                   <!-- <div class="sllDernier">Publié le 17 juil 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier"></div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/guide-pratique-devcoeuropeaid/">
+                    <div class="titleDernier">Guide pratique DevCo/EuropeAid</div>
+                   <!-- <div class="sllDernier">Publié le 10 juil 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier"></div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/le-site-internet-de-lagence-francaise-de-developpement-afd/">
+                    <div class="titleDernier">Le site internet de l&rsquo;Agence Française de Développement (AFD)</div>
+                   <!-- <div class="sllDernier">Publié le 3 juil 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier"></div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/financements-detudes-epidemiologiques-sur-le-canal-1-de-linitiative-5/">
+                    <div class="titleDernier">Financements d&rsquo;études épidémiologiques sur le Canal 1 de l&rsquo;Initiative 5%</div>
+                   <!-- <div class="sllDernier">Publié le 1 juil 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier"></div>
+                    </a>  
+                </div> 
+                     </div>
+         <a href="/recherche-documentaire/?totalcat=mobilisation-des-ressources" class="tousLesDocs">» tous les documents</a>
+        </div>
+        <!-- dernier -->
+        <div class="clear"></div>
+        </div>
+        
+        
+	            
+             	<div id="sharebottom">
+    <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+     </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+                  <div class="clear"></div>
+        
+        
+        <div id="headerComments">     
+             <div id="nbComments">Vos commentaires</div>
+        <div id="bubbleComments"><span>
+          4           </span></div>
+          
+          </div>
+			 
+        
+         <div id="comments">
+          
+              			 <ul id="blockComments">
+				       <li class="comment">
+         
+            <em>manirakiza nestor - le 16 mai 2016 à   8 h 12 min</em>
+                <p>                    <p>salut, nous sommes dans une association de volontaires pour le développement ,et nous voulons savoir si il y a appel projet dans votre organisation.</p>
+</p>
+          
+            <a href="?replytocom=5935#leaveComment" class="links">» répondre</a>
+            <a href="#" class="links">» signaler un abus</a><div class="clear"></div>
+        </li>
+
+
+
+
+        </li><!-- #comment-## -->
+       <li class="comment">
+         
+            <em>Plateforme Elsa - le 16 mai 2016 à   8 h 47 min</em>
+                <p>                    <p>Malheureusement, la plateforme ELSA n’est pas un bailleur de fonds et n’a donc pas pour vocation de financer des projets. ELSA est un réseau d’associations françaises développant des programmes en Afrique, le mieux est donc de les contacter directement. Vous pouvez accédez à leurs sites en consultant la page suivante : <a href="http://www.plateforme-elsa.org/plateforme-elsa/associations-membres-de-la-plateforme-elsa/" rel="nofollow">http://www.plateforme-elsa.org/plateforme-elsa/associations-membres-de-la-plateforme-elsa/</a><br />
+Notre site répertorie par ailleurs quelques pistes de financements pour les programmes de lutte contre le VIH/sida en Afrique francophone dans le dossier thématique Mobilisation des Ressource : <a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" rel="nofollow">http://www.plateforme-elsa.org/category/mobilisation-des-ressources/</a><br />
+Tout en vous souhaitant bonne chance dans vos recherches, nous vous prions de recevoir nos meilleures salutations.</p>
+</p>
+          
+            <a href="?replytocom=5936#leaveComment" class="links">» répondre</a>
+            <a href="#" class="links">» signaler un abus</a><div class="clear"></div>
+        </li>
+
+
+
+
+        </li><!-- #comment-## -->
+       <li class="comment">
+         
+            <em>EVODO SERGE - le 28 décembre 2016 à   13 h 45 min</em>
+                <p>                    <p>Bonjour , juste pour savoir si la plate forme Elsa organise encore les formations sud-sud . Bonne année a toute l’équipe .Merci</p>
+</p>
+          
+            <a href="?replytocom=5950#leaveComment" class="links">» répondre</a>
+            <a href="#" class="links">» signaler un abus</a><div class="clear"></div>
+        </li>
+
+
+
+
+        <ul class="children">
+       <li class="comment">
+         
+            <em>Plateforme Elsa - le 3 janvier 2017 à   9 h 45 min</em>
+                <p>                    <p>Bonjour Serge,<br />
+ELSA organise des stages Sud-Sud pour répondre à des besoins de renforcement de compétences de leurs partenaires africains, lorsque ces besoins sont identifiés par les ONG françaises membres de la Plateforme. Pour en bénéficier, il est donc préférable de vous adresser à l&rsquo;une de ces ONG si vous en êtes partenaires. Pour rappel, en 2016 les associations membres d&rsquo;ELSA sont Sidaction, Solidarité Sida, Solthis et le Planning Familial.<br />
+Cordialement,</p>
+</p>
+          
+            <a href="?replytocom=5951#leaveComment" class="links">» répondre</a>
+            <a href="#" class="links">» signaler un abus</a><div class="clear"></div>
+        </li>
+
+
+
+
+        </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</ul>
+
+		          
+  
+  
+  
+  
+   <span class="interet">Votre avis nous intéresse !</span>
+           
+           <form  action="http://www.plateforme-elsa.org/wp-comments-post.php" method="post" id="leaveComment">
+
+           		<div><input type="text" placeholder="Votre nom"  name="author" id="author" value=""/>
+                <input type="text" placeholder="Votre email" name="email" id="email" value=""/></div>
+                <div><textarea placeholder="Votre commentaire" name="comment" id="comment"></textarea></div>
+                <button>publier</button>
+			    <input type='hidden' name='comment_post_ID' value='7385' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+							</form>
+
+
+
+
+
+
+   </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+            
+        </article>
+        
+        <aside id="sidebarCms">
+        	<div class="shadowRight"></div>
+        <div class="imgCat"><img src='http://www.plateforme-elsa.org/wp-content/uploads/2014/04/photo_mobilisation_ressources-283x300.jpg' /></div>
+
+        	<div id="descCat">
+				                
+                       	</div>
+        
+        	<div id="rssFeedsWrapper">
+        	<h5>Fil d’infos</h5>
+            <ul id="rssFeeds">
+				<li>
+                	<img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/vih.png" width="70" height="20" />
+					                <li>
+                	<img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/onusida.png" width="113" height="19" />
+					<a href='http://www.unaids.org/fr/resources/presscentre/pressreleaseandstatementarchive/2016/november/20161130_UNAIDS-leadership-award' target='_blank'><p>L&#039;ONUSIDA remet le Prix du leadership au Secrétaire général ...</p> </a><a href='http://www.unaids.org/fr/resources/presscentre/pressreleaseandstatementarchive/2016/november/20161130_PR_moving-forward-together' target='_blank'><p>L&#039;ONUSIDA organise un événement spécial pour la Journée ...</p> </a><a href='http://www.unaids.org/fr/resources/presscentre/pressreleaseandstatementarchive/2016/november/20161201_startimes' target='_blank'><p>L’ONUSIDA et StarTimes s’associent afin de diffuser des messages ...</p> </a>                </li>
+                </li>
+                
+     		</ul>
+        </li>    
+        </div>             
+          
+              <div class="thematique">
+            	<p style="text-align: center;"><strong>DOSSIERS THÉMATIQUES</strong></p>
+<p style="text-align: left;"><a title="Dossiers thématiques" href="http://www.plateforme-elsa.org/dossiers-thematiques/">En lien avec les enjeux de lutte contre le VIH/sida en Afrique</a></p>            </div>        	 <div class="reseau">
+                
+                <strong>La Plateforme ELSA, c'est plus
+de 80 associations africaines</strong>
+<div class="thumbImg"><img alt="" src="/wp-content/themes/elsa/_img/reseau.png" width="87" height="64" /></div>
+<ul>
+	<li><a href="/associations-africaines-du-reseau-elsa/">Voir les associations</a></li>
+	<li><a href="/associations-africaines-du-reseau-elsa/annuaire/">Voir l’annuaire des associations</a></li>
+</ul>                <div class="clear"></div>
+                
+             </div>            
+  <div class="fichePays">
+           	  <a href="#">
+              <div>FICHE PAYS</div>
+              <div class="thumbImg"><img src="/wp-content/themes/elsa/_img/fichePays.png" alt="" width="64" height="87" /></div>
+<a href="/pays-dafrique/">Epidémiologie, chiffres clés, acteurs locaux
+de la lutte contre le VIH</a>
+
+&nbsp;              <div class="clear"></div>
+              </a>
+</div>           <div class="ressources"> <a href="/soumettre-une-ressource/"> Le centre de ressources<br>
+  s'enrichit aussi <strong>grâce à vous...</strong><br>
+  N'hésitez pas à nous <span>SOUMETTRE <strong>UNE RESSOURCE</strong></span> </a> </div>
+        </aside>
+        <div class="clear"></div>
+        
+        
+        
+        
+     </div>
+</section>
+<footer>
+	<div id="partenaires">
+    	<div class="titreSoul"><span>Les membres de la plateforme ELSA</span></div>
+        <ul>
+        					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="109" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_aides.png" class="attachment-medium wp-post-image" alt="Logo Aides" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="80" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Planning.png" class="attachment-medium wp-post-image" alt="Logo Le planning familial" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="75" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Sidaction.png" class="attachment-medium wp-post-image" alt="Logo Sidaction" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="138" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_SIS.png" class="attachment-medium wp-post-image" alt="Logo SIS Réseau" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="97" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Solidarite.png" class="attachment-medium wp-post-image" alt="Logo_Solidarite" /></a></li>
+				          
+                </ul>
+        <div class="clear"></div>
+    </div>
+    
+    <div id="footer">
+    	<div id="footerWrapper">
+            <div id="leftBottom">
+            <div id="logo"></div>
+    
+            <p style="text-align: justify;">La plateforme ELSA met à la disposition des personnes engagées dans la lutte contre le sida, un accès centralisé aux documents de référence sur les enjeux nationaux et internationaux au cœur des préoccupations des acteurs. Des thématiques de fond sont déclinées et reliées à des ressources variées, on y trouve également des guides et autres outils pratiques pour appuyer les associations dans leur travail. Alliant contenus théoriques et mises en œuvre pratiques, le site offre un appui technique en libre accès.
+Avec le soutien de :</p>
+<p style="text-align: justify;"><a href="http://www.afd.fr/home" target="_blank"><img class=" wp-image-5652" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/logo-AFD_100.png" alt="logo-AFD_100" width="66" height="57" /></a> <img class="alignnone wp-image-7050" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/03/FDF_Siege_Quadri3-300x300.jpg" alt="" width="54" height="54" /> <a href="http://www.paris.fr/politiques/paris-a-l-international/solidarite-cooperation/la-lutte-contre-le-sida/rub_6589_stand_16479_port_14980" target="_blank"><img class=" wp-image-5651" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Logo_mairiedeparis_180.png" alt="Logo_mairiedeparis_180" width="132" height="17" /></a></p>			<div class="clear"></div>
+            <hr />
+            <h2>RESTONS EN CONTACT VIA</h2>
+            <div class="clear"></div>
+            <div class="contactvia">
+            Notre newsletter
+                <form class="newsletter footer">
+                    <input type="text" placeholder="votre email">
+                    <button>OK</button>
+                </form>
+                <div class="clear"></div>
+            </div>
+            <div>
+            Les réseaux sociaux / rss
+            <ul id="reseaux">
+            	<li><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/facebook-footer.png" width="20" height="20"></a></li>
+                <li><a href="https://twitter.com/PlateformeELSA" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/twitter-footer.png" width="20" height="20"></a></li>
+                <li><a href="#"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/youtube-footer.png" width="20" height="20"></a></li>
+                <li><a href="/rss-plateforme-elsa" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/rss-footer.png" width="20" height="20"></a></li>
+            </ul>
+            <div class="clear"></div>
+            </div>
+            <hr />
+            <!-- AddThis Button BEGIN -->
+            <h2>PARTAGER</h2>
+            <div class="addthis_toolbox addthis_default_style" id="shareFooter">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+            <!-- AddThis Button END -->
+			</div>
+            <div id="colsBottom"> 
+                <div class="colFooter">
+                    <h2>THÉMATIQUES</h2>
+                    <ul>
+                        	<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+
+                    </ul>
+                </div>
+                <div class="colFooter">
+                <h2>PAYS D'AFRIQUE<br>
+                FRANCOPHONE</h2> 
+                    <ul>
+                        <li><a href="/pays/algerie" title="Algérie">Algérie</a></li><li><a href="/pays/benin" title="Bénin">Bénin</a></li><li><a href="/pays/burkina-faso" title="Burkina Faso">Burkina Faso</a></li><li><a href="/pays/burundi" title="Burundi">Burundi</a></li><li><a href="/pays/cameroun" title="Cameroun">Cameroun</a></li><li><a href="/pays/cote-divoire" title="Côte d&rsquo;Ivoire">Côte d&rsquo;Ivoire</a></li><li><a href="/pays/djibouti" title="Djibouti">Djibouti</a></li><li><a href="/pays/guinee" title="Guinée">Guinée</a></li><li><a href="/pays/guinee-equatoriale" title="Guinée équatoriale">Guinée équatoriale</a></li><li><a href="/pays/ile-maurice" title="Île Maurice">Île Maurice</a></li><li><a href="/pays/madagascar" title="Madagascar">Madagascar</a></li><li><a href="/pays/mali" title="Mali">Mali</a></li><li><a href="/pays/maroc" title="Maroc">Maroc</a></li><li><a href="/pays/niger" title="Niger">Niger</a></li><li><a href="/pays/centrafrique" title="République Centrafricaine">République Centrafricaine</a></li><li><a href="/pays/republique-democratique-du-congo" title="République démocratique du Congo">République démocratique du Congo</a></li><li><a href="/pays/republique-du-congo" title="République du Congo">République du Congo</a></li><li><a href="/pays/rwanda" title="Rwanda">Rwanda</a></li><li><a href="/pays/senegal" title="Sénégal">Sénégal</a></li><li><a href="/pays/tchad" title="Tchad">Tchad</a></li><li><a href="/pays/togo" title="Togo">Togo</a></li><li><a href="/pays/tunisie" title="Tunisie">Tunisie</a></li>                    </ul>
+              </div>
+                 <div class="colFooter">
+                 <h2>ELSA</h2>
+                    <ul>
+                        <li><a href="/plateforme-elsa/qui-sommes-nous/">Qui sommes-nous ?</a></li>
+                        <li><a href="/plateforme-elsa/fonctionnement-et-activites-delsa/">Activités</a></li>
+                        <li><a href="/associations-africaines-du-reseau-elsa/">Associations partenaires</a></li>
+                        <li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/">Associations membres</a></li>
+                        <li><a href="http://www.plateforme-elsa.org/extranet/" target="_blank">Accès intranet (membres ELSA)</a></li>
+                    </ul>
+                 <h2>SERVICES</h2>   
+                    <ul>
+                        <li><a href="/soumettre-une-ressource">Soumettre une ressource</a></li>
+                        <li><a href="/recherche-documentaire">Rechercher une ressource</a></li>
+                        <li><a href="/foire-aux-questions/">FAQ</a></li>
+                        <li><a href="/nous-contacter/">Contact</a></li>
+                        <li><a href="/nous-contacter/">Signaler un lien cassé</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+        		<div id="credits">Réalisation du site : <a href="http://www.clair-et-net.com/" target="_blank">Clair et Net.</a> / <a href="/conditions-generales-dutilisation/">CGU</a>  / <a href="/mentions-legales/">Mentions légales</a>  /© Plateforme ELSA 2014</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+     </footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43730500-1', 'plateforme-elsa.org');
+  ga('send', 'pageview');
+
+</script>
+<div id="toolTip"></div>
+
+</body>
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Mibnifié utilisant disk
+Mise en cache utilisant disk: enhanced 
+Mise en cache de base de données 33/78 requêtes dans 0.237 secondes utilisant disk
+
+ Served from: www.plateforme-elsa.org @ 2017-01-03 13:26:05 by W3 Total Cache -->

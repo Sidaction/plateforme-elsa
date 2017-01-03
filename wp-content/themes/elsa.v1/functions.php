@@ -1,0 +1,49 @@
+<?php
+/* ///////////////////////////////////////////////////////////////
+  PERSONNALISATION DU THEME ELSA
+  / Clair et Net.
+  ////////////////////////////////////////////////////////////// */
+
+require_once('__core/libs/lib.php' );
+require_once('__core/custompost.php' );
+require_once('__core/meta.php' );
+
+require_once('__core/themeManager.php' );
+$cnSite = new themeManager();
+
+require_once('__core/roles.php' );
+require_once('__core/adminManager.php' );
+$adminManager = new adminManager();
+
+	function tinymce_excerpt_js(){ ?>
+	<script type="text/javascript">
+	jQuery(document).ready( function () { 
+		jQuery("#excerpt").addClass("mceEditor"); 
+		if ( typeof( tinyMCE ) == "object" && typeof( tinyMCE.execCommand ) == "function" ) {
+		jQuery("#excerpt").wrap( "<div id='editorcontainer'></div>" ); 
+		tinyMCE.execCommand("mceAddControl", false, "excerpt");
+		}
+	}); 
+	</script>
+	 
+	<?php
+	}
+
+    add_action( 'admin_head-post.php', 'tinymce_excerpt_js');
+    add_action( 'admin_head-post-new.php', 'tinymce_excerpt_js');
+    function tinymce_css(){ ?>
+        <style type='text/css'>
+                    #postexcerpt .inside{margin:0;padding:0;background:#fff;}
+                    #postexcerpt .inside p{padding:0px 0px 5px 10px;}
+                    #postexcerpt #excerpteditorcontainer { border-style: solid; padding: 0; }
+        </style>
+    <?php
+	}
+    add_action( 'admin_head-post.php', 'tinymce_css');
+    add_action( 'admin_head-post-new.php', 'tinymce_css');
+
+    function prepareExcerptForEdit($e){
+        return nl2br($e);
+    }
+    add_action( 'excerpt_edit_pre','prepareExcerptForEdit');
+	

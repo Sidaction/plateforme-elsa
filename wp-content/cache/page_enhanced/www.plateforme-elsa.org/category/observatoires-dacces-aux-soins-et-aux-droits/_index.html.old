@@ -1,0 +1,648 @@
+ <!doctype html>
+<html lang="fr">
+<head><link rel="stylesheet" type="text/css" href="http://www.plateforme-elsa.org/wp-content/cache/minify/000000/fctREoIwDIThCwnRQ3gOJpZVwnRS7UawtxeHZ3zc-b-9yNpos3aOlRkRqJREyqLZRg0rfvWHOfr59UZtp7MgU7sKPovTFsjw49tGHMX92t_VU7uVzxEjMlL8BVrT9AU.css" media="all" />
+
+  <meta charset="utf-8">
+  <title>Observatoires d&rsquo;accès aux soins et aux droits | Plateforme Elsa</title> 
+<meta name="description" content="" />
+
+	<script type="text/javascript">var ajaxurl = 'http://www.plateforme-elsa.org/wp-admin/admin-ajax.php';</script>
+	  
+  
+  <!--[if lt IE 9]>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" type="image/png" href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/favicon.png" />
+ 
+  <!-- STYLES -->
+  
+  <link href='http://fonts.googleapis.com/css?family=Dosis:400,600,700' rel='stylesheet' type='text/css'>
+  
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/global.css?v=3" rel="stylesheet" type="text/css">
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/responsive.css?v=3" rel="stylesheet" type="text/css">
+  <!-- STYLES -->
+  
+  <!-- JS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.5/TweenMax.min.js"></script>
+	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectbox.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/freetiles.js"></script>
+  <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/interface.js"></script>
+  <!-- JS -->
+  
+    <!--[if lt IE 9]>
+    	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  
+    <![endif]-->
+    
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectivizr.js"></script>
+    	<noscript><link rel="stylesheet" href="[fallback css]" /></noscript>
+    <![endif]-->
+  
+</head>
+<body>
+
+<header>
+
+<div id="menuResp"></div>
+
+    <div id="topFollow">
+        <div id="topFollowWrapper">
+            <ul>
+                <li><a href="/nous-contacter">NOUS CONTACTER</a></li>
+                <li class="newsletterTop">NEWSLETTER</li>
+                <li><a href="#">NOUS SUIVRE</a></li>
+                  <li class="facebookTop"><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"></a></li>
+                <li class="twitterTop"><a href="https://twitter.com/PlateformeELSA" target="_blank"></a></li>
+                <!-- <li class="youtubeTop"><a href="#"></a></li> -->
+                <li class="rssTop"><a href="/rss-plateforme-elsa" target="_blank"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="newsletterTop">
+        <div id="newsletterTopWrapper">
+            <ul>
+                <li>Pour recevoir notre newsletter, veuillez renseigner votre email :</li>
+                <li>
+                
+
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<script type="text/javascript">
+                /* <![CDATA[ */
+                var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http://www.plateforme-elsa.org/wp-admin/admin-ajax.php","loadingTrans":"Chargement..."};
+                /* ]]> */
+                </script><script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<!--END Scripts-->
+
+<div class="widget_wysija_cont html_wysija"><div id="msg-form-wysija-html53511c8a3fd9d-1" class="wysija-msg ajax"></div><form id="form-wysija-html53511c8a3fd9d-1" method="post" action="/confirmation-dinscription/#wysija" class="newsletter">
+   
+    	<input type="text" name="wysija[user][email]" class="wysija-input validate[required,custom[email]]" title="E-mail"  value="" />
+   
+    
+
+<button>OK</button>
+
+    <input type="hidden" name="form_id" value="1" />
+    <input type="hidden" name="action" value="save" />
+    <input type="hidden" name="controller" value="subscribers" />
+    <input type="hidden" value="1" name="wysija-page" />
+
+    
+        <input type="hidden" name="wysija[user_list][list_ids]" value="1" />
+    
+ </form></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="logoWrapper">
+        <div id="logo">
+            <a href="/">
+                <h1>Centre de <strong>ressources francophones</strong><br>
+                sur le <strong>VIH/sida</strong> en <strong>Afrique</strong></h1>
+            </a>
+        </div>
+        <a href="/plateforme-elsa/" class="plateforme">La plateforme ELSA</a>
+    </div>
+    <div id="menu">
+        <nav id="menuWrapper">
+            <ul>
+                <li class="home"><a href="/"></a></li>
+                <li><h2><a href="http://www.plateforme-elsa.org/dossiers-thematiques/">Dossiers Thématiques</a></h2>
+                <div class="ssMenu">
+                    	<ul>
+                        		<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81 current-cat"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+                        </ul>
+                    </div>
+                </li>
+                <li><h2><a href="http://www.plateforme-elsa.org/pays-dafrique/">Pays d'Afrique</a></h2></li>
+                <li>
+                	<h2><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Associations africaines</a></h2>
+                    <div class="ssMenu">
+                    	<ul>
+                        	<li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Par nom / par pays</a></li>
+                            <li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/annuaire/">Annuaire</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="agenda"><h2><a href="http://www.plateforme-elsa.org/agenda-elsa/">Agenda</a></h2></li>
+                <li class="recherche"><h2><a href="http://www.plateforme-elsa.org/recherche-documentaire">Recherche documentaire</a></h2></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section id="contentSite" class="bleu">
+	<div id="breadcrumb">
+    	<div id="breadcrumbWrapper">Vous êtes ici » <a href="#">Accueil</a> » <a href="/dossiers-thematiques/">Dossiers thématiques</a> » <a href="#">Observatoires d&rsquo;accès aux soins et aux droits</a></div>
+    </div>
+     <div id="contentWrapper">
+     	<div class="shadowLeft"></div>
+        <div class="shadowRight"></div>
+        <article>
+		<h1>Observatoires d&rsquo;accès aux soins et aux droits</h1>           
+        
+            <p><strong>Des associations de lutte contre le sida préoccupées par la qualité de la prise en charge et la lutte contre les discriminations, ont développé une dynamique citoyenne de veille active et de remontée de l’information sur l’accès aux soins et aux droits en créant des observatoires.</strong><br />
+Grâce à une approche participative, ces mécanismes indépendants et communautaires révèlent les analyses des associatifs, et font entendre la voix des malades pour contribuer à l’amélioration de la prise en charge en fonction des manquements réels.</p>
+<h5>Les Observatoires de l’accès aux soins</h5>
+<p>Gratuité effective des ARV ? Disponibilité des traitements et des réactifs ? Surcoût des bilans ? Accueil par le personnel médical ? Accès décentralisé ? Droits bafoués en raison du statut sérologique ou de l’orientation sexuelle ?<br />
+De nombreux dysfonctionnements entraînent des difficultés dans l’accès aux soins et une qualité de services inégale, dans un contexte de stigmatisation ouvrant à des violations de droits. Pour y faire face, les observatoires de la prise en charge sont des dispositifs de collecte d’informations permettant de documenter ces dysfonctionnements en vue d’interpeller les pouvoirs publics.</p>
+<h5>Les Observatoires des droits</h5>
+<p>Dans la même logique de collecter pour agir, des associations de lutte contre le sida étendent cette expertise au recueil d’informations sur les discriminations et les violations des droits, via la création d’observatoires des droits, notamment Alternatives-Cameroun, Céradis au Bénin et l’ATL en Tunisie. Alternative Cameroun a mis en place un observatoire des cas d'arrestations sur la base de l'orientation sexuelle (l’homosexualité est pénalisée dans ce pays depuis 1972).<br />
+Céradis a ouvert son observatoire sur l’accès aux soins aux cas de violations des droits en raison de l’orientation sexuelle réelle ou présumée et à mis en place un partenariat avec BESYP, réseau d’association LGBT afin que ces dernières jouent le rôle de sentinelles faisant remontée l’information.<br />
+En Tunisie, l’observatoire se concentre pour l’instant sur les violations des droits des prisonniers, notamment concernant les difficultés d’accès aux soins des PVVIH emprisonnés. L'observatoire traite des cas de violations des droits sur la base de l’orientation sexuelle mais achoppe sur les suites juridiques à donner à ces violations dans la mesure où les victimes ne souhaitent pas rendre publique ces violations de leurs droits.</p>
+<p><strong>Ces observatoires ont pour objectifs de :</strong></p>
+<ul>
+<li><strong>Disposer d’une information fiable et alternative</strong> sur la situation de la prise en charge dans le pays, pour identifier les principales entraves dans l’accès aux soins et aux traitements, ou dans l’accès aux droits.</li>
+<li><strong>Interpeller les pouvoirs publics sur les dysfonctionnements</strong>, être force de proposition sur les solutions à y apporter pour améliorer les conditions d’accès aux soins ou réduire la discrimination et ainsi mener un plaidoyer efficace.</li>
+<li><strong>Promouvoir l’autonomisation et l’empowerment des personnes touchées</strong> afin de les rendre actrices de leur prise en charge ou leur permettre de réagir face aux violations de leurs droits.</li>
+</ul>
+<h5><strong>Acteurs</strong> sur la thématique</h5>
+<p style="text-align: justify;">En 2010, <strong>Positive-Generation, association camerounaise, lance le Treatment Access Watch (TAW)</strong> en collaboration avec 3SH. Le TAW de Positive-Generation devient aujourd’hui un standard pour de nombreux acteurs internationaux.<br />
+D’autres associations se lancent à leur tour dans des projets d’observatoires et les dispositifs les plus aboutis actuellement sont menés par :<br />
+- le <strong>RAME avec le TAW-Burkina</strong><br />
+- et <strong>CeRADIS avec l’Observatoire de qualité de la prise en charge médicale des PVVIH au Bénin</strong>.</p>
+<p style="text-align: justify;">En 2014, <strong>AIDES lance le projet Plaidoyer, en Afrique et dans les Caraïbes, pour les droits humains et la non discrimination dans la prévention et le traitement du VIH/sida et des hépatites des groupes les plus vulnérables</strong> : hommes ayant des relations homosexuelles (HSH), travailleur.se.s du sexe (TS) et usager.ère.s de drogues (UD). Les associations partenaires  :</p>
+<ul>
+<li>développeront, des actions de sensibilisation/information de divers acteurs clés (médias, police, justice, santé, politiques) sur les droits humains et la lutte contre le VIH/sida auprès des groupes vulnérables</li>
+<li>renforceront également leurs capacités de défense des droits de ces groupes vulnérables, en les informant sur leurs droits et en proposant une assistance juridique aux personnes victimes de violations de leurs droits et/ou en prise avec la justice</li>
+<li>mettront en place des mécanismes d’observatoire des violations des droits et des discriminations à l’égard des groupes vulnérables pour pouvoir les dénoncer aux niveaux national et international</li>
+</ul>
+<h4 style="text-align: justify;"></h4>
+<h4 style="text-align: justify;"><strong>Le fonctionnement des Observatoires :</strong></h4>
+<p style="text-align: justify;">Ces dispositifs sont évidemment « pays-dépendants », mais le cœur du dispositif mis en place reste le même.</p>
+<ul>
+<li><strong>Collecter l’information :</strong></li>
+</ul>
+<p style="text-align: justify;">- Les associations ont construit des mécanismes de collecte d’information s’appuyant sur les relais communautaires au sein des sites (ex : médiateurs au Bénin, agents relais communautaires (ARC) au Cameroun) et sur les associations de PVVIH. Les « observateurs » sont bénévoles.<br />
+- Les informations collectées concernent principalement les questions suivantes : disponibilité des soins et traitements, présence du personnel médical sur les sites, disponibilité des examens et leur coût. Les informations à collecter ont été définies avec les personnes vivant avec le VIH, ce qui constitue une première phase de l’empowerment.<br />
+- La transmission de l’information des sites jusqu’au niveau central nécessite des moyens de communication les plus simples possibles (SMS, ligne téléphonique gratuite).<br />
+Traiter l’information :<br />
+- L’information collectée est consolidée au niveau de l’association porteuse de l’observatoire.<br />
+- L’analyse des données est faite en partenariat avec les associations ou le réseau d’associations de personnes vivant avec le VIH.<br />
+- Les données traitées permettent d’identifier les sites ou les régions pour lesquels les dysfonctionnements sont les plus importants : ceux-ci peuvent faire l’objet de sorties de terrain pour rencontrer les acteurs de la prise en charge sur place.<br />
+- L’un des enjeux pour les acteurs associatifs est celui de la vérification des informations remontées.</p>
+<ul>
+<li><strong>Rendre public et interpeller :</strong></li>
+</ul>
+<p style="text-align: justify;">- Les informations collectées et les dysfonctionnements identifiés font l’objet de rapports périodiques.<br />
+- Globalement, l’ensemble des informations permet d’alimenter le plaidoyer des associations de lutte contre le sida lors de rendez-vous de lobby ou dans le cadre de mobilisations.</p>
+<ul>
+<li><strong>Empowerment et partenariats :</strong></li>
+</ul>
+<p style="text-align: justify;">- Autour de ces dispositifs se sont construits des partenariats avec les organisations de personnes vivant avec le VIH, mais aussi avec d’autres secteurs comme les associations de juristes. Ainsi se trouvent démultipliées les expertises pour l’analyse ainsi que les canaux et les messagers pour le plaidoyer.<br />
+- Les associations porteuses du dispositif construisent les moyens de l’empowerment des personnes qui pourront partager et agir contre les dysfonctionnements rencontrés.</p>
+<p style="text-align: justify;">
+		
+        <div id="recommandations">
+	    <h3>La plateforme ELSA vous recommande</h3>
+        <!-- Recommande -->
+         <div class="recomWrapper">
+                             <div class="recom">
+					<a href="http://www.plateforme-elsa.org/grands-combats-de-plaidoyer/">
+					<div class="leftProg">
+						<img width="250" height="137" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/10/PSud-GrandsCombats.png" class="attachment-medium wp-post-image" alt="PSud-GrandsCombats" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org"></span><br />
+                        
+                                                                    <span class="category">Observatoires d'accès aux soins et aux droits, Plaidoyer  - benin</span><br />                       
+                        <span class="title">Grands combats de plaidoyer</span><br />
+                        <span class="excerpt">Extrait du Webdoc du projet Plaidoyer Sud mené en consortium par AIDES, Solidarité Sida et Act ...</span>
+                        <!-- video -->
+                    </div>
+                    </a>  
+                </div> 
+                              <div class="recom">
+					<a href="http://www.plateforme-elsa.org/les-observateurs-acteurs-cles-observatoire-du-benin/">
+					<div class="leftProg">
+						<img width="250" height="141" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Fond_OBSERVATOIRE.png" class="attachment-medium wp-post-image" alt="Fond_OBSERVATOIRE" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org"></span><br />
+                        
+                                                                    <span class="category">Observatoires d'accès aux soins et aux droits  - benin</span><br />                       
+                        <span class="title">Les observateurs, acteurs clés &#8211; Observatoire du Bénin</span><br />
+                        <span class="excerpt">Extrait du webdoc du projet Plaidoyer Sud. Cette vidéo présente les personnes moteurs dans le ...</span>
+                        <!-- video -->
+                    </div>
+                    </a>  
+                </div> 
+                              <div class="recom">
+					<a href="http://www.plateforme-elsa.org/lobservatoire-de-qualite-de-la-prise-en-charge-medicale-des-pvvih-au-benin/">
+					<div class="leftProg">
+						<img width="250" height="141" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Fond_OBSERVATOIRE.png" class="attachment-medium wp-post-image" alt="Fond_OBSERVATOIRE" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org"></span><br />
+                        
+                                                                    <span class="category">Observatoires d'accès aux soins et aux droits  - benin</span><br />                       
+                        <span class="title">L’Observatoire de qualité de la prise en charge médicale des PVVIH au Bénin</span><br />
+                        <span class="excerpt">Extrait du webdoc du projet Plaidoyer Sud. Dans cette vidéo, Denis D&rsquo;Oliveira, de ...</span>
+                        <!-- video -->
+                    </div>
+                    </a>  
+                </div> 
+                              <div class="recom">
+					<a href="http://www.plateforme-elsa.org/experience-du-treatment-access-watch-taw/">
+					<div class="leftProg">
+						<img width="250" height="187" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Solthis_experience_taw_f_foguito.png" class="attachment-medium wp-post-image" alt="Solthis_experience_taw_f_foguito" />                    </div>
+                    <div class="rightProg">
+						<span class="first_org"></span><br />
+                        
+                                                                    <span class="category">Observatoires d'accès aux soins et aux droits  - cameroun</span><br />                       
+                        <span class="title">Expérience du Treatment Access Watch (TAW)</span><br />
+                        <span class="excerpt">Diaporama de présentation du TAW à l&rsquo;occasion de la Journée scientifique Solthis 2011.</span>
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+                     </div> 
+        <!-- Recommande -->
+        
+
+         <!-- dernier -->
+         <div class="derniersDocuments"> 
+         <div class="dernierWrapper">
+         <h4 class="derRes"><span>Dernières</span> ressources</h4>			
+                            
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/promotion-des-droits-a-la-sante-sexuelle-et-reproductive-des-adolescents-adolescentes-et-jeunes-dans-les-communautes-du-benin/">
+                    <div class="titleDernier">Promotion des droits à la Santé Sexuelle et Reproductive des Adolescents / Adolescentes et Jeunes dans les Communautés du Bénin</div>
+                   <!-- <div class="sllDernier">Publié le 1 sept 2016</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier">benin</div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/grands-combats-de-plaidoyer/">
+                    <div class="titleDernier">Grands combats de plaidoyer</div>
+                   <!-- <div class="sllDernier">Publié le 13 oct 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier">benin</div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/observatoire-ethique-droits-humains-et-vih-en-tunisie/">
+                    <div class="titleDernier">Observatoire Éthique, droits humains et VIH en Tunisie</div>
+                   <!-- <div class="sllDernier">Publié le 30 juin 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier">tunisie</div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/rapport-ocass-observatoire-communautaire-sur-lacces-aux-services-de-sante-2eme-semestre-2013/">
+                    <div class="titleDernier">Rapport OCASS (Observatoire Communautaire sur l’Accès aux services de Santé), 2ème semestre 2013</div>
+                   <!-- <div class="sllDernier">Publié le 23 juin 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier">burkina-faso</div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/les-observateurs-acteurs-cles-observatoire-du-benin/">
+                    <div class="titleDernier">Les observateurs, acteurs clés &#8211; Observatoire du Bénin</div>
+                   <!-- <div class="sllDernier">Publié le 15 avr 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier">benin</div>
+                    </a>  
+                </div> 
+                             
+                 <div class="derRessource">
+					<a href="http://www.plateforme-elsa.org/lobservatoire-de-qualite-de-la-prise-en-charge-medicale-des-pvvih-au-benin/">
+                    <div class="titleDernier">L’Observatoire de qualité de la prise en charge médicale des PVVIH au Bénin</div>
+                   <!-- <div class="sllDernier">Publié le 15 avr 2014</div>-->
+					<div class="sllDernier"></div>
+                    <div class="sllDernier">benin</div>
+                    </a>  
+                </div> 
+                     </div>
+         <a href="/recherche-documentaire/?totalcat=observatoires-dacces-aux-soins-et-aux-droits" class="tousLesDocs">» tous les documents</a>
+        </div>
+        <!-- dernier -->
+        <div class="clear"></div>
+        </div>
+        
+        
+	            
+             	<div id="sharebottom">
+    <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+     </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+                  <div class="clear"></div>
+        
+        
+        <div id="headerComments">     
+             <div id="nbComments">Vos commentaires</div>
+        <div id="bubbleComments"><span>
+          0          </span></div>
+          
+          </div>
+			 
+        
+         <div id="comments">
+          
+                        
+  
+  
+  
+  
+   <span class="interet">Votre avis nous intéresse !</span>
+           
+           <form  action="http://www.plateforme-elsa.org/wp-comments-post.php" method="post" id="leaveComment">
+
+           		<div><input type="text" placeholder="Votre nom"  name="author" id="author" value=""/>
+                <input type="text" placeholder="Votre email" name="email" id="email" value=""/></div>
+                <div><textarea placeholder="Votre commentaire" name="comment" id="comment"></textarea></div>
+                <button>publier</button>
+			    <input type='hidden' name='comment_post_ID' value='7662' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+							</form>
+
+
+
+
+
+
+   </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+            
+        </article>
+        
+        <aside id="sidebarCms">
+        	<div class="shadowRight"></div>
+        <div class="imgCat"><img src='http://www.plateforme-elsa.org/wp-content/uploads/2014/04/wearewatching-400x300.jpg' /></div>
+
+        	<div id="descCat">
+				<ul>
+<li><a href="/tag/gratuite" target="_blank">Gratuité</a></li>
+<li><a href="/tag/disponibilite" target="_blank">Disponibilité</a></li>
+<li><a href="/tag/accessibilite" target="_blank">Accessibilité</a></li>
+<li><a href="/tag/approvisionnnement" target="_blank">Approvisionnement</a></li>
+</ul>
+                
+                       	</div>
+        
+        	<div id="rssFeedsWrapper">
+        	<h5>Fil d’infos</h5>
+            <ul id="rssFeeds">
+				<li>
+                	<img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/vih.png" width="70" height="20" />
+					                <li>
+                	<img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/onusida.png" width="113" height="19" />
+					<a href='http://www.unaids.org/fr/resources/presscentre/pressreleaseandstatementarchive/2016/november/20161130_UNAIDS-leadership-award' target='_blank'><p>L&#039;ONUSIDA remet le Prix du leadership au Secrétaire général ...</p> </a><a href='http://www.unaids.org/fr/resources/presscentre/pressreleaseandstatementarchive/2016/november/20161130_PR_moving-forward-together' target='_blank'><p>L&#039;ONUSIDA organise un événement spécial pour la Journée ...</p> </a><a href='http://www.unaids.org/fr/resources/presscentre/pressreleaseandstatementarchive/2016/november/20161201_startimes' target='_blank'><p>L’ONUSIDA et StarTimes s’associent afin de diffuser des messages ...</p> </a>                </li>
+                </li>
+                
+     		</ul>
+        </li>    
+        </div>             
+          
+              <div class="thematique">
+            	<p style="text-align: center;"><strong>DOSSIERS THÉMATIQUES</strong></p>
+<p style="text-align: left;"><a title="Dossiers thématiques" href="http://www.plateforme-elsa.org/dossiers-thematiques/">En lien avec les enjeux de lutte contre le VIH/sida en Afrique</a></p>            </div>        	 <div class="reseau">
+                
+                <strong>La Plateforme ELSA, c'est plus
+de 80 associations africaines</strong>
+<div class="thumbImg"><img alt="" src="/wp-content/themes/elsa/_img/reseau.png" width="87" height="64" /></div>
+<ul>
+	<li><a href="/associations-africaines-du-reseau-elsa/">Voir les associations</a></li>
+	<li><a href="/associations-africaines-du-reseau-elsa/annuaire/">Voir l’annuaire des associations</a></li>
+</ul>                <div class="clear"></div>
+                
+             </div>            
+  <div class="fichePays">
+           	  <a href="#">
+              <div>FICHE PAYS</div>
+              <div class="thumbImg"><img src="/wp-content/themes/elsa/_img/fichePays.png" alt="" width="64" height="87" /></div>
+<a href="/pays-dafrique/">Epidémiologie, chiffres clés, acteurs locaux
+de la lutte contre le VIH</a>
+
+&nbsp;              <div class="clear"></div>
+              </a>
+</div>           <div class="ressources"> <a href="/soumettre-une-ressource/"> Le centre de ressources<br>
+  s'enrichit aussi <strong>grâce à vous...</strong><br>
+  N'hésitez pas à nous <span>SOUMETTRE <strong>UNE RESSOURCE</strong></span> </a> </div>
+        </aside>
+        <div class="clear"></div>
+        
+        
+        
+        
+     </div>
+</section>
+<footer>
+	<div id="partenaires">
+    	<div class="titreSoul"><span>Les membres de la plateforme ELSA</span></div>
+        <ul>
+        					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="109" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_aides.png" class="attachment-medium wp-post-image" alt="Logo Aides" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="80" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Planning.png" class="attachment-medium wp-post-image" alt="Logo Le planning familial" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="75" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Sidaction.png" class="attachment-medium wp-post-image" alt="Logo Sidaction" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="138" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_SIS.png" class="attachment-medium wp-post-image" alt="Logo SIS Réseau" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="97" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Solidarite.png" class="attachment-medium wp-post-image" alt="Logo_Solidarite" /></a></li>
+				          
+                </ul>
+        <div class="clear"></div>
+    </div>
+    
+    <div id="footer">
+    	<div id="footerWrapper">
+            <div id="leftBottom">
+            <div id="logo"></div>
+    
+            <p style="text-align: justify;">La plateforme ELSA met à la disposition des personnes engagées dans la lutte contre le sida, un accès centralisé aux documents de référence sur les enjeux nationaux et internationaux au cœur des préoccupations des acteurs. Des thématiques de fond sont déclinées et reliées à des ressources variées, on y trouve également des guides et autres outils pratiques pour appuyer les associations dans leur travail. Alliant contenus théoriques et mises en œuvre pratiques, le site offre un appui technique en libre accès.
+Avec le soutien de :</p>
+<p style="text-align: justify;"><a href="http://www.afd.fr/home" target="_blank"><img class=" wp-image-5652" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/logo-AFD_100.png" alt="logo-AFD_100" width="66" height="57" /></a> <img class="alignnone wp-image-7050" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/03/FDF_Siege_Quadri3-300x300.jpg" alt="" width="54" height="54" /> <a href="http://www.paris.fr/politiques/paris-a-l-international/solidarite-cooperation/la-lutte-contre-le-sida/rub_6589_stand_16479_port_14980" target="_blank"><img class=" wp-image-5651" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Logo_mairiedeparis_180.png" alt="Logo_mairiedeparis_180" width="132" height="17" /></a></p>			<div class="clear"></div>
+            <hr />
+            <h2>RESTONS EN CONTACT VIA</h2>
+            <div class="clear"></div>
+            <div class="contactvia">
+            Notre newsletter
+                <form class="newsletter footer">
+                    <input type="text" placeholder="votre email">
+                    <button>OK</button>
+                </form>
+                <div class="clear"></div>
+            </div>
+            <div>
+            Les réseaux sociaux / rss
+            <ul id="reseaux">
+            	<li><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/facebook-footer.png" width="20" height="20"></a></li>
+                <li><a href="https://twitter.com/PlateformeELSA" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/twitter-footer.png" width="20" height="20"></a></li>
+                <li><a href="#"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/youtube-footer.png" width="20" height="20"></a></li>
+                <li><a href="/rss-plateforme-elsa" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/rss-footer.png" width="20" height="20"></a></li>
+            </ul>
+            <div class="clear"></div>
+            </div>
+            <hr />
+            <!-- AddThis Button BEGIN -->
+            <h2>PARTAGER</h2>
+            <div class="addthis_toolbox addthis_default_style" id="shareFooter">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+            <!-- AddThis Button END -->
+			</div>
+            <div id="colsBottom"> 
+                <div class="colFooter">
+                    <h2>THÉMATIQUES</h2>
+                    <ul>
+                        	<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+
+                    </ul>
+                </div>
+                <div class="colFooter">
+                <h2>PAYS D'AFRIQUE<br>
+                FRANCOPHONE</h2> 
+                    <ul>
+                        <li><a href="/pays/algerie" title="Algérie">Algérie</a></li><li><a href="/pays/benin" title="Bénin">Bénin</a></li><li><a href="/pays/burkina-faso" title="Burkina Faso">Burkina Faso</a></li><li><a href="/pays/burundi" title="Burundi">Burundi</a></li><li><a href="/pays/cameroun" title="Cameroun">Cameroun</a></li><li><a href="/pays/cote-divoire" title="Côte d&rsquo;Ivoire">Côte d&rsquo;Ivoire</a></li><li><a href="/pays/djibouti" title="Djibouti">Djibouti</a></li><li><a href="/pays/guinee" title="Guinée">Guinée</a></li><li><a href="/pays/guinee-equatoriale" title="Guinée équatoriale">Guinée équatoriale</a></li><li><a href="/pays/ile-maurice" title="Île Maurice">Île Maurice</a></li><li><a href="/pays/madagascar" title="Madagascar">Madagascar</a></li><li><a href="/pays/mali" title="Mali">Mali</a></li><li><a href="/pays/maroc" title="Maroc">Maroc</a></li><li><a href="/pays/niger" title="Niger">Niger</a></li><li><a href="/pays/centrafrique" title="République Centrafricaine">République Centrafricaine</a></li><li><a href="/pays/republique-democratique-du-congo" title="République démocratique du Congo">République démocratique du Congo</a></li><li><a href="/pays/republique-du-congo" title="République du Congo">République du Congo</a></li><li><a href="/pays/rwanda" title="Rwanda">Rwanda</a></li><li><a href="/pays/senegal" title="Sénégal">Sénégal</a></li><li><a href="/pays/tchad" title="Tchad">Tchad</a></li><li><a href="/pays/togo" title="Togo">Togo</a></li><li><a href="/pays/tunisie" title="Tunisie">Tunisie</a></li>                    </ul>
+              </div>
+                 <div class="colFooter">
+                 <h2>ELSA</h2>
+                    <ul>
+                        <li><a href="/plateforme-elsa/qui-sommes-nous/">Qui sommes-nous ?</a></li>
+                        <li><a href="/plateforme-elsa/fonctionnement-et-activites-delsa/">Activités</a></li>
+                        <li><a href="/associations-africaines-du-reseau-elsa/">Associations partenaires</a></li>
+                        <li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/">Associations membres</a></li>
+                        <li><a href="http://www.plateforme-elsa.org/extranet/" target="_blank">Accès intranet (membres ELSA)</a></li>
+                    </ul>
+                 <h2>SERVICES</h2>   
+                    <ul>
+                        <li><a href="/soumettre-une-ressource">Soumettre une ressource</a></li>
+                        <li><a href="/recherche-documentaire">Rechercher une ressource</a></li>
+                        <li><a href="/foire-aux-questions/">FAQ</a></li>
+                        <li><a href="/nous-contacter/">Contact</a></li>
+                        <li><a href="/nous-contacter/">Signaler un lien cassé</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+        		<div id="credits">Réalisation du site : <a href="http://www.clair-et-net.com/" target="_blank">Clair et Net.</a> / <a href="/conditions-generales-dutilisation/">CGU</a>  / <a href="/mentions-legales/">Mentions légales</a>  /© Plateforme ELSA 2014</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+     </footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43730500-1', 'plateforme-elsa.org');
+  ga('send', 'pageview');
+
+</script>
+<div id="toolTip"></div>
+
+</body>
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Mibnifié utilisant disk
+Mise en cache utilisant disk: enhanced 
+Mise en cache de base de données 31/72 requêtes dans 0.222 secondes utilisant disk
+
+ Served from: www.plateforme-elsa.org @ 2017-01-03 13:26:07 by W3 Total Cache -->

@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="fr">
+<head><link rel="stylesheet" type="text/css" href="http://www.plateforme-elsa.org/wp-content/cache/minify/000000/fctREoIwDIThCwnRQ3gOJpZVwnRS7UawtxeHZ3zc-b-9yNpos3aOlRkRqJREyqLZRg0rfvWHOfr59UZtp7MgU7sKPovTFsjw49tGHMX92t_VU7uVzxEjMlL8BVrT9AU.css" media="all" />
+
+  <meta charset="utf-8">
+  <title>ALU  - Plateforme Elsa</title> 
+<meta name="description" content="L’Association Liaison Universelle (ALU) a été créée le 06 Octobre 2003 à Ouagadougou sous le récépissé n°2003 – 551/MATD/SG/DGLPAP/DOASOC. Afin d�..." />
+<meta property="og:url" content="http://www.plateforme-elsa.org/structure/alu/"/>
+<meta property="og:title" content="ALU" />
+<meta property="og:description" content="..." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="http://www.plateforme-elsa.org/wp-content/uploads/2016/07/Logo_ALU-Burkina.png" />
+
+	<script type="text/javascript">var ajaxurl = 'http://www.plateforme-elsa.org/wp-admin/admin-ajax.php';</script>
+	  
+  
+  <!--[if lt IE 9]>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" type="image/png" href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/favicon.png" />
+ 
+  <!-- STYLES -->
+  
+  <link href='http://fonts.googleapis.com/css?family=Dosis:400,600,700' rel='stylesheet' type='text/css'>
+  
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/global.css?v=3" rel="stylesheet" type="text/css">
+  
+  <link href="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_css/responsive.css?v=3" rel="stylesheet" type="text/css">
+  <!-- STYLES -->
+  
+  <!-- JS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.5/TweenMax.min.js"></script>
+	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectbox.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/freetiles.js"></script>
+  <script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/interface.js"></script>
+  <!-- JS -->
+  
+    <!--[if lt IE 9]>
+    	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  
+    <![endif]-->
+    
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    	<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/selectivizr.js"></script>
+    	<noscript><link rel="stylesheet" href="[fallback css]" /></noscript>
+    <![endif]-->
+  
+</head>
+<body>
+
+<header>
+
+<div id="menuResp"></div>
+
+    <div id="topFollow">
+        <div id="topFollowWrapper">
+            <ul>
+                <li><a href="/nous-contacter">NOUS CONTACTER</a></li>
+                <li class="newsletterTop">NEWSLETTER</li>
+                <li><a href="#">NOUS SUIVRE</a></li>
+                  <li class="facebookTop"><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"></a></li>
+                <li class="twitterTop"><a href="https://twitter.com/PlateformeELSA" target="_blank"></a></li>
+                <!-- <li class="youtubeTop"><a href="#"></a></li> -->
+                <li class="rssTop"><a href="/rss-plateforme-elsa" target="_blank"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="newsletterTop">
+        <div id="newsletterTopWrapper">
+            <ul>
+                <li>Pour recevoir notre newsletter, veuillez renseigner votre email :</li>
+                <li>
+                
+
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js?ver=2.6.5"></script>
+<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<script type="text/javascript">
+                /* <![CDATA[ */
+                var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http://www.plateforme-elsa.org/wp-admin/admin-ajax.php","loadingTrans":"Chargement..."};
+                /* ]]> */
+                </script><script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/plugins/wysija-newsletters/js/front-subscribers.js?ver=2.6.5"></script>
+<!--END Scripts-->
+
+<div class="widget_wysija_cont html_wysija"><div id="msg-form-wysija-html53511c8a3fd9d-1" class="wysija-msg ajax"></div><form id="form-wysija-html53511c8a3fd9d-1" method="post" action="/confirmation-dinscription/#wysija" class="newsletter">
+   
+    	<input type="text" name="wysija[user][email]" class="wysija-input validate[required,custom[email]]" title="E-mail"  value="" />
+   
+    
+
+<button>OK</button>
+
+    <input type="hidden" name="form_id" value="1" />
+    <input type="hidden" name="action" value="save" />
+    <input type="hidden" name="controller" value="subscribers" />
+    <input type="hidden" value="1" name="wysija-page" />
+
+    
+        <input type="hidden" name="wysija[user_list][list_ids]" value="1" />
+    
+ </form></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="logoWrapper">
+        <div id="logo">
+            <a href="/">
+                <h1>Centre de <strong>ressources francophones</strong><br>
+                sur le <strong>VIH/sida</strong> en <strong>Afrique</strong></h1>
+            </a>
+        </div>
+        <a href="/plateforme-elsa/" class="plateforme">La plateforme ELSA</a>
+    </div>
+    <div id="menu">
+        <nav id="menuWrapper">
+            <ul>
+                <li class="home"><a href="/"></a></li>
+                <li><h2><a href="http://www.plateforme-elsa.org/dossiers-thematiques/">Dossiers Thématiques</a></h2>
+                <div class="ssMenu">
+                    	<ul>
+                        		<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+                        </ul>
+                    </div>
+                </li>
+                <li><h2><a href="http://www.plateforme-elsa.org/pays-dafrique/">Pays d'Afrique</a></h2></li>
+                <li>
+                	<h2><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Associations africaines</a></h2>
+                    <div class="ssMenu">
+                    	<ul>
+                        	<li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/">Par nom / par pays</a></li>
+                            <li><a href="http://www.plateforme-elsa.org/associations-africaines-du-reseau-elsa/annuaire/">Annuaire</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="agenda"><h2><a href="http://www.plateforme-elsa.org/agenda-elsa/">Agenda</a></h2></li>
+                <li class="recherche"><h2><a href="http://www.plateforme-elsa.org/recherche-documentaire">Recherche documentaire</a></h2></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+   
+ 
+<section id="contentSite" class="marronclair structure">
+	<div id="breadcrumb">
+    	<div id="breadcrumbWrapper">Vous êtes ici » <a href="/">Accueil</a> » <a href="/associations-africaines-du-reseau-elsa/">Associations</a> » <a href="#">ALU</a></div>
+    </div>
+     <div id="contentWrapper">
+     	<div id="navTop">
+             <ul id="navFiches"><li><a href="http://www.plateforme-elsa.org/structure/alternatives-cameroun/">«  précédent</a></li><li><a href="/associations-africaines-du-reseau-elsa/">retour à la liste</a></li><li><a href="http://www.plateforme-elsa.org/structure/alvf/"> suivant »</a></li> </ul> 
+        </div>
+     	<div class="shadowLeft"></div>
+        <div class="shadowRight"></div>
+        <article class="noback">
+        <h1>ALU</h1>
+        
+        <!-- ZONE IMAGE -->
+        <div id="infosStructure">
+        	<div class="thumbStructure"><img width="150" height="148" src="http://www.plateforme-elsa.org/wp-content/uploads/2016/07/Logo_ALU-Burkina.png" class="attachment-medium wp-post-image" alt="Logo_ALU-Burkina" /></div>
+            <strong><a href="/pays/burkina-faso"/>Burkina Faso</a> </strong><br /><br />
+           
+          
+                        <a href="https://www.facebook.com/coordinationaluzondoma/?fref=ts" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/i_fb.png" /></a>             <a href="mailto:asso.liaison@gmail.com"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/i_mail.png" /></a>              
+        </div> 
+ 		<!-- ZONE IMAGE -->
+        
+        
+       <!-- INFOS GENERALES -->
+       
+       	<div class="contentDetails">
+        <span>Activité(s) :</span> Prévention, prévention VIH/IST <br />
+        <span>Publics cibles :</span> enfants, jeunes, OEV, travailleur.se.s du sexe <br />
+        
+        <a href="http://www.plateforme-elsa.org/rapport-dactivites-2015-de-lassociation-liaison-universelle/" target="_blank">» consulter le rapport d'activité</a>        </div> 
+        
+           <div class="contentDetails2">
+         <span>Contact Siège :</span> arrondissement 3 secteur 15, avenue Konkissé rue 21.88 à 100 mètres du Service Social de Sig-Nonghin 07 BP 5634 Ouagadougou 07 Ouagadougou<br />
+  <span>Tel. :</span> 00 (226) 75 75 00 25 / 25 48 84 42  <br /><span>Antennes : </span> Gourcy, Koupela<br />  </div> 
+        <div class="clear"></div>
+     
+ 		<!-- INFOS GENERALES -->
+        
+        <!-- CONTENU -->
+        <div id="acteursLocaux">
+        <h2>Présentation</h2>
+		<div id="acteursLocauxcontent"><p>L’Association Liaison Universelle (ALU) a été créée le 06 Octobre 2003 à Ouagadougou sous le récépissé n°2003 – 551/MATD/SG/DGLPAP/DOASOC. Afin d’apporter plus de précision sur la mission de l’association à travers sa dénomination, l’assemblée générale tenue le 25 octobre 2015 a conduit à un complément de la dénomination et un second renouvellement de Bureau après l’Assemblée tenue en 2012. C’est ainsi qu’elle est aujourd’hui appelée « Association Liaison Universelle pour le Bien-être des Enfants et des Jeunes (ALUBJ) » et reconnue officiellement sous le récépissé N°2015/1273/ MATD/SG/DGLPAP/DOASOC.</p>
+<p><strong>Sa <em>mission</em> </strong>est d&rsquo;œuvrer, en étroite collaboration avec ses partenaires par le biais de l’éducation et la santé, afin de garantir l’épanouissement des enfants et des jeunes.</p>
+<p><strong><em>Ses objectifs sont les suivants :</em></strong></p>
+<ul>
+<li>Œuvrer pour l’accès à l’éducation et à la santé des enfants en situation difficile notamment les orphelins et enfants vulnérables (OEV) ;</li>
+<li>Œuvrer pour une meilleure protection des enfants à travers la lutte contre l’insécurité routière, l’exploitation sexuelle des mineures et les pires formes de travail des enfants ;</li>
+<li>Contribuer à la préservation de la santé des jeunes à travers des actions de promotion de la santé sexuelle et reproductive, de lutte contre les IST/VIH/sida et la consommation de la drogue ;</li>
+<li>Responsabiliser et encadrer les enfants et jeunes dans des initiatives visant leur réinsertion sociale et/ou professionnelle.</li>
+</ul>
+<p><strong><em>Elle a pour principaux domaines d’action :</em></strong></p>
+<ul>
+<li>La santé (prévention des IST/VIH/SIDA, promotion de la santé sexuelle et reproductive et lutte contre la consommation de la drogue) ;</li>
+<li>Et l&rsquo;éducation (promotion du civisme et alphabétisation des couches démunies).</li>
+</ul>
+<p><strong><em>Ses stratégies</em></strong> se développent autour de : Information/plaidoyer – concertation entre acteurs et partenaires &#8211; Formation de PE/Animateurs – Responsabilisations des PE/animateurs pour la mobilisation communautaire et la mise en œuvre des actions planifiées – Mobilisation et référence des jeunes vers des structures de prise en charge et suivi médical – Suivi/évaluation.</p>
+<p><em><strong>ALU a développé de nombreuses activités, parmi lesquelles :</strong></em></p>
+<ul>
+<li>Rencontres d’information et de plaidoyer à l’endroit des responsables de sites et des décideurs ;</li>
+<li>Formation des pair.e.s éducateur.rice.s et animateur.rice.s ;</li>
+<li>Séances d’alphabétisation pour les enfants de familles démunies;</li>
+<li>Communication de proximité par la réalisation de séances d’animation (causeries éducatives, jeu sans tabous, projections-vidéos suivies de débats ; animations grand public),</li>
+<li>Références groupées et individuelles des jeunes en difficultés vers les services de soins adaptés pour un suivi médical, suivies de visites à domicile ;</li>
+<li>Suivi/évaluation par la supervision et l&rsquo;organisation de focus groupes.</li>
+</ul>
+<p>Ses <strong><em>publics-cibles</em></strong> sont les orphelins et enfants vulnérables (OEV), les adolescents et jeunes âgés de 15 à 24 ans (élèves et jeunes du secteur informel), et les travailleuses du sexe (TS), serveuses de bars et clients des TS. Parmi les <strong><em>résultats marquants atteints par l&rsquo;association</em></strong> :</p>
+<ul>
+<li>261 travailleuses de sexe et serveuses de bars encadrées et référées vers les services de soins pour suivi médical (2012 – 2014) sous appui du CCISD/BF ;</li>
+<li>1 236 clients de bars et jeunes fréquentant les milieux à risque informés et sensibilisés ;</li>
+<li>Plus de 1 700 enfants élèves du primaire et du secondaire éduqués et sensibilisés sur le phénomène de l’insécurité routière.</li>
+</ul>
+<p><em><strong>Distinctions honorifiques</strong></em></p>
+<p>Pour l’atteinte de ses objectifs, L’ALUBJ a développé non seulement un partenariat avec certaines structures sanitaires et éducatives de l’Etat, mais aussi avec certains organismes évoluant dans le domaine de la lutte contre le VIH/sida, la Drogue, l’insécurité routière. Grâce à ses actions, l’association a été décorée en tant que chevalier de l’ordre du Mérite de la Jeunesse et Sport le 21 octobre 2011 suivant le décret 2011- 782 / PRES /SG. En décembre 2014, c’est la nation Burkinabé qui a reconnu ses mérites et qui l’a aussi rehaussé au grade de chevalier de mérite Burkinabé. Le Bureau de l’ALUBJ est composé de cinq membres ; le Président est supplée par la Secrétaire Générale ou le Gestionnaire dans les tâches administratives et financières.</p>
+ </div>
+        </div>
+        <!-- CONTENU -->
+                
+       <!-- DOCUMENTS -->
+        <div id="autresProgs">
+        	
+            				
+				<div class="titreSoulG"><h2>Documents du centre de ressources</h2></div>
+        	<a href="/recherche-documentaire/?struct=7579" class="allDocs">» tous les documents</a>
+            
+            <div class="programmesWrapper">
+				                
+                 <div class="programmes">
+					<a href="http://www.plateforme-elsa.org/rapport-dactivites-2015-de-lassociation-liaison-universelle/">
+                    
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/pdf.png" /></div>
+                    <!-- <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/video.png" /></div>
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/lien.png" /></div>
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/document.png" /></div> -->
+                    
+                   <div class="leftProg">
+						 <img width="214" height="300" src="http://www.plateforme-elsa.org/wp-content/uploads/2016/07/ALU-Rapport2015-214x300.png" class="attachment-medium wp-post-image" alt="ALU-Rapport2015" />                         <div class="bubbleComments"><span>0</span></div>
+						 <div class="likes">0</div>
+                    </div>
+                    <div class="rightProg">
+                        <span class="first_org">ALU</span><br />
+                        <span class="category"></span><br />
+                        <span class="title">Rapport d&rsquo;activités 2015 de l&rsquo;Association Liaison Universelle</span><br />
+                        <span class="excerpt"></span><br />
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+                             
+                 <div class="programmes">
+					<a href="http://www.plateforme-elsa.org/rapport-dactivites-2014-de-lassociation-liaison-universelle/">
+                    
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/pdf.png" /></div>
+                    <!-- <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/video.png" /></div>
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/lien.png" /></div>
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/document.png" /></div> -->
+                    
+                   <div class="leftProg">
+						 <img width="221" height="300" src="http://www.plateforme-elsa.org/wp-content/uploads/2016/07/ALU-Rapport2014-221x300.png" class="attachment-medium wp-post-image" alt="ALU-Rapport2014" />                         <div class="bubbleComments"><span>0</span></div>
+						 <div class="likes">0</div>
+                    </div>
+                    <div class="rightProg">
+                        <span class="first_org">ALU</span><br />
+                        <span class="category"></span><br />
+                        <span class="title">Rapport d&rsquo;activités 2014 de l&rsquo;Association Liaison Universelle</span><br />
+                        <span class="excerpt"></span><br />
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+                             
+                 <div class="programmes">
+					<a href="http://www.plateforme-elsa.org/depliant-de-lassociation-liaison-universelle/">
+                    
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/pdf.png" /></div>
+                    <!-- <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/video.png" /></div>
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/lien.png" /></div>
+                    <div class="format"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/document.png" /></div> -->
+                    
+                   <div class="leftProg">
+						 <img width="250" height="258" src="http://www.plateforme-elsa.org/wp-content/uploads/2016/07/ALU-Depliant.png" class="attachment-medium wp-post-image" alt="ALU-Depliant" />                         <div class="bubbleComments"><span>0</span></div>
+						 <div class="likes">0</div>
+                    </div>
+                    <div class="rightProg">
+                        <span class="first_org">ALU</span><br />
+                        <span class="category"></span><br />
+                        <span class="title">Dépliant de l&rsquo;Association Liaison Universelle</span><br />
+                        <span class="excerpt">Dépliant d&rsquo;information de ...</span><br />
+                        <!-- pdf -->
+                    </div>
+                    </a>  
+                </div> 
+              <div class="clear"></div>
+             
+            
+            </div>
+                          
+        </div> 
+ 		<!-- DOCUMENTS -->
+        
+        
+       
+        
+            
+       <!-- VIDEO -->
+        <div id="mediasWrapper">
+        <div id="videoPays">
+       
+                            
+                 
+                         
+             
+        </div> 
+ 		  <!-- VIDEO -->  
+          
+          
+           <!-- AUDIO -->
+        <div id="podcastPays">
+            
+                          
+                   <script type="text/javascript">
+            //<![CDATA[
+            $(document).ready(function(){
+			            });
+            //]]>
+            </script>
+             
+        </div> 
+ 		  <!-- AUDIO --> 
+        <div class="clear"></div>
+        </div>   
+          
+          
+          	<div id="sharebottom">
+    <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+     </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+                    <div class="clear"></div>
+          <hr class="shadowBottom" />
+
+         <section id="rechercheThema">
+           <form id="rechRess" action="/recherche-documentaire/" class="minisearch">
+                <div id="titleRechRess">Rechercher une ressource</div>
+                <div id="linksRechRess"><a href="/aide-a-la-recherche/">» que chercher ?</a>   <a href="/aide-a-la-recherche/">» comment chercher ?</a></div>
+                <div class="clear"></div>
+                    <div id="recherche">
+                    <input type="text" placeholder="Mots clés, titre ou auteurs" name="totaltags" value=""/>
+                    <select name="totalcat" class="selectBox" id="select-category"><option value="">Thématique</option> 
+ <option name="category[]" value="capitalisation-2">Capitalisation</option><option name="category[]" value="coinfection">Coïnfections</option><option name="category[]" value="enfants">Enfants &amp; Adolescents</option><option name="category[]" value="financements-de-la-lutte-contre-le-sida">Financements de la lutte contre le sida</option><option name="category[]" value="formation">Formation</option><option name="category[]" value="genre">Genre</option><option name="category[]" value="mobilisation-des-ressources">Mobilisation des Ressources</option><option name="category[]" value="observatoires-dacces-aux-soins-et-aux-droits">Observatoires d'accès aux soins et aux droits</option><option name="category[]" value="pharmacie">Pharmacie</option><option name="category[]" value="plaidoyer">Plaidoyer</option><option name="category[]" value="populations-cles">Populations clés</option><option name="category[]" value="prevention">Prévention</option><option name="category[]" value="prise-en-charge-medicale">Prise en charge médicale</option><option name="category[]" value="prise-en-charge-psychosociale">Prise en charge psychosociale</option><option name="category[]" value="relation-daide-a-distance">Relation d'aide à distance</option><option name="category[]" value="sante-sexuelle-et-reproductive-2">Santé sexuelle et reproductive</option><option name="category[]" value="structuration-associative">Structuration associative</option></select>                     <select name="pays_assoc" class="selectBox" id="select-pays_assoc"><option value="">Pays</option> 
+ <option name="region[]" value="01-afrique-du-nord">Afrique du Nord</option><option name="region[]" value="02-afrique-de-louest">Afrique de l'Ouest</option><option name="region[]" value="03-afrique-centrale">Afrique Centrale</option><option name="region[]" value="04-afrique-de-lest">Afrique de l'Est</option><option name="region[]" value="05-afrique-australe">Afrique Australe</option><option name="pays_assoc[]" value="algerie">Algérie</option><option name="pays_assoc[]" value="benin">Bénin</option><option name="pays_assoc[]" value="burkina-faso">Burkina Faso</option><option name="pays_assoc[]" value="burundi">Burundi</option><option name="pays_assoc[]" value="cameroun">Cameroun</option><option name="pays_assoc[]" value="cap-vert">Cap Vert</option><option name="pays_assoc[]" value="centrafrique">République Centrafricaine</option><option name="pays_assoc[]" value="comores">Comores</option><option name="pays_assoc[]" value="cote-divoire">Côte d'Ivoire</option><option name="pays_assoc[]" value="djibouti">Djibouti</option><option name="pays_assoc[]" value="gabon">Gabon</option><option name="pays_assoc[]" value="guinee">Guinée</option><option name="pays_assoc[]" value="guinee-equatoriale">Guinée équatoriale</option><option name="pays_assoc[]" value="ile-maurice">Île Maurice</option><option name="pays_assoc[]" value="madagascar">Madagascar</option><option name="pays_assoc[]" value="mali">Mali</option><option name="pays_assoc[]" value="maroc">Maroc</option><option name="pays_assoc[]" value="mauritanie">Mauritanie</option><option name="pays_assoc[]" value="niger">Niger</option><option name="pays_assoc[]" value="ouganda">Ouganda</option><option name="pays_assoc[]" value="republique-democratique-du-congo">République démocratique du Congo</option><option name="pays_assoc[]" value="republique-du-congo">République du Congo</option><option name="pays_assoc[]" value="rwanda">Rwanda</option><option name="pays_assoc[]" value="senegal">Sénégal</option><option name="pays_assoc[]" value="seychelles">Seychelles</option><option name="pays_assoc[]" value="tchad">Tchad</option><option name="pays_assoc[]" value="togo">Togo</option><option name="pays_assoc[]" value="tunisie">Tunisie</option></select>
+                    <input type="hidden" name="totalpays" value="" />
+            		<input type="hidden" name="totalregions" value="" />
+
+                    <button>OK</button>
+                    <div class="clear"></div>
+                    </div>
+                </form>
+                <div class="clear"></div>            <div class="clear"></div>
+        </section>  
+      
+        </article>      
+        
+        
+        <aside id="sidebarCms" class="noMargin">
+        	<div class="shadowRight"></div>
+          <!-- ANTENNES -->
+
+       
+  <div class="antennes">
+             
+             	<div id="mapPays" class="fichePays"></div>
+               <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+               			  <script type="text/javascript">
+			  var imgdir=' http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive';
+            var datas =[{"lat":"12.3714277","lng":"-1.5196602999999413","slug":null,"title":"ALU"},{"lat":"13.207028449557928","lng":"-2.359797957226533","slug":null,"title":"Gourcy"},{"lat":"12.182827878247227","lng":"-0.35410642890622057","slug":null,"title":"Koupela"}]            </script>
+  			<script type="text/javascript" src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_js/mapantenne.js"></script>
+                     </div> 
+ 		  <!-- ANTENNES -->  
+          
+           <!-- PARTENAIRES -->  
+           <div class="partAsso">
+           <h2>PARTENAIRES</h2>
+            <ul>
+								<li><a href=""><img width="97" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Solidarite.png" class="attachment-medium wp-post-image" alt="Logo_Solidarite" /></a></li>
+				                
+              
+              			          
+           </ul>
+           <div class="clear"></div>
+           </div>
+            <!-- PARTENAIRES -->  
+          
+          
+          
+          
+          
+           <!-- VIE ASSOC -->
+        
+       
+                    
+ 		  <!-- VIE ASSOC --> 
+          
+           <!-- PHOTOS -->
+         
+                             
+				 <div class="galPhotos">
+                 <h2><span>GALERIE</span> PHOTO</h2>
+                 <ul>
+				 <li class="first"><div><a href='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/ALU-Photo-00-1024x726.png' class='fancybox' rel='diaporama' title='ALU-Photo-00'><img src='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/ALU-Photo-00-1024x726.png' /></a></div></li><li ><div><a href='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/07-AG-ALUBJ-PUBLIE-LE-18-Janvier-2015-816x1024.jpg' class='fancybox' rel='diaporama' title='07- AG ALUBJ PUBLIE LE 18 Janvier 2015'><img src='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/07-AG-ALUBJ-PUBLIE-LE-18-Janvier-2015-816x1024.jpg' /></a></div></li><li ><div><a href='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/10-ACTIVITE-ALU-PUBLIE-LE-07-JANV-2014.jpg' class='fancybox' rel='diaporama' title='10 &#8211; ACTIVITE ALU PUBLIE LE 07 JANV 2014'><img src='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/10-ACTIVITE-ALU-PUBLIE-LE-07-JANV-2014.jpg' /></a></div></li><li ><div><a href='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/09-ACTIVITE-ALUBJ-PUBLIEE-LE-06-MARS-2014.jpg' class='fancybox' rel='diaporama' title='09 &#8211; ACTIVITE ALUBJ PUBLIEE LE 06 MARS 2014'><img src='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/09-ACTIVITE-ALUBJ-PUBLIEE-LE-06-MARS-2014.jpg' /></a></div></li><li ><div><a href='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/08-ACTIVITE-ALUBJ-PUBLIE-LE-20-avril-2014.jpg' class='fancybox' rel='diaporama' title='08 &#8211; ACTIVITE ALUBJ PUBLIE LE 20 avril 2014'><img src='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/08-ACTIVITE-ALUBJ-PUBLIE-LE-20-avril-2014.jpg' /></a></div></li><li ><div><a href='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/ALU-Photo-02.png' class='fancybox' rel='diaporama' title='ALU-Photo-02'><img src='http://www.plateforme-elsa.org/wp-content/uploads/2016/07/ALU-Photo-02.png' /></a></div></li><li ><div><a href='' class='fancybox' rel='diaporama' title='ALU'><img src='' /></a></div></li>             
+			 </ul>
+             <div class="clear"></div>
+        </div>
+        		
+               
+ 	
+         <!-- PHOTOS -->
+         
+         
+         
+          <!-- SUR LE WEB -->
+            <div class="webAsso">
+                       </div> 
+         <!-- SUR LE WEB -->
+         
+         
+          <!-- AUTRES ASSOC -->
+            <div class="autresAsso">
+                               <h2>Autres associations du réseau Elsa</h2>
+                    <ul>
+										<li><a href="http://www.plateforme-elsa.org/structure/alavi/">A.LA.VI</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/aas/">AAS</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/abesf/">ABESF</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/abs/">ABS</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/afafsi/">AFAFSI-BF</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/adt/">Association Dispensaire Trottoir (ADT)</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/ads/">Association Dounia Solidarité + (ADS)</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/kasabati/">Kasabati</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/kebayina/">KEBAYINA</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/maia-2/">MAÏA</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/maison-des-associations-mas-2/">Maison des Associations (MAS)</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/rame/">RAME</a></li>
+				  					<li><a href="http://www.plateforme-elsa.org/structure/revs/">REVS+</a></li>
+				                    </ul>
+            </div> 
+         <!-- AUTRES ASSOC -->
+         
+         
+        <div class="ressources"> <a href="/soumettre-une-ressource/"> Le centre de ressources<br>
+  s'enrichit aussi <strong>grâce à vous...</strong><br>
+  N'hésitez pas à nous <span>SOUMETTRE <strong>UNE RESSOURCE</strong></span> </a> </div>
+         
+        
+         </aside>
+        <div class="clear"></div>
+        
+     </div>
+</section>
+<footer>
+	<div id="partenaires">
+    	<div class="titreSoul"><span>Les membres de la plateforme ELSA</span></div>
+        <ul>
+        					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="109" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_aides.png" class="attachment-medium wp-post-image" alt="Logo Aides" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="80" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Planning.png" class="attachment-medium wp-post-image" alt="Logo Le planning familial" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="75" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Sidaction.png" class="attachment-medium wp-post-image" alt="Logo Sidaction" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="138" height="64" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_SIS.png" class="attachment-medium wp-post-image" alt="Logo SIS Réseau" /></a></li>
+				  					<li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><img width="97" height="86" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/02/Logo_Solidarite.png" class="attachment-medium wp-post-image" alt="Logo_Solidarite" /></a></li>
+				          
+                </ul>
+        <div class="clear"></div>
+    </div>
+    
+    <div id="footer">
+    	<div id="footerWrapper">
+            <div id="leftBottom">
+            <div id="logo"></div>
+    
+            <p style="text-align: justify;">Pensé pour mutualiser les expériences, mettre en avant les bonnes pratiques et valoriser l’expertise africaine sur le VIH/sida, le centre de ressources de la plateforme ELSA offre un espace de visibilité à chaque association partenaire et aux activités mises en œuvre sur le terrain. En mettant en avant les productions associatives, le centre de ressources traduit la diversité et la qualité des actions menées par les partenaires engagés localement et montre la richesse de la réponse communautaire. Avec le soutien de :</p>
+<p style="text-align: justify;"><a href="http://www.afd.fr/home" target="_blank"><img class=" wp-image-5652" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/logo-AFD_100.png" alt="logo-AFD_100" width="66" height="57" /></a> <a href="http://www.fondationdefrance.org/" target="_blank"><img class=" wp-image-5653" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/logo-FDF_100.png" alt="logo-FDF_100" width="54" height="54" /></a> <a href="http://www.paris.fr/politiques/paris-a-l-international/solidarite-cooperation/la-lutte-contre-le-sida/rub_6589_stand_16479_port_14980" target="_blank"><img class=" wp-image-5651" src="http://www.plateforme-elsa.org/wp-content/uploads/2014/04/Logo_mairiedeparis_180.png" alt="Logo_mairiedeparis_180" width="132" height="17" /></a></p>			<div class="clear"></div>
+            <hr />
+            <h2>RESTONS EN CONTACT VIA</h2>
+            <div class="clear"></div>
+            <div class="contactvia">
+            Notre newsletter
+                <form class="newsletter footer">
+                    <input type="text" placeholder="votre email">
+                    <button>OK</button>
+                </form>
+                <div class="clear"></div>
+            </div>
+            <div>
+            Les réseaux sociaux / rss
+            <ul id="reseaux">
+            	<li><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/facebook-footer.png" width="20" height="20"></a></li>
+                <li><a href="https://twitter.com/PlateformeELSA" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/twitter-footer.png" width="20" height="20"></a></li>
+                <li><a href="#"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/youtube-footer.png" width="20" height="20"></a></li>
+                <li><a href="/rss-plateforme-elsa" target="_blank"><img src="http://www.plateforme-elsa.org/wp-content/themes/elsa-responsive/_img/rss-footer.png" width="20" height="20"></a></li>
+            </ul>
+            <div class="clear"></div>
+            </div>
+            <hr />
+            <!-- AddThis Button BEGIN -->
+            <h2>PARTAGER</h2>
+            <div class="addthis_toolbox addthis_default_style" id="shareFooter">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52fcab66343ea4ed"></script>
+            <!-- AddThis Button END -->
+			</div>
+            <div id="colsBottom"> 
+                <div class="colFooter">
+                    <h2>THÉMATIQUES</h2>
+                    <ul>
+                        	<li class="cat-item cat-item-388"><a href="http://www.plateforme-elsa.org/category/capitalisation-2/" title="Voir tous les articles classés dans Capitalisation">Capitalisation</a>
+</li>
+	<li class="cat-item cat-item-169"><a href="http://www.plateforme-elsa.org/category/coinfection/" title="Voir tous les articles classés dans Coïnfections">Coïnfections</a>
+</li>
+	<li class="cat-item cat-item-76"><a href="http://www.plateforme-elsa.org/category/enfants/" title="Voir tous les articles classés dans Enfants &amp; Adolescents">Enfants &amp; Adolescents</a>
+</li>
+	<li class="cat-item cat-item-78"><a href="http://www.plateforme-elsa.org/category/financements-de-la-lutte-contre-le-sida/" title="Voir tous les articles classés dans Financements de la lutte contre le sida">Financements de la lutte contre le sida</a>
+</li>
+	<li class="cat-item cat-item-79"><a href="http://www.plateforme-elsa.org/category/formation/" title="Voir tous les articles classés dans Formation">Formation</a>
+</li>
+	<li class="cat-item cat-item-80"><a href="http://www.plateforme-elsa.org/category/genre/" title="Voir tous les articles classés dans Genre">Genre</a>
+</li>
+	<li class="cat-item cat-item-77"><a href="http://www.plateforme-elsa.org/category/mobilisation-des-ressources/" title="Voir tous les articles classés dans Mobilisation des Ressources">Mobilisation des Ressources</a>
+</li>
+	<li class="cat-item cat-item-81"><a href="http://www.plateforme-elsa.org/category/observatoires-dacces-aux-soins-et-aux-droits/" title="Voir tous les articles classés dans Observatoires d&#039;accès aux soins et aux droits">Observatoires d&#039;accès aux soins et aux droits</a>
+</li>
+	<li class="cat-item cat-item-139"><a href="http://www.plateforme-elsa.org/category/pharmacie/" title="Voir tous les articles classés dans Pharmacie">Pharmacie</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.plateforme-elsa.org/category/plaidoyer/" title="Voir tous les articles classés dans Plaidoyer">Plaidoyer</a>
+</li>
+	<li class="cat-item cat-item-157"><a href="http://www.plateforme-elsa.org/category/populations-cles/" title="Voir tous les articles classés dans Populations clés">Populations clés</a>
+</li>
+	<li class="cat-item cat-item-43"><a href="http://www.plateforme-elsa.org/category/prevention/" title="Voir tous les articles classés dans Prévention">Prévention</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-medicale/" title="Voir tous les articles classés dans Prise en charge médicale">Prise en charge médicale</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.plateforme-elsa.org/category/prise-en-charge-psychosociale/" title="Voir tous les articles classés dans Prise en charge psychosociale">Prise en charge psychosociale</a>
+</li>
+	<li class="cat-item cat-item-212"><a href="http://www.plateforme-elsa.org/category/relation-daide-a-distance/" title="Voir tous les articles classés dans Relation d&#039;aide à distance">Relation d&#039;aide à distance</a>
+</li>
+	<li class="cat-item cat-item-105"><a href="http://www.plateforme-elsa.org/category/sante-sexuelle-et-reproductive-2/" title="Voir tous les articles classés dans Santé sexuelle et reproductive">Santé sexuelle et reproductive</a>
+</li>
+	<li class="cat-item cat-item-160"><a href="http://www.plateforme-elsa.org/category/structuration-associative/" title="Voir tous les articles classés dans Structuration associative">Structuration associative</a>
+</li>
+ 
+
+                    </ul>
+                </div>
+                <div class="colFooter">
+                <h2>PAYS D'AFRIQUE<br>
+                FRANCOPHONE</h2> 
+                    <ul>
+                        <li><a href="/pays/algerie" title="Algérie">Algérie</a></li><li><a href="/pays/benin" title="Bénin">Bénin</a></li><li><a href="/pays/burkina-faso" title="Burkina Faso">Burkina Faso</a></li><li><a href="/pays/burundi" title="Burundi">Burundi</a></li><li><a href="/pays/cameroun" title="Cameroun">Cameroun</a></li><li><a href="/pays/cote-divoire" title="Côte d&rsquo;Ivoire">Côte d&rsquo;Ivoire</a></li><li><a href="/pays/djibouti" title="Djibouti">Djibouti</a></li><li><a href="/pays/guinee" title="Guinée">Guinée</a></li><li><a href="/pays/guinee-equatoriale" title="Guinée équatoriale">Guinée équatoriale</a></li><li><a href="/pays/ile-maurice" title="Île Maurice">Île Maurice</a></li><li><a href="/pays/madagascar" title="Madagascar">Madagascar</a></li><li><a href="/pays/mali" title="Mali">Mali</a></li><li><a href="/pays/maroc" title="Maroc">Maroc</a></li><li><a href="/pays/niger" title="Niger">Niger</a></li><li><a href="/pays/centrafrique" title="République Centrafricaine">République Centrafricaine</a></li><li><a href="/pays/republique-democratique-du-congo" title="République démocratique du Congo">République démocratique du Congo</a></li><li><a href="/pays/republique-du-congo" title="République du Congo">République du Congo</a></li><li><a href="/pays/rwanda" title="Rwanda">Rwanda</a></li><li><a href="/pays/senegal" title="Sénégal">Sénégal</a></li><li><a href="/pays/tchad" title="Tchad">Tchad</a></li><li><a href="/pays/togo" title="Togo">Togo</a></li><li><a href="/pays/tunisie" title="Tunisie">Tunisie</a></li>                    </ul>
+              </div>
+                 <div class="colFooter">
+                 <h2>ELSA</h2>
+                    <ul>
+                        <li><a href="/plateforme-elsa/qui-sommes-nous/">Qui sommes-nous ?</a></li>
+                        <li><a href="/plateforme-elsa/fonctionnement-et-activites-delsa/">Activités</a></li>
+                        <li><a href="/associations-africaines-du-reseau-elsa/">Associations partenaires</a></li>
+                        <li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/">Associations membres</a></li>
+                        <li><a href="http://www.plateforme-elsa.org/extranet/" target="_blank">Accès intranet (membres ELSA)</a></li>
+                    </ul>
+                 <h2>SERVICES</h2>   
+                    <ul>
+                        <li><a href="/soumettre-une-ressource">Soumettre une ressource</a></li>
+                        <li><a href="/recherche-documentaire">Rechercher une ressource</a></li>
+                        <li><a href="/foire-aux-questions/">FAQ</a></li>
+                        <li><a href="/nous-contacter/">Contact</a></li>
+                        <li><a href="/nous-contacter/">Signaler un lien cassé</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+        		<div id="credits">Réalisation du site : <a href="http://www.clair-et-net.com/" target="_blank">Clair et Net.</a> / <a href="/conditions-generales-dutilisation/">CGU</a>  / <a href="/mentions-legales/">Mentions légales</a>  /© Plateforme ELSA 2014</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+     </footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43730500-1', 'plateforme-elsa.org');
+  ga('send', 'pageview');
+
+</script>
+<div id="toolTip"></div>
+
+</body>
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Mibnifié utilisant disk
+Mise en cache utilisant disk: enhanced 
+Mise en cache de base de données 38/129 requêtes dans 1.300 secondes utilisant disk
+
+ Served from: www.plateforme-elsa.org @ 2017-01-03 11:39:00 by W3 Total Cache -->
