@@ -39,7 +39,7 @@ class WYSIJA_help_mailer extends acymailingPHPMailer {
 	 * @param array $config
 	 * @param boolean $multisiteTest
 	 */
-	function WYSIJA_help_mailer($extension='',$config=false, $multisiteTest=false) {
+	function __construct($extension='',$config=false, $multisiteTest=false) {
 
 		$this->subscriberClass = WYSIJA::get( 'user', 'model' );
 		$this->subscriberClass->getFormat = OBJECT;
@@ -109,31 +109,29 @@ class WYSIJA_help_mailer extends acymailingPHPMailer {
 					$this->sendGrid->Username = trim($this->config->getValue('smtp_login'));
 					$this->sendGrid->Password = trim($this->config->getValue('smtp_password'));
 					$this->isSendGridRest=true;
+				}elseif(in_array(trim($this->Host), array('sparkpost.com'))) {
+					$this->Mailer = 'sparkpost';
+					$this->sparkpost = new WJ_Sparkpost( $this->config->getValue('smtp_password') );
 				}else{
-					$this->IsSMTP();
-
-					if(strpos($this->Host, 'mailjet.com')!==false){
-						$this->isMailjet=true;
-					}
-					$port = $this->config->getValue('smtp_port');
-					if(empty($port) && $this->config->getValue('smtp_secure') == 'ssl') $port = 465;
-					if(!empty($port)) $this->Host.= ':'.$port;
-					$this->SMTPAuth = (bool) $this->config->getValue('smtp_auth');
-					$this->Username = trim($this->config->getValue('smtp_login'));
-					$this->Password = trim($this->config->getValue('smtp_password'));
-					$this->SMTPSecure = trim((string)$this->config->getValue('smtp_secure'));
-					if(empty($this->Sender)) $this->Sender = strpos($this->Username,'@') ? $this->Username : $this->config->getValue('from_email');
-					/* echo "\n\nconstructor";
-					echo "\nhost:". $this->Host;
-					echo "\nport:". $port;
-					echo "\nSMTPAuth:". $this->SMTPAuth;
-					echo "\nUsername:". $this->Username;
-					echo "\nPassword:". $this->Password;
-					echo "\nSMTPSecure:". $this->SMTPSecure;
-					echo "\nSender:". $this->Sender;*/
+				if(in_array(trim($this->Host), array('mailpoet.com'))){
+				  $this->Mailer = 'mailpoet';
+				  $this->mailpoet = new WJ_Bridge( $this->config->getValue('smtp_password') );
+				}else{
+				  $this->IsSMTP();
+				  if(strpos($this->Host, 'mailjet.com')!==false){
+					$this->isMailjet=true;
+				  }
+				  $port = $this->config->getValue('smtp_port');
+				  if(empty($port) && $this->config->getValue('smtp_secure') == 'ssl') $port = 465;
+				  if(!empty($port)) $this->Host.= ':'.$port;
+				  $this->SMTPAuth = (bool) $this->config->getValue('smtp_auth');
+				  $this->Username = trim($this->config->getValue('smtp_login'));
+				  $this->Password = trim($this->config->getValue('smtp_password'));
+				  $this->SMTPSecure = trim((string)$this->config->getValue('smtp_secure'));
+				  if(empty($this->Sender)) $this->Sender = strpos($this->Username,'@') ? $this->Username : $this->config->getValue('from_email');
 				}
-
-				break;
+			  }
+			  break;
 			case 'site':
 				switch($this->config->getValue('sending_emails_site_method')){
 					case 'phpmail':
@@ -171,7 +169,7 @@ class WYSIJA_help_mailer extends acymailingPHPMailer {
 		//$this->Hostname = '';
 		$this->WordWrap = 150;
 
-		if($this->config->getValue('dkim_active') && $this->config->getValue('dkim_pubk') && !$this->isElasticRest && !$this->isSendGridRest){
+	  	if($this->config->getValue('dkim_active') && $this->config->getValue('dkim_pubk') && !$this->isElasticRest && !$this->isSendGridRest && $this->Mailer !== 'mailpoet' && $this->Mailer !== 'sparkpost'){
 		   // check that server can sign emails
 		   if(!function_exists('openssl_sign')){
 			   $this->error(__('You cannot use the DKIM signature option...',WYSIJA).' '.__('The PHP Extension openssl is not enabled on your server. Ask your host to enable it if you want to use an SSL connection.',WYSIJA));
@@ -874,6 +872,7 @@ class WYSIJA_help_mailer extends acymailingPHPMailer {
 
 		$email->body=str_replace($arrayfind,$arrayreplace,$email->body);
 		$email->subject=str_replace($arrayfind,$arrayreplace,$email->subject);
+		$email->subject = ($email->subject) ? $email->subject : " ";
 	}
 
 	/**
@@ -940,7 +939,7 @@ class WYSIJA_help_mailer extends acymailingPHPMailer {
 	function tracker_replaceusertags($email,$user){
 		$urls = array();
 	$results = array();// collect all links in email
-		if(!preg_match_all('#href[ ]*=[ ]*"(?!mailto:|\#|ymsgr:|callto:|file:|ftp:|webcal:|skype:)([^"]+)"#Ui',$email->body,$results)) return;
+		if(!preg_match_all('#href[ ]*=[ ]*"(?!mailto:|tel:|\#|ymsgr:|callto:|file:|ftp:|webcal:|skype:)([^"]+)"#Ui',$email->body,$results)) return;
 
 		$modelConf=WYSIJA::get('config','model');
 

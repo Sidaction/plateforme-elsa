@@ -19,13 +19,11 @@ class WYSIJA_object{
 	 * Static variable holding core MailPoet's version
 	 * @var array
 	 */
-	static $version = '2.6.15';
+	static $version = '2.7.5';
 
-	function WYSIJA_object(){
+	function __construct(){}
 
-	}
-
-	/**
+  /**
 	 * Order an array by param name string compare
 	 *
 	 * @param  array $a  Array with the param to compare
@@ -69,11 +67,11 @@ class WYSIJA_object{
 		//WordPress globals be careful there
 		global $current_user;
 		if ( $field ) {
-			if ( function_exists( 'get_currentuserinfo' ) ) {
+			if ( function_exists( 'wp_get_current_user' ) ) {
 				// Here is an exception because of one of the weirdest bug
-				// the idea is to make sure we don't call get_currentuserinfo on the wysija_subscribers page when on a multisite
+				// the idea is to make sure we don't call wp_get_current_user() on the wysija_subscribers page when on a multisite
 				if ( ! ( isset( $_GET['page'] ) && $_GET['page'] === 'wysija_subscribers' && is_multisite() ) ){
-					get_currentuserinfo();
+					wp_get_current_user();
 				}
 			}
 			if ( isset( $current_user->{$field} ) ){
@@ -247,7 +245,7 @@ class WYSIJA_help extends WYSIJA_object{
 
 	static $admin_body_class_runner = false;
 
-	function WYSIJA_help(){
+	function __construct(){
 		add_action( 'widgets_init', array( $this, 'widgets_init' ), 1 );
 
 		// Only load this when ajax is not used
@@ -257,6 +255,18 @@ class WYSIJA_help extends WYSIJA_object{
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
+	}
+
+	function WYSIJA_help() { // TODO: remove in next version
+	  add_action( 'widgets_init', array( $this, 'widgets_init' ), 1 );
+
+	  // Only load this when ajax is not used
+	  if ( !( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+		add_action( 'init', array( $this, 'register_scripts' ), 1 );
+	  }
+
+	  add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+	  add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
 	}
 
 	function widgets_init() {
@@ -269,7 +279,6 @@ class WYSIJA_help extends WYSIJA_object{
 		if ( WYSIJA_ITF ){
 			wp_enqueue_script( 'mailpoet-global' );
 		}
-		wp_enqueue_style( 'mailpoet-dashicons' );
 	}
 
 	public function admin_body_class( $body_class_str ){
@@ -332,6 +341,7 @@ class WYSIJA_help extends WYSIJA_object{
 			'ru',
 			'sv',
 			'tr',
+			'uk',
 			'vi',
 			'zh_CN',
 			'zh_TW',
@@ -345,8 +355,6 @@ class WYSIJA_help extends WYSIJA_object{
 		}
 		wp_register_script('wysija-validator',WYSIJA_URL.'js/validate/jquery.validationEngine.js', array( 'jquery' ),WYSIJA::get_version(),true );
 		wp_register_script('wysija-front-subscribers', WYSIJA_URL.'js/front-subscribers.js', array( 'jquery' ),WYSIJA::get_version(),true);
-
-		wp_register_style( 'mailpoet-dashicons', WYSIJA_URL . 'css/admin-dashicons.css', array(), WYSIJA::get_version() );
 
 		wp_register_script('wysija-form', WYSIJA_URL.'js/forms.js', array( 'jquery' ),WYSIJA::get_version());
 		wp_register_style('validate-engine-css',WYSIJA_URL.'css/validationEngine.jquery.css',array(),WYSIJA::get_version());
@@ -380,7 +388,7 @@ class WYSIJA_help extends WYSIJA_object{
 
                         // let's make sure the requested task exist
 			if( method_exists( $this->controller , $_REQUEST['task'] ) ){
-				$result_array['result'] = $this->controller->$_REQUEST['task']();
+				$result_array['result'] = call_user_func(array($this->controller, $_REQUEST['task']));
 			}else{
 				$this->error( 'Method "' . $_REQUEST['task'] . '" doesn\'t exist for controller : "'.$_REQUEST['controller'] );
 			}
@@ -419,8 +427,8 @@ class WYSIJA_help extends WYSIJA_object{
 
 class WYSIJA extends WYSIJA_object{
 
-	function WYSIJA(){
-
+	function __construct(){
+	  parent::__construct();
 	}
 
 	/**
@@ -1210,7 +1218,7 @@ class WYSIJA extends WYSIJA_object{
 	public static function update_user_caps(){
 		global $current_user;
 
-		if(empty($current_user) && function_exists('get_currentuserinfo')) get_currentuserinfo();
+		if(empty($current_user) && function_exists('wp_get_current_user')) wp_get_current_user();
 		if(empty($current_user)) return false;
 		$current_user->get_role_caps();
 
@@ -1605,6 +1613,20 @@ register_deactivation_hook(WYSIJA_FILE, array( 'WYSIJA', 'deactivate' ));
 register_activation_hook(WYSIJA_FILE, array( 'WYSIJA', 'activate' ));
 add_action( 'init', array('WYSIJA','create_post_type') );
 
+// check for PHP version and display a warning notice if it's <5.3
+if ( version_compare( PHP_VERSION , '5.3' , '<' ) &&
+  !get_option("wysija_dismiss_update_notice") &&
+  empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+  strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+
+  $a = new WYSIJA_object();
+  $a->notice(__("Your version of PHP is outdated. If you don't upgrade soon, new versions of MailPoet won't work.")
+			 . "<br />"
+			 . str_replace( array('[link]', '[/link]'), array('<a href="https://support.mailpoet.com/knowledgebase/how-to-prepare-my-site-for-mailpoet-3-0/" target="_blank" >', '</a>'), __("[link]Read how to update your version of PHP.[/link]")
+             . "<br /><br />"
+             . str_replace( array('[link]', '[/link]'), array('<a href="javascript:;" class="wysija_dismiss_update_notice">', '</a>'), __("[link]Dismiss[/link] this notice."))
+             ), true, true);
+}
 
 // launch application
 $helper = WYSIJA::get(WYSIJA_SIDE,'helper');

@@ -3,8 +3,8 @@ defined('WYSIJA') or die('Restricted access');
 class WYSIJA_help_themes extends WYSIJA_object{
     var $extensions = array('png', 'jpg', 'jpeg', 'gif');
 
-    function WYSIJA_help_themes(){
-
+    function __construct(){
+        parent::__construct();
     }
 
     /**
@@ -240,7 +240,7 @@ class WYSIJA_help_themes extends WYSIJA_object{
             $dirtemp=$helperF->makeDir();
             $dirtemp=str_replace("/",DS,$dirtemp);
             /* 2- create a temp file */
-            $tempzipfile=$dirtemp.$_REQUEST['theme_key'].'.zip';
+            $tempzipfile=$dirtemp.basename($_REQUEST['theme_key']).'.zip';
 
             $fp = fopen($tempzipfile, 'w');
             fwrite($fp, $ZipfileResult);

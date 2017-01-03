@@ -7,8 +7,8 @@ defined('WYSIJA') or die('Restricted access');
  */
 class WYSIJA_help_back extends WYSIJA_help{
 
-    function WYSIJA_help_back(){
-        parent::WYSIJA_help();
+    function __construct(){
+        parent::__construct();
         //check that the application has been installed properly
         $config=WYSIJA::get('config','model');
 
@@ -408,20 +408,28 @@ class WYSIJA_help_back extends WYSIJA_help{
             if($wysija_installing===true){
                 if($count==0){
                     $parentmenu=$actionFull;
-                    $hookname=add_menu_page($menutemp['title'], $menutemp['subtitle'], $roleformenu, $actionFull , array($this->controller, 'errorInstall'), 'div', $position);
+                    $hookname = add_menu_page(
+                        $menutemp['title'],
+                        $menutemp['subtitle'],
+                        $roleformenu,
+                        $actionFull,
+                        array($this->controller, 'errorInstall'),
+                        WYSIJA_EDITOR_IMG.'menu-icon.png',
+                        $position
+                    );
                 }
             }else{
                 if($count==0){
                     $parentmenu = $actionFull;
                     $hookname = add_menu_page(
-                            $menutemp['title'],
-                            $menutemp['subtitle'],
-                            $roleformenu,
-                            $actionFull ,
-                            array($this->controller, 'render'),
-                            'div',
-                            $position
-                            );
+                        $menutemp['title'],
+                        $menutemp['subtitle'],
+                        $roleformenu,
+                        $actionFull ,
+                        array($this->controller, 'render'),
+                        WYSIJA_EDITOR_IMG.'menu-icon.png',
+                        $position
+                    );
                 }else{
                     $hookname=add_submenu_page($parentmenu,$menutemp['title'], $menutemp['subtitle'], $roleformenu, $actionFull , array($this->controller, 'render'));
                 }

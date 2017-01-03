@@ -9,7 +9,7 @@ class WYSIJA_NL_Widget extends WP_Widget {
 	var $iFrame = false;
 
 
-	function WYSIJA_NL_Widget( $core_only = false ) {
+	function __construct( $core_only = false ) {
 		static $script_registered;
 
 		if ( WYSIJA_SIDE == 'front' ){
@@ -47,7 +47,7 @@ class WYSIJA_NL_Widget extends WP_Widget {
 		add_action( 'init', array( $this, 'add_translated_default' ) );
 
 		$this->classid = strtolower( str_replace( __CLASS__ . '_', '', get_class( $this ) ) );
-		$this->WP_Widget( $namekey, $title, $params,$sizeWindow );
+		parent::__construct($namekey, $title, $params,$sizeWindow );
 
 	}
 
@@ -236,7 +236,6 @@ class WYSIJA_NL_Widget extends WP_Widget {
 	}
 
 	function widget( $args, $instance = null ) {
-		// this lines feed local variables such as $before_widget ,$after_widget etc...
 		extract( $args );
 
 		//in some case we may pass only one argument, in which case we will just assign the first to the second
@@ -303,7 +302,7 @@ class WYSIJA_NL_Widget extends WP_Widget {
 				if ( isset( $this->core_only ) && $this->core_only && ! isset( $field_params['core'] ) ){
 					continue;
 				}
-				if ( $field == 'success' && $instance[ $field ] == $this->successmsgsub . ' ' . $this->successmsgconf ){
+				if ( $field == 'success' && !empty($instance[ $field ]) && $instance[ $field ] == $this->successmsgsub . ' ' . $this->successmsgconf ){
 					if ( ! $model_config->getValue( 'confirm_dbleoptin' ) ){
 						$instance[ $field ] = $this->successmsgsub;
 					}
