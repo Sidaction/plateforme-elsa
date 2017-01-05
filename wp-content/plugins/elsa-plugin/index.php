@@ -41,6 +41,10 @@ require_once(ODY_PT_PATH . 'post-types.php');
 require_once(ODY_METAS_PATH . 'metas.php');
 
 
+/**
+ * Post Types & Taxonomies & metas
+ */
+require_once(ODY_UTILS_PATH . 'cnlib.php');
 
 
 
