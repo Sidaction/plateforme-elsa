@@ -1,14 +1,123 @@
-body,
-button,
-input,
-select,
-textarea {
-	color: $color__text-main;
-	font-family: $font__main;
-	@include font-size(1);
-	line-height: $font__line-height-body;
+/*
+ * Typography
+ *
+ * @package sasskit
+ */
+
+
+
+// Not needed
+// @import "fonts";
+
+
+
+// Base Sizes
+// ==========
+
+$base_font_size               : 16px !default;
+
+$base_line_half               : 10px;
+$base_line_height             : 1.45 !default;
+
+
+$type-scale: (
+  -1: 1rem,
+  0: 1.6rem, // paragraphes
+  1: 1.8rem, // menu items
+  2: 3rem, // h3, 
+  3: 9.6rem // h1, h2
+);
+
+$line-heights: (
+  -1: $base_line_height,
+  0: $base_line_height, 
+  1: $base_line_height, 
+  2: $base_line_height,
+  3: $base_line_height
+);
+
+
+@function type-scale($level) {
+  @return map-get($type-scale, $level);
 }
 
-@import "headings";
+@function line-height($level) {
+  @return map-get($line-heights, $level);
+}
 
+@mixin type-setting($level: 0) {
+  font-size: type-scale($level);
+  line-height: line-height($level);
+}
+
+@mixin fontsize($size: $base_font_size) {
+  font-size: #{$size}px;
+  font-size: ( get_rem($size) )rem;
+}
+
+
+
+/*
+ * TYPOGRAPHY VARIABLES SETTINGS
+ */
+
+// Google Font Families
+$ubuntu                         : 'Ubuntu';
+
+// Default Fonts
+$font_family_sans               : Arial, Helvetica, sans-serif !default;
+$font_family_serif              : Georgia, Times New Roman, serif !default;
+$font_family_mono               : Menlo, Consolas, monospace !default;
+
+// Typo Attributions
+$font_family_paragraph          : $ubuntu, $font_family_sans;
+$font_family_title              : $ubuntu, $font_family_sans;
+$font_family_nav                : $ubuntu, $font_family_sans;
+$font_family_alt                : $ubuntu, $font_family_sans;
+$font_family_quote              : $ubuntu, $font_family_sans;
+$font_family_meta               : $ubuntu, $font_family_sans;
+
+// Set weights
+$black              : 900;
+$heavy              : 800;
+$bold               : 700;
+$medium             : 600;
+$regular            : 400;
+$book               : 300;
+$light              : 200;
+$thin               : 100;
+
+
+/*
+ * Imports typo parts
+ */
 @import "copy";
+@import "heading";
+
+
+/*
+ * FOR RESPONSIVE FONT SIZE. 
+ * Adjust as you need.
+ */
+
+body {
+  font-family: $ubuntu;
+  @include type-setting(0);
+}
+
+html {
+  @include up-to(medium) {
+    font-size: 50%;
+  }
+  @include at-least(medium) {
+    font-size: 55%;
+  }
+  @include at-least(large) {
+    font-size: 62.5%;
+  }
+  @include at-least(wide) {
+    font-size: 75%;
+  }
+}
+
+

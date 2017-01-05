@@ -1,25 +1,17 @@
-.page-content .wp-smiley,
-.entry-content .wp-smiley,
-.comment-content .wp-smiley {
-	border: none;
-	margin-bottom: 0;
-	margin-top: 0;
-	padding: 0;
+/* 
+ * Medias
+ * 
+ * @package sasskit
+ */
+
+img {
+  @include box-sizing;
+  max-width: 100%;
+  height: auto;
 }
 
-/* Make sure embeds and iframes fit their containers. */
-embed,
-iframe,
-object {
-	max-width: 100%;
-}
 
-/*--------------------------------------------------------------
-## Captions
---------------------------------------------------------------*/
-@import "captions";
+@import "gallery";
 
-/*--------------------------------------------------------------
-## Galleries
---------------------------------------------------------------*/
-@import "galleries";
+@import "caption";
+
