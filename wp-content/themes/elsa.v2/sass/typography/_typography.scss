@@ -21,19 +21,23 @@ $base_line_height             : 21px !default;
 
 
 $type-scale: (
-  -1: 1rem,
-  0: 1.6rem, // paragraphes
-  1: 1.8rem, // menu items
-  2: 2rem, // h3, 
-  3: 3rem // h1, h2
+  -2: 1.4rem,
+  -1: 1.5rem,
+  0: 1.6rem, // 
+  1: 1.8rem, // 
+  2: 2.2rem, //
+  3: 3.4rem, //
+  4: 6.4rem
 );
 
 $line-heights: (
+  -2: $base_line_height,
   -1: $base_line_height,
   0: $base_line_height, 
   1: $base_line_height, 
   2: $base_line_height,
-  3: $base_line_height
+  3: 30px,
+  4: 60px
 );
 
 
@@ -62,7 +66,7 @@ $line-heights: (
  */
 
 // Google Font Families
-$ubuntu                         : 'Ubuntu';
+$worksans                       : 'Work Sans';
 
 // Default Fonts
 $font_family_sans               : Arial, Helvetica, sans-serif !default;
@@ -70,22 +74,19 @@ $font_family_serif              : Georgia, Times New Roman, serif !default;
 $font_family_mono               : Menlo, Consolas, monospace !default;
 
 // Typo Attributions
-$font_family_paragraph          : $ubuntu, $font_family_sans;
-$font_family_title              : $ubuntu, $font_family_sans;
-$font_family_nav                : $ubuntu, $font_family_sans;
-$font_family_alt                : $ubuntu, $font_family_sans;
-$font_family_quote              : $ubuntu, $font_family_sans;
-$font_family_meta               : $ubuntu, $font_family_sans;
+$font_family_paragraph          : $worksans, $font_family_sans;
+$font_family_title              : $worksans, $font_family_sans;
+$font_family_nav                : $worksans, $font_family_sans;
+$font_family_alt                : $worksans, $font_family_sans;
+$font_family_quote              : $worksans, $font_family_sans;
+$font_family_meta               : $worksans, $font_family_sans;
+
 
 // Set weights
-$black              : 900;
-$heavy              : 800;
-$bold               : 700;
-$medium             : 600;
+$black              : 800;
+$semibold           : 600;
 $regular            : 400;
-$book               : 300;
-$light              : 200;
-$thin               : 100;
+$thin               : 200;
 
 
 /*
@@ -101,22 +102,22 @@ $thin               : 100;
  */
 
 body {
-  font-family: $ubuntu;
+  font-family: $worksans;
   @include type-setting(0);
 }
 
 html {
   @include up-to(medium) {
-    font-size: 50%;
+    font-size: 57.5%;
   }
   @include at-least(medium) {
-    font-size: 55%;
+    font-size: 60%;
   }
   @include at-least(large) {
     font-size: 62.5%;
   }
   @include at-least(wide) {
-    font-size: 75%;
+    font-size: 65%;
   }
 }
 

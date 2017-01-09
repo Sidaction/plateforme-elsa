@@ -26,7 +26,6 @@
       .main-navigation a {
 
         &:hover {
-          color: $color_link_hover;
         }
       }
 
@@ -47,7 +46,7 @@
 .main-navigation .current-page-item a,
 .main-navigation .current-menu-item a,
 .main-navigation .current-page-ancestor .current-page-ancestor a {
-  color: $color_link_hover;
+
 }
 .current-page-ancestor,
 .current-menu-ancestor {
