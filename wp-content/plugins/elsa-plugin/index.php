@@ -44,9 +44,12 @@ require_once(ODY_METAS_PATH . 'metas.php');
 /**
  * Post Types & Taxonomies & metas
  */
-require_once(ODY_UTILS_PATH . 'cnlib.php');
+require_once(ODY_UTILS_PATH . 'seo.php');
+require_once(ODY_UTILS_PATH . 'lib.php');
+require_once(ODY_UTILS_PATH . 'roles.php');
+require_once(ODY_UTILS_PATH . 'themeManager.php');
 
-
+$cnSite = new themeManager();
 
 
 
