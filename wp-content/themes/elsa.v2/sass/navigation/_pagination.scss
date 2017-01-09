@@ -1,0 +1,40 @@
+
+.pagination {
+  margin-top: 22px;
+  font-family: $font_family_meta;
+
+  @include up-to(medium) {
+    @include fontsize(14);
+  }
+}
+
+  %posts-link {
+    height: 44px;
+    line-height: 44px;
+    width: 50%;
+  }
+  .previous-posts-link {
+    @extend %posts-link;
+    float: left;
+    
+    .arrow-thin-left {
+      float: left;
+      margin-right: 11px;
+    }    
+    .posts-link-text {
+      float: left;
+    }
+  }
+
+  .next-posts-link {
+    @extend %posts-link;
+    float: right;
+    
+    .arrow-thin-right {
+      float: right;
+      margin-left: 11px;
+    }
+    .posts-link-text {
+      float: right;
+    }
+  }

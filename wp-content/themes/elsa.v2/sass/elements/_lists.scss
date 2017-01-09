@@ -1,0 +1,48 @@
+/* 
+ * Lists
+ * 
+ * @package sasskit
+ */
+
+
+hr {
+	background-color: #ccc;
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.5em;
+}
+ul, ol {
+	margin: 0px 0px 0.5em 0em;
+}
+ul {
+	list-style: disc;
+}
+li {
+  list-style-position: inside;
+}
+ol {
+	list-style: decimal;
+}
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: 1.5em;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	margin: 0 1.5em 1.5em;
+}
+figure {
+	margin: 0;
+}
+
+.entry-content {
+	ul {
+		padding-left: 0;
+	}
+	li {
+		margin-bottom: 11px;
+	}
+}
