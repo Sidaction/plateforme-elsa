@@ -68,7 +68,7 @@ function register_custompost() {
 
   
   register_taxonomy(
-        'type_structure', array('structure'), 
+    'type_structure', array('structure'), 
     array(
         'public' => true,
         'show_admin_column' => true,
@@ -82,7 +82,7 @@ function register_custompost() {
     );
   
   register_taxonomy(
-        'public_cibles', array('structure'), 
+    'public_cibles', array('structure'), 
     array(
         'public' => true,
         'show_admin_column' => true,
@@ -96,7 +96,7 @@ function register_custompost() {
     );
   
   register_taxonomy(
-        'activites', array('structure'), 
+    'activites', array('structure'), 
     array(
         'public' => true,
         'show_admin_column' => true,
@@ -109,23 +109,7 @@ function register_custompost() {
             )
     );
   
-    // post type antennes
-    $args = array(
-        'labels' => array(
-            'name' => _x('Antennes', 'taxonomy general name'),
-            'singular_name' => _x('Antenne', 'taxonomy singular name'),
-            'add_new_item' => __('Ajouter une antenne'),
-            'edit_item' => __('Editer l\'antenne'),
-        ),
-        'public' => true,
-        'show_ui' => true,
-        'query_var' => 'antenne',
-        'has_archive' => true,
-    'menu_icon' => '',
-    'supports' => array('title','excerpt', 'author')
-    );
 
-    register_post_type('antenne', $args);
   
   
   // post type diaporama
@@ -146,9 +130,7 @@ function register_custompost() {
 
     register_post_type('diaporama', $args);
   
-  
-  
-  $capabilities_cont = array(
+    $capabilities_cont = array(
       'publish_posts' => 'publish_conts',
       'edit_posts' => 'edit_conts',
       'edit_others_posts' => 'edit_others_conts',
@@ -184,90 +166,26 @@ function register_custompost() {
 
     register_post_type('contenu', $args);
   
-  /*register_taxonomy(
-        'type_contenu', array('contenu'), 
+
+   
+  
+  register_taxonomy(
+    'boiteoutils', array('post'), 
     array(
         'public' => true,
         'show_admin_column' => true,
         'hierarchical' => true,
         'labels' => array
             (
-            'name' => _x('Types de contenu', 'taxonomy general name'),
-            'singular_name' => _x('Type de contenu', 'taxonomy singular name'),
+            'name' => _x('Boite à outils', 'taxonomy general name'),
+            'singular_name' => _x('Boite à outils', 'taxonomy singular name'),
         )
             )
-    );*/
-  
-  
-  
-  
-  
-  // post type agenda
-    $args = array(
-        'labels' => array(
-            'name' => _x('Agenda', 'taxonomy general name'),
-            'singular_name' => _x('Agenda', 'taxonomy singular name'),
-            'add_new_item' => __('Ajouter une date'),
-            'edit_item' => __('Editer la date'),
-        ),
-        'public' => true,
-        'show_ui' => true,
-        'query_var' => 'agenda',
-        'has_archive' => true,
-    'menu_icon' => '',
-    'taxonomies'=>array('category'),
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt')
     );
 
-    register_post_type('agenda', $args);
   
   register_taxonomy(
-        'type_date', array('agenda'), 
-    array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => true,
-        'labels' => array
-            (
-            'name' => _x('Types de d\'événement', 'taxonomy general name'),
-            'singular_name' => _x('Type de d\'événement', 'taxonomy singular name'),
-        )
-            )
-    );
-  
-  // taxonomies
-  /*
-  register_taxonomy(
-        'category_sec', array('post'), 
-    array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => true,
-        'labels' => array
-            (
-            'name' => _x('Categorie(s) secondaire(s)', 'taxonomy general name'),
-            'singular_name' => _x('Categorie secondaire', 'taxonomy singular name'),
-        )
-            )
-    );
-  
-  register_taxonomy(
-        'association_assoc', array('post', 'pays', 'contenu'), 
-    array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => true,
-        'labels' => array
-            (
-            'name' => _x('Asso. associées', 'taxonomy general name'),
-            'singular_name' => _x('Asso. associée', 'taxonomy singular name'),
-        )
-            )
-    );
-  */
-  
-  register_taxonomy(
-        'region', array('post','pays'), 
+    'region', array('post','pays'), 
     array(
         'public' => true,
         'show_admin_column' => true,
@@ -281,7 +199,7 @@ function register_custompost() {
     );
 
   register_taxonomy(
-        'pays_assoc', array('post','contenu','structure','antenne'), 
+    'pays_assoc', array('post','contenu','structure','antenne'), 
     array(
         'public' => true,
         'show_admin_column' => true,
@@ -322,7 +240,7 @@ function register_custompost() {
 }
 
 add_action('init', 'register_custompost', 0);
-$post_types=array('post', 'pays', 'association', 'agenda');
+$post_types = array('post', 'pays', 'association', 'agenda');
 
 
  

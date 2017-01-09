@@ -599,45 +599,36 @@ add_action( 'admin_init', 'register_taxonomy_meta_boxes' );
 
 function register_taxonomy_meta_boxes(){
   if ( !class_exists( 'RW_Taxonomy_Meta' ) )
-                return;
+    return;
 
+  $meta_sections = array();
 
+  $meta_sections[] = array(
+    'title'      => 'Informations',             
+    'taxonomies' => array('category', 'boiteoutils'), 
+    'id'         => 'info',                
+    'fields' => array(
+        array(
+          'name' => 'Texte de présentation',     // field name
+          'id'   => 'presentation',
+          'type' => 'wysiwyg',                   // field type
+        ),
+        array(
+          'name' => 'Détails',     // field name
+          'id'   => 'details',
+          'type' => 'wysiwyg',                   // field type
+        ),
+        array(
+          'name' => 'Vignette',                  // field name
+          'id'   => 'image',
+          'type' => 'image',
+        ),
+      ),
+    );
 
-
-
-$meta_sections = array();
-
-
-
-      //  $meta_sections = array();
-        $meta_sections[] = array(
-                'title'      => 'Informations',             
-                'taxonomies' => array('category'), 
-                'id'         => 'info',                
-                'fields' => array(
-            array(
-                                'name' => 'Texte de présentation',     // field name
-                                 'id'   => 'presentation',
-                                'type' => 'wysiwyg',                   // field type
-                        ),
-            array(
-                                'name' => 'Détails',     // field name
-                                 'id'   => 'details',
-                                'type' => 'wysiwyg',                   // field type
-                        ),
-            array(
-                                'name' => 'Vignette',                  // field name
-                                 'id'   => 'image',
-                'type' => 'image',
-                        ),
-            
-                ),
-        );
-
-
-        foreach ( $meta_sections as $meta_section )        {
-                new RW_Taxonomy_Meta( $meta_section );
-        }
+    foreach ( $meta_sections as $meta_section )        {
+      new RW_Taxonomy_Meta( $meta_section );
+    }
 }
 
 
