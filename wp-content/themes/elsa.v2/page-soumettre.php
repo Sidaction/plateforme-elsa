@@ -175,9 +175,8 @@
 			})
 		</script>
               <?php endif; ?>
-        <div id="sharebottom">
-			<?php $cnSite->share_links();?>
-        </div>
+
+
         <div class="clear"></div>
         
      </div>
