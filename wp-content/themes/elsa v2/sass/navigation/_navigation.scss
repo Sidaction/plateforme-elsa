@@ -1,0 +1,31 @@
+/* 
+ * Navigation
+ * 
+ * @package sasskit
+ */
+
+
+// Settings
+
+$navbar_background:                 $black !default;
+
+$navbar_text:                       #777 !default;
+$navbar_link_color:                 #777 !default;
+$navbar_link_color_hover:           $gray_dark !default;
+$navbar_link_color_active:          $gray !default;
+$navbar_link_background_hover:      transparent !default;
+
+
+@import "links";
+
+@import "menu";
+
+@import "pagination";
+
+
+
+
+
+
+
+

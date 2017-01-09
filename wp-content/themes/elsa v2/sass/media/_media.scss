@@ -1,0 +1,17 @@
+/* 
+ * Medias
+ * 
+ * @package sasskit
+ */
+
+img {
+  @include box-sizing;
+  max-width: 100%;
+  height: auto;
+}
+
+
+@import "gallery";
+
+@import "caption";
+

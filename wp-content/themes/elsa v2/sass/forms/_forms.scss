@@ -1,0 +1,33 @@
+/* 
+ * Forms
+ * 
+ * @package sasskit
+ */
+
+
+$input_border:                      1px solid $black !default;
+$input_background:                  $white !default;
+$input_height:                      $base_line_height ;
+$input_width:                      	$base_line_height ;
+
+$placeholder_text:                  $gray_lighter !default;
+
+
+button,
+input,
+select,
+textarea {
+	font-size: 100%; /* Corrects font size not being inherited in all browsers */
+	margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+	vertical-align: baseline; /* Improves appearance and consistency in all browsers */
+	*vertical-align: middle; /* Improves appearance and consistency in all browsers */ }
+
+button::-moz-focus-inner,
+input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+	border: 0;
+	padding: 0; }
+
+
+
+@import "buttons";
+@import "fields";

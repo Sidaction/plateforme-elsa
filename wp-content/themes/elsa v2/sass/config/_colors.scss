@@ -1,0 +1,65 @@
+/* 
+ * Colors
+ * 
+ * @package sasskit
+ */
+
+
+
+// Color Scheme
+// examples based on the official Sass styleguide
+// =============
+
+// Descriptive colors (example)
+$hopbush                      : #c69;
+$bouquet                      : #b37399;
+$venus                        : #998099;
+$patina                       : #699;
+$nebula                       : #d2e1dd;
+
+// Grey nuances
+$black                        : #000 !default;
+$gray_darker                  : #222 !default;
+$gray_dark                    : #333 !default;
+$gray                         : #555 !default;
+$gray_light                   : #999 !default;
+$gray_lighter                 : #eee !default;
+$white                        : #fff !default;
+
+// Main color palette
+$color_primary                : $hopbush;
+$color_secondary              : $bouquet;
+$color_accent                 : $patina;
+
+// Common colors
+$color_background             : $white;
+$color_border                 : $bouquet;
+$color_text                   : darken($bouquet, 15);
+$color_text_weak              : $bouquet;
+$color_text_strong            : $venus;
+$color_text_heading           : $bouquet;
+
+// Links
+$color_link                   : $color_primary;
+$color_link_hover             : $venus;
+$color_link_visited           : $bouquet;
+
+// Code
+$color_code                   : #333;
+$color_code_background        : #f3f3f3;
+$color_pre                    : #d4d4d4;
+$color_pre_background         : #333;
+
+// Selections
+$color_selection              : #b3d4fc;
+
+// Messages
+$color_message                : #f4ecbb;
+$color_success                : #2cde2c;
+$color_warning                : #cf8600;
+$color_important              : #d00;
+$color_notice                 : #66b;
+
+
+
+
