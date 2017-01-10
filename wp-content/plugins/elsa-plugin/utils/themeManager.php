@@ -149,39 +149,56 @@ class themeManager {
 
 	}
 	
+	public function get_back_link() {
+
+	 	global $post;
+		
+		if( $post->post_type == 'post' && $_GET['ref'] == 'search' ) {
+			
+			$postlist = $_SESSION['results'];
+			$ids = array();
+
+			if(!empty($postlist)):
+				foreach ($postlist as $thepost) {
+				   $ids[] = $thepost;
+				}
+			endif;
+
+			$backlink = "/recherche-documentaire/?ref=search";
+			$lib = "Document";
+
+		} 
+		else {
+			switch( $post->post_type ){
+
+				case 'pays':
+					$backlink = "/pays-dafrique/";
+					$lib = "Pays";
+				break;
+				
+				case 'structure':
+					$backlink = "/associations-africaines-du-reseau-elsa/";
+					$lib = "";
+				break;
+				
+				case 'post':
+					$backlink = "/category/".cnLib::get_main_term_slug($post->ID, 'category');
+					$lib = "Document";
+				break;
+
+			}
+		}
+
+		$nav = '<a href="'.$backlink.'">Retourner aux résultats</a>';
+
+		echo $nav;
+
+	}
 	
 	 public function get_fiche_nav() {
 	
 	 	global $post;
 		
-		
-		if($post->post_type=='post' && $_GET['ref']=='search') {
-			$postlist = $_SESSION['results'];
-			$ids = array();
-			if(!empty($postlist)):
-				foreach ($postlist as $thepost) {
-				   $ids[] = $thepost;
-				}
-			endif;			
-			$backlink="/recherche-documentaire/?ref=search";
-			$lib="Document";
-
-		}else{
-			switch($post->post_type){
-				case 'pays':
-					$backlink="/pays-dafrique/";
-					$lib="Pays";
-				break;
-				
-				case 'structure':
-					$backlink="/associations-africaines-du-reseau-elsa/";
-					$lib="";
-				break;
-				case 'post':
-					$backlink="/category/".cnLib::get_main_term_slug($post->ID, 'category');
-					$lib="Document";
-				break;
-			}
 		
 			$args = array(
 			   'posts_per_page'  => -1,
@@ -189,10 +206,14 @@ class themeManager {
 			   'order'           => 'ASC',
 			   'post_type'       => $post->post_type,
 			); 
-			if($post->post_type=='structure') $args['type_structure']='partenaires-elsa-associations-du-reseau-elsa';
-			if($post->post_type=='post') {
-				$args['orderby']='DATE';
-				$args['order']='DESC';
+			
+			if( $post->post_type == 'structure' ) {
+				$args['type_structure'] = 'partenaires-elsa-associations-du-reseau-elsa';
+			}
+
+			if( $post->post_type == 'post' ) {
+				$args['orderby'] = 'DATE';
+				$args['order'] = 'DESC';
 			}
 		
 			
@@ -201,11 +222,7 @@ class themeManager {
 			foreach ($postlist as $thepost) {
 			   $ids[] = $thepost->ID;
 			}
-			
-	
-			
-		}
-		
+					
 		
 		$thisindex = array_search($post->ID, $ids);
 		$previd = $ids[$thisindex-1];
@@ -214,9 +231,8 @@ class themeManager {
 		$referer=(isset($_GET['ref']) && $_GET['ref']=='search')?'?ref=search':'';
 		
 		$nav='<ul id="navFiches">';
-		if (!empty($previd)) $nav.='<li><a href="'.get_permalink($previd ).$referer.'">« '.$lib.' précédent</a></li>';
-		$nav.='<li><a href="'.$backlink.'">retour à la liste</a></li>';
-		if (!empty($nextid)) $nav.='<li><a href="'.get_permalink($nextid).$referer.'">'.$lib.' suivant »</a></li>';
+		if (!empty($previd)) $nav.='<li><a href="'.get_permalink($previd ).$referer.'">'.$lib.'Ressource précédente</a></li>';
+		if (!empty($nextid)) $nav.='<li><a href="'.get_permalink($nextid).$referer.'">'.$lib.'Ressource suivante</a></li>';
 		$nav.=' </ul>';
 		echo $nav;
 	}
