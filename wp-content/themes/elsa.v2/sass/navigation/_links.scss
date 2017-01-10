@@ -9,9 +9,12 @@
 a {
   color: inherit;
   text-decoration: none;
-  font-style: italic;
-  font-weight: $thin;
   @include transition(all, 0.2s);
+    font-weight: $thin;
+
+  &:not([class *= "btn"]) {
+    font-style: italic;
+  }
 }
 a:hover,
 a:focus,
