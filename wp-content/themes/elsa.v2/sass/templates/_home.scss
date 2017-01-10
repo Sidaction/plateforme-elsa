@@ -1,5 +1,13 @@
 /* 
  * templates/home
  * 
- * @package sasskit
+ * @package elsa
  */
+
+
+
+.featured-content {
+  background-color: $color_ressources;
+  color: $white;
+  margin-bottom: $base_line_height * 3;
+}
