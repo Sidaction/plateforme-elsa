@@ -7,13 +7,13 @@
 
 
 .site-footer {
-  margin-top: $base_line_height * 3;
-  border-top: 1px solid;
+  margin-top: $base_line_height * 6;
+  border-top: 3px solid $color_primary;
   padding: $base_line_height 0;
 }
 
   .footer-divider {
-    background-color: black;
+    background-color: $color_primary;
     height: $base_line_height;
     margin-bottom: $base_line_height;
     margin-top: $base_line_height;
