@@ -1,19 +1,26 @@
- <?php 
-/*///////////////////////////////////////////////////////////////
- Plateforme Elsa by Clair et Net. / www.clair-et-net.com
- Page détail d'une catégorie
- //////////////////////////////////////////////////////////////*/
- $cat = get_category( get_query_var( 'cat' ) );	
+<?php 
+/*
+ * Page détail d'une catégorie
+ */
 
- $cat_id = $cat->cat_ID;
- $cat_slug=$cat->slug;
-$meta = get_option('info');
-if (empty($meta)) $meta = array();
-if (!is_array($meta)) $meta = (array) $meta;
-$meta = isset($meta[$cat_id]) ? $meta[$cat_id] : array();
-$presentation = $meta['presentation']; get_header(); 
-$details = $meta['details']; 
-$vignette = $meta['image']; 
+
+
+    $cat = get_category( get_query_var( 'cat' ) );	
+
+    $cat_id = $cat->cat_ID;
+    $cat_slug=$cat->slug;
+    $meta = get_option('info');
+
+    if (empty($meta)) 
+        $meta = array();
+    
+    if (!is_array($meta)) 
+        $meta = (array) $meta;
+
+    $meta = isset($meta[$cat_id]) ? $meta[$cat_id] : array();
+    $presentation = $meta['presentation']; get_header(); 
+    $details = $meta['details']; 
+    $vignette = $meta['image']; 
 
 get_header(); 
 
