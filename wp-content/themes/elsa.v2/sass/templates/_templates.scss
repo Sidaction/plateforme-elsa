@@ -10,3 +10,19 @@
 
 @import "home";
 @import "single";
+@import "archives";
+
+/*
+ * Styles communs
+ */
+
+.page_title {
+  padding: $base_line_height * 3 0;
+  color: $white;
+}
+
+.page_content {
+  background-color: $gray_lighter;
+  padding: $base_line_height * 3 0;
+  margin-bottom: 0;
+}
