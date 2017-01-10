@@ -9,7 +9,8 @@
 a {
   color: inherit;
   text-decoration: none;
-
+  font-style: italic;
+  font-weight: $thin;
   @include transition(all, 0.2s);
 }
 a:hover,
@@ -25,9 +26,10 @@ a:active {
   color: $color_primary;
   font-weight: $semibold;
   text-align: center;
-  height: $base_line_height * 3;
-  line-height: $base_line_height * 3 !important;
+  line-height: $base_line_height * 3 - 3px!important;
   margin-bottom: $base_line_height;
+  padding-left: $base_line_height;
+  padding-right: $base_line_height;
 
   &.plain {
     width: 100%;
@@ -38,10 +40,12 @@ a:active {
   @extend %btn;
   @include box-shadow(5px 5px 0px $color_primary );
   @include type-setting(1);
+  height: $base_line_height * 3 - 5px;
   background-color: $white;
 }
 
 
 .btn-secondary {
+  height: $base_line_height * 3;
   @extend %btn;
 }
