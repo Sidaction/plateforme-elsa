@@ -150,7 +150,9 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
 
         <?php   
-            $args = array('post_type' => array('post'), 'posts_per_page' => 4, 
+            $args = array(
+                'post_type' => array('post'), 
+                'posts_per_page' => 4, 
                 'meta_query' => array (
                     'relation' => 'OR',
                     array(
@@ -212,7 +214,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
           <div class="wrap row">
             <div class="group_title m-2col">
-              <h3 class="A lire aussi">Sur le web</h3>
+              <h3 class="h3">Sur le web</h3>
             </div>
             
             <div class="group_list m-6col">
