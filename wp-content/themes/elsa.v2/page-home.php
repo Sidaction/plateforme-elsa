@@ -11,40 +11,47 @@ get_header(); ?>
 <section id="site-content" class="site-content template-home">
 
     
-    <div id="sliderHome" class="home-feature" style="background-image:url();">
-        <div class="wrap">
-            <div class="feature-title">Zoom</div>
-            <div class="feature-title">
-                <h2>Financement de la lutte contre le sida</h2>
-            </div>
+    <div id="" class="home-featured">
+        <div class="featured-cover" style="background-image:url();">
 
-            <div class="row">
-                <div class="m-6col">
-                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </div>
-                
-                    <div class="feature-action">
-                        <a class="btn-primary">En savoir plus</a>
-                        <a class="btn-secondary">LEs ressources de la thématique</a>
+        </div>
+        <div class="featured-content">
+
+            <div class="wrap">
+                <div class="featured-title">Zoom</div>
+                <div class="featured-title">
+                    <h2>Financement de la lutte contre le sida</h2>
+                </div>
+
+                <div class="row">
+                    <div class="m-6col">
+                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </div>
+                    
+                        <div class="featured-action">
+                            <a class="btn-primary">En savoir plus</a>
+                            <a class="btn-secondary">LEs ressources de la thématique</a>
+                        </div>
                     </div>
+
+
+                    <div class="m-6col">
+                        <div class="featured-asso">Ceradis</div>
+                        <div class="featured-pays">Bénin</div>
+                    </div>
+
                 </div>
+            </div><!-- .wrap -->   
 
-
-                <div class="m-6col">
-                    <div class="feature-asso">Ceradis</div>
-                    <div class="feature-pays">Bénin</div>
-                </div>
-
-            </div>
-        </div><!-- .wrap -->   
-    </div>
+        </div>
+    </div><!-- .home-featured -->
     
     
     
-    <div id="contentWrapper" class="home-grid">
+    <div id="" class="home-grid blocs-group">
         <div class="wrap row">
 
             <div class="grid-title">
-                <h3>Des documents, des photos, des vidéos...</h3>
+                <h3 class="h3">Des documents, des photos, des vidéos...</h3>
             </div>
     	    
             <div class="grid-list">
