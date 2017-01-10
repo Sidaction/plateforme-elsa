@@ -55,8 +55,8 @@ get_header();
                         </div>
 
                         <div class="page_actions">
-                            <a href="#" class="btn-primary">Voir les ressources recommandées</a>
-                            <a href="#" class="btn-secondary">Voir toutes les ressources</a>
+                            <a href="#" class="btn-primary plain">Voir les ressources recommandées</a>
+                            <a href="#" class="btn-secondary plain">Voir toutes les ressources</a>
                         </div>
                     </div>
                 </div>

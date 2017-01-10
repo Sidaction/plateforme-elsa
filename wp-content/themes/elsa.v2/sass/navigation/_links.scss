@@ -17,3 +17,31 @@ a:focus,
 a:active {
 
 }
+
+
+%btn {
+  display: inline-block;
+  border: 2px solid $color_primary;
+  color: $color_primary;
+  font-weight: $semibold;
+  text-align: center;
+  height: $base_line_height * 3;
+  line-height: $base_line_height * 3 !important;
+  margin-bottom: $base_line_height;
+
+  &.plain {
+    width: 100%;
+  }
+}
+
+.btn-primary {
+  @extend %btn;
+  @include box-shadow(5px 5px 0px $color_primary );
+  @include type-setting(1);
+  background-color: $white;
+}
+
+
+.btn-secondary {
+  @extend %btn;
+}
