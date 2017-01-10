@@ -4,15 +4,13 @@
 <head>
   <meta charset="utf-8">
   <?php wp_head();?>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/_img/favicon.png" />
   
-  <!--[if lt IE 9]>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <![endif]-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/_img/favicon.png" />
- 
     <!--[if lt IE 9]>
-    	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>  
+    	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
     
     <!--[if (gte IE 6)&(lte IE 8)]>
@@ -27,23 +25,28 @@
 
     <div class="row wrap subheader">
 
-        <div class="m-4col">
+        <div class="m-3col">
             <img src="" alt="logo ELSA">
             <div class="site-branding">Plateforme ELSA</div>
             <p>Centre de ressources francophones sur le VIH/side en Afrique</p>
         </div>
-        <div class="m-8col">menu secondaire</div>
+        <div class="m-5col">
+            <div class="top-navigation">
+                <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu' ) ); ?>
+
+            </div>
+        </div>
 
     </div><!-- .wrap -->
 
 
-    <div class="main-navigation">
+    <div class="main-navigation clearfix">
         <div class="wrap">
 
-            <section id="rechercheThema" class="searchPage">
-                <form id="rechRess" action="/recherche-documentaire/" class="minisearch">   <div id="recherche">
+            <section id="rechercheThema" class="main_nav-search">
+                <form id="rechRess" action="/recherche-documentaire/" class=" ">   
+                    <div id="recherche">
                         <input type="text" placeholder="Taper un terme ou laisser vide pour tout voir" name="totaltags" value=""/>
-          
                         <input type="hidden" name="totalpays" value="" />
                         <input type="hidden" name="totalregions" value="" />
                         <button>Rechercher</button>
@@ -51,7 +54,10 @@
                 </form>  
             </section>
     
-            menu principal
+            <div class="main_nav-dropdowns">
+                <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+            </div>
+            
         </div>
     </div>       
 

@@ -24,6 +24,18 @@ remove_action( 'admin_print_styles', 'print_emoji_styles' );
 
 
 
+/**
+ * Enqueue scripts and styles.
+ */
+
+register_nav_menus( array(
+    'primary' => esc_html__( 'Menu principal', 'elsa' ),
+    'secondary' => esc_html__( 'Menu secondaire (top)', 'elsa' ),
+    'footer' => esc_html__( 'Menu du pied de page', 'elsa' ),
+) );
+
+
+
 
 
 
