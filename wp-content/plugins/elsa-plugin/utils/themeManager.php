@@ -63,10 +63,9 @@ class themeManager {
 	
 	function cn_from_email( $email ) {
 		return 'info@plateforme-elsa.org';
-	} 
+	}
 
-
-    function cn_setup() {
+	    function cn_setup() {
         add_theme_support('post-thumbnails');
         set_post_thumbnail_size(604, 270, true);
         /* add_theme_support( 'post-formats', array(
@@ -74,7 +73,7 @@ class themeManager {
           ) );
          */
     }
-	
+
 	
 	function the_category_filter($thelist,$separator=' ') {
 	if(!defined('WP_ADMIN')) {
@@ -290,20 +289,12 @@ class themeManager {
    
    
    
-   // personnalisation de la taille du résumé
-    function my_excerpt_length($length) {
-        return 50;
-    }
-	
-	
-    /////// PARAMETRAGE MENUS
 
+	
     function setup_addmenus() {
-        register_nav_menu('menu-left', 'Menu partie gauche ');
-		register_nav_menu('menu-right', 'Menu partie droite ');
-        register_nav_menu('footer', 'Menu du pied de page');
-        register_nav_menu('plan', 'Plan du site');
+
     }
+
 
     /////// Supprimer du header les liens générateurs...
     function remove_wpheaders() {
@@ -329,14 +320,17 @@ class themeManager {
         add_filter('feed_links_extra', array(&$this, 'disable_stuff'));
         add_filter('feed_links_extra', array(&$this, 'disable_stuff'));
 		
-		add_action( 'init',array(&$this, 'cn_add_excerpts_to_pages'));
+		    add_action( 'init',array(&$this, 'cn_add_excerpts_to_pages'));
 		
 				
 		
     }
 	
 	
-
+  // personnalisation de la taille du résumé
+    function my_excerpt_length($length) {
+        return 50;
+    }
 	
 
 	function cn_add_excerpts_to_pages() {
