@@ -23,6 +23,6 @@
 
 .page_content {
   background-color: $gray_lighter;
-  padding: $base_line_height * 3 0;
-  margin-bottom: 0;
+  padding: $base_line_height * 3 0 $base_line_height * 3;
+  margin-bottom: $base_line_height;
 }

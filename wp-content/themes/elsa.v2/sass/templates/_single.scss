@@ -1,5 +1,26 @@
 /* 
  * templates/single
  * 
- * @package sasskit
+ * @package single
  */
+
+
+
+
+.ressource_title {
+  background-color: $color_ressources;
+}
+
+
+.page_aside {
+  margin-top: - $base_line_height * 5;
+}
+  .page_media {
+    margin-bottom: $base_line_height;
+  }
+
+  .page_metas {
+    border: 1px solid $color_metas;
+    padding: $base_line_height;
+  }
+
