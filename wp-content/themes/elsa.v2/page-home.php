@@ -47,7 +47,7 @@ get_header(); ?>
     
     
     
-    <div id="" class="home-grid blocs-group">
+    <div id="" class="home-grid blocs_group">
         <div class="wrap row">
 
             <div class="grid-title">
