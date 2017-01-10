@@ -15,7 +15,6 @@ $orange                       : rgb(255, 153, 0);
 $rouge                        : rgb(193, 41, 46);
 $bleu                         : rgb(17, 75, 95);
 $vert                         : rgb(26, 159, 128);
-$nebula                       : #d2e1dd;
 
 // Grey nuances
 $black                        : #000 !default;
@@ -28,6 +27,9 @@ $white                        : #fff !default;
 
 // Main color palette
 $color_primary                : $bleu;
+$color_ressources             : $orange;
+$color_medias                 : $rouge;
+$color_metas                  : $vert;
 
 // Common colors
 $color_background             : $white;
