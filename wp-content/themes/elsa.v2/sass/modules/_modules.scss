@@ -13,7 +13,33 @@
 
 
 
-.blocs_group{
+.blocs_group {
   background-color: $gray_lighter;
   padding: $base_line_height 0;
+  margin-bottom: $base_line_height * 3;
+}
+  .group_title {
+    display: inline-block;
+    background-color: $color_primary;
+    color: $white;
+    padding: $base_line_height * 3 $base_line_height;
+    margin-top: - $base_line_height * 3;
+  }
+    .group_title--small {
+      @extend .group_title;
+      padding: $base_line_height;
+    }
+
+  .group_bloc {
+    background-color: $color_primary;
+    color: $white;
+    margin-bottom: $base_line_height;
+    padding: $base_line_height;
+  }
+
+
+
+.blocs_group--rebonds {
+  @extend .blocs_group;
+  margin-top: $base_line_height * 3;
 }
