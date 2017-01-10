@@ -6,4 +6,19 @@
 
 
 .site-header {
+  margin: $base_line_height 0;
 }
+
+
+  .site-logo {
+    float: left;
+    margin-right: $base_line_height;
+  }
+
+  .site-title {
+    
+    h1 {
+      @include type-setting(1);
+      margin: 0;
+    }
+  }
