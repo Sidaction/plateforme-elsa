@@ -24,3 +24,35 @@ h5 {
 h6 {
   @include type-setting(3);
 }
+
+
+.h1 {
+  margin: 0;
+  @include type-setting(3);
+}
+
+.h2 {
+  margin: 0;
+  @include type-setting(2);
+}
+
+.h3 {
+  margin: 0;
+  @include type-setting(1);
+}
+
+.h4 {
+  margin: 0;
+  @include type-setting(0);
+}
+
+.h5 {
+  margin: 0;
+  @include type-setting(-1);
+}
+
+.h6 {
+  margin: 0;
+  @include type-setting(-1);
+}
+
