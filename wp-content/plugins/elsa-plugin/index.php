@@ -48,6 +48,7 @@ require_once(ODY_UTILS_PATH . 'seo.php');
 require_once(ODY_UTILS_PATH . 'lib.php');
 require_once(ODY_UTILS_PATH . 'roles.php');
 require_once(ODY_UTILS_PATH . 'themeManager.php');
+require_once(ODY_UTILS_PATH . 'acf.php');
 
 $cnSite = new themeManager();
 
