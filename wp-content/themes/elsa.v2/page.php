@@ -7,6 +7,13 @@
     $ancestors = get_post_ancestors($post);
     $level = count( $ancestors );
 
+    if( $level == 0 ) {
+        $root = get_the_ID();
+    }
+    else {
+        $root = end( $ancestors );
+    }
+
     $children_args = array(
         'post_parent' => get_the_ID(),
         'post_type'   => 'page', 
@@ -23,21 +30,21 @@
     );
     $siblings = get_children( $siblings_args );
 
+
     // IF PAGE ROOT WITH MORE THAN 1 CHILD : GOTO FIRST CHILD
     if( $level == 0 && count($children) > 1 ) {
-        $firstchild = $children[0]; the_post();
+        $firstchild = array_values($children)[0];
+        the_post();
         // wp_safe_redirect( get_permalink( $firstchild->ID ), 301);
         // exit();
     }
     // IF PAGE ROOT WITH NO CHILD : STAY HERE + TITLE = CURRENT PAGE
     elseif( $level == 0 && empty( $children ) ) {
-        $root = get_the_ID();
         $children = get_page_children( $root, $pages );
         $title = get_the_title();
     } 
     // IF CHILD WITH SIBLINGS : STAY HERE + TITLE = ROOT PAGE
     else {
-        $root = end( $ancestors );
         $title = get_the_title( $root );
     }
 
