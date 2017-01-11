@@ -33,9 +33,8 @@ class themeManager {
             // suppression de la barre admin du front
             //show_admin_bar(false);
         }
-		add_filter('the_category', array(&$this, 'the_category_filter'), 10, 2);
-		
-		add_filter('wp_list_categories', array(&$this, 'the_category_filter'), 10, 2);
+
+
 
         add_action('login_head', array(&$this, 'childtheme_custom_login'));
         add_shortcode('iframe', array(&$this, 'iframe_shortcode'));
@@ -75,7 +74,7 @@ class themeManager {
     }
 
 	
-	function the_category_filter($thelist,$separator=' ') {
+	function the_category_filter( $thelist, $separator=' ') {
 	if(!defined('WP_ADMIN')) {
 		//Category IDs to exclude
 		$exclude = array(1,5);
@@ -85,7 +84,7 @@ class themeManager {
 			$exclude2[] = get_cat_name($c);
 		}
 
-		$cats = explode($separator,$thelist);
+		$cats = explode( $separator, $thelist );
 		$newlist = array();
 		foreach($cats as $cat) {
 			$catname = trim(strip_tags($cat));
