@@ -11,6 +11,7 @@
 @import "home";
 @import "single";
 @import "archives";
+@import "search";
 
 /*
  * Styles communs
@@ -19,10 +20,29 @@
 .page_title {
   padding: $base_line_height * 3 0;
   color: $white;
+  margin-bottom: $base_line_height;
 }
 
 .page_content {
-  background-color: $gray_lighter;
   padding: $base_line_height * 3 0 $base_line_height * 3;
   margin-bottom: $base_line_height;
+}
+
+.bg-full {
+  background-color: $gray_lighter;
+}
+
+.bg-cut {
+  position: relative;
+  background-color: $gray_lighter;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    width: $base_line_height;
+    background-color: $white;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
 }

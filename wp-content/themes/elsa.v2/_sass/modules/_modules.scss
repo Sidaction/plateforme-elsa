@@ -19,11 +19,22 @@
   margin-bottom: $base_line_height * 3;
 }
   .group_title {
+    position: relative;
     display: inline-block;
     background-color: $color_primary;
     color: $white;
     padding: $base_line_height * 3 $base_line_height;
     margin-top: - $base_line_height * 3;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -500px;
+      background-color: $color_primary;
+      top: 0;
+      bottom: 0;
+      width: 500px;
+    }
   }
     .group_title--small {
       @extend .group_title;
