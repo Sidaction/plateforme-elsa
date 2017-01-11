@@ -8,7 +8,7 @@
 function bourron_scripts() {
     wp_enqueue_style( 'elsa-style', get_stylesheet_uri() );
 
-    wp_enqueue_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/js/all.min.js', array( 'jquery' ), '1.0.0', true );
+    wp_enqueue_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
     
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
@@ -33,9 +33,6 @@ register_nav_menus( array(
     'secondary' => esc_html__( 'Menu secondaire (top)', 'elsa' ),
     'footer' => esc_html__( 'Menu du pied de page', 'elsa' ),
 ) );
-
-
-
 
 
 
