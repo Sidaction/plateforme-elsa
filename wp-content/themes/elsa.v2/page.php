@@ -1,5 +1,47 @@
 <?php 
- get_header(); 
+    /* 
+     * Page par défaut.
+     * Conditions si pages enfants pour liste
+     */
+
+    $ancestors = get_post_ancestors($post);
+    $level = count( $ancestors );
+
+    $children_args = array(
+        'post_parent' => get_the_ID(),
+        'post_type'   => 'page', 
+        'numberposts' => -1,
+        'post_status' => 'any' 
+    );
+    $children = get_children( $children_args );
+
+    $siblings_args = array(
+        'post_parent' => $root,
+        'post_type'   => 'page', 
+        'numberposts' => -1,
+        'post_status' => 'any' 
+    );
+    $siblings = get_children( $siblings_args );
+
+    // IF PAGE ROOT WITH MORE THAN 1 CHILD : GOTO FIRST CHILD
+    if( $level == 0 && count($children) > 1 ) {
+        $firstchild = $children[0]; the_post();
+        // wp_safe_redirect( get_permalink( $firstchild->ID ), 301);
+        // exit();
+    }
+    // IF PAGE ROOT WITH NO CHILD : STAY HERE + TITLE = CURRENT PAGE
+    elseif( $level == 0 && empty( $children ) ) {
+        $root = get_the_ID();
+        $children = get_page_children( $root, $pages );
+        $title = get_the_title();
+    } 
+    // IF CHILD WITH SIBLINGS : STAY HERE + TITLE = ROOT PAGE
+    else {
+        $root = end( $ancestors );
+        $title = get_the_title( $root );
+    }
+
+    get_header(); 
 ?>
 
 
@@ -15,7 +57,7 @@
         
             <div class="wrap row">
                 <h1 class="h1 m-6col is-centered">
-                    <?php the_title();?>
+                    <?php echo $title; ?>
                 </h1>  
             </div>     
         
@@ -23,9 +65,36 @@
 
         <div class="page_content clearfix">
             <div class="wrap row">
-                <div class="m-6col is-centered">
-                  <?php the_content();?>
-                </div>
+
+                <?php // PAGE AVEVC PARANTE ET MINIMUM 1 SIBLING ?>
+                <?php if( $level != 0 && count($siblings) > 1 ) : ?>
+                    <nav class="m-2col">
+                        <?php set_query_var( 'root', $root ); ?>
+                        <?php get_template_part('template-parts/loops/loop', 'childpages'); ?>
+                    </nav>
+
+                    <div class="m-5col m-last">
+                      <?php the_content();?>
+                    </div>
+
+
+                <?php // PAGE SANS ENFANT NI PARANT ?>
+                <?php elseif ( empty( $children ) && $level == 0 ) : ?>
+
+                    <div class="m-6col is-centered">
+                      <?php the_content();?>
+                    </div>
+
+
+                <?php // FALLBACK & DEFAULT ?>
+                <?php else : ?>                
+
+                    <div class="m-6col is-centered">
+                      <?php the_content();?>
+                    </div>
+
+                <?php endif; ?>
+
             </div><!-- .wrap -->
         </div><!-- .page_content -->
 
