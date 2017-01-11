@@ -93,8 +93,8 @@ $one_col: (100% - ($gutter * ($cols - 1))) / $cols;
 .row {
     @include clearfix;
 
-    > :first-child, 
-    .row > :first-child { 
+    > div:first-child, 
+    .row > div:first-child { 
         margin-left: 0;
     }
 }
