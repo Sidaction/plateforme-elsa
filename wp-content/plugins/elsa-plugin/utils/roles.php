@@ -203,7 +203,7 @@ function hide_add_new_custom_type(){
 	 ob_start();
     global $submenu;
 	global $current_user;
-     get_currentuserinfo();
+     wp_get_current_user();
 
 if (in_array('partenaire', $current_user->roles)) {
 
