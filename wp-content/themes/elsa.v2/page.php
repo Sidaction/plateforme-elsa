@@ -5,23 +5,54 @@
 
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
  
-    <section id="contentSite" class="orange">
-    	<div id="breadcrumb">
-        	<div id="breadcrumbWrapper">Vous êtes ici » <a href="/">Accueil</a> » <a href="/plateforme-elsa/">Plateforme Elsa</a> » <a href="#"><?php the_title();?></a></div>
+  <section id="site-content" class="site-content single-ressource">
+
+    <article class="main-content clearfix noback">
+        
+        <div class="page_title ressource_title">
+
+            <?php the_post_thumbnail('large'); ?>
+        
+            <div class="wrap row">
+                <h1 class="h1 m-6col is-centered">
+                    <?php the_title();?>
+                </h1>  
+            </div>     
+        
         </div>
-         <div id="contentWrapper">
-         	<div class="shadowLeft"></div>
-            <div class="shadowRight"></div>
-            <article>
-            <h1><?php the_title();?></h1>
-               <?php the_content();?>
-                
-               <?php $cnSite->share_links();?>
-                
-            </article>
-            <?php get_sidebar(); ?>
-         </div>
-    </section>
+
+        <div class="page_content clearfix">
+            <div class="wrap row">
+                <div class="m-6col is-centered">
+                  <?php the_content();?>
+                </div>
+            </div><!-- .wrap -->
+        </div><!-- .page_content -->
+
+    </article>
+
+
+
+    <aside class="blocs_group--rebonds bg-cut">
+        <div class="wrap row">
+        
+            <div class="group_title m-2col">
+                <h3 class="A lire aussi">A lire aussi</h3>
+            </div>
+        
+            <div class="group_list">
+                <div class="group_bloc m-2col">hello</div>
+                <div class="group_bloc m-2col">hello</div>
+                <div class="group_bloc m-2col">hello</div>
+            </div>
+
+        </div>
+    </aside>
+
+
+   
+  </div>
+</section>
 
 
 <?php endwhile; ?>
