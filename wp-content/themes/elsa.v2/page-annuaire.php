@@ -17,7 +17,7 @@
   $args['public_cibles'] = $_GET['public_cibles'];
  
   $_SESSION['argstructures'] = $args;
-  $results=array();
+  $results = array();
  
   get_header(); 
 ?>
