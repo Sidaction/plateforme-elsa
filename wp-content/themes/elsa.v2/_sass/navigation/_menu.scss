@@ -6,6 +6,7 @@
   @include box-sizing();
   background-color: $color_primary;
   padding: $base_line_height / 2 0;
+  position: relative;
 
   @include up-to(medium) {
   }
@@ -31,7 +32,7 @@
       @include up-to(medium) {
       }
     }
-      .main-navigation a {
+      .main-navigation .menu-item > a {
         color: $white;
 
         &:hover {
@@ -39,24 +40,34 @@
       }
 
 
-.main-navigation ul ul {
 
-  @include up-to(medium) {
-  }
-}
 
-  .main-navigation ul ul li {
+
+// Dropdowns
+
+.dropdown-item {
+  display: none;
+  position: absolute;
+  background-color: $white;
+  top: $base_line_height * 2.5;
+  left: 0;
+  right: 0;
+  color: $black;
+  padding-bottom: $base_line_height * 3;
+  border-bottom: $base_line_height solid $color_primary;
   
-    @include up-to(medium) {
-      padding-left: 0;
-    }   
+  &.dd-thematiques {
+    display: block;
+  }
+}
+
+  .js-dropdown-trigger.open {
+
+    & + .dropdown-item {
+      display: block;
+    }
   }
 
-.main-navigation .current-page-item a,
-.main-navigation .current-menu-item a,
-.main-navigation .current-page-ancestor .current-page-ancestor a {
-
-}
 
 
 
