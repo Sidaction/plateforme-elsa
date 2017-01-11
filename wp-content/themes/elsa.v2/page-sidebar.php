@@ -32,7 +32,7 @@ get_header(); ?>
             <div class="wrap row">
 
                 <nav class="m-2col">
-                    <?php echo 'colonne'; ?>
+                    <?php the_field('sidebar_content') ?>
 
                 </nav>
 
