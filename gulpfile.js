@@ -16,13 +16,13 @@ var app_folder = 'wp-content/themes/elsa.v2/';
 var public_folder = 'wp-content/themes/elsa.v2/';
 var theme_folder = 'wp-content/themes/elsa.v2/';
 
-var jsfolder = theme_folder + 'js/';
-var mainjs = theme_folder + 'js/script.js';
-var vendorsjs = theme_folder + 'js/lib/*.js';
+var jsfolder = theme_folder + '_js/';
+var mainjs = theme_folder + '_js/script.js';
+var vendorsjs = theme_folder + '_js/lib/*.js';
 var alljs = [vendorsjs, mainjs];
 
-var scssfiles = theme_folder + 'sass/**/*.scss';
-var sassfolder = theme_folder + 'sass/';
+var scssfiles = theme_folder + '_sass/**/*.scss';
+var sassfolder = theme_folder + '_sass/';
 var sassMain = sassfolder + 'style.scss';
 
 
