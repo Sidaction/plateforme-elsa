@@ -177,7 +177,7 @@ function register_custompost() {
         'hierarchical' => true,
         'labels' => array
             (
-            'name' => _x('Boite à outils', 'taxonomy general name'),
+            'name' => _x('Boites à outils', 'taxonomy general name'),
             'singular_name' => _x('Boite à outils', 'taxonomy singular name'),
         )
             )
@@ -213,30 +213,24 @@ function register_custompost() {
     );
   
   register_taxonomy(
-        'format', array('post', 'contenu'), 
+    'format', array('post', 'contenu'), 
     array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => true,
-    'capabilities' => array (
-            'manage_terms' => 'manage_categories', //by default only admin
-            'edit_terms' => 'manage_categories',
-            'delete_terms' => 'manage_categories',
-            'assign_terms' => 'publish_conts'  // means administrator', 'editor', 'author', 'contributor'
+      'public' => true,
+      'show_admin_column' => true,
+      'hierarchical' => true,
+      'capabilities' => array (
+      'manage_terms' => 'manage_categories', //by default only admin
+      'edit_terms' => 'manage_categories',
+      'delete_terms' => 'manage_categories',
+      'assign_terms' => 'publish_conts'  // means administrator', 'editor', 'author', 'contributor'
          ),
-        'labels' => array
-            (
+      'labels' => array(
             'name' => _x('Format', 'taxonomy general name'),
             'singular_name' => _x('Format', 'taxonomy singular name'),
         )
             )
     );
-  
-  
-  
-  
-  
-  
+
 }
 
 add_action('init', 'register_custompost', 0);
