@@ -21,6 +21,7 @@
         'post_status' => 'any' 
     );
     $children = get_children( $children_args );
+    wp_reset_query();
 
     $siblings_args = array(
         'post_parent' => $root,
@@ -29,31 +30,31 @@
         'post_status' => 'any' 
     );
     $siblings = get_children( $siblings_args );
+    wp_reset_query();
 
 
     // IF PAGE ROOT WITH MORE THAN 1 CHILD : GOTO FIRST CHILD
     if( $level == 0 && count($children) > 1 ) {
-        $firstchild = array_values($children)[0];
-        the_post();
-        // wp_safe_redirect( get_permalink( $firstchild->ID ), 301);
-        // exit();
+        //$firstchild = array_values($children)[0];
+        wp_safe_redirect( get_permalink( $firstchild->ID ), 301);
+        exit();
     }
     // IF PAGE ROOT WITH NO CHILD : STAY HERE + TITLE = CURRENT PAGE
     elseif( $level == 0 && empty( $children ) ) {
-        $children = get_page_children( $root, $pages );
         $title = get_the_title();
+        $content = get_the_content();
     } 
     // IF CHILD WITH SIBLINGS : STAY HERE + TITLE = ROOT PAGE
     else {
         $title = get_the_title( $root );
+        $content = get_the_content();
     }
 
     get_header(); 
 ?>
 
-
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
- 
+
   <section id="site-content" class="site-content single-ressource">
 
     <article class="main-content clearfix noback">
@@ -73,15 +74,16 @@
         <div class="page_content clearfix">
             <div class="wrap row">
 
+
                 <?php // PAGE AVEVC PARANTE ET MINIMUM 1 SIBLING ?>
                 <?php if( $level != 0 && count($siblings) > 1 ) : ?>
-                    <nav class="m-2col">
+                    <nav class="m-2col page_sidebar">
                         <?php set_query_var( 'root', $root ); ?>
                         <?php get_template_part('template-parts/loops/loop', 'childpages'); ?>
                     </nav>
 
                     <div class="m-5col m-last">
-                      <?php the_content();?>
+                      <?php echo $content; ?>
                     </div>
 
 
@@ -89,7 +91,7 @@
                 <?php elseif ( empty( $children ) && $level == 0 ) : ?>
 
                     <div class="m-6col is-centered">
-                      <?php the_content();?>
+                      <?php echo $content; ?>
                     </div>
 
 
@@ -97,7 +99,7 @@
                 <?php else : ?>                
 
                     <div class="m-6col is-centered">
-                      <?php the_content();?>
+                      <?php echo $content; ?>
                     </div>
 
                 <?php endif; ?>
