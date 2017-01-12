@@ -57,8 +57,17 @@
   border-bottom: $base_line_height solid $color_primary;
   
   &.dd-thematiques {
-    display: block;
+
   }
+  &.dd-pays {
+
+  }
+  &.dd-boiteoutils {
+
+  }
+  &.dd-associations {
+
+  }    
 }
 
   .js-dropdown-trigger.open {
@@ -90,4 +99,23 @@
 
   }
 }
+
+
+
+// Menu des pages enfants (page.php)
+
+.childrenpages-menu {
+  text-align: right;
+}
+
+  .childpage-item {
+
+    &.current a {
+      font-weight: $semibold;
+      font-style: normal;
+    }
+  }
+
+
+
 

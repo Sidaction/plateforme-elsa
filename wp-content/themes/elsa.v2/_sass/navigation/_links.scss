@@ -7,10 +7,14 @@
 
 
 a {
-  color: inherit;
-  text-decoration: none;
   @include transition(all, 0.2s);
-    font-weight: $thin;
+  color: $color_link;
+  text-decoration: none;
+  font-weight: $thin;
+
+  .dark & {
+    color: $white;
+  }
 
   &:not([class *= "btn"]) {
     font-style: italic;
@@ -25,8 +29,8 @@ a:active {
 
 %btn {
   display: inline-block;
-  border: 2px solid $color_primary;
-  color: $color_primary;
+  border: 2px solid $color_link;
+  color: $color_link;
   font-weight: $semibold;
   text-align: center;
   line-height: $base_line_height * 3 - 3px!important;
@@ -41,7 +45,7 @@ a:active {
 
 .btn-primary {
   @extend %btn;
-  @include box-shadow(5px 5px 0px $color_primary );
+  @include box-shadow(5px 5px 0px $color_link );
   @include type-setting(1);
   height: $base_line_height * 3 - 5px;
   background-color: $white;
