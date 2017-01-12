@@ -25,6 +25,7 @@ define('ODY_FUNC_PATH', ODY_PATH . 'functions/');
 define('ODY_PT_PATH', ODY_PATH . 'post_types/');
 define('ODY_UTILS_PATH', ODY_PATH . 'utils/');
 define('ODY_METAS_PATH', ODY_PATH . 'metas/');
+define('ODY_CLASSES_PATH', ODY_PATH . 'classes/');
 
 
 /**
@@ -49,6 +50,10 @@ require_once(ODY_UTILS_PATH . 'lib.php');
 require_once(ODY_UTILS_PATH . 'roles.php');
 require_once(ODY_UTILS_PATH . 'themeManager.php');
 require_once(ODY_UTILS_PATH . 'acf.php');
+
+
+require_once(ODY_CLASSES_PATH . 'soumettre.php');
+
 
 $cnSite = new themeManager();
 

@@ -3,8 +3,9 @@
 
 
 /**
- * Enqueue scripts and styles.
+ * ENQUEUE STYLES & SCRIPTSv
  */
+
 function bourron_scripts() {
     wp_enqueue_style( 'elsa-style', get_stylesheet_uri() );
 
@@ -24,10 +25,45 @@ remove_action( 'admin_print_styles', 'print_emoji_styles' );
 
 
 
+
+
+/**
+ * Back-end creation of new candidate post
+ * @uses Advanced Custom Fields Pro
+ */
+add_filter('acf/pre_save_post' , 'tsm_do_pre_save_post' );
+function tsm_do_pre_save_post( $post_id ) {
+
+    // Bail if not logged in or not able to post
+    if ( ! ( is_user_logged_in() || current_user_can('publish_posts') ) ) {
+        return;
+    }
+
+    // check if this is to be a new post
+    if( $post_id != 'new_post' ) {
+        return $post_id;
+    }
+
+    // Create a new post
+    $post = array(
+        'post_type'     => 'post', // Your post type ( post, page, custom post type )
+        'post_status'   => 'draft', // (publish, draft, private, etc.)
+        'post_title'    => true,
+    );
+
+    // insert the post
+    $post_id = wp_insert_post( $post );
+
+    // Save the fields to the post
+    do_action( 'acf/save_post' , $post_id );
+    return $post_id;
+}
+
+
+
 /**
  * REGISTER MENU & ADD WALKER
  */
-
 
 class Menu_With_Description extends Walker_Nav_Menu {
 

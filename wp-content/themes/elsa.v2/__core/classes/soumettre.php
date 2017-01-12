@@ -3,7 +3,6 @@ include_once ABSPATH . 'wp-admin/includes/media.php';
 include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 
-
 class doc  {
 	var $args, $nonce, $user_id;	
 	public function __construct() {
