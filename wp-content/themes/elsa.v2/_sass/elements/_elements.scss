@@ -3,3 +3,25 @@
 @import "lists";
 @import "tables";
 
+
+.bloc_item {
+  height: 200px;
+  margin-bottom: $base_line_height;
+  padding: $base_line_height;
+
+  a {
+    color: inherit;
+  }
+  
+  &.bloc--ressource {
+    background-color: $color_ressources;
+  }
+  &.bloc--media {
+    background-color: $color_medias;
+    color: $white;
+  }
+  &.bloc--statique {
+    background-color: $color_primary;
+    color: $white;
+  }
+}

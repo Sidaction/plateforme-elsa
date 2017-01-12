@@ -80,6 +80,11 @@ $one_col: (100% - ($gutter * ($cols - 1))) / $cols;
                     }
                 }   
             }
+            
+            .#{$suffix}-clearfix {
+                margin-left: 0;
+            }
+
             %#{$suffix}-#{$i}col-push, .#{$suffix}-#{$i}col-push { left: $i / $cols * 100%; position: relative; right: auto; }
             %#{$suffix}-#{$i}col-pull, .#{$suffix}-#{$i}col-pull { right: $i / $cols * 100%; position: relative; left: auto; }
         }

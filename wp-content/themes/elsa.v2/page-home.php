@@ -59,56 +59,95 @@ $zoom_association = get_field('zoom_association');
     </div><!-- .home-featured -->
     
     
+
+<?php 
+
+    $page_1 = get_field('grille_page_1');
+    $page_2 = get_field('grille_page_2');
+    $page_3 = get_field('grille_page_3');
+    $grille_media = get_field('grille_media');
+
+?>
     
     <div id="" class="home-grid blocs_group">
         <div class="wrap row">
 
-            <div class="grid-title">
-                <h3 class="h3">Des documents, des photos, des vidéos...</h3>
+            <div class="grid-title m-2col">
+                <h3 class="h3"><?php the_field('grille_titre'); ?></h3>
             </div>
     	    
             <div class="grid-list">
                 <?php 	
-                    $args = array('post_type' => array('post'), 'posts_per_page' => 5);
-                    $wp_query = new WP_Query($args);
-    				if ($wp_query->have_posts()) while ($wp_query->have_posts()) : $wp_query->the_post();?>
+                    $args = array(
+                        'post_type' => array('post'), 
+                        'posts_per_page' => 5,
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'format',
+                                'field'    => 'slug',
+                                'terms'    => array('video', 'diaporama'),
+                                'operator' => 'NOT IN',
+                            ),
+                        ),
+                        'orderby'    => 'menu_order',
+                        'order'      => 'DESC'
+                    );
 
-    					<a href="<?php the_permalink();?>">
-                        
-                            <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></div>
-                          
-        					<div class="leftProg">
-        						<?php the_post_thumbnail('medium');?>
-                            </div>
+                    $grille_posts = get_posts($args);
 
-                            <div class="rightProg">
-        						<span class="first_org">
-                                    <?php echo $auteurs=$cnSite->get_authors($post->ID);?>
-                                </span>                    
-                                
-                                <?php 
-                                    $cat= cnLib::get_terms_withoutlink($post->ID, 'category');
-        							$pays=cnLib::get_main_term_slug($post->ID, 'pays_assoc');
-                                ?>
-                                
-                                <?php if(!empty($cat) or !empty($pays)) : ?>
-                                    <span class="category"><?php if(!empty($cat)) echo $cat;?><?php if(!empty($cat) && !empty($pays)) echo  ' - ';?><?php echo $pays;?></span>
-                                <?php endif;?>
+                    array_splice($grille_posts, 2, 0, array($grille_media) );
+                    array_splice($grille_posts, 3, 0, array($page_1) );
+                    array_splice($grille_posts, 5, 0, array($page_2) );
+                    array_splice($grille_posts, 8, 0, array($page_3) );
+                    $i = 0; 
 
-                                <span class="title"><?php the_title();?></span>
+                    foreach ( $grille_posts as $post ) : setup_postdata( $post ); ?>
 
-                                <span class="excerpt"><?php cnLib::the_excerpt_max_charlength(100); ?></span>
+                            <?php if( $i == 0 ) : ?>
+                                <div class="m-2col">
+                                    <?php set_query_var( 'type', 'ressource' ); ?>
+                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                                <!-- <?php echo cnLib::get_main_term_slug($post->ID, 'format');?> -->
-                            </div>
-                        </a>  
+                            <?php elseif ( $i == 1 ) : ?>
+                                <div class="m-4col">
+                                    <?php set_query_var( 'type', 'ressource' ); ?>
+                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                 <?php 
-                     endwhile; 
-                     wp_reset_query();
-                     wp_reset_postdata(); 
-                     $args=null; 
-                 ?>
+                            <?php elseif ( $i == 2 ) : ?>
+                                <div class="m-4col m-clearfix">
+                                    <?php set_query_var( 'type', 'media' ); ?>
+
+                            <?php elseif ( $i == 3 ) : ?>
+                                <div class="m-2col">
+                                    <?php set_query_var( 'type', 'statique' ); ?>
+
+                            <?php elseif ( $i == 5 ) : ?>
+                                <div class="m-2col m-clearfix">
+                                    <?php set_query_var( 'type', 'statique' ); ?>
+
+                            <?php elseif ( $i == 8 ) : ?>
+                                <div class="m-2col">
+                                    <?php set_query_var( 'type', 'statique' ); ?>
+
+
+                            <?php else : ?>
+                                <div class="m-2col">
+                                    <?php set_query_var( 'type', 'ressource' ); ?>
+
+
+                            <?php endif; ?>
+
+                                    <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+
+                                </div><!-- end .col -->
+
+
+                        <?php $i++; ?>
+                            
+
+                    <?php endforeach; 
+                    wp_reset_postdata();?>
+
             </div><!-- .grid-list -->
 
         </div><!-- .wrap -->
