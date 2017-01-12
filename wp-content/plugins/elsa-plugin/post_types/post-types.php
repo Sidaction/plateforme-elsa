@@ -57,10 +57,10 @@ function register_custompost() {
         'show_ui' => true,
         'query_var' => 'structure',
         'has_archive' => true,
-    'capability_type' => 'part',
-      'capabilities' => $capabilities,
-    'menu_icon' => '',
-    'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
+        'capability_type' => 'part',
+        'capabilities' => $capabilities,
+        'menu_icon' => '',
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
     );
 
     register_post_type('structure', $args);
@@ -78,8 +78,8 @@ function register_custompost() {
             'name' => _x('Types de structure', 'taxonomy general name'),
             'singular_name' => _x('Type de structure', 'taxonomy singular name'),
         )
-            )
-    );
+    )
+  );
   
   register_taxonomy(
     'public_cibles', array('structure'), 
