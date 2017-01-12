@@ -16,7 +16,6 @@
 
         <?php 
 
-          $posts = array();
           $regions = get_terms( 
             'region', 
             array( 
@@ -47,14 +46,9 @@
                 $slug = get_permalink($post->ID);
                 $results .= '<li><a href="'. $slug .'" title="'. get_the_title() .'">»  ' . get_the_title() .'</a></li>';
                 
-                $posts[] = array(
-                  'slug'  => $slug, 
-                  'title' => get_the_title(),
-                  'infos' => get_post_meta( $post->ID, 'infos', true )
-                );
               
               endwhile; 
-          
+
               $results.='</ul>';
             endif;
           
