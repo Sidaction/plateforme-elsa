@@ -5,14 +5,21 @@
  *
 */
 
-get_header(); ?>
+get_header(); 
+
+$image = get_field('zoom_image');
+$zoom_thematique = get_field('zoom_thematique');
+$zoom_pays = get_field('zoom_pays');
+$zoom_association = get_field('zoom_association');
+
+?>
 
 
 <section id="site-content" class="site-content template-home">
 
     
     <div id="" class="home-featured">
-        <div class="featured-cover" style="background-image:url();">
+        <div class="featured-cover bg_cover" style="background-image:url(<?php echo $image['url']; ?>);">
 
         </div>
         <div class="featured-content">
@@ -20,25 +27,31 @@ get_header(); ?>
             <div class="wrap">
                 <div class="featured-title">Zoom</div>
                 <div class="featured-title">
-                    <h2>Financement de la lutte contre le sida</h2>
+                    <h2><?php the_field('zoom_titre'); ?></h2>
                 </div>
 
                 <div class="row">
-                    <div class="m-6col">
-                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </div>
+                    <div class="m-4col">
+                        <div><?php the_field('zoom_texte'); ?></div>
                     
                         <div class="featured-action">
-                            <a class="btn-primary">En savoir plus</a>
-                            <a class="btn-secondary">LEs ressources de la thématique</a>
+                            <a class="btn-primary" href="/category/<?php echo $zoom_thematique->slug; ?>">En savoir plus</a>
+                            <a class="btn-secondary" href="<?php echo $zoom_thematique->slug; ?>">Les ressources de la thématique</a>
                         </div>
                     </div>
 
 
-                    <div class="m-6col">
-                        <div class="featured-asso">Ceradis</div>
-                        <div class="featured-pays">Bénin</div>
+                    <div class="m-2col">
+                        <div class="featured-asso"><?php echo $zoom_association->post_title; ?></div>
+                        <div><?php echo $zoom_association->post_excerpt; ?></div>
+                        <a href="/structure/<?php echo $zoom_association->post_name?>"> -> </a>
                     </div>
 
+                    <div class="m-2col">
+                        <div class="featured-pays"><?php echo $zoom_pays->post_title; ?></div>
+                        <div><?php echo $zoom_pays->post_excerpt; ?></div>
+                        <a href="/pays/<?php echo $zoom_pays->post_name?>"> -> </a>
+                    </div>
                 </div>
             </div><!-- .wrap -->   
 
