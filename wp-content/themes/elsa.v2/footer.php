@@ -3,12 +3,12 @@
 <footer id="mastfooter" class="site-footer">
 
     <div class="wrap row">
-        <div class="m-6col">
-            logo
+        <div class="m-4col">
+            <img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo">
             Plateforme ELSA
         </div>
 
-        <div class="m-6col">
+        <div class="m-4col">
             <ul>
             <?php 
                 $args = array(
@@ -39,7 +39,7 @@
 
     <div class="wrap row">
 
-        <div class="m-8col">
+        <div class="m-5col">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -48,7 +48,7 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </div>
 
-        <div class="m-4col">
+        <div class="m-3col">
             menus.
         </div>
 
