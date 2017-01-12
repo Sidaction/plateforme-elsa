@@ -26,33 +26,59 @@ get_header(); ?>
         <div class="page_content clearfix">
             <div class="wrap">
 
-                <div class="row"> Pagination</div>
 
                 <div class="row">
 
                     <?php
 
                         $args = array(
-                            'posts_per_page' => 4,
+                            'posts_per_page' => 10,
                             'post_type' => array('post', 'contenu'),
-                            'format' => 'video',
-                            'post_status' => 'publish'
+                            'format' => array('video', 'diaporama'),
+                            'post_status' => 'publish',
+                            'paged' => get_query_var( 'paged' )
                         );
-                        $medias = get_posts( $args ); 
-
-                        foreach ( $medias as $post ) : setup_postdata( $post ); ?>
-
-                            <?php get_template_part('template-parts/parts/part', 'media'); ?>
 
 
-                        <?php endforeach; 
-                        wp_reset_postdata();?>
+                        $the_query = new WP_Query( $args ); 
+                        $totalpages = $the_query->max_num_pages;?>
+
+                        <?php if ( $the_query->have_posts() ) : ?>
+
+                            <div class="navDlSearch results_nav clearfix">
+                                <select class="selectBox" id="pager1">
+                                    <option value="10">10 résultats par page</option>
+                                    <option value="20">20 résultats par page</option>
+                                    <option value="50">50 résultats par page</option>
+                                    <option value="-1">Tous les résultats</option>
+                                </select>
+                                <?php cnLib::pagination($totalpages); ?>
+                            </div>
+
+
+                            <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                <?php get_template_part('template-parts/parts/part', 'media'); ?>
+                            <?php endwhile; ?>
+
+
+                            <div class="navDlSearch results_nav clearfix">
+                                <select class="selectBox" id="pager1">
+                                    <option value="10">10 résultats par page</option>
+                                    <option value="20">20 résultats par page</option>
+                                    <option value="50">50 résultats par page</option>
+                                    <option value="-1">Tous les résultats</option>
+                                </select>
+                                <?php cnLib::pagination($totalpages); ?>
+                            </div>
+
+                            <?php wp_reset_postdata(); ?>
+
+                        <?php else : ?>
+                            <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+                        <?php endif; ?>
 
 
                 </div>
-
-                <div class="row"> Pagination</div>
-
 
             </div><!-- .wrap -->
         </div><!-- .page_content -->
