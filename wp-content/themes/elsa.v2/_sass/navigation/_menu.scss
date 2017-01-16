@@ -55,6 +55,7 @@
   color: $black;
   padding-bottom: $base_line_height * 3;
   border-bottom: $base_line_height solid $color_primary;
+  z-index: 99;
   
   &.dd-thematiques {
 

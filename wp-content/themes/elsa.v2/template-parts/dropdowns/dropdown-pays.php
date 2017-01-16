@@ -24,38 +24,36 @@
               'hide_empty'  => true, 
               'exclude'=>array(351,131,126,161,278) 
               )  
-            ); 
+            );
           
           foreach($regions as $region) {
             
-            $args = array(
+            $pays_args = array(
               'post_type' => array('pays'), 
               'posts_per_page' => -1, 
               'orderby' => 'title', 
               'order' => 'ASC',
               'region' => $region->slug
             );
-            $wp_query = new WP_Query($args);
+            $query_pays = new WP_Query($pays_args);
           
-            if ($wp_query->have_posts()) :
+            if ($query_pays->have_posts()) :
               $results = '<h3>'.$region->name.'</h3>';
               $results .= '<ul class="listePays">';
             
-              while ($wp_query->have_posts()) : $wp_query->the_post();
+              while ($query_pays->have_posts()) : $query_pays->the_post();
               
                 $slug = get_permalink($post->ID);
                 $results .= '<li><a href="'. $slug .'" title="'. get_the_title() .'">»  ' . get_the_title() .'</a></li>';
                 
-              
               endwhile; 
 
               $results.='</ul>';
             endif;
           
-          wp_reset_query();
-          wp_reset_postdata(); 
-          $args=null;
-          
+          wp_reset_postdata();
+          $regions = null;
+
           echo $results;
           
         } ?>

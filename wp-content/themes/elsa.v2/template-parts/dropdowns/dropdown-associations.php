@@ -28,7 +28,7 @@
 
         <?php 
 
-          $args = array(
+          $assos_args = array(
             'post_type' => array('structure'), 
             'posts_per_page' => -1, 
             'orderby' => 'title', 
@@ -36,21 +36,19 @@
             'type_structure' => 'partenaires-elsa-associations-du-reseau-elsa'
           );
           
-          $wp_query = new WP_Query($args);
+          $assos_query = new WP_Query( $assos_args );
 
-          if ($wp_query->have_posts()) : 
+          if ($assos_query->have_posts()) : 
             echo '<ul class="no-bullets">';
 
-            while ($wp_query->have_posts()) : $wp_query->the_post();
+            while ($assos_query->have_posts()) : $assos_query->the_post();
               
               $slug = get_permalink($post->ID);
 
               echo '<li><a href="'. $slug .'" title="'. get_the_title() .'">' . get_the_title() .'</a></li>';
 
             endwhile; 
-            wp_reset_query();
-            wp_reset_postdata(); 
-            $args=null;
+            wp_reset_postdata();
 
             echo '</ul>';
           
