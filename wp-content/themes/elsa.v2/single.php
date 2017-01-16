@@ -46,7 +46,7 @@
     <aside class="blocs_group--rebonds">
       <div class="wrap row">
 
-        <div class="group_title m-2col">
+        <div class="group_title m-2col dark">
           <h3 class="A lire aussi">A lire aussi</h3>
         </div>
         

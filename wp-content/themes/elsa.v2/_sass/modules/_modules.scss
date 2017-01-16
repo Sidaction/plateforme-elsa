@@ -35,6 +35,9 @@
       bottom: 0;
       width: 500px;
     }
+    a {
+      color: inherit;
+    }
   }
     .group_title--small {
       @extend .group_title;
