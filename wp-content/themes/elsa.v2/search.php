@@ -13,23 +13,28 @@
 	$args['totaltags'] = '';
 
 
-  if(empty($_GET['totaltags'])&& !empty($_GET['tag'])) { 
-  	 $keyword = $_GET['tag'];
+  /// SI STRUCTURE IS SET
+
+  if( empty($_GET['totaltags']) && !empty($_GET['tag']) ) { 
+  	$keyword = $_GET['tag'];
 
   	$args['totaltags']=$_GET['tag'];
   	$structure_id= (string)(cnLib::search_ID_by_title($_GET['tag'], 'structure'));
   	
   }
-  elseif(!empty($_GET['totaltags'])) {
+  elseif( !empty($_GET['totaltags']) ) {
     $keyword = $_GET['totaltags'];
     $args['totaltags']=$_GET['totaltags'];
     $structure_id= (string)(cnLib::search_ID_by_title($_GET['totaltags'], 'structure'));
   }
 
-	$args['pays_assoc'] =  (isset($_GET['totalpays']))?$_GET['totalpays']:'';
-	$args['region'] =  (isset($_GET['totalregions']))?$_GET['totalregions']:'';
+	$args['pays_assoc'] = (isset($_GET['totalpays']))?$_GET['totalpays']:'';
+	$args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
 	$args['category_name'] = (isset($_GET['totalcat']))?$_GET['totalcat']:'';
 	
+
+
+  /// SI OUTILS IS CHECK
   if(isset($_GET['outils']) && $_GET['outils']==1){
 		$args['meta_query'] = array(
 			array(
@@ -40,30 +45,28 @@
 	}
 
 
-	/// si structure
-   if(!empty($_GET['struct'])) { 
+
+	/// SI STRUCTURE IS SET
+  if( !empty($_GET['struct']) ) { 
 		$structure_id = $_GET['struct'];
 	}	
-		
 	
-	if(!empty($structure_id)) { 
-	
-	$args['meta_query'] = array(
-							'relation' => 'OR',
-							array(
-								'key' => 'other_org',
-								'value' =>  $structure_id,
-							),
-							array(
-								'key' => 'first_org',
-								'value' =>  $structure_id,
-							),
-							array(
-								'key' => 'second_org',
-								'value' =>  $structure_id,
-							)
+	if( !empty($structure_id) ) { 
+	 $args['meta_query'] = array(
+        'relation' => 'OR',
+        array(
+					'key' => 'other_org',
+					'value' =>  $structure_id,
+				),
+				array(
+					'key' => 'first_org',
+					'value' =>  $structure_id,
+				),
+				array(
+					'key' => 'second_org',
+					'value' =>  $structure_id,
+				)
 		);
-		
 	}
   else {
     $args['s'] =  $keyword;	
@@ -74,39 +77,42 @@
   }
 
 
-  /// période
-  if(isset($_GET['period'])){
+  // SI PERIODE  IS SET
+  if( isset($_GET['period']) ) {
+
   	$period=$_GET['period'];
-	switch($period){
-		case '1semaine':
-			$after='1 week ago';
-		break;
-		case '1mois':
-			$after='1 month ago';
-		break;
-		case '3mois':
-			$after='3 months ago';
-		break;
-		case '6mois':
-			$after='3 months ago';
-		break;
-		case '1an':
-			$after='1 year ago';
-		break;
-		default:
-			$after='5 years ago';
-		break;
-	}
-	$args['date_query'] = array(
-		array(
-			'column' => 'post_date_gmt',
-			'after' => $after,
-			'before' => 'today',
-			'inclusive'         => true,
-		));
+  	switch($period){
+  		case '1semaine':
+  			$after='1 week ago';
+  		break;
+  		case '1mois':
+  			$after='1 month ago';
+  		break;
+  		case '3mois':
+  			$after='3 months ago';
+  		break;
+  		case '6mois':
+  			$after='3 months ago';
+  		break;
+  		case '1an':
+  			$after='1 year ago';
+  		break;
+  		default:
+  			$after='5 years ago';
+  		break;
+  	}
+  	$args['date_query'] = array(
+  		array(
+  			'column' => 'post_date_gmt',
+  			'after' => $after,
+  			'before' => 'today',
+  			'inclusive'         => true,
+  		));
    }
-   
-  ///format
+
+
+
+  // SI FORMAT
   if(isset($_GET['format'])) $args['format']= implode(",", $_GET['format']);
   
   $args['post_type']='post';
@@ -119,27 +125,29 @@
   $args['paged']=$currentpage;
 
 
- if(isset($_GET['ref']) && $_GET['ref']=='search')	$args=$_SESSION['args'];
-  $_SESSION['args']=$args;
+  if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args=$_SESSION['args'];
+    $_SESSION['args'] = $args;
 
-  $results=array();
+
+    var_dump($args);
+
+  $results = array();
 
   $wp_query = new WP_Query();
   $wp_query->query($args);
 
-  $totalpages= $wp_query->max_num_pages;
+  $totalpages = $wp_query->max_num_pages;
   
   
   
   function get_valuelist($values, $args){
   	if(!empty($args[$values]))  {
-		$values=explode(",", $args[$values]);
+		  $values=explode(",", $args[$values]);
 		
-		foreach($values as $value){
-			echo '<li>'.strtoupper($value).'</li>';
-		}
-	}
-  
+  		foreach($values as $value){
+  			echo '<li>'.strtoupper($value).'</li>';
+  		}
+  	}
   }
   
 
@@ -282,35 +290,24 @@
                             <?php endif; ?>
 
                         </a>
-                        <div id="dlRight">
-                            <div class="logoProg">
-                                <?php /*$main_authors= get_post_meta($post->ID, 'first_org', false);
-                                    if(!empty($main_authors)){
-                                        foreach($main_authors as $main_author){
-                                            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($main_author), 'thumbnail' );
-                                            $url = $thumb['0'];
-                                            $permalink = get_permalink( $main_author );
-                                            if(!empty($url)) echo "<a href='{$permalink}'><img src='{$url}'  /></a>";
-                                        }
-                                    }else{
-                      echo '<span>'.$cnSite->get_authors($post->ID).'</span>';
-                      } */
+
+                        <?php
+                          $main_author= get_post_meta($post->ID, 'first_org', true);
+                                
+                          if(!empty($main_author)){
+                            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($main_author), 'thumbnail' );
+                            $url = $thumb['0'];
+                            $permalink = get_permalink( $main_author );
+                            if(!empty($url)) echo "<a href='{$permalink}'><img src='{$url}'  /></a>";
+                          }
+                          else {
+                            echo '<span>'.$cnSite->get_authors($post->ID).'</span>';
+                          } ?>
                       
-                      $main_author= get_post_meta($post->ID, 'first_org', true);
-                                    if(!empty($main_author)){
-                                            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($main_author), 'thumbnail' );
-                                            $url = $thumb['0'];
-                                            $permalink = get_permalink( $main_author );
-                                            if(!empty($url)) echo "<a href='{$permalink}'><img src='{$url}'  /></a>";
-                                    }else{
-                      echo '<span>'.$cnSite->get_authors($post->ID).'</span>';
-                      } 
-                                    ?>
-                            </div>
-                            <div class="pubProg">
                             <strong>Mis en ligne le :</strong><br />
                            <?php echo get_the_date('j M Y');?>
-                            </div>
+
+
                             <div class="dlProg">
                                 <a href="<?php the_permalink();?>?ref=search"><img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></a>
                             </div>
