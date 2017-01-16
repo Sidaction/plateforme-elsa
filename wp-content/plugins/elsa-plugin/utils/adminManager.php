@@ -14,7 +14,7 @@
 add_action( 'transition_post_status', 'intercept_all_status_changes', 10, 3 );
 function intercept_all_status_changes( $new_status, $old_status, $post ) {
 	global $current_user;
-    wp_get_current_user();
+    get_currentuserinfo();
 
 
 	if (($new_status == 'publish') && ($post->post_type=='structure')){
@@ -38,7 +38,7 @@ class adminManager {
 
     public function __construct() {
         global $current_user;
-        wp_get_current_user();
+        get_currentuserinfo();
         $this->user_role = $current_user->roles;
         $this->user_id = $current_user->ID;
         $this->user_programme = get_user_meta($current_user->ID, 'programme_assoc', true);

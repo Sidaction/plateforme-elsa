@@ -2,6 +2,10 @@
 
 
 
+require_once('__core/themeManager.php' );
+$cnSite = new themeManager();
+
+
 /**
  * ENQUEUE STYLES & SCRIPTSv
  */

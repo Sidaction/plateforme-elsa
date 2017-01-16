@@ -48,14 +48,10 @@ require_once(ODY_METAS_PATH . 'metas.php');
 require_once(ODY_UTILS_PATH . 'seo.php');
 require_once(ODY_UTILS_PATH . 'lib.php');
 require_once(ODY_UTILS_PATH . 'roles.php');
-require_once(ODY_UTILS_PATH . 'themeManager.php');
 require_once(ODY_UTILS_PATH . 'acf.php');
 
 
 require_once(ODY_CLASSES_PATH . 'soumettre.php');
-
-
-$cnSite = new themeManager();
 
 
 
