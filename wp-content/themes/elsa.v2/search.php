@@ -7,6 +7,7 @@
 
   global $cnSite;
 
+
   $step = (empty($_GET)) ? 'start':'';
   $struct = (isset($_GET['totaltags'])) ? wp_strip_all_tags( addslashes( $_GET['totaltags'])):'';
 	$keyword = '';
@@ -32,6 +33,8 @@
 	$args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
 	$args['category_name'] = (isset($_GET['totalcat']))?$_GET['totalcat']:'';
 	
+  $args['category_name'] = (isset($_GET['category']))?$_GET['category']:'';
+  $args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
 
 
   /// SI OUTILS IS CHECK
@@ -69,7 +72,7 @@
 		);
 	}
   else {
-    $args['s'] =  $keyword;	
+    $args['s'] = $keyword;	
 	  add_filter( 'posts_search', 'cn_tags_search', 500, 2 );
 	  //add_filter('posts_where','tag_search_where');
     //add_filter('posts_join', 'tag_search_join');
@@ -113,23 +116,29 @@
 
 
   // SI FORMAT
-  if(isset($_GET['format'])) $args['format']= implode(",", $_GET['format']);
+  if(isset($_GET['format'])) $args['format'] = implode(",", $_GET['format']);
   
-  $args['post_type']='post';
+
+
+  // SETTINGS FOR QUERY
+
+  if(!empty($_GET['posts_per_page'])) {
+    $post_per_page = $_GET['posts_per_page'];
+  }
+  else {
+    $post_per_page = 10;
+  }
+
+  $currentpage = get_query_var('paged');
   
-  $post_per_page=10;
-  if(!empty($_GET['posts_per_page']))  $post_per_page=$_GET['posts_per_page'];
-  $args['posts_per_page']= $post_per_page;
+  $args['posts_per_page'] = $post_per_page;
+  $args['post_type'] = 'post';
+  $args['paged'] = $currentpage;
 
-  $currentpage=get_query_var('paged');
-  $args['paged']=$currentpage;
-
-
-  if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args=$_SESSION['args'];
+  if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
     $_SESSION['args'] = $args;
 
-
-    var_dump($args);
+  var_dump($args);
 
   $results = array();
 
@@ -142,7 +151,7 @@
   
   function get_valuelist($values, $args){
   	if(!empty($args[$values]))  {
-		  $values=explode(",", $args[$values]);
+		  $values = explode(",", $args[$values]);
 		
   		foreach($values as $value){
   			echo '<li>'.strtoupper($value).'</li>';
@@ -173,26 +182,65 @@
         <div class="search_filters bg-cut blocs_group">
 
           <div class="wrap row">
-            <div class="group_title m-2col">
-              Affiner votre recherche
+            
+            <div class="group_title m-2col dark">
+              
+              <h4 class="h4">Affiner votre recherche</h4>
 
-              <a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/">» que chercher ?</a> 
-              <a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/">Consulter la FAQ</a>
-              <div class="dlResult"><a href="../extract">Télécharger la liste des résultats</a></div>
+              <ul class="no-bullets">
+                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/">» que chercher ?</a> </li>
+                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/">» Consulter la FAQ</a></li>
+                <li><a href="../extract">» Télécharger la liste des résultats</a></li>
+              </ul>
 
             </div>
             
-            <div class="m-6col">
 
+            <div class="m-6col group_content">
 
               <form id="rechRess" action="">
               
-                <div id="recherche">
+                <div id="filtres" class="search-filters">
+
+                  <div class="row">
+                    <input type="search" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
+                  </div>
                   
-                  <input type="text" placeholder="Mots clés, titre ou auteurs" name="tag" value=""/>
-                  <?php  cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
-                  <?php //cnLib::custom_taxonomy_dropdown("pays_assoc", "selectBox", "Pays",'','',false,'','pays_assoc'); ?>
-                  <?php cnLib::custom_taxonomies_dropdown("region, pays_assoc", "selectBox", "Pays",'','',false,'','pays_assoc',array(351,131,161,126,278)); ?>
+                  <div class="row">
+                    <div class="filter-thematique m-2col">
+                      <?php cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
+                    </div>
+                    
+                    <div class="filter-date m-2col">
+                        <select class="selectBox" name="period" id="period">
+                          <option value="debut">Depuis le début</option>
+                          <option value="1semaine">Moins d'une semaine</option>
+                          <option value="1mois">Moins d'un mois</option>
+                          <option value="3mois">Moins de 3 mois</option>
+                          <option value="6mois">Moins de 6 mois</option>
+                          <option value="1an">Moins d'un an</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-pays m-2col">
+                      <?php cnLib::custom_taxonomies_dropdown("region, pays_assoc", "selectBox", "Pays",'','',false,'','pays_assoc',array(351,131,161,126,278)); ?>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="filter-format">
+                      <div class="check-item"><input type="checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
+                      <div class="check-item"><input type="checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
+                      <div class="check-item"><input type="checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
+                      <div class="check-item"><input type="checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
+                      <div class="check-item"><input type="checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils </label></div>
+                      <div class="check-item"><input type="checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
+                      <div class="check-item"><input type="checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
+                      <div class="check-item"><input type="checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
+                    </div>
+                  </div>
+                  
+
                   <input type="hidden" name="totaltags" value="<?php echo $args['totaltags'];?>" />
                   <input type="hidden" name="totalcat" value="<?php echo $args['category_name'];?>" />
                   <input type="hidden" name="totalpays" value="<?php echo $args['pays_assoc'];?>" />
@@ -200,44 +248,16 @@
                   <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
 
 
-                  <button>OK</button>
-
                   <div id="advancedSearch">
                     <div class="barre"></div>
                     <ul id="listKeywords"></ul>
                     <ul id="listThemes"></ul>
                     <ul id="listRegions"></ul>
-                    <a class="btnerase">&raquo; effacer les critères</a>
+                    <a class="btnerase" href="#">&raquo; effacer les critères</a>
                   </div>
 
-                </div>
+                  <div><button id="formatbtn" class="btn-primary">Filtrer</button></div>
 
-                <div id="filtres">
-                  <div><strong>Filtrer par date de mise en ligne :</strong></div>
-                  <div>
-                      <select class="selectBox" name="period" id="period">
-                      <option value="debut">Depuis le début</option>
-                      <option value="1semaine">Moins d'une semaine</option>
-                      <option value="1mois">Moins d'un mois</option>
-                      <option value="3mois">Moins de 3 mois</option>
-                      <option value="6mois">Moins de 6 mois</option>
-                      <option value="1an">Moins d'un an</option>
-
-                  </select>
-                 </div>
-                
-                
-                  <div><strong>Par format :</strong></div>
-                  <div class="check"><input type="checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
-                  <div class="check"><input type="checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
-                  <div class="check"><input type="checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
-                  <div class="check"><input type="checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
-                  <div class="check"><input type="checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils <img src="<?php echo $cnSite->templatelink; ?>/_img/tools.png" width="18" height="17" /></label></div>
-                  <div class="check"><input type="checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
-                  <div class="check"><input type="checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
-                  <div class="check"><input type="checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
-                  <div ><button id="formatbtn">Filtrer</button></div>
-                  <div class="clear"></div>
                 </div>
 
               </form>
@@ -340,27 +360,27 @@
             
 
 
+      <?php  
+        wp_reset_query();
+        wp_reset_postdata(); 
+        $args = null; 
+      ?>
+
 
       </div><!-- search_list -->
     </div>
-
-
-       
-    </section><!-- .site-content -->
+     
+  </section><!-- .site-content -->
 
 
 
-<script type="text/javascript">
-jQuery(document).ready(function($){
+  <script type="text/javascript">
   $(window).ready(function(){
     $('#pager1 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
     $('#pager2 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
   })
-});
-</script>
+  </script>
 
-
-<?php  wp_reset_query();wp_reset_postdata(); $args=null; ?>
 
 
 

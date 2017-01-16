@@ -28,6 +28,17 @@ textarea {
   width: 98%; }
 
 
+select {
+  width: 100%;
+  border: 2px solid $color_primary;
+  padding: 10px;
+  text-transform: uppercase;
+  color: $color_primary;
+  font-weight: $semibold;
+  margin-bottom: $base_line_height;
+}
+
+
 input[type="checkbox"],
 input[type="radio"] {
   padding: 0; /* Addresses excess padding in IE8/9 */ }
