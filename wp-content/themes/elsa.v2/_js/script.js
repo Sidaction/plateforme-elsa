@@ -7,10 +7,10 @@ jQuery(document).ready(function($){
   console.log('let\'s begin');
 
 
-    /*
-     * DROPDOWNS
-     * Add smooth when clicking an anchor
-     */
+  /*
+   * DROPDOWNS
+   * Add smooth when clicking an anchor
+   */
 
   var dropdowns_trigger = $('.js-dropdown-trigger');
 
@@ -23,6 +23,15 @@ jQuery(document).ready(function($){
   });
 
 
+
+  /*
+   * BX SLIDERS
+   */
+
+  $('.bxslider').bxSlider({
+    pager: false,
+    adaptiveHeight: true,
+  });
 
 
     /*

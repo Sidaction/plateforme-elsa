@@ -234,7 +234,7 @@ class cnLib {
     }
 
 // retourne les terms list sans les liens
-    function get_terms_withoutlink($postId, $taxonomy, $separ = ", ") {
+    public static function get_terms_withoutlink($postId, $taxonomy, $separ = ", ") {
         //$terms = get_the_terms($postId, $taxonomy);
     $terms = wp_get_object_terms($postId,$taxonomy,array("orderby"=>"slug"));
         if ($terms) :
@@ -248,7 +248,7 @@ class cnLib {
     }
   
   
-  function get_term_list_link($postId, $taxonomy, $prefix = "", $separ = ", ") {
+    public static function get_term_list_link($postId, $taxonomy, $prefix = "", $separ = ", ") {
         $terms = get_the_terms($postId, $taxonomy);
         if ($terms) :
 

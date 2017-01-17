@@ -26,7 +26,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
   <section id="site-content" class="site-content single-ressource">
 
     <article class="main-content clearfix noback">
-        <div class="page_title ressource_title">
+        <div class="page_title structure_title">
 
             <!-- <div id="breadcrumb">
             <div id="breadcrumbWrapper">Vous êtes ici » <a href="/">Accueil</a> » <a href="#"> <?php echo cnStrings::stripString(get_the_title(),80);?></a></div>
@@ -36,7 +36,8 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
               <h1 class="h1">
                   <?php the_title();?>
               </h1> 
-              <?php echo get_post_meta($post->ID, 'adresse', true);?> <?php echo get_post_meta($post->ID, 'cp', true);?> <?php echo get_post_meta($post->ID, 'ville', true);?>
+              <?php echo get_post_meta($post->ID, 'adresse', true);?> <?php echo get_post_meta($post->ID, 'cp', true);?> <?php echo get_post_meta($post->ID, 'ville', true);?>,                         <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
+
 
           </div>     
         </div>
@@ -51,156 +52,172 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                     <?php if(!empty($rapport_activite)): ?>
                         <a href="<?php echo $rapport_activite;?>" target="_blank">» consulter le rapport d'activité</a>
                     <?php endif;?>
-
                 </div>
 
                 <div class="m-3col page_aside">
 
                     <div class="page_media">
+                        <ul class="no-bullets bxslider">
+                        <?php 
+                           $images = get_post_meta($structure_id, 'diaporama', false );
+                           $i = 0;
 
-                        <?php
-                            $diapo = get_post_field('diaporama', $structure_id);
-                            if($diapo != '') { ?>
-                        
-                                 <ul class="no-bullets">
-                                 <?php 
-                                    $images = get_post_meta($structure_id, 'diaporama', false );
-                                    $images = implode( ',' , $images );
-                                    $images = $wpdb->get_col( "
-                                        SELECT ID FROM {$wpdb->posts}
-                                        WHERE post_type = 'attachment'
-                                        AND ID in ({$images})
-                                        ORDER BY menu_order ASC
-                                    " );
-                                    $i = 0;
-                                    function array_random($arr, $num = 1) {
-                                        shuffle($arr);
-                                        
-                                        $r = array();
-                                        for ($i = 0; $i < $num; $i++) {
-                                            $r[] = $arr[$i];
-                                        }
-                                        return $num == 1 ? $r[0] : $r;
-                                    }
-                                    if( !empty($images) )
-                                        $images = array_random($images, 7);
-                                    
-                                    foreach ( $images as $imgid )   {
-                                
-                                        $src = wp_get_attachment_image_src( $imgid, 'large' );
-                                        $src = $src[0];
-                                        $title=get_the_title($imgid);
-                                        $class=($i==0)?'class="first"':'';
-                                        echo "<li ".$class."><div><a href='{$src}' class='fancybox' rel='diaporama' title='{$title}'><img src='{$src}' /></a></div>";
-                            
-                                        echo  "</li>";
-                                        $i++;
-                                    } ?>
-                             
-                             </ul>
+                           foreach ( $images as $img_id )   {
+                          
+                               $src = wp_get_attachment_image_src( $img_id, 'large' );
+                               $src = $src[0];
+                               $title = get_the_title($img_id);
+                               $class = ($i==0) ? 'class="first"':'';
 
-                        <?php } ?>
-                            
+                               echo "<li ".$class."><img src='{$src}' /></li>";
+                          
+                               echo  "";
+                               $i++;
+                           } ?>
+                        </ul>
                     </div><!-- .page_media -->
-                    
 
 
                     <div class="page_metas">
-                        
-                        <?php the_post_thumbnail('medium'); // LOGO ASSOCIATION ?>
 
-                        <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
+                        <div class="page_metas_row clearfix logo">
+                            <?php the_post_thumbnail('medium'); // LOGO ASSOCIATION ?>
+                        </div>
 
-                        <?php if( count(wp_get_object_terms( $post->ID, 'activites')) > 0 ) : ?> 
-                            <li>Activité(s) : <?php echo cnLib::get_terms_withoutlink($post->ID, "activites",", ");?></li>
+                        <?php if( count(wp_get_object_terms( $post->ID, 'activites')) > 0 ) : ?>
+                            <div class="page_metas_row">
+                                <span>Activité(s) : </span><?php echo cnLib::get_terms_withoutlink($post->ID, "activites",", ");?>
+                            </div>
                         <?php endif; ?> 
         
                         <?php if( count(wp_get_object_terms( $post->ID, 'public_cibles')) > 0 ) : ?>
-                            <li>Public(s) : <?php echo cnLib::get_terms_withoutlink($post->ID, "public_cibles", ", "); ?></li>
+                            <div class="page_metas_row">
+                                <span>Public(s) : </span><?php echo cnLib::get_terms_withoutlink($post->ID, "public_cibles", ", "); ?>
+                            </div>
                         <?php endif; ?> 
 
-                        <ul class="contacts no-bullets">
-                            <strong>Contacts :</strong>
-                            <li>Tel. : <?php echo get_post_meta($post->ID, 'tel', true);?></li>
+                        <ul class="page_metas_row contacts no-bullets">
+                            <span>Contacts : </span>
+
+                            <li>
+                                -> Tel. : <?php echo get_post_meta($post->ID, 'tel', true);?>
+                            </li>
 
                             <?php if(!empty($ligne)): ?>
-                                <li>Ligne d'écoute : <?php echo($ligne);?></li>
+                                <li>-> Ligne d'écoute : <?php echo($ligne);?></li>
                             <?php endif; ?>
                             
                             <?php if(!empty($link)):?>
-                                <li><a href="<?php echo $link;?>" target="_blank">Site internet</a></li>
+                                <li><a href="<?php echo $link;?>" target="_blank">-> Site internet</a></li>
                             <?php endif;?>
 
                             <?php if(!empty($link2)):?>
-                                <li><a href="<?php echo $link2;?>" target="_blank">Page Facebook</a></li>
+                                <li><a href="<?php echo $link2;?>" target="_blank">-> Page Facebook</a></li>
                             <?php endif;?>
 
                             <?php if(!empty($email)):?>
-                                <li><a href="mailto:<?php echo $email;?>">email</a></li>
+                                <li><a href="mailto:<?php echo $email;?>">-> Email</a></li>
                             <?php endif;?>
                         </ul>
 
-
                     </div><!-- .page_metas -->
 
-
-                </div><!-- .ressource_aside -->
+                </div><!-- .page_aside -->
             </div><!-- .wrap -->
         </div><!-- .page_content -->
 
 
-        <?php   
-            $args = array(
-                'post_type' => array('post'), 
-                'posts_per_page' => 4, 
-                'meta_query' => array (
-                    'relation' => 'OR',
-                    array(
-                        'key' => 'first_org',
-                        'value' =>  $structure_id,
-                    ),
-                    array(
-                        'key' => 'second_org',
-                        'value' =>  $structure_id,
-                    ),
-                    array(
-                        'key' => 'other_org',
-                        'value' =>  $structure_id,
-                    )
-                )
-        );
-        $wp_query = new WP_Query($args); ?>
+
+        <div id="" class="blocs_group">
+            <div class="wrap row">
+
+                <div class="group_title grid-title m-2col">
+                    <h3 id="recommandations" class="h3">Les ressources de cette association</h3>
+                </div>
+
+
+                <div class="group_list grid-list">
          
-        <?php if ($wp_query->have_posts()) : ?>        
+                <?php
+                    $args = array(
+                        'post_type' => array('post'), 
+                        'posts_per_page' => 6, 
+                        'meta_query' => array (
+                            'relation' => 'OR',
+                            array(
+                                'key' => 'first_org',
+                                'value' =>  $structure_id,
+                            ),
+                            array(
+                                'key' => 'second_org',
+                                'value' =>  $structure_id,
+                            ),
+                            array(
+                                'key' => 'other_org',
+                                'value' =>  $structure_id,
+                            )
+                        )
+                    );
+                    $grille_posts = get_posts($args);
+                    $i = 0; 
 
-            <aside class="blocs_group">
+                    foreach ( $grille_posts as $post ) : setup_postdata( $post ); ?>
 
-                <div class="wrap row">
-                    <div class="group_title m-2col">
-                      <h3 class="A lire aussi">Les ressources de cette association</h3>
-                    </div>
-                    
-                    <div class="group_list m-6col">
-                        <?php while ($wp_query->have_posts()) : $wp_query->the_post();?>
-                            <a href="<?php the_permalink();?>">
-                        
-                                <img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" />                  
-                                <?php echo $auteurs=$cnSite->get_authors($post->ID);?>
-                                <?php echo cnLib::get_terms_withoutlink($post->ID, 'category');?>
-                                <?php the_title(); ?>
+                            <?php 
+                                $format = cnLib::get_main_term_slug($post->ID, 'format');
+                                switch ($format) {
+                                    case 'video':
+                                        $type = 'media';
+                                        break;
+                                    case 'audio':
+                                        $type = 'media';
+                                        break;
+                                    case 'diaporama':
+                                        $type = 'media';
+                                        break;
+                                    default:
+                                        $type = 'ressource';
+                                        break;
+                                }
+                            ?>
 
-                            </a>
-                        <?php endwhile; ?>
-                    </div>
+                            <?php if( $i == 0 ) : ?>
+                                <div class="m-2col">
+                                    <?php set_query_var( 'type', $type ); ?>
+                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
+
+                            <?php elseif ( $i % 2 == 0 ) : ?>
+                                <div class="m-4col m-clearfix">
+                                    <?php set_query_var( 'type', $type ); ?>
+                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
+
+                            <?php else : ?>
+                                <div class="m-4col">
+                                    <?php set_query_var( 'type', $type ); ?>
+
+                            <?php endif; ?>
+
+                                    <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+
+                                </div><!-- end .col -->
+
+
+                        <?php $i++; ?>
+                            
+
+                    <?php endforeach; 
+                    wp_reset_postdata();?>
+
+
                 </div>
 
-                <div class="wrap row">
-                    <a href="/recherche-documentaire/?struct=<?php echo $structure_id;?>" class="is-centered btn-secondary">Voir toutes les ressources</a>
-                </div>
-                  
-            </aside>
+                <div class="groupe_action row">
+                    <a href="/recherche-documentaire/?struct=<?php echo $structure_id;?>" class="btn-secondary">Voir toutes les ressources</a>
+                </div> 
+                
+            </div><!-- .wrap -->
 
-        <?php endif;wp_reset_query();wp_reset_postdata(); $args=null; ?>
+        </div><!-- .blocs_group -->
 
     </article>
 
@@ -269,7 +286,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
         <?php $args = null; ?>
 
 
-  </div>
+
 </section>
 
 

@@ -68,11 +68,12 @@
 
       img {
         float: right;
+        border: 1px solid white;
       }
     }
     .page_metas {
       border: 1px solid $color_metas;
-      padding: $base_line_height;
+      padding: $base_line_height $base_line_height 0 $base_line_height;
       margin-bottom: $base_line_height * 2;
       
       span {
@@ -82,6 +83,11 @@
     }
       .page_metas_row {
         margin-bottom: $base_line_height;
+        
+        &.logo img {
+          display: block;
+          margin: auto;
+        }
       }
 
       .page_tools {
