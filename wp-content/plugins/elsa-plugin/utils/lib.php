@@ -214,10 +214,11 @@ class cnLib {
         //echo $count.' Views';
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////
-////// TERMS
+
+
+// TERMS
 //////////////////////
+
 /// récupérer l'id d'un tag par son nom
     public static function get_tag_id_by_name($tag_name) {
         global $wpdb;
@@ -259,10 +260,10 @@ class cnLib {
         endif;
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////
 //////////// TAXONOMY
 ////////////////////////
+
 /// récupération du term principal sur un post (1er) d'une taxo
     public static function get_main_term($postid, $taxo, $excludname="") {
         $main = wp_get_post_terms($postid, $taxo);
