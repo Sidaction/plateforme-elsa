@@ -35,7 +35,7 @@ $wide_breakpoint:                   1400px !default;
   margin: auto;
 
     @include up-to(large) {
-        width: 100%;
+        width: 95%;
     }
 
     @include at-least(wide) {
@@ -81,13 +81,11 @@ $one_col: (100% - ($gutter * ($cols - 1))) / $cols;
                 }   
             }
             
-            .#{$suffix}-clearfix {
-                margin-left: 0;
-            }
 
             %#{$suffix}-#{$i}col-push, .#{$suffix}-#{$i}col-push { left: $i / $cols * 100%; position: relative; right: auto; }
             %#{$suffix}-#{$i}col-pull, .#{$suffix}-#{$i}col-pull { right: $i / $cols * 100%; position: relative; left: auto; }
         }
+        .#{$suffix}-clearfix { margin-left: 0; }
         %#{$suffix}-hide, .#{$suffix}-hide { display: none; }
         %#{$suffix}-show, .#{$suffix}-show { display: block; }
         %#{$suffix}-first, .#{$suffix}-first { margin-left: 0 !important; }

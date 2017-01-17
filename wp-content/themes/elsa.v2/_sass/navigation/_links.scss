@@ -16,8 +16,12 @@ a {
     color: $white;
   }
 
-  &:not([class *= "btn"]) {
+  &.btn--inline {
     font-style: italic;
+
+    &:before {
+      content: '->';
+    }
   }
 }
 a:hover,
@@ -46,7 +50,6 @@ a:active {
 .btn-primary {
   @extend %btn;
   @include box-shadow(5px 5px 0px $color_link );
-  @include type-setting(1);
   height: $base_line_height * 3 - 5px;
   background-color: $white;
 }

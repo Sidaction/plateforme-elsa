@@ -46,3 +46,40 @@
     bottom: 0;
   }
 }
+
+
+
+
+/*
+ * COMMUNS STYLES FOR POSTS & ARCHIVES ETC.
+ */
+
+
+
+  .page_text {
+    padding-right: $base_line_height * 2;
+  }
+
+  .page_aside {
+    margin-top: - $base_line_height * 6;
+  }
+    .page_media {
+      margin-bottom: $base_line_height * 3;
+    }
+    .page_metas {
+      border: 1px solid $color_metas;
+      padding: $base_line_height;
+      margin-bottom: $base_line_height * 3;
+      
+      span {
+        color: $color_metas;
+        font-weight: $semibold;
+      }
+    }
+      .page_metas_row {
+        margin-bottom: $base_line_height;
+      }
+
+
+
+
