@@ -227,7 +227,7 @@ class themeManager {
       foreach ($postlist as $thepost) {
          $ids[] = $thepost->ID;
       }
-          
+
     
     $thisindex = array_search($post->ID, $ids);
     $previd = $ids[$thisindex-1];
