@@ -514,14 +514,18 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
         return $tags;
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////  
-/////////////PAGINATION
+
+
+
+ /*
+  * PAGINATION
+  */
     public static function pagination($pages = '', $range = 2) {
 
         $showitems = ($range * 2) + 1;
 
-
         global $paged;
+
         if (empty($paged))
             $paged = 1;
 
@@ -529,32 +533,31 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
             global $wp_query;
             $pages = $wp_query->max_num_pages;
 
-
             if (!$pages) {
                 $pages = 1;
             }
         }
 
-
         if (1 != $pages) {
-      $template_dir=get_bloginfo( 'template_url' );
-      $nextpage=($paged==$pages)?$pages:$paged+1;
-      $prevpage=($paged==1)?1:$paged-1;
+            $template_dir=get_bloginfo( 'template_url' );
+            $nextpage=($paged==$pages)?$pages:$paged+1;
+            $prevpage=($paged==1)?1:$paged-1;
+            
             echo '<div class="navigation">';
-            echo '<ul>';
-      echo '<li class="previous"><a href="' . get_pagenum_link($prevpage) . '">« Précédent</li>';
+                echo '<ul class="no-bullets">';
+                    echo '<li class="previous btn-secondary"><a href="' . get_pagenum_link($prevpage) . '">« Page précédente</li>';
 
-            for ($i = 1; $i <= $pages; $i++) {
-                if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems )) {
-                    echo ($paged == $i) ? '<li  class="active"><a href="#" >' . $i . '</a></li>' : '<li ><a href="' . get_pagenum_link($i) . '" >' . $i . '</a></li>';
-                }
-            }
-      
-      echo '<li class="next"><a href="' . get_pagenum_link($nextpage) . '">Suivant »</a></li></ul></div>';
-       
+                    for ($i = 1; $i <= $pages; $i++) {
+                        if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems )) {
+                            echo ($paged == $i) ? '<li class="btn-secondary active"><a href="#" >' . $i . '</a></li>' : '<li class="btn-secondary"><a href="' . get_pagenum_link($i) . '" >' . $i . '</a></li>';
+                        }
+                    }
+              
+                    echo '<li class="next btn-secondary"><a href="' . get_pagenum_link($nextpage) . '">Page suivante »</a></li>';
+                echo '</ul>';
+            echo '</div>';       
         }
     }
-
 }
 
 
