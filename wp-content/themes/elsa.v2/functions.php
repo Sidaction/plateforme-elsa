@@ -7,7 +7,7 @@ $cnSite = new themeManager();
 
 
 /**
- * ENQUEUE STYLES & SCRIPTSv
+ * ENQUEUE STYLES & SCRIPTS
  */
 
 function bourron_scripts() {
@@ -27,6 +27,14 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'admin_print_styles', 'print_emoji_styles' ); 
 
 
+
+/**
+ * IMAGES SIZES
+ */
+
+add_image_size( 'archives_square', 500, 500, array( 'center', 'center' ) );
+add_image_size( 'post_thumb', 500, 9999 );
+add_image_size( 'media_thumb', 500, 9999 );
 
 
 
