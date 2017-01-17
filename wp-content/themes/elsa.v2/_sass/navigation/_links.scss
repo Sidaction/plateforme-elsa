@@ -14,16 +14,6 @@ a {
   .dark & {
     color: $white;
   }
-
-  &.btn-inline {
-    font-style: italic;
-    font-weight: $thin;
-    color: $color_link;
-    
-    &:before {
-      content: '->';
-    }
-  }
 }
 a:hover,
 a:focus,
@@ -60,3 +50,16 @@ a:active {
 .btn-secondary {
   @extend %btn;
 }
+
+.btn-inline {
+  font-style: italic;
+  font-weight: $thin;
+  color: $color_link;
+  
+  &:before {
+    @extend .icon;
+    @extend .icon-arrow_right;
+  }
+}
+
+
