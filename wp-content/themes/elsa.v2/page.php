@@ -43,7 +43,7 @@
     elseif( $level == 0 && empty( $children ) ) {
         $title = get_the_title();
         $content = get_the_content();
-    } 
+    }
     // IF CHILD WITH SIBLINGS : STAY HERE + TITLE = ROOT PAGE
     else {
         $title = get_the_title( $root );
@@ -55,21 +55,28 @@
 
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-  <section id="site-content" class="site-content single-ressource">
+  <section id="site-content" class="site-content page">
 
     <article class="main-content clearfix noback">
-        
-        <div class="page_title ressource_title">
 
-            <?php the_post_thumbnail('large'); ?>
-        
-            <div class="wrap row">
-                <h1 class="h1 m-6col is-centered">
-                    <?php echo $title; ?>
-                </h1>  
-            </div>     
-        
-        </div>
+        <?php $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $root ), 'large' );?>
+        <?php if( $large_image_url) { ?> 
+            <div class="page_title-outer bg_cover" style="background-image: url(<?php echo $large_image_url[0]; ?>)">
+        <?php } ?>
+
+            <div class="page_title page_title">
+
+                <div class="wrap row">
+                    <h1 class="h1 m-6col is-centered">
+                        <?php echo $title; ?>
+                    </h1>  
+                </div>     
+            
+            </div>
+
+        <?php if( $large_image_url) { ?> 
+            </div>
+        <?php } ?>
 
         <div class="page_content clearfix">
             <div class="wrap row">
@@ -111,21 +118,8 @@
 
 
 
-    <aside class="blocs_group--rebonds bg-cut">
-        <div class="wrap row">
-        
-            <div class="group_title m-2col">
-                <h3 class="A lire aussi">A lire aussi</h3>
-            </div>
-        
-            <div class="group_list">
-                <div class="group_bloc m-2col">hello</div>
-                <div class="group_bloc m-2col">hello</div>
-                <div class="group_bloc m-2col">hello</div>
-            </div>
-
-        </div>
-    </aside>
+    <?php set_query_var( 'cnSite', $cnSite ); ?>
+    <?php get_template_part('template-parts/parts/part', 'rebonds'); ?>
 
 
    

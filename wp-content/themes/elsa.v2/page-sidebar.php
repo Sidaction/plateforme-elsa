@@ -16,22 +16,28 @@ get_header(); ?>
 
     <article class="main-content clearfix noback">
         
-        <div class="page_title ressource_title">
+        <?php if( has_post_thumbnail() ) { ?> 
+            <div class="page_title-outer bg_cover" style="background-image: url(<?php the_post_thumbnail_url(); ?>)">
+        <?php } ?>
 
-            <?php the_post_thumbnail('large'); ?>
-        
-            <div class="wrap row">
-                <h1 class="h1 m-6col is-centered">
-                    <?php echo $title; ?>
-                </h1>  
-            </div>     
-        
-        </div>
+            <div class="page_title page_title">
+
+                <div class="wrap row">
+                    <h1 class="h1 m-6col is-centered">
+                        <?php echo the_title(); ?>
+                    </h1>  
+                </div>     
+            
+            </div>
+
+        <?php if( has_post_thumbnail() ) { ?> 
+            </div>
+        <?php } ?>
 
         <div class="page_content clearfix">
             <div class="wrap row">
 
-                <nav class="m-2col">
+                <nav class="m-2col page_sidebar">
                     <?php the_field('sidebar_content') ?>
 
                 </nav>
@@ -46,22 +52,8 @@ get_header(); ?>
     </article>
 
 
-
-    <aside class="blocs_group--rebonds bg-cut">
-        <div class="wrap row">
-        
-            <div class="group_title m-2col">
-                <h3 class="A lire aussi">A lire aussi</h3>
-            </div>
-        
-            <div class="group_list">
-                <div class="group_bloc m-2col">hello</div>
-                <div class="group_bloc m-2col">hello</div>
-                <div class="group_bloc m-2col">hello</div>
-            </div>
-
-        </div>
-    </aside>
+    <?php set_query_var( 'cnSite', $cnSite ); ?>
+    <?php get_template_part('template-parts/parts/part', 'rebonds'); ?>
 
 
    

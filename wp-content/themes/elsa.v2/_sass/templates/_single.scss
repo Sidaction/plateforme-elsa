@@ -14,10 +14,13 @@
 .structure_title {
   background-color: $color_medias;
 }
-
+.page_title {
+  background-color: $color_primary;
+  text-align: center;
+}
   .page_sidebar {
-    background-color: $color_primary;
-    color: $white;
+    border-top : 3px solid $color_primary;
+    padding-top: $base_line_height;
   }
 
 
