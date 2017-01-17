@@ -7,7 +7,8 @@
 .bloc_item {
   height: 200px;
   margin-bottom: $base_line_height;
-  padding: $base_line_height;
+  padding: $base_line_height $base_line_height * 1.5 $base_line_height $base_line_height;
+  position: relative;
 
   a {
     color: inherit;
@@ -23,5 +24,11 @@
   &.bloc--statique {
     background-color: $color_primary;
     color: $white;
+  }
+
+  .bookmark {
+    position: absolute;
+    top: -18px;
+    right: -13px;
   }
 }
