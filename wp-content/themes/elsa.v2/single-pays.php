@@ -52,8 +52,8 @@
 
                 <div class="m-3col page_aside">
 
-                    <div class="page_media">
-                        <?php the_post_thumbnail('medium');?>
+                    <div class="page_media clearfix">
+                        <?php the_post_thumbnail('post_thumb');?>
                     </div><!-- .page_media -->
                         
                     <?php 
@@ -65,7 +65,7 @@
                             </div><!-- .page_metas -->
                     <?php endif; ?>
 
-                    <a href="#" class="btn-primary">Voir les ressources liées au pays</a>
+                    <a href="#" class="btn-primary plain">Voir les ressources liées au pays</a>
 
                 </div><!-- .ressource_aside -->
             </div><!-- .wrap -->
@@ -82,93 +82,86 @@
                 <h3 class="h3">Préparer une mission</h3>
             </div>
             
-            <div class="group_list m-6col">
-                Contentu
+            <div class="group_list m-5col m-last">
+                Contenu
             </div>
 
         </div>
     </aside>
 
 
-
     <?php 
         // Get acteurs locaux
-
-                $a_cat = array(         
-                    array(
-                        'name' => 'Associations partenaires',
-                        'slug' => 'partenaires-elsa-associations-du-reseau-elsa',
-                        'orderby'=>'title'
-                    ),
-                    array(
-                        'name' => 'Réseaux d’ONG',
-                        'slug' => 'reseaux-dong', 
-                        'orderby'=>'slug'
-                    ),
-                    array(
-                        'name' => 'Plus de contacts sur',
-                        'slug' => 'plus-de-contacts-sur', 
-                        'orderby'=>'slug'
-                    ),
-                    array(
-                        'name' => 'Réseaux de journalistes',
-                        'slug' => 'reseaux-de-journalistes', 
-                        'orderby'=>'slug'),
-                );
-                $assos = array();
-                
-            ?>
+        $a_cat = array(         
+            array(
+                'name' => 'Associations partenaires',
+                'slug' => 'partenaires-elsa-associations-du-reseau-elsa',
+                'orderby'=>'title'
+            ),
+            array(
+                'name' => 'Réseaux d’ONG',
+                'slug' => 'reseaux-dong', 
+                'orderby'=>'slug'
+            ),
+            array(
+                'name' => 'Plus de contacts sur',
+                'slug' => 'plus-de-contacts-sur', 
+                'orderby'=>'slug'
+            ),
+            array(
+                'name' => 'Réseaux de journalistes',
+                'slug' => 'reseaux-de-journalistes', 
+                'orderby'=>'slug'),
+        );
+        $assos = array();
+    ?>
 
    
 
-            <aside class="blocs_group--rebonds">
+    <aside class="blocs_group--rebonds">
 
-              <div class="wrap row">
-                <div class="group_title m-2col">
-                  <h3 class="h3">Acteurs locaux</h3>
-                </div>
+      <div class="wrap row">
+        <div class="group_title m-2col">
+          <h3 class="h3">Acteurs locaux</h3>
+        </div>
+        
+        <div class="group_list m-5col m-last">
+
+            <?php 
+                echo get_post_meta($post->ID, 'infoscomp', true);
+
+                foreach($a_cat as $cat) :
+                    $i = 0;
+                    $args = array(
+                         'post_type' => 'structure',
+                         'posts_per_page' => -1,
+                         'type_structure' => $cat['slug'],
+                         'orderby' => $cat['orderby'],
+                         'order' => 'ASC',
+                         'pays_assoc' =>  $pays
+                    );
+                    $wp_query = new WP_Query($args);
+                    if( $wp_query->have_posts() ) :
+
+                        echo $cat['name'];
+                            while ($wp_query->have_posts()) : $wp_query->the_post();
+                                $link = ( $cat['slug'] == 'partenaires-elsa-associations-du-reseau-elsa') ? get_permalink():get_post_meta($post->ID, 'link', true);
+                                $target = ($cat['slug'] == 'partenaires-elsa-associations-du-reseau-elsa') ? '':'_blank';
+                                if($cat['slug']=='partenaires-elsa-associations-du-reseau-elsa') 
+                                    $assos[]=  $post->ID; ?>
+                                
+                                <li><a href="<?php echo $link;?>" target="<?php echo $target;?>"><?php the_title();?></a></li>
+                    
                 
-                <div class="group_list m-5col m-last">
+                  <?php endwhile;endif;wp_reset_query();wp_reset_postdata(); $args=null; 
+                endforeach; ?>
+        </div>
 
-                    <?php 
-                        echo get_post_meta($post->ID, 'infoscomp', true);
-
-                        foreach($a_cat as $cat) :
-                            $i = 0;
-                            $args = array(
-                                 'post_type' => 'structure',
-                                 'posts_per_page' => -1,
-                                 'type_structure' => $cat['slug'],
-                                 'orderby' => $cat['orderby'],
-                                 'order' => 'ASC',
-                                 'pays_assoc' =>  $pays
-                            );
-                            $wp_query = new WP_Query($args);
-                            if( $wp_query->have_posts() ) :
-
-                                echo $cat['name'];
-                                    while ($wp_query->have_posts()) : $wp_query->the_post();
-                                        $link = ( $cat['slug'] == 'partenaires-elsa-associations-du-reseau-elsa') ? get_permalink():get_post_meta($post->ID, 'link', true);
-                                        $target = ($cat['slug'] == 'partenaires-elsa-associations-du-reseau-elsa') ? '':'_blank';
-                                        if($cat['slug']=='partenaires-elsa-associations-du-reseau-elsa') 
-                                            $assos[]=  $post->ID; ?>
-                                        
-                                        <li><a href="<?php echo $link;?>" target="<?php echo $target;?>"><?php the_title();?></a></li>
-                            
-                        
-                          <?php endwhile;endif;wp_reset_query();wp_reset_postdata(); $args=null; 
-                        endforeach; ?>
-                </div>
-
-              </div>
-            </aside>
-
-
+      </div>
+    </aside>
 
 
 </section>
-
-
 
 
 

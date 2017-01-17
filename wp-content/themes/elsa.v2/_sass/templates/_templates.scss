@@ -61,10 +61,10 @@
   }
 
   .page_aside {
-    margin-top: - $base_line_height * 6;
+    margin-top: - $base_line_height * 7;
   }
     .page_media {
-      margin-bottom: $base_line_height * 3;
+      margin-bottom: $base_line_height * 2;
 
       img {
         float: right;
@@ -73,7 +73,7 @@
     .page_metas {
       border: 1px solid $color_metas;
       padding: $base_line_height;
-      margin-bottom: $base_line_height * 3;
+      margin-bottom: $base_line_height * 2;
       
       span {
         color: $color_metas;
