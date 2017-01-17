@@ -98,7 +98,13 @@ $one_col: (100% - ($gutter * ($cols - 1))) / $cols;
 
     > div:first-child, 
     .row > div:first-child { 
-        margin-left: 0 !important;
+        margin-left: 0;
+    }
+
+    .is-centered {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      float: none !important;
     }
 }
 

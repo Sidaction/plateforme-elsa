@@ -8,17 +8,18 @@
 
 a {
   @include transition(all, 0.2s);
-  color: $color_link;
+  color: inherit;
   text-decoration: none;
-  font-weight: $thin;
 
   .dark & {
     color: $white;
   }
 
-  &.btn--inline {
+  &.btn-inline {
     font-style: italic;
-
+    font-weight: $thin;
+    color: $color_link;
+    
     &:before {
       content: '->';
     }
@@ -37,10 +38,12 @@ a:active {
   color: $color_link;
   font-weight: $semibold;
   text-align: center;
-  line-height: $base_line_height * 3 - 3px!important;
   margin-bottom: $base_line_height;
   padding-left: $base_line_height;
   padding-right: $base_line_height;
+  padding-top: $base_line_height / 2;
+  padding-bottom: $base_line_height / 2;
+  text-decoration: none;
 
   &.plain {
     width: 100%;
@@ -50,12 +53,10 @@ a:active {
 .btn-primary {
   @extend %btn;
   @include box-shadow(5px 5px 0px $color_link );
-  height: $base_line_height * 3 - 5px;
   background-color: $white;
 }
 
 
 .btn-secondary {
-  height: $base_line_height * 3;
   @extend %btn;
 }
