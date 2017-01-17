@@ -157,11 +157,11 @@ function register_custompost() {
         'public' => true,
         'show_ui' => true,
         'query_var' => 'contenu',
-    'capability_type' => 'cont',
-    'capabilities' => $capabilities_cont,
-        'has_archive' => true,
-    'menu_icon' => '',
-    'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
+        'capability_type' => 'cont',
+        'capabilities' => $capabilities_cont,
+            'has_archive' => true,
+        'menu_icon' => '',
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
     );
 
     register_post_type('contenu', $args);
