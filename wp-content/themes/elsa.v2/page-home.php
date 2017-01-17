@@ -72,11 +72,11 @@ $zoom_association = get_field('zoom_association');
     <div id="" class="home-grid blocs_group">
         <div class="wrap row">
 
-            <div class="grid-title m-2col">
+            <div class="group_title grid-title m-2col">
                 <h3 class="h3"><?php the_field('grille_titre'); ?></h3>
             </div>
     	    
-            <div class="grid-list">
+            <div class="group_list grid-list">
                 <?php 	
                     $args = array(
                         'post_type' => array('post'), 
