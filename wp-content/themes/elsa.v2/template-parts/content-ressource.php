@@ -1,11 +1,17 @@
 
+
+
+
+  <section id="site-content" class="site-content single-ressource">
+
+
     <article class="main-content clearfix noback">
         <div class="page_title ressource_title">
 
-          <div class="wrap">
+          <div class="wrap row">
               <?php $cnSite->get_back_link(); ?> 
 
-              <h1 class="h1">
+              <h1 class="h1 m-6col">
                   <?php the_title();?>
               </h1>  
           </div>     
@@ -14,15 +20,11 @@
 
         <div class="page_content clearfix">
             <div class="wrap row">
-                <div class="m-5col">
+                <div class="m-5col page_text">
                   
                   <?php the_content();?>
 
                   <div class="page_actions">
-                  
-                    <?php 
-                      if($format == 'video' && !empty($link)) echo wp_oembed_get($link);
-                    ?>
 
                     <?php if( $format=='link' && !empty($link) ) echo "<div class='dlDoc'>{$link}<a href='{$link}' title='Voir le site' target='_blank'><div class='bttDL'>Voir le site</a></div><div class='clear'></div></div>"?>
 
@@ -38,63 +40,41 @@
                         $kind = pathinfo($info['path'], PATHINFO_EXTENSION);
                         $size = false === $size ? 0 : size_format( $size, 2 );
                         
-                        echo "<div class='dlDoc'>{$info['title']} ({$kind} -{$size} )<a href='{$info['url']}' title='{$info['title']}' target='_blank'><div class='bttDL'>Télécharger</a></div></div>";
+                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consultez la ressource <br> [{$info['title']} ({$kind} -{$size} )]</a>";
                       }?>
 
-                  </div><!-- .page_actions -->
+                  </div><!-- .page_actions -->  
 
                 </div>
 
 
                 <div class="m-3col page_aside">
 
-                    <div class="page_media">
-                      <?php the_post_thumbnail('large'); ?>
+                    <div class="page_media clearfix ">
+                      <?php the_post_thumbnail('post_thumb'); ?>
                     </div>
                     
                     <div class="page_metas">
                         
-                      <div class="auteurs">
-                        <?php if(!empty($auteurs)) echo 'Auteur(s) : '.$auteurs;?> </div>
-
-                        <?php 
-                          $main_authors= get_post_meta($post->ID, 'first_org', false);
-                          
-                          if(!empty($main_authors)){
-                            foreach($main_authors as $main_author){
-                              $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($main_author), 'thumbnail' );
-                              $url = $thumb['0'];
-                              $permalink = get_permalink( $main_author );
-                              if(!empty($url)) echo "<a href='{$permalink}'><img src='{$url}'  /></a>";
-                            }
-                          } 
-                        ?>
-
-                        <div class="detailName"><?php if( count(wp_get_object_terms( $post->ID, 'pays_assoc')) > 0 ) echo 'Pays :'?></div>
-                        
-                        <div class="detail"><?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?> </div>
-
-                        <div class="detailName"><?php if(!empty($date_edition)) echo 'Date d’édition :';?> </div>
-                        <div class="detail"><?php echo $date_edition;?></div>
-
-
-                        <div class="datepost">mis en ligne le
-                          <?php the_date( 'd F Y' ); ?>
-                        </div>
-
-                        <?php if( !empty($tools) && $tools==1 ): ?>
-                          <div class="tools"></div>
-                          <?php endif ?>
-
-                        <div class="">
-                          <?php if( cnLib::get_main_term($post->ID, 'category','Général') !='' ) echo 'Thème(s) :'?>
+                        <div class="page_metas_row">
+                          <?php if(!empty($auteurs)) echo '<span>Auteur(s) : </span>'.$auteurs;?>
                         </div>
                         
-                        <div class="">
-                          <?php if( cnLib::get_main_term($post->ID, 'category','Général') !='' )  the_category(', '); ?>
+                        <div class="page_metas_row">
+                          <?php echo get_the_term_list( $post->ID, 'pays_assoc', '<span>Pays : </span>', ', ' ); ?>
                         </div>
 
-                        <?php echo get_the_tag_list('<div class="detailName"> Mots clés :</div><div class="detail">',', ','</div>');  ?>
+                        <div class="page_metas_row">
+                          <?php if(!empty($date_edition)) echo '<span>Date d’édition : </span>' . $date_edition;?> 
+                        </div>
+
+                        <div class="page_metas_row">
+                          <span>Thème(s) :</span> <?php the_category(', '); ?>
+                        </div>
+
+                        <div class="page_metas_row">
+                          <?php echo get_the_tag_list('<span>Mots clés : </span>',', ');  ?>
+                        </div>
 
                     </div><!-- .metas -->
 
@@ -112,9 +92,13 @@
             </div>
 
             <div class="group_content m-6col">
-              <a href="#">Lire plus tard</a>
-              <div>Partagez ! <a href="#">Facebook</a> <a href="#">Twitter</a> <a href="#">mail</a> </div>
-              <a href="/soumettre" class="btn-secondary">Soumettre une ressource</a>
+              <div class="is-on-left"><a class="btn-secondary" href="#">Lire plus tard</a></div>
+              <div class="is-on-left btn-secondary">
+                Partagez ! 
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" title="Share on Facebook">facebook</a></li>
+                <a href="http://twitter.com/share?text=#BiennalePhotoMondeArabe&url=<?php the_permalink(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" >twitter</a>
+                <a href="#">mail</a> </div>
+              <div class="is-on-left"><a href="/soumettre" class="btn-secondary">Soumettre une ressource</a></div>
             </div>
 
           </div>

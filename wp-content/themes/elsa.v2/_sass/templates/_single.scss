@@ -15,3 +15,27 @@
     background-color: $color_primary;
     color: $white;
   }
+
+
+
+/* 
+ * MEDIAS SINGLE
+ */
+
+
+  .media_title {
+    color: $white;
+    margin-bottom: $base_line_height;
+    background-color: $color_medias;
+    padding: $base_line_height;
+  }
+  .media_aside {
+    border: 1px solid $white;
+    color: $white;
+    padding: $base_line_height $base_line_height 0 $base_line_height;
+
+    span {
+      font-weight: $semibold;
+    }
+  }
+

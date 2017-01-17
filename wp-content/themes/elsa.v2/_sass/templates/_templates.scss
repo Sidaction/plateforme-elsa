@@ -17,7 +17,7 @@
  * Styles communs
  */
 
-.page_title {
+.page_title:not(.media_title) {
   padding: $base_line_height * 3 0;
   color: $white;
   margin-bottom: $base_line_height;
@@ -65,6 +65,10 @@
   }
     .page_media {
       margin-bottom: $base_line_height * 3;
+
+      img {
+        float: right;
+      }
     }
     .page_metas {
       border: 1px solid $color_metas;
@@ -80,6 +84,15 @@
         margin-bottom: $base_line_height;
       }
 
+      .page_tools {
+
+        .group_content {
+
+           div {
+            margin-right: $base_line_height;
+           }
+        }
+      } 
 
 
 

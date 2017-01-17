@@ -16,6 +16,11 @@ img {
   background-repeat: no-repeat;
 }
 
+iframe {
+  display: block;
+  margin: auto;
+  margin-bottom: $base_line_height;
+}
 
 
 @import "gallery";

@@ -29,9 +29,6 @@
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
 
-  <section id="site-content" class="site-content single-ressource">
-
-
     <?php
       // AIGUILLER SI MEDIAS OU RESSSOURCE "SIMPLE" (pdf, link, etc.)
       if( has_term( 'video', 'format' ) || has_term( 'diaporama', 'format' ) ) {
@@ -44,7 +41,6 @@
 
     <?php 
       $rebonds = get_field('rebonds_default', 'option'); 
-      // var_dump($rebonds);
     ?>
 
 
@@ -87,23 +83,21 @@
                         <div class="m-2col">
 
                     <?php endif; ?>
-                            <?php set_query_var( 'type', $type ); ?>
-                            <?php set_query_var( 'cnSite', $cnSite ); ?>
+                        
+                        <?php set_query_var( 'type', $type ); ?>
+                        <?php set_query_var( 'cnSite', $cnSite ); ?>
+                        <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
 
-                            <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+                      </div><!-- end .col -->
 
-                        </div><!-- end .col -->
-
-
-                <?php $i++; ?>
-                    
+                <?php $i++; ?>                  
 
             <?php endforeach; ?>
 
 
-        </div>
+        </div><!-- .group_list -->
 
-      </div>
+      </div><!-- .row -->
     </aside>
 
    
