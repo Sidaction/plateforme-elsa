@@ -47,8 +47,8 @@ get_header();
         <article class="main-content clearfix">
             <div class="page_title archives_title">
 
-                <div class="wrap">
-                    <h1 class="h1">
+                <div class="wrap row">
+                    <h1 class="h1 m-5col m-clearfix">
                         <?php echo single_cat_title("", false); ?>
                     </h1>  
                 </div>     
@@ -62,7 +62,7 @@ get_header();
                     </div>
 
                     <div class="m-3col page_aside">
-                        <div class="page_media">
+                        <div class="page_media clearfix">
                             <img src="<?php echo $vignette_src; ?>">
                         </div>
 
