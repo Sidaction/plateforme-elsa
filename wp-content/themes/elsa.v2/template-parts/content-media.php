@@ -13,7 +13,7 @@
                 </h1>
               </div>
 
-              <div class="m-3col media_aside">
+              <div class="m-3col m-last media_aside">
                   <div class="media_metas">
                       
                       <div class="page_metas_row">
@@ -47,9 +47,9 @@
             <div class="wrap row">
                 <div class="m-5col is-centered">
 
-                  <?php if($format == 'video' && !empty($link)) echo wp_oembed_get($link); ?>
-
                   <?php the_content();?>
+
+                  <?php if($format == 'video' && !empty($link)) echo wp_oembed_get($link); ?>
 
                 </div>
 
