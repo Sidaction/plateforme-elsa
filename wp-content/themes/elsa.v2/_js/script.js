@@ -12,8 +12,8 @@ jQuery(document).ready(function($){
 
   var header = $('.site-header');
   var header_height = header.outerHeight();
-  header.css('position', 'fixed');
-  $('.site-content').css('padding-top', header_height);
+  // header.css('position', 'fixed');
+  // $('.site-content').css('padding-top', header_height);
 
   $( window ).scroll(function() {
     var $win = $(window);
