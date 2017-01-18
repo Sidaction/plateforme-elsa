@@ -36,7 +36,7 @@ $zoom_association = get_field('zoom_association');
                     
                         <div class="featured-action">
                             <a class="btn-primary" href="/category/<?php echo $zoom_thematique->slug; ?>">En savoir plus</a>
-                            <a class="btn-secondary" href="<?php echo $zoom_thematique->slug; ?>">Les ressources de la thématique</a>
+                            <a href="/recherche-documentaire/?category=<?php echo $zoom_thematique->slug; ?>" class="btn-secondary">Les ressources de la thématique</a>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@ $zoom_association = get_field('zoom_association');
 
                     <div class="m-2col">
                         <div class="featured-pays"><?php echo $zoom_pays->post_title; ?></div>
-                        <div><?php echo $zoom_pays->post_excerpt; ?></div>
+                        <div><?php echo get_the_post_thumbnail($zoom_pays->ID, 'small'); ?></div>
                         <a href="/pays/<?php echo $zoom_pays->post_name?>"><span class="icon-arrow_right"></span></a>
                     </div>
                 </div>
