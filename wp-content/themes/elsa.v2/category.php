@@ -8,7 +8,7 @@
     $cat = get_category( get_query_var( 'cat' ) );	
 
     $cat_id = $cat->cat_ID;
-    $cat_slug=$cat->slug;
+    $cat_slug = $cat->slug;
     $meta = get_option('info');
 
     if (empty($meta)) 
