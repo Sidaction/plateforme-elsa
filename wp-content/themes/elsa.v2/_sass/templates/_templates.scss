@@ -62,6 +62,7 @@
 .page_content {
   padding: $base_line_height * 3 0 $base_line_height * 3;
   margin-bottom: $base_line_height;
+  background-color: $gray_lighter;
 }
 
 .bg-full {
@@ -90,8 +91,6 @@
  * COMMUNS STYLES FOR POSTS & ARCHIVES ETC.
  */
 
-
-
   .page_text {
     padding-right: $base_line_height * 2;
   }
@@ -115,6 +114,19 @@
       span {
         color: $color_metas;
         font-weight: $semibold;
+      }
+
+      ul {
+        display: inline;
+        @extend .no-bullets;
+      }
+      li {
+        display: inline;
+        
+        &:not(:last-child):after {
+          content: ', ',
+
+        }
       }
     }
       .page_metas_row {
