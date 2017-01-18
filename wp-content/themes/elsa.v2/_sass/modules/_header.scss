@@ -6,7 +6,23 @@
 
 
 .site-header {
-  margin: $base_line_height 0;
+  padding: $base_line_height 0;
+  background-color: $white;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  &.is-reduced {
+    padding: $base_line_height / 4 0 0 0;
+    font-size: 0.9em; 
+
+    .site-logo {
+      width: 50px;
+    }
+    .site-resume {
+      display: none;
+    }
+  }
 }
 
 

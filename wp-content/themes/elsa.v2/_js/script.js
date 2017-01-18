@@ -6,20 +6,53 @@ jQuery(document).ready(function($){
 
   console.log('let\'s begin');
 
+  /*
+   * STICKY MENU
+   */
+
+  var header = $('.site-header');
+  var header_height = header.outerHeight();
+  header.css('position', 'fixed');
+  $('.site-content').css('padding-top', header_height);
+
+  $( window ).scroll(function() {
+    var $win = $(window);
+
+    if ($win.scrollTop() > 250) {
+      header.addClass( "is-reduced" );
+    }
+
+    if ($win.scrollTop() === 0) {
+      header.removeClass( "is-reduced" );
+    }
+  });
+
+
 
   /*
    * DROPDOWNS
-   * Add smooth when clicking an anchor
    */
 
   var dropdowns_trigger = $('.js-dropdown-trigger');
-
   dropdowns_trigger.on('click', function(event) {
     event.preventDefault();
 
-    $(this).toggleClass('open');
-    $(this).find('dropdown-item').toggle();
-
+    if( dropdowns_trigger.hasClass('open') ) {
+    
+      if( $(this).hasClass('open') ) {
+        $(this).removeClass('open');
+        $('#site-content').removeClass('dd-open');
+      }
+      else {
+        dropdowns_trigger.removeClass('open');
+        $(this).addClass('open');
+        $('#site-content').addClass('dd-open');
+      }
+    }
+    else {
+      $(this).addClass('open');
+      $('#site-content').addClass('dd-open');
+    }
   });
 
 

@@ -26,10 +26,10 @@
     <div class="row wrap subheader">
 
         <div class="m-3col site-branding">
-            <img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo">
+            <a href="<?php echo get_bloginfo('url') ?>"><img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo"></a>
             <div class="site-title">
                 <h1><a href="<?php echo get_bloginfo('url') ?>">Plateforme ELSA</a></h1>
-                <p>Centre de ressources francophones sur le VIH/sida en Afrique</p>
+                <p class="site-resume">Centre de ressources francophones sur le VIH/sida en Afrique</p>
             </div>
         </div>
         <div class="m-5col">
