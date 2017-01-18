@@ -30,6 +30,23 @@ jQuery(document).ready(function($){
 
 
   /*
+   * MODALS
+   */
+
+  $('.js-newsletter-trigger a').on('click', function(event) {
+    event.preventDefault();
+
+    $('.modal-newsletter').show();
+    $('body').addClass('no-scroll');
+  });
+
+  $('#js-close').on('click', function(event) {
+    event.preventDefault();
+
+    $('.modal').hide();
+  });
+
+  /*
    * DROPDOWNS
    */
 

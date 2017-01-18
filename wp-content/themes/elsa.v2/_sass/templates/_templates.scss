@@ -13,6 +13,9 @@
 @import "archives";
 @import "search";
 
+.no-scroll {
+  overflow: hidden;
+}
 
 .dd-open {
   opacity: 0.5;

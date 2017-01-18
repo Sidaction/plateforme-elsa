@@ -74,5 +74,26 @@
 
 </script>
 
+    
+<div class="modal modal-newsletter">
+    <div class="modal_inner wrap">
+
+        <a href="#" id="js-close" class="modal_close">
+            <span class="icon-close"></span>
+        </a>
+
+        <div class="modal_title">
+            <h4>Inscription à la Newsletter de la Plateforme ELSA</h4>
+        </div>
+    
+        <form class="modal_form">
+            <input type"text" placeholder="ex : nom@domaine.fr">
+            <input type="submit" value="ok" class="btn-primary">
+        </form>
+
+
+    </div>  
+</div>
+
 </body>
 </html>
