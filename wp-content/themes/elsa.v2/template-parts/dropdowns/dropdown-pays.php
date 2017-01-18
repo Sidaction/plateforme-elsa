@@ -1,18 +1,25 @@
+<?php
 
+  $dd_pays_titre = get_field('dd-pays-title', 'options');
+  $dd_pays_img = get_field('dd-pays-img', 'options');
+  $dd_pays_texte = get_field('dd-pays-text', 'options');
 
-<div class="dd_group">
+?>
+
+<div class="dd_group bg-cut">
   <div class="wrap">
 
-    <h4>Tous les Pays</h4>
-    
+    <div class="dd_title">
+      <h4><?php echo $dd_pays_titre; ?></h4>
+    </div>
+
     <div class="row">
 
-      <div class="m-2col">
-        <img src="" class="">
+      <div class="m-3col dd_img">
+        <img src="<?php echo $dd_pays_img; ?>" class="">
       </div>
       
-      <div class="m-4col m-last">
-
+      <div class="m-5col m-last has-2col dd_content">
 
         <?php 
 
@@ -39,12 +46,12 @@
           
             if ($query_pays->have_posts()) :
               $results = '<h3>'.$region->name.'</h3>';
-              $results .= '<ul class="listePays">';
+              $results .= '<ul class="dd_pays_row no-bullets ">';
             
               while ($query_pays->have_posts()) : $query_pays->the_post();
               
                 $slug = get_permalink($post->ID);
-                $results .= '<li><a href="'. $slug .'" title="'. get_the_title() .'">»  ' . get_the_title() .'</a></li>';
+                $results .= '<li><a class="btn-inline" href="'. $slug .'" title="'. get_the_title() .'">' . get_the_title() .'</a></li>';
                 
               endwhile; 
 

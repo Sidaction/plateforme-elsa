@@ -21,18 +21,18 @@
     float: left;
   } 
 
-  .main-navigation ul {
+  .menu-menu-principal-container ul {
     list-style: none;
     margin: 0;
     padding-left: 0;
   }
-    .main-navigation li {
+    .menu-menu-principal-container > ul > li {
       display: inline-block;
 
       @include up-to(medium) {
       }
     }
-      .main-navigation .menu-item > a {
+      .menu-menu-principal-container .menu-item > a {
         color: $white;
 
         &:hover {
@@ -53,23 +53,61 @@
   left: 0;
   right: 0;
   color: $black;
+  padding-top: $base_line_height * 2;
   padding-bottom: $base_line_height * 3;
   border-bottom: $base_line_height solid $color_primary;
   z-index: 99;
   
   &.dd-thematiques {
-
+    //display: block;
+   
+    .dd_title {
+      background-color: $color_ressources;   
+    }
   }
   &.dd-pays {
-
+   
+    .dd_title {
+      background-color: $color_medias;   
+    }
   }
-  &.dd-boiteoutils {
-
+  &.dd-boites {
+   
+    .dd_title {
+      background-color: $color_ressources;   
+    }
   }
   &.dd-associations {
+   
+    .dd_title {
+      background-color: $color_medias;   
+    }
+  }
 
-  }    
+  h4 {
+    margin: 0;
+  }
 }
+
+
+.dd_group {
+  margin-bottom: $base_line_height * 2;
+  padding-bottom: $base_line_height;
+}
+  .dd_img {
+
+  }
+
+  .dd_title {
+    padding: $base_line_height;
+    margin-top:  - $base_line_height;
+    margin-bottom: $base_line_height;
+    color: $white;
+  }
+
+  .dd_content {
+
+  }
 
   .js-dropdown-trigger.open {
 

@@ -1,30 +1,31 @@
+<?php
 
+  $dd_assos_titre = get_field('dd-assos-title', 'options');
+  $dd_assos_texte = get_field('dd-assos-text', 'options');
+  $dd_assos_annuaire = get_field('dd-assos-url', 'options');
 
-<div class="dd_group">
+?>
+
+<div class="dd_group bg-cut">
   <div class="wrap">
 
-    <h4>Toutes les associations</h4>
-    
-    <div class="row">
+    <div class="dd_title">
+      <h4><?php echo $dd_assos_titre; ?></h4>
+    </div>
+
+    <div class="row dd_content">
 
       <div class="m-4col">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. </p>
-
-        <p>Excepteur sint occaecat cupidatat non  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <?php echo $dd_assos_texte; ?>
       </div>
       
       <div class="m-4col m-last">
 
-        <a href="/associations" class="btn-primary">Consulter l'annuaire des associations</a>
+        <a href="<?php echo $dd_assos_annuaire; ?>" class="btn-primary">Consulter l'annuaire des associations</a>
       </div>
     </div>
 
-    <div>
-
+    <div class="row dd_content">
 
         <?php 
 
@@ -39,13 +40,13 @@
           $assos_query = new WP_Query( $assos_args );
 
           if ($assos_query->have_posts()) : 
-            echo '<ul class="no-bullets">';
+            echo '<ul class="no-bullets has-3col">';
 
             while ($assos_query->have_posts()) : $assos_query->the_post();
               
               $slug = get_permalink($post->ID);
 
-              echo '<li><a href="'. $slug .'" title="'. get_the_title() .'">' . get_the_title() .'</a></li>';
+              echo '<li><a class="btn-inline" href="'. $slug .'" title="'. get_the_title() .'">' . get_the_title() .'</a></li>';
 
             endwhile; 
             wp_reset_postdata();
