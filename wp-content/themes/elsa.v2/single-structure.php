@@ -28,16 +28,11 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
     <article class="main-content clearfix noback">
         <div class="page_title structure_title">
 
-            <!-- <div id="breadcrumb">
-            <div id="breadcrumbWrapper">Vous êtes ici » <a href="/">Accueil</a> » <a href="#"> <?php echo cnStrings::stripString(get_the_title(),80);?></a></div>
-          </div> -->
-
           <div class="wrap">
               <h1 class="h1">
                   <?php the_title();?>
               </h1> 
               <?php echo get_post_meta($post->ID, 'adresse', true);?> <?php echo get_post_meta($post->ID, 'cp', true);?> <?php echo get_post_meta($post->ID, 'ville', true);?>,                         <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
-
 
           </div>     
         </div>
@@ -234,7 +229,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
               <h3 class="h3">Sur le web</h3>
             </div>
             
-            <div class="group_list m-6col">
+            <div class="group_list m-5col m-last">
               <?php  echo $web; ?>
             </div>
 
