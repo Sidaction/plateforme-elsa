@@ -21,6 +21,10 @@ iframe {
   display: block;
   margin: auto;
   margin-bottom: $base_line_height;
+
+  .embed-plain & {
+    width: 100%;
+  }
 }
 
 
