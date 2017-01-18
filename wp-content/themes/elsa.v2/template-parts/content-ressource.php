@@ -11,7 +11,7 @@
           <div class="wrap row">
               <?php $cnSite->get_back_link(); ?> 
 
-              <h1 class="h1 m-6col">
+              <h1 class="h1 m-5col m-clearfix">
                   <?php the_title();?>
               </h1>  
           </div>     
@@ -26,11 +26,11 @@
 
                   <div class="page_actions">
 
-                    <?php if( $format=='link' && !empty($link) ) echo "<div class='dlDoc'>{$link}<a href='{$link}' title='Voir le site' target='_blank'><div class='bttDL'>Voir le site</a></div><div class='clear'></div></div>"?>
+                    <?php if( $format == 'lien' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site ( {$link} )</a>"?>
 
-                    <?php if( $format!='link' && $format!='video' && !empty($link) ) echo "<div class='dlDoc'>Télécharger le document<a href='{$link}' title='Télécharger le document' target='_blank'><div class='bttDL'>Télécharger</a></div><div class='clear'></div></div>"?>
+                    <!--   <?php if( $format!='lien' && $format!='video' && !empty($link) ) echo "<div class='dlDoc'>Télécharger le document<a href='{$link}' title='Télécharger le document' target='_blank'><div class='bttDL'>Télécharger</a></div><div class='clear'></div></div>"?> -->
                      
-                    <?php if(!empty($link_crips)) echo "<div class='dlDoc crips'>Notice issue du CRIPS<a href='{$link_crips}' title='Accéder au document sur le site du CRIPS' target='_blank'><div class='bttDL'>Accéder au document sur le site du CRIPS</a></div><div class='clear'></div></div>"?>
+                    <?php if(!empty($link_crips)) echo "<a href='{$link_crips}' class='btn-primary' title='Accéder au document sur le site du CRIPS' target='_blank'>Accéder au document sur le site du CRIPS</a>"?>
 
                     <?php
                       $files = rwmb_meta( 'file', 'type=file' );
@@ -55,10 +55,12 @@
                     </div>
                     
                     <div class="page_metas">
-                        
-                        <div class="page_metas_row">
-                          <?php if(!empty($auteurs)) echo '<span>Auteur(s) : </span>'.$auteurs;?>
-                        </div>
+
+                        <?php if(!empty($auteurs)) : ?>
+                          <div class="page_metas_row">
+                            <?php echo '<span>Auteur(s) : </span>'.$auteurs; ?>
+                          </div>
+                        <?php endif; ?>
                         
                         <div class="page_metas_row">
                           <?php echo get_the_term_list( $post->ID, 'pays_assoc', '<span>Pays : </span>', ', ' ); ?>
