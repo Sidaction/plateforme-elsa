@@ -69,11 +69,31 @@
             </div>
             
             <div class="">
-              <form id="rech">
-                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("pays_assoc", "selectBox", "Pays",'','',false); ?></div>
-                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("public_cibles", "selectBox", "Publics cibles",'','',false); ?></div>
-                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("activites", "selectBox", "Activités",'','',false); ?></div>
+              <form id="assos_filters">
+                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("pays_assoc", "js-selectBox", "Pays",'','',false); ?></div>
+                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("public_cibles", "js-selectBox", "Publics cibles",'','',false); ?></div>
+                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Activités",'','',false); ?></div>
               </form>
+            
+
+              <?php if( isset($_GET['pays_assoc']) && $_GET['pays_assoc'] != '' ) {
+                $pays = get_term_by('slug', $_GET['pays_assoc'], 'pays_assoc'); 
+                $name = $pays->name; 
+                echo 'Vous avez filtré sur un "pays" : <span class="meta">' . $name . '</span>';
+              }
+
+              if( isset($_GET['activites']) && $_GET['activites'] != ''  ) {
+                $activites = get_term_by('slug', $_GET['activites'], 'activites'); 
+                $name = $activites->name; 
+                echo 'Vous avez filtré sur une a"ctivité"" : <span class="meta">' . $name . '</span>';
+              }
+
+              if( isset($_GET['public_cibles']) && $_GET['public_cibles'] != ''  ) {
+                $public_cibles = get_term_by('slug', $_GET['public_cibles'], 'public_cibles'); 
+                $name = $public_cibles->name; 
+                echo 'Vous avez filtré sur un "public cible" : <span class="meta">' . $name . '</span>';
+              } ?>
+
             </div>
 
           </div>
@@ -140,13 +160,6 @@
 
   </section><!-- .site-content -->
 
-
-
-<script>
-  $(window).ready(function(){
-		$(".selectBox").change(function(){$('#rech').submit()});	
- })
-</script>
 
 
 
