@@ -42,7 +42,6 @@
                 <div class="m-5col">
                     <?php echo get_post_meta($post->ID, 'infos', true);?>
                     <?php echo get_post_meta($post->ID, 'liens', true);?>
-                    <?php echo get_post_meta($post->ID, 'rapport', true);?>
 
                     <?php if(!empty($rapport_activite)): ?>
                         <a href="<?php echo $rapport_activite;?>" target="_blank">» consulter le rapport d'activité</a>
@@ -83,7 +82,7 @@
             </div>
             
             <div class="group_list m-5col m-last">
-                Contenu
+                <?php echo get_post_meta($post->ID, 'rapport', true);?>
             </div>
 
         </div>
