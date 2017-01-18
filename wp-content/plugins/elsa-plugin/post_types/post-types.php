@@ -113,6 +113,7 @@ function register_custompost() {
   
   
   // post type diaporama
+  // Post type retiré du backoffice. Non utilisé...
     $args = array(
         'labels' => array(
             'name' => _x('Diaporama', 'taxonomy general name'),
@@ -121,15 +122,15 @@ function register_custompost() {
             'edit_item' => __('Editer la slide'),
         ),
         'public' => true,
-        'show_ui' => true,
+        'show_ui' => false,
         'query_var' => 'slide',
         'has_archive' => true,
-    'menu_icon' => '',
+        'menu_icon' => '',
         'supports' => array('title', 'thumbnail','excerpt')
     );
-
     register_post_type('diaporama', $args);
   
+
     $capabilities_cont = array(
       'publish_posts' => 'publish_conts',
       'edit_posts' => 'edit_conts',
