@@ -150,19 +150,20 @@ function register_custompost() {
   // post type contenus complémentaires
     $args = array(
         'labels' => array(
-            'name' => _x('Contenu complémentaires', 'taxonomy general name'),
-            'singular_name' => _x('Contenus complémentaires', 'taxonomy singular name'),
-            'add_new_item' => __('Ajouter un contenu'),
-            'edit_item' => __('Editer le contenu'),
+            'name'            => _x('Contenu complémentaires', 'taxonomy general name'),
+            'singular_name'   => _x('Contenus complémentaires', 'taxonomy singular name'),
+            'add_new_item'    => __('Ajouter un contenu'),
+            'edit_item'       => __('Editer le contenu'),
         ),
-        'public' => true,
-        'show_ui' => true,
-        'query_var' => 'contenu',
-        'capability_type' => 'cont',
-        'capabilities' => $capabilities_cont,
-            'has_archive' => true,
-        'menu_icon' => '',
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
+        'public'              => true,
+        'show_ui'             => true,
+        'query_var'           => 'contenu',
+        'capability_type'     => 'cont',
+        'capabilities'        => $capabilities_cont,
+        'has_archive'         => true,
+        'menu_icon'           => '',
+        'supports'            => array('title', 'editor', 'thumbnail', 'excerpt', 'author', 'category'),
+        'taxonomies'          => array( 'category' ),
     );
 
     register_post_type('contenu', $args);
@@ -171,7 +172,7 @@ function register_custompost() {
    
   
   register_taxonomy(
-    'boiteoutils', array('post'), 
+    'boiteoutils', array('post', 'contenu'), 
     array(
         'public' => true,
         'show_admin_column' => true,
@@ -186,7 +187,7 @@ function register_custompost() {
 
   
   register_taxonomy(
-    'region', array('post','pays'), 
+    'region', array('post','pays', 'contenu'), 
     array(
         'public' => true,
         'show_admin_column' => true,
@@ -370,14 +371,12 @@ function restrict_manage_posts() {
 
     $filters = get_object_taxonomies($typenow);
   
-
-
     foreach ($filters as $tax_slug) {
-  if(!empty($tax_slug)):
+      if(!empty($tax_slug)):
   
         $tax_obj = get_taxonomy($tax_slug);
     
-    $selectitem=(isset($_GET[$tax_obj->query_var]))?$_GET[$tax_obj->query_var]:'';
+        $selectitem=(isset($_GET[$tax_obj->query_var]))?$_GET[$tax_obj->query_var]:'';
         wp_dropdown_categories(array(
             'show_option_all' => __('' . $tax_obj->label),
             'taxonomy' => $tax_slug,
@@ -387,9 +386,9 @@ function restrict_manage_posts() {
             'hierarchical' => $tax_obj->hierarchical,
             'show_count' => false,
             'hide_empty' => false,
-      'hide_if_empty' => true
+            'hide_if_empty' => true
         ));
-    endif;
+      endif;
     }
   
 }

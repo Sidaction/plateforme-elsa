@@ -61,58 +61,60 @@ function rw_register_meta_box() {
  * Ressources
  */ 
 
-
   $meta_boxes[] = array(
-        'title' => 'Informations complémentaires',
-        'pages' => array('post'),
-        'context' => 'normal',
-        'priority' => 'high',
-        'fields' => array(
+    'title' => 'Informations complémentaires',
+    'pages' => array('post'),
+    'context' => 'normal',
+    'priority' => 'high',
+    'fields' => array(
       array(
-          'name' => 'Date d\'édition',
-          //'desc' => 'Entrez la date (aaaa-mm-jj)',
-          'id' => 'date-start',
-          'type' => 'text',
-        ),
-              
-       array(
-          'name' => 'Fichier si document à télécharger',
-          'id'   => "file",
-          'type' => 'file_advanced'
+        'name' => 'Date d\'édition',
+        //'desc' => 'Entrez la date (aaaa-mm-jj)',
+        'id' => 'date-start',
+        'type' => 'text',
+      ),        
+      array(
+        'name' => 'Fichier si document à télécharger',
+        'id'   => "file",
+        'type' => 'file_advanced'
       ),
-       array(
-                'name' => 'Lien si document en ligne ou vidéo',
-                'id' => 'link',
-                'type' => 'text',
-                'std' => '',
-            ),
-       array(
-                'name' => 'Remontée Fiche Thématique',
-                'id' => 'homefiche',
-                'type' => 'radio',
-                'options' => array(1=>'Oui ', 0=>'Non')
-            ),
-       array(
-                'name' => 'Lien CRIPS',
-                'id' => 'link_crips',
-                'type' => 'text'
-            ),
-       array(
-                'name' => 'Outil',
-                'id' => 'outil',
-                'type' => 'radio',
-                'options' => array(1=>'Oui ', 0=>'Non')
-            ),
-       
-       array(
-          'name' => 'Likes',
-          'id' => 'like',
-          'type' => 'text',
-           'std' => '0',
-        ),
-        
-     )
-    );
+      array(
+        'name' => 'Lien si document en ligne ou vidéo',
+        'id' => 'link',
+        'type' => 'text',
+        'std' => '',
+      ),
+      array(
+        'name' => 'Code embed pour élément audio (type <iframe ...>',
+        'id' => 'embed',
+        'type' => 'text',
+        'std' => '',
+      ),
+      array(
+        'name' => 'Remontée Fiche Thématique',
+        'id' => 'homefiche',
+        'type' => 'radio',
+        'options' => array(1=>'Oui ', 0=>'Non')
+      ),
+      array(
+        'name' => 'Lien CRIPS',
+        'id' => 'link_crips',
+        'type' => 'text'
+      ),
+      array(
+        'name' => 'Outil',
+        'id' => 'outil',
+        'type' => 'radio',
+        'options' => array(1=>'Oui ', 0=>'Non')
+      ), 
+      array(
+        'name' => 'Likes',
+        'id' => 'like',
+        'type' => 'text',
+         'std' => '0',
+      ),
+    )
+  );
   
   $meta_boxes[] = array(
         'title' => 'Auteurs et organismes associés',
@@ -433,23 +435,27 @@ function rw_register_meta_box() {
         'pages' => array('contenu'),
         'context' => 'normal',
         'priority' => 'high',
-        'fields' => array(
-          
-       array(
-          'name' => 'Fichier audio si son',
-          'id'   => "file",
-          'type' => 'file_advanced'
-      ),
-       array(
-          'name' => 'Code Youtube ou DailyMotion si vidéo',
-          'id'   => "link",
-          'type' => 'text'
-      ),
-       array(
-        'name' => 'Date de fin',
-        'id'   => "end_date",
-        'type' => 'date',
-      ),   
+        'fields' => array(    
+            array(
+                'name' => 'Fichier audio si son',
+                'id'   => "file",
+                'type' => 'file_advanced'
+            ),
+            array(
+                'name' => 'Code Youtube ou DailyMotion si vidéo',
+                'id'   => "link",
+                'type' => 'text'
+            ),
+            array(
+                'name' => 'Code embed pour élément audio (type &lt;iframe ...&gt;',
+                'id'   => "embed",
+                'type' => 'textarea'
+            ),
+            array(
+              'name' => 'Date de fin',
+              'id'   => "end_date",
+              'type' => 'date',
+            ),   
     )
   );
   

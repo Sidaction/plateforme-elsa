@@ -1,4 +1,5 @@
 
+
   <section id="site-content" class="site-content single-media">
 
     <article class="main-content clearfix noback">
@@ -16,17 +17,14 @@
               <div class="m-3col m-last media_aside">
                   <div class="media_metas">
                       
-                      <div class="page_metas_row">
-                        <?php if(!empty($auteurs)) echo '<span>Auteur(s) : </span>'.$auteurs;?>
-                      </div>
+                      
+                      <?php if(!empty($auteurs)) echo '<div class="page_metas_row"><span>Auteur(s) : </span>'.$auteurs .'</div>';?>
                       
                       <div class="page_metas_row">
                         <?php echo get_the_term_list( $post->ID, 'pays_assoc', '<span>Pays : </span>', ', ' ); ?>
                       </div>
 
-                      <div class="page_metas_row">
-                        <?php if(!empty($date_edition)) echo '<span>Date d’édition : </span>' . $date_edition;?> 
-                      </div>
+                      <?php if(!empty($date_edition)) echo '<div class="page_metas_row"><span>Date d’édition : </span>' . $date_edition . '</div>';?> 
 
                       <div class="page_metas_row">
                         <span>Thème(s) :</span> <?php the_category(', '); ?>
@@ -47,15 +45,42 @@
             <div class="wrap row">
                 <div class="m-5col is-centered">
 
-                  <?php the_content();?>
-
+                  <?php // VIDEO ?>
                   <?php if($format == 'video' && !empty($link)) echo wp_oembed_get($link); ?>
 
-                </div>
+                  <?php // AUDIO ?>
+                  <?php if( $format == 'audio' && !empty($link) ) echo "<a href='{$link}' title='Consulter le document sonore' target='_blank' class='btn-primary'>Consulter le document sonore ( {$link} )</a>"?>
+                  <?php if( $format == 'audio' && !empty($embed) ) echo "<div class='embed-plain'>". $embed . "</div>" ?>
+                  
+                    <?php
+                      $files = rwmb_meta( 'file', 'type=file' );
+                      foreach ( $files as $info ) {
+                    
+                        $size = filesize( $info['path'] );
+                        $kind = pathinfo($info['path'], PATHINFO_EXTENSION);
+                        $size = false === $size ? 0 : size_format( $size, 2 );
+                        
+                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consultez la ressource <br> [{$info['title']} ({$kind} -{$size} )]</a>";
+                      }?>
 
+                  <?php // DIAPORAMA ?>
+                  <?php if( get_field('images') ) : $images = get_field('images'); ?>
+                      <ul class="no-bullets bxslider">
+                          <?php foreach( $images as $image ): ?>
+                              <li>
+                                <img src="<?php echo $image['sizes']['diaporama']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                <p><?php echo $image['caption']; ?></p>
+                              </li>
+                          <?php endforeach; ?>
+                      </ul>
+                    <?php endif; ?>
+
+                  <?php // LE CONTENU ?>
+                  <?php the_content();?>
+
+                </div>
             </div><!-- .wrap -->
         </div><!-- .page_content -->
-
 
 
         <div class="page_tools blocs_group">
