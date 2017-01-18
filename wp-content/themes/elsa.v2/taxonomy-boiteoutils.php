@@ -25,10 +25,11 @@
         $tags = '';
     }
     
-    $boites = ''; 
-
-    if( !isset($tags) ) {
-        $tags = '';
+    if( isset( $meta['boites'] ) ) {
+        $boites = $meta['boites'];   
+    } 
+    else {
+        $boites = '';
     }
 
     if( isset( $meta['image'] ) ) {
@@ -42,7 +43,7 @@
 get_header(); 
 
 ?>
-    <section id="site-content" class="">
+    <section id="site-content" class="site-content">
 
         <article class="main-content clearfix">
             <div class="page_title archives_title">
@@ -66,8 +67,7 @@ get_header();
                             <img src="<?php echo $vignette_src; ?>">
                         </div>
 
-                        <?php if( $tags != '' ) : ?>
-                            <?php if( $boites != '' ) : ?>
+                        <?php if( $tags != '' || $boites != '') : ?>
                                 <div class="page_metas">
                                     <?php if( $tags !== '' ) : ?>
                                     <div class="page_metas_row">
@@ -77,16 +77,15 @@ get_header();
 
                                     <?php if( $boites !== '' ) : ?>
                                         <div class="page_metas_row">
-                                            <span>Boites à outils liées : <?php echo $boites; ?></span>
+                                            <span>Boites à outils liées :</span> <?php echo $boites; ?>
                                         </div>
                                     <?php endif; ?>
                                 </div>
-                            <?php endif; ?>
                         <?php endif; ?>
 
                         <div class="page_actions">
                             <a href="#recommandations" class="scroll btn-primary plain">Voir les ressources recommandées</a>
-                            <a href="#" class="btn-secondary plain">Voir toutes les ressources</a>
+                            <a href="/recherche-documentaire/?boite=<?php echo $boite_slug; ?>" class="btn-secondary plain">Voir toutes les ressources</a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +93,7 @@ get_header();
         </article>
 
             
-        <div id="" class="blocs_group">
+        <div id="" class="blocs_group bg-cut">
             <div class="wrap row">
 
                 <div class="group_title grid-title m-2col">
@@ -171,7 +170,7 @@ get_header();
                 </div>
 
                 <div class="row">
-                    <a href="#" class="btn-secondary">Voir toutes les ressources</a>
+                    <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn-secondary">Voir toutes les ressources</a>
                 </div> 
                 
             </div><!-- .wrap -->

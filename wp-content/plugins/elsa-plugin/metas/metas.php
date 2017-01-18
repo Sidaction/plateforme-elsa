@@ -483,7 +483,12 @@ function register_taxonomy_meta_boxes(){
           'type' => 'wysiwyg',
         ),
         array(
-          'name' => 'Détails',
+          'name' => 'Boîtes à outils liées',
+          'id'   => 'boites',
+          'type' => 'wysiwyg',
+        ),
+        array(
+          'name' => 'Mots clefs liés',
           'id'   => 'details',
           'type' => 'wysiwyg',
         ),
