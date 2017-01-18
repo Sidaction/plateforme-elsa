@@ -10,5 +10,10 @@
     margin-right: $base_line_height / 2;
     padding-left: $base_line_height / 2;
     padding-right: $base_line_height / 2;
+    background-color: $white;
+    
+    &.active {
+      background:  none;
+    }
   }
 }

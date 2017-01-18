@@ -2,14 +2,12 @@
 
 
 <?php if( $type == 'media' ) : ?>
-  <div class="bloc_item bloc--<?php echo $type; ?>">
+  <div class="bloc_item bloc--<?php echo $type; ?> bg_cover" style="background-image:url(<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>)">
       <a href="#" class="bookmark"><span class="icon-bookmark_full"><span class="path1"></span><span class="path2"></span></span></a>
       <a href="<?php the_permalink();?>">
-          <?php get_terms(); ?>
-          <span class="title"><?php the_title();?></span>
           <?php echo $auteurs = $cnSite->get_authors($post->ID); ?>
-
-          <div class="btn-inline"><span class="icon-arrow_right"></span> Regarder</div>
+          <?php get_terms(); ?>
+          <h3 class="h3 bloc_title"><?php the_title();?></h3>
       </a> 
   </div>
 
@@ -20,7 +18,7 @@
 
       <a href="<?php the_permalink();?>">
           <?php get_terms(); ?>
-          <span class="title"><?php the_title();?></span>
+          <span class="bloc_title"><?php the_title();?></span>
           <?php echo $auteurs = $cnSite->get_authors($post->ID); ?>
       </a> 
     

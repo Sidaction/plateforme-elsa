@@ -32,3 +32,13 @@
     right: -13px;
   }
 }
+
+  .bloc_title {
+    display: inline-block;
+    
+    .bloc--media & {
+      padding: $base_line_height / 4;
+      background-color: $color_medias;
+      opacity: 0.9;
+    }    
+  }

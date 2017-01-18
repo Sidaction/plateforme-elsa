@@ -16,7 +16,7 @@ get_header(); ?>
 
     <article class="main-content clearfix noback">
         
-        <div class="page_title ressource_title">
+        <div class="page_title archives_title">
        
             <div class="wrap row">
                 <h1 class="h1 m-6col is-centered">
@@ -37,7 +37,7 @@ get_header(); ?>
                         $args = array(
                             'posts_per_page' => 10,
                             'post_type' => array('post', 'contenu'),
-                            'format' => array('video', 'diaporama'),
+                            'format' => array('video', 'diaporama', 'audio'),
                             'post_status' => 'publish',
                             'paged' => get_query_var( 'paged' )
                         );
