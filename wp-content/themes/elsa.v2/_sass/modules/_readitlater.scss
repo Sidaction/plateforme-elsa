@@ -1,0 +1,20 @@
+
+
+
+
+
+.slide-out-div {
+  display: none !important;
+}
+
+
+span#gema75_wc_wc_count_badge {
+  display: inline-block;
+  margin-left: $base_line_height / 3;
+  color: $color_primary !important; 
+  border: 2px solid $color_primary;
+  height: $base_line_height / 3;
+  width:  $base_line_height / 3;
+  text-align: center;
+  line-height: $base_line_height / 3;
+}

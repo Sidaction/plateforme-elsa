@@ -6,9 +6,14 @@ jQuery(document).ready(function($){
 
   console.log('let\'s begin');
 
+
   /*
    * STICKY MENU
    */
+
+   // TODOS
+   // -> Problème au scroll des dropdowns
+
 
   var header = $('.site-header');
   var header_height = header.outerHeight();
@@ -29,6 +34,16 @@ jQuery(document).ready(function($){
 
 
 
+
+  /*
+   * BOOKMARKS / SELECTION STUFFS
+   */
+   
+  var item_selection = $('.item-selection');
+  item_selection.append('<span id="gema75_wc_wc_count_badge" class="selection_count"></span>');
+
+
+
   /*
    * MODALS
    */
@@ -45,6 +60,9 @@ jQuery(document).ready(function($){
 
     $('.modal').hide();
   });
+
+
+
 
   /*
    * DROPDOWNS
@@ -84,10 +102,12 @@ jQuery(document).ready(function($){
   });
 
 
+
   /*
-   * Smooth scrolling
+   * SMOOTH SCROLLING
    * Add smooth when clicking an anchor
    */
+
   var hashTagActive = "";
   $(".scroll").click(function (event) {
       if(hashTagActive != this.hash) { //this will prevent if the user click several times the same link to freeze the scroll.
@@ -119,23 +139,30 @@ jQuery(document).ready(function($){
   });
 
 
+
+
+  /*
+   * FILTRES SEARCH
+   */
+
   var search = $('.search-results');
+
 
   if( search.length > 0 ) {
 
     console.log('Begin search scripts');
 
-
     // XX RESULTS PER PAGE
     $("#pager1").change(function(){
-      $('#posts_per_page').val($(this).val());
+      console.log(  $(this).val() );
+
+      $('#posts_per_page').val( $(this).val() );
       submitAdvancedSearch();
     });
 
-
     // XX RESULTS PER PAGE
     $("#pager2").change(function(){
-      $('#posts_per_page').val($(this).val());
+      $('#posts_per_page').val( $(this).val() );
       submitAdvancedSearch();
     });
 
@@ -149,13 +176,16 @@ jQuery(document).ready(function($){
 function checkAS(){
   if($("li","#advancedSearch").length===0) $("#advancedSearch").slideUp();
 }
+
 function deleteAS(){
   $("li","#advancedSearch").remove();
   $("#advancedSearch").slideUp();
 }
 
 function getSearchFields(){
+
   var arrtags=[], arrcat=[], arrpays=[], arrregions=[];
+
   if($("input[name=totaltags]", "#recherche").val()!=="") arrtags = $("input[name=totaltags]", "#recherche").val().split(",");
   if($("input[name=totalcat]" , "#recherche").val()!=="") arrcat  = $("input[name=totalcat]", "#recherche").val().split(",");
   if($("input[name=totalpays]", "#recherche").val()!=="") arrpays = $("input[name=totalpays]", "#recherche").val().split(",");
@@ -167,6 +197,7 @@ function getSearchFields(){
   $("input[name=totalregions]", "#recherche").val("");
   
   if(arrtags.length!==0 || arrcat.length!==0 || arrpays.length!==0 || arrregions.length!==0) $("#advancedSearch").slideDown();
+
   if(arrtags.length!==0){
     for(var i=0; i<arrtags.length;i++){
       var tmpItem = $('<li data-value="'+arrtags[i]+'"></li>');
@@ -185,6 +216,7 @@ function getSearchFields(){
       });
     }
   }
+
   if(arrcat.length!==0){
     for(var i=0; i<arrcat.length;i++){
       var label = getLabel('cat',arrcat[i]);
@@ -206,6 +238,7 @@ function getSearchFields(){
       });
     }
   }
+
   if(arrpays.length!==0){
     for(var i=0; i<arrpays.length;i++){
       var label = getLabel('pays',arrpays[i]);
@@ -227,6 +260,7 @@ function getSearchFields(){
       });
     }
   }
+
   if(arrregions.length!==0){
     for(var i=0; i<arrregions.length;i++){
       var label = getLabel('pays',arrregions[i]);
@@ -248,58 +282,78 @@ function getSearchFields(){
       });
     }
   }
-  
+
 }
+
+
 function getLabel(type, value){
+
   var label = "";
+
   switch(type){
+
     case "cat":{
       $("option", "#select-category").each(function(index, element) {
         if($(this).val()==value) label = $(this).text();
       });
     } break;
+    
     case "pays":{
       $("option", "#select-pays_assoc").each(function(index, element) {
         if($(this).val()==value) label = $(this).text();
       });
-    }break;
+    } break;
   }
+
   return label;
 }
 
 
 function submitAdvancedSearch(){
+
   var ttxt = $("input[name=tag]").val();
   var fsep = $("li", "#listKeywords").length>0 ? ",":"";
+  
   if(ttxt!=="") $("input[name=totaltags]").val(ttxt+fsep);
+  
   $("li", "#listKeywords").each(function(index, element) {
     var sep = index == $("li", "#listKeywords").length-1 ? "":",";
     $("input[name=totaltags]").val($("input[name=totaltags]").val()+$(this).attr("data-value")+sep);
   });
+  
   $("li", "#listThemes").each(function(index, element) {
     var sep = index == $("li", "#listThemes").length-1 ? "":",";
     $("input[name=totalcat]").val($("input[name=totalcat]").val()+$(this).attr("data-value")+sep);
   });
+  
   $("li", "#listRegions").each(function(index, element) {
     //var sep = index == $("li", "#listRegions").length-1 ? "":","
     var sep = ",";
     if($(this).attr("data-type")=="region") $("input[name=totalregions]").val($("input[name=totalregions]").val()+$(this).attr("data-value")+sep);
     else $("input[name=totalpays]").val($("input[name=totalpays]").val()+$(this).attr("data-value")+sep);
   });
+  
   $("input[name=totalregions]").val($("input[name=totalregions]").val().slice(0,-1));
+  
   $("input[name=totalpays]").val($("input[name=totalpays]").val().slice(0,-1));
+  
   $("#rechRess").submit();
 }
 
 
 function showTooltip(txt, x, y){
+
   var tt = $("#toolTip");
+
   tt.html(txt);
   TweenMax.to(tt, 0, {autoAlpha:0, left:x+15, top:y+30});
   TweenMax.to(tt, 0.7, {autoAlpha:1,left:x+15,top:y+15, ease:Power2.easeOut});
 }
+
 function hideTooltip(){
+
   var tt = $("#toolTip");
+
   TweenMax.to(tt, 0.5, {autoAlpha:0});
 }
 
@@ -308,10 +362,8 @@ function hideTooltip(){
 
 
 
+
   console.log('this is the end my friend');
-
-
-
 
 });
 
@@ -322,19 +374,24 @@ function hideTooltip(){
  
   /*SEARCH*/
   if($("#advancedSearch").length){
+    
     getSearchFields();
+    
     var hasFocus = false;
+    
     $(".btnerase","#advancedSearch").click(function(e) {
       deleteAS();
     });
+    
     $("#recherche button, #formatbtn").click(function(e) {
       if($("#advancedSearch").css("display")=="none"){
         
       }else{
         e.preventDefault();
-        submitAdvancedSearch();
+        //submitAdvancedSearch();
       }
     });
+
     $("input[type=text]", "#recherche").hover(function(e){
       if(!hasFocus) showTooltip("Vous pouvez saisir plusieurs mots clés<br/>en les séparant par une virgule.", e.pageX, e.pageY);
       },function(e){
@@ -342,36 +399,49 @@ function hideTooltip(){
     });
     
     $("input[type=text]", "#recherche").focusin(function(e) {
+
       $(this).keypress(function(e) {
+
         var str = $("input[type=text]", "#recherche").val();
+
         if(e.which == 44){// || e.which==13){
+
           e.preventDefault();
+
           if(str !== ""){
+
             $("#advancedSearch").slideDown(500);
             var tmpItem = $('<li data-value="'+str+'"></li>');
             tmpItem.append('<div class="btndel"></div>');
             tmpItem.append("<span>"+str+"</span>");
             $("#listKeywords").append(tmpItem);
+
             $(".btndel",tmpItem).hover(function(e){
               showTooltip("Supprimer", e.pageX, e.pageY);
             },function(e){
               hideTooltip();
             });
+
             $(".btndel",tmpItem).click(function(e) {
               hideTooltip();
               $(this).parent().remove();
               checkAS();
             });
+
             $("input[type=text]", "#recherche").val("");
           }
         }
+        
         if(e.which == 13){
           if(str !== "") submitAdvancedSearch();
         }
       });
+
       hideTooltip();
       hasFocus = true;
+
     });
+
     $(this).focusout(function(e) {
       hasFocus = false;
     });
