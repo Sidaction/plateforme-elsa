@@ -39,7 +39,9 @@ if (!class_exists('Gema75_Read_It_Later_Frontend_User') && class_exists('Gema75_
 				add_action( 'wp_ajax_nopriv_save_wishlist_ajax_for_logged_in_users', array( $this, 'save_wishlist_ajax_for_logged_in_users' ));
 				
 				
-				
+				//add our text color and size css
+				add_action('wp_footer',array($this,'add_custom_css'));
+
 		
 		}
 		
@@ -149,8 +151,6 @@ if (!class_exists('Gema75_Read_It_Later_Frontend_User') && class_exists('Gema75_
 
 			//if logged in 
 			if(is_user_logged_in() && in_the_loop()){
-			
-				
 				
 					$current_user_id = get_current_user_id();
 					
@@ -428,10 +428,61 @@ if (!class_exists('Gema75_Read_It_Later_Frontend_User') && class_exists('Gema75_
 			
 		}
 		
+
 	
+		/*
+		*   og:meta for Facebook and Pinterest
+		*/
+		public function get_og_meta(){
+			
+			global $gema75_read_it_later;
+		
+			echo '<!-- OGMETA by Gema75 Read it later plugin start --> ' . PHP_EOL;
+			echo '<meta property="og:title" content="'. wp_title( '|', false, 'right' ) . '"/>' . PHP_EOL;
+			echo '<meta property="og:site_name" content="'. get_bloginfo('name').'" />' . PHP_EOL;
+			echo '<meta property="og:url" content="' . $gema75_read_it_later->prepare_og_meta_url() . '"/>' . PHP_EOL;
+			echo '<meta property="og:description" content="'.$gema75_read_it_later->social_share_facebook_text.'"/>' . PHP_EOL;
+			
+			if($gema75_read_it_later->social_share_logo_url!=''){
+				echo '<meta property="og:image" content="'.$gema75_read_it_later->social_share_logo_url.'" />' . PHP_EOL;
+			}
+			
+			echo '<!-- OGMETA by Gema75 Read it later plugin ends --> ' . PHP_EOL;
+			
+		}
+
+		/*
+		*	Inserts og:meta for Facebook and Pinterest
+		*/
+		public function insert_og_meta_in_head(){
+		
+			add_action( 'wp_head', array($this,'get_og_meta'), 5 );
+			
+		}		
+		
+				
+
+		public function add_custom_css(){
+			global $gema75_read_it_later;
+			
+			?>
+				<style type="text/css">
+					
+					span.gema75_read_it_later_text{
+						color:<?php echo $gema75_read_it_later->readitlater_text_color; ?>;
+						font-size:<?php echo $gema75_read_it_later->readitlater_text_size; ?>px;
+					}
+					
+				</style>
+			<?php
+		}
+
+				
 		
 	} // end class Gema75_Read_It_Later_Frontend_User
 	
 } //end if class exists Gema75_Read_It_Later_Frontend_User	
 
 $gema75_ril_frontend =  new Gema75_Read_It_Later_Frontend_User();
+
+//print_r($gema75_ril_frontend);

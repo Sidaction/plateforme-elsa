@@ -5,8 +5,8 @@ global  $post , $gema75_ril_frontend , $gema75_read_it_later;
 
 
 //remove the "add to RIL" action
-//remove_action( 'the_content', array( $gema75_ril_frontend, 'show_readitlater_after_content' ),30 );
-//remove_action( 'the_content', array( $gema75_ril_frontend, 'show_read_it_later_after_title' ),30 );
+remove_action( 'the_content', array( $gema75_ril_frontend, 'show_readitlater_after_content' ),30 );
+remove_action( 'the_content', array( $gema75_ril_frontend, 'show_read_it_later_after_title' ),30 );
 
 
 //logged in users
@@ -35,11 +35,14 @@ if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list
 			?>
 			
 			<div style="height:150px;">
-				<div style="width: 40%;float: left;padding:1% 2%;"> <a href="<?php  the_permalink(); ?>">   
+				<div style="width: 20%;float: left;padding:1% 2%;"> <a href="<?php  the_permalink(); ?>">   
 				<?php  the_post_thumbnail(); ?> </a></div>
-				<div style="width: 55%;float: left;"><p> <a href="<?php  the_permalink(); ?>"> <?php echo the_title(); ?></a></p>
+				<div style="width: 75%;float: left;"><p> <a href="<?php  the_permalink(); ?>"> <?php echo the_title(); ?></a></p>
 				<?php the_excerpt(); ?>
 				<a href="#" class="removeFromRILButton" data-readitlater-id="<?php echo $post_id ;?>" ><?php echo $gema75_read_it_later->remove_from_readitlater_text ;?></a></div>
+				
+				 
+				
 
 			</div>
 			
@@ -53,6 +56,4 @@ if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list
 	wp_reset_postdata();
 	
 
-} else {
-	echo "Your Read It Later List is empty";
 }
