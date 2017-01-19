@@ -38,7 +38,7 @@
 
 
   /// SI OUTILS IS CHECK
-  if(isset($_GET['outils']) && $_GET['outils']==1){
+  if( isset($_GET['outils']) && $_GET['outils'] == 1 ){
 		$args['meta_query'] = array(
 			array(
 				'key' => 'outil',
@@ -122,6 +122,8 @@
 
   // SETTINGS FOR QUERY
 
+//  var_dump( $_GET['posts_per_page'] );
+
   if(!empty($_GET['posts_per_page'])) {
     $post_per_page = $_GET['posts_per_page'];
   }
@@ -138,7 +140,7 @@
   if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
     $_SESSION['args'] = $args;
 
-  var_dump($args);
+  // var_dump($args);
 
   $results = array();
 
@@ -194,7 +196,7 @@
               </ul>
 
             </div>
-            
+
 
             <div class="m-6col group_content">
 
@@ -249,14 +251,13 @@
 
 
                   <div id="advancedSearch">
-                    <div class="barre"></div>
                     <ul id="listKeywords"></ul>
                     <ul id="listThemes"></ul>
                     <ul id="listRegions"></ul>
-                    <a class="btnerase" href="#">&raquo; effacer les critères</a>
+                    <a class="btnerase btn-inline" href="#">Effacer les critères</a>
                   </div>
 
-                  <div><button id="formatbtn" class="btn-primary">Filtrer</button></div>
+                  <input type="submit" id="formatbtn" class="btn-primary" value="Filtrer">
 
                 </div>
 
@@ -289,7 +290,7 @@
             <?php endif;?>
             
 
-              <ul class="no-bullets">
+              <ul id="search_list_container" class="no-bullets">
 
                 <?php if ( $wp_query->have_posts() ) : ?>
                 
@@ -301,42 +302,16 @@
                       $pays = cnLib::get_main_term_slug($post->ID, 'pays_assoc');
                       $main_author = get_post_meta($post->ID, 'first_org', true);
                       $format = cnLib::get_main_term_slug($post->ID, 'format');
-                    ?>
 
-                    <li class="search_item">
+                      set_query_var( 'cat', $cat );
+                      set_query_var( 'pays', $pays );
+                      set_query_var( 'main_author', $main_author );
+                      set_query_var( 'format', $format );
+                      set_query_var( 'cnSite', $cnSite );
 
-                        <a href="<?php the_permalink();?>?ref=search" class="linkProg">
-                          <h4 class="h4 search_item-title"><?php the_title();?></h4>
-                        </a>
+                      get_template_part('template-parts/parts/part', 'listitem'); ?>
 
-                          <div class="row">
-                            <div class="m-1col search_item-format">
-                                <span class="meta"><?php echo $format; ?></span>
-                            </div>
 
-                            <div class="m-4col search_item-thematiques">
-                              <?php if(!empty($cat) or !empty($pays)) : ?>
-                                <span class="meta">Thématiques : </span>
-                                <?php if(!empty($cat)) echo $cat ;?><?php if(!empty($cat) && !empty($pays)) echo  ' - ';?><?php echo $pays;?>
-                              <?php endif; ?>
-                            </div>
-                            
-                            <div class="m-3col search_item-auteurs">
-                              <?php                              
-                              if(!empty($main_author)){ ?>
-                                <span class="meta">Auteur(s) : </span>
-                                <?php $permalink = get_permalink( $main_author );
-                                if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>";
-                              }
-                              else { ?>
-                                <span class="meta">Auteur(s) : </span>
-                                <?php echo $cnSite->get_authors($post->ID);
-                              } ?>
-                            </div>
-                            
-                          </div>
-
-                    </li>
                     <?php endwhile;?>
                     <?php else : ?>
                     <p>Désolé, il n'y a pas de résultats sur les critères sélectionnés</p>
