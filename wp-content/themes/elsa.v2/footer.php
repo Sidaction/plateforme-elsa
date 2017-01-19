@@ -9,7 +9,7 @@
         </div>
 
         <div class="m-4col">
-            <ul>
+            <ul class="no-bullets">
             <?php 
                 $args = array(
                     'post_type' => 'structure',
@@ -23,7 +23,7 @@
                 if( $wp_query->have_posts() ) :
                     while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
 
-                        <li><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><?php the_post_thumbnail('medium');?></a></li>
+                        <li class="is-on-left "><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><?php the_post_thumbnail('medium');?></a></li>
                     
                     <?php endwhile;
                 endif;
@@ -40,22 +40,30 @@
     <div class="wrap row">
 
         <div class="m-5col">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <?php the_field('elsa_text', 'options'); ?>
         </div>
 
         <div class="m-3col">
-            menus.
+            <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'tertiary-menu' ) ); ?>
+
+            <h5>Restons en contact</h5>
+
+            <ul class="no-bullets">
+                <li><a href="#" class="btn-inline">Nous soumettre une ressource</a> </li>
+                <li><a href="#" class="btn-inline">Nous écrire</a> </li>
+                <li><a href="#" class="btn-inline">Nous suivre sur les réseaux</a> </li>
+            </ul>
+
+            <form>
+                <input type="email">
+                <input type="submit" class="btn-secondary" value="S'inscrire à la newsletter">
+            </form>
         </div>
 
     </div>
 
     <div class="wrap row">
-        Mentions légales - Crédits
+        <?php wp_nav_menu( array( 'theme_location' => 'bottom', 'menu_id' => 'bottom-menu' ) ); ?>
     </div>
     
 
