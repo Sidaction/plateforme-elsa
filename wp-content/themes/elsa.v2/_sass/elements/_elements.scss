@@ -1,8 +1,12 @@
 
-@import "sprite";
 @import "lists";
 @import "tables";
 
+
+
+/*
+ * BLOCS
+ */
 
 .bloc_item {
   height: 200px;
@@ -42,3 +46,44 @@
       opacity: 0.9;
     }    
   }
+
+
+
+
+
+/*
+ * LISTS
+ */
+
+.list_item {
+  position: relative;
+  border-top: 1px solid $gray;
+  padding: $base_line_height 0;
+}
+  .list_item_inner {
+    padding-left: $base_line_height * 4;
+  }
+    .list_item-icons {
+      position: absolute;
+      right: 0;
+    }
+    .list_item-bookmark {
+      position: absolute;
+      width: $base_line_height * 4;
+      float: left;
+    }
+    .list_item-title {
+      margin-bottom: $base_line_height / 2;
+    }
+    .list_item-thematiques {
+      padding-right: $base_line_height / 2;
+    }
+
+
+
+
+
+
+
+
+
