@@ -30,13 +30,21 @@ get_header(); ?>
             </div>
         <?php } ?>
 
-        <div class="page_content clearfix">
+        <div class="page_content clearfix  bg-cut blocs_group">
             <div class="wrap row">
 
-                <?php the_content(); ?>
+                <div class="group_title m-2col">
+                  <div class="exportxls"><a href="../extract" class="btn-inline">Exporter au format xls</a></div>
+                </div>
 
-                <?php echo do_shortcode( '[gema75_ril]' ); ?>
+                <div class="m-5col m-last">
+                    <?php the_content(); ?>
+                </div>
 
+                <div class="clearfix">
+                    <?php echo do_shortcode( '[gema75_ril]' ); ?>
+                </div>
+                
             </div><!-- .wrap -->
         </div><!-- .page_content -->
 
