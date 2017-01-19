@@ -35,7 +35,6 @@
         <div class="m-5col">
             <div class="top-navigation">
                 <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu' ) ); ?>
-
             </div>
         </div>
 
