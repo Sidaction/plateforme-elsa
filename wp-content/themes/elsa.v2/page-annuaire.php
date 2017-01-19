@@ -111,23 +111,23 @@
                   $email = get_post_meta($post->ID, 'email', true);
                   $link = get_post_meta($post->ID, 'link', true);?>
 
-                    <li class="search-item">
+                    <li class="search_item">
                       <a href="<?php the_permalink();?>">
                         <h4 class="h4"><?php the_title();?></h4>
                       </a>
                       
                       <div class="row">
-                        <div class="m-1col">
+                        <div class="m-1col search_item-pays">
                           <span class="meta"> <?php echo cnLib::get_terms_withoutlink($post->ID, "pays_assoc", $separ = ", ");?></span>
                         </div>
 
-                        <div class="m-5col">
+                        <div class="m-5col search_item-publics">
                           <span class="meta">Public(s) cible(s) : </span><?php echo cnLib::get_terms_withoutlink($post->ID, "public_cibles", $separ = ", ");?>
                           <div class="clearfix"></div>
                           <span class="meta">Activité(s) : </span><?php echo cnLib::get_terms_withoutlink($post->ID, "activites", $separ = ", ");?>
                         </div>
                         
-                        <div class="m-2col">
+                        <div class="m-2col search_item-contact">
                           <ul class="no-bullets">
 
                             <?php if(!empty(get_post_meta($post->ID, 'tel', true))):?>

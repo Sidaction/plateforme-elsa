@@ -207,7 +207,7 @@
                   </div>
                   
                   <div class="row">
-                    <div class="filter-thematique m-2col">
+                    <div class="filter-thematique m-2col m-clearfix">
                       <?php cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
                     </div>
                     
@@ -273,18 +273,19 @@
         <div class="wrap ">
 
             <?php if($wp_query->found_posts > 0) :?>
-            <div class="navDlSearch results_nav clearfix">
-              
-                <select class="selectBox" id="pager1">
-                    <option value="10">10 résultats par page</option>
-                    <option value="20">20 résultats par page</option>
-                    <option value="50">50 résultats par page</option>
-                    <option value="-1">Tous les résultats</option>
-                </select>
-
-                <?php cnLib::pagination($totalpages); ?>
-
-            </div>
+              <div class="results_nav clearfix row">
+                  <div class="nav_postperpage m-2col">
+                      <select class="selectBox" id="pager1">
+                          <option value="10">10 résultats par page</option>
+                          <option value="20">20 résultats par page</option>
+                          <option value="50">50 résultats par page</option>
+                          <option value="-1">Tous les résultats</option>
+                      </select>
+                  </div>
+                  <div class="nav_pager m-5col m-last">
+                      <?php cnLib::pagination($totalpages); ?>
+                  </div>
+              </div>
             <?php endif;?>
             
 
@@ -294,44 +295,46 @@
                 
                 <?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
                 
-                  <?php $results[]=$post->ID;?>
-                    <li class="search-item">
+                    <?php 
+                      $results[] = $post->ID;
+                      $cat = cnLib::get_terms_withoutlink($post->ID, 'category');
+                      $pays = cnLib::get_main_term_slug($post->ID, 'pays_assoc');
+                      $main_author = get_post_meta($post->ID, 'first_org', true);
+                      $format = cnLib::get_main_term_slug($post->ID, 'format');
+                    ?>
+
+                    <li class="search_item">
+
                         <a href="<?php the_permalink();?>?ref=search" class="linkProg">
-                        
-                          <span class="title"><?php the_title();?></span>
-                          
-                          <?php
-                            $cat = cnLib::get_terms_withoutlink($post->ID, 'category');
-                            $pays = cnLib::get_main_term_slug($post->ID, 'pays_assoc');
-
-                            if(!empty($cat) or !empty($pays)) : ?>
-                              <span class="first_org">
-                                <?php if(!empty($cat)) echo $cat ;?><?php if(!empty($cat) && !empty($pays)) echo  ' - ';?><?php echo $pays;?></span>
-                            <?php endif; ?>
-
+                          <h4 class="h4 search_item-title"><?php the_title();?></h4>
                         </a>
 
-                        <?php
-                          $main_author= get_post_meta($post->ID, 'first_org', true);
-                                
-                          if(!empty($main_author)){
-                            $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($main_author), 'thumbnail' );
-                            $url = $thumb['0'];
-                            $permalink = get_permalink( $main_author );
-                            if(!empty($url)) echo "<a href='{$permalink}'><img src='{$url}'  /></a>";
-                          }
-                          else {
-                            echo '<span>'.$cnSite->get_authors($post->ID).'</span>';
-                          } ?>
-                      
-                            <strong>Mis en ligne le :</strong><br />
-                           <?php echo get_the_date('j M Y');?>
-
-
-                            <div class="dlProg">
-                                <a href="<?php the_permalink();?>?ref=search"><img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></a>
+                          <div class="row">
+                            <div class="m-1col search_item-format">
+                                <span class="meta"><?php echo $format; ?></span>
                             </div>
-                        </div>
+
+                            <div class="m-4col search_item-thematiques">
+                              <?php if(!empty($cat) or !empty($pays)) : ?>
+                                <span class="meta">Thématiques : </span>
+                                <?php if(!empty($cat)) echo $cat ;?><?php if(!empty($cat) && !empty($pays)) echo  ' - ';?><?php echo $pays;?>
+                              <?php endif; ?>
+                            </div>
+                            
+                            <div class="m-3col search_item-auteurs">
+                              <?php                              
+                              if(!empty($main_author)){ ?>
+                                <span class="meta">Auteur(s) : </span>
+                                <?php $permalink = get_permalink( $main_author );
+                                if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>";
+                              }
+                              else { ?>
+                                <span class="meta">Auteur(s) : </span>
+                                <?php echo $cnSite->get_authors($post->ID);
+                              } ?>
+                            </div>
+                            
+                          </div>
 
                     </li>
                     <?php endwhile;?>
@@ -344,18 +347,19 @@
 
 
             <?php if($wp_query->found_posts > 0) :?>
-            <div class="navDlSearch results_nav clearfix">
-              
-                <select class="selectBox" id="pager1">
-                    <option value="10">10 résultats par page</option>
-                    <option value="20">20 résultats par page</option>
-                    <option value="50">50 résultats par page</option>
-                    <option value="-1">Tous les résultats</option>
-                </select>
-
-                <?php cnLib::pagination($totalpages); ?>
-
-            </div>
+              <div class="results_nav clearfix row">
+                  <div class="nav_postperpage m-2col">
+                      <select class="selectBox" id="pager1">
+                          <option value="10">10 résultats par page</option>
+                          <option value="20">20 résultats par page</option>
+                          <option value="50">50 résultats par page</option>
+                          <option value="-1">Tous les résultats</option>
+                      </select>
+                  </div>
+                  <div class="nav_pager m-5col m-last">
+                      <?php cnLib::pagination($totalpages); ?>
+                  </div>
+              </div>
             <?php endif;?>
             
 
