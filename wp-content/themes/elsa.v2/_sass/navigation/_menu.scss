@@ -190,6 +190,33 @@
 
 
 
+.menu-menu-footer-container {
+  margin-bottom: $base_line_height; 
+
+  ul {
+    @extend .no-bullets;
+  }
+
+  a {
+    @extend .btn-inline;
+  }
+}
+
+.menu-menu-bottom-container {
+  text-align: center;
+  padding: $base_line_height;
+  
+  ul {
+    @extend .no-bullets;
+  }
+
+  li {
+    display: inline-block;
+
+  }
+}
+
+
 // Menu des pages enfants (page.php)
 
 .childrenpages-menu {

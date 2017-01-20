@@ -5,11 +5,11 @@
     <div class="wrap row">
         <div class="m-4col">
             <img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo">
-            Plateforme ELSA
+            <h3 class="site-title">Plateforme ELSA</h3>
         </div>
 
         <div class="m-4col">
-            <ul class="no-bullets">
+            <ul class="no-bullets clearfix table">
             <?php 
                 $args = array(
                     'post_type' => 'structure',
@@ -23,7 +23,7 @@
                 if( $wp_query->have_posts() ) :
                     while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
 
-                        <li class="is-on-left "><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><?php the_post_thumbnail('medium');?></a></li>
+                        <li class="table-cell "><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><?php the_post_thumbnail('medium');?></a></li>
                     
                     <?php endwhile;
                 endif;
@@ -55,8 +55,8 @@
             </ul>
 
             <form>
-                <input type="email">
-                <input type="submit" class="btn-secondary" value="S'inscrire à la newsletter">
+                <input type="email" class="plain" placeholder="exemple@domaine.fr">
+                <input type="submit" class="btn-secondary plain" value="S'inscrire à la newsletter">
             </form>
         </div>
 

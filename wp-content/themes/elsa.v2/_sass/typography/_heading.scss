@@ -24,6 +24,7 @@ h4 {
 
 h5 {
   @include type-setting(3);
+  margin-bottom: $base_line_height / 2;
 }
 
 h6 {

@@ -59,6 +59,7 @@ a:active {
   &:before {
     @extend .icon;
     @extend .icon-arrow_right;
+    padding-right: 5px;
   }
 }
 

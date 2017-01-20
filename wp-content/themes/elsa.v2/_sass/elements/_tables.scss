@@ -17,3 +17,21 @@ table {
 th {
 	font-weight: bold;
 }
+
+.table {
+  display: table;
+  table-layout: fixed;
+  vertical-align: middle;
+}
+
+  .table-cell {
+    display: table-cell;
+    vertical-align: middle;
+
+    img {
+      display: block;
+      margin: auto;
+      max-width: 80%;
+      height: auto;
+    }
+  }
