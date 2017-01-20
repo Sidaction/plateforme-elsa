@@ -95,7 +95,7 @@ class Menu_With_Description extends Walker_Nav_Menu {
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
         $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
-        $class_names = ' class="' . esc_attr( $class_names ) . '"';
+        $class_names = ' class="main_nav_item ' . esc_attr( $class_names ) . '"';
 
         $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
 
@@ -128,6 +128,7 @@ register_nav_menus( array(
     'footer' => esc_html__( 'Menu du pied de page', 'elsa' ),
     'bottom' => esc_html__( 'Menu tout en bas.... (mentions légales...)', 'elsa' ),
 ) );
+
 
 
 

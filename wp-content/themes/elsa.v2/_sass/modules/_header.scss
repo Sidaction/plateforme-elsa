@@ -6,11 +6,15 @@
 
 
 .site-header {
-  padding: $base_line_height 0;
+  padding: $base_line_height / 2 0;
   background-color: $white;
   left: 0;
   right: 0;
   z-index: 9999;
+
+  .site-resume {
+    @include type-setting(-1);
+  }
 
   &.is-reduced {
     padding: $base_line_height / 4 0 0 0;
@@ -34,7 +38,7 @@
   .site-title {
     
     h1 {
-      @include type-setting(1);
+      @include type-setting(3);
       margin: 0;
     }
   }

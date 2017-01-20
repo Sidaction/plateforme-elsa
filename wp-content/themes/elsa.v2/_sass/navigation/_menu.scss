@@ -17,8 +17,7 @@
     float: left;
   } 
   .main_nav-dropdowns {
-    display: inline-block;
-    float: left;
+    display: block;
   } 
 
   .menu-menu-principal-container ul {
@@ -26,12 +25,39 @@
     margin: 0;
     padding-left: 0;
   }
-    .menu-menu-principal-container > ul > li {
+    .main_nav_item {
+      @include type-setting(3);
       display: inline-block;
+      font-weight: $thin;
+      border: none;
+      background: none;
+      color: $white;
+      margin-left: $base_line_height;
 
+      &:nth-child(3),
+      &:nth-child(4) {
+        float: right;
+      }
       @include up-to(medium) {
       }
     }
+      .main_nav_searchform {
+        border-bottom: 1px solid $white;
+        margin-left: 0;
+        padding-bottom: $base_line_height / 4;
+      }
+        .main_search_btn,
+        .main_search_input {
+        }
+        .main_search_input {
+          @include placeholder();
+          @include type-setting(-1);
+          margin-left: 0;
+          line-height: 30px;
+          padding: 0;
+          width: 225px;
+        }
+
       .menu-menu-principal-container .menu-item > a {
         color: $white;
 
@@ -123,6 +149,7 @@
 // Navigation top
 
 .top-navigation {
+  line-height: 30px;
 
   ul {
     list-style: none;
@@ -132,13 +159,28 @@
   }
 
   li {
+    @include type-setting(-1);
     display: inline-block;
+    font-weight: $semibold;
+    line-height: 35px;
+
+    &:not(:first-child):not(:last-child):before {
+      content: '・';
+    }
   }
 
   a {
 
   }
 }
+
+  .item-selection {
+    padding-left: 25px;
+    margin-left: 25px;
+    background-image: url('_img/book_full.png');
+    background-position: left center;
+    background-repeat: no-repeat;
+  }
 
 
 
