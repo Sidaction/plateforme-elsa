@@ -26,7 +26,8 @@
     padding-left: 0;
   }
     .main_nav_item {
-      @include type-setting(3);
+      @include type-setting(2);
+      line-height: 30px;
       display: inline-block;
       font-weight: $thin;
       border: none;
@@ -46,16 +47,21 @@
         margin-left: 0;
         padding-bottom: $base_line_height / 4;
       }
-        .main_search_btn,
-        .main_search_input {
+        button.main_search_btn,
+        input.main_search_input {
         }
-        .main_search_input {
-          @include placeholder();
-          @include type-setting(-1);
+        input.main_search_input {
+          @include placeholder( $white );
+          @include type-setting(-2);
+          border: none;
           margin-left: 0;
           line-height: 30px;
           padding: 0;
           width: 225px;
+          color: $white;
+        }
+        .main_search_btn {
+
         }
 
       .menu-menu-principal-container .menu-item > a {
