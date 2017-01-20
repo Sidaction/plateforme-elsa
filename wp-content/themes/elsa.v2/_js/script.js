@@ -14,7 +14,6 @@ jQuery(document).ready(function($){
    // TODOS
    // -> Problème au scroll des dropdowns
 
-
   var header = $('.site-header');
   var header_height = header.outerHeight();
   // header.css('position', 'fixed');
@@ -34,7 +33,7 @@ jQuery(document).ready(function($){
 
 
 
-
+  
   /*
    * BOOKMARKS / SELECTION STUFFS
    */

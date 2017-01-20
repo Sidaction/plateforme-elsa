@@ -258,7 +258,7 @@
 
 // Placeholder text
 
-@mixin placeholder($color: $placeholderText) {
+@mixin placeholder($color: $gray_lighter) {
   &::-webkit-input-placeholder {
    color: $color;
   }
