@@ -208,7 +208,7 @@
                 <div id="filtres" class="search-filters">
 
                   <div class="row">
-                    <input type="search" class="plain" name="totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
+                    <input type="search" class="plain input-bg" name="totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                   </div>
                   
                   <div class="row">

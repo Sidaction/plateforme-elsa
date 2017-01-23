@@ -8,13 +8,18 @@ textarea {
 	border: 2px solid $color_primary;
   padding: $base_line_height / 2;
   margin-bottom: $base_line_height / 2;
-  background: none;
   
 	&:focus {
 
 	}
 }
 
+.input-bg {
+  background-color: $white;
+}
+.input-empty {
+  background: none;
+}
 
 textarea {
   overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
