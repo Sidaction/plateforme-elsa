@@ -40,6 +40,33 @@ add_image_size( 'diaporama', 1024, 9999 );
 
 
 
+/**
+ * CHAR LIMITS
+ */
+
+function custom_excerpt_length( $length ) {
+    return 17;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+function limit_char($string, $limit = 50, $end = ' (...)'){
+    print_r( substr($string,0,$limit) . $end );
+}
+
+function limit_words($string, $word_limit = 10){
+    $words = explode(" ",$string);
+    if( count($words)>$word_limit ){
+        $output = implode(" ",array_splice($words, 0, $word_limit));
+        $output .= ' (...)';
+        print_r( $output );
+
+    }
+    else{
+       print_r( $string );
+    }
+}
+
+
 
 /**
  * Back-end creation of new candidate post

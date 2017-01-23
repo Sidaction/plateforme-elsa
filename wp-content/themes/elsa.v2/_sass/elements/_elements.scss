@@ -46,6 +46,22 @@
       opacity: 0.9;
     }    
   }
+  .bloc_meta {
+    @include type-setting(-2);
+    font-weight: $thin;
+
+    :not(.bloc--statique) > a > & {
+      color: $black;
+    }
+  }
+  .bloc_category {
+    margin-bottom: $base_line_height / 2;
+  }
+  .bloc_authors {
+    position: absolute;
+    bottom: $base_line_height / 2;
+    left: $base_line_height;
+  }
 
 
 

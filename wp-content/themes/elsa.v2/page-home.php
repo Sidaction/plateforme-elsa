@@ -89,7 +89,7 @@ $zoom_association = get_field('zoom_association');
                                 'operator' => 'NOT IN',
                             ),
                         ),
-                        'orderby'    => 'menu_order',
+                        'orderby'    => 'date',
                         'order'      => 'DESC'
                     );
 
