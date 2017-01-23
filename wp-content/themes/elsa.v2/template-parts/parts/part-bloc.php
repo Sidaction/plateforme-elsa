@@ -14,7 +14,7 @@
 
       <?php //echo $gema75_ril_frontend->show_read_it_later_after_title( 'hello' ); ?>
 
-      <span class="bloc-media_format icon-<?php echo $format; ?>"></span>
+      <img class="bloc-media_format" src="<?php echo get_template_directory_uri(); ?>/_img/icon-<?php echo $format; ?>.png">
 
       <a href="#" class="bookmark"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="<?php echo $post->ID; ?>"><span class="icon-bookmark_full"><span class="path1"></span><span class="path2"></span></span></span></a>
 

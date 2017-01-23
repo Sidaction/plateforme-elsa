@@ -29,9 +29,6 @@ get_header(); ?>
         <div class="page_content clearfix">
             <div class="wrap">
 
-
-                <div class="row">
-
                     <?php
 
                         $args = array(
@@ -41,7 +38,6 @@ get_header(); ?>
                             'post_status' => 'publish',
                             'paged' => get_query_var( 'paged' )
                         );
-
 
                         $the_query = new WP_Query( $args ); 
                         $totalpages = $the_query->max_num_pages;?>
@@ -62,8 +58,7 @@ get_header(); ?>
                                 </div>
                             </div>
 
-
-                            <div class="row">
+                            <div class="row medias_list">
                             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
                                 <?php set_query_var( 'type', 'media' ); ?>
@@ -104,9 +99,6 @@ get_header(); ?>
                         <?php else : ?>
                             <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
                         <?php endif; ?>
-
-
-                </div>
 
             </div><!-- .wrap -->
         </div><!-- .page_content -->
