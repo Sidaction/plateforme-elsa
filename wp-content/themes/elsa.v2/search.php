@@ -118,6 +118,7 @@
   // SI FORMAT
   if(isset($_GET['format'])) $args['format'] = implode(",", $_GET['format']);
   
+  var_dump($args['format']);
 
 
   // SETTINGS FOR QUERY
@@ -140,7 +141,7 @@
   if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
     $_SESSION['args'] = $args;
 
-  // var_dump($args);
+  //var_dump($args);
 
   $results = array();
 
@@ -234,14 +235,14 @@
 
                   <div class="row">
                     <div class="filter-format">
-                      <div class="check-item"><input type="checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
-                      <div class="check-item"><input type="checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
-                      <div class="check-item"><input type="checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
-                      <div class="check-item"><input type="checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
-                      <div class="check-item"><input type="checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils </label></div>
-                      <div class="check-item"><input type="checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
-                      <div class="check-item"><input type="checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
-                      <div class="check-item"><input type="checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
+                      <div class="check-item"><input type="checkbox" <?php if ( $args['format'] === '' ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
+                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'pdf') !== false) { echo 'checked'; } ?> class="s_checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
+                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'video') !== false) { echo 'checked'; } ?> class="s_checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
+                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'audio') !== false) { echo 'checked'; } ?> class="s_checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
+                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'outils') !== false) { echo 'checked'; } ?> class="s_checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils </label></div>
+                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'lien') !== false) { echo 'checked'; } ?> class="s_checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
+                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'diapo') !== false) { echo 'checked'; } ?> class="s_checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
+                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'img') !== false) { echo 'checked'; } ?> class="s_checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
                     </div>
                   </div>
                   

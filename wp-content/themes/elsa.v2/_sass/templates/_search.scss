@@ -5,11 +5,14 @@
   padding: $base_line_height * 3;
 }
 
-
+.search_filters {
+  margin-bottom: $base_line_height;
+}
 
 .check-item {
   float: left;
-  margin-right: $base_line_height * 2;
+  margin-right: $base_line_height * 3;
+  margin-bottom: $base_line_height / 2;
  
   label {
     @include type-setting(-1);
