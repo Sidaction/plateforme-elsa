@@ -97,7 +97,7 @@ get_header();
             <div class="wrap row">
 
                 <div class="group_title grid-title m-2col">
-                    <h3 id="recommandations" class="h3">La plateforme ELSA vous recommande</h3>
+                    <h3 id="recommandations" class="h3_alt">La plateforme ELSA vous recommande</h3>
                 </div>
 
 

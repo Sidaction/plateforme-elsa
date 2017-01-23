@@ -187,7 +187,7 @@
             
             <div class="group_title m-2col dark">
               
-              <h4 class="h4">Affiner votre recherche</h4>
+              <h3 class="h3_alt">Affiner votre recherche</h3>
 
               <ul class="no-bullets">
                 <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/">» que chercher ?</a> </li>
@@ -205,7 +205,7 @@
                 <div id="filtres" class="search-filters">
 
                   <div class="row">
-                    <input type="search" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
+                    <input type="search" class="plain" name="totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                   </div>
                   
                   <div class="row">

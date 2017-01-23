@@ -27,7 +27,7 @@ $zoom_association = get_field('zoom_association');
             <div class="wrap">
                 <div class="featured-title">Zoom</div>
                 <div class="featured-title">
-                    <h2><?php the_field('zoom_titre'); ?></h2>
+                    <h2 class="h1_alt"><?php the_field('zoom_titre'); ?></h2>
                 </div>
 
                 <div class="row">
@@ -73,7 +73,7 @@ $zoom_association = get_field('zoom_association');
         <div class="wrap row">
 
             <div class="group_title grid-title m-2col">
-                <h3 class="h3"><?php the_field('grille_titre'); ?></h3>
+                <h3 class="h3_alt"><?php the_field('grille_titre'); ?></h3>
             </div>
     	    
             <div class="group_list grid-list">

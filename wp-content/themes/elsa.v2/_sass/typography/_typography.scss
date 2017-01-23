@@ -27,7 +27,8 @@ $type-scale: (
   2: 2.2rem, //
   3: 2.4rem, //
   4: 3.4rem, //
-  5: 6.4rem
+  5: 4.8rem, //
+  6: 6.4rem
 );
 
 $line-heights: (
@@ -36,8 +37,10 @@ $line-heights: (
   0: $base_line_height, 
   1: $base_line_height, 
   2: $base_line_height,
-  3: 30px,
-  4: 60px
+  3: $base_line_height * 1.5,
+  4: $base_line_height * 1.5,
+  5: $base_line_height * 2,
+  6: $base_line_height * 3
 );
 
 

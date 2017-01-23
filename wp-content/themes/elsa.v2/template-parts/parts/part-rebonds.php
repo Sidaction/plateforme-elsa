@@ -4,7 +4,7 @@
       <div class="wrap row">
 
         <div class="group_title m-2col dark">
-          <h3 class="A lire aussi">A lire aussi</h3>
+          <h3 class="h3_alt">A lire aussi</h3>
         </div>
         
         <div class="group_list">

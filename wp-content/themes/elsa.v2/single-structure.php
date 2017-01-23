@@ -127,7 +127,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
             <div class="wrap row">
 
                 <div class="group_title grid-title m-2col">
-                    <h3 id="recommandations" class="h3">Les ressources de cette association</h3>
+                    <h3 id="recommandations" class="h3_alt">Les ressources de cette association</h3>
                 </div>
 
 
@@ -226,7 +226,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
           <div class="wrap row">
             <div class="group_title m-2col">
-              <h3 class="h3">Sur le web</h3>
+              <h3 class="h3_alt">Sur le web</h3>
             </div>
             
             <div class="group_list m-5col m-last">
@@ -259,7 +259,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
               <div class="wrap row">
                 <div class="group_title m-2col">
-                  <h3 class="h3">Autres associations du réseau Elsa</h3>
+                  <h3 class="h3_alt">Autres associations du réseau Elsa</h3>
                 </div>
                 
                 <div class="group_list m-5col m-last">

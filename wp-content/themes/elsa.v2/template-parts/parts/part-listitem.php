@@ -24,7 +24,7 @@
           </div>
 
           <a href="<?php the_permalink();?>?ref=search" class="linkProg">
-            <h4 class="h4 list_item-title"><?php the_title();?></h4>
+            <h2 class="h2 list_item-title"><?php the_title();?></h2>
           </a>
 
           <div class="row">

@@ -78,7 +78,7 @@
 
         <div class="wrap row">
             <div class="group_title m-2col">
-                <h3 class="h3">Préparer une mission</h3>
+                <h3 class="h3_alt">Préparer une mission</h3>
             </div>
             
             <div class="group_list m-5col m-last">
@@ -121,7 +121,7 @@
 
       <div class="wrap row">
         <div class="group_title m-2col">
-          <h3 class="h3">Acteurs locaux</h3>
+          <h3 class="h3_alt">Acteurs locaux</h3>
         </div>
         
         <div class="group_list m-5col m-last">

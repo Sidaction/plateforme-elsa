@@ -49,6 +49,7 @@ a:active {
 
 .btn-secondary {
   @extend %btn;
+  background: none;
 }
 
 .btn-inline {

@@ -11,7 +11,7 @@
       <a href="<?php the_permalink();?>">
           <?php echo $auteurs = $cnSite->get_authors($post->ID); ?>
           <?php get_terms(); ?>
-          <h3 class="h3 bloc_title"><?php the_title();?></h3>
+          <h2 class="h2 bloc_title"><?php the_title();?></h2>
       </a> 
   </div>
 
@@ -23,7 +23,7 @@
 
       <a href="<?php the_permalink();?>">
           <?php get_terms(); ?>
-          <span class="bloc_title"><?php the_title();?></span>
+          <h2 class="h2 bloc_title"><?php the_title();?></h2>
           <?php echo $auteurs = $cnSite->get_authors($post->ID); ?>
       </a> 
     

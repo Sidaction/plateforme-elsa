@@ -46,7 +46,7 @@
         <div class="m-3col">
             <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'tertiary-menu' ) ); ?>
 
-            <h5>Restons en contact</h5>
+            <h5 class="h2">Restons en contact</h5>
 
             <ul class="no-bullets">
                 <li><a href="#" class="btn-inline">Nous soumettre une ressource</a> </li>
@@ -55,8 +55,8 @@
             </ul>
 
             <form>
-                <input type="email" class="plain" placeholder="exemple@domaine.fr">
-                <input type="submit" class="btn-secondary plain" value="S'inscrire à la newsletter">
+                <input type="email" class="plain text-on-center" placeholder="exemple@domaine.fr">
+                <input type="submit" class="btn-secondary plain text-on-center" value="S'inscrire à la newsletter">
             </form>
         </div>
 

@@ -31,7 +31,7 @@
 
     <div class="row">
       <div class="dd_title m-2col">
-        <h4><?php the_field('dd-theme-title-1', 'options'); ?></h4>
+        <h4 class="h4"><?php the_field('dd-theme-title-1', 'options'); ?></h4>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
         </div>
 
         <div class="text">
-          <strong><?php echo $theme_1_datas->name; ?></strong>
+          <h5 class="h5"><?php echo $theme_1_datas->name; ?></h5>
           <?php the_field('dd-theme-1-text', 'options'); ?>
         </div>
         
@@ -54,7 +54,7 @@
           <img src="<?php echo $theme_2_vignette_src; ?>">
         </div>
         <div class="text">
-          <strong><?php echo $theme_2_datas->name; ?></strong>
+          <h5 class="h5"><?php echo $theme_2_datas->name; ?></h5>
           <?php the_field('dd-theme-2-text', 'options'); ?>
         </div>
         <a href="/category/<?php echo $theme_2_datas->slug; ?>" class="btn-inline"></a>
@@ -70,8 +70,8 @@
 <div class="dd_group bg-cut">
   <div class="wrap">
 
-    <div class="dd_title">
-      <h4><?php the_field('dd-theme-title-2', 'options'); ?></h4>
+    <div class="dd_title m-2col">
+      <h4 class="h4"><?php the_field('dd-theme-title-2', 'options'); ?></h4>
     </div>
 
     <div class="dd_content">

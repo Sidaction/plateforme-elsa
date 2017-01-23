@@ -15,7 +15,10 @@ h2 {
 }
 
 h3 {
-  @include type-setting(3);
+  @include type-setting(2);
+  font-weight: $semibold;
+  margin-bottom: $base_line_height / 2;
+  margin-top: $base_line_height;
 }
 
 h4 {
@@ -33,28 +36,43 @@ h6 {
 
 
 .h1 {
+  @include type-setting(5);
   margin: 0;
-  @include type-setting(3);
+  font-weight: $semibold;
+}
+.h1_alt {
+  @include type-setting(6);
+  font-weight: $semibold;
 }
 
 .h2 {
-  margin: 0;
   @include type-setting(2);
+}
+.h2_alt {
+  @include type-setting(4);
 }
 
 .h3 {
-  margin: 0;
   @include type-setting(1);
+  margin: 0;
+}
+.h3_alt {
+  @include type-setting(4);
+  margin: 0;
+  font-weight: $thin;
+  text-align: right;
 }
 
+
 .h4 {
+  @include type-setting(3);
   margin: 0;
-  @include type-setting(0);
+  font-weight: $thin;
 }
 
 .h5 {
+  @include type-setting(1);
   margin: 0;
-  @include type-setting(-1);
 }
 
 .h6 {

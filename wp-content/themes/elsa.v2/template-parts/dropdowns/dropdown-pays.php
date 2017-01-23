@@ -9,8 +9,8 @@
 <div class="dd_group bg-cut">
   <div class="wrap">
 
-    <div class="dd_title">
-      <h4><?php echo $dd_pays_titre; ?></h4>
+    <div class="dd_title m-2col">
+      <h4 class="h4"><?php echo $dd_pays_titre; ?></h4>
     </div>
 
     <div class="row">

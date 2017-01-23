@@ -4,21 +4,17 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 textarea {
-	color: $black;
-	border: 1px solid $black;
-
+	color: $color_primary;
+	border: 2px solid $color_primary;
+  padding: $base_line_height / 2;
+  margin-bottom: $base_line_height / 2;
+  background: none;
+  
 	&:focus {
 
 	}
 }
 
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"] {
-
-}
 
 textarea {
   overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
@@ -45,9 +41,8 @@ input[type="radio"] {
 
 input[type="search"] {
   -webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
-  -webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-  -moz-box-sizing:    content-box;
-  box-sizing:         content-box; }
+  @include box-sizing;
+}
 
 input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
   -webkit-appearance: none; }

@@ -59,6 +59,7 @@
           padding: 0;
           width: 225px;
           color: $white;
+          margin: 0;
         }
         .main_search_btn {
 
@@ -131,10 +132,21 @@
   }
 
   .dd_title {
+    position: relative;
     padding: $base_line_height;
     margin-top:  - $base_line_height;
     margin-bottom: $base_line_height;
     color: $white;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -500px;
+      background-color: inherit;
+      top: 0;
+      bottom: 0;
+      width: 500px;
+    }
   }
 
   .dd_content {
@@ -205,7 +217,7 @@
 .menu-menu-bottom-container {
   text-align: center;
   padding: $base_line_height;
-  
+
   ul {
     @extend .no-bullets;
   }
