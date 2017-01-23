@@ -55,7 +55,7 @@
     }
   }
   .bloc_category {
-    margin-bottom: $base_line_height / 2;
+    margin-bottom: $base_line_height / 4;
   }
   .bloc_authors {
     position: absolute;
@@ -63,7 +63,11 @@
     left: $base_line_height;
   }
 
-
+  .bloc_icons {
+    position: absolute;
+    bottom: $base_line_height / 2;
+    right: $base_line_height / 2;
+  }
 
 
 

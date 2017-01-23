@@ -3,7 +3,8 @@
   $cat = cnLib::get_terms_withoutlink($post->ID, 'category');
   $format = cnLib::get_main_term_slug($post->ID, 'format');
   $auteurs = $cnSite->get_authors($post->ID);
-
+  $reco = get_field('recommandation');
+  $boite = get_the_term_list( $post->ID, 'boiteoutils', 'People: ', ', ' );
 ?>
 
 
@@ -38,6 +39,18 @@
           </div>
 
           <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 5 );?></h2>
+
+
+          <div class="bloc_icons">
+            <?php if( isset($reco) && $reco ) : ?>
+              <span class="icon-recommandation"></span>
+            <?php endif; ?>
+            <?php if( isset($boite) && $boite ) : ?>
+              <span class="icon-boite"></span>
+            <?php endif; ?>
+          </div>
+
+
       </a> 
   </div>
 
@@ -64,7 +77,7 @@
             </div>
           <?php endif; ?>
 
-          <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 7 );?></h2>
+          <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 8 );?></h2>
 
           <div class="bloc_meta bloc_authors">
             <?php echo $auteurs = $cnSite->get_authors($post->ID); ?>
@@ -75,6 +88,16 @@
               <?php the_excerpt(); ?>
             </div>
           <?php endif; ?>
+
+
+          <div class="bloc_icons">
+            <?php if( isset($reco) && $reco ) : ?>
+              <span class="icon-recommandation"></span>
+            <?php endif; ?>
+            <?php if( isset($boite) && $boite ) : ?>
+              <span class="icon-boite"></span>
+            <?php endif; ?>
+          </div>
 
       </a> 
     
