@@ -15,5 +15,8 @@
     &.active {
       background:  none;
     }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

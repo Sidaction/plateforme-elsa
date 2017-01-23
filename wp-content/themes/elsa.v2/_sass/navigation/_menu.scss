@@ -190,7 +190,7 @@
   li {
     @include type-setting(-1);
     display: inline-block;
-    font-weight: $semibold;
+    font-weight: $regular;
     line-height: 35px;
 
     &:not(:first-child):not(:last-child):before {
