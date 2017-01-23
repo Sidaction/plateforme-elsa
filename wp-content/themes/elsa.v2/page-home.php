@@ -41,14 +41,14 @@ $zoom_association = get_field('zoom_association');
                     </div>
 
 
-                    <div class="m-2col">
-                        <div class="featured-asso"><?php echo $zoom_association->post_title; ?></div>
+                    <div class="m-2col featured-asso">
+                        <h4 class="h2"><?php echo $zoom_association->post_title; ?></h4>
                         <div><?php echo $zoom_association->post_excerpt; ?></div>
                         <a href="/structure/<?php echo $zoom_association->post_name?>"><span class="icon-arrow_right"></span></a>
                     </div>
 
-                    <div class="m-2col">
-                        <div class="featured-pays"><?php echo $zoom_pays->post_title; ?></div>
+                    <div class="m-2col featured-pays">
+                        <h4 class="h2"><?php echo $zoom_pays->post_title; ?></h4>
                         <div><?php echo get_the_post_thumbnail($zoom_pays->ID, 'small'); ?></div>
                         <a href="/pays/<?php echo $zoom_pays->post_name?>"><span class="icon-arrow_right"></span></a>
                     </div>

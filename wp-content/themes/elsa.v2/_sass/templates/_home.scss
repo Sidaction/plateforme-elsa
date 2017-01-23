@@ -15,4 +15,8 @@
   background-color: $color_ressources;
   color: $white;
   margin-bottom: $base_line_height * 3;
+
+  .h2 {
+    margin-bottom: $base_line_height / 2;
+  }
 }

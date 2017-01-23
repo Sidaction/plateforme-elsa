@@ -163,20 +163,26 @@ get_header();
                         <?php $i++; ?>
                             
 
-                    <?php endforeach; 
-                    wp_reset_postdata();?>
+                        <?php endforeach; 
+                        wp_reset_postdata();?>
 
 
-                </div>
+                    </div>
 
-                <div class="row">
-                    <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn-secondary">Voir toutes les ressources</a>
-                </div> 
-                
-            </div><!-- .wrap -->
+                    <div class="row clearfix">
+                        <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn-secondary is-centered">Voir toutes les ressources</a>
+                    </div> 
+                    
+                </div><!-- .wrap -->
 
-        </div><!-- .blocs_group -->
+            </div><!-- .blocs_group -->
 
+         </div>
      </div>
+
+
+    <?php get_template_part('template-parts/content', 'rebonds'); ?>
+
+
 </section>
 <?php get_footer(); ?>

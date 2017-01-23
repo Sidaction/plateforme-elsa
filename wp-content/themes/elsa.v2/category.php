@@ -3,8 +3,6 @@
  * Page détail d'une catégorie
  */
 
-    
-
     $cat = get_category( get_query_var( 'cat' ) );	
 
     $cat_id = $cat->cat_ID;
@@ -97,7 +95,7 @@ get_header();
             <div class="wrap row">
 
                 <div class="group_title grid-title m-2col">
-                    <h3 id="recommandations" class="h3">La plateforme ELSA vous recommande</h3>
+                    <h3 id="recommandations" class="h3_alt">La plateforme ELSA vous recommande</h3>
                 </div>
 
 
@@ -163,21 +161,26 @@ get_header();
                         <?php $i++; ?>
                             
 
-                    <?php endforeach; 
-                    wp_reset_postdata();?>
+                        <?php endforeach; 
+                        wp_reset_postdata();?>
 
+                    </div>
 
-                </div>
+                    <div class="row group_action">
+                        <a href="/recherche-documentaire/?category=<?php echo $cat_slug; ?>" class="btn-secondary is-centered">Voir toutes les ressources</a>
+                    </div> 
+                    
+                </div><!-- .wrap -->
 
-                <div class="row group_action">
-                    <a href="/recherche-documentaire/?category=<?php echo $cat_slug; ?>" class="btn-secondary">Voir toutes les ressources</a>
-                </div> 
-                
-            </div><!-- .wrap -->
+            </div><!-- .blocs_group -->
 
-        </div><!-- .blocs_group -->
-
+         </div>
      </div>
+
+
+    <?php get_template_part('template-parts/content', 'rebonds'); ?>
+
+
 </section>
 <?php get_footer(); ?>
 
