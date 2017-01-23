@@ -51,26 +51,30 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
                 <div class="m-3col page_aside">
 
-                    <div class="page_media">
-                        <ul class="no-bullets bxslider">
-                        <?php 
-                           $images = get_post_meta($structure_id, 'diaporama', false );
-                           $i = 0;
 
-                           foreach ( $images as $img_id )   {
-                          
-                               $src = wp_get_attachment_image_src( $img_id, 'large' );
-                               $src = $src[0];
-                               $title = get_the_title($img_id);
-                               $class = ($i==0) ? 'class="first"':'';
+                    <?php $images = get_post_meta($structure_id, 'diaporama', false ); ?>
+                    <?php if( isset($images) && !empty($images) ) : ?>
 
-                               echo "<li ".$class."><img src='{$src}' /></li>";
-                          
-                               echo  "";
-                               $i++;
-                           } ?>
-                        </ul>
-                    </div><!-- .page_media -->
+                        <div class="page_media">
+
+                                <ul class="no-bullets bxslider">
+                                   <?php $i = 0;
+
+                                   foreach ( $images as $img_id )   {
+                                  
+                                       $src = wp_get_attachment_image_src( $img_id, 'large' );
+                                       $src = $src[0];
+                                       $title = get_the_title($img_id);
+                                       $class = ($i==0) ? 'class="first"':'';
+
+                                       echo "<li ".$class."><img src='{$src}' /></li>";
+                                  
+                                       echo  "";
+                                       $i++;
+                                   } ?>
+                                </ul>
+                        </div><!-- .page_media -->
+                    <?php endif; ?>
 
 
                     <div class="page_metas">
