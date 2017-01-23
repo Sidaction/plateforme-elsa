@@ -51,7 +51,9 @@
     margin-bottom: $base_line_height;
     padding: $base_line_height;
   }
-  
+  .group_intro {
+    margin-bottom: $base_line_height * 2
+  }
   .groupe_action {
     text-align: center;
   }
@@ -60,4 +62,13 @@
 .blocs_group--rebonds {
   @extend .blocs_group;
   margin-top: $base_line_height * 3;
+}
+
+
+
+
+.share_links {
+  a {
+    margin-left: $base_line_height / 2;
+  }
 }

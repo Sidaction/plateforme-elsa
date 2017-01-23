@@ -138,6 +138,9 @@
           content: ', ',
         }
       }
+      p:last-child {
+        margin-bottom: 0;
+      }
     }
       .page_metas_row {
         margin-bottom: $base_line_height;
@@ -145,6 +148,10 @@
         &.logo img {
           display: block;
           margin: auto;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
         }
       }
 

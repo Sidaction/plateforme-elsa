@@ -40,7 +40,7 @@ get_header(); ?>
                   <div class="exportxls"><a href="../extract" class="btn-inline">Exporter au format xls</a></div>
                 </div>
 
-                <div class="m-5col m-last">
+                <div class="group_intro m-5col m-last">
                     <?php the_content(); ?>
                 </div>
 
