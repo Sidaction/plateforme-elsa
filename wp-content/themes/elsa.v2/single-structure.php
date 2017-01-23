@@ -94,24 +94,24 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                         <ul class="page_metas_row contacts no-bullets">
                             <span>Contacts : </span>
 
-                            <li>
-                                -> Tel. : <?php echo get_post_meta($post->ID, 'tel', true);?>
+                            <li class="contact-item">
+                                <span class="icon-arrow_right"></span> Tel. : <?php echo get_post_meta($post->ID, 'tel', true);?>
                             </li>
 
                             <?php if(!empty($ligne)): ?>
-                                <li>-> Ligne d'écoute : <?php echo($ligne);?></li>
+                                <li class="contact-item"><span class="icon-arrow_right"></span> Ligne d'écoute : <?php echo($ligne);?></li>
                             <?php endif; ?>
                             
                             <?php if(!empty($link)):?>
-                                <li><a href="<?php echo $link;?>" target="_blank">-> Site internet</a></li>
+                                <li class="contact-item"><a href="<?php echo $link;?>" target="_blank" class="btn-inline">Site internet</a></li>
                             <?php endif;?>
 
                             <?php if(!empty($link2)):?>
-                                <li><a href="<?php echo $link2;?>" target="_blank">-> Page Facebook</a></li>
+                                <li class="contact-item"><a href="<?php echo $link2;?>" target="_blank" class="btn-inline">Page Facebook</a></li>
                             <?php endif;?>
 
                             <?php if(!empty($email)):?>
-                                <li><a href="mailto:<?php echo $email;?>">-> Email</a></li>
+                                <li class="contact-item"><a href="mailto:<?php echo $email;?>" class="btn-inline">Email</a></li>
                             <?php endif;?>
                         </ul>
 

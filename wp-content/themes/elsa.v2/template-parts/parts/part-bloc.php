@@ -14,6 +14,8 @@
 
       <?php //echo $gema75_ril_frontend->show_read_it_later_after_title( 'hello' ); ?>
 
+      <span class="bloc-media_format icon-<?php echo $format; ?>"></span>
+
       <a href="#" class="bookmark"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="<?php echo $post->ID; ?>"><span class="icon-bookmark_full"><span class="path1"></span><span class="path2"></span></span></span></a>
 
       <a href="<?php the_permalink();?>">
@@ -39,7 +41,6 @@
           </div>
 
           <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 5 );?></h2>
-
 
           <div class="bloc_icons">
             <?php if( isset($reco) && $reco ) : ?>
@@ -80,7 +81,7 @@
           <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 8 );?></h2>
 
           <div class="bloc_meta bloc_authors">
-            <?php echo $auteurs = $cnSite->get_authors($post->ID); ?>
+            <?php limit_words( $auteurs );  ?>
           </div>
 
           <?php if( $type == 'statique') : ?>

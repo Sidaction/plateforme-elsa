@@ -12,14 +12,14 @@ get_header(); ?>
 
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-  <section id="site-content" class="site-content single-ressource">
+  <section id="site-content" class="site-content medias_archives">
 
     <article class="main-content clearfix noback">
         
-        <div class="page_title archives_title">
+        <div class="page_title static_title">
        
             <div class="wrap row">
-                <h1 class="h1 m-6col is-centered">
+                <h1 class="h1 m-6col is-centered text-on-center">
                     <?php the_title(); ?>
                 </h1>  
             </div>     
