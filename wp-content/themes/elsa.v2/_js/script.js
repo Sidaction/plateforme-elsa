@@ -98,6 +98,8 @@ jQuery(document).ready(function($){
   $('.bxslider').bxSlider({
     pager: false,
     adaptiveHeight: true,
+    nextText: '',
+    prevText: ''
   });
 
 

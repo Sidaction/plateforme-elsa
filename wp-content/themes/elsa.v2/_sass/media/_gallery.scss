@@ -22,7 +22,7 @@
 }
 
 .bx-wrapper img {
-  max-width: 100%;
+  width: 100%;
   display: block;
 }
 
@@ -95,36 +95,40 @@
   background: #000;
 }
 
+
 /* DIRECTION CONTROLS (NEXT / PREV) */
 
 .bx-wrapper .bx-prev {
-  left: 10px;
-  background: url(images/controls.png) no-repeat 0 -32px;
+  right: $base_line_height * 1.5;
+  @extend .icon-arrow_left-big;
 }
 
 .bx-wrapper .bx-next {
-  right: 10px;
-  background: url(images/controls.png) no-repeat -43px -32px;
-}
-
-.bx-wrapper .bx-prev:hover {
-  background-position: 0 0;
-}
-
-.bx-wrapper .bx-next:hover {
-  background-position: -43px 0;
+  right: 0;
+  @extend .icon-arrow_right-big;
 }
 
 .bx-wrapper .bx-controls-direction a {
   position: absolute;
-  top: 50%;
-  margin-top: -16px;
+  opacity: 0.1;
+  top: 0;
+  margin-top: 0;
   outline: 0;
-  width: 32px;
-  height: 32px;
-  text-indent: -9999px;
+  line-height: $base_line_height * 1.5;
+  font-family: 'icomoon' !important;
+  color: $black;
+  text-align: center;  
+  width: $base_line_height * 1.5;
+  height: $base_line_height * 1.5;
   z-index: 9999;
+  background-color: $white;
 }
+
+  .bx-wrapper:hover {
+    .bx-controls-direction a {
+      opacity: 0.7;
+    }
+  }
 
 .bx-wrapper .bx-controls-direction a.disabled {
   display: none;
