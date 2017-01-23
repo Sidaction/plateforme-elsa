@@ -64,10 +64,10 @@
             <div class="page_title-outer bg_cover" style="background-image: url(<?php echo $large_image_url[0]; ?>)">
         <?php } ?>
 
-            <div class="page_title page_title">
+            <div class="page_title static_title">
 
                 <div class="wrap row">
-                    <h1 class="h1 m-6col is-centered">
+                    <h1 class="h1 m-6col is-centered text-on-center">
                         <?php echo $title; ?>
                     </h1>  
                 </div>     

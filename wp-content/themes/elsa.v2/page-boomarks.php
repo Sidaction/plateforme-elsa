@@ -16,12 +16,15 @@ get_header(); ?>
             <div class="page_title-outer bg_cover" style="background-image: url(<?php the_post_thumbnail_url(); ?>)">
         <?php } ?>
 
-            <div class="page_title page_title">
+            <div class="page_title ressource_title">
 
                 <div class="wrap row">
-                    <h1 class="h1 m-6col is-centered">
-                        <?php echo the_title(); ?>
-                    </h1>  
+                    <div class="m-5col m-2col-push">
+                        <h1 class="h1">
+                            <?php echo the_title(); ?>
+                        </h1> 
+                        <p class="clearfix">Vous avez actuellement <span id="gema75_wc_wc_count_badge" class="selection_count">5</span> ressources sélectionnées</p>
+                    </div>
                 </div>     
             
             </div>
@@ -30,7 +33,7 @@ get_header(); ?>
             </div>
         <?php } ?>
 
-        <div class="page_content clearfix  bg-cut blocs_group">
+        <div class="clearfix bg-cut blocs_group">
             <div class="wrap row">
 
                 <div class="group_title m-2col">

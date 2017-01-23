@@ -57,8 +57,18 @@
   padding: $base_line_height * 3 0;
   color: $white;
   margin-bottom: $base_line_height;
-  background-color: $color_primary;
 }
+  .ressource_title {
+    background-color: $color_ressources;
+  }
+  .pays_title,
+  .structure_title,
+  .archives_title {
+    background-color: $color_medias;
+  }
+  .static_title {
+    background-color: $color_primary;
+  }
 
 .page_content {
   padding: $base_line_height * 3 0 $base_line_height * 3;

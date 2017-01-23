@@ -13,16 +13,10 @@
 
 
 
-
-
 <section id="site-content" class="site-content single-ressource">
 
     <article class="main-content clearfix noback">
         <div class="page_title pays_title">
-
-            <!-- <div id="breadcrumb">
-                <div id="breadcrumbWrapper">Vous êtes ici » <a href="/">Accueil</a> » <a href="#"> <?php echo cnStrings::stripString(get_the_title(),80);?></a></div>
-            </div> -->
 
             <div class="wrap">
                 

@@ -170,13 +170,16 @@
 
 
     <article class="main-content clearfix noback">
-        <div class="page_title archives_title">
+        <div class="page_title ressource_title">
 
-          <div class="wrap">
-              <h1 class="h1">
-                  Votre recherche
-              </h1>
-              Vous avez <?php echo $wp_query->found_posts;?> résultats...
+          <div class="wrap row">
+              <div class="m-5col m-2col-push">
+                <h1 class="h1">
+                    Votre recherche
+                </h1>
+                Vous avez <?php echo $wp_query->found_posts;?> résultats...
+              </div>
+
           </div>     
         
         </div>
