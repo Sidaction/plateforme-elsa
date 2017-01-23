@@ -9,8 +9,8 @@
 <div class="dd_group bg-cut">
   <div class="wrap">
 
-    <div class="dd_title m-2col">
-      <h4 class="h4"><?php echo $dd_assos_titre; ?></h4>
+    <div class="dd_title m-3col">
+      <h4 class="h4 text-on-right"><?php echo $dd_assos_titre; ?></h4>
     </div>
 
     <div class="row dd_content">
@@ -21,11 +21,11 @@
       
       <div class="m-4col m-last">
 
-        <a href="<?php echo $dd_assos_annuaire; ?>" class="btn-primary">Consulter l'annuaire des associations</a>
+        <a href="<?php echo $dd_assos_annuaire; ?>" class="btn-primary m-last">Consulter l'annuaire des associations</a>
       </div>
     </div>
 
-    <div class="row dd_content">
+    <div class="row dd_actions">
 
         <?php 
 

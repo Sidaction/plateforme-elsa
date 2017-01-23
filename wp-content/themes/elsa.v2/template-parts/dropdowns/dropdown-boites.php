@@ -9,8 +9,8 @@
 <div class="dd_group bg-cut">
   <div class="wrap">
 
-    <div class="dd_title m-2col">
-      <h4 class="h4"><?php echo $dd_boite_titre; ?></h4>
+    <div class="dd_title m-3col">
+      <h4 class="h4 text-on-right"><?php echo $dd_boite_titre; ?></h4>
     </div>
       
     <div class="row">
@@ -23,14 +23,14 @@
         <?php echo $dd_boite_texte; ?>
       </div>
 
-      <div class="m-2col dd_content">
+      <div class="m-2col m-last dd_actions">
         <?php
           $terms = get_terms( 'boiteoutils', array(
               'hide_empty' => false,
           ) );
 
           if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-              echo '<ul>';
+              echo '<ul class="no-bullets">';
               foreach ( $terms as $term ) {
                   echo '<li><a class="btn-inline" href="' . esc_url( get_term_link( $term ) ) . '" title="">' . $term->name . '</a></li>';
               }

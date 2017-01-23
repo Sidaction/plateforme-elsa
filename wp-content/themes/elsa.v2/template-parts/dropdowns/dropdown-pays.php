@@ -9,8 +9,8 @@
 <div class="dd_group bg-cut">
   <div class="wrap">
 
-    <div class="dd_title m-2col">
-      <h4 class="h4"><?php echo $dd_pays_titre; ?></h4>
+    <div class="dd_title m-3col">
+      <h4 class="h4 text-on-right"><?php echo $dd_pays_titre; ?></h4>
     </div>
 
     <div class="row">
@@ -19,7 +19,7 @@
         <img src="<?php echo $dd_pays_img; ?>" class="">
       </div>
       
-      <div class="m-5col m-last has-2col dd_content">
+      <div class="m-4col m-last has-2col dd_actions">
 
         <?php 
 
@@ -45,7 +45,7 @@
             $query_pays = new WP_Query($pays_args);
           
             if ($query_pays->have_posts()) :
-              $results = '<h3>'.$region->name.'</h3>';
+              $results = '<h5 class="h5">'.$region->name.'</h5>';
               $results .= '<ul class="dd_pays_row no-bullets ">';
             
               while ($query_pays->have_posts()) : $query_pays->the_post();
