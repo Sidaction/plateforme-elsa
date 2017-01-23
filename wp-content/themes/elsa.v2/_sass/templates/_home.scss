@@ -14,9 +14,36 @@
 .featured-content {
   background-color: $color_ressources;
   color: $white;
-  margin-bottom: $base_line_height * 3;
+  margin-bottom: $base_line_height * 5;
+  padding-top: $base_line_height;
 
   .h2 {
     margin-bottom: $base_line_height / 2;
   }
+  .wrap {
+    position: relative;
+  }
+  p {
+    font-weight: $thin;
+  }
 }
+  
+  .featured_name {
+    position: absolute;
+    display: inline-block;
+    top: - $base_line_height * 3;
+    left: -$base_line_height;
+    padding: $base_line_height / 2 $base_line_height;
+    background-color: $color_ressources;
+  }
+  .featured_intro {
+    padding-right: $base_line_height * 3;
+  }
+
+  .featured_actions {
+    margin-top: $base_line_height * 3;
+
+    .btn-primary {
+      margin-right: $base_line_height;
+    }
+  } 

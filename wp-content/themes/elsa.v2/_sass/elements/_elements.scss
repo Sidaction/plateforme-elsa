@@ -46,11 +46,16 @@
     
     .bloc--media & {
       position: absolute;
-      bottom: 0;
+      left: $base_line_height / 2;
+      bottom: - $base_line_height / 2;
       padding: $base_line_height / 4 $base_line_height / 2;
       background-color: $color_medias;
       opacity: 0.9;
-      left: $base_line_height / 2;
+
+      p {
+        margin: 0;
+        @include type-setting(-1);
+      }
     }
     .m-4col & {
       @include type-setting(3);

@@ -40,7 +40,14 @@
             ?>
           </div>
 
-          <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 5 );?></h2>
+          <h2 class="h2 bloc_title">
+            <?php limit_words( get_the_title(), 5 );?>
+            <?php if( is_home() || is_front_page() ) {
+              echo '<p><a class="btn-inline" href="/medias">Voir tous nos médias</a></p>';
+              } ?>
+          </h2>
+
+
 
           <div class="bloc_icons">
             <?php if( isset($reco) && $reco ) : ?>

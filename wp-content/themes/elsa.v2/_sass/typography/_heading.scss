@@ -43,6 +43,7 @@ h6 {
 .h1_alt {
   @include type-setting(6);
   font-weight: $semibold;
+  margin-bottom: $base_line_height;
 }
 
 .h2 {

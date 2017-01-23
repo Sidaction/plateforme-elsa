@@ -25,16 +25,16 @@ $zoom_association = get_field('zoom_association');
         <div class="featured-content">
 
             <div class="wrap">
-                <div class="featured-title">Zoom</div>
-                <div class="featured-title">
-                    <h2 class="h1_alt"><?php the_field('zoom_titre'); ?></h2>
+                <div class="featured_name"><h3 class="h3_alt">Zoom sur</h3></div>
+                <div class="featured-title row">
+                    <h2 class="h1_alt m-7col m-clearfix"><?php the_field('zoom_titre'); ?></h2>
                 </div>
 
                 <div class="row">
                     <div class="m-4col">
-                        <div><?php the_field('zoom_texte'); ?></div>
+                        <div class="featured_intro"><?php the_field('zoom_texte'); ?></div>
                     
-                        <div class="featured-action">
+                        <div class="featured_actions">
                             <a class="btn-primary" href="/category/<?php echo $zoom_thematique->slug; ?>">En savoir plus</a>
                             <a href="/recherche-documentaire/?category=<?php echo $zoom_thematique->slug; ?>" class="btn-secondary">Les ressources de la thématique</a>
                         </div>
@@ -43,13 +43,13 @@ $zoom_association = get_field('zoom_association');
 
                     <div class="m-2col featured-asso">
                         <h4 class="h2"><?php echo $zoom_association->post_title; ?></h4>
-                        <div><?php echo $zoom_association->post_excerpt; ?></div>
+                        <p><?php echo $zoom_association->post_excerpt; ?></p>
                         <a href="/structure/<?php echo $zoom_association->post_name?>"><span class="icon-arrow_right"></span></a>
                     </div>
 
                     <div class="m-2col featured-pays">
                         <h4 class="h2"><?php echo $zoom_pays->post_title; ?></h4>
-                        <div><?php echo get_the_post_thumbnail($zoom_pays->ID, 'small'); ?></div>
+                        <p><?php echo get_the_post_thumbnail($zoom_pays->ID, 'small'); ?></p>
                         <a href="/pays/<?php echo $zoom_pays->post_name?>"><span class="icon-arrow_right"></span></a>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ $zoom_association = get_field('zoom_association');
                             array(
                                 'taxonomy' => 'format',
                                 'field'    => 'slug',
-                                'terms'    => array('video', 'diaporama'),
+                                'terms'    => array('video', 'diaporama', 'audio'),
                                 'operator' => 'NOT IN',
                             ),
                         ),
