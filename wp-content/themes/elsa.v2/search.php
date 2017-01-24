@@ -116,9 +116,15 @@
 
 
   // SI FORMAT
-  if(isset($_GET['format'])) $args['format'] = implode(",", $_GET['format']);
+  if(isset($_GET['format'])) {
+    $args['format'] = implode(",", $_GET['format']);
+    var_dump($args['format']);
+  } 
+  else {
+    $args['format'] = '';
+  }
+
   
-  var_dump($args['format']);
 
 
   // SETTINGS FOR QUERY
@@ -194,9 +200,9 @@
               <h3 class="h3_alt">Affiner votre recherche</h3>
 
               <ul class="no-bullets">
-                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/">» que chercher ?</a> </li>
-                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/">» Consulter la FAQ</a></li>
-                <li><a href="../extract">» Télécharger la liste des résultats</a></li>
+                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/" class="btn-inline">que chercher ?</a> </li>
+                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/" class="btn-inline">Consulter la FAQ</a></li>
+                <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats</a></li>
               </ul>
 
             </div>

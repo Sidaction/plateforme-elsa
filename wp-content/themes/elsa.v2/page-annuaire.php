@@ -64,15 +64,15 @@
           <div class="wrap row">
 
             <div class="group_title m-2col">
-              <h3>Filtre d'affichage</h3>
-              <div class="exportxls"><a href="../extract" class="btn-inline">Exporter au format xls</a></div>
+              <h3 class="h3_alt">Affiner votre recherche</h3>
+              <div class="exportxls"><a href="../extract" class="btn-inline">Télécharger la liste</a></div>
             </div>
             
             <div class="">
               <form id="assos_filters">
                 <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("pays_assoc", "js-selectBox", "Pays",'','',false); ?></div>
                 <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("public_cibles", "js-selectBox", "Publics cibles",'','',false); ?></div>
-                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Activités",'','',false); ?></div>
+                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Domaines d'intervention",'','',false); ?></div>
               </form>
             
 

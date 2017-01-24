@@ -85,7 +85,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
                         <?php if( count(wp_get_object_terms( $post->ID, 'activites')) > 0 ) : ?>
                             <div class="page_metas_row">
-                                <span>Activité(s) : </span><?php echo cnLib::get_terms_withoutlink($post->ID, "activites",", ");?>
+                                <span>Domaine(s) d'intervention : </span><?php echo cnLib::get_terms_withoutlink($post->ID, "activites",", ");?>
                             </div>
                         <?php endif; ?> 
         
@@ -94,6 +94,13 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                                 <span>Public(s) : </span><?php echo cnLib::get_terms_withoutlink($post->ID, "public_cibles", ", "); ?>
                             </div>
                         <?php endif; ?> 
+
+                        <?php if( true ) : ?>
+                            <div class="page_metas_row">
+                                <span>Antenne(s) : </span><?php the_field('antenne'); ?>
+                            </div>
+                        <?php endif; ?> 
+
 
                         <ul class="page_metas_row contacts no-bullets">
                             <span>Contacts : </span>
@@ -131,7 +138,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
             <div class="wrap row">
 
                 <div class="group_title grid-title m-2col">
-                    <h3 id="recommandations" class="h3_alt">Les ressources de cette association</h3>
+                    <h3 id="recommandations" class="h3_alt">Les ressources de l'association</h3>
                 </div>
 
 
@@ -211,7 +218,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                 </div>
 
                 <div class="groupe_action row">
-                    <a href="/recherche-documentaire/?struct=<?php echo $structure_id;?>" class="btn-secondary">Voir toutes les ressources</a>
+                    <a href="/recherche-documentaire/?struct=<?php echo $structure_id;?>" class="btn-secondary">Les ressources de l'association</a>
                 </div> 
                 
             </div><!-- .wrap -->
@@ -230,7 +237,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
           <div class="wrap row">
             <div class="group_title m-2col">
-              <h3 class="h3_alt">Sur le web</h3>
+              <h3 class="h3_alt">L'association dans d'autres médias</h3>
             </div>
             
             <div class="group_list m-5col m-last">
@@ -263,7 +270,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
               <div class="wrap row">
                 <div class="group_title m-2col">
-                  <h3 class="h3_alt">Autres associations du réseau Elsa</h3>
+                  <h3 class="h3_alt">Les autres associations partenaires locales</h3>
                 </div>
                 
                 <div class="group_list m-5col m-last">

@@ -84,8 +84,8 @@ get_header();
                         <?php endif; ?>
 
                         <div class="page_actions">
-                            <a href="#recommandations" class="scroll btn-primary plain">Voir les ressources recommandées</a>
-                            <a href="/recherche-documentaire/?boite=<?php echo $boite_slug; ?>" class="btn-secondary plain">Voir toutes les ressources</a>
+                            <a href="#recommandations" class="scroll btn-primary plain">Les ressources recommandées</a>
+                            <a href="/recherche-documentaire/?boite=<?php echo $boite_slug; ?>" class="btn-secondary plain">Toutes les ressources de la boîte à outils</a>
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ get_header();
                     </div>
 
                     <div class="row clearfix">
-                        <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn-secondary is-centered">Voir toutes les ressources</a>
+                        <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn-secondary is-centered">Toutes les ressources de la boîte à outils</a>
                     </div> 
                     
                 </div><!-- .wrap -->

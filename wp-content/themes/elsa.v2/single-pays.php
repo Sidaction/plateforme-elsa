@@ -38,7 +38,7 @@
                     <?php echo get_post_meta($post->ID, 'liens', true);?>
 
                     <?php if(!empty($rapport_activite)): ?>
-                        <a href="<?php echo $rapport_activite;?>" target="_blank">» consulter le rapport d'activité</a>
+                        <a href="<?php echo $rapport_activite;?>" class="btn-inline" target="_blank">consulter le rapport d'activité</a>
                     <?php endif;?>
 
                 </div>
@@ -58,7 +58,7 @@
                             </div><!-- .page_metas -->
                     <?php endif; ?>
 
-                    <a href="#" class="btn-primary plain">Voir les ressources liées au pays</a>
+                    <a href="#" class="btn-primary plain">Les ressources du pays</a>
 
                 </div><!-- .ressource_aside -->
             </div><!-- .wrap -->
@@ -115,7 +115,7 @@
 
       <div class="wrap row">
         <div class="group_title m-2col">
-          <h3 class="h3_alt">Acteurs locaux</h3>
+          <h3 class="h3_alt">Principaux acteurs nationaux et internationaux</h3>
         </div>
         
         <div class="group_list m-5col m-last">

@@ -46,12 +46,13 @@
         <div class="m-3col">
             <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'tertiary-menu' ) ); ?>
 
-            <h5 class="h2">Restons en contact</h5>
+            <h5 class="h2">Rester en contact</h5>
 
             <ul class="no-bullets">
                 <li><a href="#" class="btn-inline">Nous soumettre une ressource</a> </li>
                 <li><a href="#" class="btn-inline">Nous écrire</a> </li>
                 <li><a href="#" class="btn-inline">Nous suivre sur les réseaux</a> </li>
+                <li><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
             </ul>
 
             <form>

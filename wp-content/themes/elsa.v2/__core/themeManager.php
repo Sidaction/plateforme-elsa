@@ -189,7 +189,7 @@ class themeManager {
         }
       }
 
-      $nav = '<a href="'.$backlink.'">Retourner aux résultats</a>';
+      $nav = '<a href="'.$backlink.'" class="btn-inline btn-goback">Retourner à la liste des résultats</a>';
       echo $nav;
     } 
     else {

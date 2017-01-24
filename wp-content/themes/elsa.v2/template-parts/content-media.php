@@ -8,7 +8,7 @@
           <div class="wrap row">
 
               <div class="m-4col">
-                <a href="/medias" class="btn-inline">Voir tous les médias</a>
+                <a href="/medias" class="btn-inline btn-goback">Voir tous les médias</a>
                 <h1 class="h1">
                     <?php the_title();?>
                 </h1>
@@ -27,7 +27,7 @@
                       <?php if(!empty($date_edition)) echo '<div class="page_metas_row"><span>Date d’édition : </span>' . $date_edition . '</div>';?> 
 
                       <div class="page_metas_row">
-                        <span>Thème(s) :</span> <?php the_category(', '); ?>
+                        <span>Thématique(s) :</span> <?php the_category(', '); ?>
                       </div>
 
                       <div class="page_metas_row">

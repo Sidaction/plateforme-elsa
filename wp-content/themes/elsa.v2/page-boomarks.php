@@ -37,7 +37,7 @@ get_header(); ?>
             <div class="wrap row">
 
                 <div class="group_title m-2col">
-                  <div class="exportxls"><a href="../extract" class="btn-inline">Exporter au format xls</a></div>
+                  <div class="exportxls"><a href="../extract" class="btn-inline">Télécharger la liste des résultats</a></div>
                 </div>
 
                 <div class="group_intro m-5col m-last">

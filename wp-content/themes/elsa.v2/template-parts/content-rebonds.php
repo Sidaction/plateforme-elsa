@@ -2,11 +2,11 @@
 
     <?php $rebonds = get_field('rebonds_default', 'option'); ?>
     <?php if( $rebonds) : ?>
-    <aside class="blocs_group--rebonds">
+    <aside class="blocs_group--rebonds bg-cut">
       <div class="wrap row">
 
         <div class="group_title m-2col dark">
-          <h3 class="h3_alt">A lire aussi</h3>
+          <h3 class="h3_alt">Autres infos utiles</h3>
         </div>
         
         <div class="group_list">
