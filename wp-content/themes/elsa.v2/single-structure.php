@@ -13,6 +13,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
  $link=get_post_meta($post->ID, 'link', true);
  $link2=get_post_meta($post->ID, 'link2', true);
  $email=get_post_meta($post->ID, 'email', true);
+ $antenne=get_post_meta($post->ID, 'antenne', true);
  $ligne=get_post_meta($post->ID, 'ligne', true);
  $rapport_activite=get_post_meta($post->ID, 'rapport_activite', true);
 
@@ -95,9 +96,9 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                             </div>
                         <?php endif; ?> 
 
-                        <?php if( true ) : ?>
+                        <?php if( isset($antenne) && $antenne != '' ) : ?>
                             <div class="page_metas_row">
-                                <span>Antenne(s) : </span><?php the_field('antenne'); ?>
+                                <span>Antenne(s) : </span><?php echo $antenne; ?>
                             </div>
                         <?php endif; ?> 
 

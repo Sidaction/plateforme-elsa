@@ -267,6 +267,12 @@ function rw_register_meta_box() {
 
                 ),
           array(
+                    'name' => 'Antenne(s)',
+                    'id' => 'antenne',
+                    'type' => 'text',
+
+                ),
+          array(
             'name' => 'Pays pour la géoloc.',
             'id' => 'pays',
             'type'    => 'text',
