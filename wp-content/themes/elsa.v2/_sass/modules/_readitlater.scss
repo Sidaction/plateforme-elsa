@@ -8,7 +8,7 @@
 }
 
 
-span#gema75_wc_wc_count_badge {
+:not(.page_title) > .wrap #gema75_wc_wc_count_badge {
   display: inline-block;
   margin-left: $base_line_height / 3;
   color: $color_primary !important; 
@@ -17,4 +17,23 @@ span#gema75_wc_wc_count_badge {
   width:  $base_line_height / 2;
   text-align: center;
   line-height: 9px;
+}
+
+
+.gema75_read_it_later_text {
+  display: inline-block;
+  padding-left: $base_line_height;
+  background-repeat: no-repeat;
+  background-image: url('_img/book_full');
+  background-size: auto $base_line_height;
+  color: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+.addedToRilListButton {
+  background-image: url('_img/book_full');
+}
+.addToReadItLaterButton {
+  background-image: url('_img/book_empty');
 }

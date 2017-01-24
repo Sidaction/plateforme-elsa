@@ -7,11 +7,11 @@
   <li class="list_item">
 
 
-      <a href="#" class="removeFromRILButton list_item-bookmark" data-readitlater-id="<?php echo $post->ID ;?>" >
-        <span class="icon-bookmark_full"><span class="path1"></span><span class="path2"></span></span>
-      </a>
-
       <div class="list_item_inner">
+
+          <a href="#" class="removeFromRILButton" data-readitlater-id="<?php echo $post->ID ;?>" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/_img/book_full.png" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
+          </a>
 
           <div class="list_item-icons">
             <?php if( isset($reco) && $reco ) : ?>

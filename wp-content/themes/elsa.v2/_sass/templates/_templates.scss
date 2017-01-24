@@ -159,9 +159,9 @@
 
         .group_content {
 
-           div {
+          & > div {
             margin-right: $base_line_height;
-           }
+          }
         }
       } 
 

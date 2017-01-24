@@ -6,6 +6,65 @@ require_once('__core/themeManager.php' );
 $cnSite = new themeManager();
 
 
+
+
+class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
+
+        //shows "add to readitlater" link/button on single product page
+        function show_bookmark_btn(){
+
+            global $post , $gema75_read_it_later ;
+            
+            $content = "";
+
+            //if logged in 
+            if( is_user_logged_in() ){
+                
+                    $current_user_id = get_current_user_id();
+                    
+                    $current_user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$current_user_id);
+                    
+                    if(isset($current_user_readitlater_list['posts_in_ril'][$post->ID])){
+                    
+                        $content = ' <div class="bookmark">  <a href="#"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
+                    
+                    }else{
+
+                        $content = ' <div class="bookmark">  <a href="#"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp;</span></a>  </div>' ;
+                        
+                    }
+                    
+                    return $content;
+
+            }   
+            
+            //Non logged in users
+            if( !is_user_logged_in() ){
+                
+                if(!isset($_SESSION['gema75_ril_post_array'][$post->ID])){
+
+                    $content =  ' <div class="bookmark"> <a href="#"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
+                
+                }else {
+
+                    $content =  ' <div class="bookmark">  <a href="#"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
+                    
+                }
+            
+            }           
+            
+            
+            return $content;
+        
+        }
+
+
+}
+
+$Bookmarks =  new Bookmarks();
+
+
+
 /**
  * ENQUEUE STYLES & SCRIPTS
  */

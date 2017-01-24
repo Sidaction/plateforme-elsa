@@ -32,8 +32,8 @@
 
   .bookmark {
     position: absolute;
-    top: -18px;
-    right: -13px;
+    top: -4px;
+    right: - $base_line_height / 4;
   }
 
   .medias_list & {
@@ -111,6 +111,11 @@
   position: relative;
   border-top: 1px solid $gray;
   padding: $base_line_height 0;
+
+  .removeFromRILButton {
+    position: absolute;
+    left: 0;
+  }
 }
   .list_item_inner {
     padding-left: $base_line_height * 4;
