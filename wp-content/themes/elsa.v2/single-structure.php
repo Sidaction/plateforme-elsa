@@ -292,11 +292,10 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
         <?php wp_reset_postdata(); ?>
         <?php $args = null; ?>
 
-
-
 </section>
 
 
+    <?php get_template_part('template-parts/content', 'rebonds'); ?>
 
 
 <?php endwhile; ?>
