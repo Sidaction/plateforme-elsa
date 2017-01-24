@@ -64,6 +64,11 @@ a:active {
   }
 }
 
+.btn-link {
+  font-style: italic;
+  font-weight: $thin;
+}
+
 .btn-goback {
   position: absolute;
   color: $white;

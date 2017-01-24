@@ -1,4 +1,7 @@
 
+/*
+ * 1 | 2 | .....
+ */
 
 .nav_pager {
   margin-bottom: $base_line_height * 2;
@@ -19,4 +22,14 @@
       margin-right: 0;
     }
   }
+}
+
+
+/*
+ * NEXT/PREV RESSOURCES
+ */
+
+.nav_next {
+    text-align: right;
+    margin-top: $base_line_height;
 }

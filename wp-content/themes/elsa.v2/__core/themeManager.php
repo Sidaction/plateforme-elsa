@@ -235,9 +235,9 @@ class themeManager {
     
     $referer=(isset($_GET['ref']) && $_GET['ref']=='search')?'?ref=search':'';
     
-    $nav='<ul id="navFiches">';
-    if (!empty($previd)) $nav.='<li><a href="'.get_permalink($previd ).$referer.'">Ressource précédente</a></li>';
-    if (!empty($nextid)) $nav.='<li><a href="'.get_permalink($nextid).$referer.'">Ressource suivante</a></li>';
+    $nav='<ul id="navFiches" class="no-bullets">';
+    if (!empty($previd)) $nav.='<li class="nav_prev"><a href="'.get_permalink($previd ).$referer.'" class="btn-link"><span class="icon-arrow_left"></span> Ressource précédente</a></li>';
+    if (!empty($nextid)) $nav.='<li class="nav_next"><a href="'.get_permalink($nextid).$referer.'" class="btn-link">Ressource suivante <span class="icon-arrow_right"></span></a></li>';
     $nav.=' </ul>';
     echo $nav;
   }
