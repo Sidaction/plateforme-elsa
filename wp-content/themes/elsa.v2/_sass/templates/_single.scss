@@ -17,6 +17,15 @@
     margin: $base_line_height * 2 0;
   }
 
+  .page_title {
+
+    .wrap {
+      position: relative;
+    }
+
+  }
+
+
 /* 
  * MEDIAS SINGLE
  */
@@ -27,11 +36,15 @@
     margin-bottom: $base_line_height;
     background-color: $color_medias;
     padding: $base_line_height;
+
+    .h1 {
+      padding: $base_line_height * 2 0;
+    }
   }
   .media_aside {
     border: 1px solid $white;
     color: $white;
-    padding: $base_line_height $base_line_height 0 $base_line_height;
+    padding: $base_line_height;
 
     span {
       font-weight: $semibold;

@@ -61,7 +61,11 @@
 
 .blocs_group--rebonds {
   @extend .blocs_group;
-  margin-top: $base_line_height * 3;
+  margin-top: $base_line_height * 5;
+
+  .group_title {
+    margin-top: - $base_line_height * 2;
+  }
 }
 
 

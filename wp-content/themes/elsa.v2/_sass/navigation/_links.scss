@@ -64,4 +64,19 @@ a:active {
   }
 }
 
+.btn-goback {
+  position: absolute;
+  color: $white;
+  top: - $base_line_height * 2;
+  left: 0;
+
+  &:before {
+    @extend .icon-arrow_left;
+  }
+
+  .media_title & {
+    top: 0;
+  }
+}
+
 
