@@ -51,7 +51,7 @@
 
                         <input type="hidden" name="totalpays" value="" />
                         <input type="hidden" name="totalregions" value="" />
-                        <button class="main_search_btn main_nav_item">Rechercher</button>
+                        <button class="main_search_btn main_nav_item"><span class="icon-loupe"></span>Rechercher</button>
                     </div>
                 </form>  
             </section>
