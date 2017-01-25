@@ -12,14 +12,14 @@
       'orderby'        => 'menu_order'
     )); ?>
 
-    <?php while ( $childpages->have_posts() ) : $childpages->the_post(); ?>
+    <ul class="dark childrenpages-menu no-bullets">
 
-      <ul class="dark childrenpages-menu no-bullets">
+      <?php while ( $childpages->have_posts() ) : $childpages->the_post(); ?>
 
         <li class="childpage-item <?php if( strpos($current_url, get_permalink() ) !== false ) { echo 'current'; } ?>">
-          <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+          <a href="<?php the_permalink(); ?>" class="btn-inline"><?php the_title(); ?></a>
         </li>
-
-      </ul>
     
-    <?php endwhile; wp_reset_query(); ?>
+      <?php endwhile; wp_reset_query(); ?>
+
+    </ul>

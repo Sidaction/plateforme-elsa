@@ -115,54 +115,62 @@ get_header();
                         )
                     );
 			        $grille_posts = get_posts($args);
-                    $i = 0; 
+    
+                    if( !empty( $grille_posts ) ) :
+                        $i = 0; 
 
-                    foreach ( $grille_posts as $post ) : setup_postdata( $post ); ?>
+                        foreach ( $grille_posts as $post ) : setup_postdata( $post ); ?>
 
-                            <?php 
-                                $format = cnLib::get_main_term_slug($post->ID, 'format');
-                                switch ($format) {
-                                    case 'video':
-                                        $type = 'media';
-                                        break;
-                                    case 'audio':
-                                        $type = 'media';
-                                        break;
-                                    case 'diaporama':
-                                        $type = 'media';
-                                        break;
-                                    default:
-                                        $type = 'ressource';
-                                        break;
-                                }
-                            ?>
+                                <?php 
+                                    $format = cnLib::get_main_term_slug($post->ID, 'format');
+                                    switch ($format) {
+                                        case 'video':
+                                            $type = 'media';
+                                            break;
+                                        case 'audio':
+                                            $type = 'media';
+                                            break;
+                                        case 'diaporama':
+                                            $type = 'media';
+                                            break;
+                                        default:
+                                            $type = 'ressource';
+                                            break;
+                                    }
+                                ?>
 
-                            <?php if( $i == 0 ) : ?>
-                                <div class="m-2col">
-                                    <?php set_query_var( 'type', $type ); ?>
-                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
+                                <?php if( $i == 0 ) : ?>
+                                    <div class="m-2col">
+                                        <?php set_query_var( 'type', $type ); ?>
+                                        <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                            <?php elseif ( $i % 2 == 0 ) : ?>
-                                <div class="m-4col m-clearfix">
-                                    <?php set_query_var( 'type', $type ); ?>
-                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
+                                <?php elseif ( $i % 2 == 0 ) : ?>
+                                    <div class="m-4col m-clearfix">
+                                        <?php set_query_var( 'type', $type ); ?>
+                                        <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                            <?php else : ?>
-                                <div class="m-4col">
-                                    <?php set_query_var( 'type', $type ); ?>
+                                <?php else : ?>
+                                    <div class="m-4col">
+                                        <?php set_query_var( 'type', $type ); ?>
 
-                            <?php endif; ?>
+                                <?php endif; ?>
 
-                                    <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+                                        <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
 
-                                </div><!-- end .col -->
+                                    </div><!-- end .col -->
 
 
-                        <?php $i++; ?>
-                            
+                            <?php $i++; ?>
+                                
 
-                        <?php endforeach; 
-                        wp_reset_postdata();?>
+                            <?php endforeach; 
+                            wp_reset_postdata();
+
+                            else : 
+
+                                echo "<p class='m-4col'>Il n'y a aucune ressource recommandée pour cette thématique....</p>";
+
+                            endif; ?>
 
                     </div>
 

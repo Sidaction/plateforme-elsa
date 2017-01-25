@@ -7,15 +7,15 @@ $cnSite->page_type='structure';
 get_header(); 
 
 if ( have_posts() ) while ( have_posts() ) : the_post(); 
- $structure=$post->post_name;
- $structure_id=$post->ID;
- $pays=cnLib::get_main_term_slug($post->ID, 'pays_assoc');
- $link=get_post_meta($post->ID, 'link', true);
- $link2=get_post_meta($post->ID, 'link2', true);
- $email=get_post_meta($post->ID, 'email', true);
- $antenne=get_post_meta($post->ID, 'antenne', true);
- $ligne=get_post_meta($post->ID, 'ligne', true);
- $rapport_activite=get_post_meta($post->ID, 'rapport_activite', true);
+ $structure = $post->post_name;
+ $structure_id = $post->ID;
+ $pays = cnLib::get_main_term_slug($post->ID, 'pays_assoc');
+ $link = get_post_meta($post->ID, 'link', true);
+ $link2 = get_post_meta($post->ID, 'link2', true);
+ $email = get_post_meta($post->ID, 'email', true);
+ $antenne = get_post_meta($post->ID, 'antenne', true);
+ $ligne = get_post_meta($post->ID, 'ligne', true);
+ $rapport_activite = get_post_meta($post->ID, 'rapport_activite', true);
 
  $web = get_post_meta($post->ID, 'web', true);
 
@@ -33,7 +33,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
               <h1 class="h1">
                   <?php the_title();?>
               </h1> 
-              <?php echo get_post_meta($post->ID, 'adresse', true);?> <?php echo get_post_meta($post->ID, 'cp', true);?> <?php echo get_post_meta($post->ID, 'ville', true);?>,                         <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
+              <?php echo get_post_meta($post->ID, 'adresse', true);?> <?php echo get_post_meta($post->ID, 'cp', true);?> <?php echo get_post_meta($post->ID, 'ville', true);?>, <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
 
           </div>     
         </div>

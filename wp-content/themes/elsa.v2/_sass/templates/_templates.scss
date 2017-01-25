@@ -52,9 +52,17 @@
       bottom: 0;
       width: 500px;
     }
+
+    @include up-to(medium) {
+      width: 70%;
+      margin-bottom: $base_line_height * 2;
+    }
   }
 }
-
+  .childpage-item {
+    margin-bottom: $base_line_height;
+  }
+  
 .page_title:not(.media_title) {
   padding: $base_line_height * 3 0;
   color: $white;
@@ -94,6 +102,10 @@
     top: 0;
     left: 0;
     bottom: 0;
+
+    @include up-to(medium) {
+      width: $base_line_height / 2;
+    }
   }
 }
 
@@ -110,6 +122,10 @@
 
   .page_aside {
     margin-top: - $base_line_height * 7;
+
+    @include up-to(medium) {
+      margin-top: 0;
+    }
   }
     .page_media {
       margin-bottom: $base_line_height * 2;

@@ -112,13 +112,18 @@
   border-top: 1px solid $gray;
   padding: $base_line_height 0;
 
+  &:last-child {
+    border-bottom: 1px solid $gray;
+    margin-bottom: $base_line_height * 3;
+  }
+
   .removeFromRILButton {
     position: absolute;
     left: 0;
   }
 }
   .list_item_inner {
-    padding-left: $base_line_height * 4;
+    padding-left: $base_line_height * 3;
   }
     .list_item-icons {
       position: absolute;

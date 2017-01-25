@@ -47,7 +47,7 @@ get_header(); ?>
                         <?php if ( $the_query->have_posts() ) : ?>
                             <?php $i = 0; ?>
                             <div class="results_nav clearfix row">
-                                <div class="nav_postperpage m-2col">
+                                <div class="nav_postperpage m-3col">
                                     <select class="selectBox" id="pager1">
                                         <option value="10">10 résultats par page</option>
                                         <option value="20">20 résultats par page</option>
@@ -55,7 +55,7 @@ get_header(); ?>
                                         <option value="-1">Tous les résultats</option>
                                     </select>
                                 </div>
-                                <div class="nav_pager m-5col m-last">
+                                <div class="nav_pager-top m-5col m-last">
                                     <?php cnLib::pagination($totalpages); ?>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ get_header(); ?>
                             </div>
 
                             <div class="results_nav clearfix row">
-                                <div class="nav_postperpage m-2col">
+                                <div class="nav_postperpage m-3col">
                                     <select class="selectBox" id="pager1">
                                         <option value="10">10 résultats par page</option>
                                         <option value="20">20 résultats par page</option>
@@ -91,7 +91,7 @@ get_header(); ?>
                                         <option value="-1">Tous les résultats</option>
                                     </select>
                                 </div>
-                                <div class="nav_pager m-5col m-last">
+                                <div class="nav_pager-bottom m-5col m-last">
                                     <?php cnLib::pagination($totalpages); ?>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
 
 
 .search_list {
-  padding: $base_line_height * 3;
+  padding: $base_line_height * 3 0;
 }
 
 .search_filters {
@@ -20,4 +20,8 @@
     color: $color_primary;
     font-weight: $semibold;
   }
+}
+
+.search_submit {
+  margin-top: $base_line_height * 2;
 }

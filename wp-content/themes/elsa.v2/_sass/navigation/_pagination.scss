@@ -3,8 +3,7 @@
  * 1 | 2 | .....
  */
 
-.nav_pager {
-  margin-bottom: $base_line_height * 2;
+%nav_pager {
   text-align: right;
 
   li {
@@ -16,13 +15,39 @@
     background-color: $white;
     
     &.active {
-      background:  none;
+      background: none;
     }
     &:last-child {
       margin-right: 0;
     }
   }
 }
+
+.nav_pager-top {
+  @extend %nav_pager;
+  margin-bottom: $base_line_height * 2;
+
+  @include up-to(medium) {
+    display: none;
+  }
+}
+.nav_pager-bottom {
+  @extend %nav_pager;
+
+  @include up-to(medium) {
+    text-align: center;
+  }
+}
+
+
+.nav_postperpage {
+
+  @include up-to(medium) {
+    margin-bottom: $base_line_height * 2;
+  }
+}
+
+
 
 
 /*

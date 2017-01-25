@@ -1,6 +1,8 @@
 <?php
   $reco = get_field('recommandation');
   $boite = get_the_term_list( $post->ID, 'boiteoutils', 'People: ', ', ' );
+
+  global $gema75_read_it_later;
 ?>
 
 

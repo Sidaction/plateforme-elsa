@@ -35,7 +35,7 @@ $wide_breakpoint:                   1400px !default;
   margin: auto;
 
     @include up-to(large) {
-        width: 95%;
+        width: 90%;
     }
 
     @include at-least(wide) {

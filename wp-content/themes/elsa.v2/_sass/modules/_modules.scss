@@ -26,7 +26,8 @@
     color: $white;
     padding: $base_line_height * 3 $base_line_height;
     margin-top: - $base_line_height * 3;
-
+    margin-bottom: $base_line_height;
+    
     &::before {
       content: '';
       position: absolute;
@@ -38,6 +39,11 @@
     }
     a {
       color: inherit;
+    }
+
+    @include up-to(medium) {
+      margin-bottom: $base_line_height * 2;
+      width: 70%;
     }
   }
     .group_title--small {
@@ -56,6 +62,10 @@
   }
   .groupe_action {
     text-align: center;
+
+    @include up-to(medium) {
+      margin-top: $base_line_height * 2;
+    }
   }
 
 
