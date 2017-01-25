@@ -15,13 +15,13 @@
 <?php if( $type == 'media' ) : ?>
   <div class="bloc_item bloc--<?php echo $type; ?> bg_cover" style="background-image:url(<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>)">
 
-<?php echo $Bookmarks->show_bookmark_btn(); ?>
+      <?php echo $Bookmarks->show_bookmark_btn(); ?>
 
       <img class="bloc-media_format" src="<?php echo get_template_directory_uri(); ?>/_img/icon-<?php echo $format; ?>.png">
 
       <a href="#" class="bookmark"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="<?php echo $post->ID; ?>"><span class="icon-bookmark_full"><span class="path1"></span><span class="path2"></span></span></span></a>
 
-      <a href="<?php the_permalink();?>">
+      <a href="<?php the_permalink(); ?><?php if( isset($ref) && $ref == 'media' ) echo '?ref=media'; ?>">
 
           <div class="bloc_meta bloc_category">
             <?php 

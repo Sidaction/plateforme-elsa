@@ -73,7 +73,7 @@ get_header(); ?>
                                     <div class="m-4col">
 
                                 <?php endif; ?>
-
+                                        <?php set_query_var( 'ref', 'media' ); ?>
                                         <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
                                     </div>
 
