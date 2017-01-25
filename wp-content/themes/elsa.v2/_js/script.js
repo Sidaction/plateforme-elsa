@@ -6,6 +6,10 @@ jQuery(document).ready(function($){
 
   console.log('let\'s begin');
 
+  var dropdowns_trigger = $('.js-dropdown-trigger');
+  var header = $('.site-header');
+  var header_height = header.outerHeight();
+
 
   /*
    * STICKY MENU
@@ -14,9 +18,8 @@ jQuery(document).ready(function($){
    // TODOS
    // -> Problème au scroll des dropdowns
 
-  var header = $('.site-header');
-  var header_height = header.outerHeight();
-  header.css('position', 'fixed').css('opacity', '0.98');
+
+  header.css('position', 'fixed');
   $('.site-content').css('padding-top', header_height);
 
   $( window ).scroll(function() {
@@ -31,6 +34,18 @@ jQuery(document).ready(function($){
     }
   });
 
+
+  var main_nav_trigger = $('.main_nav-trigger');
+  main_nav_trigger.on('click', function() {
+    $('.main-navigation').toggle();
+    $('.top-nav-outer').toggle();
+
+    if( dropdowns_trigger.hasClass('open') ) {
+      dropdowns_trigger.removeClass('open');
+      $('body').removeClass('no-scroll');
+      $('#site-content').removeClass('dd-open');
+    }
+  });
 
 
   
@@ -67,7 +82,6 @@ jQuery(document).ready(function($){
    * DROPDOWNS
    */
 
-  var dropdowns_trigger = $('.js-dropdown-trigger');
   dropdowns_trigger.on('click', function(event) {
 
     event.preventDefault();
@@ -75,15 +89,9 @@ jQuery(document).ready(function($){
     var header = $('.site-header');
     var viewportHeight = $(window).height();
     var headerHeight = header.outerHeight();
-    console.log(viewportHeight);
 
     var dropdownHeight = viewportHeight - headerHeight;
-
-    console.log(dropdownHeight);
-
     var dropdownHeightPourcentage = ( dropdownHeight * 100 ) / viewportHeight - 12;
-
-    console.log(dropdownHeightPourcentage);
 
     if( dropdowns_trigger.hasClass('open') ) {
     

@@ -12,6 +12,7 @@
   right: 0;
   z-index: 9999;
   @include transition(all, 0.3s);
+  opacity: 0.98;
 
   .site-resume {
     @include type-setting(-1);
@@ -28,12 +29,31 @@
       display: none;
     }
   }
+
+  @include up-to(medium) {
+    position: static !important;
+    height: $base_line_height * 3;
+  }
 }
 
+  .site-branding {
+
+    @include up-to(medium) {
+      float: right !important;
+      width: 100%;
+      height: $base_line_height * 3;
+    }
+  }
 
   .site-logo {
     float: left;
     margin-right: $base_line_height;
+      
+    @include up-to(medium) {
+      float: right;
+      margin-right: 0;
+      height: 100%;
+    }
   }
 
   .site-title {
@@ -42,4 +62,25 @@
       @include type-setting(3);
       margin: 0;
     }
+
+    @include up-to(medium) {
+      display: none;
+    }
   }
+
+
+  .subheader {
+
+    @include up-to(medium) {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      background-color: white;
+      opacity: 0.9;
+      z-index: 9999;
+      padding: $base_line_height / 2 0;
+    }
+  }
+
+

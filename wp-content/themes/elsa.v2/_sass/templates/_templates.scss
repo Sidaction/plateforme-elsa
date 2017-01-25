@@ -14,7 +14,9 @@
 @import "search";
 
 .no-scroll {
-  overflow: hidden;
+  @include at-least(medium) {
+    overflow: hidden;
+  }
 }
 
 .dd-open {

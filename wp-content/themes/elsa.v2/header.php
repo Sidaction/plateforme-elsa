@@ -12,32 +12,30 @@
     	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
-    
-    <!--[if (gte IE 6)&(lte IE 8)]>
-    	<script type="text/javascript" src="<?php echo $cnSite->templatelink; ?>/_js/selectivizr.js"></script>
-    	<noscript><link rel="stylesheet" href="[fallback css]" /></noscript>
-    <![endif]-->
   
 </head>
 <body>
 
 <header class="site-header">
 
-    <div class="row wrap subheader">
+    <div class=" subheader">
+        <div class="row wrap">
 
-        <div class="m-3col site-branding">
-            <a href="<?php echo get_bloginfo('url') ?>"><img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo"></a>
-            <div class="site-title">
-                <h1><a href="<?php echo get_bloginfo('url') ?>">Plateforme ELSA</a></h1>
-                <p class="site-resume">Centre de ressources francophones sur le VIH/sida en Afrique</p>
+            <div class="m-3col site-branding">
+                <a href="#" class="btn-secondary main_nav-trigger">Menu </a>
+                <a href="<?php echo get_bloginfo('url') ?>"><img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo"></a>
+                <div class="site-title">
+                    <h1><a href="<?php echo get_bloginfo('url') ?>">Plateforme ELSA</a></h1>
+                    <p class="site-resume">Centre de ressources francophones sur le VIH/sida en Afrique</p>
+                </div>
+            </div>
+
+            <div class="m-5col top-nav-outer">
+                <div class="top-navigation">
+                    <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu' ) ); ?>
+                </div>
             </div>
         </div>
-        <div class="m-5col">
-            <div class="top-navigation">
-                <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu' ) ); ?>
-            </div>
-        </div>
-
     </div><!-- .wrap -->
 
 
