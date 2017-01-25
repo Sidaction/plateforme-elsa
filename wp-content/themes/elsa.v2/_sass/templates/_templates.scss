@@ -178,7 +178,11 @@
         .group_content {
 
           & > div {
-            margin-right: $base_line_height;
+            margin-right: $base_line_height / 2;
+          }
+          .btn-secondary {
+            padding-left: $base_line_height / 2;
+            padding-right: $base_line_height / 2;
           }
         }
       } 
