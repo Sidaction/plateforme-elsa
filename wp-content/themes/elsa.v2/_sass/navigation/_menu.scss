@@ -83,7 +83,7 @@
   display: none;
   position: absolute;
   background-color: $white;
-  top: $base_line_height * 2.5;
+  top: $base_line_height * 2.75;
   left: 0;
   right: 0;
   color: $black;
@@ -123,55 +123,57 @@
   }
 }
 
-
-.dd_group {
-  margin-bottom: $base_line_height * 2;
-  padding-bottom: $base_line_height;
-   
-  .h5 {
-    margin-bottom: $base_line_height / 2;
-  }
-}
-  .dd_img {
-
-  }
-
-  .dd_title {
-    position: relative;
-    padding: $base_line_height;
-    margin-top:  - $base_line_height;
+  .dd_group {
     margin-bottom: $base_line_height * 2;
-    color: $white;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: -500px;
-      background-color: inherit;
-      top: 0;
-      bottom: 0;
-      width: 500px;
+    padding-bottom: $base_line_height;
+     
+    .h5 {
+      margin-bottom: $base_line_height / 2;
     }
   }
-  .dd_content {
-    @include type-setting(-1);
-  }
-  .dd_text {
-  }
-  .dd_actions {
-    @include type-setting(0);
-  }
-  .js-dropdown-trigger.open {
+    .dd_title {
+      position: relative;
+      padding: $base_line_height;
+      margin-top:  - $base_line_height;
+      margin-bottom: $base_line_height * 2;
+      color: $white;
 
-    & + .dropdown-item {
-      display: block;
-      overflow-y: scroll;
+      &::before {
+        content: '';
+        position: absolute;
+        left: -500px;
+        background-color: inherit;
+        top: 0;
+        bottom: 0;
+        width: 500px;
+      }
     }
-  }
+    .dd_content {
+      @include type-setting(-1);
+    }
+    .dd_text {
+    }
+    .dd_actions {
+      @include type-setting(0);
+    }
+    .js-dropdown-trigger.open {
 
-  .dd_pays_row {
-    margin-bottom: $base_line_height;
-  }
+      &:before {
+        @extend .icon-close;
+        @extend .icon;
+        font-size: 12px;
+        margin-right: 8px;    
+      }
+
+      & + .dropdown-item {
+        display: block;
+        overflow-y: scroll;
+      }
+    }
+
+    .dd_pays_row {
+      margin-bottom: $base_line_height;
+    }
 
 
 
@@ -198,15 +200,11 @@
       content: '・';
     }
   }
-
-  a {
-
-  }
 }
 
   .item-selection {
     padding-left: 25px;
-    margin-left: 25px;
+    margin-left: $base_line_height;
     background-image: url('_img/book_full.png');
     background-position: left center;
     background-repeat: no-repeat;
@@ -214,6 +212,9 @@
   }
 
 
+
+
+// Footer Navigationv
 
 .menu-menu-footer-container {
   margin-bottom: $base_line_height; 
@@ -240,6 +241,8 @@
 
   }
 }
+
+
 
 
 // Menu des pages enfants (page.php)
