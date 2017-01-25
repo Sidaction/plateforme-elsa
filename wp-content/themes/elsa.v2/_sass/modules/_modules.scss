@@ -62,9 +62,9 @@
   }
   .groupe_action {
     text-align: center;
+    margin-top: $base_line_height * 2;
 
     @include up-to(medium) {
-      margin-top: $base_line_height * 2;
     }
   }
 
