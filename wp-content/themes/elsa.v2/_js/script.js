@@ -16,8 +16,8 @@ jQuery(document).ready(function($){
 
   var header = $('.site-header');
   var header_height = header.outerHeight();
-  // header.css('position', 'fixed');
-  // $('.site-content').css('padding-top', header_height);
+  header.css('position', 'fixed').css('opacity', '0.98');
+  $('.site-content').css('padding-top', header_height);
 
   $( window ).scroll(function() {
     var $win = $(window);
@@ -69,23 +69,42 @@ jQuery(document).ready(function($){
 
   var dropdowns_trigger = $('.js-dropdown-trigger');
   dropdowns_trigger.on('click', function(event) {
+
     event.preventDefault();
+
+    var header = $('.site-header');
+    var viewportHeight = $(window).height();
+    var headerHeight = header.outerHeight();
+    console.log(viewportHeight);
+
+    var dropdownHeight = viewportHeight - headerHeight;
+
+    console.log(dropdownHeight);
+
+    var dropdownHeightPourcentage = ( dropdownHeight * 100 ) / viewportHeight - 12;
+
+    console.log(dropdownHeightPourcentage);
 
     if( dropdowns_trigger.hasClass('open') ) {
     
       if( $(this).hasClass('open') ) {
         $(this).removeClass('open');
         $('#site-content').removeClass('dd-open');
+        $('body').removeClass('no-scroll');
       }
       else {
         dropdowns_trigger.removeClass('open');
         $(this).addClass('open');
         $('#site-content').addClass('dd-open');
+        $('body').addClass('no-scroll');
+        $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
       }
     }
     else {
       $(this).addClass('open');
       $('#site-content').addClass('dd-open');
+      $('body').addClass('no-scroll');
+      $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
     }
   });
 

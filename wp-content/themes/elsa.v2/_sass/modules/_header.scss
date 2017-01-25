@@ -11,6 +11,7 @@
   left: 0;
   right: 0;
   z-index: 9999;
+  @include transition(all, 0.3s);
 
   .site-resume {
     @include type-setting(-1);

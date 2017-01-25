@@ -165,6 +165,7 @@
 
     & + .dropdown-item {
       display: block;
+      overflow-y: scroll;
     }
   }
 
