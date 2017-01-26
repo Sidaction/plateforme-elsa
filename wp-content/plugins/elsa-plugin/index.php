@@ -51,7 +51,6 @@ require_once(ODY_UTILS_PATH . 'roles.php');
 require_once(ODY_UTILS_PATH . 'acf.php');
 
 
-require_once(ODY_CLASSES_PATH . 'soumettre.php');
 
 
 
