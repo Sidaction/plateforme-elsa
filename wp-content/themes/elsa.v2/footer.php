@@ -100,9 +100,10 @@
             <input type="submit" value="ok" class="btn-primary">
         </form>
 
-
     </div>  
 </div>
+
+<div id="empty_modal" class="modal modal-empty"></div>
 
 </body>
 </html>
