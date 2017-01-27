@@ -175,9 +175,6 @@
               </div>
           </div>
         </div>
-<?php
-var_dump($args);
-?>
 
 
         <div id="" class="search_filters bg-cut blocs_group">
@@ -207,7 +204,7 @@ var_dump($args);
                     <input type="search" class="plain input-bg" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                   </div>
                   
-                  <div class="row">
+                  <div class="row filter_group">
                     <div class="filter-thematique m-2col m-clearfix">
                       <?php cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
                     </div>
@@ -228,7 +225,7 @@ var_dump($args);
                     </div>
                   </div>
 
-                  <div class="row">
+                  <div class="row filter_group">
                     <div class="filter-format">
                       <div class="check-item"><input type="checkbox" <?php if ( $args['format'] === '' ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
                       <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'pdf') !== false) { echo 'checked'; } ?> class="s_checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
@@ -249,11 +246,20 @@ var_dump($args);
                   <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
 
 
-                  <div id="advancedSearch">
-                    <ul id="listKeywords" class="no-bullets"></ul>
-                    <ul id="listThemes" class="no-bullets"></ul>
-                    <ul id="listRegions" class="no-bullets"></ul>
-                    <a id="btnerase" class="btn-inline" href="#">Effacer les critères</a>
+                  <div id="advancedSearch" class="filter_group">
+                    <div class="clearfix filter_subgroup">
+                      <span class="meta">Thématique(s) filtrée(s) : </span>
+                      <ul id="listThemes" class="filters_list no-bullets">
+                      </ul>
+                    </div>
+
+                    <div class="clearfix filter_subgroup">
+                      <span class="meta">Pays filtré(s) : </span>
+                      <ul id="listRegions" class="filters_list no-bullets">
+                      </ul>
+                    </div>
+
+                    <a id="btnerase" class="btn-inline" href="#">Effacer tous les critères</a>
                   </div>
 
                   <input type="submit" id="formatbtn" class="btn-primary search_submit" value="Filtrer">
@@ -276,10 +282,10 @@ var_dump($args);
               <div class="results_nav clearfix row">
                   <div class="nav_postperpage m-3col">
                       <select class="selectBox" id="pager1">
-                          <option value="10">10 résultats par page</option>
-                          <option value="20">20 résultats par page</option>
-                          <option value="50">50 résultats par page</option>
-                          <option value="-1">Tous les résultats</option>
+                          <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
+                          <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
+                          <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
+                          <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
                       </select>
                   </div>
                   <div class="nav_pager-top m-5col m-last">
@@ -323,11 +329,11 @@ var_dump($args);
             <?php if($wp_query->found_posts > 0) :?>
               <div class="results_nav clearfix row">
                   <div class="nav_postperpage m-3col">
-                      <select class="selectBox" id="pager1">
-                          <option value="10">10 résultats par page</option>
-                          <option value="20">20 résultats par page</option>
-                          <option value="50">50 résultats par page</option>
-                          <option value="-1">Tous les résultats</option>
+                      <select class="selectBox" id="pager2">
+                          <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
+                          <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
+                          <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
+                          <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
                       </select>
                   </div>
                   <div class="nav_pager-bottom m-5col m-last">
@@ -350,14 +356,6 @@ var_dump($args);
      
   </section><!-- .site-content -->
 
-
-
-  <script type="text/javascript">
-  // $(window).ready(function(){
-  //   $('#pager1 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
-  //   $('#pager2 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
-  // })
-  </script>
 
 
 

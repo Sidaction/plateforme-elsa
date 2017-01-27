@@ -22,6 +22,32 @@
   }
 }
 
+
+
+.filter_group {
+  margin-bottom: $base_line_height;
+}
+  .filter_subgroup {
+    margin-bottom: $base_line_height / 2;
+  }
+
+    .filters_list {
+      @include type-setting(-1);
+      color: $gray;
+      display: inline;
+    }
+      .filters_list_item {
+        display: inline;
+        margin-right: $base_line_height / 2;
+
+        .icon-close {
+          font-size: 11px;
+          margin-right: $base_line_height / 4;
+        }
+
+      }
+
+
 .search_submit {
-  margin-top: $base_line_height * 2;
+  margin-top: $base_line_height;
 }

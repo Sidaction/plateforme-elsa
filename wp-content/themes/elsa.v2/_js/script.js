@@ -197,8 +197,6 @@ jQuery(document).ready(function($){
 
     // XX RESULTS PER PAGE
     $("#pager1").change(function(){
-      console.log(  $(this).val() );
-
       $('#posts_per_page').val( $(this).val() );
       submitAdvancedSearch();
     });
@@ -225,7 +223,7 @@ jQuery(document).ready(function($){
 
         if(ok){
 
-          var tmpItem = $('<li data-value="'+$(this).val()+'"></li>');
+          var tmpItem = $('<li class="filters_list_item" data-value="'+$(this).val()+'"></li>');
           
           tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce thème des filtres" title="supprimer ce thème des filtres"></a>');
           tmpItem.append("<span>"+$("option:selected", this).text()+"</span>");
@@ -244,7 +242,7 @@ jQuery(document).ready(function($){
 
     $("#select-pays_assoc").change(function(e) {
       if($(this).val() !== ""){
-        $("#advancedSearch").slideDown();
+
         var ok = true;
         for(var i=0; i<$("li","#listRegions").length; i++){
           if($("li","#listRegions").eq(i).attr("data-value") == $(this).val()){
@@ -253,7 +251,7 @@ jQuery(document).ready(function($){
         }
         if(ok){
           var tmpItem;
-          tmpItem = $("option:selected",this).attr("name")=="region[]" ? $('<li data-value="'+$(this).val()+'" data-type="region"></li>'):$('<li data-value="'+$(this).val()+'"></li>');
+          tmpItem = $("option:selected",this).attr("name")=="region[]" ? $('<li class="filters_list_item" data-value="'+$(this).val()+'" data-type="region"></li>'):$('<li class="filters_list_item" data-value="'+$(this).val()+'"></li>');
           tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce pays des filtres" title="supprimer ce pays des filtres"></a>');
           tmpItem.append("<span>"+$("option:selected", this).text()+"</span>");
           $("#listRegions").append(tmpItem);
@@ -308,8 +306,6 @@ function getSearchFields(){
   $("input[name=totalpays]").val("");
   $("input[name=totalregions]").val("");
   
-  console.log(arrcat);
-
   
 
   if(arrcat.length!==0){
@@ -317,7 +313,7 @@ function getSearchFields(){
     jQuery.each( arrcat, function( i, val ) {
 
       var label = getLabel('cat',arrcat[i]);
-      var tmpItem = $('<li data-value="'+arrcat[i]+'"></li>');
+      var tmpItem = $('<li class="filters_list_item" data-value="'+arrcat[i]+'"></li>');
       
       tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer cette thématique des filtres" title="supprimer cette thématique des filtres"></a>');
       tmpItem.append("<span>"+label+"</span>");
@@ -338,7 +334,7 @@ function getSearchFields(){
     jQuery.each( arrpays, function( i, val ) {
 
       var label = getLabel('pays',arrpays[i]);
-      var tmpItem = $('<li data-value="'+arrpays[i]+'"></li>');
+      var tmpItem = $('<li class="filters_list_item" data-value="'+arrpays[i]+'"></li>');
       
       tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce pays des filtres" title="supprimer ce pays des filtres"></a>');
       tmpItem.append("<span>"+label+"</span>");
