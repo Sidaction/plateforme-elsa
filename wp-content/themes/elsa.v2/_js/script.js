@@ -313,47 +313,46 @@ function getSearchFields(){
   
 
   if(arrcat.length!==0){
-    for(var i=0; i<arrcat.length;i++){
+
+    jQuery.each( arrcat, function( i, val ) {
+
       var label = getLabel('cat',arrcat[i]);
       var tmpItem = $('<li data-value="'+arrcat[i]+'"></li>');
+      
       tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer cette thématique des filtres" title="supprimer cette thématique des filtres"></a>');
       tmpItem.append("<span>"+label+"</span>");
       
       $("#listThemes").append(tmpItem);
-      $(".btndel",tmpItem).hover(function(e){
-        showTooltip("Supprimer", e.pageX, e.pageY);
-      },function(e){
-        hideTooltip();
-      });
       
       $(".btndel",tmpItem).click(function(event) {
         event.preventDefault();
         $(this).parent().remove();
         checkAS();
       });
-    }
+
+    });
   }
 
   if(arrpays.length!==0){
-    for(var i=0; i<arrpays.length;i++){
+
+    jQuery.each( arrpays, function( i, val ) {
+
       var label = getLabel('pays',arrpays[i]);
       var tmpItem = $('<li data-value="'+arrpays[i]+'"></li>');
+      
       tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce pays des filtres" title="supprimer ce pays des filtres"></a>');
       tmpItem.append("<span>"+label+"</span>");
       
       $("#listRegions").append(tmpItem);
-      $(".btndel",tmpItem).hover(function(e){
-        showTooltip("Supprimer", e.pageX, e.pageY);
-      },function(e){
-        hideTooltip();
-      });
       
       $(".btndel",tmpItem).click(function(event) {
         event.preventDefault();
         $(this).parent().remove();
         checkAS();
       });
-    }
+
+    });
+
   }
 
 }
