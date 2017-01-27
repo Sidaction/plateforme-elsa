@@ -33,7 +33,6 @@
 
 .site-content {
   position: relative;
-  z-index: -9;
 
   @include up-to(medium) { 
     padding-top: 0 !important;
