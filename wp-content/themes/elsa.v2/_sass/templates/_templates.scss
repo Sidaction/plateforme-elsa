@@ -14,6 +14,9 @@
 @import "search";
 
 .no-scroll {
+
+      overflow: hidden;
+
   @include at-least(medium) {
     overflow: hidden;
   }
@@ -27,6 +30,16 @@
 /*
  * Styles communs
  */
+
+.site-content {
+  position: relative;
+  z-index: -9;
+
+  @include up-to(medium) { 
+    padding-top: 0 !important;
+  }
+}
+
 
 .page_title-outer {
   padding: $base_line_height * 2 0;
@@ -204,6 +217,12 @@
   -moz-column-count: 3;
   -webkit-column-count: 3;
   column-count: 3;
+
+  @include up-to(medium) {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
 }
 
 

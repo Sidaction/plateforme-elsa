@@ -12,21 +12,24 @@
   right: 0;
   z-index: 9999;
   @include transition(all, 0.3s);
-  opacity: 0.98;
 
   .site-resume {
     @include type-setting(-1);
   }
 
-  &.is-reduced {
-    padding: $base_line_height / 4 0 0 0;
-    font-size: 0.9em; 
+  @include at-least(medium) {
+    opacity: 0.98;
+  
+    &.is-reduced {
+      padding: $base_line_height / 4 0 0 0;
+      font-size: 0.9em; 
 
-    .site-logo {
-      width: 50px;
-    }
-    .site-resume {
-      display: none;
+      .site-logo {
+        width: 50px;
+      }
+      .site-resume {
+        display: none;
+      }
     }
   }
 
@@ -42,6 +45,7 @@
       float: right !important;
       width: 100%;
       height: $base_line_height * 3;
+      padding-bottom: $base_line_height;
     }
   }
 
@@ -77,9 +81,9 @@
       right: 0;
       top: 0;
       background-color: white;
-      opacity: 0.9;
+      opacity: 0.99;
       z-index: 9999;
-      padding: $base_line_height / 2 0;
+      padding: $base_line_height / 2 0 0 0;
     }
   }
 

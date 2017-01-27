@@ -10,7 +10,11 @@ jQuery(document).ready(function($){
   var header = $('.site-header');
   var header_height = header.outerHeight();
 
+  var empty_modal = $('#empty_modal');
 
+
+
+  
   /*
    * STICKY MENU
    */
@@ -39,9 +43,11 @@ jQuery(document).ready(function($){
   main_nav_trigger.on('click', function() {
     $('.main-navigation').toggle();
     $('.top-nav-outer').toggle();
+    $(this).toggleClass('e-open');
+    $('body').toggleClass('no-scroll');
 
-    if( dropdowns_trigger.hasClass('open') ) {
-      dropdowns_trigger.removeClass('open');
+    if( dropdowns_trigger.hasClass('e-open') ) {
+      dropdowns_trigger.removeClass('e-open');
       $('body').removeClass('no-scroll');
       $('#site-content').removeClass('dd-open');
     }
@@ -93,23 +99,29 @@ jQuery(document).ready(function($){
     var dropdownHeight = viewportHeight - headerHeight;
     var dropdownHeightPourcentage = ( dropdownHeight * 100 ) / viewportHeight - 12;
 
-    if( dropdowns_trigger.hasClass('open') ) {
+    if( dropdowns_trigger.hasClass('e-open') ) {
     
-      if( $(this).hasClass('open') ) {
-        $(this).removeClass('open');
+      if( $(this).hasClass('e-open') ) {
+        $(this).removeClass('e-open');
         $('#site-content').removeClass('dd-open');
-        $('body').removeClass('no-scroll');
+
+        if( main_nav_trigger.hasClass('e-open') ) {
+
+        }
+        else {
+          $('body').removeClass('no-scroll');
+        }
       }
       else {
-        dropdowns_trigger.removeClass('open');
-        $(this).addClass('open');
+        dropdowns_trigger.removeClass('e-open');
+        $(this).addClass('e-open');
         $('#site-content').addClass('dd-open');
         $('body').addClass('no-scroll');
         $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
       }
     }
     else {
-      $(this).addClass('open');
+      $(this).addClass('e-open');
       $('#site-content').addClass('dd-open');
       $('body').addClass('no-scroll');
       $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');

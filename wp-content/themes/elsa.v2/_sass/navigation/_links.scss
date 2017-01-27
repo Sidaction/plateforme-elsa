@@ -85,3 +85,13 @@ a:active {
 }
 
 
+.e-open {
+  padding-left: $base_line_height / 2;
+  
+  &:before {
+    @extend .icon;
+    @extend .icon-close;
+    font-size: 12px;
+    margin-right: 8px;
+  }
+}
