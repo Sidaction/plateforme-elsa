@@ -42,14 +42,11 @@
     <div class="main-navigation clearfix">
         <div class="wrap row">
 
-            <section id="rechercheThema" class="main_nav-search">
+            <section id="" class="main_nav-search">
                 <form id="" action="/recherche-documentaire/" class="main_nav_searchform">   
-                    <div id="recherche">
-
                         <input type="text" id="main_search" class="main_search_input main_nav_item" placeholder="Taper un terme ou laisser vide pour tout voir" name="totaltags" value=""/>
 
                         <button class="main_search_btn main_nav_item"><span class="icon-loupe"></span>Rechercher</button>
-                    </div>
                 </form>  
             </section>
     
