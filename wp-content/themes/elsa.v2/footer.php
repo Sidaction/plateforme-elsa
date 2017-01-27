@@ -87,7 +87,7 @@
 <div class="modal modal-newsletter">
     <div class="modal_inner wrap">
 
-        <a href="#" id="js-close" class="modal_close">
+        <a href="#" id="" class="modal_close">
             <span class="icon-close"></span>
         </a>
 
@@ -103,7 +103,13 @@
     </div>  
 </div>
 
-<div id="empty_modal" class="modal modal-empty"></div>
+<div id="empty_modal" class="modal modal-empty">
+    <div class="modal_inner wrap">
+        <a href="#" id="" class="modal_close">
+            <span class="icon-close"></span>
+        </a>
+    </div>
+</div>
 
 </body>
 </html>

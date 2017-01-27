@@ -15,19 +15,30 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 9999;
+
+  .bxslider {
+
+    img {
+      width: auto; 
+      margin: auto;
+    }
+  }
 }
   .modal_inner {
     position: absolute;
     background-color: $white;
     display: block;
     margin: auto;
-    padding: $base_line_height;
+    padding: $base_line_height * 2;
     top: 50%;
     left: 0;  
     right: 0;
     transform: translateY(-50%);
+    max-height: 75vh;
   }
     .modal_close {
       position: absolute;
-      right: 21px;
+      right: $base_line_height / 2;
+      top: $base_line_height / 2;
     }
+

@@ -12,9 +12,7 @@ jQuery(document).ready(function($){
 
   var empty_modal = $('#empty_modal');
 
-
-
-  
+ 
   /*
    * STICKY MENU
    */
@@ -75,7 +73,7 @@ jQuery(document).ready(function($){
     $('body').addClass('no-scroll');
   });
 
-  $('#js-close').on('click', function(event) {
+  $('.modal_close').on('click', function(event) {
     event.preventDefault();
 
     $('.modal').hide();
@@ -134,13 +132,33 @@ jQuery(document).ready(function($){
    * BX SLIDERS
    */
 
-  $('.bxslider').bxSlider({
-    pager: false,
-    adaptiveHeight: true,
-    nextText: '',
-    prevText: ''
-  });
+  var bxslider_markup = $('.bxslider').clone();
+  console.log(bxslider_markup);
 
+  if( bxslider_markup.length > 0) {
+
+    $('.bxslider').bxSlider({
+      pager: false,
+      adaptiveHeight: true,
+      nextText: '',
+      prevText: ''
+    });
+
+    $('.bx-wrapper').on('click', function() {
+      
+      var slider_clone = bxslider_markup;
+
+      $('#empty_modal > .modal_inner').append(slider_clone);
+      $('#empty_modal').show();
+      $('#empty_modal > .modal_inner > ul').bxSlider({
+        pager: false,
+        adaptiveHeight: false,
+        nextText: '',
+        prevText: ''
+      });
+    });
+  }
+  
 
 
   /*
