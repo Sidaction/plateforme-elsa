@@ -69,7 +69,7 @@ $Bookmarks =  new Bookmarks();
  * ENQUEUE STYLES & SCRIPTS
  */
 
-function bourron_scripts() {
+function elsa_scripts() {
     wp_enqueue_style( 'elsa-style', get_stylesheet_uri() );
 
     wp_enqueue_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.js', array( 'jquery' ), '1.0.0', true );
@@ -77,8 +77,10 @@ function bourron_scripts() {
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
+    wp_dequeue_style('SearchAutocomplete-theme');
+    wp_dequeue_style('tabslideout-css');
 }
-add_action( 'wp_enqueue_scripts', 'bourron_scripts' );
+add_action( 'wp_enqueue_scripts', 'elsa_scripts' );
 
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
