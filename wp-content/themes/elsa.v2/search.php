@@ -14,42 +14,35 @@
 	$args['totaltags'] = '';
 
 
-  /// SI STRUCTURE IS SET
-
-  if( empty($_GET['totaltags']) && !empty($_GET['tag']) ) { 
-  	$keyword = $_GET['tag'];
-
-  	$args['totaltags']=$_GET['tag'];
-  	$structure_id= (string)(cnLib::search_ID_by_title($_GET['tag'], 'structure'));
-  	
+  if( !empty($_GET['filter_totaltags']) ) {
+    $keyword = $_GET['filter_totaltags'];
+    $args['totaltags'] = $_GET['filter_totaltags'];
   }
-  elseif( !empty($_GET['totaltags']) ) {
-    $keyword = $_GET['totaltags'];
-    $args['totaltags']=$_GET['totaltags'];
-    $structure_id= (string)(cnLib::search_ID_by_title($_GET['totaltags'], 'structure'));
+  else {
+    if( empty($_GET['totaltags']) && !empty($_GET['tag']) ) { 
+      $keyword = $_GET['tag'];
+      $args['totaltags'] = $_GET['tag'];
+      $structure_id = (string)(cnLib::search_ID_by_title($_GET['tag'], 'structure'));
+    }
+    elseif( !empty($_GET['totaltags']) ) {
+      $keyword = $_GET['totaltags'];
+      $args['totaltags'] = $_GET['totaltags'];
+      $structure_id = (string)(cnLib::search_ID_by_title($_GET['totaltags'], 'structure'));
+    }
   }
+
+
+  
 
 	$args['pays_assoc'] = (isset($_GET['totalpays']))?$_GET['totalpays']:'';
 	$args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
 	$args['category_name'] = (isset($_GET['totalcat']))?$_GET['totalcat']:'';
 	
-  $args['category_name'] = (isset($_GET['category']))?$_GET['category']:'';
-  $args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
-
-
-  /// SI OUTILS IS CHECK
-  if( isset($_GET['outils']) && $_GET['outils'] == 1 ){
-		$args['meta_query'] = array(
-			array(
-				'key' => 'outil',
-				'value' => 1
-			)
-		);
-	}
 
 
 
 	/// SI STRUCTURE IS SET
+
   if( !empty($_GET['struct']) ) { 
 		$structure_id = $_GET['struct'];
 	}	
@@ -74,16 +67,14 @@
   else {
     $args['s'] = $keyword;	
 	  add_filter( 'posts_search', 'cn_tags_search', 500, 2 );
-	  //add_filter('posts_where','tag_search_where');
-    //add_filter('posts_join', 'tag_search_join');
- 		//add_filter('posts_groupby', 'tag_search_groupby');
   }
+
 
 
   // SI PERIODE  IS SET
   if( isset($_GET['period']) ) {
 
-  	$period=$_GET['period'];
+  	$period = $_GET['period'];
   	switch($period){
   		case '1semaine':
   			$after='1 week ago';
@@ -118,7 +109,6 @@
   // SI FORMAT
   if(isset($_GET['format'])) {
     $args['format'] = implode(",", $_GET['format']);
-    var_dump($args['format']);
   } 
   else {
     $args['format'] = '';
@@ -129,9 +119,7 @@
 
   // SETTINGS FOR QUERY
 
-//  var_dump( $_GET['posts_per_page'] );
-
-  if(!empty($_GET['posts_per_page'])) {
+  if( !empty($_GET['posts_per_page']) ) {
     $post_per_page = $_GET['posts_per_page'];
   }
   else {
@@ -147,7 +135,6 @@
   if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
     $_SESSION['args'] = $args;
 
-  //var_dump($args);
 
   $results = array();
 
@@ -186,12 +173,14 @@
                 </h1>
                 Vous avez <?php echo $wp_query->found_posts;?> résultats...
               </div>
-
-          </div>     
-        
+          </div>
         </div>
+<?php
+var_dump($args);
+?>
 
-        <div class="search_filters bg-cut blocs_group">
+
+        <div id="" class="search_filters bg-cut blocs_group">
 
           <div class="wrap row">
             
@@ -210,12 +199,12 @@
 
             <div class="m-6col group_content">
 
-              <form id="rechRess" action="">
+              <form id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
               
                 <div id="filtres" class="search-filters">
 
                   <div class="row">
-                    <input type="search" class="plain input-bg" name="totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
+                    <input type="search" class="plain input-bg" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                   </div>
                   
                   <div class="row">
@@ -261,10 +250,10 @@
 
 
                   <div id="advancedSearch">
-                    <ul id="listKeywords"></ul>
-                    <ul id="listThemes"></ul>
-                    <ul id="listRegions"></ul>
-                    <a class="btnerase btn-inline" href="#">Effacer les critères</a>
+                    <ul id="listKeywords" class="no-bullets"></ul>
+                    <ul id="listThemes" class="no-bullets"></ul>
+                    <ul id="listRegions" class="no-bullets"></ul>
+                    <a id="btnerase" class="btn-inline" href="#">Effacer les critères</a>
                   </div>
 
                   <input type="submit" id="formatbtn" class="btn-primary search_submit" value="Filtrer">
@@ -364,10 +353,10 @@
 
 
   <script type="text/javascript">
-  $(window).ready(function(){
-    $('#pager1 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
-    $('#pager2 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
-  })
+  // $(window).ready(function(){
+  //   $('#pager1 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
+  //   $('#pager2 option[value="<?php echo $args['posts_per_page'];?>"]').prop('selected', true);
+  // })
   </script>
 
 
