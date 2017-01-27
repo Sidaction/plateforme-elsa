@@ -382,4 +382,30 @@
 
 
 
+// Autocomplete menu
+
+.ui-autocomplete {
+  list-style: none;
+  margin: 0 0 0 - $base_line_height / 2;
+  font-family: $font_family_paragraph;
+  z-index: 999999;
+  box-shadow: none;
+  margin-top: 5px;
+  background-color: $color_primary;
+  color: $white;
+  font-size: 15px;
+  font-weight: $thin;
+  border: none;
+  padding: $base_line_height / 2;
+  opacity: 0.98;
+}
+
+.ui-widget-content .ui-state-focus {
+  color: $white;
+  font-style: italic;
+  border: none;
+}
+
+
+
 
