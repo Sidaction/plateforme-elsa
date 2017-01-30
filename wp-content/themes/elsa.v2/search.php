@@ -28,11 +28,11 @@
       $keyword = $_GET['totaltags'];
       $args['totaltags'] = $_GET['totaltags'];
       $structure_id = (string)(cnLib::search_ID_by_title($_GET['totaltags'], 'structure'));
+    } 
+    else {
+
     }
   }
-
-
-  
 
 	$args['pays_assoc'] = (isset($_GET['totalpays']))?$_GET['totalpays']:'';
 	$args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
@@ -246,24 +246,37 @@
                   <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
 
 
-                  <div id="advancedSearch" class="filter_group">
-                    <div class="clearfix filter_subgroup">
-                      <span class="meta">Thématique(s) filtrée(s) : </span>
-                      <ul id="listThemes" class="filters_list no-bullets">
-                      </ul>
+                  <div class="row">
+
+                    <div id="advancedSearch" class="filter_group m-4col m-clearfix">
+                      <div class="clearfix filter_subgroup">
+                        <span class="meta">Mot(s) clefs filtré(s) : </span>
+                        <ul id="listKeywords" class="filters_list no-bullets">
+                        </ul>
+                      </div>
+
+                      <div class="clearfix filter_subgroup">
+                        <span class="meta">Thématique(s) filtrée(s) : </span>
+                        <ul id="listThemes" class="filters_list no-bullets">
+                        </ul>
+                      </div>
+
+                      <div class="clearfix filter_subgroup">
+                        <span class="meta">Pays filtré(s) : </span>
+                        <ul id="listRegions" class="filters_list no-bullets">
+                        </ul>
+                      </div>
+
+                      <a id="btnerase" class="btn-inline" href="#">Effacer tous les critères</a>
                     </div>
 
-                    <div class="clearfix filter_subgroup">
-                      <span class="meta">Pays filtré(s) : </span>
-                      <ul id="listRegions" class="filters_list no-bullets">
-                      </ul>
+                    <div class="m-2col search_submit">
+                      <input type="submit" id="formatbtn" class="btn-primary plain" value="Filtrer">
+
                     </div>
 
-                    <a id="btnerase" class="btn-inline" href="#">Effacer tous les critères</a>
                   </div>
-
-                  <input type="submit" id="formatbtn" class="btn-primary search_submit" value="Filtrer">
-
+                  
                 </div>
 
               </form>
