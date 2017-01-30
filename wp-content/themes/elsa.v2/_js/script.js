@@ -13,13 +13,50 @@ jQuery(document).ready(function($){
   var empty_modal = $('#empty_modal');
 
  
+
+
+
+/*
+ * VALIDATE 
+ */
+
+  jQuery("#contact").validate({
+      rules: {
+        contname: "required",
+        contfirtname: "required",
+        title: "required",
+        desc: "required",
+        contemail: {
+          required: true,
+          email: true
+        },
+        contemail2: {
+          required: true,
+          equalTo: "#contemail",
+        },
+        check: {
+          required: true,
+           range:[4,4]
+        },
+    }
+  });
+  
+  jQuery.extend(jQuery.validator.messages, {
+    minlength: 'Merci de saisir un numéro à 10 chiffres',
+    maxlength: 'Merci de saisir un numéro à 10 chiffres',
+    number: 'Merci de saisir un numéro à 10 chiffres',
+    required: 'Ce champ est obligatoire',
+    range: 'Merci de renseigner le chiffre exact ( = 4)',
+    email: 'Merci de renseigner un mail valide',
+    equalTo: 'Merci de saisir le même email'
+  });
+
+
+
+
   /*
    * STICKY MENU
    */
-
-   // TODOS
-   // -> Problème au scroll des dropdowns
-
 
   header.css('position', 'fixed');
   $('.site-content').css('padding-top', header_height);
@@ -58,7 +95,9 @@ jQuery(document).ready(function($){
    */
    
   var item_selection = $('.item-selection');
-  item_selection.append('<span id="gema75_wc_wc_count_badge" class="selection_count"></span>');
+  item_selection.append('<span id="gema75_wc_wc_count_badge"></span>');
+
+//  $('.selection_count').html(gema75_how_many_items_in_ril());
 
 
 
@@ -133,7 +172,6 @@ jQuery(document).ready(function($){
    */
 
   var bxslider_markup = $('.bxslider').clone();
-  console.log(bxslider_markup);
 
   if( bxslider_markup.length > 0) {
 
@@ -334,7 +372,29 @@ function getSearchFields(){
   $("input[name=totalpays]").val("");
   $("input[name=totalregions]").val("");
   
-  
+
+
+  if( arrtags.length !== 0 ){
+
+    jQuery.each( arrtags, function( i, val ) {
+
+      var tmpItem = $('<li class="filters_list_item" data-value="'+arrtags[i]+'"></li>');
+      
+      tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce mot clef des filtres" title="supprimer ce mot clef des filtres"></a>');
+      tmpItem.append("<span>"+arrtags[i]+"</span>");
+      
+      $("#listKeywords").append(tmpItem);
+      
+      $(".btndel",tmpItem).click(function(event) {
+        event.preventDefault();
+        $(this).parent().remove();
+        checkAS();
+      });
+
+    });
+  }
+
+
 
   if(arrcat.length!==0){
 

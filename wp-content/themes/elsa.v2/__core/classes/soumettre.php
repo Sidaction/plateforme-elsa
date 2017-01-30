@@ -4,25 +4,40 @@ include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 
 class doc  {
+
 	var $args, $nonce, $user_id;	
+
 	public function __construct() {
+		
 		$this->args['alert']='';
 		$this->args['format']='';
+		
 		$this->nonce = (isset($_POST['checknc']))?$_POST['checknc']:'';
+		
 		$this->args['step'] =(isset($_POST['step']))? $_POST['step']:'';
-		if (($_SERVER["REQUEST_METHOD"] == "POST")) self::register_doc();
+		
+		if ( ($_SERVER["REQUEST_METHOD"] == "POST") ) {
+			self::register_doc();
+		}
+		
 		$user_id=3;
 	}
 	
-	
+
 	private function register_doc(){
 
+
 		if (($_SERVER["REQUEST_METHOD"] == "POST") && wp_verify_nonce($this->nonce, 'my-nonce' )) {
+			
 			self::get_datas();
-			$newpost_id=self::insert_post();
+
+			$newpost_id = self::insert_post();
+			
 			if(!empty($newpost_id)){
+
 				wp_set_object_terms($newpost_id, $this->args['format'], 'format', true);
 				wp_set_object_terms($newpost_id, $this->args['category'], 'category', true);
+				
 				if(!empty($this->args['date-start']	)) add_post_meta($newpost_id, 'date-start', $this->args['date-start'], true);
 				if(!empty($this->args['link'])) add_post_meta($newpost_id, 'link', $this->args['link'], true);
 				if(!empty($this->args['auteur'])) add_post_meta($newpost_id, 'auteur', $this->args['auteur'], true);
@@ -107,62 +122,59 @@ class doc  {
 			  'image/gif'  
 			  )));  
 			  
-			 $image_data = getimagesize($file['tmp_name']);  
-			  if(!in_array($image_data['mime'], unserialize(TYPE_WHITELIST))){  
-				$this->args['alert'] = 'wrongformat'; 
-			
-			  }elseif(($file['size'] > MAX_UPLOAD_SIZE)){  
-			
+			$image_data = getimagesize($file['tmp_name']);  
+	
+			if(!in_array($image_data['mime'], unserialize(TYPE_WHITELIST))){  
+				$this->args['alert'] = 'wrongformat';
+			}elseif(($file['size'] > MAX_UPLOAD_SIZE)){
 				$this->args['alert'] = 'wrongsize'; 
+			}  
 			
-	  
-				}  
 			///// upload
 			if(empty($this->args['alert'])):
-				
-
 				$attach_id = media_handle_upload('image_file',$newpost_id);
 				update_post_meta($newpost_id, '_thumbnail_id', $attach_id); 
-				
-				
-			endif;	
+			endif;
+
 		endif;
 	}
 	
+
 	private function upload_file($newpost_id){
 
 		if (wp_verify_nonce($this->nonce, 'my-nonce' ) && !empty($_FILES['doc_source']['tmp_name']) ) :
 		
-			$file2   = $_FILES['doc_source'];
-			///// Check
+			$file2 = $_FILES['doc_source'];
+
 			define('MAX_UPLOAD_SIZE', 2000000);  
 			define('TYPE_WHITELIST', serialize(array(  
 			  'application/pdf',  
-			  
-			  )));  
+		  )));  
 			  
 			
-			  if(!in_array($file2['type'], unserialize(TYPE_WHITELIST))){  
+		  if(!in_array($file2['type'], unserialize(TYPE_WHITELIST))){  
 				$this->args['alert'] = 'wrongformat'; 
 			
-			  }elseif(($file2['type'] > MAX_UPLOAD_SIZE)){  
-			
+		  }
+		  elseif(($file2['type'] > MAX_UPLOAD_SIZE)){  
 				$this->args['alert'] = 'wrongsize'; 
-			
-	  
-				}  
+			}  
+
 			///// upload
 			if(empty($this->args['alert'])):
 				$attach_id2 = media_handle_upload('doc_source',$newpost_id);
 				update_post_meta($newpost_id, 'file', $attach_id2);
 				//update_post_meta($attach_id, 'file', $attach_id); 
 				endif;
+
 		endif;
 	}
 
 
 	public function get_args(){
 		return $this->args;
-		  
 	}
+
 }
+
+
