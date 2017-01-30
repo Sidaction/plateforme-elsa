@@ -56,7 +56,7 @@ get_header();
 
             <div class="page_content clearfix">
                 <div class="wrap row">
-                    <div class="m-5col page_text">
+                    <div class="m-5col page_main">
                         <?php echo wpautop($presentation); ?>
                     </div>
 
