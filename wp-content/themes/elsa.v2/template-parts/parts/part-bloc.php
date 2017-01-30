@@ -38,7 +38,7 @@
                 echo ' | ';
               }
               if ($auteurs != '') {
-                echo $auteurs;
+                echo limit_words($auteurs, 5);
               }
             ?>
           </div>
@@ -65,10 +65,12 @@
       </a> 
   </div>
 
+
 <?php else : ?>
+
   <div class="bloc_item bloc--<?php echo $type; ?>">
       
-<?php echo $Bookmarks->show_bookmark_btn(); ?>
+      <?php echo $Bookmarks->show_bookmark_btn(); ?>
 
       <a href="<?php the_permalink();?>">
 

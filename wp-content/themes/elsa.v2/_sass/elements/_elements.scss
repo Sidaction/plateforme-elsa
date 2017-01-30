@@ -34,16 +34,18 @@
     position: absolute;
     top: -4px;
     right: - $base_line_height / 4;
+    z-index: 99;
   }
 
   .medias_list & {
     height: 275px;
   }
 
-  &:last-child {
-    margin-bottom: $base_line_height * 2;
-  }
 }
+
+  .grid-list > div:last-child {
+    margin-bottom: $base_line_height;
+  }
 
   .bloc_title {
     display: inline-block;
@@ -122,6 +124,10 @@
   }
 
   .removeFromRILButton {
+    position: absolute;
+    left: 0;
+  }
+  .bookmark {
     position: absolute;
     left: 0;
   }

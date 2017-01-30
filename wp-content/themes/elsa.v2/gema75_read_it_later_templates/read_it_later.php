@@ -20,7 +20,7 @@ if(get_current_user_id() > 0){
 
 
 if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list['posts_in_ril'])>=1){ ?>
-dzdzdzdz
+
   <ul class="no-bullets">
   <?php foreach($user_readitlater_list['posts_in_ril'] as $single_post){ 
   

@@ -23,7 +23,7 @@ get_header(); ?>
                         <h1 class="h1">
                             <?php echo the_title(); ?>
                         </h1> 
-                        <p class="clearfix">Vous avez actuellement <span id="gema75_wc_wc_count_badge" class="selection_count">5</span> ressources sélectionnées</p>
+                        <p class="clearfix">Vous avez actuellement <span class="selection_count"></span> ressources sélectionnées</p>
                     </div>
                 </div>     
             

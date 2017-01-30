@@ -26,11 +26,11 @@ class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
                     
                     if(isset($current_user_readitlater_list['posts_in_ril'][$post->ID])){
                     
-                        $content = ' <div class="bookmark">  <a href="#"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
+                        $content = ' <div class="bookmark">  <a href="#" title="Cette ressource est déjà ajoutée à la sélection" alt=""Cette ressource est déjà ajoutée à la sélection"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
                     
                     }else{
 
-                        $content = ' <div class="bookmark">  <a href="#"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp;</span></a>  </div>' ;
+                        $content = ' <div class="bookmark">  <a href="#" title="Ajouter cette ressource à la sélection" alt="Ajouter cette ressource à la sélection"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp;</span></a>  </div>' ;
                         
                     }
                     
@@ -43,11 +43,11 @@ class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
                 
                 if(!isset($_SESSION['gema75_ril_post_array'][$post->ID])){
 
-                    $content =  ' <div class="bookmark"> <a href="#"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
+                    $content =  ' <div class="bookmark"> <a href="#" title="Cette ressource est déjà ajoutée à la sélection" alt="Cette ressource est déjà ajoutée à la sélection"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
                 
                 }else {
 
-                    $content =  ' <div class="bookmark">  <a href="#"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
+                    $content =  ' <div class="bookmark">  <a href="#" title="Ajouter cette ressource à la sélection" alt="Ajouter cette ressource à la sélection"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
                     
                 }
             
@@ -57,7 +57,6 @@ class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
             return $content;
         
         }
-
 
 }
 
@@ -79,6 +78,12 @@ function elsa_scripts() {
     }
     wp_dequeue_style('SearchAutocomplete-theme');
     wp_dequeue_style('tabslideout-css');
+    wp_dequeue_style('owlcarousel-css');
+    wp_dequeue_style('owlcarousel-theme-css');
+    wp_dequeue_style('gema75-style-css');
+
+    wp_dequeue_script('tabslideout-jquery');
+    //wp_dequeue_script('owlcarousel-jquery');
 }
 add_action( 'wp_enqueue_scripts', 'elsa_scripts' );
 

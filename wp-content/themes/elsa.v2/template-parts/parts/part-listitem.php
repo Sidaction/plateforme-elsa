@@ -1,6 +1,7 @@
 <?php
   $reco = get_field('recommandation');
   $boite = get_the_term_list( $post->ID, 'boiteoutils', 'People: ', ', ' );
+  global $Bookmarks;
 
   global $gema75_read_it_later;
 ?>
@@ -11,9 +12,18 @@
 
       <div class="list_item_inner">
 
-          <a href="#" class="removeFromRILButton" data-readitlater-id="<?php echo $post->ID ;?>" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
-            <img src="<?php echo get_template_directory_uri(); ?>/_img/book_full.png" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
-          </a>
+          <?php if( is_search() ) : ?>
+            <?php echo $Bookmarks->show_bookmark_btn(); ?>
+
+          <?php elseif( is_page_template( 'page-boomarks.php' ) ) : ?>
+            <a href="#" class="removeFromRILButton" data-readitlater-id="<?php echo $post->ID ;?>" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
+              <img src="<?php echo get_template_directory_uri(); ?>/_img/book_full.png" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
+            </a>
+
+          <?php endif; ?>
+
+
+
 
           <div class="list_item-icons">
             <?php if( isset($reco) && $reco ) : ?>

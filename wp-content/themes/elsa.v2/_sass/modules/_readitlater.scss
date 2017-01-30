@@ -13,8 +13,6 @@
   margin-left: $base_line_height / 3;
   color: $color_primary !important; 
   border: 1px solid $color_primary;
-  height: $base_line_height / 3;
-  width:  $base_line_height / 2;
   text-align: center;
   line-height: 9px;
 }
@@ -32,8 +30,8 @@
 }
 
 .addedToRilListButton {
-  background-image: url('_img/book_full');
+  background-image: url('_img/book_full.png');
 }
 .addToReadItLaterButton {
-  background-image: url('_img/book_empty');
+  background-image: url('_img/book_empty.png');
 }
