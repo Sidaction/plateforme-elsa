@@ -147,15 +147,25 @@ jQuery(document).ready(function($){
     $('.bx-wrapper').on('click', function() {
       
       var slider_clone = bxslider_markup;
+      var bxslider = $('#empty_modal > .modal_inner > .bx-wrapper');
+      
+      console.log(bxslider);
 
-      $('#empty_modal > .modal_inner').append(slider_clone);
-      $('#empty_modal').show();
-      $('#empty_modal > .modal_inner > ul').bxSlider({
-        pager: false,
-        adaptiveHeight: false,
-        nextText: '',
-        prevText: ''
-      });
+      if( bxslider.length === 0 ) {
+
+        $('#empty_modal > .modal_inner').append(slider_clone);
+        $('#empty_modal').show();
+        $('#empty_modal > .modal_inner > ul').bxSlider({
+          pager: false,
+          adaptiveHeight: false,
+          nextText: '',
+          prevText: ''
+        });
+
+      } else {
+        $('#empty_modal').show();
+      }
+
     });
   }
   
