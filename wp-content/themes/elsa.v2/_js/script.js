@@ -115,6 +115,7 @@ jQuery(document).ready(function($){
   $('.modal_close').on('click', function(event) {
     event.preventDefault();
 
+    $('body').removeClass('no-scroll');
     $('.modal').hide();
   });
 
@@ -179,18 +180,18 @@ jQuery(document).ready(function($){
       pager: false,
       adaptiveHeight: true,
       nextText: '',
-      prevText: ''
+      prevText: '',
+      preloadImages: 'all'
     });
 
-    $('.bx-wrapper').on('click', function() {
+    $('#js-sliderfull').on('click', function() {
       
       var slider_clone = bxslider_markup;
       var bxslider = $('#empty_modal > .modal_inner > .bx-wrapper');
       
-      console.log(bxslider);
+      $('body').addClass('no-scroll');
 
       if( bxslider.length === 0 ) {
-
         $('#empty_modal > .modal_inner').append(slider_clone);
         $('#empty_modal').show();
         $('#empty_modal > .modal_inner > ul').bxSlider({

@@ -42,7 +42,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
         <div class="page_content clearfix">
             <div class="wrap row">
 
-                <div class="m-5col">
+                <div class="m-5col page_main">
                     <?php the_content();?>
                     
                     <?php if(!empty($rapport_activite)): ?>
@@ -73,7 +73,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                                     $i++;
                                 } ?>
                             </ul>
-                            <a href="#" id="js-modalopen" class=""></a>
+                            <a href="#" id="js-sliderfull" class="btn-inline-little">Voir en plein écran</a>
                         </div><!-- .page_media -->
                     <?php endif; ?>
 
