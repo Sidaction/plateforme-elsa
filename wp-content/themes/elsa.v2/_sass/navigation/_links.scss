@@ -21,7 +21,7 @@ a:active {
 
 }
 
-a:not([class*='btn'], [class*='bx']) {
+.page_main a {
   color: $color_link;
   border-bottom: 1px dotted $color_link;
 
