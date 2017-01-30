@@ -63,10 +63,13 @@ get_header();
                     </div>
 
                     <div class="m-3col page_aside">
-                        <div class="page_media clearfix">
-                            <img src="<?php echo $vignette_src; ?>">
-                        </div>
 
+                        <?php if ($vignette_src != '') : ?>
+                            <div class="page_media clearfix">
+                                <img src="<?php echo $vignette_src; ?>">
+                            </div>
+                        <?php endif; ?>
+        
                         <?php if( $tags != '' || $boites != '') : ?>
                                 <div class="page_metas">
                                     <?php if( $tags !== '' ) : ?>

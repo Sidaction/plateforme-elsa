@@ -133,7 +133,6 @@
   }
 
   .page_aside {
-    margin-top: - $base_line_height * 7;
 
     @include up-to(medium) {
       margin-top: 0;
@@ -141,6 +140,7 @@
   }
     .page_media {
       margin-bottom: $base_line_height * 2;
+      margin-top: - $base_line_height * 7;
 
       img {
         float: right;
