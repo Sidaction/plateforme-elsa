@@ -135,16 +135,6 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
 
 
-        <div id="" class="blocs_group">
-            <div class="wrap row">
-
-                <div class="group_title grid-title m-2col">
-                    <h3 id="recommandations" class="h3_alt">Les ressources de l'association</h3>
-                </div>
-
-
-                <div class="group_list grid-list">
-         
                 <?php
                     $args = array(
                         'post_type' => array('post'), 
@@ -166,11 +156,24 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                         )
                     );
                     $grille_posts = get_posts($args);
-                    $i = 0; 
 
-                    foreach ( $grille_posts as $post ) : setup_postdata( $post ); ?>
+                    if( !empty( $grille_posts ) ) :
+                        $i = 0; ?>
 
-                            <?php 
+
+                        <div id="" class="blocs_group">
+                            <div class="wrap row">
+
+                                <div class="group_title grid-title m-2col">
+                                    <h3 id="recommandations" class="h3_alt">Les ressources de l'association</h3>
+                                </div>
+
+
+                                <div class="group_list grid-list">
+         
+
+                        <?php foreach ( $grille_posts as $post ) : setup_postdata( $post ); 
+
                                 $format = cnLib::get_main_term_slug($post->ID, 'format');
                                 switch ($format) {
                                     case 'video':
@@ -209,22 +212,27 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                                 </div><!-- end .col -->
 
 
-                        <?php $i++; ?>
-                            
+                    <?php 
+                    
+                        $i++; 
+                        endforeach; 
+                        wp_reset_postdata(); ?>
 
-                    <?php endforeach; 
-                    wp_reset_postdata();?>
+
+                                </div>
+
+                                <div class="group_action row">
+                                    <a href="/recherche-documentaire/?struct=<?php echo $structure_id;?>" class="btn-secondary">Les ressources de l'association</a>
+                                </div> 
+                                
+                            </div><!-- .wrap -->
+
+                        </div><!-- .blocs_group -->
 
 
-                </div>
+                    <?php endif; ?>
 
-                <div class="groupe_action row">
-                    <a href="/recherche-documentaire/?struct=<?php echo $structure_id;?>" class="btn-secondary">Les ressources de l'association</a>
-                </div> 
-                
-            </div><!-- .wrap -->
 
-        </div><!-- .blocs_group -->
 
     </article>
 

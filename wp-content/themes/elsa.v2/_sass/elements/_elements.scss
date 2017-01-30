@@ -39,6 +39,10 @@
   .medias_list & {
     height: 275px;
   }
+
+  &:last-child {
+    margin-bottom: $base_line_height * 2;
+  }
 }
 
   .bloc_title {
