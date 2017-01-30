@@ -343,13 +343,13 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
             'orderby' => 'slug',
             'hide_empty' => $hide_empty,
             'parent' => $parent,
-      'exclude' =>1
+            'exclude' =>1
         );
         //print_r($args);
         $terms = get_terms($taxonomy, $args);
 
         if ($terms) {
-      $name=(!empty($name))?$name:$taxonomy;
+            $name=(!empty($name))?$name:$taxonomy;
             printf('<select name="%s" class="%s" id="select-%s">', $name, $class, $taxonomy);
             echo '<option value="">' . $libfirst . '</option>', " \n ";
             if ($liball != '')
@@ -401,26 +401,33 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
     print( '</select>');
 
     }
-  
+
+
 //////// Liste déroulante de post
     public static function custom_post_dropdown($post_type, $class = '', $libfirst = 'Sélectionnez', $liball = '', $selected = '', $hide_empty = true, $parent = '') {
+
         printf('<select name="%s" class="%s" id="select-%s">', $post_type, $class, $post_type);
-    echo '<option value="">' . $libfirst . '</option>', " \n ";
+        echo '<option value="">' . $libfirst . '</option>', " \n ";
+    
         if ($liball != '') echo '<option value="">' . $liball . '</option>';
      
-      $args = array('post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC');
-    $wp_query = new WP_Query($args);
-    if ($wp_query->have_posts()) while ($wp_query->have_posts()) : $wp_query->the_post();
-      $postid=get_the_ID();
-      if ($postid == $selected)
-                    printf('<option name="%s[]" value="%s" selected>%s</option>', $post_type, $postid, get_the_title());
-             else
-                    printf('<option name="%s[]" value="%s">%s</option>', $post_type,  $postid, get_the_title());
+        $args = array('post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC');
+        $wp_query = new WP_Query($args);
+        
+        if ($wp_query->have_posts()) while ($wp_query->have_posts()) : $wp_query->the_post();
+            
+            $postid=get_the_ID();
+            if ($postid == $selected)
+                printf('<option name="%s[]" value="%s" selected>%s</option>', $post_type, $postid, get_the_title());
+            else
+                printf('<option name="%s[]" value="%s">%s</option>', $post_type,  $postid, get_the_title());
    
         endwhile; wp_reset_query();wp_reset_postdata(); $args=null;  
         print( '</select>');
-     
+
     } 
+
+
 
 /// case à cocher d'une taxo
     public static function custom_taxonomy_inputlist($taxonomy, $class = '', $selected ,$hide_empty = true ) {
@@ -441,14 +448,16 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
 
 /// case à cocher d'une list de custom post
     public static function custom_post_inputlist($post_type, $name_id, $selected = array()) {
-  if(empty($selected)) $selected=array();
-      $args = array('post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC');
-      $wp_query = new WP_Query($args);
-      if ($wp_query->have_posts()) while ($wp_query->have_posts()) : $wp_query->the_post();
-        $postid=get_the_ID();
-        $check =in_array($postid, $selected)?' checked' :'';
-        printf('<input  name="%s[]" type="checkbox" value="%s"  %s />%s<br />',$name_id,  $postid,$check, get_the_title());
-      endwhile; wp_reset_query();wp_reset_postdata(); $args=null;       
+        
+        if(empty($selected)) $selected=array();
+        
+        $args = array('post_type' => $post_type, 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC');
+        $wp_query = new WP_Query($args);
+        if ($wp_query->have_posts()) while ($wp_query->have_posts()) : $wp_query->the_post();
+            $postid=get_the_ID();
+            $check =in_array($postid, $selected)?' checked' :'';
+            printf('<input  name="%s[]" type="checkbox" value="%s"  %s />%s<br />',$name_id,  $postid,$check, get_the_title());
+        endwhile; wp_reset_query();wp_reset_postdata(); $args=null;       
     }
 
 
