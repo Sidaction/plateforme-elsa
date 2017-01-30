@@ -125,7 +125,7 @@
   text-align: center;  
   width: $base_line_height * 1.5;
   height: $base_line_height * 1.5;
-  z-index: 9999;
+  z-index: 999;
   background-color: $white;
 }
 
@@ -189,19 +189,10 @@
 
 /* IMAGE CAPTIONS */
 
-.bx-wrapper .bx-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: #666\9;
-  background: rgba(80, 80, 80, 0.75);
-  width: 100%;
+.bxslider li > p {
+  color: $gray_light;
+  @include type-setting(-1);
+  text-align: center;
+  font-weight: $thin;
 }
 
-.bx-wrapper .bx-caption span {
-  color: #fff;
-  font-family: Arial;
-  display: block;
-  font-size: .85em;
-  padding: 10px;
-}
