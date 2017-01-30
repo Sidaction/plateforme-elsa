@@ -38,6 +38,10 @@ a:active {
   &.plain {
     width: 100%;
   }
+
+  &:not(.btn-inline):hover {
+    box-shadow: 2px 2px 0px #114b5f;
+  }
 }
 
 .btn-primary {
