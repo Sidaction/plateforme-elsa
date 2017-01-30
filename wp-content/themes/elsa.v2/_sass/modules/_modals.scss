@@ -8,7 +8,7 @@
 
 .modal {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -21,7 +21,7 @@
     img {
       width: auto; 
       margin: auto;
-      max-height: 65vh;
+      max-height: 75vh;
     }
   }
 }
@@ -35,7 +35,8 @@
     left: 0;  
     right: 0;
     transform: translateY(-50%);
-    max-height: 75vh;
+    max-height: 90vh;
+    overflow-y: scroll;
   }
     .modal_close {
       position: absolute;
@@ -43,3 +44,7 @@
       top: $base_line_height / 2;
     }
 
+
+.modal-sharebymail {
+  display: block;
+}

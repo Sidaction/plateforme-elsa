@@ -112,6 +112,14 @@ jQuery(document).ready(function($){
     $('body').addClass('no-scroll');
   });
 
+  $('.js-sharebymail').on('click', function(event) {
+    event.preventDefault();
+
+    $('.modal-sharebymail').show();
+    $('body').addClass('no-scroll');
+  });
+
+
   $('.modal_close').on('click', function(event) {
     event.preventDefault();
 

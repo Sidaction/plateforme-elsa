@@ -13,14 +13,17 @@
 @import "archives";
 @import "search";
 
-.no-scroll {
-
-      overflow: hidden;
-
-  @include at-least(medium) {
-    overflow: hidden;
-  }
+body {
+  position: relative;
 }
+
+  .no-scroll {
+    overflow: hidden;
+
+    @include at-least(medium) {
+      overflow: hidden;
+    }
+  }
 
 .dd-open {
   opacity: 0.5;
