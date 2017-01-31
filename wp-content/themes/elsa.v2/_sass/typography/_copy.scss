@@ -82,4 +82,14 @@ span.meta {
   text-transform: capitalize;
 }
 
+.page_content {
+  ul {
+    padding-left: $base_line_height / 2;
+    margin-bottom: $base_line_height;
+    margin-top: 2px;
+  }
+  li {
+    margin-bottom: 2px;
+  }
+}
 
