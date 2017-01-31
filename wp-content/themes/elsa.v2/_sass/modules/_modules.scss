@@ -50,6 +50,19 @@
       @extend .group_title;
       padding: $base_line_height;
     }
+      .group_title_actions {
+        text-align: right;
+        margin-top: $base_line_height * 2;
+
+        ul {
+          margin-bottom: 0;
+        }
+        
+        li:not(:last-child) {
+          margin-bottom: $base_line_height / 2;
+        }
+      }
+
 
   .group_bloc {
     background-color: $color_primary;

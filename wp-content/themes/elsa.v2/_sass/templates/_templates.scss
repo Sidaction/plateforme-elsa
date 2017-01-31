@@ -140,7 +140,8 @@ body {
     .page_media {
       margin-bottom: $base_line_height * 2;
       margin-top: - $base_line_height * 7;
-
+      @include transition(all, 0.2s);
+      
       img {
         float: right;
         border: 1px solid white;
