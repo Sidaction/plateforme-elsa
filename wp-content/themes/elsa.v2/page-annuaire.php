@@ -65,40 +65,44 @@
 
             <div class="group_title m-2col">
               <h3 class="h3_alt">Affiner votre recherche</h3>
-              <div class="exportxls"><a href="../extract" class="btn-inline">Télécharger la liste</a></div>
+
+              <div class="group_title_actions">
+                <a href="../extract" class="btn-inline">Télécharger la liste</a>
+              </div>
+            
             </div>
             
             <div class="">
               <form id="assos_filters">
-                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("pays_assoc", "js-selectBox", "Pays",'','',false); ?></div>
-                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("public_cibles", "js-selectBox", "Publics cibles",'','',false); ?></div>
-                <div class="m-2col">  <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Domaines d'intervention",'','',false); ?></div>
+                <div class="m-3col">  <?php cnLib::custom_taxonomy_dropdown("pays_assoc", "js-selectBox", "Pays",'','',false); ?></div>
+                <div class="m-3col">  <?php cnLib::custom_taxonomy_dropdown("public_cibles", "js-selectBox", "Publics cibles",'','',false); ?></div>
+                <div class="m-6col">  <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Domaines d'intervention",'','',false); ?></div>
               </form>
             
 
               <?php if( isset($_GET['pays_assoc']) && $_GET['pays_assoc'] != '' ) {
-                $pays = get_term_by('slug', $_GET['pays_assoc'], 'pays_assoc'); 
-                $name = $pays->name; 
-                echo 'Vous avez filtré sur un "pays" : <span class="meta">' . $name . '</span>';
+                // $pays = get_term_by('slug', $_GET['pays_assoc'], 'pays_assoc'); 
+                // $name = $pays->name; 
+                // echo 'Vous avez filtré sur un "pays" : <span class="meta">' . $name . '</span>';
               }
 
               if( isset($_GET['activites']) && $_GET['activites'] != ''  ) {
-                $activites = get_term_by('slug', $_GET['activites'], 'activites'); 
-                $name = $activites->name; 
-                echo 'Vous avez filtré sur une a"ctivité"" : <span class="meta">' . $name . '</span>';
+                // $activites = get_term_by('slug', $_GET['activites'], 'activites'); 
+                // $name = $activites->name; 
+                // echo 'Vous avez filtré sur une a"ctivité"" : <span class="meta">' . $name . '</span>';
               }
 
               if( isset($_GET['public_cibles']) && $_GET['public_cibles'] != ''  ) {
-                $public_cibles = get_term_by('slug', $_GET['public_cibles'], 'public_cibles'); 
-                $name = $public_cibles->name; 
-                echo 'Vous avez filtré sur un "public cible" : <span class="meta">' . $name . '</span>';
+                // $public_cibles = get_term_by('slug', $_GET['public_cibles'], 'public_cibles'); 
+                // $name = $public_cibles->name; 
+                // echo 'Vous avez filtré sur un "public cible" : <span class="meta">' . $name . '</span>';
               } ?>
 
             </div>
 
           </div>
 
-          <div class="wrap search_list  ">          
+          <div class="wrap search_list">          
 
             <ul class="no-bullets">
 
@@ -111,17 +115,13 @@
                   $email = get_post_meta($post->ID, 'email', true);
                   $link = get_post_meta($post->ID, 'link', true);
 
-                      set_query_var( 'email', $email );
-                      set_query_var( 'link', $link );
-                      set_query_var( 'cnSite', $cnSite );
-
+                  set_query_var( 'email', $email );
+                  set_query_var( 'link', $link );
+                  set_query_var( 'cnSite', $cnSite );
 
                   get_template_part('template-parts/parts/part', 'listitem-assos');
 
-
-
                 endwhile; wp_reset_query(); wp_reset_postdata(); $args=null; ?>
-
 
             </ul>
 

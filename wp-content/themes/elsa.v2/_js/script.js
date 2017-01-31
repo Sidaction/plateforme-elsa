@@ -318,8 +318,46 @@ jQuery(document).ready(function($){
    * FILTRES ASSOCIATIONS
    */
 
-  $(".js-selectBox").change(function(){
-    $('#assos_filters').submit();
+  $(".js-selectBox").change(function(event){
+    
+    // $('#assos_filters').submit();
+
+
+
+      event.preventDefault();
+
+      var select_val = $(this).val();
+      var select_name = $(this).attr("name");
+
+      console.log(select_val);
+      console.log(select_name);
+
+      $.ajax({
+        url : myAjax.ajaxurl,
+        method : 'post',
+        data : {
+          action: "load_assos",
+          select_val : select_val,
+          select_name : select_name
+        },
+  
+        beforeSend: function( response ) {
+        },
+        success : function( response ) {
+          $('.search_list').html( response );
+          // $('#loading-msg').hide();
+          $('.js-selectBox').not(this).prop('selectedIndex', 0);
+        },
+
+        error : function( data ) { // en cas d'échec
+          // Sinon je traite l'erreur
+          console.log( 'Erreur…' );
+        }
+
+      });
+
+
+
   });
 
 

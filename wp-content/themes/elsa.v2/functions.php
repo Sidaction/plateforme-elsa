@@ -53,7 +53,63 @@ function load_popin() {
 
 
 
+add_action("wp_ajax_load_assos", "load_assos");
+add_action("wp_ajax_nopriv_load_assos", "load_assos");
 
+function load_assos() {
+
+    $select_val = $_REQUEST["select_val"];
+    $select_name = $_REQUEST["select_name"];
+
+    $args = array(
+        'post_type' => array('structure'), 
+        'posts_per_page' => -1, 
+        'orderby' => 'title', 
+        'order' => 'ASC',
+        'type_structure' => 'partenaires-elsa-associations-du-reseau-elsa'
+    );
+    $args[ $select_name ] = $select_val;
+
+    ob_start();
+
+    ?>
+            <ul class="no-bullets">
+
+              <?php $wp_query = new WP_Query(); $wp_query->query($args); ?>
+              
+              <?php if ($wp_query->have_posts()) ?> 
+              
+                <?php while ($wp_query->have_posts()) : $wp_query->the_post(); 
+              
+                  $email = get_post_meta($post->ID, 'email', true);
+                  $link = get_post_meta($post->ID, 'link', true);
+
+                  set_query_var( 'email', $email );
+                  set_query_var( 'link', $link );
+                  set_query_var( 'cnSite', $cnSite );
+
+                  get_template_part('template-parts/parts/part', 'listitem-assos');
+
+                endwhile; wp_reset_query(); wp_reset_postdata(); $args=null; ?>
+
+            </ul>
+
+  <?php
+
+  $content = ob_get_clean();
+
+  echo $content;
+  die();
+
+}
+
+
+
+
+
+/*
+ * Custom Bookmarks btn. Based on ReadItLater plugin.
+ */
 
 class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
 
