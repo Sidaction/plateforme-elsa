@@ -4,7 +4,7 @@
       $rebonds = get_field('rebonds_default', 'option'); 
       $this_page_rebonds = get_field('listes_des_pages_à_lier'); 
 
-      if( isset($this_page_rebonds) ) {
+      if( isset($rebonds) && is_array($this_page_rebonds) ) {
         $rebonds = array_merge($rebonds, $this_page_rebonds);
       }
     ?>
