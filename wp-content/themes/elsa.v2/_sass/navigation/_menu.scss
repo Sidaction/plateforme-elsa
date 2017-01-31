@@ -44,6 +44,13 @@
       content: '・';
     }
   }
+
+  @include up-to(medium) {
+    li {
+      font-size: 14px;
+      font-weight: $thin;
+    }
+  }
 }
 
   .item-selection {
@@ -132,6 +139,12 @@
         }        
       }
 
+      @include up-to(large) {
+        font-size: 18px;
+        font-size: 1.8rem;
+        margin-left: $base_line_height / 2;     
+      }
+
       @include up-to(medium) {
         font-size: 30px;
         font-size: 3rem;
@@ -168,6 +181,10 @@
           color: $white;
           margin: 0;
           font-style: italic;
+
+          @include up-to(large) {
+            width: 175px;
+          }
 
           @include up-to(medium) {
             width: 100%;
@@ -335,7 +352,7 @@
 
 
 
-// Footer Navigationv
+// Footer Navigation
 
 .menu-menu-footer-container {
   margin-bottom: $base_line_height; 

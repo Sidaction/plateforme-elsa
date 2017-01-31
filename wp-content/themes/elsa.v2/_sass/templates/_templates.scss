@@ -136,10 +136,6 @@ body {
   }
 
   .page_aside {
-
-    @include up-to(medium) {
-      margin-top: 0;
-    }
   }
     .page_media {
       margin-bottom: $base_line_height * 2;
@@ -148,6 +144,9 @@ body {
       img {
         float: right;
         border: 1px solid white;
+      }
+      @include up-to(medium) {
+        margin-top: 0;
       }
     }
     .page_metas {

@@ -21,7 +21,7 @@
     <div class=" subheader">
         <div class="row wrap">
 
-            <div class="m-3col site-branding">
+            <div class="m-4col l-3col site-branding">
                 <a href="#" class="btn-secondary main_nav-trigger">Menu </a>
                 <a href="<?php echo get_bloginfo('url') ?>"><img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo"></a>
                 <div class="site-title">
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="m-5col top-nav-outer">
+            <div class="m-4col l-5col top-nav-outer">
                 <div class="top-navigation">
                     <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu' ) ); ?>
                 </div>

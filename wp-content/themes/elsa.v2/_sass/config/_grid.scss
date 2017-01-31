@@ -31,13 +31,17 @@ $wide_breakpoint:                   1400px !default;
 
 .wrap {
   @include box-sizing;
-  width: $max_width;
   margin: auto;
 
-    @include up-to(large) {
+    @include up-to(medium) {
         width: 90%;
     }
-
+    @include at-least(medium) {
+        width: 95%;
+    }
+    @include at-least(large) {
+        width: $max_width;
+    }
     @include at-least(wide) {
         width: $max_width_large;
     }
