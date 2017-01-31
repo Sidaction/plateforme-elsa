@@ -61,6 +61,11 @@ jQuery(document).ready(function($){
   header.css('position', 'fixed');
   $('.site-content').css('padding-top', header_height);
 
+  $( window ).resize(function() {
+    header.css('position', 'fixed');
+    $('.site-content').css('padding-top', header_height);
+  });
+
   $( window ).scroll(function() {
     var $win = $(window);
 
