@@ -112,6 +112,14 @@
         <a href="#" id="" class="modal_close">
             <span class="icon-close"></span>
         </a>
+        <div class="modal_content">
+
+            <div id="loading-msg" class="loading-msg">
+                <img src="<?php echo get_template_directory_uri(); ?>/_img/bx_loader.gif">
+                <p>Nous cherchons le contenu demandé....</p>
+            </div>
+
+        </div>
     </div>
 </div>
 

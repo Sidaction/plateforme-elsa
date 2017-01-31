@@ -6,14 +6,78 @@ jQuery(document).ready(function($){
 
   console.log('let\'s begin');
 
+  var line_height = 21;
+
   var dropdowns_trigger = $('.js-dropdown-trigger');
   var header = $('.site-header');
   var header_height = header.outerHeight();
 
   var empty_modal = $('#empty_modal');
+  var empty_modal_content = empty_modal.find('.modal_content');
 
- 
+  var popin = $('.js-popin');
 
+
+
+/*
+ * Popins
+ */
+
+  if( popin.length > 0 ) {
+  
+    popin.click(function(event){
+      event.preventDefault();
+
+      var this_url = $(this).attr('href');
+
+      $.ajax({
+        url : myAjax.ajaxurl,
+        method : 'post',
+        data : {
+          action: "load_popin",
+          this_url : this_url
+        },
+  
+        beforeSend: function( response ) {
+          empty_modal.show();
+        },
+        success : function( response ) {
+          empty_modal_content.html( response );
+          // $('#loading-msg').hide();
+        },
+
+        error : function( data ) { // en cas d'échec
+          // Sinon je traite l'erreur
+          console.log( 'Erreur…' );
+        }
+
+      });
+
+    });
+  }
+
+
+
+
+/*
+ * Fix page media margin on ressource title
+ */
+
+  var ressource_title = $('.ressource_title');
+  var page_media = $('.page_media');
+
+  if( ressource_title.length > 0 && page_media.length > 0 ) {
+    var ressource_title_height = ressource_title.outerHeight();
+    var page_media_height = page_media.outerHeight();
+
+    console.log(ressource_title_height);
+    console.log(page_media_height);
+
+    if( ressource_title_height >= line_height * 8 && page_media_height > ressource_title_height / 2 ) {
+      page_media.css('margin-top', - ( ressource_title_height / 2 + line_height * 4) );
+    }
+
+  }
 
 
 /*

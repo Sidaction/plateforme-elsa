@@ -185,11 +185,12 @@
               
               <h3 class="h3_alt">Affiner votre recherche</h3>
 
-              <ul class="no-bullets">
-                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/" class="btn-inline">que chercher ?</a> </li>
-                <li><a href="<?php echo $cnSite->rootlink; ?>/aide-a-la-recherche/" class="btn-inline">Consulter la FAQ</a></li>
-                <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats</a></li>
-              </ul>
+              <div class="group_title_actions">
+                <ul class="no-bullets">
+                  <li><a href="aide-a-la-recherche" class="js-popin btn-inline">Consulter la FAQ</a></li>
+                  <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats</a></li>
+                </ul>
+              </div>
 
             </div>
 
@@ -267,12 +268,11 @@
                         </ul>
                       </div>
 
-                      <a id="btnerase" class="btn-inline" href="#">Effacer tous les critères</a>
                     </div>
 
                     <div class="m-2col search_submit">
                       <input type="submit" id="formatbtn" class="btn-primary plain" value="Filtrer">
-
+                      <a id="btnerase" class="btn-secondary plain" href="#">Effacer tous les critères</a>
                     </div>
 
                   </div>

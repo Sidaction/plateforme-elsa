@@ -7,6 +7,53 @@ $cnSite = new themeManager();
 
 
 
+/*
+ * GEt & Display content with ajax
+ */
+
+add_action("wp_ajax_load_popin", "load_popin");
+add_action("wp_ajax_nopriv_load_popin", "load_popin");
+
+function load_popin() {
+
+    $the_slug = $_REQUEST["this_url"];
+
+    $args = array(
+        'name'  => $the_slug,
+        'post_type' => array('post', 'page'),
+        'post_status' => 'publish',
+    );
+    $search = new WP_Query( $args );
+
+    ob_start();
+
+    ?>
+
+    <div class="page_content">    
+    <?php if ( $search->have_posts() ) : ?>
+
+        <?php while ( $search->have_posts() ) : $search->the_post(); ?>              
+            <h1 class="h1"> <?php the_title(); ?> </h1>
+            <?php the_content(); ?>
+    
+        <?php endwhile; endif; ?>
+
+    <?php wp_reset_postdata(); ?>
+
+    </div>
+
+  <?php
+
+  $content = ob_get_clean();
+
+  echo $content;
+  die();
+
+}
+
+
+
+
 
 class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
 
@@ -70,12 +117,11 @@ $Bookmarks =  new Bookmarks();
 
 function elsa_scripts() {
     wp_enqueue_style( 'elsa-style', get_stylesheet_uri() );
+    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.js', array( 'jquery' ), '1.0.0', true );
+    wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
-    wp_enqueue_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.js', array( 'jquery' ), '1.0.0', true );
-    
-    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-        wp_enqueue_script( 'comment-reply' );
-    }
+    wp_enqueue_script( 'elsa-scripts' );
+
     wp_dequeue_style('SearchAutocomplete-theme');
     wp_dequeue_style('tabslideout-css');
     wp_dequeue_style('owlcarousel-css');

@@ -37,6 +37,13 @@
     transform: translateY(-50%);
     max-height: 90vh;
     overflow-y: scroll;
+
+    .page_content {
+      padding: $base_line_height * 3;
+    }
+    h1 {
+      margin-bottom: $base_line_height * 2;
+    }
   }
     .modal_close {
       position: absolute;
