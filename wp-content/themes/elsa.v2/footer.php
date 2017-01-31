@@ -39,11 +39,11 @@
 
     <div class="wrap row">
 
-        <div class="m-5col">
+        <div class="m-5col footer_text">
             <?php the_field('elsa_text', 'options'); ?>
         </div>
 
-        <div class="m-3col">
+        <div class="m-3col footer_menus">
             <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'tertiary-menu' ) ); ?>
 
             <h5 class="h2">Rester en contact</h5>
@@ -51,13 +51,16 @@
             <ul class="no-bullets">
                 <li><a href="#" class="btn-inline">Nous soumettre une ressource</a> </li>
                 <li><a href="#" class="btn-inline">Nous écrire</a> </li>
-                <li><a href="#" class="btn-inline">Nous suivre sur les réseaux</a> </li>
-                <li><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
+                <li>
+                    <span href="#" class="btn-inline">Nous suivre sur les réseaux</span>
+                    <a href="<?php the_field('url_facebook', 'options'); ?>" class="social_icon icon-facebook"></a>
+                    <a href="<?php the_field('url_twitter', 'options'); ?>" class="social_icon icon-twitter"></a>
+                </li>
             </ul>
 
             <form>
-                <input type="email" class="plain text-on-center" placeholder="exemple@domaine.fr">
-                <input type="submit" class="btn-secondary plain text-on-center" value="S'inscrire à la newsletter">
+                <input type="email" target="_blank" class="plain text-on-center" placeholder="exemple@domaine.fr">
+                <input type="submit" target="_blank" class="btn-secondary plain text-on-center" value="S'inscrire à la newsletter">
             </form>
         </div>
 
@@ -102,9 +105,6 @@
 
     </div>  
 </div>
-
-
-
 
 
 <div id="empty_modal" class="modal modal-empty">

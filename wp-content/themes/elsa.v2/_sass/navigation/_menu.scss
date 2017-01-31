@@ -398,6 +398,22 @@
   }
 
 
+// Menus Botom 
+
+.menu-menu-bottom-container {
+  @include type-setting(-1);
+
+  li {
+    &:not(:last-child):after {
+      content: ' - ';
+    }
+  }
+  a {
+    font-style: italic;
+  }
+}
+
+
 
 // Autocomplete menu
 

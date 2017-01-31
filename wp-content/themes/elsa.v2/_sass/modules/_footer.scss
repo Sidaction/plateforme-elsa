@@ -10,6 +10,8 @@
   margin-top: $base_line_height * 6;
   border-top: 3px solid $color_primary;
   padding: $base_line_height 0;
+
+
 }
 
   .footer-divider {
@@ -17,4 +19,19 @@
     height: $base_line_height;
     margin-bottom: $base_line_height;
     margin-top: $base_line_height;
+  }
+
+  .footer_text {
+    padding-right: $base_line_height * 2;
+  }
+
+  .footer_menus {
+
+
+    ul {
+      margin-bottom: $base_line_height * 1.5;
+    }
+    li {
+      margin-bottom: $base_line_height / 2;
+    }
   }
