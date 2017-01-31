@@ -85,9 +85,9 @@ function rw_register_meta_box() {
         'std' => '',
       ),
       array(
-        'name' => 'Code embed pour élément audio (type <iframe ...>',
+        'name' => 'Code embed pour élément audio (type &lt;iframe ...&gt;',
         'id' => 'embed',
-        'type' => 'text',
+        'type' => 'textarea',
         'std' => '',
       ),
       array(
