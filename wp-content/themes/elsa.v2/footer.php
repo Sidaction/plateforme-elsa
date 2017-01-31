@@ -104,26 +104,7 @@
 </div>
 
 
-<div class="modal modal-sharebymail">
-    <div class="modal_inner wrap">
 
-        <a href="#" id="" class="modal_close">
-            <span class="icon-close"></span>
-        </a>
-
-        <div class="row">
-            <div class="modal_title m-3col m-clearfix">
-                <h4>Partager cette ressource par mail</h4>
-            </div>
-
-            <div class="m-4col m-last">
-                <?php echo do_shortcode('[contact-form-7 id="7940"]'); ?>
-            </div>
-        </div>   
-        
-
-    </div>  
-</div>
 
 
 <div id="empty_modal" class="modal modal-empty">
