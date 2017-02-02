@@ -90,7 +90,7 @@
                     </nav>
 
                     <div class="m-5col m-last">
-                      <?php echo $content; ?>
+                      <?php the_content(); ?>
                     </div>
 
 
@@ -98,7 +98,7 @@
                 <?php elseif ( empty( $children ) && $level == 0 ) : ?>
 
                     <div class="m-6col is-centered">
-                      <?php echo $content; ?>
+                      <?php the_content(); ?>
                     </div>
 
 
