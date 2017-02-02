@@ -72,7 +72,9 @@
 
   <div class="bloc_item bloc--<?php echo $type; ?>">
       
-      <?php echo $Bookmarks->show_bookmark_btn(); ?>
+      <?php if( $type != 'statique') : ?>
+        <?php echo $Bookmarks->show_bookmark_btn(); ?>
+      <?php endif; ?>
 
       <a href="<?php the_permalink();?>">
 
