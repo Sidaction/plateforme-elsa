@@ -1,7 +1,5 @@
 
 
-
-
   <section id="site-content" class="site-content single-ressource">
 
 
