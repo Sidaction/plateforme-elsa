@@ -72,17 +72,19 @@ get_header();
         
                         <?php if( $tags != '' || $boites != '') : ?>
                                 <div class="page_metas">
+                                    
+                                    <?php if( $boites !== '' ) : ?>
+                                        <div class="page_metas_row">
+                                            <span>Thématiques :</span> <?php echo $boites; ?>
+                                        </div>
+                                    <?php endif; ?>
+
                                     <?php if( $tags !== '' ) : ?>
                                     <div class="page_metas_row">
-                                        <span>Mots clefs liés : </span><?php echo $tags; ?> 
+                                        <span>Mots clefs : </span><?php echo $tags; ?> 
                                     </div>
                                     <?php endif; ?>
 
-                                    <?php if( $boites !== '' ) : ?>
-                                        <div class="page_metas_row">
-                                            <span>Boites à outils liées :</span> <?php echo $boites; ?>
-                                        </div>
-                                    <?php endif; ?>
                                 </div>
                         <?php endif; ?>
 
