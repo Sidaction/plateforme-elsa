@@ -25,16 +25,16 @@
 
                   <?php // LE CONTENU ?>
                   <?php the_content();?>
-
                   
                   <?php // VIDEO ?>
                   <?php if($format == 'video' && !empty($link)) echo wp_oembed_get($link); ?>
 
                   <?php // AUDIO ?>
                   <?php if( $format == 'audio' && !empty($link) ) echo "<a href='{$link}' title='Consulter le document sonore' target='_blank' class='btn-primary'>Consulter le document sonore ( {$link} )</a>"?>
+                  
                   <?php if( $format == 'audio' && !empty($embed) ) echo "<div class='embed-plain'>". $embed . "</div>" ?>
                   
-                    <?php
+<!--                     <?php
                       $files = rwmb_meta( 'file', 'type=file' );
                       foreach ( $files as $info ) {
                     
@@ -43,7 +43,7 @@
                         $size = false === $size ? 0 : size_format( $size, 2 );
                         
                         echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consultez la ressource <br> [{$info['title']} ({$kind} -{$size} )]</a>";
-                      }?>
+                      }?> -->
 
                   <?php // DIAPORAMA ?>
                   <?php if( get_field('images') ) : $images = get_field('images'); ?>
