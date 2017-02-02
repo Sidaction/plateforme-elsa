@@ -27,8 +27,6 @@
                     <?php if( $format == 'lien' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site ( {$link} )</a>"?>
 
                     <?php if( $format!='lien' && $format!='video' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site <br>( {$link} )</a>"?> 
-                     
-                    <?php if(!empty($link_crips)) echo "<a href='{$link_crips}' class='btn-primary' title='Accéder au document sur le site du CRIPS' target='_blank'>Accéder au document sur le site du CRIPS</a>"?>
 
                     <?php
                       $files = rwmb_meta( 'file', 'type=file' );
