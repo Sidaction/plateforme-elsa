@@ -29,6 +29,10 @@ iframe {
   }
 }
 
+.wp-video,
+.wp-video-shortcode {
+  width: 100% !important;
+}
 
 @import "gallery";
 @import "caption";
