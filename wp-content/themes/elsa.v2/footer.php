@@ -9,29 +9,23 @@
         </div>
 
         <div class="m-4col">
-            <ul class="no-bullets clearfix table">
             <?php 
-                $args = array(
-                    'post_type' => 'structure',
-                    'posts_per_page' => -1,
-                    'orderby' => 'title',
-                    'order' => 'ASC',
-                    'type_structure' => 'associations-membres'
-                );
-                $wp_query = new WP_Query($args);
-                
-                if( $wp_query->have_posts() ) :
-                    while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
-
-                        <li class="table-cell "><a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/"><?php the_post_thumbnail('medium');?></a></li>
+                $logos_membres = get_field('logos_membres', 'options');
+               
+                if( $logos_membres ) : ?>
+                    <ul class="no-bullets clearfix table">
+                    <?php foreach( $logos_membres as $image ): ?>
+                        <li class="table-cell ">
+                            <a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/">
+                                <img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" />
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                    <p style="margin-top: 10px; margin-bottom: 0;" class="text-on-right"><strong><?php the_field('logos_membres_title', 'options'); ?></strong></p>
                     
-                    <?php endwhile;
-                endif;
-                wp_reset_postdata(); 
-                $args=null; 
-            ?>
+                <?php endif; ?>
             
-            </ul>
         </div>
     </div>
 
@@ -56,12 +50,14 @@
                     <a href="<?php the_field('url_facebook', 'options'); ?>" class="social_icon icon-facebook"></a>
                     <a href="<?php the_field('url_twitter', 'options'); ?>" class="social_icon icon-twitter"></a>
                 </li>
+
+                <li><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
+
             </ul>
 
-            <form>
-                <input type="email" target="_blank" class="plain text-on-center" placeholder="exemple@domaine.fr">
-                <input type="submit" target="_blank" class="btn-secondary plain text-on-center" value="S'inscrire à la newsletter">
-            </form>
+
+            <?php echo do_shortcode('[wysija_form id="1"]'); ?>
+
         </div>
 
     </div>
@@ -94,15 +90,18 @@
             <span class="icon-close"></span>
         </a>
 
-        <div class="modal_title">
-            <h4>Inscription à la Newsletter de la Plateforme ELSA</h4>
-        </div>
-    
-        <form class="modal_form">
-            <input type"text" placeholder="ex : nom@domaine.fr">
-            <input type="submit" value="ok" class="btn-primary">
-        </form>
+        <div class="row">
 
+            <div class="m-4col">
+                <div class="modal_title">
+                    <h4>Inscription à la Newsletter de la Plateforme ELSA</h4>
+                </div>
+            
+                <?php echo do_shortcode('[wysija_form id="1"]'); ?>
+            </div>
+
+        </div>
+        
     </div>  
 </div>
 

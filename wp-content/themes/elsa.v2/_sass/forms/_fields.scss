@@ -4,6 +4,8 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 textarea {
+  @include box-sizing;
+  
 	color: $color_primary;
 	border: 2px solid $color_primary;
   padding: $base_line_height / 2;

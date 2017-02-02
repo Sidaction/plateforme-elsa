@@ -189,7 +189,8 @@ function elsa_scripts() {
     wp_dequeue_style('gema75-style-css');
     wp_dequeue_style('contact-form-7');
     wp_dequeue_style('validate-engine-css');
-
+    wp_deregister_style( 'validate-engine-css' );
+    
     wp_dequeue_script('tabslideout-jquery');
     //wp_dequeue_script('owlcarousel-jquery');
 }

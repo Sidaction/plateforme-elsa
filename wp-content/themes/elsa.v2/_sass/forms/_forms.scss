@@ -35,6 +35,48 @@ input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly i
 
 
 
+
+// Newsletter
+
+.shortcode_wysija {
+  @include box-sizing;
+  width: 100%;
+}
+.wysija-required {
+  display: none;
+}
+.wysija-paragraph {
+  width: 70%;
+  float: left;
+  position: relative;
+
+  input {
+    width: 100%;
+  }
+}
+.wysija-submit {
+  @extend .btn-secondary;
+  width: 25%;
+  float: right;
+  margin-top: 0;
+}
+.abs-req {
+
+  & * {
+    display: none;
+  }
+}
+.formError {
+  left: 0 !important;
+  top: 50px !important;
+}
+.wysija-msg {
+  ul {
+    @extend .no-bullets;
+  }
+}
+
+
 // CONTACTS
 div.wpcf7 {
   margin: 0;
