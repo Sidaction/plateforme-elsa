@@ -23,7 +23,7 @@ a:active {
 
 .page_main a:not([class^='btn']) {
   color: $color_link;
-  border-bottom: 1px dotted $color_link;
+  border-bottom: 1px dotted $gray_light;
 
   &:after {
     @extend .icon;

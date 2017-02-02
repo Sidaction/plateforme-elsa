@@ -33,7 +33,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
               <h1 class="h1">
                   <?php the_title();?>
               </h1> 
-              <?php echo get_post_meta($post->ID, 'adresse', true);?> <?php echo get_post_meta($post->ID, 'cp', true);?> <?php echo get_post_meta($post->ID, 'ville', true);?>, <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
+              <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
 
           </div>     
         </div>
@@ -105,6 +105,10 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
                         <ul class="page_metas_row contacts no-bullets">
                             <span>Contacts : </span>
+                            <li class="contact-item">
+
+                            <span class="icon-arrow_right"></span>
+                            <?php echo get_post_meta($post->ID, 'adresse', true);?> <?php echo get_post_meta($post->ID, 'cp', true);?> <?php echo get_post_meta($post->ID, 'ville', true);?>, <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
 
                             <li class="contact-item">
                                 <span class="icon-arrow_right"></span> Tel. : <?php echo get_post_meta($post->ID, 'tel', true);?>
@@ -115,16 +119,23 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                             <?php endif; ?>
                             
                             <?php if(!empty($link)):?>
-                                <li class="contact-item"><a href="<?php echo $link;?>" target="_blank" class="btn-inline">Site internet</a></li>
-                            <?php endif;?>
-
-                            <?php if(!empty($link2)):?>
-                                <li class="contact-item"><a href="<?php echo $link2;?>" target="_blank" class="btn-inline">Page Facebook</a></li>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="<?php echo $link;?>" target="_blank" class=""><?php echo $link;?></a></li>
                             <?php endif;?>
 
                             <?php if(!empty($email)):?>
-                                <li class="contact-item"><a href="mailto:<?php echo $email;?>" class="btn-inline">Email</a></li>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="mailto:<?php echo $email;?>" class=""><?php echo $email;?></a></li>
                             <?php endif;?>
+
+                            <?php if(!empty($link2)):?>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="<?php echo $link2;?>" target="_blank" class=""><span class="icon-facebook"></span></a></li>
+                            <?php endif;?>
+
                         </ul>
 
                     </div><!-- .page_metas -->

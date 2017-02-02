@@ -33,7 +33,7 @@
         <div class="page_content clearfix">
             <div class="wrap row">
 
-                <div class="m-5col">
+                <div class="m-5col page_main">
                     <?php echo get_post_meta($post->ID, 'infos', true);?>
                     <?php echo get_post_meta($post->ID, 'liens', true);?>
 
@@ -121,7 +121,6 @@
         <div class="group_list m-5col m-last">
 
             <?php 
-                echo get_post_meta($post->ID, 'infoscomp', true);
 
                 foreach($a_cat as $cat) :
                     $i = 0;
@@ -136,7 +135,7 @@
                     $wp_query = new WP_Query($args);
                     if( $wp_query->have_posts() ) :
 
-                        echo $cat['name'];
+                        echo '<h3>' . $cat['name'] . '</h3><ul>';
                             while ($wp_query->have_posts()) : $wp_query->the_post();
                                 $link = ( $cat['slug'] == 'partenaires-elsa-associations-du-reseau-elsa') ? get_permalink():get_post_meta($post->ID, 'link', true);
                                 $target = ($cat['slug'] == 'partenaires-elsa-associations-du-reseau-elsa') ? '':'_blank';
@@ -144,10 +143,15 @@
                                     $assos[]=  $post->ID; ?>
                                 
                                 <li><a href="<?php echo $link;?>" target="<?php echo $target;?>"><?php the_title();?></a></li>
-                    
                 
-                  <?php endwhile;endif;wp_reset_query();wp_reset_postdata(); $args=null; 
+                  <?php endwhile; ?>
+                  </ul>
+                  <?php endif;wp_reset_query();wp_reset_postdata(); $args=null; 
                 endforeach; ?>
+
+                <?php echo get_post_meta($post->ID, 'infoscomp', true); ?>
+
+
         </div>
 
       </div>
