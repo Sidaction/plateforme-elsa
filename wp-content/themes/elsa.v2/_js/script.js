@@ -19,6 +19,25 @@ jQuery(document).ready(function($){
 
 
 
+
+
+
+
+//ADD POST TO RIL
+  $('.addToReadItLaterButton').click(function(event){
+    event.preventDefault();
+    console.log('ello');
+  });
+
+  $('.removeFromRILButton').on('click', function(event) {
+    $(this).append('<span class="readitlater_msg">Suppres-<br>sion en cours....</span>');
+    event.preventDefault();
+  });
+
+
+
+
+
 /*
  * Popins
  */

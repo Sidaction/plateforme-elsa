@@ -69,30 +69,27 @@ function load_assos() {
         'type_structure' => 'partenaires-elsa-associations-du-reseau-elsa'
     );
     $args[ $select_name ] = $select_val;
-
     ob_start();
-
     ?>
-            <ul class="no-bullets">
+        <ul class="no-bullets">
 
-              <?php $wp_query = new WP_Query(); $wp_query->query($args); ?>
-              
-              <?php if ($wp_query->have_posts()) ?> 
-              
-                <?php while ($wp_query->have_posts()) : $wp_query->the_post(); 
-              
-                  $email = get_post_meta($post->ID, 'email', true);
-                  $link = get_post_meta($post->ID, 'link', true);
+          <?php $wp_query = new WP_Query(); $wp_query->query($args); ?>
+          
+          <?php if ($wp_query->have_posts()) ?> 
+          
+            <?php while ($wp_query->have_posts()) : $wp_query->the_post(); 
+          
+                $email = get_post_meta($post->ID, 'email', true);
+                $link = get_post_meta($post->ID, 'link', true);
 
-                  set_query_var( 'email', $email );
-                  set_query_var( 'link', $link );
-                  set_query_var( 'cnSite', $cnSite );
+                set_query_var( 'email', $email );
+                set_query_var( 'link', $link );
+                set_query_var( 'cnSite', $cnSite );
 
-                  get_template_part('template-parts/parts/part', 'listitem-assos');
+                get_template_part('template-parts/parts/part', 'listitem-assos');
 
-                endwhile; wp_reset_query(); wp_reset_postdata(); $args=null; ?>
-
-            </ul>
+            endwhile; wp_reset_query(); wp_reset_postdata(); $args=null; ?>
+        </ul>
 
   <?php
 
@@ -100,7 +97,6 @@ function load_assos() {
 
   echo $content;
   die();
-
 }
 
 
@@ -129,7 +125,7 @@ class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
                     
                     if(isset($current_user_readitlater_list['posts_in_ril'][$post->ID])){
                     
-                        $content = ' <div class="bookmark">  <a href="#" title="Cette ressource est déjà ajoutée à la sélection" alt=""Cette ressource est déjà ajoutée à la sélection"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
+                        $content = ' <a href="#" class="removeFromRILButton" data-readitlater-id="'. $post->ID .'" alt="'. $gema75_read_it_later->remove_from_readitlater_text .'" title="'. $gema75_read_it_later->remove_from_readitlater_text  .'"><img src="'. get_template_directory_uri() . '/_img/book_full.png" alt="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection" title="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection"></a> ' ;
                     
                     }else{
 

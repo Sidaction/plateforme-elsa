@@ -27,7 +27,28 @@
   color: inherit !important;
   font-size: inherit !important;
   font-weight: inherit !important;
+
+  .list_item_inner & {
+    padding-top: $base_line_height * 1.5;
+    padding-left: 0;
+    font-size: 12px !important;
+    line-height: 12px;
+    max-width: $base_line_height * 2;
+    min-width: $base_line_height;
+    color: $gray_light;
+  }
 }
+
+.readitlater_msg {
+  display: block;
+  background: none;
+    font-size: 12px !important;
+    line-height: 12px;
+    max-width: $base_line_height * 2;
+    min-width: $base_line_height;
+    color: $gray_light;  
+}
+
 
 .addedToRilListButton {
   background-image: url('_img/book_full.png');
