@@ -14,12 +14,12 @@ class themeManager {
         //setlocale(LC_TIME, 'fr_FR'); // Serveur Win32
         //global $emailadmin;
         $this->emailadmin = "info@clair-et-net.com";
-    $this->templatelink= get_bloginfo( 'template_url' ); 
-    $this->rootlink =  get_bloginfo( 'url' );
-    $this->pagename='';
-    $this->univers='';
-    add_filter( 'wp_mail_from',  array(&$this,'cn_from_email'));
-    add_filter( 'wp_mail_from_name', array(&$this, 'cn_from_name' ));
+        $this->templatelink= get_bloginfo( 'template_url' ); 
+        $this->rootlink =  get_bloginfo( 'url' );
+        $this->pagename='';
+        $this->univers='';
+        add_filter( 'wp_mail_from',  array(&$this,'cn_from_email'));
+        add_filter( 'wp_mail_from_name', array(&$this, 'cn_from_name' ));
 
         add_action('after_setup_theme', array(&$this, 'cn_setup'));
         add_filter('excerpt_length', array(&$this, 'my_excerpt_length'));
@@ -39,16 +39,16 @@ class themeManager {
         add_action('login_head', array(&$this, 'childtheme_custom_login'));
         add_shortcode('iframe', array(&$this, 'iframe_shortcode'));
         add_shortcode('2COLS', array(&$this, 'stylecol2'));
-    add_action('init', array(&$this, 'my_add_excerpts_to_pages' ));
-    remove_shortcode('gallery', 'gallery_shortcode'); // removes the original shortcode
-    add_filter( 'img_caption_shortcode', array(&$this, 'cn_img_caption_shortcode_filter'), 10, 3 );
-    //add_action( 'init',  array(&$this, 'rewriterules_init')); 
-    add_filter('query_vars',  array(&$this, 'add_query_vars')); 
-    
-    add_action('wp_head', array(&$this, 'frontend_ajaxurl')); 
-    add_action('wp_ajax_doc_like', array(&$this, 'doc_like' )); 
-    add_action('wp_ajax_nopriv_doc_like',  array(&$this,'doc_like')); 
-    add_filter('wp_head', array(&$this,'sb_force_comment'));
+        add_action('init', array(&$this, 'my_add_excerpts_to_pages' ));
+        remove_shortcode('gallery', 'gallery_shortcode'); // removes the original shortcode
+        add_filter( 'img_caption_shortcode', array(&$this, 'cn_img_caption_shortcode_filter'), 10, 3 );
+        //add_action( 'init',  array(&$this, 'rewriterules_init')); 
+        add_filter('query_vars',  array(&$this, 'add_query_vars')); 
+        
+        add_action('wp_head', array(&$this, 'frontend_ajaxurl')); 
+        add_action('wp_ajax_doc_like', array(&$this, 'doc_like' )); 
+        add_action('wp_ajax_nopriv_doc_like',  array(&$this,'doc_like')); 
+        add_filter('wp_head', array(&$this,'sb_force_comment'));
     
     if(function_exists('add_action')) {
       add_action('preprocess_comment', array(&$this,'preprocess_new_comment'));
