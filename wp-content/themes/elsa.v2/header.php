@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/_img/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Work+Sans:200,400,600,800" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,600" media="screen">
 
     <!--[if lt IE 9]>
     	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
