@@ -46,7 +46,7 @@ get_header();
     <section id="site-content" class="site-content">
 
         <article class="main-content clearfix">
-            <div class="page_title archives_title">
+            <div class="page_title ressource_title">
 
                 <div class="wrap row">
                     <h1 class="h1 m-5col m-clearfix">
