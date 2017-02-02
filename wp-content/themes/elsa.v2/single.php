@@ -9,6 +9,7 @@
   $format = cnLib::get_main_term_slug($post->ID, 'format');
   $category = cnLib::get_main_term_slug($post->ID, 'category');
   $link = get_post_meta($post->ID, 'link', true);
+
   $embed = get_post_meta($post->ID, 'embed', true);
   $link_crips = get_post_meta($post->ID, 'link_crips', true);
   $date_edition = get_post_meta($post->ID, 'date-start', true);

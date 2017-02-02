@@ -21,6 +21,10 @@
 
   .page_actions {
     margin: $base_line_height * 2 0;
+
+    .btn-primary {
+      margin-right: $base_line_height * 2;
+    }
   }
 
   .page_title {

@@ -1,4 +1,7 @@
-
+<?php 
+  $parse = parse_url($link);
+  $domain = $parse['host'];
+?>
 
   <section id="site-content" class="site-content single-ressource">
 
@@ -24,9 +27,9 @@
 
                   <div class="page_actions">
 
-                    <?php if( $format == 'lien' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site ( {$link} )</a>"?>
+                    <?php if( $format == 'lien' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site <br>( <em>{$domain}</em> )</a>"?>
 
-                    <?php if( $format!='lien' && $format!='video' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site <br>( {$link} )</a>"?> 
+                    <?php if( $format!='lien' && $format!='video' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site <br>( <em>{$domain}</em> )</a>"?> 
 
                     <?php
                       $files = rwmb_meta( 'file', 'type=file' );
@@ -36,7 +39,7 @@
                         $kind = pathinfo($info['path'], PATHINFO_EXTENSION);
                         $size = false === $size ? 0 : size_format( $size, 2 );
                         
-                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consultez la ressource <br> [{$info['title']} ({$kind} -{$size} )]</a>";
+                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consultez la ressource <br> ( <em>{$kind} -{$size}</em> )</a>";
                       }?>
 
                   </div><!-- .page_actions -->  
