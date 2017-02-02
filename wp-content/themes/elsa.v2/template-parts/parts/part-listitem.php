@@ -54,18 +54,15 @@
               <?php endif; ?>
             </div>
 
-            <div class="m-3col list_item-auteurs">
-              <?php                              
-              if(!empty($main_author)){ ?>
-                <span class="meta">Auteur(s) : </span>
-                <?php $permalink = get_permalink( $main_author );
-                if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>";
-              }
-              else { ?>
-                <span class="meta">Auteur(s) : </span>
-                <?php echo $cnSite->get_authors($post->ID);
-              } ?>
-            </div>
+              <?php    
+              if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
+                <div class="m-3col list_item-auteurs">
+                  <span class="meta">Auteur(s) : </span>
+                  <?php $permalink = get_permalink( $main_author );
+                  if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
+                  <?php echo $cnSite->get_authors($post->ID); ?>
+                </div>
+              <?php } ?>
             
           </div>
       </div>
