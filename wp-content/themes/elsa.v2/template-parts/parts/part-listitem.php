@@ -24,7 +24,6 @@
 
 
 
-
           <div class="list_item-icons">
             <?php if( isset($reco) && $reco ) : ?>
               <span class="icon-recommandation"></span>

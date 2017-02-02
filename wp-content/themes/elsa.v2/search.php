@@ -239,8 +239,6 @@
                     </div>
                   </div>
                   
-
-                  <input type="hidden" name="totaltags" value="<?php echo $args['totaltags'];?>" />
                   <input type="hidden" name="totalcat" value="<?php echo $args['category_name'];?>" />
                   <input type="hidden" name="totalpays" value="<?php echo $args['pays_assoc'];?>" />
                   <input type="hidden" name="totalregions" value="<?php echo $args['region'];?>" />
@@ -250,11 +248,6 @@
                   <div class="row">
 
                     <div id="advancedSearch" class="filter_group m-4col m-clearfix">
-                      <div class="clearfix filter_subgroup">
-                        <span class="meta">Mot(s) clefs filtré(s) : </span>
-                        <ul id="listKeywords" class="filters_list no-bullets">
-                        </ul>
-                      </div>
 
                       <div class="clearfix filter_subgroup">
                         <span class="meta">Thématique(s) filtrée(s) : </span>
@@ -316,8 +309,8 @@
                 
                     <?php 
                       $results[] = $post->ID;
-                      $cat = cnLib::get_terms_withoutlink($post->ID, 'category');
-                      $pays = cnLib::get_main_term_slug($post->ID, 'pays_assoc');
+                      $cat = cnLib::get_term_list_link($post->ID, 'category', 'category/');
+                      $pays = cnLib::get_term_list_link($post->ID, 'pays_assoc', 'pays/');
                       $main_author = get_post_meta($post->ID, 'first_org', true);
                       $format = cnLib::get_main_term_slug($post->ID, 'format');
 

@@ -253,7 +253,7 @@ class cnLib {
         if ($terms) :
 
             foreach ($terms as $term) {
-                $list[] = '<a href="'.$prefix.$term->slug.'"/>'.$term->name.'</a>';
+                $list[] = '<a href="/'.$prefix.$term->slug.'"/>'.$term->name.'</a>';
           
             }
             return implode($separ, $list). " ";
