@@ -78,6 +78,9 @@ function checkcount() {
 
 // some functions theme checks use
 function tc_grep( $error, $file ) {
+	if ( ! file_exists( $file ) ) {
+		return '';
+	}
 	$lines = file( $file, FILE_IGNORE_NEW_LINES ); // Read the theme file into an array
 	$line_index = 0;
 	$bad_lines = '';
@@ -96,6 +99,9 @@ function tc_grep( $error, $file ) {
 }
 
 function tc_preg( $preg, $file ) {
+	if ( ! file_exists( $file ) ) {
+		return '';
+	}
 	$lines = file( $file, FILE_IGNORE_NEW_LINES ); // Read the theme file into an array
 	$line_index = 0;
 	$bad_lines = '';
@@ -105,7 +111,10 @@ function tc_preg( $preg, $file ) {
 			$error = $matches[0];
 			$this_line = str_replace( '"', "'", $this_line );
 			$error = ltrim( $error );
-			$pre = ( FALSE !== ( $pos = strpos( $this_line, $error ) ) ? substr( $this_line, 0, $pos ) : FALSE );
+			$pre = '';
+			if ( !empty( $error ) ) {
+				$pre = ( FALSE !== ( $pos = strpos( $this_line, $error ) ) ? substr( $this_line, 0, $pos ) : FALSE );
+			}
 			$pre = ltrim( htmlspecialchars( $pre ) );
 			$bad_lines .= "<pre class='tc-grep'>" . __("Line ", "theme-check") . ( $line_index+1 ) . ": " . $pre . htmlspecialchars( substr( stristr( $this_line, $error ), 0, 75 ) ) . "</pre>";
 		}
@@ -132,7 +141,7 @@ function tc_strxchr($haystack, $needle, $l_inclusive = 0, $r_inclusive = 0){
 }
 
 function tc_filename( $file ) {
-	$filename = ( preg_match( '/themes\/[a-z0-9]*\/(.*)/', $file, $out ) ) ? $out[1] : basename( $file );
+	$filename = ( preg_match( '/themes\/[a-z0-9-]*\/(.*)/', $file, $out ) ) ? $out[1] : basename( $file );
 	return $filename;
 }
 
@@ -209,31 +218,31 @@ function get_theme_data_from_contents( $theme_data ) {
 	);
 
 	$theme_data = str_replace ( '\r', '\n', $theme_data );
-	preg_match( '|Theme Name:(.*)$|mi', $theme_data, $theme_name );
-	preg_match( '|Theme URI:(.*)$|mi', $theme_data, $theme_uri );
-	preg_match( '|Description:(.*)$|mi', $theme_data, $description );
+	preg_match( '|^[ \t\/*#@]*Theme Name:(.*)$|mi', $theme_data, $theme_name );
+	preg_match( '|^[ \t\/*#@]*Theme URI:(.*)$|mi', $theme_data, $theme_uri );
+	preg_match( '|^[ \t\/*#@]*Description:(.*)$|mi', $theme_data, $description );
 
-	if ( preg_match( '|Author URI:(.*)$|mi', $theme_data, $author_uri ) )
+	if ( preg_match( '|^[ \t\/*#@]*Author URI:(.*)$|mi', $theme_data, $author_uri ) )
 		$author_uri = esc_url( trim( $author_uri[1]) );
 	else
 		$author_uri = '';
 
-	if ( preg_match( '|Template:(.*)$|mi', $theme_data, $template ) )
+	if ( preg_match( '|^[ \t\/*#@]*Template:(.*)$|mi', $theme_data, $template ) )
 		$template = wp_kses( trim( $template[1] ), $themes_allowed_tags );
 	else
 		$template = '';
 
-	if ( preg_match( '|Version:(.*)|i', $theme_data, $version ) )
+	if ( preg_match( '|^[ \t\/*#@]*Version:(.*)|mi', $theme_data, $version ) )
 		$version = wp_kses( trim( $version[1] ), $themes_allowed_tags );
 	else
 		$version = '';
 
-	if ( preg_match('|Status:(.*)|i', $theme_data, $status) )
+	if ( preg_match('|^[ \t\/*#@]*Status:(.*)|mi', $theme_data, $status) )
 		$status = wp_kses( trim( $status[1] ), $themes_allowed_tags );
 	else
 		$status = 'publish';
 
-	if ( preg_match('|Tags:(.*)|i', $theme_data, $tags) )
+	if ( preg_match('|^[ \t\/*#@]*Tags:(.*)|mi', $theme_data, $tags) )
 		$tags = array_map( 'trim', explode( ',', wp_kses( trim( $tags[1] ), array() ) ) );
 	else
 		$tags = array();
@@ -244,7 +253,7 @@ function get_theme_data_from_contents( $theme_data ) {
 
 	$description = ( isset( $description[1] ) ) ? wp_kses( trim( $description[1] ), $themes_allowed_tags ) : '';
 
-	if ( preg_match( '|Author:(.*)$|mi', $theme_data, $author_name ) ) {
+	if ( preg_match( '|^[ \t\/*#@]*Author:(.*)$|mi', $theme_data, $author_name ) ) {
 		if ( empty( $author_uri ) ) {
 			$author = wp_kses( trim( $author_name[1] ), $themes_allowed_tags );
 		} else {
