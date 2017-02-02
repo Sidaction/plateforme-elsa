@@ -58,22 +58,25 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
                         <div class="page_media">
 
-                            <ul class="no-bullets clearfix bxslider">
-                                <?php $i = 0;
+                            <div id="slider_outer" class="slider_outer">
+                                <ul class="no-bullets clearfix bxslider">
+                                    <?php $i = 0;
 
-                                foreach ( $images as $img_id )   {
-                                  
-                                    $src = wp_get_attachment_image_src( $img_id, 'large' );
-                                    $src = $src[0];
-                                    $title = get_the_title($img_id);
-                                    $class = ($i==0) ? 'class="first"':'';
+                                    foreach ( $images as $img_id )   {
+                                      
+                                        $src = wp_get_attachment_image_src( $img_id, 'large' );
+                                        $src = $src[0];
+                                        $title = get_the_title($img_id);
+                                        $class = ($i==0) ? 'class="first"':'';
 
-                                    echo "<li ".$class."><img src='{$src}' /></li>";
+                                        echo "<li ".$class."><img src='{$src}' /></li>";
 
-                                    $i++;
-                                } ?>
-                            </ul>
-                            <a href="#" id="js-sliderfull" class="btn-inline-little">Voir en plein écran</a>
+                                        $i++;
+                                    } ?>
+                                </ul>
+                                <a href="#" id="js-sliderfull" class="btn-inline-little">Voir en plein écran</a>
+                            </div>
+                        
                         </div><!-- .page_media -->
                     <?php endif; ?>
 

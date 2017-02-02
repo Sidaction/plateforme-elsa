@@ -13,6 +13,17 @@
 
 /** RESET AND LAYOUT
 ===================================*/
+.slider_outer {
+  @include transition(all, 0.2s);
+  opacity: 0;
+
+  & div,
+  & img,
+  & li {
+    height: 100%;
+  }
+}
+
 
 .bx-wrapper {
   position: relative;
@@ -62,6 +73,7 @@
   top: 0;
   left: 0;
   z-index: 2000;
+  opacity: 1;
 }
 
 /* PAGER */

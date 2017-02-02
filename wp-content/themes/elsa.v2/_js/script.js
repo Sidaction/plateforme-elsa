@@ -158,6 +158,7 @@ jQuery(document).ready(function($){
   });
 
 
+
   
   /*
    * BOOKMARKS / SELECTION STUFFS
@@ -167,6 +168,7 @@ jQuery(document).ready(function($){
   item_selection.append('<span id="gema75_wc_wc_count_badge"></span>');
 
 //  $('.selection_count').html(gema75_how_many_items_in_ril());
+
 
 
 
@@ -245,6 +247,7 @@ jQuery(document).ready(function($){
 
 
 
+
   /*
    * BX SLIDERS
    */
@@ -258,20 +261,23 @@ jQuery(document).ready(function($){
       adaptiveHeight: true,
       nextText: '',
       prevText: '',
-      preloadImages: 'all'
+      onSliderLoad: function(){
+        $('.slider_outer').css('opacity', '1');
+      },
     });
 
     $('#js-sliderfull').on('click', function() {
       
       var slider_clone = bxslider_markup;
-      var bxslider = $('#empty_modal > .modal_inner > .bx-wrapper');
+      var bxslider = $('#empty_modal > .modal_inner .bx-wrapper');
       
       $('body').addClass('no-scroll');
 
       if( bxslider.length === 0 ) {
-        $('#empty_modal > .modal_inner').append(slider_clone);
+        $('#empty_modal .modal_content').append(slider_clone);
+        $('#loading-msg').hide();
         $('#empty_modal').show();
-        $('#empty_modal > .modal_inner > ul').bxSlider({
+        $('#empty_modal .modal_content > ul').bxSlider({
           pager: false,
           adaptiveHeight: false,
           nextText: '',
@@ -478,12 +484,10 @@ function getSearchFields(){
 
   var arrtags=[], arrcat=[], arrpays=[], arrregions=[];
 
-  if($("input[name=totaltags]").val()!=="") arrtags = $("input[name=totaltags]").val().split(",");
   if($("input[name=totalcat]").val()!=="") arrcat  = $("input[name=totalcat]").val().split(",");
   if($("input[name=totalpays]").val()!=="") arrpays = $("input[name=totalpays]").val().split(",");
   if($("input[name=totalregions]").val()!=="") arrregions = $("input[name=totalregions]").val().split(",");
   
-  $("input[name=totaltags]").val("");
   $("input[name=totalcat]").val("");
   $("input[name=totalpays]").val("");
   $("input[name=totalregions]").val("");

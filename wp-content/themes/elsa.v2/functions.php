@@ -177,8 +177,8 @@ function elsa_scripts() {
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
     wp_dequeue_script('jquery-migrate');
-    wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
+    // wp_deregister_script('jquery');
+    // wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
 
     wp_enqueue_script( 'elsa-scripts' );
 
