@@ -11,6 +11,7 @@ $image = get_field('zoom_image');
 $zoom_thematique = get_field('zoom_thematique');
 $zoom_pays = get_field('zoom_pays');
 $zoom_association = get_field('zoom_association');
+$zoom_association_text = get_field('zoom_association_text');
 
 ?>
 
@@ -43,7 +44,7 @@ $zoom_association = get_field('zoom_association');
 
                     <div class="m-2col featured-asso">
                         <h4 class="h2"><?php echo $zoom_association->post_title; ?></h4>
-                        <p><?php echo $zoom_association->post_excerpt; ?></p>
+                        <p><?php echo $zoom_association_text; ?></p>
                         <a href="/structure/<?php echo $zoom_association->post_name?>"><span class="icon-arrow_right"></span></a>
                     </div>
 
