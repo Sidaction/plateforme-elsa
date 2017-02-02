@@ -27,11 +27,13 @@
 
   .footer_menus {
 
-
     ul {
       margin-bottom: $base_line_height * 1.5;
     }
     li {
       margin-bottom: $base_line_height / 2;
+    }
+    .shortcode_wysija {
+      margin-top: - $base_line_height * 0.75;
     }
   }

@@ -15,7 +15,7 @@ a {
     color: $white;
   }
 }
-a:hover,
+
 a:focus,
 a:active {
 
@@ -24,6 +24,10 @@ a:active {
 .page_main a:not([class^='btn']) {
   color: $color_link;
   border-bottom: 1px dotted $gray_light;
+
+  a:hover {
+    color: $color_ressources;
+  }
 
   &:after {
     @extend .icon;

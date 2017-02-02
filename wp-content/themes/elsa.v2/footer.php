@@ -51,7 +51,7 @@
                     <a href="<?php the_field('url_twitter', 'options'); ?>" class="social_icon icon-twitter"></a>
                 </li>
 
-                <li><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
+                <li><span class="btn-inline">Recevoir notre newsletter</span> </li>
 
             </ul>
 
