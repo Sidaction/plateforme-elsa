@@ -17,12 +17,14 @@
   $theme_1_vignette_src = $theme_1_vignette_datas[0];
 
   $theme_2 = get_field('dd-theme-2', 'options');
-  $theme_2_id = $theme_2[0];
-  $theme_2_datas = get_term_by('id', $theme_2_id, 'category');
-  $theme_2_datas_ = $meta[$theme_2_id];
-  $theme_2_vignette = $theme_2_datas_['image']; 
-  $theme_2_vignette_datas = wp_get_attachment_image_src($theme_2_vignette[0], 'archives_square'); 
-  $theme_2_vignette_src = $theme_2_vignette_datas[0];
+  if( $theme_2 ) {
+    $theme_2_id = $theme_2[0];
+    $theme_2_datas = get_term_by('id', $theme_2_id, 'category');
+    $theme_2_datas_ = $meta[$theme_2_id];
+    $theme_2_vignette = $theme_2_datas_['image']; 
+    $theme_2_vignette_datas = wp_get_attachment_image_src($theme_2_vignette[0], 'archives_square'); 
+    $theme_2_vignette_src = $theme_2_vignette_datas[0];
+  }
 
 ?>
 
@@ -36,7 +38,14 @@
     </div>
 
     <div class="dd_content clearfix row">
+      <?php if( $theme_2 ) { ?>
       <div class="item m-4col">
+
+      <?php }else { ?>
+      <div class="item m-6col">
+
+      <?php } ?>
+
         <div class="row">
           <a href="/category/<?php echo $theme_1_datas->slug; ?>">
 
@@ -44,7 +53,14 @@
               <img src="<?php echo $theme_1_vignette_src; ?>">
             </div>
 
+            <?php if( $theme_2 ) { ?>
             <div class="dd_text m-2col">
+
+            <?php }else { ?>
+            <div class="dd_text m-4col">
+
+            <?php } ?>
+
               <h5 class="h5"><?php echo $theme_1_datas->name; ?></h5>
               <?php the_field('dd-theme-1-text', 'options'); ?>
               <span class="btn-inline"></span>
@@ -52,6 +68,8 @@
           </a>         
         </div>
       </div>
+
+      <?php if( $theme_2 ) : ?>
 
       <div class="item m-4col">
         <div class="row">
@@ -67,11 +85,12 @@
           </a>
         </div>
       </div>
+      <?php endif; ?>
+  
     </div>
 
   </div>
 </div>
-
 
 
 <div class="dd_group bg-cut">
@@ -100,3 +119,5 @@
     
   </div>
 </div>
+
+
