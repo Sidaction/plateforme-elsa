@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global  $post , $gema75_ril_frontend , $gema75_read_it_later, $cnSite;
 
+$results = array();
 
 //remove the "add to RIL" action
 remove_action( 'the_content', array( $gema75_ril_frontend, 'show_readitlater_after_content' ),30 );
@@ -28,6 +29,8 @@ if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list
 
     if ( $post_id ) {
 
+      $results[] = $post->ID; 
+
       $post = get_post( $post_id );
       setup_postdata( $post );
 
@@ -48,6 +51,8 @@ if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list
     }
   }
   
+  $_SESSION['results'] = $results;
+
   wp_reset_postdata(); ?>
   
 </ul>

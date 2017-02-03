@@ -37,7 +37,9 @@ get_header(); ?>
             <div class="wrap row">
 
                 <div class="group_title m-2col">
-                  <div class="exportxls"><a href="../extract" class="btn-inline">Télécharger la liste des résultats</a></div>
+                    <div class="group_title_actions">
+                        <a href="../extract" class="btn-inline">Télécharger la liste des résultats</a>
+                    </div>
                 </div>
 
                 <div class="group_intro m-5col m-last">
@@ -45,7 +47,9 @@ get_header(); ?>
                 </div>
 
                 <div class="clearfix">
+
                     <?php echo do_shortcode( '[gema75_ril]' ); ?>
+
                 </div>
                 
             </div><!-- .wrap -->
