@@ -7,38 +7,20 @@
 
     $boite_id = $boite->cat_ID;
     $boite_slug = $boite->slug;
-    $meta = get_option('info');
 
-    if (empty($meta)) 
-        $meta = array();
-    
-    if (!is_array($meta)) 
-        $meta = (array) $meta;
+    // $meta = get_option('info');
+    // if (empty($meta)) 
+    //     $meta = array();
+    // if (!is_array($meta)) 
+    //     $meta = (array) $meta;
+    // $meta = isset($meta[$boite_id]) ? $meta[$boite_id] : array();
 
-    $meta = isset($meta[$boite_id]) ? $meta[$boite_id] : array();
-    $presentation = $meta['presentation']; 
-
-    if( isset( $meta['details'] ) ) {
-        $tags = $meta['details'];   
-    } 
-    else {
-        $tags = '';
-    }
-    
-    if( isset( $meta['boites'] ) ) {
-        $boites = $meta['boites'];   
-    } 
-    else {
-        $boites = '';
-    }
-
-    if( isset( $meta['image'] ) ) {
-        $vignette = $meta['image']; 
-        $vignette_datas = wp_get_attachment_image_src($vignette[0], 'archives_square'); 
-        $vignette_src = $vignette_datas[0];
-    } else {
-        $vignette_src = '';
-    }
+    $presentation = get_field('presentation', $boite); 
+    $image = get_field('image', $boite);
+    $tags_linked = get_field('tags_linked', $boite);
+    $themes_linked = get_field('themes_linked', $boite);
+    $boites_linked = get_field('boites_linked', $boite);
+    $size = 'archives_square';
 
 get_header(); 
 
@@ -62,27 +44,46 @@ get_header();
                         <?php echo wpautop($presentation); ?>
                     </div>
 
-                    <div class="m-3col page_aside">
+                    <div class="m-3col page_aside m-last">
 
-                        <?php if ($vignette_src != '') : ?>
+                        <?php if( $image ) { ?>
                             <div class="page_media clearfix">
-                                <img src="<?php echo $vignette_src; ?>">
+                                <?php echo wp_get_attachment_image( $image, $size ); ?>
                             </div>
-                        <?php endif; ?>
+                        <?php } ?>
         
-                        <?php if( $tags != '' || $boites != '') : ?>
+                        <?php if( isset($tags_linked) || isset($boites_linked) ) : ?>
                                 <div class="page_metas">
                                     
-                                    <?php if( $boites !== '' ) : ?>
+                                    <?php if( isset($themes_linked) ) : ?>
                                         <div class="page_metas_row">
-                                            <span>Thématiques :</span> <?php echo $boites; ?>
+                                            <span>Thématiques : </span>
+
+                                            <ul>
+
+                                            <?php foreach( $themes_linked as $term ): ?>
+                                                <li><a href="<?php echo get_term_link( $term ); ?>"><?php echo $term->name; ?></a></li>
+                                            <?php endforeach; ?>
+
+                                            </ul>
+
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if( $tags !== '' ) : ?>
-                                    <div class="page_metas_row">
-                                        <span>Mots clefs : </span><?php echo $tags; ?> 
-                                    </div>
+
+                                    <?php if( isset($tags_linked) ) : ?>
+                                        <div class="page_metas_row">
+                                            <span>Mots clefs : </span>
+
+                                            <ul>
+
+                                            <?php foreach( $tags_linked as $term ): ?>
+                                                <li><a href="<?php echo get_term_link( $term ); ?>"><?php echo $term->name; ?></a></li>
+                                            <?php endforeach; ?>
+
+                                            </ul>
+
+                                        </div>
                                     <?php endif; ?>
 
                                 </div>

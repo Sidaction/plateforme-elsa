@@ -494,21 +494,21 @@ function register_taxonomy_meta_boxes(){
           'id'   => 'presentation',
           'type' => 'wysiwyg',
         ),
-        array(
-          'name' => 'Boîtes à outils liées',
-          'id'   => 'boites',
-          'type' => 'wysiwyg',
-        ),
-        array(
-          'name' => 'Mots clefs liés',
-          'id'   => 'details',
-          'type' => 'wysiwyg',
-        ),
-        array(
-          'name' => 'Vignette',
-          'id'   => 'image',
-          'type' => 'image',
-        ),
+        // array(
+        //   'name' => 'Boîtes à outils liées',
+        //   'id'   => 'boites',
+        //   'type' => 'wysiwyg',
+        // ),
+        // array(
+        //   'name' => 'Mots clefs liés',
+        //   'id'   => 'details',
+        //   'type' => 'wysiwyg',
+        // ),
+        // array(
+        //   'name' => 'Vignette',
+        //   'id'   => 'image',
+        //   'type' => 'image',
+        // ),
       ),
     );
 

@@ -6,6 +6,29 @@ require_once('__core/themeManager.php' );
 $cnSite = new themeManager();
 
 
+function change_post_object_label() {
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Contacts';
+    $labels->singular_name = 'Contact';
+    $labels->add_new = 'Add Contact';
+    $labels->add_new_item = 'Add Contact';
+    $labels->edit_item = 'Edit Contacts';
+    $labels->new_item = 'Contact';
+    $labels->view_item = 'View Contact';
+    $labels->search_items = 'Search Contacts';
+    $labels->not_found = 'No Contacts found';
+    $labels->not_found_in_trash = 'No Contacts found in Trash';
+}
+
+function change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    $submenu['edit.php'][15][0] = 'Thématiques'; // Change name for categories
+    echo '';
+}
+add_action( 'admin_menu', 'change_post_menu_label' );
+//add_action( 'init', 'change_post_object_label' );
 
 /*
  * GEt & Display content with ajax
@@ -125,7 +148,7 @@ class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
                     
                     if(isset($current_user_readitlater_list['posts_in_ril'][$post->ID])){
                     
-                        $content = ' <a href="#" class="removeFromRILButton" data-readitlater-id="'. $post->ID .'" alt="'. $gema75_read_it_later->remove_from_readitlater_text .'" title="'. $gema75_read_it_later->remove_from_readitlater_text  .'"><img src="'. get_template_directory_uri() . '/_img/book_full.png" alt="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection" title="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection"></a> ' ;
+                        $content = ' <div class="bookmark">  <a href="#" class="removeFromRILButton" data-readitlater-id="'. $post->ID .'" alt="'. $gema75_read_it_later->remove_from_readitlater_text .'" title="'. $gema75_read_it_later->remove_from_readitlater_text  .'"><img src="'. get_template_directory_uri() . '/_img/book_full.png" alt="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection" title="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection"></a></div> ' ;
                     
                     }else{
 
