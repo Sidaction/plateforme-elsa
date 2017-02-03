@@ -105,6 +105,10 @@ body {
   padding: $base_line_height * 3 0 $base_line_height * 3;
   margin-bottom: $base_line_height;
   background-color: $gray_lighter;
+
+  @include up-to(medium) {
+    padding-top: $base_line_height;
+  }
 }
 
 .bg-full {
@@ -141,7 +145,21 @@ body {
     padding-right: 5%;
   }
 
+  .page_mobile {
+
+    img {
+      max-width: 60%;
+      margin-bottom: $base_line_height * 2;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   .page_aside {
+
+    @include up-to(medium) {
+      display: none;
+    }
   }
     .page_media {
       margin-bottom: $base_line_height * 2;
@@ -180,6 +198,9 @@ body {
       p:last-child {
         margin-bottom: 0;
       }
+      @include up-to(medium) {
+        margin-bottom: $base_line_height;
+      }
     }
       .page_metas_row {
         margin-bottom: $base_line_height;
@@ -204,6 +225,13 @@ body {
           .btn-secondary {
             padding-left: $base_line_height / 2;
             padding-right: $base_line_height / 2;
+          }
+
+          @include up-to(medium) {
+            & > div {
+              clear: both;
+
+            }
           }
         }
       } 

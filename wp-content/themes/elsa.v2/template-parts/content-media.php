@@ -20,8 +20,34 @@
 
         <div class="page_content clearfix">
             <div class="wrap row">
-                <div class="m-5col page_main">
 
+
+                <div class="page_mobile m-hide ">
+
+                  <div class="page_metas">
+
+                      <?php if(!empty($auteurs)) echo '<div class="page_metas_row"><span>Auteur(s) : </span>'.$auteurs .'</div>';?>
+                      
+                      <div class="page_metas_row">
+                        <?php echo get_the_term_list( $post->ID, 'pays_assoc', '<span>Pays : </span>', ', ' ); ?>
+                      </div>
+
+                      <?php if(!empty($date_edition)) echo '<div class="page_metas_row"><span>Date d’édition : </span>' . $date_edition . '</div>';?> 
+
+                      <div class="page_metas_row">
+                        <span>Thématique(s) :</span> <?php the_category(', '); ?>
+                      </div>
+
+                      <?php echo get_the_tag_list('<div class="page_metas_row"><span>Mots clés : </span>',', ', '</div>');  ?>
+                      
+
+                  </div><!-- .metas -->
+
+                </div>
+
+
+
+                <div class="m-5col page_main m-clearfix">
 
                   <?php // LE CONTENU ?>
                   <?php the_content();?>
@@ -78,9 +104,8 @@
                         <span>Thématique(s) :</span> <?php the_category(', '); ?>
                       </div>
 
-                      <div class="page_metas_row">
-                        <?php echo get_the_tag_list('<span>Mots clés : </span>',', ');  ?>
-                      </div>
+                      <?php echo get_the_tag_list('<div class="page_metas_row"><span>Mots clés : </span>',', ', '</div>');  ?>
+
 
                   </div><!-- .metas -->
               </div><!-- .page_aside -->

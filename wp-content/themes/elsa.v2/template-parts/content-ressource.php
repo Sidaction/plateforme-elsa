@@ -1,6 +1,8 @@
 <?php 
+if($link) {
   $parse = parse_url($link);
-  $domain = $parse['host'];
+  $domain = $parse['host'];  
+}
 ?>
 
   <section id="site-content" class="site-content single-ressource">
@@ -18,10 +20,44 @@
           </div>     
         </div>
 
-
         <div class="page_content clearfix">
             <div class="wrap row">
-                <div class="m-5col page_main">
+
+                <div class="page_mobile m-hide ">
+
+                  <div class="page_metas s-6col">
+
+                      <?php if(!empty($auteurs)) : ?>
+                        <div class="page_metas_row">
+                          <?php echo '<span>Auteur(s) : </span>'.$auteurs; ?>
+                        </div>
+                      <?php endif; ?>
+                      
+                      <div class="page_metas_row">
+                        <?php echo get_the_term_list( $post->ID, 'pays_assoc', '<span>Pays : </span>', ', ' ); ?>
+                      </div>
+
+                      <div class="page_metas_row">
+                        <?php if(!empty($date_edition)) echo '<span>Date d’édition : </span>' . $date_edition;?> 
+                      </div>
+
+                      <div class="page_metas_row">
+                        <span>Thématique(s) :</span> <?php the_category(', '); ?>
+                      </div>
+
+                      <?php echo get_the_tag_list('<div class="page_metas_row"><span>Mots clés : </span>',', ', '</div>');  ?>
+
+
+                  </div><!-- .metas -->
+
+                  <div class="clearfix">
+                    <?php the_post_thumbnail('post_thumb'); ?>
+                  </div>
+
+                </div>
+
+
+                <div class="m-5col page_main m-clearfix">
                   
                   <?php the_content();?>
 
@@ -73,9 +109,8 @@
                           <span>Thématique(s) :</span> <?php the_category(', '); ?>
                         </div>
 
-                        <div class="page_metas_row">
-                          <?php echo get_the_tag_list('<span>Mots clés : </span>',', ');  ?>
-                        </div>
+                      <?php echo get_the_tag_list('<div class="page_metas_row"><span>Mots clés : </span>',', ', '</div>');  ?>
+
 
                     </div><!-- .metas -->
 
