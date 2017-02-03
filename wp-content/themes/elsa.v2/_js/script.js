@@ -25,8 +25,6 @@ jQuery(document).ready(function($){
 
 //ADD POST TO RIL
   $('.addToReadItLaterButton').click(function(event){
-    event.preventDefault();
-    console.log('ello');
   });
 
   $('.removeFromRILButton').on('click', function(event) {
