@@ -83,6 +83,12 @@ body {
   color: $white;
   margin-bottom: $base_line_height;
 }
+.page_title-little {
+  padding: $base_line_height * 1.5;
+  color: $white;
+  margin: $base_line_height * 2 0;
+}
+
   .ressource_title {
     background-color: $color_ressources;
   }

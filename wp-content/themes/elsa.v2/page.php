@@ -62,10 +62,16 @@
         <?php $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $root ), 'large' );?>
         <?php if( $large_image_url) { ?> 
             <div class="page_title-outer bg_cover" style="background-image: url(<?php echo $large_image_url[0]; ?>)">
-        <?php } ?>
+                    <div class="wrap row">
+                        <h1 class="h1 static_title page_title-little m-4col m-last">
+                            <?php echo $title; ?>
+                        </h1>  
+                    </div>     
+            
+            </div>
 
+        <?php } else { ?>
             <div class="page_title static_title">
-
                 <div class="wrap row">
                     <h1 class="h1 m-6col is-centered text-on-center">
                         <?php echo $title; ?>
@@ -74,9 +80,8 @@
             
             </div>
 
-        <?php if( $large_image_url) { ?> 
-            </div>
         <?php } ?>
+
 
         <div class="page_content clearfix">
             <div class="wrap row">
