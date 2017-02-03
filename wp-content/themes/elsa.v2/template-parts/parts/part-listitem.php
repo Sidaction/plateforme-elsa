@@ -16,10 +16,12 @@
             <?php echo $Bookmarks->show_bookmark_btn(); ?>
 
           <?php elseif( is_page_template( 'page-boomarks.php' ) ) : ?>
+            <div class="bookmark">
             <a href="#" class="removeFromRILButton" data-readitlater-id="<?php echo $post->ID ;?>" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
               <img src="<?php echo get_template_directory_uri(); ?>/_img/book_full.png" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
             </a>
-
+            </div>
+            
           <?php endif; ?>
 
 

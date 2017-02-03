@@ -16,6 +16,7 @@
 
   a {
     color: inherit;
+    display: block;
   }
   
   &.bloc--ressource {
@@ -37,6 +38,9 @@
     z-index: 99;
   }
 
+  .removeFromRILButton {
+    padding-right: 13px;
+  }
   .medias_list & {
     height: 275px;
   }
@@ -121,11 +125,6 @@
   &:last-child {
     border-bottom: 1px solid $gray;
     margin-bottom: $base_line_height * 3;
-  }
-
-  .removeFromRILButton {
-    position: absolute;
-    left: 0;
   }
   .bookmark {
     position: absolute;
