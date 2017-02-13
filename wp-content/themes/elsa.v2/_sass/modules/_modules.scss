@@ -52,7 +52,10 @@
     }
       .group_title_actions {
         text-align: right;
-        margin-top: $base_line_height * 2;
+
+        .h3_alt + & {
+          margin-top: $base_line_height * 2;         
+        }
 
         ul {
           margin-bottom: 0;

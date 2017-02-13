@@ -35,9 +35,12 @@
 		   <table><tr><td><b></b></td><td><b>Titre</b></td><td><b>Format</b></td><td><b>Auteur(s)</b></td><td><b>Pays</b></td><td><b>Thématiques</b></td><td><b>Date d\'édition</b></td><td><b>Résumé</b></td><td><b>Document(s) à télécharger</b></td><td><b>Lien complémentaire</b></td><td><b>Mots clés</b></td></tr>';
 	   				
   		
- 			if(!empty($_SESSION['args'])){
-				$args=$_SESSION['args'];
-				$args['posts_per_page']= -1;
+ 			if(!empty($_SESSION['results'])){
+				$args= array(
+					'post__in' => $_SESSION['results'],
+					'posts_per_page' => -1,
+					);
+				//$args['posts_per_page']= -1;
 			
 				$wp_query = new WP_Query($args);
   			

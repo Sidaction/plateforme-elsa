@@ -55,7 +55,7 @@ body {
     position: relative;
     background-color: $color_primary;
     color: $white;
-    padding: $base_line_height;
+    padding: $base_line_height * 3 $base_line_height;
     border: none;
     
     &::before {

@@ -1,10 +1,12 @@
 <?php 
     /* 
-     * Page par défaut.
+     * Page de la sélection (plugin Read It Later)
      * Template Name: Page Ma séléction
      */
 
-get_header(); ?>
+get_header(); 
+
+?>
 
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
@@ -57,7 +59,7 @@ get_header(); ?>
 
     </article>
 
-   
+
   </div>
 </section>
 
