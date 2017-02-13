@@ -9,10 +9,11 @@
  */
 
 .bloc_item {
-  height: 200px;
+  height: 240px;
   margin-bottom: $base_line_height;
   padding: $base_line_height $base_line_height * 1.5 $base_line_height $base_line_height;
   position: relative;
+  @include box-sizing;
 
   a {
     color: inherit;
@@ -21,14 +22,29 @@
   
   &.bloc--ressource {
     background-color: $color_ressources;
+    border: 1px solid $color_ressources;
+    
+    &:hover {
+      border: 1px solid $color_primary;
+    }
   }
   &.bloc--media {
     background-color: $color_medias;
     color: $white;
+    border: 1px solid;
+
+    &:hover {
+      border: 1px solid $color_medias;
+    }
   }
   &.bloc--statique {
     background-color: $color_primary;
     color: $white;
+    border: 1px solid $color_primary;
+
+    &:hover {
+      border: 1px solid $white;
+    }
   }
 
   .bookmark {
@@ -44,7 +60,6 @@
   .medias_list & {
     height: 275px;
   }
-
 }
 
   .grid-list > div:last-child {
