@@ -38,7 +38,18 @@
 	$args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
 	$args['category_name'] = (isset($_GET['totalcat']))?$_GET['totalcat']:'';
 	
+function strstr_after($haystack, $needle, $case_insensitive = false) {
+    $strpos = ($case_insensitive) ? 'stripos' : 'strpos';
+    $pos = $strpos($haystack, $needle);
+    if (is_int($pos)) {
+        return substr($haystack, $pos + strlen($needle));
+    }
+    // Most likely false or null
+    return $pos;
+}
 
+// Example
+$keyword = strstr_after($keyword, '\'');
 
 
 	/// SI STRUCTURE IS SET
@@ -200,7 +211,7 @@
               <form id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
               
                 <div id="filtres" class="search-filters">
-
+<?php var_dump($keyword); ?>
                   <div class="row">
                     <input type="search" class="plain input-bg" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                   </div>
