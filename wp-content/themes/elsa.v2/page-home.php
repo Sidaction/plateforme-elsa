@@ -45,13 +45,13 @@ $zoom_association_text = get_field('zoom_association_text');
                     <div class="m-2col featured-asso">
                         <h4 class="h2"><?php echo $zoom_association->post_title; ?></h4>
                         <p><?php echo $zoom_association_text; ?></p>
-                        <a href="/structure/<?php echo $zoom_association->post_name?>"><span class="icon-arrow_right"></span></a>
+                        <a href="/structure/<?php echo $zoom_association->post_name?>" class="featured_btns"><span class="icon-arrow_right"></span></a>
                     </div>
 
                     <div class="m-2col featured-pays">
                         <h4 class="h2"><?php echo $zoom_pays->post_title; ?></h4>
                         <p><?php echo get_the_post_thumbnail($zoom_pays->ID, 'small'); ?></p>
-                        <a href="/pays/<?php echo $zoom_pays->post_name?>"><span class="icon-arrow_right"></span></a>
+                        <a href="/pays/<?php echo $zoom_pays->post_name?>" class="featured_btns"><span class="icon-arrow_right"></span></a>
                     </div>
                 </div>
             </div><!-- .wrap -->   

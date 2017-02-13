@@ -21,6 +21,7 @@ $medium_breakpoint:                 760px !default;
 $large_breakpoint:                  1024px !default; 
 $wide_breakpoint:                   1400px !default; 
 
+$bloc_height            : 242px; 
 
 .plain {
     @include box-sizing;

@@ -9,7 +9,7 @@
  */
 
 .bloc_item {
-  height: 240px;
+  height: $bloc_height;
   margin-bottom: $base_line_height;
   padding: $base_line_height $base_line_height * 1.5 $base_line_height $base_line_height;
   position: relative;

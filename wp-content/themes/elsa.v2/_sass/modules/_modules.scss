@@ -27,7 +27,7 @@
     padding: $base_line_height * 3 $base_line_height;
     margin-top: - $base_line_height * 3;
     margin-bottom: $base_line_height;
-    
+
     &::before {
       content: '';
       position: absolute;
@@ -91,6 +91,7 @@
 
   .group_title {
     margin-top: - $base_line_height * 2;
+    min-height: $bloc_height + $base_line_height * 2;
   }
 }
 

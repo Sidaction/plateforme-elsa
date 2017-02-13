@@ -51,3 +51,13 @@
       margin-right: $base_line_height;
     }
   } 
+
+  .featured_btns  {
+    color: $color_primary;
+  }
+
+  .home-grid {
+    .group_title {
+      min-height: $bloc_height + $base_line_height * 3;
+    }
+  }
