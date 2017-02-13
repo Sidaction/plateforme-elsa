@@ -48,8 +48,10 @@ function strstr_after($haystack, $needle, $case_insensitive = false) {
     return $pos;
 }
 
-// Example
-$keyword = strstr_after($keyword, '\'');
+if(strpos($keyword, "\'")) {
+  $keyword = strstr_after($keyword, '\'');
+
+}
 
 
 	/// SI STRUCTURE IS SET
@@ -211,7 +213,6 @@ $keyword = strstr_after($keyword, '\'');
               <form id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
               
                 <div id="filtres" class="search-filters">
-<?php var_dump($keyword); ?>
                   <div class="row">
                     <input type="search" class="plain input-bg" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                   </div>
