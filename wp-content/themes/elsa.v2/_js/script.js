@@ -345,12 +345,11 @@ jQuery(document).ready(function($){
     
     // $('#assos_filters').submit();
 
-
-
       event.preventDefault();
 
       var select_val = $(this).val();
       var select_name = $(this).attr("name");
+      var select_text = $(this).find('option:selected').text();
 
       console.log(select_val);
       console.log(select_name);
@@ -365,6 +364,8 @@ jQuery(document).ready(function($){
         },
   
         beforeSend: function( response ) {
+          $('.search_list').html('Nous recherchons les associations correspondantes...');
+          $('.asso_filter_name').html('<br><span class="meta">Votre recherche : </span>' + select_text);
         },
         success : function( response ) {
           $('.search_list').html( response );

@@ -79,6 +79,7 @@
                 <div class="m-6col">  <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Domaines d'intervention",'','',false); ?></div>
               </form>
             
+              <div class="m-6col asso_filter_name"></div>
 
               <?php if( isset($_GET['pays_assoc']) && $_GET['pays_assoc'] != '' ) {
                 // $pays = get_term_by('slug', $_GET['pays_assoc'], 'pays_assoc'); 

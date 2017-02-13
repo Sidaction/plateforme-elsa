@@ -6,20 +6,6 @@ require_once('__core/themeManager.php' );
 $cnSite = new themeManager();
 
 
-function change_post_object_label() {
-    global $wp_post_types;
-    $labels = &$wp_post_types['post']->labels;
-    $labels->name = 'Contacts';
-    $labels->singular_name = 'Contact';
-    $labels->add_new = 'Add Contact';
-    $labels->add_new_item = 'Add Contact';
-    $labels->edit_item = 'Edit Contacts';
-    $labels->new_item = 'Contact';
-    $labels->view_item = 'View Contact';
-    $labels->search_items = 'Search Contacts';
-    $labels->not_found = 'No Contacts found';
-    $labels->not_found_in_trash = 'No Contacts found in Trash';
-}
 
 function change_post_menu_label() {
     global $menu;
@@ -28,7 +14,8 @@ function change_post_menu_label() {
     echo '';
 }
 add_action( 'admin_menu', 'change_post_menu_label' );
-//add_action( 'init', 'change_post_object_label' );
+
+
 
 /*
  * GEt & Display content with ajax
@@ -94,11 +81,12 @@ function load_assos() {
     $args[ $select_name ] = $select_val;
     ob_start();
     ?>
+
         <ul class="no-bullets">
 
           <?php $wp_query = new WP_Query(); $wp_query->query($args); ?>
           
-          <?php if ($wp_query->have_posts()) ?> 
+          <?php if ($wp_query->have_posts()) : ?> 
           
             <?php while ($wp_query->have_posts()) : $wp_query->the_post(); 
           
@@ -111,7 +99,12 @@ function load_assos() {
 
                 get_template_part('template-parts/parts/part', 'listitem-assos');
 
-            endwhile; wp_reset_query(); wp_reset_postdata(); $args=null; ?>
+            endwhile; wp_reset_query(); wp_reset_postdata(); $args=null; 
+
+            else : ?>
+
+            <p>Désolé, il n'y a aucune association dans ce pays. </p>
+        <?php endif; ?>
         </ul>
 
   <?php
