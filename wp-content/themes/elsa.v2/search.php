@@ -219,10 +219,14 @@ if(strpos($keyword, "\'")) {
                   
                   <div class="row filter_group">
                     <div class="filter-thematique m-2col m-clearfix">
-                      <?php cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
+                      <div class="input--select">
+                        <?php cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
+                        <span class="icon-arrow_right-big"></span>
+                      </div>
                     </div>
                     
                     <div class="filter-date m-2col">
+                      <div class="input--select">
                         <select class="selectBox" name="period" id="period">
                           <option value="debut">Depuis le début</option>
                           <option value="1semaine">Moins d'une semaine</option>
@@ -231,10 +235,15 @@ if(strpos($keyword, "\'")) {
                           <option value="6mois">Moins de 6 mois</option>
                           <option value="1an">Moins d'un an</option>
                         </select>
+                        <span class="icon-arrow_right-big"></span>
+                      </div>
                     </div>
 
                     <div class="filter-pays m-2col">
-                      <?php cnLib::custom_taxonomies_dropdown("region, pays_assoc", "selectBox", "Pays",'','',false,'','pays_assoc',array(351,131,161,126,278)); ?>
+                      <div class="input--select">
+                        <?php cnLib::custom_taxonomies_dropdown("region, pays_assoc", "selectBox", "Pays",'','',false,'','pays_assoc',array(351,131,161,126,278)); ?>
+                        <span class="icon-arrow_right-big"></span>
+                      </div>
                     </div>
                   </div>
 
@@ -299,12 +308,15 @@ if(strpos($keyword, "\'")) {
             <?php if($wp_query->found_posts > 0) :?>
               <div class="results_nav clearfix row">
                   <div class="nav_postperpage m-3col">
+                    <div class="input--select">
                       <select class="selectBox" id="pager1">
                           <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
                           <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
                           <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
                           <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
                       </select>
+                      <span class="icon-arrow_right-big"></span>
+                    </div>
                   </div>
                   <div class="nav_pager-top m-5col m-last">
                       <?php cnLib::pagination($totalpages); ?>
@@ -347,12 +359,15 @@ if(strpos($keyword, "\'")) {
             <?php if($wp_query->found_posts > 0) :?>
               <div class="results_nav clearfix row">
                   <div class="nav_postperpage m-3col">
+                    <div class="input--select">
                       <select class="selectBox" id="pager2">
                           <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
                           <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
                           <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
                           <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
                       </select>
+                      <span class="icon-arrow_right-big"></span>
+                    </div>
                   </div>
                   <div class="nav_pager-bottom m-5col m-last">
                       <?php cnLib::pagination($totalpages); ?>

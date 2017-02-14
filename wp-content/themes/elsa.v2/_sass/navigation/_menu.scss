@@ -161,7 +161,7 @@
     }
       .main_nav_searchform {
         margin-left: 0;
-        padding-bottom: $base_line_height / 4;
+        //padding-bottom: $base_line_height / 4;
 
         @include at-least(medium) {
           border-bottom: 1px solid $white;
