@@ -175,7 +175,7 @@ get_header();
 
                     </div>
 
-                    <div class="row clearfix">
+                    <div class="row group_action">
                         <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn-secondary is-centered">Toutes les ressources de la boîte à outils</a>
                     </div> 
                     

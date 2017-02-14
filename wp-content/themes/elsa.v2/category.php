@@ -94,7 +94,7 @@ get_header();
 
                         <div class="page_actions">
                             <a href="#recommandations" class="scroll btn-primary plain">Les ressources recommandées</a>
-                            <a href="/recherche-documentaire/?category=<?php echo $cat_slug; ?>" class="btn-secondary plain">Toutes les ressources de la thématique</a>
+                            <a href="/recherche-documentaire/?totalcat=<?php echo $cat_slug; ?>" class="btn-secondary plain">Toutes les ressources de la thématique</a>
                         </div>
                     </div>
                 </div>
