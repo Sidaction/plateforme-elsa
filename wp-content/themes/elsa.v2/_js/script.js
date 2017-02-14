@@ -106,7 +106,6 @@ jQuery(document).ready(function($){
         contname: "required",
         contfirtname: "required",
         title: "required",
-        desc: "required",
         contemail: {
           required: true,
           email: true

@@ -9,8 +9,8 @@ class doc  {
 
 	public function __construct() {
 		
-		$this->args['alert']='';
-		$this->args['format']='';
+		$this->args['alert'] = '';
+		$this->args['format'] = '';
 		
 		$this->nonce = (isset($_POST['checknc']))?$_POST['checknc']:'';
 		
@@ -20,7 +20,7 @@ class doc  {
 			self::register_doc();
 		}
 		
-		$user_id=3;
+		$user_id = 3;
 	}
 	
 
@@ -64,7 +64,6 @@ class doc  {
 						add_post_meta($newpost_id, 'second_org', $organisme);
 					}
 				}
-				
 			
 				$this->args['step']='validregister';
 				self::upload_img($newpost_id);
@@ -78,31 +77,31 @@ class doc  {
 		 $my_post = array();
 		 $my_post['post_title'] = $this->args['title'];
 		 $my_post['post_content'] = $this->args['desc'];
-		 $my_post['post_author'] =$this->user_id;
-		 $my_post['post_type'] ='post';
-		 $my_post['post_status'] ='pending';
-		 $newpost_id=wp_insert_post($my_post);
+		 $my_post['post_author'] = $this->user_id;
+		 $my_post['post_type'] = 'post';
+		 $my_post['post_status'] = 'pending';
+		 $newpost_id = wp_insert_post($my_post);
 		 return $newpost_id;
 	}
 	
 	
 	private function get_datas(){
 		if (($_SERVER["REQUEST_METHOD"] == "POST") && wp_verify_nonce($this->nonce, 'my-nonce' )) {
-			$this->args['title']			=wp_strip_all_tags( addslashes($_POST['title']));	 
-			$this->args['desc']				=wp_strip_all_tags( addslashes($_POST['desc']));
-			$this->args['format']			=wp_strip_all_tags( addslashes($_POST['format']));
-			$this->args['date-start']		=wp_strip_all_tags( addslashes($_POST['date-start']));
-			$this->args['link']				=wp_strip_all_tags( addslashes($_POST['link']));
-			$this->args['auteur']			=wp_strip_all_tags( addslashes($_POST['auteur']));
-			$this->args['contname']			=wp_strip_all_tags( addslashes($_POST['contname']));
-			$this->args['contfirtname']		=wp_strip_all_tags( addslashes($_POST['contfirtname']));
-			$this->args['contemail']		=wp_strip_all_tags( addslashes($_POST['contemail']));
-			$this->args['category']			=wp_strip_all_tags( addslashes($_POST['category']));
-			$this->args['contassoc']		=wp_strip_all_tags( addslashes($_POST['contassoc']));
-			$this->args['pays_assoc']		=$_POST['pays_assoc'];
-			$this->args['post_tag']			=$_POST['post_tag'];
-			$this->args['organisme']		=$_POST['organisme'];
-			$this->args['name']				=wp_strip_all_tags( addslashes($_POST['name']));/// contre les spams	  
+			$this->args['title']				= wp_strip_all_tags( addslashes($_POST['title']));	 
+			$this->args['desc']					= wp_strip_all_tags( addslashes($_POST['desc']));
+			$this->args['format']				= wp_strip_all_tags( addslashes($_POST['format']));
+			$this->args['date-start']		= wp_strip_all_tags( addslashes($_POST['date-start']));
+			$this->args['link']					= wp_strip_all_tags( addslashes($_POST['link']));
+		//	$this->args['auteur']				= wp_strip_all_tags( addslashes($_POST['auteur']));
+			$this->args['contname']			= wp_strip_all_tags( addslashes($_POST['contname']));
+		//	$this->args['contfirtname']	= wp_strip_all_tags( addslashes($_POST['contfirtname']));
+			$this->args['contemail']		= wp_strip_all_tags( addslashes($_POST['contemail']));
+			$this->args['category']			= wp_strip_all_tags( addslashes($_POST['category']));
+			$this->args['contassoc']		= wp_strip_all_tags( addslashes($_POST['contassoc']));
+			$this->args['pays_assoc']		= $_POST['pays_assoc'];
+		//	$this->args['post_tag']			= $_POST['post_tag'];
+		//	$this->args['organisme']		= $_POST['organisme'];
+			$this->args['name']					= wp_strip_all_tags( addslashes($_POST['name']));/// contre les spams	  
 	
 		}
 		if(!empty($this->args['name'])) return;	/// contre les spams
@@ -119,7 +118,7 @@ class doc  {
 			define('TYPE_WHITELIST', serialize(array(  
 			  'image/jpeg',  
 			  'image/png',  
-			  'image/gif'  
+			  'image/gif'
 			  )));  
 			  
 			$image_data = getimagesize($file['tmp_name']);  
@@ -149,6 +148,9 @@ class doc  {
 			define('MAX_UPLOAD_SIZE', 2000000);  
 			define('TYPE_WHITELIST', serialize(array(  
 			  'application/pdf',  
+			  'image/jpeg',  
+			  'image/png',  
+			  'image/gif'
 		  )));  
 			  
 			
