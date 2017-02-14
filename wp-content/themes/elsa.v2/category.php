@@ -186,7 +186,7 @@ get_header();
                     </div>
 
                     <div class="row group_action">
-                        <a href="/recherche-documentaire/?category=<?php echo $cat_slug; ?>" class="btn-secondary is-centered">Toutes les ressources de la thématique</a>
+                        <a href="/recherche-documentaire/?totalcat=<?php echo $cat_slug; ?>" class="btn-secondary is-centered">Toutes les ressources de la thématique</a>
                     </div> 
                     
                 </div><!-- .wrap -->
