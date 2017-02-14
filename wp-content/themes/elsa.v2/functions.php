@@ -184,7 +184,7 @@ $Bookmarks =  new Bookmarks();
  */
 
 function elsa_scripts() {
-    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.min.css' );
+    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.css' );
     wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
