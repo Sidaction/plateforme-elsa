@@ -554,7 +554,7 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
             
             echo '<div class="navigation">';
                 echo '<ul class="no-bullets">';
-                    echo '<li class="previous btn-secondary"><a href="' . get_pagenum_link($prevpage) . '">« Page précédente</li>';
+                    echo '<li class="previous btn-secondary"><a href="' . get_pagenum_link($prevpage) . '"> <span class="icon-arrow_left-big"></span> Page précédente</li>';
 
                     for ($i = 1; $i <= $pages; $i++) {
                         if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems )) {
@@ -562,7 +562,7 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
                         }
                     }
               
-                    echo '<li class="next btn-secondary"><a href="' . get_pagenum_link($nextpage) . '">Page suivante »</a></li>';
+                    echo '<li class="next btn-secondary"><a href="' . get_pagenum_link($nextpage) . '">Page suivante <span class="icon-arrow_right-big"></span></a></li>';
                 echo '</ul>';
             echo '</div>';       
         }
