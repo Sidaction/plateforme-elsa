@@ -20,7 +20,6 @@ function acf_location_rules_types( $choices ) {
 
 
 
-
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array (
@@ -53,6 +52,11 @@ acf_add_local_field_group(array (
         'param' => 'page_template',
         'operator' => '==',
         'value' => 'page-sidebar.php',
+      ),
+      array (
+        'param' => 'page_template',
+        'operator' => '==',
+        'value' => 'page-soumettre.php',
       ),
     ),
   ),
@@ -1397,5 +1401,3 @@ acf_add_local_field_group(array (
 ));
 
 endif;
-
-
