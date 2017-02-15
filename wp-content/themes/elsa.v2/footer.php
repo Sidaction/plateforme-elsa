@@ -7,22 +7,24 @@
             <img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo">
             <h3 class="site-title">Plateforme ELSA</h3>
         </div>
-
+ 
         <div class="m-4col">
             <?php 
                 $logos_membres = get_field('logos_membres', 'options');
                
                 if( $logos_membres ) : ?>
-                    <ul class="no-bullets clearfix table">
+
+                    <ul class="no-bullets clearfix table is-on-right">
                     <?php foreach( $logos_membres as $image ): ?>
                         <li class="table-cell ">
                             <a href="/plateforme-elsa/associations-membres-de-la-plateforme-elsa/">
-                                <img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                <img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" class=" is-on-right" />
                             </a>
                         </li>
                     <?php endforeach; ?>
                     </ul>
-                    <p style="margin-top: 10px; margin-bottom: 0;" class="text-on-right"><strong><?php the_field('logos_membres_title', 'options'); ?></strong></p>
+
+                    <p style="margin-top: 10px; margin-bottom: 0;" class="clearfix text-on-right"><strong><?php the_field('logos_membres_title', 'options'); ?></strong></p>
                     
                 <?php endif; ?>
             
@@ -44,7 +46,7 @@
 
             <ul class="no-bullets">
                 <li><a href="/soumettre-une-ressource" class="btn-inline">Nous soumettre une ressource</a> </li>
-                <li><a href="contactez-nous" class="btn-inline">Nous écrire</a> </li>
+                <li><a href="/contactez-nous" class="btn-inline">Nous écrire</a> </li>
                 <li class="social_links">
                     <span href="#" class="btn-inline">Nous suivre sur les réseaux</span>
                     <a href="<?php the_field('url_facebook', 'options'); ?>" class="social_icon icon-facebook"></a>

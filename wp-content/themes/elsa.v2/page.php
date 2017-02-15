@@ -62,8 +62,8 @@
         <?php $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $root ), 'large' );?>
         <?php if( $large_image_url) { ?> 
             <div class="page_title-outer bg_cover" style="background-image: url(<?php echo $large_image_url[0]; ?>)">
-                    <div class="wrap row">
-                        <h1 class="h1 static_title page_title-little m-4col m-last">
+                    <div class="wrap row text-on-right">
+                        <h1 class="h1 static_title page_title-little m-last ">
                             <?php echo $title; ?>
                         </h1>  
                     </div>     

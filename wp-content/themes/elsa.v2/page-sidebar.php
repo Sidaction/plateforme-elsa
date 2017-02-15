@@ -16,23 +16,29 @@ get_header(); ?>
 
     <article class="main-content clearfix noback">
         
-        <?php if( has_post_thumbnail() ) { ?> 
+
+        <?php if( has_post_thumbnail()  ) { ?> 
             <div class="page_title-outer bg_cover" style="background-image: url(<?php the_post_thumbnail_url(); ?>)">
-        <?php } ?>
+                    <div class="wrap row text-on-right">
+                        <h1 class="h1 static_title page_title-little m-last ">
+                            <?php the_title(); ?>
+                        </h1>  
+                    </div>     
+            
+            </div>
 
+        <?php } else { ?>
             <div class="page_title static_title">
-
                 <div class="wrap row">
                     <h1 class="h1 m-6col is-centered text-on-center">
-                        <?php echo the_title(); ?>
+                        <?php the_title(); ?>
                     </h1>  
                 </div>     
             
             </div>
 
-        <?php if( has_post_thumbnail() ) { ?> 
-            </div>
         <?php } ?>
+
 
         <div class="page_content clearfix">
             <div class="wrap row">
