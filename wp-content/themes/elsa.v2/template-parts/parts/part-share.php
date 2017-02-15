@@ -42,7 +42,6 @@ global $gema75_ril_frontend;
             </div>
 
             <div class="m-4col m-last">
-                <?php echo do_shortcode('[contact-form-7 id="7940"]'); ?>
                 <?php echo do_shortcode('[contact-form-7 id="7938"]'); ?>
             </div>
         </div>   
