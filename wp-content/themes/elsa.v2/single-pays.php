@@ -91,16 +91,16 @@
                 'slug' => 'partenaires-elsa-associations-du-reseau-elsa',
                 'orderby'=>'title'
             ),
-            array(
-                'name' => 'Réseaux d’ONG',
-                'slug' => 'reseaux-dong', 
-                'orderby'=>'slug'
-            ),
-            array(
-                'name' => 'Plus de contacts sur',
-                'slug' => 'plus-de-contacts-sur', 
-                'orderby'=>'slug'
-            ),
+            // array(
+            //     'name' => 'Réseaux d’ONG',
+            //     'slug' => 'reseaux-dong', 
+            //     'orderby'=>'slug'
+            // ),
+            // array(
+            //     'name' => 'Plus de contacts sur',
+            //     'slug' => 'plus-de-contacts-sur', 
+            //     'orderby'=>'slug'
+            // ),
             array(
                 'name' => 'Réseaux de journalistes',
                 'slug' => 'reseaux-de-journalistes', 
