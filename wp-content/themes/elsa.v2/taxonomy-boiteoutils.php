@@ -55,7 +55,7 @@ get_header();
                         <?php if( isset($tags_linked) || isset($boites_linked) ) : ?>
                                 <div class="page_metas">
                                     
-                                    <?php if( isset($themes_linked) ) : ?>
+                                    <?php if( isset($themes_linked) && !empty($themes_linked) ) : ?>
                                         <div class="page_metas_row">
                                             <span>Thématiques : </span>
 
@@ -71,7 +71,7 @@ get_header();
                                     <?php endif; ?>
 
 
-                                    <?php if( isset($tags_linked) ) : ?>
+                                    <?php if( isset($tags_linked) && !empty($tags_linked) ) : ?>
                                         <div class="page_metas_row">
                                             <span>Mots clefs : </span>
 
