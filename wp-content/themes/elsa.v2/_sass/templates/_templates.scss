@@ -102,7 +102,7 @@ body {
   }
 
 .page_content {
-  padding: $base_line_height * 3 0 $base_line_height * 3;
+  padding: $base_line_height * 2 0 $base_line_height * 3;
   margin-bottom: $base_line_height;
   background-color: $gray_lighter;
 
@@ -203,7 +203,7 @@ body {
       }
     }
       .page_metas_row {
-        margin-bottom: $base_line_height;
+        margin-bottom: $base_line_height / 2;
         
         &.logo img {
           display: block;

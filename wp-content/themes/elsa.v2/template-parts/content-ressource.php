@@ -59,6 +59,32 @@ if($link) {
 
                 <div class="m-5col page_main m-clearfix">
                   
+                  <div class="page_metas">
+
+                        <?php if(!empty($auteurs)) : ?>
+                          <div class="page_metas_row">
+                            <?php echo '<span>Auteur(s) : </span>'.$auteurs; ?>
+                          </div>
+                        <?php endif; ?>
+                        
+                        <div class="page_metas_row">
+                          <?php echo get_the_term_list( $post->ID, 'pays_assoc', '<span>Pays : </span>', ', ' ); ?>
+                        </div>
+
+                        <div class="page_metas_row">
+                          <?php if(!empty($date_edition)) echo '<span>Date d’édition : </span>' . $date_edition;?> 
+                        </div>
+
+                        <div class="page_metas_row">
+                          <span>Thématique(s) :</span> <?php the_category(', '); ?>
+                        </div>
+
+                      <?php echo get_the_tag_list('<div class="page_metas_row"><span>Mots clés : </span>',', ', '</div>');  ?>
+
+
+                    </div><!-- .metas -->
+
+
                   <?php the_content();?>
 
                   <div class="page_actions">
@@ -89,32 +115,6 @@ if($link) {
                       <?php the_post_thumbnail('post_thumb'); ?>
                     </div>
                     
-                    <div class="page_metas">
-
-                        <?php if(!empty($auteurs)) : ?>
-                          <div class="page_metas_row">
-                            <?php echo '<span>Auteur(s) : </span>'.$auteurs; ?>
-                          </div>
-                        <?php endif; ?>
-                        
-                        <div class="page_metas_row">
-                          <?php echo get_the_term_list( $post->ID, 'pays_assoc', '<span>Pays : </span>', ', ' ); ?>
-                        </div>
-
-                        <div class="page_metas_row">
-                          <?php if(!empty($date_edition)) echo '<span>Date d’édition : </span>' . $date_edition;?> 
-                        </div>
-
-                        <div class="page_metas_row">
-                          <span>Thématique(s) :</span> <?php the_category(', '); ?>
-                        </div>
-
-                      <?php echo get_the_tag_list('<div class="page_metas_row"><span>Mots clés : </span>',', ', '</div>');  ?>
-
-
-                    </div><!-- .metas -->
-
-
                 </div><!-- .ressource_aside -->
             </div><!-- .wrap -->
         </div><!-- .page_content -->
