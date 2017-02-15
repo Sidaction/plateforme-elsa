@@ -84,14 +84,15 @@ span.meta {
 
 .page_main,
 .group_list {
-  ul {
+  ul:not(.bxslider) {
     padding-left: $base_line_height / 2;
     margin-bottom: $base_line_height;
     margin-top: 2px;
     list-style-position: outside;
-  }
-  li {
-    margin-bottom: 2px;
+   
+    li {
+      margin-bottom: 2px;
+    }
   }
 }
 
