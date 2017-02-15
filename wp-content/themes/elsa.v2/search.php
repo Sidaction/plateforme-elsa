@@ -200,7 +200,7 @@ if(strpos($keyword, "\'")) {
 
               <div class="group_title_actions">
                 <ul class="no-bullets">
-                  <li><a href="aide-a-la-recherche" class="js-popin btn-inline">Consulter la FAQ</a></li>
+                  <li><a href="aide-a-la-recherche" class="js-popin btn-inline">Que chercher ? Comment chercher ?</a></li>
                   <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats</a></li>
                 </ul>
               </div>
@@ -271,13 +271,11 @@ if(strpos($keyword, "\'")) {
                     <div id="advancedSearch" class="filter_group m-4col m-clearfix">
 
                       <div class="clearfix filter_subgroup">
-                        <span class="meta">Thématique(s) filtrée(s) : </span>
                         <ul id="listThemes" class="filters_list no-bullets">
                         </ul>
                       </div>
 
                       <div class="clearfix filter_subgroup">
-                        <span class="meta">Pays filtré(s) : </span>
                         <ul id="listRegions" class="filters_list no-bullets">
                         </ul>
                       </div>

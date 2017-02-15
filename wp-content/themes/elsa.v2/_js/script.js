@@ -412,6 +412,8 @@ jQuery(document).ready(function($){
       submitAdvancedSearch();
     });
 
+    var thema_label = false;
+    var pays_label = false;
 
     $("#select-category").change(function(e) {
 
@@ -433,6 +435,11 @@ jQuery(document).ready(function($){
           tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce thème des filtres" title="supprimer ce thème des filtres"></a>');
           tmpItem.append("<span>"+$("option:selected", this).text()+"</span>");
           $(this).val("");
+                  
+          if( !thema_label ) {
+            $("#listThemes").append('<span class="meta">Thématique(s) filtrée(s) : </span>');
+            thema_label = true;
+          }
 
           $("#listThemes").append(tmpItem);
                    
@@ -459,6 +466,12 @@ jQuery(document).ready(function($){
           tmpItem = $("option:selected",this).attr("name")=="region[]" ? $('<li class="filters_list_item" data-value="'+$(this).val()+'" data-type="region"></li>'):$('<li class="filters_list_item" data-value="'+$(this).val()+'"></li>');
           tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce pays des filtres" title="supprimer ce pays des filtres"></a>');
           tmpItem.append("<span>"+$("option:selected", this).text()+"</span>");
+
+          if( !pays_label ) {
+            $("#listRegions").append('<span class="meta">Pays(s) filtré(s) : </span>');
+            pays_label = true;
+          }
+
           $("#listRegions").append(tmpItem);
 
           $(".btndel",tmpItem).click(function(event) {
@@ -535,14 +548,23 @@ function getSearchFields(){
 
   if(arrcat.length!==0){
 
+    thema_label = false;
+
     jQuery.each( arrcat, function( i, val ) {
 
       var label = getLabel('cat',arrcat[i]);
+
       var tmpItem = $('<li class="filters_list_item" data-value="'+arrcat[i]+'"></li>');
+
+      if( !thema_label ) {
+        tmpItem.prepend('<span class="meta">Thématique(s) filtrée(s) : </span>');
+        thema_label = true;
+      }
       
+
       tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer cette thématique des filtres" title="supprimer cette thématique des filtres"></a>');
       tmpItem.append("<span>"+label+"</span>");
-      
+
       $("#listThemes").append(tmpItem);
       
       $(".btndel",tmpItem).click(function(event) {
@@ -556,11 +578,18 @@ function getSearchFields(){
 
   if(arrpays.length!==0){
 
+    pays_label = false;
+
     jQuery.each( arrpays, function( i, val ) {
 
       var label = getLabel('pays',arrpays[i]);
       var tmpItem = $('<li class="filters_list_item" data-value="'+arrpays[i]+'"></li>');
-      
+
+      if( !pays_label ) {
+        tmpItem.prepend('<span class="meta">Pays(s) filtrée(s) : </span>');
+        pays_label = true;
+      }
+
       tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce pays des filtres" title="supprimer ce pays des filtres"></a>');
       tmpItem.append("<span>"+label+"</span>");
       
