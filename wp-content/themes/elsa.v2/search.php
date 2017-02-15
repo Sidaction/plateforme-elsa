@@ -204,7 +204,8 @@ if(strpos($keyword, "\'")) {
               <div class="group_title_actions">
                 <ul class="no-bullets">
                   <li><a href="aide-a-la-recherche" class="js-popin btn-inline">Que chercher ? Comment chercher ?</a></li>
-                  <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats</a></li>
+                  <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats en format Excel</a></li>
+                  <li><a href="../extract-word" class="btn-inline">Télécharger la liste des résultats en format Word</a></li>
                 </ul>
               </div>
 
