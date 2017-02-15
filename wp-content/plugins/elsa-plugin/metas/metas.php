@@ -96,11 +96,11 @@ function rw_register_meta_box() {
         'type' => 'radio',
         'options' => array(1=>'Oui ', 0=>'Non')
       ),
-      array(
-        'name' => 'Lien CRIPS',
-        'id' => 'link_crips',
-        'type' => 'text'
-      ),
+      // array(
+      //   'name' => 'Lien CRIPS',
+      //   'id' => 'link_crips',
+      //   'type' => 'text'
+      // ),
       array(
         'name' => 'Outil',
         'id' => 'outil',
