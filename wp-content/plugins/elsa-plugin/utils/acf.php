@@ -18,8 +18,6 @@ function acf_location_rules_types( $choices ) {
     
 }
 
-
-
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array (
@@ -553,6 +551,30 @@ acf_add_local_field_group(array (
       'label' => 'Pays lié',
       'name' => 'zoom_pays',
       'type' => 'post_object',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array (
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+    ),
+    array (
+      'return_format' => 'url',
+      'preview_size' => 'thumbnail',
+      'library' => 'all',
+      'min_width' => '',
+      'min_height' => '',
+      'min_size' => '',
+      'max_width' => '',
+      'max_height' => '',
+      'max_size' => '',
+      'mime_types' => '',
+      'key' => 'field_58a4766b91e42',
+      'label' => 'Image pour le pays lié',
+      'name' => 'zoom_pays_img',
+      'type' => 'image',
       'instructions' => '',
       'required' => 0,
       'conditional_logic' => 0,
