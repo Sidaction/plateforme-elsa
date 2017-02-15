@@ -21,7 +21,7 @@
     $tags_linked = get_field('tags_linked', $cat);
     $themes_linked = get_field('themes_linked', $cat);
     $boites_linked = get_field('boites_linked', $cat);
-    $size = 'archives_square';
+    $size = 'post_thumb';
 
 
 get_header(); 
