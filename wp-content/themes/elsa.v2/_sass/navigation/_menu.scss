@@ -244,7 +244,9 @@
         display: none;
       }
     }
-
+    .dd_thema_list {
+      padding-left: $base_line_height;
+    }
   }
   &.dd-pays {
    
@@ -291,7 +293,7 @@
       position: relative;
       padding: $base_line_height;
       margin-top:  - $base_line_height;
-      margin-bottom: $base_line_height * 2;
+      margin-bottom: $base_line_height * 1.5;
       color: $white;
 
       &::before {
@@ -315,6 +317,10 @@
     }
     .dd_content {
       @include type-setting(-1);
+
+      h4 {
+        margin-bottom: $base_line_height;
+      }
     }
     .dd_text {
     }

@@ -33,18 +33,14 @@
 
     <div class="row">
       <div class="dd_title m-3col">
-        <h4 class="h4 text-on-right"><?php the_field('dd-theme-title-1', 'options'); ?></h4>
+        <h4 class="h4 text-on-right">Les thématiques</h4>
       </div>
     </div>
 
     <div class="dd_content clearfix row">
-      <?php if( $theme_2 ) { ?>
+
       <div class="item m-4col">
-
-      <?php }else { ?>
-      <div class="item m-6col">
-
-      <?php } ?>
+        <h4 class="h4"><?php the_field('dd-theme-title-1', 'options'); ?></h4>
 
         <div class="row">
           <a href="/category/<?php echo $theme_1_datas->slug; ?>">
@@ -53,14 +49,7 @@
               <img src="<?php echo $theme_1_vignette_src; ?>">
             </div>
 
-            <?php if( $theme_2 ) { ?>
             <div class="dd_text m-2col">
-
-            <?php }else { ?>
-            <div class="dd_text m-4col">
-
-            <?php } ?>
-
               <h5 class="h5"><?php echo $theme_1_datas->name; ?></h5>
               <?php the_field('dd-theme-1-text', 'options'); ?>
               <span class="btn-inline"></span>
@@ -69,54 +58,32 @@
         </div>
       </div>
 
-      <?php if( $theme_2 ) : ?>
+      <div class="dd_thema_list m-4col m-last">
 
-      <div class="item m-4col">
-        <div class="row">
-          <a href="/category/<?php echo $theme_2_datas->slug; ?>">
-            <div class="media m-2col m-clearfix">
-              <img src="<?php echo $theme_2_vignette_src; ?>">
-            </div>
-            <div class="dd_text m-2col">
-              <h5 class="h5"><?php echo $theme_2_datas->name; ?></h5>
-              <?php the_field('dd-theme-2-text', 'options'); ?>
-              <span class="btn-inline"></span>
-            </div>
-          </a>
+        <h4 class="h4"><?php the_field('dd-theme-title-2', 'options'); ?></h4>
+
+        <div class="dd_actions clearfix">
+          <?php
+            $terms = get_terms( 'category', array(
+                'hide_empty'  => false,
+                'exclude'     => '1' // "general"
+            ) );
+
+            if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+                echo '<ul class="no-bullets has-2col">';
+                foreach ( $terms as $term ) {
+                    echo '<li class=""><a class="btn-inline" href="' . esc_url( get_term_link( $term ) ) . '">' . $term->name . '</a></li>';
+                }
+                echo '</ul>';
+            }
+
+          ?>
         </div>
+
       </div>
-      <?php endif; ?>
   
     </div>
 
-  </div>
-</div>
-
-
-<div class="dd_group bg-cut">
-  <div class="wrap">
-
-    <div class="dd_title m-3col">
-      <h4 class="h4 text-on-right"><?php the_field('dd-theme-title-2', 'options'); ?></h4>
-    </div>
-
-    <div class="dd_actions clearfix">
-      <?php
-        $terms = get_terms( 'category', array(
-            'hide_empty' => false,
-        ) );
-
-        if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-            echo '<ul class="no-bullets has-3col">';
-            foreach ( $terms as $term ) {
-                echo '<li class=""><a class="btn-inline" href="' . esc_url( get_term_link( $term ) ) . '">' . $term->name . '</a></li>';
-            }
-            echo '</ul>';
-        }
-
-      ?>
-    </div>
-    
   </div>
 </div>
 
