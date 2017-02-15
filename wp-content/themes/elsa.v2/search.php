@@ -34,10 +34,12 @@
     }
   }
 
+
 	$args['pays_assoc'] = (isset($_GET['totalpays']))?$_GET['totalpays']:'';
 	$args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
 	$args['category_name'] = (isset($_GET['totalcat']))?$_GET['totalcat']:'';
-	
+  $args['boiteoutils'] = (isset($_GET['boites']))?$_GET['boites']:'';
+
 function strstr_after($haystack, $needle, $case_insensitive = false) {
     $strpos = ($case_insensitive) ? 'stripos' : 'strpos';
     $pos = $strpos($haystack, $needle);
@@ -148,6 +150,7 @@ if(strpos($keyword, "\'")) {
   if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
     $_SESSION['args'] = $args;
 
+  $args['cat'] = '-1';
 
   $results = array();
 

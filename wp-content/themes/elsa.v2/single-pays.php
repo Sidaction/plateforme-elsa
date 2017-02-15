@@ -58,7 +58,7 @@
                             </div><!-- .page_metas -->
                     <?php endif; ?>
 
-                    <a href="/recherche-documentaire/?pays_assoc=<?php echo $pays; ?>" class="btn-primary plain">Les ressources du pays</a>
+                    <a href="/recherche-documentaire/?totalpays=<?php echo $pays; ?>" class="btn-primary plain">Les ressources du pays</a>
 
                 </div><!-- .ressource_aside -->
             </div><!-- .wrap -->
