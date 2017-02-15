@@ -74,9 +74,27 @@
             
             <div class="">
               <form id="assos_filters">
-                <div class="m-3col">  <?php cnLib::custom_taxonomy_dropdown("pays_assoc", "js-selectBox", "Pays",'','',false); ?></div>
-                <div class="m-3col">  <?php cnLib::custom_taxonomy_dropdown("public_cibles", "js-selectBox", "Publics cibles",'','',false); ?></div>
-                <div class="m-6col">  <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Domaines d'intervention",'','',false); ?></div>
+
+                <div class="m-3col">
+                  <div class="input--select">
+                    <?php cnLib::custom_taxonomy_dropdown("pays_assoc", "js-selectBox", "Pays",'','',false); ?>
+                    <span class="icon-arrow_right-big"></span>
+                  </div>
+                </div>
+
+                <div class="m-3col">  
+                  <div class="input--select">
+                    <?php cnLib::custom_taxonomy_dropdown("public_cibles", "js-selectBox", "Publics cibles",'','',false); ?>
+                    <span class="icon-arrow_right-big"></span>
+                  </div>
+                </div>
+
+                <div class="m-6col">  
+                  <div class="input--select">
+                    <?php cnLib::custom_taxonomy_dropdown("activites", "js-selectBox", "Domaines d'intervention",'','',false); ?>
+                    <span class="icon-arrow_right-big"></span>
+                  </div>
+                </div>
               </form>
             
               <div class="m-6col asso_filter_name"></div>
