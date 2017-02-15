@@ -23,9 +23,12 @@
   }
 }
 
+.results_nav {
+  margin-bottom: $base_line_height;
+}
+
 .nav_pager-top {
   @extend %nav_pager;
-  margin-bottom: $base_line_height * 2;
 
   @include up-to(medium) {
     display: none;
