@@ -43,8 +43,8 @@
             <h5 class="h2">Rester en contact</h5>
 
             <ul class="no-bullets">
-                <li><a href="#" class="btn-inline">Nous soumettre une ressource</a> </li>
-                <li><a href="#" class="btn-inline">Nous écrire</a> </li>
+                <li><a href="/soumettre-une-ressource" class="btn-inline">Nous soumettre une ressource</a> </li>
+                <li><a href="contactez-nous" class="btn-inline">Nous écrire</a> </li>
                 <li class="social_links">
                     <span href="#" class="btn-inline">Nous suivre sur les réseaux</span>
                     <a href="<?php the_field('url_facebook', 'options'); ?>" class="social_icon icon-facebook"></a>
