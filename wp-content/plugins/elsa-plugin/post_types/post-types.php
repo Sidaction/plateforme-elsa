@@ -177,11 +177,19 @@ function register_custompost() {
         'public' => true,
         'show_admin_column' => true,
         'hierarchical' => true,
-        'labels' => array
-            (
-            'name' => _x('Boites à outils', 'taxonomy general name'),
-            'singular_name' => _x('Boite à outils', 'taxonomy singular name'),
-        )
+        'labels' => array(
+            'name'              => _x('Boites à outils', 'taxonomy general name'),
+            'singular_name'     => _x('Boite à outils', 'taxonomy singular name'),
+            'search_items'      => __( 'Chercher une boite à outils', 'textdomain' ),
+            'all_items'         => __( 'Toutes les boite à outils', 'textdomain' ),
+            'parent_item'       => __( 'Parent Genre', 'textdomain' ),
+            'parent_item_colon' => __( 'Parent Genre:', 'textdomain' ),
+            'edit_item'         => __( 'Editer boite à outils', 'textdomain' ),
+            'update_item'       => __( 'Mettre à jour la boite à outils', 'textdomain' ),
+            'add_new_item'      => __( 'Ajouter la boite à outils', 'textdomain' ),
+            'new_item_name'     => __( 'Nouveau nom de la boite à outils', 'textdomain' ),
+            'menu_name'         => __( 'Boite à outils', 'textdomain' ),
+          )
             )
     );
 
