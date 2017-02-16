@@ -79,6 +79,9 @@ function load_assos() {
         'type_structure' => 'partenaires-elsa-associations-du-reseau-elsa'
     );
     $args[ $select_name ] = $select_val;
+
+    $_SESSION['argstructures'] = $args;
+
     ob_start();
     ?>
 

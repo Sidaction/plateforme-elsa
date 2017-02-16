@@ -25,6 +25,7 @@
   }
 
   $_SESSION['argstructures'] = $args;
+
   $results = array();
  
   get_header(); 
@@ -67,7 +68,7 @@
               <h3 class="h3_alt">Affiner votre recherche</h3>
 
               <div class="group_title_actions">
-                <a href="../extract" class="btn-inline">Télécharger la liste</a>
+                <a href="../extract-structure" class="btn-inline">Télécharger la liste</a>
               </div>
             
             </div>
