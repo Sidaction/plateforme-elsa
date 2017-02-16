@@ -32,9 +32,7 @@
 ?>
 
 
- <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-
-
+<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
   <section id="site-content" class="site-content search-results">
 
@@ -42,8 +40,8 @@
     <article class="main-content clearfix noback">
         <div class="page_title archives_title">
 
-          <div class="wrap">
-              <h1 class="h1">
+          <div class="wrap row">
+              <h1 class="h1 m-5col">
                   <?php the_title();?>
               </h1>
           </div>     
