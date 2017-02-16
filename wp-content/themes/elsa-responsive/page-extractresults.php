@@ -36,7 +36,8 @@
 	   				
   		
  			if(!empty($_SESSION['args'])){
-				$args=$_SESSION['args'];
+
+				$args = $_SESSION['args'];
 				$args['posts_per_page']= -1;
 			
 				$wp_query = new WP_Query($args);

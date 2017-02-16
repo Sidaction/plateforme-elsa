@@ -35,12 +35,10 @@
 		<body>';
 	   				
   		
- 			if(!empty($_SESSION['results'])){
-				$args= array(
-					'post__in' => $_SESSION['results'],
-					'posts_per_page' => -1,
-					);
-				//$args['posts_per_page']= -1;
+ 			if(!empty($_SESSION['args'])){
+ 				
+				$args = $_SESSION['args'];
+				$args['posts_per_page']= -1;
 			
 				$wp_query = new WP_Query($args);
   			

@@ -150,7 +150,10 @@ if(strpos($keyword, "\'")) {
   if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
     $_SESSION['args'] = $args;
 
+
   $args['cat'] = '-1';
+  
+  $_SESSION['args'] = $args;
 
   $results = array();
 
