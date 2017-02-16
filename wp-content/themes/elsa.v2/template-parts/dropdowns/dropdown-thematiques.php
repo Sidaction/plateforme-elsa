@@ -39,7 +39,7 @@
 
     <div class="dd_content clearfix row">
 
-      <div class="item m-4col">
+      <div class="dd_thema_featured item m-4col">
         <h4 class="h4"><?php the_field('dd-theme-title-1', 'options'); ?></h4>
 
         <div class="row">

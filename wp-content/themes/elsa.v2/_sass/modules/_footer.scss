@@ -36,6 +36,12 @@
     .shortcode_wysija {
       margin-top: - $base_line_height * 0.75;
     }
+
+    @include up-to(medium) {
+      clear: both;
+      float: left;
+      margin-top: $base_line_height * 3;
+    }
   }
 
   .social_links {

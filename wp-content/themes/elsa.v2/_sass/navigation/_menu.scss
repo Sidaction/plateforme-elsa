@@ -240,7 +240,7 @@
     }
 
     @include up-to(medium) {
-      & > .dd_group:first-child {
+      .dd_thema_featured {
         display: none;
       }
     }
