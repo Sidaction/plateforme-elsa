@@ -43,41 +43,61 @@ body {
 }
 
 
-.page_title-outer {
-  padding: $base_line_height * 2 0;
 
-  & > div {
-    opacity: 0.95;
-  }
+/*
+ * PAGE WITH OR WITHOUT CHILDREN
+ */
+
+.page_cover {
+  padding: $base_line_height * 7 0;
 
   & + .page_content .page_sidebar {
     margin-top: - $base_line_height * 4;
-    position: relative;
-    background-color: $color_primary;
-    color: $white;
-    padding: $base_line_height * 3 $base_line_height;
-    border: none;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      left: -500px;
-      background-color: $color_primary;
-      top: 0;
-      bottom: 0;
-      width: 500px;
-    }
-
-    @include up-to(medium) {
-      width: 70%;
-      margin-bottom: $base_line_height * 2;
-    }
   }
 }
+
+.page_nocover {
+
+}
+
+  .page_sidebar {
+      position: relative;
+      background-color: $color_primary;
+      color: $white;
+      padding: $base_line_height * 2 $base_line_height;
+      border: none;
+      font-size: 0.9em;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: -500px;
+        background-color: $color_primary;
+        top: 0;
+        bottom: 0;
+        width: 500px;
+      }
+
+      @include up-to(medium) {
+        width: 70%;
+        margin-bottom: $base_line_height * 2;
+      }
+
+    a {
+      color: inherit;
+    }
+  }
+
   .childpage-item {
     margin-bottom: $base_line_height;
   }
   
+
+
+/*
+ * PAGE WITH OR WITHOUT CHILDREN
+ */
+
 .page_title:not(.media_title) {
   padding: $base_line_height * 3 0;
   color: $white;

@@ -9,14 +9,14 @@
 
 
   .page_sidebar {
-    border-top : 3px solid $color_primary;
-    padding-top: $base_line_height;
+    // border-top : 3px solid $color_primary;
+    // padding-top: $base_line_height;
 
-    @include up-to(medium) {
-      margin-top: - $base_line_height;
-      margin-bottom: $base_line_height * 2;
-      border-bottom : 3px solid $color_primary;
-    }
+    // @include up-to(medium) {
+    //   margin-top: - $base_line_height;
+    //   margin-bottom: $base_line_height * 2;
+    //   border-bottom : 3px solid $color_primary;
+    // }
   }
 
   .page_actions {

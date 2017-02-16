@@ -39,6 +39,11 @@ h6 {
   @include type-setting(5);
   margin: 0;
   font-weight: $semibold;
+
+  .page_content & {
+    color:$color_primary;
+    margin-bottom: $base_line_height * 2;
+  }
 }
 .h1_alt {
   @include type-setting(6);
