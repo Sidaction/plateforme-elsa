@@ -11,6 +11,21 @@ img {
   height: auto;
 }
 
+  .alignleft {
+    float: left;
+    margin-right: $base_line_height;
+  }
+  .alignright {
+    float: right;
+    margin-right: $base_line_height;
+  }
+  .aligncenter {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
 
 .bg_cover {
   background-size: cover;

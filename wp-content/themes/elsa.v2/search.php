@@ -151,7 +151,7 @@ if(strpos($keyword, "\'")) {
     $_SESSION['args'] = $args;
 
 
-  $args['cat'] = '-1';
+  //$args['cat'] = '-1'; // Remove thema "general" from search.
   
   $_SESSION['args'] = $args;
 
