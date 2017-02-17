@@ -22,13 +22,13 @@
 
     <article class="main-content clearfix noback">
 
-      <div class="page_title static_title">
-          <div class="wrap row">
-              <h1 class="h1 m-6col is-centered text-on-center">
-                  <?php the_title();?>
-              </h1>  
-          </div>     
-      </div>
+        <?php if( has_post_thumbnail()  ) { ?> 
+            <div class="page_title-outer page_cover bg_cover" style="background-image: url(<?php the_post_thumbnail_url(); ?>)"></div>
+
+        <?php } else { ?>
+            <div class="page_nocover"></div>
+
+        <?php } ?>
 
       <div class="page_content clearfix">
         <div class="wrap row">
@@ -38,8 +38,9 @@
           </nav>
 
           <div class="m-5col m-last">
-              <?php the_content();?>
+              <h1 class="h1"><?php the_title(); ?></h1> 
 
+              <?php the_content();?>
 
                 <div class="txtListe">
                   <?php if($args['alert']=='missingfields') : ?>           

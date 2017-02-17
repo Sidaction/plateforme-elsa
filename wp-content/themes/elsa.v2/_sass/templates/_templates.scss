@@ -162,6 +162,13 @@ body {
 
   .page_main {
     padding-right: 5%;
+
+    @include up-to(medium) {
+      .page_metas {
+        display: none;
+      }    
+    }
+
   }
 
   .page_mobile {

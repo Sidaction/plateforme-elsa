@@ -25,7 +25,6 @@ get_header(); ?>
 
         <?php } ?>
 
-
         <div class="page_content clearfix">
             <div class="wrap row">
 
@@ -35,13 +34,7 @@ get_header(); ?>
                 </nav>
 
                 <div class="m-5col m-last">
-
-
-                        <h1 class="h1">
-                            <?php the_title(); ?>
-                        </h1> 
-
-
+                    <h1 class="h1"><?php the_title(); ?></h1> 
                     <?php the_content();?>
                 </div>
 
@@ -50,16 +43,11 @@ get_header(); ?>
 
     </article>
 
-
     <?php set_query_var( 'cnSite', $cnSite ); ?>
     <?php get_template_part('template-parts/parts/part', 'rebonds'); ?>
-
-
    
   </div>
 </section>
-
-
 
 
 <?php endwhile; ?>

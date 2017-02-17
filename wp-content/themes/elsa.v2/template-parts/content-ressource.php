@@ -25,7 +25,7 @@ if($link) {
 
                 <div class="page_mobile m-hide ">
 
-                  <div class="page_metas s-6col">
+                  <div class="page_metas s-8col m-6col">
 
                       <?php if(!empty($auteurs)) : ?>
                         <div class="page_metas_row">
