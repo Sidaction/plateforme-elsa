@@ -276,12 +276,16 @@
   }
 }
 
+  .keeptogether {
+    display: inline-block;
+  }
+
   .dd_group {
     margin-bottom: $base_line_height * 2;
     padding-bottom: $base_line_height;
      
     .h5 {
-      margin-bottom: $base_line_height / 2;
+      margin-bottom: $base_line_height / 4;
     }
 
     @include up-to(medium) {

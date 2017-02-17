@@ -45,7 +45,8 @@
             $query_pays = new WP_Query($pays_args);
           
             if ($query_pays->have_posts()) :
-              $results = '<h5 class="h5">'.$region->name.'</h5>';
+              $results = '<div class="keeptogether">';
+              $results .= '<h5 class="h5">'.$region->name.'</h5>';
               $results .= '<ul class="dd_pays_row no-bullets ">';
             
               while ($query_pays->have_posts()) : $query_pays->the_post();
@@ -56,6 +57,7 @@
               endwhile; 
 
               $results.='</ul>';
+              $results.='</div>';
             endif;
           
           wp_reset_postdata();
