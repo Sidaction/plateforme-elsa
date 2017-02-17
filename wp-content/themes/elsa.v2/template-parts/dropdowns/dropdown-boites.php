@@ -19,7 +19,7 @@
         <img src="<?php echo $dd_boite_img; ?>" class="">
       </div>
       
-      <div class="m-2col dd_actions">
+      <div class="m-3col dd_actions">
         <?php
           $terms = get_terms( 'boiteoutils', array(
               'hide_empty' => false,
