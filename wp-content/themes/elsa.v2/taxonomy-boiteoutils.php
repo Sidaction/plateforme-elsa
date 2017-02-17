@@ -91,7 +91,7 @@ get_header();
 
                         <div class="page_actions">
                             <a href="#recommandations" class="scroll btn-primary plain">Les ressources recommandées</a>
-                            <a href="/recherche-documentaire/?boite=<?php echo $boite_slug; ?>" class="btn-secondary plain">Toutes les ressources de la boîte à outils</a>
+                            <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn-secondary plain">Toutes les ressources de la boîte à outils</a>
                         </div>
                     </div>
                 </div>
@@ -123,55 +123,62 @@ get_header();
                         )
                     );
                     $grille_posts = get_posts($args);
-                    $i = 0; 
 
-                    foreach ( $grille_posts as $post ) : setup_postdata( $post ); ?>
+                    if( $grille_posts ) : 
+                        $i = 0; 
+                        foreach ( $grille_posts as $post ) : setup_postdata( $post ); ?>
 
-                            <?php 
-                                $format = cnLib::get_main_term_slug($post->ID, 'format');
-                                switch ($format) {
-                                    case 'video':
-                                        $type = 'media';
-                                        break;
-                                    case 'audio':
-                                        $type = 'media';
-                                        break;
-                                    case 'diaporama':
-                                        $type = 'media';
-                                        break;
-                                    default:
-                                        $type = 'ressource';
-                                        break;
-                                }
-                            ?>
+                                <?php 
+                                    $format = cnLib::get_main_term_slug($post->ID, 'format');
+                                    switch ($format) {
+                                        case 'video':
+                                            $type = 'media';
+                                            break;
+                                        case 'audio':
+                                            $type = 'media';
+                                            break;
+                                        case 'diaporama':
+                                            $type = 'media';
+                                            break;
+                                        default:
+                                            $type = 'ressource';
+                                            break;
+                                    }
+                                ?>
 
-                            <?php if( $i == 0 ) : ?>
-                                <div class="m-2col">
-                                    <?php set_query_var( 'type', $type ); ?>
-                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
+                                <?php if( $i == 0 ) : ?>
+                                    <div class="m-2col">
+                                        <?php set_query_var( 'type', $type ); ?>
+                                        <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                            <?php elseif ( $i % 2 == 0 ) : ?>
-                                <div class="m-4col m-clearfix">
-                                    <?php set_query_var( 'type', $type ); ?>
-                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
+                                <?php elseif ( $i % 2 == 0 ) : ?>
+                                    <div class="m-4col m-clearfix">
+                                        <?php set_query_var( 'type', $type ); ?>
+                                        <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                            <?php else : ?>
-                                <div class="m-4col">
-                                    <?php set_query_var( 'type', $type ); ?>
+                                <?php else : ?>
+                                    <div class="m-4col">
+                                        <?php set_query_var( 'type', $type ); ?>
 
-                            <?php endif; ?>
+                                <?php endif; ?>
 
-                                    <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+                                        <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
 
-                                </div><!-- end .col -->
+                                    </div><!-- end .col -->
 
 
-                        <?php $i++; ?>
-                            
+                            <?php $i++; ?>
+                                
 
-                        <?php endforeach; 
-                        wp_reset_postdata();?>
+                            <?php endforeach; 
+                            wp_reset_postdata();
 
+                        else : ?> 
+                            <p class="m-5col m-1col-push page_text">
+                                <br>Il n'y a aucune ressource recommandée pour cette boîte à outils. <br>
+                                <a href="/soumettre-une-ressource" class="">Souhaitez-vous nous en soumettre une ? </a></p>
+
+                        <?php endif; ?>
 
                     </div>
 
