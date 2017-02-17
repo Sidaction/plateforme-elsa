@@ -52,6 +52,10 @@ if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list
   }
   
   $_SESSION['results'] = $results;
+  $_SESSION['args'] = array();
+
+  var_dump($_SESSION['results']);
+  var_dump($_SESSION['args']);
 
   wp_reset_postdata(); ?>
   
