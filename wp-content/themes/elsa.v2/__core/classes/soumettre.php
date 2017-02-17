@@ -69,6 +69,16 @@ class doc  {
 				self::upload_img($newpost_id);
 				self::upload_file($newpost_id);
 			}	
+
+			$to = get_bloginfo('admin_email');
+			$subject = 'Une ressource a été soumise';
+			$body = 'Bonjour,<br>';
+			$body .= 'La ressource <em>' . $this->args['title'] . '</em> (au format "'. $this->args['format'] .'") a été soumise par ' . $this->args['contname'] . ' (' . $this->args['contemail'] . ') ' . '.<br>';
+			$body .= 'Bonne journée ! :)<br>HAL';
+			$headers = array('Content-Type: text/html; charset=UTF-8');
+			 
+			wp_mail( $to, $subject, $body, $headers );
+
 		
 		}
 	}
@@ -81,6 +91,10 @@ class doc  {
 		 $my_post['post_type'] = 'post';
 		 $my_post['post_status'] = 'pending';
 		 $newpost_id = wp_insert_post($my_post);
+
+
+
+
 		 return $newpost_id;
 	}
 	
