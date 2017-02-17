@@ -49,8 +49,8 @@
                 <li><a href="/contactez-nous" class="btn-inline">Nous écrire</a> </li>
                 <li class="social_links">
                     <span href="#" class="btn-inline">Nous suivre sur les réseaux</span>
-                    <a href="<?php the_field('url_facebook', 'options'); ?>" class="social_icon icon-facebook"></a>
-                    <a href="<?php the_field('url_twitter', 'options'); ?>" class="social_icon icon-twitter"></a>
+                    <a href="<?php the_field('url_facebook', 'options'); ?>" target="_blank" class="social_icon icon-facebook"></a>
+                    <a href="<?php the_field('url_twitter', 'options'); ?>" target="_blank" class="social_icon icon-twitter"></a>
                 </li>
 
                 <li><span class="btn-inline">Recevoir notre newsletter</span> </li>
