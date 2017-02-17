@@ -483,6 +483,17 @@ jQuery(document).ready(function($){
     });
 
 
+    $('.filter-format').find("input:not(#tous)").change( function() {
+      if( $(this).is(':checked') ) {
+        $("#tous").prop( "checked", false );
+      }
+    });
+    $('.filter-format').find("input#tous").change( function() {
+      if( $(this).is(':checked') ) {
+        $('.filter-format').find("input:not(#tous)").prop( "checked", false );
+      }
+    });
+
     $("#btnerase").click(function(event) {
       event.preventDefault();
       deleteAS();
@@ -508,6 +519,8 @@ jQuery(document).ready(function($){
 
 function deleteAS(){
   $("li","#advancedSearch").remove();
+  $('.filter-format').find("input").prop( "checked", false );
+  $('.filter-format').find("#tous").prop( "checked", true );
 }
 
 function getSearchFields(){
