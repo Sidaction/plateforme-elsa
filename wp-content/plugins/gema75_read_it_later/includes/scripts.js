@@ -214,7 +214,7 @@
 	 *  Set the badge count on the RIL tab
 	 */
 	function gema75_update_badge_count(){
-		jQuery("#gema75_wc_wc_count_badge").html(gema75_how_many_items_in_ril());
+		jQuery("#gema75_wc_wc_count_badge, .selection_count").html(gema75_how_many_items_in_ril());
 	}	
 	
 	
