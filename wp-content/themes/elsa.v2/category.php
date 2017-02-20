@@ -43,7 +43,7 @@ get_header();
 
             <div class="page_content clearfix">
                 <div class="wrap row">
-                    <div class="m-5col page_main">
+                    <div class="m-5col page_main page_copy">
                         <?php echo wpautop($presentation); ?>
                     </div>
 

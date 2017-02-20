@@ -22,7 +22,7 @@
             <div class="wrap row">
 
 
-                <div class="page_mobile m-hide ">
+                <div class="page_mobile m-hide">
 
                   <div class="page_metas">
 
@@ -47,7 +47,7 @@
 
 
 
-                <div class="m-5col page_main m-clearfix">
+                <div class="m-5col page_main page_copy m-clearfix">
 
                   <?php // LE CONTENU ?>
                   <?php the_content();?>

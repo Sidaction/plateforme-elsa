@@ -33,7 +33,7 @@
         <div class="page_content clearfix">
             <div class="wrap row">
 
-                <div class="m-5col page_main">
+                <div class="m-5col page_main page_copy">
                     <?php echo get_post_meta($post->ID, 'infos', true);?>
                     <?php echo get_post_meta($post->ID, 'liens', true);?>
 
@@ -70,7 +70,7 @@
 
     <aside class="blocs_group--rebonds">
 
-        <div class="wrap row">
+        <div class="wrap row page_copy">
             <div class="group_title m-2col">
                 <h3 class="h3_alt">Préparer une mission</h3>
             </div>
@@ -113,7 +113,7 @@
 
     <aside class="blocs_group--rebonds">
 
-      <div class="wrap row">
+      <div class="wrap row page_copy">
         <div class="group_title m-2col">
           <h3 class="h3_alt">Principaux acteurs nationaux et internationaux</h3>
         </div>

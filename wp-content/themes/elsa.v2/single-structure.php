@@ -42,7 +42,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
         <div class="page_content clearfix">
             <div class="wrap row">
 
-                <div class="m-5col page_main">
+                <div class="m-5col page_main page_copy">
                     <?php the_content();?>
                     
                     <?php if(!empty($rapport_activite)): ?>

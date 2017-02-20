@@ -57,7 +57,7 @@ if($link) {
                 </div>
 
 
-                <div class="m-5col page_main m-clearfix">
+                <div class="m-5col page_main m-clearfix ">
                   
                   <div class="page_metas">
 
@@ -84,9 +84,10 @@ if($link) {
 
                     </div><!-- .metas -->
 
-
-                  <?php the_content();?>
-
+                  <div class="page_copy">
+                    <?php the_content();?>
+                  </div>
+                  
                   <div class="page_actions">
 
                     <?php if( $format == 'lien' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site <br>( <em>{$domain}</em> )</a>"?>
