@@ -92,7 +92,10 @@
 
   .group_title {
     margin-top: - $base_line_height * 2;
-    min-height: $bloc_height + $base_line_height * 2;
+
+    @include at-least(medium) {
+      min-height: $bloc_height + $base_line_height * 2;
+    }
   }
 }
 
