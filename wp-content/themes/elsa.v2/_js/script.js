@@ -34,8 +34,6 @@ jQuery(document).ready(function($){
 
 
 
-
-
 /*
  * Popins
  */
@@ -379,10 +377,52 @@ jQuery(document).ready(function($){
 
       });
 
-
-
   });
 
+
+
+
+  /*
+   * FILTRES SEARCH
+   */
+
+  var medias_list = $('.medias_list');
+
+  if( medias_list.length > 0 ) {
+
+    // XX RESULTS PER PAGE
+    $("#pager1, #pager2").change(function(event){
+      event.preventDefault();
+
+      var posts_per_page = $(this).val();
+
+      console.log(posts_per_page);
+
+      $.ajax({
+        url : myAjax.ajaxurl,
+        method : 'post',
+        data : {
+          action: "load_medias",
+          posts_per_page : posts_per_page,
+        },
+  
+        beforeSend: function( response ) {
+          medias_list.html('Nous recherchons les associations correspondantes...');
+        },
+        success : function( response ) {
+          medias_list.html( response );
+        },
+
+        error : function( data ) { // en cas d'échec
+          // Sinon je traite l'erreur
+          console.log( 'Erreur…' );
+        }
+
+      });
+
+    });
+
+  }
 
 
 
