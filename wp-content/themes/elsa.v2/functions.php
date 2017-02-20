@@ -294,6 +294,7 @@ add_image_size( 'post_thumb', 500, 9999 );
 add_image_size( 'media_thumb', 500, 9999 );
 add_image_size( 'small', 300, 9999 );
 add_image_size( 'diaporama', 1024, 9999 );
+add_image_size( 'cover', 1500, 500, array( 'center', 'center' ) );
 
 
 
@@ -474,3 +475,11 @@ function js_async_attr($tag){
 }
 add_filter( 'script_loader_tag', 'js_async_attr', 10 );
 
+
+
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 2592000)) {
+    // last request was more than 30 minutes ago
+    session_unset();     // unset $_SESSION variable for the run-time 
+    session_destroy();   // destroy session data in storage
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp

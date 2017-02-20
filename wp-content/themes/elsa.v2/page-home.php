@@ -13,6 +13,12 @@ $zoom_pays = get_field('zoom_pays');
 $zoom_association = get_field('zoom_association');
 $zoom_association_text = get_field('zoom_association_text');
 
+    // thumbnail
+    $size = 'cover';
+    $thumb = $image['sizes'][ $size ];
+    $width = $image['sizes'][ $size . '-width' ];
+    $height = $image['sizes'][ $size . '-height' ];
+
 ?>
 
 
@@ -20,7 +26,7 @@ $zoom_association_text = get_field('zoom_association_text');
 
     
     <div id="" class="home-featured">
-        <div class="featured-cover bg_cover" style="background-image:url(<?php echo $image['url']; ?>);">
+        <div class="featured-cover bg_cover" style="background-image:url(<?php echo $thumb; ?>);">
 
         </div>
         <div class="featured-content">

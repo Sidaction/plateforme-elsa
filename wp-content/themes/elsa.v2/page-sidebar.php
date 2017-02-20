@@ -18,7 +18,7 @@ get_header(); ?>
         
 
         <?php if( has_post_thumbnail()  ) { ?> 
-            <div class="page_title-outer page_cover bg_cover" style="background-image: url(<?php the_post_thumbnail_url(); ?>)"></div>
+            <div class="page_title-outer page_cover bg_cover" style="background-image: url(<?php the_post_thumbnail_url('large'); ?>)"></div>
 
         <?php } else { ?>
             <div class="page_nocover"></div>
