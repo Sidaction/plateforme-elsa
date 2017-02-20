@@ -23,13 +23,14 @@
   padding-bottom: $base_line_height;
 
   .h2 {
-    margin-bottom: $base_line_height / 2;
+    margin-bottom: $base_line_height;
   }
   .wrap {
     position: relative;
   }
   p {
     font-weight: $thin;
+    margin-bottom: $base_line_height / 2;
   }
 }
   
@@ -57,6 +58,14 @@
     color: $color_primary;
   }
 
+  .featured-asso,
+  .featured-pays {
+    color: $white;
+
+    a {
+      color: inherit;
+    }
+  }
   .home-grid {
     .group_title {
       min-height: $bloc_height + $base_line_height * 3;
