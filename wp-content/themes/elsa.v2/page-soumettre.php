@@ -23,7 +23,7 @@
     <article class="main-content clearfix noback">
 
         <?php if( has_post_thumbnail()  ) { ?> 
-            <div class="page_title-outer page_cover bg_cover" style="background-image: url(<?php the_post_thumbnail_url(); ?>)"></div>
+            <div class="page_title-outer page_cover bg_cover" style="background-image: url(<?php the_post_thumbnail_url('cover'); ?>)"></div>
 
         <?php } else { ?>
             <div class="page_nocover"></div>

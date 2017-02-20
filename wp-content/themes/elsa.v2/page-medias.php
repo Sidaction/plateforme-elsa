@@ -22,8 +22,6 @@ get_header(); ?>
                 <h1 class="h1 m-6col is-centered text-on-center">
                     <?php the_title(); ?>
                 </h1>
-                <br>
-                <p class="text-on-center">Des fichiers vidéo, photo, audio</p>
             </div>     
         
         </div>
