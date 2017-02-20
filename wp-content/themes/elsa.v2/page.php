@@ -35,7 +35,7 @@
 
     // IF PAGE ROOT WITH MORE THAN 1 CHILD : GOTO FIRST CHILD
     if( $level == 0 && count($children) > 1 ) {
-        //$firstchild = array_values($children)[0];
+        $firstchild = array_values($children)[0];
         wp_safe_redirect( get_permalink( $firstchild->ID ), 301);
         exit();
     }
