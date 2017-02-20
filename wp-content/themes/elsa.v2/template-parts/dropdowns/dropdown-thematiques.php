@@ -13,18 +13,7 @@
   $theme_1_datas = get_term_by('id', $theme_1_id, 'category');
   $theme_1_datas_ = $meta[$theme_1_id];
   $theme_1_vignette = $theme_1_datas_['image']; 
-  $theme_1_vignette_datas = wp_get_attachment_image_src($theme_1_vignette[0], 'archives_square'); 
-  $theme_1_vignette_src = $theme_1_vignette_datas[0];
-
-  $theme_2 = get_field('dd-theme-2', 'options');
-  if( $theme_2 ) {
-    $theme_2_id = $theme_2[0];
-    $theme_2_datas = get_term_by('id', $theme_2_id, 'category');
-    $theme_2_datas_ = $meta[$theme_2_id];
-    $theme_2_vignette = $theme_2_datas_['image']; 
-    $theme_2_vignette_datas = wp_get_attachment_image_src($theme_2_vignette[0], 'archives_square'); 
-    $theme_2_vignette_src = $theme_2_vignette_datas[0];
-  }
+  $theme_1_vignette_src = wp_get_attachment_image($theme_1_vignette[0], 'small');
 
 ?>
 
@@ -46,7 +35,7 @@
           <a href="/category/<?php echo $theme_1_datas->slug; ?>">
 
             <div class="media m-2col m-clearfix">
-              <img src="<?php echo $theme_1_vignette_src; ?>">
+              <?php echo $theme_1_vignette_src; ?>
             </div>
 
             <div class="dd_text m-2col">

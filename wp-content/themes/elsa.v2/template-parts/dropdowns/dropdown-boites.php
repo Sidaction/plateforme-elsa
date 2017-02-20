@@ -1,9 +1,15 @@
 <?php
 
   $dd_boite_titre = get_field('dd-boite-title', 'options');
-  $dd_boite_img = get_field('dd-boite-img', 'options');
+  $dd_boite_img_datas = get_field('dd-boite-img', 'options');
   $dd_boite_texte = get_field('dd-boite-text', 'options');
 
+    // thumbnail
+    $thumb_size = 'small';
+    $dd_boite_img = $dd_boite_img_datas['sizes'][ $thumb_size ];
+    $width = $dd_boite_img_datas['sizes'][ $thumb_size . '-width' ];
+    $height = $dd_boite_img_datas['sizes'][ $thumb_size . '-height' ];
+    $alt = $dd_boite_img_datas['alt'];
 ?>
 
 <div class="dd_group bg-cut">
@@ -16,7 +22,7 @@
     <div class="row">
 
       <div class="m-2col dd_img">
-        <img src="<?php echo $dd_boite_img; ?>" class="">
+        <img src="<?php echo $dd_boite_img; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="<?php echo $alt; ?>" class="">
       </div>
       
       <div class="m-3col dd_actions">

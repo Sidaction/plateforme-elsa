@@ -9,15 +9,23 @@ get_header();
 
 $image = get_field('zoom_image');
 $zoom_thematique = get_field('zoom_thematique');
+
 $zoom_pays = get_field('zoom_pays');
+$zoom_pays_img = get_field('zoom_pays_img');
+
 $zoom_association = get_field('zoom_association');
 $zoom_association_text = get_field('zoom_association_text');
 
+
+    // cover
+    $cover_size = 'cover';
+    $cover = $image['sizes'][ $cover_size ];
+
     // thumbnail
-    $size = 'cover';
-    $thumb = $image['sizes'][ $size ];
-    $width = $image['sizes'][ $size . '-width' ];
-    $height = $image['sizes'][ $size . '-height' ];
+    $thumb_size = 'small';
+    $pays_small_img = $zoom_pays_img['sizes'][ $thumb_size ];
+    $width = $zoom_pays_img['sizes'][ $thumb_size . '-width' ];
+    $height = $zoom_pays_img['sizes'][ $thumb_size . '-height' ];
 
 ?>
 
@@ -26,7 +34,7 @@ $zoom_association_text = get_field('zoom_association_text');
 
     
     <div id="" class="home-featured">
-        <div class="featured-cover bg_cover" style="background-image:url(<?php echo $thumb; ?>);">
+        <div class="featured-cover bg_cover" style="background-image:url(<?php echo $cover; ?>);">
 
         </div>
         <div class="featured-content">
@@ -56,8 +64,8 @@ $zoom_association_text = get_field('zoom_association_text');
 
                     <div class="m-2col featured-pays">
                         <h4 class="h2"><?php echo $zoom_pays->post_title; ?></h4>
-                        <p><img src="<?php echo get_field('zoom_pays_img'); ?>"></p>
-                        <a href="/pays/<?php echo $zoom_pays->post_name?>" class="featured_btns"><span class="icon-arrow_right"></span></a>
+                        <p><img src="<?php echo $pays_small_img; ?>"></p>
+                        <a href="/pays/<?php echo $zoom_pays->post_name; ?>" class="featured_btns"><span class="icon-arrow_right"></span></a>
                     </div>
                 </div>
             </div><!-- .wrap -->   

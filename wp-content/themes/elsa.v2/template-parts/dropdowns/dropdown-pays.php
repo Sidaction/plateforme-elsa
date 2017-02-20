@@ -1,8 +1,15 @@
 <?php
 
   $dd_pays_titre = get_field('dd-pays-title', 'options');
-  $dd_pays_img = get_field('dd-pays-img', 'options');
+  $dd_pays_img_datas = get_field('dd-pays-img', 'options');
   $dd_pays_texte = get_field('dd-pays-text', 'options');
+
+    // thumbnail
+    $thumb_size = 'post_thumb';
+    $dd_pays_img = $dd_pays_img_datas['sizes'][ $thumb_size ];
+    $width = $dd_pays_img_datas['sizes'][ $thumb_size . '-width' ];
+    $height = $dd_pays_img_datas['sizes'][ $thumb_size . '-height' ];
+    $alt = $dd_pays_img_datas['alt'];
 
 ?>
 
@@ -16,7 +23,7 @@
     <div class="row">
 
       <div class="m-3col dd_img">
-        <img src="<?php echo $dd_pays_img; ?>" class="">
+        <img src="<?php echo $dd_pays_img; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="<?php echo $alt; ?>" class="">
       </div>
       
       <div class="m-4col m-last has-2col dd_actions">
