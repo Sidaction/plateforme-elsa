@@ -32,7 +32,7 @@ $type-scale: (
 );
 
 $line-heights: (
-  -2: $base_line_height,
+  -2: $base_line_height * 0.75,
   -1: $base_line_height,
   0: $base_line_height, 
   1: $base_line_height, 

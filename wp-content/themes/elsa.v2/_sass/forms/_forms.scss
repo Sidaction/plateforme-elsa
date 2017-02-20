@@ -115,6 +115,10 @@ div.wpcf7-validation-errors {
   color: $color_medias;
 }
 
+.wpcf7-form-control  {
+  position: relative;
+  z-index: 999;
+}
 .wpcf7-form-control-wrap {
   position: relative;
   margin-bottom: $base_line_height;

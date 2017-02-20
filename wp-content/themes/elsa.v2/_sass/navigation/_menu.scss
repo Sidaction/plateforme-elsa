@@ -172,12 +172,12 @@
         }
         input.main_search_input {
           @include placeholder( $white );
-          @include type-setting(-2);
+          @include type-setting(1);
           border: none;
           margin-left: 0;
           line-height: 30px;
           padding: 0;
-          width: 225px;
+          width: 175px;
           color: $white;
           margin: 0;
           font-style: italic;
@@ -194,9 +194,22 @@
           }
         }
         .main_search_btn {
+          padding: 0;
+
           span {
             font-size: 16px;
-            margin-right: 5px;
+          }
+        }
+        .search-all {
+          margin-left: $base_line_height;
+          
+          span {
+            opacity: 0.6;
+          } 
+
+          a {
+            margin-left: $base_line_height;
+            margin-right: $base_line_height;
           }
         }
 
