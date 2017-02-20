@@ -259,8 +259,9 @@ function elsa_scripts() {
 
     wp_dequeue_script('jquery-migrate');
     wp_dequeue_script('jquery-position');
-    // wp_deregister_script('jquery');
-    // wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
+    wp_dequeue_script('wysija-validator');
+
+
 
     wp_enqueue_script( 'elsa-scripts' );
 
