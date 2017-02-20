@@ -19,7 +19,7 @@ global $gema75_ril_frontend;
                 <a href="http://twitter.com/share?text=#BiennalePhotoMondeArabe&url=<?php the_permalink(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" ><span class=" icon-twitter"></span></a>
                 <a href="#" class="js-sharebymail"><span class=" icon-mail"></span></a> </div>
               
-              <div class="is-on-left"><a href="/soumettre" class="btn-secondary">Soumettre une ressource</a></div>
+              <div class="is-on-left"><a href="/soumettre-une-ressource" class="btn-secondary">Soumettre une ressource</a></div>
 
             </div>
 
