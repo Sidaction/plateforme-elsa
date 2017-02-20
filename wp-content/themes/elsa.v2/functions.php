@@ -62,6 +62,9 @@ function load_popin() {
 }
 
 
+/*
+ * Load filtred associations with AJAX
+ */
 
 add_action("wp_ajax_load_assos", "load_assos");
 add_action("wp_ajax_nopriv_load_assos", "load_assos");
@@ -109,6 +112,69 @@ function load_assos() {
             <p>Désolé, il n'y a aucune association dans ce pays. </p>
         <?php endif; ?>
         </ul>
+
+  <?php
+
+  $content = ob_get_clean();
+
+  echo $content;
+  die();
+}
+
+
+
+
+
+/*
+ * Load xx media per page with AJAX
+ */
+
+add_action("wp_ajax_load_medias", "load_medias");
+add_action("wp_ajax_nopriv_load_medias", "load_medias");
+
+function load_medias() {
+
+    $posts_per_page = $_REQUEST["posts_per_page"];
+
+    $args = array(
+        'posts_per_page' => $posts_per_page,
+        'post_type' => array('post', 'contenu'),
+        'format' => array('video', 'diaporama', 'audio'),
+        'post_status' => 'publish',
+        'paged' => get_query_var( 'paged' )
+    );
+
+    ob_start();
+    ?>
+
+        <?php $the_query = new WP_Query( $args ); ?>
+          
+          <?php if ($the_query->have_posts()) : ?> 
+            <?php $i = 0; ?>
+            <?php while ($the_query->have_posts()) : $the_query->the_post(); 
+          
+                set_query_var( 'type', 'media' );
+                set_query_var( 'cnSite', $cnSite );
+                set_query_var( 'ref', 'media' ); 
+
+                if ( $i % 2 == 0 ) : ?>
+                    <div class="m-4col m-clearfix">
+
+                <?php else : ?>
+                    <div class="m-4col">
+
+                <?php endif; ?>
+                        <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+                    </div>
+
+                <?php $i++; 
+
+            endwhile; wp_reset_query(); wp_reset_postdata(); $args=null; 
+
+            else : ?>
+
+            <p>Désolé, il n'y a aucune association dans ce pays. </p>
+        <?php endif; ?>
 
   <?php
 
@@ -187,11 +253,12 @@ $Bookmarks =  new Bookmarks();
  */
 
 function elsa_scripts() {
-    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.min.css' );
     wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
-    wp_dequeue_script('jquery-migrate');
+    wp_deregister_script( 'jquery-migrate' );
+    wp_deregister_script( 'jquery-position' );
     // wp_deregister_script('jquery');
     // wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
 
@@ -386,4 +453,27 @@ register_nav_menus( array(
     }
     add_action( 'excerpt_edit_pre','prepareExcerptForEdit');
 
+
+
+
+
+
+/*
+ * Function to add async to all scripts
+ */
+
+function js_async_attr($tag){
+
+    # Do not add async to these scripts
+    $scripts_to_exclude = array();
+     
+    foreach($scripts_to_exclude as $exclude_script){
+        if(true == strpos($tag, $exclude_script ) )
+        return $tag;    
+    }
+
+    # Add async to all remaining scripts
+    return str_replace( ' src', ' async="async" src', $tag );
+}
+add_filter( 'script_loader_tag', 'js_async_attr', 10 );
 
