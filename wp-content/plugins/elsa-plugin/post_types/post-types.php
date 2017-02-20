@@ -23,13 +23,17 @@ function register_custompost() {
         'show_ui' => true,
         'query_var' => 'pays',
         'has_archive' => true,
-    'menu_icon' => '',
-    'supports' => array('title', 'thumbnail', 'excerpt', 'author')
+        'menu_icon' => '',
+        'supports' => array('title', 'thumbnail', 'excerpt', 'author')
     );
 
     register_post_type('pays', $args);
   
-  $capabilities = array(
+
+
+  // post type autres structures
+
+    $capabilities = array(
       'publish_posts' => 'publish_parts',
       'edit_posts' => 'edit_parts',
       'edit_others_posts' => 'edit_others_parts',
@@ -43,24 +47,21 @@ function register_custompost() {
       'edit_published_post' => 'edit_published_part',     
     );
     
-  
-  
-  // post type autres structures
     $args = array(
-        'labels' => array(
-            'name' => _x('Structures', 'taxonomy general name'),
-            'singular_name' => _x('Structure', 'taxonomy singular name'),
-            'add_new_item' => __('Ajouter une structure'),
-            'edit_item' => __('Editer la structure'),
-        ),
-        'public' => true,
-        'show_ui' => true,
-        'query_var' => 'structure',
-        'has_archive' => true,
-        'capability_type' => 'part',
-        'capabilities' => $capabilities,
-        'menu_icon' => '',
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
+      'labels' => array(
+          'name' => _x('Structures', 'taxonomy general name'),
+          'singular_name' => _x('Structure', 'taxonomy singular name'),
+          'add_new_item' => __('Ajouter une structure'),
+          'edit_item' => __('Editer la structure'),
+      ),
+      'public' => true,
+      'show_ui' => true,
+      'query_var' => 'structure',
+      'has_archive' => true,
+      'capability_type' => 'part',
+      'capabilities' => $capabilities,
+      'menu_icon' => '',
+      'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
     );
 
     register_post_type('structure', $args);
@@ -70,39 +71,38 @@ function register_custompost() {
   register_taxonomy(
     'type_structure', array('structure'), 
     array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => true,
-        'labels' => array
-            (
-            'name' => _x('Types de structure', 'taxonomy general name'),
-            'singular_name' => _x('Type de structure', 'taxonomy singular name'),
-        )
+      'public' => true,
+      'show_admin_column' => true,
+      'hierarchical' => true,
+      'labels' => array(
+          'name' => _x('Types de structure', 'taxonomy general name'),
+          'singular_name' => _x('Type de structure', 'taxonomy singular name'),
+      )
     )
   );
   
+
   register_taxonomy(
     'public_cibles', array('structure'), 
     array(
         'public' => true,
         'show_admin_column' => true,
         'hierarchical' => true,
-        'labels' => array
-            (
+        'labels' => array(
             'name' => _x('Public cibles', 'taxonomy general name'),
             'singular_name' => _x('Publics cibles', 'taxonomy singular name'),
         )
-            )
-    );
+    )
+  );
   
+
   register_taxonomy(
     'activites', array('structure'), 
     array(
         'public' => true,
         'show_admin_column' => true,
         'hierarchical' => true,
-        'labels' => array
-            (
+        'labels' => array(
             'name' => _x('Activites', 'taxonomy general name'),
             'singular_name' => _x('Activite', 'taxonomy singular name'),
         )
@@ -131,6 +131,11 @@ function register_custompost() {
     register_post_type('diaporama', $args);
   
 
+
+
+  // post type contenus complémentaires
+
+
     $capabilities_cont = array(
       'publish_posts' => 'publish_conts',
       'edit_posts' => 'edit_conts',
@@ -145,10 +150,7 @@ function register_custompost() {
       'edit_published_post' => 'edit_published_part',     
     );
   
-  
-  
-  // post type contenus complémentaires
-    $args = array(
+      $args = array(
         'labels' => array(
             'name'            => _x('Contenu complémentaires', 'taxonomy general name'),
             'singular_name'   => _x('Contenus complémentaires', 'taxonomy singular name'),
