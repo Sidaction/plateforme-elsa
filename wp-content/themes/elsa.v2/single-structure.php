@@ -69,7 +69,10 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                                         $title = get_the_title($img_id);
                                         $class = ($i==0) ? 'class="first"':'';
 
-                                        echo "<li ".$class."><img src='{$src}' /></li>";
+                                        $image_metas = wp_get_attachment($img_id);
+                                        $caption = $image_metas['caption'];
+
+                                        echo "<li ". $class . "><img src='{$src}' /><p>{$caption}</p></li>";
 
                                         $i++;
                                     } ?>

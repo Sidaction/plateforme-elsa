@@ -82,6 +82,7 @@
                               </li>
                           <?php endforeach; ?>
                       </ul>
+                      <a href="#" id="js-sliderfull" class="btn-inline-little">Voir en plein écran</a>
                     </div>
                   <?php endif; ?>
 

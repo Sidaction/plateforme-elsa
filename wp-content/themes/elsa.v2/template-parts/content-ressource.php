@@ -90,9 +90,9 @@ if($link) {
                   
                   <div class="page_actions">
 
-                    <?php if( $format == 'lien' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site <br>( <em>{$domain}</em> )</a>"?>
+                    <?php if( $format == 'lien' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site</a>"?>
 
-                    <?php if( $format!='lien' && $format!='video' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site <br>( <em>{$domain}</em> )</a>"?> 
+                    <?php if( $format!='lien' && $format!='video' && !empty($link) ) echo "<a href='{$link}' title='Voir le site' target='_blank' class='btn-primary'>Voir le site</a>"?> 
 
                     <?php
                       $files = rwmb_meta( 'file', 'type=file' );
