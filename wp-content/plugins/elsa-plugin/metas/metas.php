@@ -21,7 +21,6 @@ function rw_register_meta_box() {
  * Diaporamas
  */ 
 
-
     $meta_boxes[] = array(
         'title' =>'Détails',
         'pages' => array('diaporama'),
@@ -36,21 +35,19 @@ function rw_register_meta_box() {
                 'std' => '',
                 'style' => 'width:300px'
             ),
-      array(
+            array(
                 'name' => 'Sur-titre',
                 'id' => 'surtitre',
                 'type' => 'text',
                 'std' => '',
                 'style' => 'width:300px'
             ),
-      array(
+            array(
                 'name' => 'Ouvrir le lien dans une nouvelle fenêtre ?',
                 'id' => 'blank',
                 'type' => 'radio',
                 'options' => array(1=>'Oui ', 0=>'Non')
             ),
-             
-           
         )
     );
 
@@ -246,44 +243,39 @@ function rw_register_meta_box() {
                     'name' => 'Ligne d\'écoute',
                     'id' => 'ligne',
                     'type' => 'text',
-
                 ),
           array(
                     'name' => 'Adresse',
                     'id' => 'adresse',
                     'type' => 'text',
-
                 ),
           array(
                     'name' => 'Code postal',
                     'id' => 'cp',
                     'type' => 'text',
-
                 ),
           array(
-                    'name' => 'Ville',
-                    'id' => 'ville',
-                    'type' => 'text',
-
+                    'name'  => 'Ville',
+                    'id'    => 'ville',
+                    'type'  => 'text',
                 ),
           array(
-                    'name' => 'Antenne(s)',
-                    'id' => 'antenne',
-                    'type' => 'text',
-
+                    'name'  => 'Antenne(s)',
+                    'id'    => 'antenne',
+                    'type'  => 'text',
                 ),
           array(
-            'name' => 'Pays pour la géoloc.',
-            'id' => 'pays',
-            'type'    => 'text',
+            'name'        => 'Pays pour la géoloc.',
+            'id'          => 'pays',
+            'type'        => 'text',
           ),
-          array(
-            'id'            => 'loc',
-            'name'          => 'Géolocalisation',
-            'type'          => 'map',
-            'style'         => 'width: 500px; height: 300px',
-            'address_field' => 'adresse,cp,ville,pays', 
-          ),
+          // array(
+          //   'id'            => 'loc',
+          //   'name'          => 'Géolocalisation',
+          //   'type'          => 'map',
+          //   'style'         => 'width: 500px; height: 300px',
+          //   'address_field' => 'adresse,cp,ville,pays', 
+          // ),
           array(
             'name'             => 'Diaporama',
             'id'               => "diaporama",
