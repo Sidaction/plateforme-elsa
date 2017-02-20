@@ -257,8 +257,8 @@ function elsa_scripts() {
     wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
-    wp_deregister_script( 'jquery-migrate' );
-    wp_deregister_script( 'jquery-position' );
+    wp_dequeue_script('jquery-migrate');
+    wp_dequeue_script('jquery-position');
     // wp_deregister_script('jquery');
     // wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
 
@@ -458,10 +458,7 @@ register_nav_menus( array(
 
 
 
-/*
- * Function to add async to all scripts
- */
-
+/*function to add async to all scripts*/
 function js_async_attr($tag){
 
     # Do not add async to these scripts
