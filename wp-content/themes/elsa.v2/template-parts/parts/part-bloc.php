@@ -71,14 +71,16 @@
 <?php else : ?>
 
   <div class="bloc_item bloc--<?php echo $type; ?>">
-      
-      <?php if( $type != 'statique') : ?>
+
+      <?php if( strpos($type, 'statique') !== false  ) : ?>
+
+      <?php else: ?>
         <?php echo $Bookmarks->show_bookmark_btn(); ?>
       <?php endif; ?>
 
       <a href="<?php the_permalink();?>">
 
-          <?php if( $type != 'statique') : ?>
+          <?php if( strpos($type, 'statique') !== true ) : ?>
             <div class="bloc_meta bloc_category">
               <?php 
                 if( $cat != '') {
@@ -100,7 +102,7 @@
             <?php limit_words( $auteurs );  ?>
           </div>
 
-          <?php if( $type == 'statique') : ?>
+          <?php if( strpos($type, 'statique') !== false ) : ?>
             <div class="bloc_meta bloc_excerpt">
               <?php the_excerpt(); ?>
             </div>

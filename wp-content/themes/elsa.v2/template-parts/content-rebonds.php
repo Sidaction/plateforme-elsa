@@ -24,7 +24,12 @@
                 $post_type = $post->post_type; 
                 switch ($post_type) {
                   case 'page':
-                    $type = 'statique';
+                    if( $post->post_name == 'medias' ) { 
+                      $type = 'statique--media';
+                    }
+                    else {
+                      $type = 'statique';
+                    }
                     break;
 
                   case 'post':

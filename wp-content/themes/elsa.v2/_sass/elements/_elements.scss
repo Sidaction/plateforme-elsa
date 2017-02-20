@@ -46,6 +46,15 @@
       border: 1px solid $white;
     }
   }
+  &.bloc--statique--media {
+    background-color: $color_medias;
+    color: $white;
+    border: 1px solid $color_medias;
+
+    &:hover {
+      border: 1px solid $white;
+    }
+  }
 
   .bookmark {
     position: absolute;
@@ -90,7 +99,7 @@
     @include type-setting(-2);
     font-weight: $thin;
 
-    :not(.bloc--statique) > a > & {
+    :not(.bloc--statique, .bloc--statique--media) > a > & {
       color: $black;
     }
     .bloc--media & {
