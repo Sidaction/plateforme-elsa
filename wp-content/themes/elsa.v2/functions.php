@@ -257,7 +257,7 @@ function elsa_scripts() {
     wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
-    wp_dequeue_script('jquery-migrate');
+    //wp_dequeue_script('jquery-migrate');
     wp_dequeue_script('jquery-position');
 
     wp_enqueue_script( 'elsa-scripts' );
