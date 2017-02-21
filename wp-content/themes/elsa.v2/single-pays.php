@@ -40,6 +40,8 @@
                     <?php if(!empty($rapport_activite)): ?>
                         <a href="<?php echo $rapport_activite;?>" class="btn-inline" target="_blank">consulter le rapport d'activité</a>
                     <?php endif;?>
+                    <br>
+                    <a href="/recherche-documentaire/?totalpays=<?php echo $pays; ?>" class="btn-primary">Les ressources du pays</a>
 
                 </div>
 
@@ -57,8 +59,6 @@
                                 <?php echo $ligne_ecoute;?></p>
                             </div><!-- .page_metas -->
                     <?php endif; ?>
-
-                    <a href="/recherche-documentaire/?totalpays=<?php echo $pays; ?>" class="btn-primary plain">Les ressources du pays</a>
 
                 </div><!-- .ressource_aside -->
             </div><!-- .wrap -->

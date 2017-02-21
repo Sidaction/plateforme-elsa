@@ -175,19 +175,26 @@ get_header();
                                 
 
                             <?php endforeach; 
-                            wp_reset_postdata();
+                            wp_reset_postdata(); ?>
 
-                            else : 
 
-                                echo "<p class='m-4col'>Il n'y a aucune ressource recommandée pour cette thématique....</p>";
+                            </div>
 
-                            endif; ?>
+                            <div class="row group_action">
+                                <a href="/recherche-documentaire/?totalcat=<?php echo $cat_slug; ?>" class="btn-secondary is-centered">Toutes les ressources de la thématique</a>
+                            </div> 
 
-                    </div>
+                            <?php else : ?>
+                                <div class="m-6col">
+                                    <p><br>Il n'y a aucune ressource recommandée pour cette thématique....</p>
+                                    <a href="/recherche-documentaire/" class="btn-secondary is-centered">Toutes les ressources</a>
+                                </div>
 
-                    <div class="row group_action">
-                        <a href="/recherche-documentaire/?totalcat=<?php echo $cat_slug; ?>" class="btn-secondary is-centered">Toutes les ressources de la thématique</a>
-                    </div> 
+                            </div>
+
+
+                            <?php endif; ?>
+
                     
                 </div><!-- .wrap -->
 

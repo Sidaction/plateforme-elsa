@@ -100,7 +100,7 @@ body {
 .page_title:not(.media_title) {
   padding: $base_line_height * 3 0;
   color: $white;
-  margin-bottom: $base_line_height;
+  margin-bottom: $base_line_height / 2;
 }
 .page_title-little {
   padding: $base_line_height * 1.5;
