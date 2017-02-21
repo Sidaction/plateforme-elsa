@@ -52,8 +52,6 @@
               } ?>
           </h2>
 
-
-
           <div class="bloc_icons">
             <?php if( isset($reco) && $reco ) : ?>
               <span class="icon-recommandation"></span>
