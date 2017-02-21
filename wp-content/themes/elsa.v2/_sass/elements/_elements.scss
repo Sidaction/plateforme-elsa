@@ -3,6 +3,13 @@
 @import "tables";
 
 
+.icon_media {
+  background-image: url('_img/icons-media.png');
+  background-repeat: no-repeat;
+  width: 81px;
+  height: 81px;
+  display: inline-block;
+}
 
 /*
  * BLOCS
@@ -136,6 +143,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+    .ic-video {
+      background-position: 0 0;
+    }
+    .ic-diaporama {
+      background-position: 0 -82px;
+    }  
+    .ic-audio {
+      background-position: 0 -164px;
+    }
+
 
 /*
  * LISTS
