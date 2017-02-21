@@ -711,6 +711,7 @@ function submitAdvancedSearch(){
   $("input[name=totalregions]").val($("input[name=totalregions]").val().slice(0,-1));
   
   $("input[name=totalpays]").val($("input[name=totalpays]").val().slice(0,-1));
+  $("input[name=struct]").val($("input[name=struct]").val());
   
   $("#rechRess").submit();
 }
