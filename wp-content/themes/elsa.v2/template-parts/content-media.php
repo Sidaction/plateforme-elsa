@@ -1,4 +1,9 @@
-
+<?php 
+if($link) {
+  $parse = parse_url($link);
+  $domain = $parse['host'];  
+}
+?>
 
   <section id="site-content" class="site-content single-media">
 
@@ -56,20 +61,27 @@
                   <?php if($format == 'video' && !empty($link)) echo wp_oembed_get($link); ?>
 
                   <?php // AUDIO ?>
-                  <?php if( $format == 'audio' && !empty($link) ) echo "<a href='{$link}' title='Consulter le document sonore' target='_blank' class='btn-primary'>Consulter le document sonore ( {$link} )</a>"?>
+                  <?php if( $format == 'audio' && !empty($link) ) echo "<a href='{$link}' title='Consulter le document sonore' target='_blank' class='btn-primary'>Consulter le document sonore</a>"?>
                   
                   <?php if( $format == 'audio' && !empty($embed) ) echo "<div class='embed-plain'>". $embed . "</div>" ?>
                   
-<!--                     <?php
+                     <?php
                       $files = rwmb_meta( 'file', 'type=file' );
+                     if( $format == 'audio' && !empty($files)) {
                       foreach ( $files as $info ) {
                     
                         $size = filesize( $info['path'] );
                         $kind = pathinfo($info['path'], PATHINFO_EXTENSION);
-                        $size = false === $size ? 0 : size_format( $size, 2 );
+                        $size = false === $size ? 0 : size_format( $size, 2 ); ?>
                         
-                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consultez la ressource <br> [{$info['title']} ({$kind} -{$size} )]</a>";
-                      }?> -->
+                        <audio controls="controls" class="plain" src="<?php echo $info['url']; ?>">
+                          Votre navigateur ne supporte pas l'élément <code>audio</code>.
+                        </audio>
+
+                        <?php 
+                          // echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consultez la ressource <br> [{$info['title']} ({$kind} -{$size} )]</a>";
+                      }
+                    } ?> 
 
                   <?php // DIAPORAMA ?>
                   <?php if( get_field('images') ) : $images = get_field('images'); ?>

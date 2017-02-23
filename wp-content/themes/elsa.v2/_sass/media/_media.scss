@@ -33,6 +33,11 @@ img {
   background-position: center center;
 }
 
+
+/*
+ * iframe for medias video & audio
+ */
+
 iframe {
   display: block;
   margin: auto;
@@ -49,6 +54,18 @@ iframe {
 .wp-video-shortcode {
   width: 100% !important;
 }
+
+
+
+/*
+ * tags for audios
+ */
+
+audio {
+  margin-bottom: $base_line_height;
+}
+
+
 
 @import "gallery";
 @import "caption";

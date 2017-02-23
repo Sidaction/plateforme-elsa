@@ -27,7 +27,8 @@ $bloc_height            : 242px;
     @include box-sizing;
     display: block;
     width: 100%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .wrap {
