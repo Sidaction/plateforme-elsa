@@ -29,12 +29,13 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
     <article class="main-content clearfix noback">
         <div class="page_title structure_title">
 
-          <div class="wrap">
+          <div class="wrap row">
+            <div class="m-5col">
               <h1 class="h1">
                   <?php the_title();?>
               </h1> 
               <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
-
+            </div>
           </div>     
         </div>
 

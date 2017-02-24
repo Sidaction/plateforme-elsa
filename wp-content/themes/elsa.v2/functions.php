@@ -1,5 +1,9 @@
 <?php
 
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );
+
 
 
 require_once('__core/themeManager.php' );
@@ -258,7 +262,7 @@ function elsa_scripts() {
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
     //wp_dequeue_script('jquery-migrate');
-    wp_dequeue_script('jquery-position');
+    //wp_dequeue_script('jquery-position');
 
     wp_enqueue_script( 'elsa-scripts' );
 
@@ -271,7 +275,7 @@ function elsa_scripts() {
     wp_dequeue_style('validate-engine-css');
     wp_deregister_style( 'validate-engine-css' );
     
-    wp_dequeue_script('tabslideout-jquery');
+    //wp_dequeue_script('tabslideout-jquery');
     //wp_dequeue_script('owlcarousel-jquery');
 }
 add_action( 'wp_enqueue_scripts', 'elsa_scripts' );
