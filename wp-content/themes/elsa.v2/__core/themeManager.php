@@ -200,42 +200,66 @@ class themeManager {
 
   }
   
-   public function get_fiche_nav() {
+   public function get_fiche_nav( $args = array() ) {
   
     global $post;
     
 
-      if( isset($_GET['ref']) && $_GET['ref'] == 'media' ) {
-        $args['format'] = array('video', 'diaporama', 'audio');
-        $post_types = array('post', 'contenu');
-      }
-      else {
-        $post_types = $post->post_type;
-      }
+    if($post->post_type=='post' && $_GET['ref']=='search') {
+      $postlist = $_SESSION['results'];
+      $ids = array();
 
+      if(!empty($postlist)):
+        foreach ($postlist as $thepost) {
+           $ids[] = $thepost;
+        }
+      endif;
 
+      $backlink="/recherche-documentaire/?ref=search";
+      $lib="Document";
+
+    }
+    else {
+      switch($post->post_type){
+        case 'pays':
+          $backlink="/pays-dafrique/";
+          $lib="Pays";
+        break;
+        
+        case 'structure':
+          $backlink="/associations-africaines-du-reseau-elsa/";
+          $lib="";
+        break;
+
+        case 'post':
+          $backlink="/category/".cnLib::get_main_term_slug($post->ID, 'category');
+          $lib="Document";
+        break;
+      }
+    
       $args = array(
          'posts_per_page'  => -1,
          'orderby'         => 'title',
          'order'           => 'ASC',
-         'post_type'       => $post_types,
+         'post_type'       => $post->post_type,
       ); 
-      
-      if( $post->post_type == 'structure' ) {
-        $args['type_structure'] = 'partenaires-elsa-associations-du-reseau-elsa';
-      }
 
-      if( $post->post_type == 'post' ) {
-        $args['orderby'] = 'DATE';
-        $args['order'] = 'DESC';
+      if($post->post_type=='structure') $args['type_structure']='partenaires-elsa-associations-du-reseau-elsa';
+
+      if($post->post_type=='post') {
+        $args['orderby']='DATE';
+        $args['order']='DESC';
       }
     
       
       $postlist = get_posts( $args );
       $ids = array();
+
       foreach ($postlist as $thepost) {
          $ids[] = $thepost->ID;
       }
+      
+    }
 
     
     $thisindex = array_search($post->ID, $ids);
