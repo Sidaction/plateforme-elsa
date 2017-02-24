@@ -213,8 +213,8 @@
           } 
 
           a {
-            margin-left: $base_line_height;
-            margin-right: $base_line_height;
+            margin-left: $base_line_height / 2;
+            margin-right: $base_line_height / 2;
           }
 
           @include up-to(medium) {

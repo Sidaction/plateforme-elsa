@@ -201,10 +201,11 @@
 
 /* IMAGE CAPTIONS */
 
-.bxslider li > p {
-  color: $gray_light;
+.bx-caption {
   @include type-setting(-1);
+  color: $gray_light;
   text-align: center;
-  font-weight: $thin;
+  font-weight: $thin; 
+  margin-top: $base_line_height / 2;
+  margin-bottom: 0;
 }
-

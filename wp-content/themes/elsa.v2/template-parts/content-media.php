@@ -90,7 +90,7 @@ if($link) {
                           <?php foreach( $images as $image ): ?>
                               <li>
                                 <img src="<?php echo $image['sizes']['diaporama']; ?>" alt="<?php echo $image['alt']; ?>" />
-                                <p><?php echo $image['caption']; ?></p>
+                                <p class="bx-caption"><?php echo $image['caption']; ?></p>
                               </li>
                           <?php endforeach; ?>
                       </ul>

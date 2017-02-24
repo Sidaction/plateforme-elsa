@@ -32,7 +32,7 @@ get_header(); ?>
                     <?php
 
                         $args = array(
-                            'posts_per_page' => 10,
+                            'posts_per_page' => 16,
                             'post_type' => array('post', 'contenu'),
                             'format' => array('video', 'diaporama', 'audio'),
                             'post_status' => 'publish',
@@ -45,7 +45,7 @@ get_header(); ?>
                         <?php if ( $the_query->have_posts() ) : ?>
                             <?php $i = 0; ?>
                             <div class="results_nav clearfix row">
-                                <div class="nav_postperpage m-3col">
+<!--                                 <div class="nav_postperpage m-3col">
                                   <div class="input--select">
                                     <select class="selectBox" id="pager1">
                                         <option value="10">10 résultats par page</option>
@@ -55,7 +55,7 @@ get_header(); ?>
                                     </select>
                                     <span class="icon-arrow_right-big"></span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="nav_pager-top m-5col m-last">
                                     <?php cnLib::pagination($totalpages); ?>
                                 </div>
@@ -84,7 +84,7 @@ get_header(); ?>
                             </div>
 
                             <div class="results_nav clearfix row">
-                                <div class="nav_postperpage m-3col">
+<!--                                 <div class="nav_postperpage m-3col">
                                   <div class="input--select">
                                     <select class="selectBox" id="pager1">
                                         <option value="10">10 résultats par page</option>
@@ -94,7 +94,7 @@ get_header(); ?>
                                     </select>
                                     <span class="icon-arrow_right-big"></span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="nav_pager-bottom m-5col m-last">
                                     <?php cnLib::pagination($totalpages); ?>
                                 </div>
