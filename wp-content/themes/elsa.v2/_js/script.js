@@ -712,7 +712,8 @@ function submitAdvancedSearch(){
   
   $("input[name=totalpays]").val($("input[name=totalpays]").val().slice(0,-1));
   $("input[name=struct]").val($("input[name=struct]").val());
-  
+  $("input[name=boites]").val($("input[name=boites]").val());
+
   $("#rechRess").submit();
 }
 

@@ -270,6 +270,8 @@ if(strpos($keyword, "\'")) {
                   <input type="hidden" name="totalcat" value="<?php echo $args['category_name'];?>" />
                   <input type="hidden" name="totalpays" value="<?php echo $args['pays_assoc'];?>" />
                   <input type="hidden" name="totalregions" value="<?php echo $args['region'];?>" />
+                  <input type="hidden" name="boites" value="<?php echo $args['boiteoutils'];?>" />
+
                   <input type="hidden" name="struct" value="<?php if(isset($structure_id)) { echo $structure_id; } ?>" />
                   <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
 
