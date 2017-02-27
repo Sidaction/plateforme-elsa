@@ -1,8 +1,9 @@
 <?php
   $reco = get_field('recommandation');
   $boite = get_the_term_list( $post->ID, 'boiteoutils', 'People: ', ', ' );
-  global $Bookmarks;
+  $tools = get_post_meta($post->ID, 'outil', true);
 
+  global $Bookmarks;
   global $gema75_read_it_later;
 ?>
 
@@ -31,6 +32,8 @@
               <span class="icon-recommandation"></span>
             <?php endif; ?>
             <?php if( isset($boite) && $boite ) : ?>
+              <span class="icon-boite"></span>
+            <?php elseif( isset($tools) && $tools === '1' ) : ?>
               <span class="icon-boite"></span>
             <?php endif; ?>
           </div>

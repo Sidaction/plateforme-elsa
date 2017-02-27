@@ -5,6 +5,7 @@
   $auteurs = $cnSite->get_authors($post->ID);
   $reco = get_field('recommandation');
   $boite = get_the_term_list( $post->ID, 'boiteoutils', 'People: ', ', ' );
+  $tools = get_post_meta($post->ID, 'outil', true);
 
   global $Bookmarks;
   global $post;
@@ -57,6 +58,8 @@
               <span class="icon-recommandation"></span>
             <?php endif; ?>
             <?php if( isset($boite) && $boite ) : ?>
+              <span class="icon-boite"></span>
+            <?php elseif( isset($tools) && $tools === '1' ) : ?>
               <span class="icon-boite"></span>
             <?php endif; ?>
           </div>
