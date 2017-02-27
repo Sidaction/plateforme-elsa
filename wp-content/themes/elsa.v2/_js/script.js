@@ -4,8 +4,6 @@
 
 jQuery(document).ready(function($){
 
-  console.log('let\'s begin');
-
   var line_height = 21;
 
   var dropdowns_trigger = $('.js-dropdown-trigger');
@@ -63,7 +61,7 @@ jQuery(document).ready(function($){
 
         error : function( data ) { // en cas d'échec
           // Sinon je traite l'erreur
-          console.log( 'Erreur…' );
+          //console.log( 'Erreur…' );
         }
 
       });
@@ -84,9 +82,6 @@ jQuery(document).ready(function($){
   if( ressource_title.length > 0 && page_media.length > 0 ) {
     var ressource_title_height = ressource_title.outerHeight();
     var page_media_height = page_media.outerHeight();
-
-    console.log(ressource_title_height);
-    console.log(page_media_height);
 
     if( ressource_title_height >= line_height * 8 && page_media_height > ressource_title_height / 2 ) {
       page_media.css('margin-top', - ( ressource_title_height / 2 + line_height * 4) );
@@ -348,9 +343,6 @@ jQuery(document).ready(function($){
       var select_name = $(this).attr("name");
       var select_text = $(this).find('option:selected').text();
 
-      console.log(select_val);
-      console.log(select_name);
-
       $.ajax({
         url : myAjax.ajaxurl,
         method : 'post',
@@ -372,7 +364,7 @@ jQuery(document).ready(function($){
 
         error : function( data ) { // en cas d'échec
           // Sinon je traite l'erreur
-          console.log( 'Erreur…' );
+          //console.log( 'Erreur…' );
         }
 
       });
@@ -396,8 +388,6 @@ jQuery(document).ready(function($){
 
       var posts_per_page = $(this).val();
 
-      console.log(posts_per_page);
-
       $.ajax({
         url : myAjax.ajaxurl,
         method : 'post',
@@ -415,7 +405,7 @@ jQuery(document).ready(function($){
 
         error : function( data ) { // en cas d'échec
           // Sinon je traite l'erreur
-          console.log( 'Erreur…' );
+          // console.log( 'Erreur…' );
         }
 
       });
@@ -435,10 +425,7 @@ jQuery(document).ready(function($){
 
   if( search.length > 0 ) {
 
-    console.log('Begin search scripts');
-
     getSearchFields();
-
 
     // XX RESULTS PER PAGE
     $("#pager1").change(function(){
@@ -717,10 +704,6 @@ function submitAdvancedSearch(){
   $("#rechRess").submit();
 }
 
-
-
-
-  console.log('this is the end my friend');
 
 });
 
