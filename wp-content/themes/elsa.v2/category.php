@@ -119,7 +119,7 @@ get_header();
                         'cat' =>  $cat_id, 
                         'meta_query' => array(
                             array(
-                                'key' => 'recommandation',
+                                'key' => 'homefiche',
                                 'compare' => '==',
                                 'value' => '1'
                             )

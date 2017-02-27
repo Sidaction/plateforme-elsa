@@ -116,7 +116,7 @@ get_header();
                         'boiteoutils' => $boite_slug,
                         'meta_query' => array(
                             array(
-                                'key' => 'recommandation',
+                                'key' => 'homefiche',
                                 'compare' => '==',
                                 'value' => '1'
                             )

@@ -3,9 +3,10 @@
   $cat = cnLib::get_terms_withoutlink($post->ID, 'category');
   $format = cnLib::get_main_term_slug($post->ID, 'format');
   $auteurs = $cnSite->get_authors($post->ID);
-  $reco = get_field('recommandation');
+  //$reco = get_field('recommandation');
   $boite = get_the_term_list( $post->ID, 'boiteoutils', 'People: ', ', ' );
   $tools = get_post_meta($post->ID, 'outil', true);
+  $reco = get_post_meta($post->ID, 'homefiche', true);
 
   global $Bookmarks;
   global $post;
@@ -97,7 +98,7 @@
             </div>
           <?php endif; ?>
 
-          <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 8 );?></h2>
+          <h2 class="h2 bloc_title"><?php limit_words( get_the_title(), 10 );?></h2>
 
           <div class="bloc_meta bloc_authors">
             <?php limit_words( $auteurs );  ?>
