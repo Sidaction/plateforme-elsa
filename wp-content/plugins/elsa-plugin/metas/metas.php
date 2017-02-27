@@ -88,7 +88,7 @@ function rw_register_meta_box() {
         'std' => '',
       ),
       array(
-        'name' => 'Remontée Fiche Thématique',
+        'name' => 'Cette ressource est recommandée par le comité de lecture',
         'id' => 'homefiche',
         'type' => 'radio',
         'options' => array(1=>'Oui ', 0=>'Non')
