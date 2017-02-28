@@ -44,11 +44,20 @@
     h1 {
       margin-bottom: $base_line_height * 2;
     }
+
+    @include up-to(medium) {
+      padding: $base_line_height;
+    }
   }
     .modal_close {
       position: absolute;
       right: $base_line_height / 2;
       top: $base_line_height / 2;
+      
+      @include up-to(medium) {
+        right: 2px;
+        top: 2px;
+      }
     }
 
 

@@ -104,7 +104,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 99;
+    z-index: 3;
   }
 }
 
@@ -161,10 +161,10 @@
         float: none;
         margin: auto;
         clear: both;
-        margin-bottom: $base_line_height * 1.5;
+        margin-bottom: $base_line_height * 1;
 
         &:last-child {
-          margin-bottom: $base_line_height * 4;
+          margin-bottom: $base_line_height * 2;
         }
       }
     }
