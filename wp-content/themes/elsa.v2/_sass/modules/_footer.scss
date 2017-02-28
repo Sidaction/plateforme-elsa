@@ -12,6 +12,15 @@
   padding: $base_line_height 0;
 
 
+  @include up-to(medium) {
+    .site-logo {
+      margin-left: auto;
+      margin-right: auto;
+      float: none;
+      margin-bottom: $base_line_height;
+    }
+  }
+
 }
 
   .footer-divider {

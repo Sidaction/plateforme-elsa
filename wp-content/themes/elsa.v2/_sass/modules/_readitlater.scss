@@ -11,11 +11,16 @@
 .gema75_wc_wc_count_badge {
   display: inline-block;
   margin-left: $base_line_height / 3;
-  color: $color_primary !important; 
+  color: $color_primary; 
   border: 1px solid $color_primary;
   text-align: center;
   line-height: 9px;
   padding: 5px;
+
+  @include up-to(medium) {
+    border-color: $white;
+    color: $white;
+  }
 }
 
 

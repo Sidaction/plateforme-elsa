@@ -46,9 +46,18 @@
   }
 
   @include up-to(medium) {
+
+    ul {
+      text-align: center;
+    }
+
     li {
       font-size: 14px;
       font-weight: $thin;
+
+      &:not(:first-child):not(:last-child):before {
+        color: $white;
+      }
     }
   }
 }

@@ -65,9 +65,18 @@
     a {
       color: inherit;
     }
-  }
-  .home-grid {
-    .group_title {
-      min-height: $bloc_height + $base_line_height * 3;
+
+    @include up-to(medium) {
+      margin-top: $base_line_height * 2;
     }
   }
+  .home-grid {
+
+    @include at-least(medium) {
+      .group_title {
+        min-height: $bloc_height + $base_line_height * 3;
+      }
+    }
+  }
+
+
