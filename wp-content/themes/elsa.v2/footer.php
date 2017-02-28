@@ -53,12 +53,12 @@
                     <a href="<?php the_field('url_twitter', 'options'); ?>" target="_blank" class="social_icon icon-twitter"></a>
                 </li>
 
-                <li><span class="btn-inline">Recevoir notre newsletter</span> </li>
+                <li class="js-newsletter-trigger"><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
 
             </ul>
 
 
-            <?php echo do_shortcode('[wysija_form id="1"]'); ?>
+            <?php //echo do_shortcode('[wysija_form id="1"]'); ?>
 
         </div>
 
