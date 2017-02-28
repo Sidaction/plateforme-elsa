@@ -37,7 +37,7 @@
 				var newRILListHtml = '<div> <div class="gema75_ril_image"><img src="' + response.image + '"></div><p>  <a href="'+response.permalink+'"> ' + response.title + '</a></p>  <a href="#" class="removeFromRILButton" data-readitlater-id="' + postID + '" >' + gema75_readitlater_js_strings.removeFromRIL + '</a> </div>';
 				
 				//add new product to the slider  
-				 jQuery("#gema75_ril_list").data('owlCarousel').addItem(newRILListHtml);
+				 //jQuery("#gema75_ril_list").data('owlCarousel').addItem(newRILListHtml);
 				
 				//replace "add to RIL" with "added to RIL"
 				jQuery('.addToReadItLaterButton[data-readitlater-id="'+ postID +'"]').html(gema75_readitlater_js_strings.addedToRilList);
@@ -81,7 +81,7 @@
 				newRILListHtml += '<a class="removeFromRILButton" data-readitlater-id="' + response.posts_in_ril_list[k].id + '" >' + gema75_readitlater_js_strings.removeFromRIL + '</a> </div>';
 
 				//refresh the slider
-				jQuery("#gema75_ril_list").data('owlCarousel').addItem(newRILListHtml);	
+				//jQuery("#gema75_ril_list").data('owlCarousel').addItem(newRILListHtml);	
 				
 			
 				//reset
@@ -173,7 +173,7 @@
 
 	
 	//start the carousel
-	jQuery("#gema75_ril_list").owlCarousel({items : 10,});	
+	//jQuery("#gema75_ril_list").owlCarousel({items : 10,});	
 
 	// OWL Carousel avigation Events
 	jQuery('.gema75_ril_owl_next').click(function(){
@@ -192,7 +192,7 @@
 	 */
 	function gema75_how_many_items_in_ril(){
 		var how_many = jQuery("#gema75_ril_list div.owl-wrapper-outer div.owl-wrapper div.owl-item").length;
-		console.log('aktualisht jane ' + how_many + ' posts in RIL');
+		//console.log('aktualisht jane ' + how_many + ' posts in RIL');
 		return parseInt(how_many);
 	}
 	
@@ -227,20 +227,20 @@
 	}
 	
 	//add the slideout on the page
-	jQuery('.slide-out-div').tabSlideOut({
-            tabHandle: '.handle',                     //class of the element that will become your tab
-			imageOrText: image_or_text,
-            pathToTabImage: '' + gema75_readitlater_js_strings.slider_tab_image_url + '', //path to the image for the tab //Optionally can be set using css
-            imageHeight: gema75_readitlater_js_strings.slider_tab_image_height + 'px',                     //height of tab image           //Optionally can be set using css
-            imageWidth: gema75_readitlater_js_strings.slider_tab_image_width + 'px',                       //width of tab image            //Optionally can be set using css
-            tabLocation: '' + gema75_readitlater_js_strings.position +'',                      //side of screen where tab lives, top, right, bottom, or left
-            speed: 300,                               //speed of animation
-            action:  '' + gema75_readitlater_js_strings.open_ril_tab_with +'',                          //options: 'click' or 'hover', action to trigger animation
-            topPos: '200px',                          //position from the top/ use if tabLocation is left or right
-            leftPos: '20px',                          //position from left/ use if tabLocation is bottom or top
-            fixedPosition: true ,                     //options: true makes it stick(fixed position) on scroll
-			bgcolor :  '' + gema75_readitlater_js_strings.readitlater_bg_color +''
-        });	
+	// jQuery('.slide-out-div').tabSlideOut({
+ //            tabHandle: '.handle',                     //class of the element that will become your tab
+	// 		imageOrText: image_or_text,
+ //            pathToTabImage: '' + gema75_readitlater_js_strings.slider_tab_image_url + '', //path to the image for the tab //Optionally can be set using css
+ //            imageHeight: gema75_readitlater_js_strings.slider_tab_image_height + 'px',                     //height of tab image           //Optionally can be set using css
+ //            imageWidth: gema75_readitlater_js_strings.slider_tab_image_width + 'px',                       //width of tab image            //Optionally can be set using css
+ //            tabLocation: '' + gema75_readitlater_js_strings.position +'',                      //side of screen where tab lives, top, right, bottom, or left
+ //            speed: 300,                               //speed of animation
+ //            action:  '' + gema75_readitlater_js_strings.open_ril_tab_with +'',                          //options: 'click' or 'hover', action to trigger animation
+ //            topPos: '200px',                          //position from the top/ use if tabLocation is left or right
+ //            leftPos: '20px',                          //position from left/ use if tabLocation is bottom or top
+ //            fixedPosition: true ,                     //options: true makes it stick(fixed position) on scroll
+	// 		bgcolor :  '' + gema75_readitlater_js_strings.readitlater_bg_color +''
+ //        });	
 
 		
 	//CSS from admin options

@@ -258,7 +258,7 @@ $Bookmarks =  new Bookmarks();
 
 function elsa_scripts() {
     wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.min.css' );
-    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
+    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.js', array( 'jquery' ), '1.0.0', true );
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
     //wp_dequeue_script('jquery-migrate');
@@ -275,8 +275,8 @@ function elsa_scripts() {
     wp_dequeue_style('validate-engine-css');
     wp_deregister_style( 'validate-engine-css' );
     
-    //wp_dequeue_script('tabslideout-jquery');
-    //wp_dequeue_script('owlcarousel-jquery');
+    wp_dequeue_script('tabslideout-jquery');
+    wp_dequeue_script('owlcarousel-jquery');
 }
 add_action( 'wp_enqueue_scripts', 'elsa_scripts' );
 
@@ -500,4 +500,39 @@ function wp_get_attachment( $attachment_id ) {
         'title' => $attachment->post_title
     );
 }
+
+
+
+//logged in users
+if( get_current_user_id() > 0 ) {
+  $userid= get_current_user_id();
+  $user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$userid);
+}
+else {
+  //non logged in users
+  $user_readitlater_list = $gema75_ril_frontend->get_ril_non_logged_in(); 
+}
+
+
+add_filter('wp_nav_menu_items','add_selection_item_to_menu', 10, 2);
+function add_selection_item_to_menu( $items, $args ) {
+
+    //logged in users
+    if( get_current_user_id() > 0 ) {
+      $userid= get_current_user_id();
+      $user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$userid);
+    }
+    else {
+      //non logged in users
+      $user_readitlater_list = $gema75_ril_frontend->get_ril_non_logged_in(); 
+    }
+
+    if( $args->theme_location == 'secondary' )
+        return $items.'<li id="menu-item-7922" class="item-selection menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7794 current_page_item menu-item-7922"><a href="/ma-selection/">Ma sélection</a><span class="gema75_wc_wc_count_badge">' . count($user_readitlater_list['posts_in_ril']) . '</span></li>';
+
+    return $items;
+}
+
+
+
 

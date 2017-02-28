@@ -6,6 +6,8 @@
 
 get_header(); 
 
+global $user_readitlater_list;
+
 ?>
 
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
@@ -25,7 +27,7 @@ get_header();
                         <h1 class="h1">
                             <?php echo the_title(); ?>
                         </h1> 
-                        <p class="clearfix">Vous avez actuellement <span class="selection_count"></span> ressources sélectionnées</p>
+                        <p class="clearfix">Vous avez actuellement <span><?php echo count($user_readitlater_list['posts_in_ril']); ?></span> ressources sélectionnées</p>
                     </div>
                 </div>     
             

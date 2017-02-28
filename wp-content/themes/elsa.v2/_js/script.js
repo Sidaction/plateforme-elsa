@@ -169,17 +169,6 @@ jQuery(document).ready(function($){
 
 
   
-  /*
-   * BOOKMARKS / SELECTION STUFFS
-   */
-   
-  var item_selection = $('.item-selection');
-  item_selection.append('<span id="gema75_wc_wc_count_badge"></span>');
-
-//  $('.selection_count').html(gema75_how_many_items_in_ril());
-
-
-
 
   /*
    * MODALS
