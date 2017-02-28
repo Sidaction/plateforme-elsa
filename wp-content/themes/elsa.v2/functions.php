@@ -4,7 +4,7 @@
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
 
-
+global $gema75_ril_frontend;
 
 require_once('__core/themeManager.php' );
 $cnSite = new themeManager();
@@ -517,6 +517,8 @@ else {
 add_filter('wp_nav_menu_items','add_selection_item_to_menu', 10, 2);
 function add_selection_item_to_menu( $items, $args ) {
 
+    global $gema75_ril_frontend;
+
     //logged in users
     if( get_current_user_id() > 0 ) {
       $userid= get_current_user_id();
@@ -527,8 +529,15 @@ function add_selection_item_to_menu( $items, $args ) {
       $user_readitlater_list = $gema75_ril_frontend->get_ril_non_logged_in(); 
     }
 
+    if( is_array($user_readitlater_list ) ) {
+        $bookmark_posts = count($user_readitlater_list['posts_in_ril']);
+    }
+    else {
+        $bookmark_posts = 0;
+    }
+
     if( $args->theme_location == 'secondary' )
-        return $items.'<li id="menu-item-7922" class="item-selection menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7794 current_page_item menu-item-7922"><a href="/ma-selection/">Ma sélection</a><span class="gema75_wc_wc_count_badge">' . count($user_readitlater_list['posts_in_ril']) . '</span></li>';
+        return $items.'<li id="menu-item-7922" class="item-selection menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7794 current_page_item menu-item-7922"><a href="/ma-selection/">Ma sélection</a><span class="gema75_wc_wc_count_badge">' . $bookmark_posts . '</span></li>';
 
     return $items;
 }

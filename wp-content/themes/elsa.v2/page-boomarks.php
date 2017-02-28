@@ -8,6 +8,13 @@ get_header();
 
 global $user_readitlater_list;
 
+    if( is_array($user_readitlater_list ) ) {
+        $bookmark_posts = count($user_readitlater_list['posts_in_ril']);
+    }
+    else {
+        $bookmark_posts = 0;
+    }
+
 ?>
 
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
@@ -27,7 +34,7 @@ global $user_readitlater_list;
                         <h1 class="h1">
                             <?php echo the_title(); ?>
                         </h1> 
-                        <p class="clearfix">Vous avez actuellement <span><?php echo count($user_readitlater_list['posts_in_ril']); ?></span> ressources sélectionnées</p>
+                        <p class="clearfix">Vous avez actuellement <span><?php echo $bookmark_posts; ?></span> ressources sélectionnées</p>
                     </div>
                 </div>     
             
@@ -41,9 +48,11 @@ global $user_readitlater_list;
             <div class="wrap row">
 
                 <div class="group_title m-2col">
-                    <div class="group_title_actions">
-                        <a href="../extract" class="btn-inline">Télécharger la liste des résultats</a>
-                    </div>
+                    <?php    if( is_array($user_readitlater_list ) ) { ?>
+                        <div class="group_title_actions">
+                            <a href="../extract" class="btn-inline">Télécharger la liste des résultats</a>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <div class="group_intro m-5col m-last">
