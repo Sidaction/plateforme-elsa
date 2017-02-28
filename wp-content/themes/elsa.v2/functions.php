@@ -288,15 +288,15 @@ add_action( 'wp_footer', 'remove_from_footer', 10 );
 
 
 function remove_from_init() {
-    wp_dequeue_style('validate-engine');
+    wp_dequeue_style('validate-engine-css');
 
 }
 add_action( 'init', 'remove_from_init', 10 );
 
 
 function my_custom_scripts() {
-    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.css' );
-    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.js', array( 'jquery' ), '1.0.0', true );
+    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.min.css' );
+    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
     wp_enqueue_script( 'elsa-scripts' );
 }
@@ -533,7 +533,11 @@ function wp_get_attachment( $attachment_id ) {
 
 
 
-//logged in users
+
+/*
+ * Variable for number of posts in RiL
+ */
+
 if( get_current_user_id() > 0 ) {
   $userid= get_current_user_id();
   $user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$userid);
@@ -543,6 +547,12 @@ else {
   $user_readitlater_list = $gema75_ril_frontend->get_ril_non_logged_in(); 
 }
 
+
+
+
+/*
+ * Add Selection Item in top menu
+ */
 
 add_filter('wp_nav_menu_items','add_selection_item_to_menu', 10, 2);
 function add_selection_item_to_menu( $items, $args ) {
