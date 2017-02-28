@@ -81,6 +81,9 @@ select {
   text-transform: uppercase;
   color: $color_primary;
   font-weight: $semibold;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
   &.selectBox--subtil {
     text-transform: none;
