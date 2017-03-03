@@ -46,7 +46,7 @@
 
             <section id="" class="main_nav-search">
                 <form id="" action="/recherche-documentaire/" class="main_nav_searchform">   
-                        <input type="text" id="main_search" class="main_search_input main_nav_item" placeholder="Recherche un terme" name="totaltags" value=""/>
+                        <input type="text" id="main_search" class="main_search_input main_nav_item" placeholder="Rechercher un terme" name="totaltags" value=""/>
 
                         <button class="main_search_btn main_nav_item"><span class="icon-loupe"></span></button>
                         <li class="main_nav_item search-all"><span> ı </span><a href="/recherche-documentaire">Tout voir</a></li>

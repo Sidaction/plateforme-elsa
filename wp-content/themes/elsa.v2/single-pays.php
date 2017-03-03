@@ -18,14 +18,15 @@
     <article class="main-content clearfix noback">
         <div class="page_title pays_title">
 
-            <div class="wrap">
-                
-                <h1 class="h1">
-                    <?php the_title();?>
-                </h1>
+            <div class="wrap row">
+                <div class="m-5col">
 
-                <?php echo cnLib::get_main_term($post->ID, 'region');?> 
+                    <h1 class="h1">
+                        <?php the_title();?>
+                    </h1>
 
+                    <?php echo cnLib::get_main_term($post->ID, 'region');?> 
+                </div>
           </div>     
         </div>
 
