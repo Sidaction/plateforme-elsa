@@ -242,6 +242,15 @@
         }
       }
 
+      .item-boites {
+
+        &:after {
+          @extend .icon;
+          content: "\e900";
+          font-size: 16px;
+          margin-left: 6px;
+        }
+      }
 
 
 

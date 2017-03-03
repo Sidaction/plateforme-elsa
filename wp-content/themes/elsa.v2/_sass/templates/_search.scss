@@ -47,7 +47,12 @@
 
       }
 
+      .filter-format {
+        [class^="icon-"], [class*="icon-"] {
+          font-size: 0.9em;
+          margin-left: 3px;
+        }
+      }
 
-.search_submit {
 
-}
+
