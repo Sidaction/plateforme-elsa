@@ -235,8 +235,13 @@ function rw_register_meta_box() {
                     'type' => 'text',
                 ),
           array(
-                    'name' => 'Email',
+                    'name' => 'Email 1',
                     'id' => 'email',
+                    'type' => 'text',
+                ),
+          array(
+                    'name' => 'Email 2',
+                    'id' => 'email_2',
                     'type' => 'text',
                 ),
           array(

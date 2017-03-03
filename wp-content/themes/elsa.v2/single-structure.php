@@ -13,6 +13,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
  $link = get_post_meta($post->ID, 'link', true);
  $link2 = get_post_meta($post->ID, 'link2', true);
  $email = get_post_meta($post->ID, 'email', true);
+ $email_2 = get_post_meta($post->ID, 'email_2', true);
  $antenne = get_post_meta($post->ID, 'antenne', true);
  $ligne = get_post_meta($post->ID, 'ligne', true);
  $rapport_activite = get_post_meta($post->ID, 'rapport_activite', true);
@@ -135,6 +136,12 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                                 <li class="contact-item">
                                     <span class="icon-arrow_right"></span>
                                     <a href="mailto:<?php echo $email;?>" class=""><?php echo $email;?></a></li>
+                            <?php endif;?>
+
+                            <?php if(!empty($email_2)):?>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="mailto:<?php echo $email_2;?>" class=""><?php echo $email_2;?></a></li>
                             <?php endif;?>
 
                             <?php if(!empty($link2)):?>
