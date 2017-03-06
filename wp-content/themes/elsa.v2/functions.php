@@ -269,11 +269,11 @@ function my_jquery_enqueue() {
 
 function remove_mycred() {
     wp_deregister_script( 'jquery-position' );
-    wp_dequeue_script('jquery-position');   
+    wp_dequeue_script('jquery-position');
     wp_dequeue_style('SearchAutocomplete-theme');
     wp_dequeue_style('contact-form-7');
 }
-add_action( 'wp_enqueue_scripts', 'remove_mycred', 10 );
+if (!is_admin()) add_action( 'wp_enqueue_scripts', 'remove_mycred', 10 );
 
 
 function remove_from_footer() {
@@ -284,14 +284,14 @@ function remove_from_footer() {
     wp_dequeue_style('owlcarousel-theme-css');
     wp_dequeue_style('gema75-style-css');
 }
-add_action( 'wp_footer', 'remove_from_footer', 10 );
+if (!is_admin()) add_action( 'wp_footer', 'remove_from_footer', 10 );
 
 
 function remove_from_init() {
     wp_dequeue_style('validate-engine-css');
 
 }
-add_action( 'init', 'remove_from_init', 10 );
+if (!is_admin()) add_action( 'init', 'remove_from_init', 10 );
 
 
 function my_custom_scripts() {
@@ -304,15 +304,10 @@ add_action( 'wp_enqueue_scripts', 'my_custom_scripts', 100 );
 
 
 
-
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'admin_print_styles', 'print_emoji_styles' ); 
-
-
-
-
 
 
 
@@ -491,21 +486,21 @@ register_nav_menus( array(
 
 
 
-/*function to add async to all scripts*/
-function js_async_attr($tag){
+// /*function to add async to all scripts*/
+// function js_async_attr($tag){
 
-    # Do not add async to these scripts
-    $scripts_to_exclude = array();
+//     # Do not add async to these scripts
+//     $scripts_to_exclude = array();
      
-    foreach($scripts_to_exclude as $exclude_script){
-        if(true == strpos($tag, $exclude_script ) )
-        return $tag;    
-    }
+//     foreach($scripts_to_exclude as $exclude_script){
+//         if(true == strpos($tag, $exclude_script ) )
+//         return $tag;    
+//     }
 
-    # Add async to all remaining scripts
-    return str_replace( ' src', ' async="async" src', $tag );
-}
-add_filter( 'script_loader_tag', 'js_async_attr', 10 );
+//     # Add async to all remaining scripts
+//     return str_replace( ' src', ' async="async" src', $tag );
+// }
+// add_filter( 'script_loader_tag', 'js_async_attr', 10 );
 
 
 
@@ -581,7 +576,5 @@ function add_selection_item_to_menu( $items, $args ) {
 
     return $items;
 }
-
-
 
 
