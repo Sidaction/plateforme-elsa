@@ -44,7 +44,7 @@ get_header(); ?>
     </article>
 
     <?php set_query_var( 'cnSite', $cnSite ); ?>
-    <?php get_template_part('template-parts/parts/part', 'rebonds'); ?>
+    <?php get_template_part('template-parts/content', 'rebonds'); ?>
    
   </div>
 </section>
