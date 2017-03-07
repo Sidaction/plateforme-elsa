@@ -1,0 +1,66 @@
+/*
+Theme Name: Elsa v2
+Description: 
+Author: Th. Florentin
+Author URI: http://thomasflorentin.net
+Author Email: th@thomasflorentin.net
+Tags: 
+
+Note: the styles below offer all the possibilities of Wysija. The plugin won't recognize any additional styles if you add them.
+
+*/
+html {
+    background-color: #fff; /* cannot be transparent and will default to white */
+}
+
+header {
+    background-color: transparent; /* can be transparent */
+    margin: 40px 0;
+}
+footer {
+    background-color: transparent; /* can be transparent */
+}
+body {
+    font-family: "Arial";
+    font-size: 13px;
+    background-color: #ffffff; /* can be transparent */
+}
+
+a {
+    color: #114b5f;
+    text-decoration: underline;
+}
+h1 {
+    color: #114b5f;
+    font-family: "Arial";
+    font-size: 36px;
+}
+h2 {
+    color: #114b5f;
+    font-family: "Arial";
+    font-size: 30px;
+    font-weight: 900;
+}
+h3 {
+    color: #114b5f;
+    font-family: "Arial";
+    font-size: 24px;
+}
+
+h1 a, 
+h2 a, 
+h3 a {
+    text-decoration: none;
+}
+
+unsubscribe {
+    color: #000000;
+}
+
+
+
+.divider {
+    margin: 10px 0;
+}
+
+
