@@ -268,8 +268,8 @@ function my_jquery_enqueue() {
 
 
 function remove_mycred() {
-    wp_deregister_script( 'jquery-position' );
     wp_dequeue_script('jquery-position');
+    wp_deregister_script( 'jquery-position' );
     wp_dequeue_style('SearchAutocomplete-theme');
     wp_dequeue_style('contact-form-7');
 }
@@ -485,22 +485,6 @@ register_nav_menus( array(
 
 
 
-
-// /*function to add async to all scripts*/
-// function js_async_attr($tag){
-
-//     # Do not add async to these scripts
-//     $scripts_to_exclude = array();
-     
-//     foreach($scripts_to_exclude as $exclude_script){
-//         if(true == strpos($tag, $exclude_script ) )
-//         return $tag;    
-//     }
-
-//     # Add async to all remaining scripts
-//     return str_replace( ' src', ' async="async" src', $tag );
-// }
-// add_filter( 'script_loader_tag', 'js_async_attr', 10 );
 
 
 
