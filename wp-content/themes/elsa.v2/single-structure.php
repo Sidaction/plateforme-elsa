@@ -162,7 +162,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
                 <?php
                     $args = array(
-                        'post_type' => array('post'), 
+                        'post_type' => array('post', 'contenu'), 
                         'posts_per_page' => 6, 
                         'meta_query' => array (
                             'relation' => 'OR',
@@ -176,6 +176,10 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                             ),
                             array(
                                 'key' => 'other_org',
+                                'value' =>  $structure_id,
+                            ),
+                            array(
+                                'key' => 'structure',
                                 'value' =>  $structure_id,
                             )
                         )
