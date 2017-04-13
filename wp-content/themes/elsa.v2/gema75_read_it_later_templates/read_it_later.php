@@ -20,15 +20,20 @@ if(get_current_user_id() > 0){
 }
 
 
-if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list['posts_in_ril'])>=1){ ?>
+if(isset($user_readitlater_list['posts_in_ril']) && count($user_readitlater_list['posts_in_ril']) >= 1){ ?>
 
   <ul class="no-bullets">
+    <?php //var_dump($user_readitlater_list['posts_in_ril']) ?>
 
   <?php foreach($user_readitlater_list['posts_in_ril'] as $single_post){ 
   
+
+
+    //var_dump($single_post);
+
     $post_id = absint( $single_post['id'] );
 
-    if ( $post_id ) {
+    if ( $post_id && get_post_status ( $post_id ) == 'publish') {
 
       $results[] = $post->ID; 
 
