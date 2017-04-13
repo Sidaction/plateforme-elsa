@@ -98,18 +98,18 @@ function rw_register_meta_box() {
       //   'id' => 'link_crips',
       //   'type' => 'text'
       // ),
-      array(
-        'name' => 'Outil',
-        'id' => 'outil',
-        'type' => 'radio',
-        'options' => array(1=>'Oui ', 0=>'Non')
-      ), 
-      array(
-        'name' => 'Likes',
-        'id' => 'like',
-        'type' => 'text',
-         'std' => '0',
-      ),
+      // array(
+      //   'name' => 'Outil',
+      //   'id' => 'outil',
+      //   'type' => 'radio',
+      //   'options' => array(1=>'Oui ', 0=>'Non')
+      // ), 
+      // array(
+      //   'name' => 'Likes',
+      //   'id' => 'like',
+      //   'type' => 'text',
+      //    'std' => '0',
+      // ),
     )
   );
   
@@ -269,11 +269,11 @@ function rw_register_meta_box() {
                     'id'    => 'antenne',
                     'type'  => 'text',
                 ),
-          array(
-            'name'        => 'Pays pour la géoloc.',
-            'id'          => 'pays',
-            'type'        => 'text',
-          ),
+          // array(
+          //   'name'        => 'Pays pour la géoloc.',
+          //   'id'          => 'pays',
+          //   'type'        => 'text',
+          // ),
           // array(
           //   'id'            => 'loc',
           //   'name'          => 'Géolocalisation',
@@ -291,12 +291,12 @@ function rw_register_meta_box() {
             'id' => 'datecreation',
             'type' => 'text',
           ),
-          array(
-            'name' => 'Rapport d\'activité',
-            'desc' => 'Entrez l\'url complète (externe ou de la bibliothèque média)',
-            'id' => 'rapport_activite',
-            'type' => 'url',
-          ),      
+          // array(
+          //   'name' => 'Rapport d\'activité',
+          //   'desc' => 'Entrez l\'url complète (externe ou de la bibliothèque média)',
+          //   'id' => 'rapport_activite',
+          //   'type' => 'url',
+          // ),      
           array(
             'name' => 'Sur le web',
             'id' => 'web',
@@ -306,38 +306,38 @@ function rw_register_meta_box() {
   );
   
   
-  $meta_boxes[] = array(
-        'title' => 'Structures associées',
-        'pages' => array('structure'),
-        'context' => 'normal',
-        'priority' => 'high',
-        'fields' => array(
-          array(
-            'name'    => 'Partenaires ELSA',
-            'id'      => 'first_org',
-            'type'    => 'post',
-            'multiple' => true,
-            'post_type' => 'structure',
-            'field_type' => 'select_advanced',
-            'query_args' => array(
-              'orderby' => 'title',
-              'order' => 'ASC'
-            ),
-          ),
-          array(
-            'name'    => 'Organisme(s) secondaire(s)',
-            'id'      => 'second_org',
-            'type'    => 'post',
-            'multiple' => true,
-            'post_type' => 'structure',
-            'field_type' => 'select_advanced',
-            'query_args' => array(
-              'orderby' => 'title',
-              'order' => 'ASC'
-            ),
-          ),
-        )
-  );
+  // $meta_boxes[] = array(
+  //       'title' => 'Structures associées',
+  //       'pages' => array('structure'),
+  //       'context' => 'normal',
+  //       'priority' => 'high',
+  //       'fields' => array(
+  //         array(
+  //           'name'    => 'Partenaires ELSA',
+  //           'id'      => 'first_org',
+  //           'type'    => 'post',
+  //           'multiple' => true,
+  //           'post_type' => 'structure',
+  //           'field_type' => 'select_advanced',
+  //           'query_args' => array(
+  //             'orderby' => 'title',
+  //             'order' => 'ASC'
+  //           ),
+  //         ),
+  //         // array(
+  //         //   'name'    => 'Organisme(s) secondaire(s)',
+  //         //   'id'      => 'second_org',
+  //         //   'type'    => 'post',
+  //         //   'multiple' => true,
+  //         //   'post_type' => 'structure',
+  //         //   'field_type' => 'select_advanced',
+  //         //   'query_args' => array(
+  //         //     'orderby' => 'title',
+  //         //     'order' => 'ASC'
+  //         //   ),
+  //         // ),
+  //       )
+  // );
 
  
   
@@ -359,15 +359,15 @@ function rw_register_meta_box() {
               'type' => 'wysiwyg',
             ),
             array(
-              'name' => 'Rapport national',
+              'name' => 'Préparer une mission',
               'id' => 'rapport',
               'type' => 'wysiwyg',
             ),
-            array(
-              'name' => 'Autres liens',
-              'id' => 'liens',
-              'type' => 'wysiwyg',
-            ),
+            // array(
+            //   'name' => 'Autres liens',
+            //   'id' => 'liens',
+            //   'type' => 'wysiwyg',
+            // ),
             array(
               'name' => 'Acteurs Locaux (hors associations)',
               'id' => 'infoscomp',
@@ -390,18 +390,18 @@ function rw_register_meta_box() {
                 'order' => 'ASC'
               ),
             ),        
-            array(
-                'id' => 'adresse',
-                'name' => __('Capitale', 'rwmb'),
-                'type' => 'text',
-            ),
-            array(
-                'id' => 'loc',
-                'name' => __('Geolocation', 'rwmb'),
-                'type' => 'map',
-                'style' => 'width: 500px; height: 300px',
-                'address_field' => 'adresse', 
-            ),
+            // array(
+            //     'id' => 'adresse',
+            //     'name' => __('Capitale', 'rwmb'),
+            //     'type' => 'text',
+            // ),
+            // array(
+            //     'id' => 'loc',
+            //     'name' => __('Geolocation', 'rwmb'),
+            //     'type' => 'map',
+            //     'style' => 'width: 500px; height: 300px',
+            //     'address_field' => 'adresse', 
+            // ),
         ),
     );
   
@@ -454,11 +454,11 @@ function rw_register_meta_box() {
                 'id'   => "embed",
                 'type' => 'textarea'
             ),
-            array(
-              'name' => 'Date de fin',
-              'id'   => "end_date",
-              'type' => 'date',
-            ),   
+            // array(
+            //   'name' => 'Date de fin',
+            //   'id'   => "end_date",
+            //   'type' => 'date',
+            // ),   
     )
   );
   

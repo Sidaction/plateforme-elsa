@@ -24,7 +24,7 @@ function register_custompost() {
         'query_var' => 'pays',
         'has_archive' => true,
         'menu_icon' => '',
-        'supports' => array('title', 'thumbnail', 'excerpt', 'author')
+        'supports' => array('title', 'thumbnail', 'author')
     );
 
     register_post_type('pays', $args);
@@ -61,7 +61,7 @@ function register_custompost() {
       'capability_type' => 'part',
       'capabilities' => $capabilities,
       'menu_icon' => '',
-      'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author')
+      'supports' => array('title', 'editor', 'thumbnail', 'author')
     );
 
     register_post_type('structure', $args);
@@ -164,7 +164,7 @@ function register_custompost() {
         'capabilities'        => $capabilities_cont,
         'has_archive'         => true,
         'menu_icon'           => '',
-        'supports'            => array('title', 'editor', 'thumbnail', 'excerpt', 'author', 'category'),
+        'supports'            => array('title', 'editor', 'thumbnail', 'author', 'category'),
         'taxonomies'          => array( 'category' ),
     );
 
