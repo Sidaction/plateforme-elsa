@@ -17,7 +17,8 @@
                         <div class="m-2col list_item-contact">
                           <ul class="no-bullets">
 
-                            <?php if(!empty(get_post_meta($post->ID, 'tel', true))):?>
+                            <?php $tel = get_post_meta($post->ID, 'tel', true); ?>
+                            <?php if( !empty( $tel ) ):?>
                               <li>
                                 <span class="btn-inline"><?php echo get_post_meta($post->ID, 'tel', true);?></span>
                               </li>
