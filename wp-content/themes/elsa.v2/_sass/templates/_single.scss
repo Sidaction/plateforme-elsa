@@ -61,3 +61,30 @@
   }
 
 
+.structure-aside {
+
+  @include up-to(medium) {
+   
+    .page_media {
+      margin-top: $base_line_height * 2;
+    }
+    .page_metas {
+      display: none;
+    }
+  }
+}
+
+.structure-metas--mobile {
+
+  @include up-to(medium) {
+    .page_metas {
+      display: block !important;
+    }
+  } 
+  
+  @include at-least(medium) {
+    display: none;
+  }
+}
+
+

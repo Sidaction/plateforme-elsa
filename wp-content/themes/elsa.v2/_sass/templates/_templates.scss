@@ -181,7 +181,7 @@ body {
     }
   }
 
-  .page_aside {
+  .page_aside:not(.structure-aside) {
 
     @include up-to(medium) {
       display: none;
