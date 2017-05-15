@@ -6,7 +6,7 @@ require_once WP_SMUSH_DIR . "lib/class-wp-smush-settings.php";
 require_once WP_SMUSH_DIR . "lib/class-wp-smush-migrate.php";
 
 //Stats
-require_once WP_SMUSH_DIR . "lib/class-wp-smush-stats.php";
+require_once WP_SMUSH_DIR . "lib/class-wp-smush-db.php";
 
 //Include Resize class
 require_once WP_SMUSH_DIR . 'lib/class-wp-smush-resize.php';
@@ -158,6 +158,8 @@ if ( ! class_exists( 'WpSmush' ) ) {
 
 		function admin_init() {
 
+			global $wpsmush_dir;
+
 			//Handle Notice dismiss
 			$this->dismiss_smush_upgrade();
 
@@ -166,17 +168,21 @@ if ( ! class_exists( 'WpSmush' ) ) {
 
 			//Initialize variables
 			$this->initialise();
+
+			//Create a clas object, if doesn't exists
+			if ( empty( $wpsmush_dir ) && class_exists( 'WpSmushDir' ) ) {
+				$wpsmush_dir = new WpSmushDir();
+			}
+			$wpsmush_dir->create_table();
 		}
 
 		/**
 		 * Process an image with Smush.
 		 *
-		 * Returns an array of the $file $results.
+		 * @param string $file_path Absolute path to the image
 		 *
-		 * @param   string $file Full absolute path to the image file
-		 * @param   string $file_url Optional full URL to the image file
+		 * @return array|bool
 		 *
-		 * @returns array
 		 */
 		function do_smushit( $file_path = '' ) {
 			$errors   = new WP_Error();
@@ -238,10 +244,6 @@ if ( ! class_exists( 'WpSmush' ) ) {
 
 			//Add the file as tmp
 			file_put_contents( $tempfile, $response['data']->image );
-
-			//Take Backup
-			global $wpsmush_backup;
-			$wpsmush_backup->create_backup( $file_path );
 
 			//replace the file
 			$success = @rename( $tempfile, $file_path );
@@ -568,6 +570,11 @@ if ( ! class_exists( 'WpSmush' ) ) {
 				return $meta;
 			}
 
+			//Check if we're restoring the image
+			if ( get_transient( "wp-smush-restore-$ID" ) ) {
+				return $meta;
+			}
+
 			/**
 			 * Filter: wp_smush_image
 			 *
@@ -643,8 +650,8 @@ if ( ! class_exists( 'WpSmush' ) ) {
 
 			$data = false;
 
-			$file      = @fopen( $file_path, 'r' );
-			$file_data = fread( $file, $file_size );
+			$file_data = file_get_contents( $file_path );
+
 			$headers   = array(
 				'accept'       => 'application/json', // The API returns JSON
 				'content-type' => 'application/binary', // Set content type to binary
@@ -675,8 +682,6 @@ if ( ! class_exists( 'WpSmush' ) ) {
 			@ini_set('memory_limit','256M');
 			$result  = wp_remote_post( $api_url, $args );
 
-			//Close file connection
-			fclose( $file );
 			unset( $file_data );//free memory
 			if ( is_wp_error( $result ) ) {
 
@@ -739,7 +744,6 @@ if ( ! class_exists( 'WpSmush' ) ) {
 			unset( $response );//free memory
 			return $data;
 		}
-
 
 		/**
 		 * Print column header for Smush results in the media library using
@@ -1268,6 +1272,11 @@ if ( ! class_exists( 'WpSmush' ) ) {
 				return;
 			}
 
+			//Do not smush if auto smush is turned off
+			if ( ! $this->is_auto_smush_enabled() ) {
+				return;
+			}
+
 			/**
 			 * Allows to skip a image from smushing
 			 *
@@ -1683,13 +1692,13 @@ if ( ! class_exists( 'WpSmush' ) ) {
 		 * @param $image_id
 		 */
 		function delete_images( $image_id ) {
-			global $wpsmush_stats;
+			global $wpsmush_db;
 
 			//Update the savings cache
-			$wpsmush_stats->resize_savings( true );
+			$wpsmush_db->resize_savings( true );
 
 			//Update the savings cache
-			$wpsmush_stats->conversion_savings( true );
+			$wpsmush_db->conversion_savings( true );
 
 			//If no image id provided
 			if ( empty( $image_id ) ) {
@@ -1871,7 +1880,7 @@ if ( ! class_exists( 'WpSmush' ) ) {
 		 */
 		function wp_smush_redirect( $plugin ) {
 
-			global $wpsmushit_admin, $wpsmush_stats;
+			global $wpsmush_db;
 
 			//Run for only our plugin
 			if ( $plugin != WP_SMUSH_BASENAME ) {
@@ -1888,7 +1897,7 @@ if ( ! class_exists( 'WpSmush' ) ) {
 			}
 
 			//If images are already smushed
-			if ( $wpsmush_stats->smushed_count( false ) > 0 ) {
+			if ( $wpsmush_db->smushed_count( false ) > 0 ) {
 				return false;
 			}
 
@@ -1961,9 +1970,10 @@ if ( ! class_exists( 'WpSmush' ) ) {
 		 *
 		 * @param $stats
 		 *
+		 * @return mixed
 		 */
 		function total_compression( $stats ) {
-			$stats['stats']['size_before'] = $stats['stats']['size_after'] = $stats['stats']['time'] = '';
+			$stats['stats']['size_before'] = $stats['stats']['size_after'] = $stats['stats']['time'] = 0;
 			foreach ( $stats['sizes'] as $size_stats ) {
 				$stats['stats']['size_before'] += ! empty( $size_stats->size_before ) ? $size_stats->size_before : 0;
 				$stats['stats']['size_after'] += ! empty( $size_stats->size_after ) ? $size_stats->size_after : 0;
@@ -2034,6 +2044,8 @@ if ( ! class_exists( 'WpSmush' ) ) {
 		 * Original File path
 		 *
 		 * @param string $original_file
+		 *
+		 * @return string File Path
 		 *
 		 */
 		function original_file( $original_file = '' ) {
@@ -2115,6 +2127,11 @@ if ( ! class_exists( 'WpSmush' ) ) {
 				return;
 			}
 
+			//Check if we're restoring the image
+			if ( get_transient( "wp-smush-restore-$id" ) ) {
+				return;
+			}
+
 			/**
 			 * Filter: wp_smush_image
 			 *
@@ -2174,7 +2191,7 @@ if ( ! class_exists( 'WpSmush' ) ) {
 			$res = $this->do_smushit( $post_data['filepath'] );
 
 			//Exit if smushing wasn't successful
-			if ( empty( $res['success'] ) || ! $res['success'] ) {
+			if ( is_wp_error( $res) || empty( $res['success'] ) || ! $res['success'] ) {
 				return;
 			}
 
@@ -2213,5 +2230,7 @@ if ( ! class_exists( 'WpSmush' ) ) {
 }
 
 //Include Admin classes
-require_once( WP_SMUSH_DIR . 'lib/class-wp-smush-bulk.php' );
 require_once( WP_SMUSH_DIR . 'lib/class-wp-smush-admin.php' );
+
+//Include Directory Smush
+require_once WP_SMUSH_DIR . 'lib/class-wp-smush-dir.php';
