@@ -7,8 +7,7 @@
 get_header(); 
 
 global $user_readitlater_list;
-
-    if( is_array($user_readitlater_list ) ) {
+    if( is_array( $user_readitlater_list ) ) {
         $bookmark_posts = count($user_readitlater_list['posts_in_ril']);
     }
     else {
@@ -20,6 +19,7 @@ global $user_readitlater_list;
  <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
   <section id="site-content" class="site-content page">
+
 
     <article class="main-content clearfix noback">
 

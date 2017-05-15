@@ -518,7 +518,7 @@ function wp_get_attachment( $attachment_id ) {
  */
 
 if( get_current_user_id() > 0 ) {
-  $userid= get_current_user_id();
+  $userid = get_current_user_id();
   $user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$userid);
 }
 else {
@@ -540,7 +540,7 @@ function add_selection_item_to_menu( $items, $args ) {
 
     //logged in users
     if( get_current_user_id() > 0 ) {
-      $userid= get_current_user_id();
+      $userid = get_current_user_id();
       $user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$userid);
     }
     else {

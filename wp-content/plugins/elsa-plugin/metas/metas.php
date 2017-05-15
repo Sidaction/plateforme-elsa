@@ -473,7 +473,7 @@ function rw_register_meta_box() {
 * Taxonomies
 */
 
-add_action( 'admin_init', 'register_taxonomy_meta_boxes' );
+//add_action( 'admin_init', 'register_taxonomy_meta_boxes' );
 
 function register_taxonomy_meta_boxes(){
   if ( !class_exists( 'RW_Taxonomy_Meta' ) )
@@ -486,11 +486,11 @@ function register_taxonomy_meta_boxes(){
     'taxonomies' => array('category', 'boiteoutils'), 
     'id'         => 'info',                
     'fields' => array(
-        array(
-          'name' => 'Texte de présentation',
-          'id'   => 'presentation',
-          'type' => 'wysiwyg',
-        ),
+        // array(
+        //   'name' => 'Texte de présentation',
+        //   'id'   => 'presentation',
+        //   'type' => 'wysiwyg',
+        // ),
         // array(
         //   'name' => 'Boîtes à outils liées',
         //   'id'   => 'boites',

@@ -20,6 +20,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
  $web = get_post_meta($post->ID, 'web', true);
 
+
 ?>
  
  
@@ -35,7 +36,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
               <h1 class="h1">
                   <?php the_title();?>
               </h1> 
-              <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?>
+              <?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', 'pays/' ); ?>
             </div>
           </div>     
         </div>
@@ -45,48 +46,16 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
             <div class="wrap row">
 
                 <div class="m-5col page_main page_copy">
-                    <?php the_content();?>
-                    
-                    <?php if(!empty($rapport_activite)): ?>
-                        <a href="<?php echo $rapport_activite;?>" target="_blank">» consulter le rapport d'activité</a>
-                    <?php endif;?>
-                </div>
-
-                <div class="m-3col page_aside">
 
 
-                    <?php $images = get_post_meta($structure_id, 'diaporama', false ); ?>
-                    <?php if( isset($images) && !empty($images) ) : ?>
-
-                        <div class="page_media">
-
-                            <div id="slider_outer" class="slider_outer">
-                                <ul class="no-bullets clearfix bxslider">
-                                    <?php $i = 0;
-
-                                    foreach ( $images as $img_id )   {
-                                      
-                                        $src = wp_get_attachment_image_src( $img_id, 'large' );
-                                        $src = $src[0];
-                                        $title = get_the_title($img_id);
-                                        $class = ($i==0) ? 'class="first"':'';
-
-                                        $image_metas = wp_get_attachment($img_id);
-                                        $caption = $image_metas['caption'];
-
-                                        echo "<li ". $class . "><img src='{$src}' /><p class='bx-caption'>{$caption}</p></li>";
-
-                                        $i++;
-                                    } ?>
-                                </ul>
-                                <a href="#" id="js-sliderfull" class="btn-inline-little">Voir en plein écran</a>
-                            </div>
-                        
-                        </div><!-- .page_media -->
-                    <?php endif; ?>
-
+                    <div class="structure-metas--mobile">
 
                     <div class="page_metas">
+
+                    <?php 
+
+                        ob_start(); ?>
+
 
                         <div class="page_metas_row clearfix logo">
                             <?php the_post_thumbnail('medium'); // LOGO ASSOCIATION ?>
@@ -152,6 +121,60 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
                         </ul>
 
+                    <?php
+                        $metas_html = ob_get_contents();
+                        ob_end_flush(); ?>
+
+                    </div>
+
+                </div>
+
+
+
+
+                    <?php the_content();?>
+                    
+                    <?php if(!empty($rapport_activite)): ?>
+                        <a href="<?php echo $rapport_activite;?>" target="_blank">» consulter le rapport d'activité</a>
+                    <?php endif;?>
+                </div>
+
+                <div class="m-3col page_aside structure-aside">
+
+
+                    <?php $images = get_post_meta($structure_id, 'diaporama', false ); ?>
+                    <?php if( isset($images) && !empty($images) ) : ?>
+
+                        <div class="page_media">
+
+                            <div id="slider_outer" class="slider_outer">
+                                <ul class="no-bullets clearfix bxslider">
+                                    <?php $i = 0;
+
+                                    foreach ( $images as $img_id )   {
+                                      
+                                        $src = wp_get_attachment_image_src( $img_id, 'large' );
+                                        $src = $src[0];
+                                        $title = get_the_title($img_id);
+                                        $class = ($i==0) ? 'class="first"':'';
+
+                                        $image_metas = wp_get_attachment($img_id);
+                                        $caption = $image_metas['caption'];
+
+                                        echo "<li ". $class . "><img src='{$src}' /><p class='bx-caption'>{$caption}</p></li>";
+
+                                        $i++;
+                                    } ?>
+                                </ul>
+                                <a href="#" id="js-sliderfull" class="btn-inline-little">Voir en plein écran</a>
+                            </div>
+                        
+                        </div><!-- .page_media -->
+                    <?php endif; ?>
+
+
+                    <div class="page_metas">
+                        <?php echo $metas_html; ?>
                     </div><!-- .page_metas -->
 
                 </div><!-- .page_aside -->
