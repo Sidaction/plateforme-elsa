@@ -3,7 +3,7 @@
  * Page détail d'une Boite à outils
  */
 
-    $boite = get_category( get_queried_object()->term_id );  
+    $boite = get_category( get_queried_object() );  
 
     $boite_id = $boite->cat_ID;
     $boite_slug = $boite->slug;
