@@ -635,5 +635,5 @@ function add_selection_item_to_menu( $items, $args ) {
 
     }  
 
-    add_action( 'init', 'theme_addrole' );  
+    //add_action( 'init', 'theme_addrole' );  
 
