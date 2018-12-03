@@ -1,5 +1,4 @@
 <?php
-
 /* ///////////////////////////////////////////////////////////////
   PERSONNALISATION DES CUSTOM POSTS / CUSTOM FIELDS / TAXONOMIES
   PLATEFORME ELSA / Clair et Net.

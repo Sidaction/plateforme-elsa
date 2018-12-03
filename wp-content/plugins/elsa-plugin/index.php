@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * Plugin Name: Plugin pour le site de la Plateforme ELSA

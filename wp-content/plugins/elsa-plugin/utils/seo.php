@@ -1,6 +1,4 @@
 <?php
-
-
 	//// GENERATION DU TITLE
 	function generate_title(){  
 		echo '<title>';
@@ -96,5 +94,3 @@
 		
     }
 
-	
-?>

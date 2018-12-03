@@ -1,11 +1,8 @@
 <?php
-
 /* 
  * Custom Metas boxes. 
  * Need Meta Box plugin.
  */ 
-
-
 
 add_action('admin_init', 'rw_register_meta_box');
 
@@ -15,7 +12,6 @@ function rw_register_meta_box() {
 
     $meta_boxes = array();
   
-
 
 /* 
  * Diaporamas
@@ -513,6 +509,3 @@ function register_taxonomy_meta_boxes(){
       new RW_Taxonomy_Meta( $meta_section );
     }
 }
-
-
-?>

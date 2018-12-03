@@ -13,7 +13,7 @@ class themeManager {
 
         //setlocale(LC_TIME, 'fr_FR'); // Serveur Win32
         //global $emailadmin;
-        $this->emailadmin = "info@clair-et-net.com";
+        $this->emailadmin = "compfelsa@gmail.com";
         $this->templatelink= get_bloginfo( 'template_url' ); 
         $this->rootlink =  get_bloginfo( 'url' );
         $this->pagename='';

@@ -1,8 +1,7 @@
 <?php
-
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
-@ini_set( 'max_execution_time', '300' );
+//@ini_set( 'max_execution_time', '300' );
 
 global $gema75_ril_frontend;
 
@@ -561,4 +560,80 @@ function add_selection_item_to_menu( $items, $args ) {
     return $items;
 }
 
+
+
+   function theme_addrole() {
+
+        global $wp_roles;
+        
+        remove_role( 'partenaire');
+
+        add_role( 'partenaire', 'Compte partenaire',
+            array(
+            'read' => true,
+            'level_0' => 1,
+            ) 
+        );  
+        
+        // ajout de l'acces à la partie privée
+        $part = get_role( 'partenaire' );
+        $part->add_cap( 'edit_pending_parts' );
+        $part->add_cap( 'edit_parts' );
+        $part->add_cap( 'manage_parts' );
+        $part->add_cap( 'edit_pending_conts' );
+        $part->add_cap( 'edit_conts' );
+        $part->add_cap( 'manage_conts' );
+        $part->add_cap( 'publish_conts' );
+        $part->add_cap('upload_files');
+
+
+        // ajout de la bibliotheque media aux contributors
+        $contributor = get_role( 'contributor' );
+        //$contributor->add_cap('upload_files');
+
+
+        // ajouter aux administrateurs et éditeurs l'accès à la partie privée
+        $administrator = get_role( 'administrator' );
+        // $administrator->add_cap( 'access_espace_partenaire' );
+        // $administrator->add_cap( 'publish_parts' );
+        // $administrator->add_cap( 'edit_parts' );
+        // $administrator->add_cap( 'edit_others_parts' );
+        // $administrator->add_cap( 'delete_parts' );
+        // $administrator->add_cap( 'delete_others_parts' );
+        // $administrator->add_cap( 'read_private_parts' );
+        // $administrator->add_cap( 'manage_parts' );
+        // $administrator->add_cap( 'publish_conts' );
+        // $administrator->add_cap( 'edit_conts' );
+        // $administrator->add_cap( 'edit_others_conts' );
+        // $administrator->add_cap( 'delete_conts' );
+        // $administrator->add_cap( 'delete_others_conts' );
+        // $administrator->add_cap( 'read_private_conts' );
+        // $administrator->add_cap( 'manage_conts' );
+        // $administrator->add_cap( 'manage_exports' );
+
+
+
+        $editor = get_role( 'editor' );
+        // $editor->add_cap( 'access_espace_partenaire' );
+        // $editor->add_cap( 'publish_parts' );
+        // $editor->add_cap( 'edit_parts' );
+        // $editor->add_cap( 'edit_others_parts' );
+        // $editor->add_cap( 'delete_parts' );
+        // $editor->add_cap( 'delete_others_parts' );
+        // $editor->add_cap( 'read_private_parts' );
+        // $editor->add_cap( 'manage_parts' );
+        // $editor->add_cap( 'publish_conts' );
+        // $editor->add_cap( 'edit_conts' );
+        // $editor->add_cap( 'edit_others_conts' );
+        // $editor->add_cap( 'delete_conts' );
+        // $editor->add_cap( 'delete_others_conts' );
+        // $editor->add_cap( 'read_private_conts' );
+        // $editor->add_cap( 'manage_conts' );
+        // $editor->add_cap( 'manage_exports' );
+
+
+
+    }  
+
+    add_action( 'init', 'theme_addrole' );  
 
