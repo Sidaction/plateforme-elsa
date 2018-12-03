@@ -3,7 +3,7 @@
 Plugin Name: Cookie Consent
 Plugin URI: https://catapultthemes.com/cookie-consent/
 Description: The only cookie consent plugin you'll ever need.
-Version: 2.3.7
+Version: 2.3.11
 Author: Catapult_Themes
 Author URI: https://catapultthemes.com/
 Text Domain: uk-cookie-consent
@@ -24,7 +24,7 @@ if ( is_admin() ) {
 	require_once dirname( __FILE__ ) . '/admin/class-ctcc-admin.php';
 	$CTCC_Admin = new CTCC_Admin();
 	$CTCC_Admin -> init();
-	
+
 	$options = get_option( 'ctcc_options_settings' );
 	// Add the metafield if enabled
 	if( ! empty( $options['enable_metafield'] ) ) {
@@ -76,24 +76,27 @@ function ctcc_create_policy_page() {
 }
 register_activation_hook ( __FILE__, 'ctcc_create_policy_page' );
 
-/**
- * This function allows you to track usage of your plugin
- * Place in your main plugin file
- * Refer to https://wisdomplugin.com/support for help
- */
-if( ! class_exists( 'Plugin_Usage_Tracker') ) {
-	require_once dirname( __FILE__ ) . '/tracking/class-plugin-usage-tracker.php';
-}
-if( ! function_exists( 'uk_cookie_consent_start_plugin_tracking' ) ) {
-	function uk_cookie_consent_start_plugin_tracking() {
-		$wisdom = new Plugin_Usage_Tracker(
-			__FILE__,
-			'https://wisdomplugin.com',
-			array( 'ctcc_options_settings' ),
-			true,
-			true,
-			1
+function ctcc_admin_notice() {
+
+	$option = get_option( 'ctcc_dismiss_gdpr' );
+	if( false === $option && ! isset( $_GET['dismiss'] ) ) {
+		$url = add_query_arg(
+			'dismiss',
+			'gdpr',
+			$_SERVER['REQUEST_URI']
 		);
+		printf(
+			'<div class="notice notice-info"><p><strong>%s</strong></p><p>%s</p><p><a href="%s" class="button button-primary">%s</a></p><p><a href="%s">%s</a></p></div>',
+			__( 'Cookie Consent and GDPR', 'ctcc' ),
+			__( 'Do you need help with making your site compliant with GDPR? Iubenda provide attorney-level solutions to help with your legal requirements, including generating privacy and cookie policies that are automatically updated if the law changes.', 'ctcc' ),
+			'http://iubenda.refr.cc/JKNZ55D',
+			__( 'Find Out More', 'ctcc' ),
+			esc_url( $url ),
+			__( 'No Thanks', 'ctcc' )
+		);
+	} else {
+		update_option( 'ctcc_dismiss_gdpr', 1 );
 	}
-	uk_cookie_consent_start_plugin_tracking();
+
 }
+// add_action( 'admin_notices', 'ctcc_admin_notice' );
