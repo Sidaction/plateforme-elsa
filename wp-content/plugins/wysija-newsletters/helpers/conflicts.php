@@ -104,4 +104,17 @@ class WYSIJA_help_conflicts extends WYSIJA_object{
             }
         }
      }
+
+    function resolveScriptConflicts() {
+      // WP 4.9 mediaelement script conflicts with the MP2 editor
+      $dequeue_scripts = array($this, '_deregisterMediaElementScript');
+      add_action('wp_print_scripts', $dequeue_scripts, PHP_INT_MAX);
+      add_action('admin_print_footer_scripts', $dequeue_scripts, PHP_INT_MAX);
+      add_action('admin_footer', $dequeue_scripts, PHP_INT_MAX);
+    }
+
+    function _deregisterMediaElementScript() {
+      wp_deregister_script('mediaelement');
+    }
+
 }

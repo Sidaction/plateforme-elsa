@@ -115,69 +115,25 @@ class WYSIJA_control_back_campaigns extends WYSIJA_control_back {
 			$welcome_video_link = $video_language['en_EN'];
 		}
 
-		$this->data['sections'][] = array(
-			'title' => __('Stay up to date! Subscribe to our newsletters', WYSIJA) . '<span id="poll_result"></span>',
-			'format' => 'normal',
-			'paragraphs' => array('<div class="mpoet-update-subscribe" ><h4></h4><div class="mpoet-update-subscribe-left"> <p>'.__('We send a monthly newsletter with the following:',WYSIJA).'</p>' .
-                                                                                                    '<ul>' .
-                                                                                                            '<li>'.__('Important plugin updates',WYSIJA).'</li>' .
-                                                                                                            '<li>'.__('Coupons',WYSIJA).'</li>' .
-                                                                                                            '<li>'.__('Tips for you, or your customers',WYSIJA).'</li>' .
-                                                                                                            '<li>'.__('What we’re working on',WYSIJA).'</li>' .
-                                                                                                            '<li>'.__('News from us, the team',WYSIJA).'</li>' .
-                                                                                                    '</ul>
-                                                                                                     <p>View <a target="_blank" href="http://www.mailpoet.com/?wysija-page=1&controller=email&action=view&email_id=1181&wysijap=subscriptions-3">an example blog post email</a> and <a target="_blank" href="http://www.mailpoet.com/?wysija-page=1&controller=email&action=view&email_id=64&wysijap=subscriptions-2">an example newsletter</a>.</p>
-                                                                                                        </div>' .
-                                                                                            '<div class="mpoet-update-subscribe-right">' .
+        $this->data['sections'][] = array(
+          'format' => 'title-content',
+          'paragraphs' => array('
+<ul style="list-style: disc inside none">
+  <li><a href="http://beta.docs.mailpoet.com/article/234-video-overview?utm_source=mp2&utm_campaign=whatsnew">'.__("View the 2-minute video", WYSIJA).'</a></li>
+  <li><a href="https://www.mailpoet.com/faq-mailpoet-version-2/?utm_source=mp2&utm_campaign=whatsnew">'.__("Read the FAQ", WYSIJA).'</a></li>
+  <li><a href="http://beta.docs.mailpoet.com/article/189-comparison-of-mailpoet-2-and-3?utm_source=mp2&utm_campaign=whatsnew">'.__('Comparison table of both versions', WYSIJA).'</a></li>
+  <li><a href="http://demo.mailpoet.com?utm_source=mp2&utm_campaign=whatsnew">'.__('Try the online demo', WYSIJA).'</li>
+</ul>
+<br/>
+<a class="button-primary" href="plugin-install.php?s=mailpoet&tab=search&type=author">'.__('Download MailPoet 3 now', WYSIJA).'</a>
 
-                                                                                            '<iframe width="380" scrolling="no" frameborder="0" src="http://www.mailpoet.com/?wysija-page=1&controller=subscribers&action=wysija_outter&wysija_form=5&external_site=1&wysijap=subscriptions-3" class="iframe-wysija" vspace="0" tabindex="0" style="position: static; top: 0pt; margin: 0px; border-style: none; height: 180px; left: 0pt; visibility: visible; background-color: #f1f1f1!important;" marginwidth="0" marginheight="0" hspace="0" allowtransparency="true" title="Subscription Wysija"></iframe>
-                                                                                                </div>
-                                                                                                <div style="clear:both;"></div>
-
-                                                                                                </div>',
-			)
-		);
-
-		$this->data['sections'][]=array(
-			'title'=>__('First Time? See it in Action',WYSIJA),
-			'format'=>'normal',
-			'paragraphs'=>array(
-					__('You can start by watching this video by one of our users.',WYSIJA),
-					$welcome_video_link
-				)
-			);
-
-		// Check if user is already sharing data, and hide the share link.
-		if (!$model_config->getValue('analytics')) {
-		  $share_section = array(
-			'title' => __('Share your data', WYSIJA),
-			'content' => str_replace(
-			  array('[link]', '[/link]', '[ajaxlink]', '[/ajaxlink]'), array('<a title="Anonymous Data" target="_blank" href="http://support.mailpoet.com/knowledgebase/share-your-data/?utm_source=wpadmin&utm_campaign=welcome_page">', '</a>', '<a id="share_analytics" href="javascript:;">', '</a>'), __("We know too little about our users. We're looking for [link]anonymous data[/link] to build a better plugin. [ajaxlink]Yes, count me in![/ajaxlink]", WYSIJA))
-			);
-		  } else {
-			$share_section = array(
-			  'title' => __('Share your data', WYSIJA),
-			  'content' => str_replace(
-				array('[link]', '[/link]'), array('<a title="Anonymous Data" target="_blank" href="http://support.mailpoet.com/knowledgebase/share-your-data/?utm_source=wpadmin&utm_campaign=welcome_page">', '</a>', '<a id="share_analytics" href="javascript:;">', '</a>'), __("We know too little about our users. We're looking for [link]anonymous data[/link] to build a better plugin. Thanks, you're already sharing!", WYSIJA))
-			  );
-		  }
-
-		$this->data['sections'][] = array(
-			'title' => __('What You Can Do', WYSIJA),
-			'cols' => array(
-				array(
-					'title' => __('5 minute newbie guide', WYSIJA),
-					'content' => __('Your MailPoet comes with an example newsletter. You\'ll see it when you close this welcome page. Edit it to start playing with it.', WYSIJA)
-				  ),
-				$share_section,
-				array(
-					'title' => __('Help yourself. Or let us help you.', WYSIJA),
-					'content' => str_replace(
-							array('[link]', '[/link]'), array('<a href="http://support.mailpoet.com/" target="_blank" title="On our blog!">', '</a>'), __('We got documentation and a ticket system on [link]support.mailpoet.com[/link]. We answer within 24h.', WYSIJA))
-				)
-			),
-			'format' => 'three-col',
-		);
+<!-- poll -->
+<div><br/><br/></div>
+<style type="text/css">.pds-box { margin: 0 !important; }</style>
+<script type="text/javascript" charset="utf-8" src="https://secure.polldaddy.com/p/9882029.js"></script>
+<noscript><a href="https://polldaddy.com/poll/9882029/">I\'m not switching to the new MailPoet 3 because...</a></noscript>
+          ')
+        );
 
 		$this->viewObj->skip_header = true;
 
@@ -2632,7 +2588,6 @@ class WYSIJA_control_back_campaigns extends WYSIJA_control_back {
 	}
 
 	function special_new_wordp_upload() {
-
 		wp_enqueue_script('wysija-plupload-handlers', WYSIJA_URL . 'js/jquery/pluploadHandler.js', array('plupload-all', 'jquery'));
 		$uploader_l10n = array(
 			'queue_limit_exceeded' => __('You have attempted to queue too many files.'),
@@ -2669,61 +2624,6 @@ class WYSIJA_control_back_campaigns extends WYSIJA_control_back {
 
 		$errors = array();
 		return wp_iframe(array($this->viewObj, 'popup_new_wp_upload'), $errors);
-	}
-
-	function special_wordp_upload() {
-
-		wp_enqueue_script('swfupload-all');
-		wp_enqueue_script('swfupload-handlers');
-		wp_enqueue_script('wysija-upload-handlers', WYSIJA_URL . "js/jquery/uploadHandlers.js");
-		wp_enqueue_script('image-edit');
-		wp_enqueue_script('set-post-thumbnail');
-		wp_enqueue_style('imgareaselect');
-
-		$errors = array();
-		$id = 0;
-		if (isset($_GET['flash']))
-			$_GET['flash'] = 1;
-		if (isset($_POST['html-upload']) && !empty($_FILES)) {
-			// Upload File button was clicked
-			$id = media_handle_upload('async-upload', $_REQUEST['post_id']);
-			unset($_FILES);
-			if (is_wp_error($id)) {
-				$errors['upload_error'] = $id;
-				$id = false;
-			}
-		}
-
-		if (!empty($_POST['insertonlybutton'])) {
-			$href = $_POST['insertonly']['href'];
-			if (!empty($href) && !strpos($href, '://'))
-				$href = "http://$href";
-
-			$title = esc_attr($_POST['insertonly']['title']);
-			if (empty($title))
-				$title = basename($href);
-			if (!empty($title) && !empty($href))
-				$html = "<a href='" . esc_url($href) . "' >$title</a>";
-			$html = apply_filters('file_send_to_editor_url', $html, esc_url_raw($href), $title);
-			return media_send_to_editor($html);
-		}
-
-		if (!empty($_POST)) {
-			$return = media_upload_form_handler();
-
-			if (is_string($return))
-				return $return;
-			if (is_array($return))
-				$errors = $return;
-		}
-
-		if (isset($_POST['save'])) {
-			$errors['upload_notice'] = __('Saved.', WYSIJA);
-			return media_upload_gallery();
-		}
-
-
-		return wp_iframe(array($this->viewObj, 'popup_wp_upload'), $errors);
 	}
 
 	function _checkEmailExists($emailId) {

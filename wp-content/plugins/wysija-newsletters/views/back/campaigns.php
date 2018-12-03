@@ -423,10 +423,10 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 											$scheduled_on = date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $scheduletimenoffset);
 											if ($timeleft <= (60 * 60 * 24)) { // 1 day
 												$timeleft = $helper_toolbox->duration_string($timeleft, true, 4);
-												$durationsent = '<span title="' . $scheduled_on . '">' . sprintf(__('Scheduled to be sent in %1$s'), $timeleft) . '</span>';
+												$durationsent = '<span title="' . $scheduled_on . '">' . sprintf(__('Scheduled to be sent in %1$s', WYSIJA), $timeleft) . '</span>';
 											} else {
 
-												$durationsent = sprintf(__('Scheduled to be sent on %1$s'), $scheduled_on);
+												$durationsent = sprintf(__('Scheduled to be sent on %1$s', WYSIJA), $scheduled_on);
 											}
 
 										}
@@ -1215,11 +1215,7 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 			<div class="wj_images" style="display:none;">
 				<div class="wj_button">
 					<?php
-					if (version_compare(get_bloginfo('version'), '3.3.0') >= 0) {
-						$action = 'special_new_wordp_upload';
-					} else {
-						$action = 'special_wordp_upload';
-					}
+					$action = 'special_new_wordp_upload';
 					?>
 					<a id="wysija-upload-browse" class="button" href="javascript:;" href2="admin.php?page=wysija_campaigns&action=medias&tab=<?php echo $action; ?>&emailId=<?php echo $_REQUEST['id'] ?>"><?php _e('Add Images', WYSIJA) ?></a>
 				</div>
@@ -1263,7 +1259,7 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 				<!-- THEMES BAR -->
 			<?php if (WYSIJA::current_user_can('wysija_theme_tab')): ?>
 					<div class="wj_themes" style="display:none;">
-						<div class="wj_button">
+						<div class="wj_button" style="display:none;">
 							<a id="wysija-themes-browse" class="button" href="javascript:;" href2="admin.php?page=wysija_campaigns&action=themes"><?php _e('Add more themes', WYSIJA) ?></a>
 						</div>
 						<ul id="wj_themes_list" class="clearfix">
@@ -2560,166 +2556,6 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 				<?php
 			}
 
-			function popup_wp_upload($errors) {
-				global $redir_tab, $type, $tab;
-
-				$redir_tab = 'wp_upload';
-
-				media_upload_header();
-				$flash_action_url = admin_url('async-upload.php');
-
-				// If Mac and mod_security, no Flash. :(
-				$flash = true;
-				/*
-				  if(false !== stripos($_SERVER['HTTP_USER_AGENT'], 'mac') && apache_mod_loaded('mod_security')) {
-				  $flash = false;
-				  } */
-
-				$flash = apply_filters('flash_uploader', $flash);
-				$post_id = isset($_REQUEST['post_id']) ? intval($_REQUEST['post_id']) : 0;
-
-				$upload_size_unit = $max_upload_size = wp_max_upload_size();
-				$sizes = array('KB', 'MB', 'GB');
-				for ($u = -1; $upload_size_unit > 1024 && $u < count($sizes) - 1; $u++)
-					$upload_size_unit /= 1024;
-				if ($u < 0) {
-					$upload_size_unit = 0;
-					$u = 0;
-				} else {
-					$upload_size_unit = (int) $upload_size_unit;
-				}
-				echo $this->messages(true);
-				?>
-				<div class="updated"><ul><li><?php _e('Please update your WordPress to the latest version, in order to get the latest uploading system.', WYSIJA) ?></li></ul></div>
-				<div id="overlay"><img id="loader" src="<?php echo WYSIJA_URL ?>img/wpspin_light.gif" /></div>
-				<div class="popup_content media-wp-upload">
-					<script type="text/javascript">
-						//<![CDATA[
-						var uploaderMode = 0;
-						jQuery(document).ready(function($) {
-							uploaderMode = getUserSetting('uploader');
-							$('.upload-html-bypass a').click(function() {
-								deleteUserSetting('uploader');
-								uploaderMode = 0;
-								swfuploadPreLoad();
-								return false;
-							});
-							$('.upload-flash-bypass a').click(function() {
-								setUserSetting('uploader', '1');
-								uploaderMode = 1;
-								swfuploadPreLoad();
-								return false;
-							});
-						});
-						//]]>
-					</script>
-
-					<div id="media-upload-notice">
-		<?php if (isset($errors['upload_notice'])) { ?>
-			<?php echo $errors['upload_notice']; ?>
-		<?php } ?>
-					</div>
-					<div id="media-upload-error">
-		<?php if (isset($errors['upload_error']) && is_wp_error($errors['upload_error'])) { ?>
-			<?php echo $errors['upload_error']->get_error_message(); ?>
-		<?php } ?>
-					</div>
-		<?php
-		// Check quota for this blog if multisite
-		if (is_multisite() && !is_upload_space_available()) {
-			echo '<p>' . sprintf(__('Sorry, you have filled your storage quota (%s MB).'), get_space_allowed()) . '</p>';
-			return;
-		}
-
-		do_action('pre-upload-ui');
-
-		if ($flash) :
-			?>
-						<script type="text/javascript">
-							//<![CDATA[
-							var swfu;
-							SWFUpload.onload = function() {
-								var settings = {
-									button_text: '<span class="button"><?php _e('Select Files', WYSIJA); ?><\/span>',
-									button_text_style: '.button { text-align: center; font-weight: bold; font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif; font-size: 11px; text-shadow: 0 1px 0 #FFFFFF; color:#464646; }',
-									button_height: "23",
-									button_width: "132",
-									button_text_top_padding: 3,
-									button_image_url: '<?php echo includes_url('images/upload.png?ver=20100531'); ?>',
-									button_placeholder_id: "flash-browse-button",
-									upload_url: "<?php echo esc_attr($flash_action_url); ?>",
-									flash_url: "<?php echo includes_url() . 'js/swfupload/swfupload.swf'; ?>",
-									file_post_name: "async-upload",
-									file_types: "<?php echo apply_filters('upload_file_glob', '*.*'); ?>",
-									post_params: {
-										"post_id": "<?php echo $post_id; ?>",
-										"auth_cookie": "<?php echo (is_ssl() ? $_COOKIE[SECURE_AUTH_COOKIE] : $_COOKIE[AUTH_COOKIE]); ?>",
-										"logged_in_cookie": "<?php echo $_COOKIE[LOGGED_IN_COOKIE]; ?>",
-										"_wpnonce": "<?php echo wp_create_nonce('media-form'); ?>",
-										"type": "<?php echo $type; ?>",
-										"tab": "<?php echo $tab; ?>",
-										"short": "1"
-									},
-									file_size_limit: "<?php echo $max_upload_size; ?>b",
-									file_dialog_start_handler: fileDialogStart,
-									file_queued_handler: fileQueued,
-									upload_start_handler: uploadStart,
-									upload_progress_handler: uploadProgress,
-									upload_error_handler: uploadError,
-									upload_success_handler: WYSIJAuploadSuccess,
-									upload_complete_handler: WYSIJAuploadComplete,
-									file_queue_error_handler: fileQueueError,
-									file_dialog_complete_handler: fileDialogComplete,
-									swfupload_pre_load_handler: swfuploadPreLoad,
-									swfupload_load_failed_handler: swfuploadLoadFailed,
-									custom_settings: {
-										degraded_element_id: "html-upload-ui", // id of the element displayed when swfupload is unavailable
-										swfupload_element_id: "flash-upload-ui" // id of the element displayed when swfupload is available
-									},
-									debug: false
-								};
-								swfu = new SWFUpload(settings);
-							};
-							//]]>
-						</script>
-
-						<div id="flash-upload-ui" class="hide-if-no-js">
-						<?php do_action('pre-flash-upload-ui'); ?>
-
-							<div>
-					<?php _e('Choose files to upload', WYSIJA); ?>
-								<div id="flash-browse-button"></div>
-								<span><input id="cancel-upload" disabled="disabled" onclick="cancelUpload()" type="button" value="<?php esc_attr_e('Cancel Upload', WYSIJA); ?>" class="button" /></span>
-							</div>
-							<p class="media-upload-size"><?php printf(__('Maximum upload file size: %d%s', WYSIJA), $upload_size_unit, $sizes[$u]); ?></p>
-					<?php do_action('post-flash-upload-ui'); ?>
-						</div>
-				<?php endif; // $flash ?>
-
-					<div id="html-upload-ui">
-				<?php do_action('pre-html-upload-ui'); ?>
-						<p id="async-upload-wrap">
-							<label class="screen-reader-text" for="async-upload"><?php _e('Upload', WYSIJA); ?></label>
-							<input type="file" name="async-upload" id="async-upload" /> <input type="submit" class="button" name="html-upload" value="<?php esc_attr_e('Upload', WYSIJA); ?>" /> <a href="#" onclick="try {
-								top.tb_remove();
-							} catch (e) {
-							}
-							;
-							return false;"><?php _e('Cancel', WYSIJA); ?></a>
-						</p>
-						<div class="clear"></div>
-						<p class="media-upload-size"><?php printf(__('Maximum upload file size: %d%s', WYSIJA), $upload_size_unit, $sizes[$u]); ?></p>
-				<?php if (is_lighttpd_before_150()): ?>
-							<p><?php _e('If you want to use all capabilities of the uploader, like uploading multiple files at once, please upgrade to lighttpd 1.5.'); ?></p>
-				<?php endif; ?>
-				<?php do_action('post-html-upload-ui', $flash); ?>
-					</div>
-				<?php do_action('post-upload-ui'); ?>
-					<div id="media-items" class="clearfix"></div>
-				</div>
-				<?php
-			}
-
 			function _get_media_items($post_id, $errors, $wpimage = false) {
 				$attachments = array();
 
@@ -2817,9 +2653,9 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 				?>
 					<div id="update-page" class="about-wrap mpoet-page">
 
-						<h1><?php echo sprintf(__('Welcome to %1$s', WYSIJA), '<span class="version">MailPoet '.WYSIJA::get_version())."</span>"; ?></h1>
+						<h1><?php echo __('Try the new (and much better) MailPoet now', WYSIJA); ?></h1>
 
-						<div class="about-text"><?php echo $data['abouttext'] ?></div>
+						<div class="about-text" style="visibility:hidden"><?php echo $data['abouttext'] ?></div>
 						<?php
 						foreach ($data['sections'] as $section) {
 
@@ -2834,7 +2670,7 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 								<div class="changelog <?php echo $class_added ?>">
 									<h2><?php echo $section['title'] . $link_hide ?></h2>
 
-									<div class="feature-section <?php echo $section['format'] ?>">
+									<div class="feature-sec tion <?php echo $section['format'] ?>">
 										<?php
 										switch ($section['format']) {
 											case 'three-col':
@@ -2875,7 +2711,7 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 			}
 			?>
 
-						<a class="button-primary" href="admin.php?page=wysija_campaigns"><?php _e('Thanks! Now take me to MailPoet.', WYSIJA); ?></a>
+						<a class="button-primary" href="admin.php?page=wysija_campaigns"><?php _e("No thanks! I'll use MailPoet version 2 for now", WYSIJA); ?></a>
 
 					</div>
 
@@ -2883,6 +2719,20 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 			<?php
 			}
 
+      public function replace_link_shortcode($text, $url) {
+        $count = 1;
+        return preg_replace(
+          '/\[\/link\]/',
+          '</a>',
+          preg_replace(
+            '/\[link\]/',
+            sprintf('<a href="%s">', $url),
+            $text,
+            $count
+          ),
+          $count
+        );
+      }
 			function whats_new($data) {
 
 				$helper_readme = WYSIJA::get('readme', 'helper');
@@ -2910,6 +2760,7 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
                                 }else{
                                     $data['abouttext'] = __('You updated! It\'s like having the next gadget, but better.', WYSIJA);
                                 }
+                                $data['abouttext'] = '';
 
 
 				// this is a flag to have a pretty clean update page where teh only call to action is our survey
@@ -2918,6 +2769,26 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 				$is_multisite = is_multisite();
 				$is_network_admin = WYSIJA::current_user_can('manage_network');
 
+        $data['sections'][] = array(
+          'title' => __("Try the new version 3 today.", WYSIJA),
+          'format' => 'title-content',
+          'content' => '
+<ul style="list-style: disc inside none">
+  <li><a href="http://beta.docs.mailpoet.com/article/234-video-overview?utm_source=mp2&utm_campaign=whatsnew">'.__("View the 2-minute video", WYSIJA).'</a></li>
+  <li><a href="https://www.mailpoet.com/faq-mailpoet-version-2/?utm_source=mp2&utm_campaign=whatsnew">'.__("Read the FAQ", WYSIJA).'</a></li>
+  <li><a href="http://beta.docs.mailpoet.com/article/189-comparison-of-mailpoet-2-and-3?utm_source=mp2&utm_campaign=whatsnew">'.__('Comparison table of both versions', WYSIJA).'</a></li>
+  <li><a href="http://demo.mailpoet.com?utm_source=mp2&utm_campaign=whatsnew">'.__('Try the online demo', WYSIJA).'</li>
+</ul>
+<br/>
+<a class="button-primary" href="plugin-install.php?s=mailpoet&tab=search&type=author">'.__('Download MailPoet 3 now', WYSIJA).'</a>
+
+<!-- poll -->
+<div><br/><br/></div>
+<style type="text/css">.pds-box { margin: 0 !important; }</style>
+<script type="text/javascript" charset="utf-8" src="https://secure.polldaddy.com/p/9882029.js"></script>
+<noscript><a href="https://polldaddy.com/poll/9882029/">I\'m not switching to the new MailPoet 3 because...</a></noscript>
+          '
+        );
 
 				if ($is_multisite) {
 					if ($is_network_admin) {
@@ -2955,6 +2826,7 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 
 
 				$msg = $model_config->getValue('ignore_msgs');
+        /*
 				if ( !isset($msg['ctaupdate']) && $show_survey === false ) {
 					$data['sections'][] = array(
 						'title' => __('Keep this plugin essentially free', WYSIJA),
@@ -2971,6 +2843,7 @@ class WYSIJA_view_back_campaigns extends WYSIJA_view_back {
 						'format' => 'review-follow',
 					);
 				}
+         */
 
 /*                                if( $show_survey ){
                                     $data['sections'][] = array(
