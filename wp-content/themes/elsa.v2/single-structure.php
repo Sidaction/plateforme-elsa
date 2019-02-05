@@ -48,9 +48,9 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                 <div class="m-5col page_main page_copy">
 
 
-                    <div class="structure-metas--mobile">
+                    <div class="structure-metas--mobile m-hide">
 
-                    <div class="page_metas">
+                    <div class="page_metas s-show">
 
                     <?php 
 
