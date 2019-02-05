@@ -57,8 +57,8 @@ function register_custompost() {
       'show_ui' => true,
       'query_var' => 'structure',
       'has_archive' => true,
-      'capability_type' => 'part',
-      'capabilities' => $capabilities,
+      //'capability_type' => 'part',
+      //'capabilities' => $capabilities,
       'menu_icon' => '',
       'supports' => array('title', 'editor', 'thumbnail', 'author')
     );
