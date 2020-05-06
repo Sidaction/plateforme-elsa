@@ -4,7 +4,7 @@
 
     <div class="wrap row">
         <div class="m-4col">
-            <img src="<?php echo get_template_directory_uri() ?>/_img/logo-elsa.png" alt="logo ELSA" class="site-logo">
+            <img src="<?php echo get_template_directory_uri() ?>/_img/Logo_ELSA-Version2019_500px.png" width="86" height="auto" alt="logo ELSA" class="site-logo">
             <h3 class="site-title">Plateforme ELSA</h3>
         </div>
  
@@ -81,15 +81,9 @@
             <span class="icon-close"></span>
         </a>
 
-        <div class="row">
+        <div class="row newsletter_form_outer">
 
-            <div class="m-4col">
-                <div class="modal_title">
-                    <h4>Inscription à la Newsletter de la Plateforme ELSA</h4>
-                </div>
-            
-                <?php echo do_shortcode('[wysija_form id="1"]'); ?>
-            </div>
+            <iframe  src="https://98f84544.sibforms.com/serve/MUIEAEzCau08VkSdGHDLsYBELXiA_5dcmKKc4raKEO7I1p9mkrx824BxAv4TSBpWDH1I58zndg9EtIYN9tpZX4owo15WdAaobEi8nzczqLWEECna3_b2lCkKJZx2BsoryM4HFchbS_V2ZXTGpI5m9KQHSrfoCAz0DdV29cnz0LLB0HxKcex0UpPRHKqrtlrMWlScnYk8oAkmXEX0" frameborder="0" scrolling="auto" allowfullscreen style="height: 90vh; margin-bottom: 0; display: block;margin-left: auto;margin-right: auto;max-width: 100%;"></iframe>            
 
         </div>
         
