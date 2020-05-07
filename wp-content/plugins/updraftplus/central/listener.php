@@ -23,6 +23,12 @@ class UpdraftPlus_UpdraftCentral_Listener {
 
 	private $command_classes;
 
+	/**
+	 * Class constructor
+	 *
+	 * @param Array $keys			 - keys to set up listeners for
+	 * @param Array $command_classes - commands
+	 */
 	public function __construct($keys = array(), $command_classes = array()) {
 		global $updraftplus;
 		$this->ud = $updraftplus;
@@ -48,7 +54,7 @@ class UpdraftPlus_UpdraftCentral_Listener {
 			$ud_rpc->activate_replay_protection();
 			if (!empty($key['extra_info']) && isset($key['extra_info']['mothership'])) {
 				$mothership = $key['extra_info']['mothership'];
-				unset($url);
+				$url = '';
 				if ('__updraftpluscom' == $mothership) {
 					$url = 'https://updraftplus.com';
 				} elseif (false != ($parsed = parse_url($key['extra_info']['mothership'])) && is_array($parsed)) {
@@ -67,8 +73,10 @@ class UpdraftPlus_UpdraftCentral_Listener {
 			if (!empty($_GET['login_id']) && is_numeric($_GET['login_id']) && !empty($_GET['login_key'])) {
 				$login_user = get_user_by('id', $_GET['login_id']);
 				
+				// THis is included so we can get $wp_version
 				include_once(ABSPATH.WPINC.'/version.php');
-				if (is_a($login_user, 'WP_User') || (version_compare($wp_version, '3.5', '<') && !empty($login_user->ID))) {
+
+				if (is_a($login_user, 'WP_User') || (version_compare($wp_version, '3.5', '<') && !empty($login_user->ID))) {// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 					// Allow site implementers to disable this functionality
 					$allow_autologin = apply_filters('updraftcentral_allow_autologin', true, $login_user);
 					if ($allow_autologin) {
@@ -219,7 +227,7 @@ class UpdraftPlus_UpdraftCentral_Listener {
 		$this->ud->error_reporting_stop_when_logged = true;
 		set_error_handler(array($this->ud, 'php_error'), E_ALL & ~E_STRICT);
 		$this->php_events = array();
-		@ob_start();
+		@ob_start();// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Might be a bigger picture that I am missing but do we need to silence errors here?
 		add_filter('updraftplus_logline', array($this, 'updraftplus_logline'), 10, 4);
 		if (!UpdraftPlus_Options::get_updraft_option('updraft_debug_mode')) return;
 	}
@@ -236,8 +244,8 @@ class UpdraftPlus_UpdraftCentral_Listener {
 			$this->ud->log('Unexpected response code in remote communications: '.serialize($msg));
 		}
 		
-		$caught_output = @ob_get_contents();
-		@ob_end_clean();
+		$caught_output = @ob_get_contents();// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Might be a bigger picture that I am missing but do we need to silence errors here?
+		@ob_end_clean();// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Might be a bigger picture that I am missing but do we need to silence errors here?
 		// If turning output-catching off, turn this on instead:
 		// $caught_output = ''; @ob_end_flush();
 		
