@@ -22,10 +22,11 @@ final class BackWPup_Option {
 		add_site_option( 'backwpup_cfg_showadminbar', false );
 		add_site_option( 'backwpup_cfg_showfoldersize', false );
 		add_site_option( 'backwpup_cfg_protectfolders', true );
+        add_site_option('backwpup_cfg_phone_home_client', true);
 		//job
 		add_site_option( 'backwpup_cfg_jobmaxexecutiontime', 30 );
 		add_site_option( 'backwpup_cfg_jobstepretry', 3 );
-		add_site_option( 'backwpup_cfg_jobrunauthkey', substr( md5( BackWPup::get_plugin_data( 'hash' ) ), 11, 8 ) );
+		add_site_option( 'backwpup_cfg_jobrunauthkey', BackWPup::get_generated_hash( 8 ) );
 		add_site_option( 'backwpup_cfg_loglevel', 'normal_translated' );
 		add_site_option( 'backwpup_cfg_jobwaittimems', 0 );
 		add_site_option( 'backwpup_cfg_jobdooutput', 0 );

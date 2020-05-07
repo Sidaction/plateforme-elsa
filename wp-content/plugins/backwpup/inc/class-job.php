@@ -219,11 +219,7 @@ final class BackWPup_Job {
 	 */
 	public static function get_working_data() {
 
-		if ( version_compare( PHP_VERSION, '5.3', '>=' ) ) {
-			clearstatcache( true, BackWPup::get_plugin_data( 'running_file' ) );
-		} else {
-			clearstatcache();
-		}
+	    clearstatcache( true, BackWPup::get_plugin_data( 'running_file' ) );
 
 		if ( ! file_exists( BackWPup::get_plugin_data( 'running_file' ) ) ) {
 			return false;
@@ -272,7 +268,7 @@ final class BackWPup_Job {
 		//set Logfile
 		$log_folder = get_site_option( 'backwpup_cfg_logfolder' );
 		$log_folder = BackWPup_File::get_absolute_path( $log_folder );
-		$this->logfile = $log_folder . 'backwpup_log_' . BackWPup::get_plugin_data( 'hash' ) . '_' . date( 'Y-m-d_H-i-s',
+		$this->logfile = $log_folder . 'backwpup_log_' . BackWPup::get_generated_hash( 6 ) . '_' . date( 'Y-m-d_H-i-s',
 				current_time( 'timestamp' ) ) . '.html';
 		//write settings to job
 		BackWPup_Option::update( $this->job['jobid'], 'lastrun', $this->start_time );
@@ -745,8 +741,8 @@ final class BackWPup_Job {
 				$error = true;
 				$message = __( 'ERROR:', 'backwpup' ) . ' ' . $message;
 				break;
-			case 8192: //E_DEPRECATED      comes with php 5.3
-			case 16384: //E_USER_DEPRECATED comes with php 5.3
+			case E_DEPRECATED:
+			case E_USER_DEPRECATED:
 				$message = __( 'DEPRECATED:', 'backwpup' ) . ' ' . $message;
 				break;
 			case E_STRICT:
@@ -761,8 +757,6 @@ final class BackWPup_Job {
 				$message = $type . ': ' . $message;
 				break;
 		}
-
-		$in_file = $this->get_destination_path_replacement( $file );
 
 		//print message to cli
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -790,7 +784,7 @@ final class BackWPup_Job {
 		//timestamp for log file
 		$debug_info = '';
 		if ( $this->is_debug() ) {
-			$debug_info = ' title="[Type: ' . $type . '|Line: ' . $line . '|File: ' . $in_file . '|Mem: ' . size_format( @memory_get_usage( true ),
+			$debug_info = ' title="[Type: ' . $type . '|Line: ' . $line . '|File: ' . $this->get_destination_path_replacement( $file ) . '|Mem: ' . size_format( @memory_get_usage( true ),
 					2 ) . '|Mem Max: ' . size_format( @memory_get_peak_usage( true ),
 					2 ) . '|Mem Limit: ' . ini_get( 'memory_limit' ) . '|PID: ' . self::get_pid() . ' | UniqID: ' . $this->uniqid . '|Queries: ' . get_num_queries() . ']"';
 		}
@@ -872,16 +866,18 @@ final class BackWPup_Job {
 	 */
 	public function get_destination_path_replacement( $path ) {
 
-		$path = str_replace( '\\', '/', $path );
-
 		$abs_path = realpath( BackWPup_Path_Fixer::fix_path( ABSPATH ) );
 		if ( $this->job['backupabsfolderup'] ) {
 			$abs_path = dirname( $abs_path );
 		}
-
 		$abs_path = trailingslashit( str_replace( '\\', '/', $abs_path ) );
 
-		$path = str_replace( $abs_path, '/', $path );
+		$path = str_replace( array( '\\', $abs_path ), '/', $path );
+
+		//replace the colon from windows drive letters with so they will not be problems with them in archives or on copying to directory
+		if ( 0 === stripos( PHP_OS, 'WIN' ) && 1 === strpos( $path, ':/' ) ) {
+		    $path = '/' . substr_replace( $path, '', 1,1 );
+        }
 
 		return $path;
 	}
@@ -2082,8 +2078,21 @@ final class BackWPup_Job {
 		$manifest['blog_info']['plugins']['baseurl'] = WP_PLUGIN_URL;
 		$manifest['blog_info']['themes']['basedir'] = get_theme_root();
 		$manifest['blog_info']['themes']['baseurl'] = get_theme_root_uri();
-		// add job settings
-		$manifest['job_settings'] = $this->job;
+
+        // Add job settings
+        $manifest['job_settings'] = array(
+            'dbdumptype' => $this->job['dbdumptype'],
+            'dbdumpfile' => $this->job['dbdumpfile'],
+            'dbdumpfilecompression' => $this->job['dbdumpfilecompression'],
+            'dbdumpdbcharset' => $this->job['dbdumpdbcharset'],
+            'type' => $this->job['type'],
+            'destinations' => $this->job['destinations'],
+            'backuptype' => $this->job['backuptype'],
+            'archiveformat' => $this->job['archiveformat'],
+            'dbdumpexclude' => $this->job['dbdumpexclude'],
+
+        );
+
 		// add archive info
 		foreach ( $this->additional_files_to_backup as $file ) {
 			$manifest['archive']['extra_files'][] = basename( $file );

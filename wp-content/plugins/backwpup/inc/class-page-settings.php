@@ -1,11 +1,20 @@
 <?php
 
+use Inpsyde\BackWPup\Pro\License\Api\LicenseActivation;
+use Inpsyde\BackWPup\Pro\License\Api\LicenseDeactivation;
+use Inpsyde\BackWPup\Pro\License\Api\LicenseStatusRequest;
 use Inpsyde\BackWPup\Settings;
+use Inpsyde\BackWPup\Pro\License\License;
 
 /**
  * Class BackWPup_Page_Settings
  */
-class BackWPup_Page_Settings {
+class BackWPup_Page_Settings
+{
+    const LICENSE_INSTANCE_KEY = 'license_instance_key';
+    const LICENSE_API_KEY = 'license_api_key';
+    const LICENSE_PRODUCT_ID = 'license_product_id';
+    const LICENSE_STATUS = 'license_status';
 
 	/**
 	 * @var array
@@ -16,6 +25,31 @@ class BackWPup_Page_Settings {
 	 * @var array
 	 */
 	private $settings_updaters;
+
+    /**
+     * @param array $settings_views
+     * @param array $settings_updaters
+     */
+    public function __construct(
+        array $settings_views,
+        array $settings_updaters
+    ) {
+
+        $this->settings_views = array_filter(
+            $settings_views,
+            function ($setting) {
+
+                return $setting instanceof Settings\SettingTab;
+            }
+        );
+        $this->settings_updaters = array_filter(
+            $settings_updaters,
+            function ($setting) {
+
+                return $setting instanceof Settings\SettingUpdatable;
+            }
+        );
+    }
 
 	/**
 	 * @return array
@@ -275,30 +309,6 @@ class BackWPup_Page_Settings {
 		return $information;
 	}
 
-	/**
-	 * BackWPup_Page_Settings constructor
-	 *
-	 * @param array $settings_views
-	 * @param array $settings_updaters
-	 */
-	public function __construct( array $settings_views, array $settings_updaters ) {
-
-		$this->settings_views = array_filter(
-			$settings_views,
-			function ( $setting ) {
-
-				return $setting instanceof Settings\SettingTab;
-			}
-		);
-		$this->settings_updaters = array_filter(
-			$settings_updaters,
-			function ( $setting ) {
-
-				return $setting instanceof Settings\SettingUpdatable;
-			}
-		);
-	}
-
 	public function admin_print_scripts() {
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
@@ -383,10 +393,16 @@ class BackWPup_Page_Settings {
 			delete_site_option( 'backwpup_cfg_sugarsyncsecret' );
 			delete_site_option( 'backwpup_cfg_sugarsyncappid' );
 			delete_site_option( 'backwpup_cfg_hash' );
+            delete_site_option('backwpup_cfg_phone_home_client');
 
 			foreach ( $this->settings_updaters as $setting ) {
 				$setting->reset();
 			}
+
+            delete_site_option(self::LICENSE_INSTANCE_KEY);
+            delete_site_option(self::LICENSE_API_KEY);
+            delete_site_option(self::LICENSE_PRODUCT_ID);
+            delete_site_option(self::LICENSE_STATUS);
 
 			BackWPup_Option::default_site_options();
 			BackWPup_Admin::message( __( 'Settings reset to default', 'backwpup' ) );
@@ -468,10 +484,12 @@ class BackWPup_Page_Settings {
 		update_site_option( 'backwpup_cfg_authentication', $authentication );
 		delete_site_transient( 'backwpup_cookies' );
 
-		do_action( 'backwpup_page_settings_save' );
+        update_site_option('backwpup_cfg_phone_home_client', !empty($_POST['phone_home_client']));
 
-		BackWPup_Admin::message( __( 'Settings saved', 'backwpup' ) );
-	}
+        do_action('backwpup_page_settings_save');
+
+        BackWPup_Admin::message(__('Settings saved', 'backwpup'));
+    }
 
 	public function page() {
 
@@ -494,6 +512,9 @@ class BackWPup_Page_Settings {
 			$tabs['net'] = esc_html__( 'Network', 'backwpup' );
 			$tabs['apikey'] = esc_html__( 'API Keys', 'backwpup' );
 			$tabs['information'] = esc_html__( 'Information', 'backwpup' );
+            if (BackWPup::is_pro()) {
+                $tabs['license'] = esc_html__('License', 'backwpup');
+            }
 			$tabs = apply_filters( 'backwpup_page_settings_tab', $tabs );
 			echo '<h2 class="nav-tab-wrapper">';
 			foreach ( $tabs as $id => $name ) {
@@ -589,6 +610,63 @@ class BackWPup_Page_Settings {
 							</td>
 						</tr>
 					</table>
+
+                    <?php
+                    if (!BackWPup::is_pro()) :
+                        $checked = checked(
+                            get_site_option('backwpup_cfg_phone_home_client'),
+                            true,
+                            false
+                        );
+                        ?>
+                        <h3 class="title"><?php esc_html_e('Phone Home Client', 'backwpup'); ?></h3>
+                        <p>
+                            <?php
+                            esc_html_e(
+                                'Phone Home Client allows BackWPup to collect data about your system to improve the plugin.',
+                                'backwpup'
+                            );
+                            ?>
+                            <br/>
+                            <strong>
+                                <?php
+                                esc_html_e(
+                                    'Any data is sent anonymously. We don\'t collect any personal data.',
+                                    'backwpup'
+                                )
+                                ?>
+                            </strong>
+                        </p>
+                        <table class="form-table">
+                            <tr>
+                                <th scope="row">
+                                    <?php esc_html_e('Enable Phone Home Client', 'backwpup'); ?>
+                                </th>
+                                <td>
+                                    <fieldset>
+                                        <legend class="screen-reader-text">
+                                        <span>
+                                            <?php esc_html_e(
+                                                'Enable Phone Home Client',
+                                                'backwpup'
+                                            ); ?>
+                                        </span>
+                                        </legend>
+                                        <label for="phone_home_client">
+                                            <input name="phone_home_client"
+                                                   type="checkbox"
+                                                   id="phone_home_client"
+                                                   value="1"
+                                                <?php echo esc_attr($checked); ?>
+                                            />
+                                        </label>
+                                        <?php esc_html_e('Enable Phone Home', 'backwpup'); ?>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </table>
+                    <?php
+                    endif; ?>
 
 					<?php do_action( 'backwpup_page_settings_tab_generel' ); ?>
 				</div>
@@ -692,7 +770,7 @@ class BackWPup_Page_Settings {
 									</label>
 									<p class="description">
 										<?php esc_html_e(
-											'Debug log has much more informations than normal logs. It is for support and should be handled carefully. For support is the best to use a not translated log file. Usage of not translated logs can reduce the PHP memory usage too.',
+											'Debug log has much more information than normal logs. It is for support and should be handled carefully. For support is the best to use a not translated log file. Usage of not translated logs can reduce the PHP memory usage too.',
 											'backwpup'
 										); ?>
 									</p>
@@ -829,7 +907,7 @@ class BackWPup_Page_Settings {
 									</label>
 									<p class="description">
 										<?php esc_html_e(
-											'This do an empty output on job working. This can help in some situations or can brake the working. You must test it.',
+											'This do an empty output on job working. This can help in some situations or can break the working. You must test it.',
 											'backwpup'
 										); ?>
 									</p>
