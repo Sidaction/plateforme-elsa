@@ -21,7 +21,9 @@ class RWMB_Media_Modal {
 	 * Initialize.
 	 */
 	public function init() {
-		add_action( 'init', array( $this, 'get_fields' ) );
+		// Meta boxes are registered at priority 20, so we use 30 to capture them all.
+		add_action( 'init', array( $this, 'get_fields' ), 30 );
+
 		add_filter( 'attachment_fields_to_edit', array( $this, 'add_fields' ), 11, 2 );
 		add_filter( 'attachment_fields_to_save', array( $this, 'save_fields' ), 11, 2 );
 
@@ -82,14 +84,7 @@ class RWMB_Media_Modal {
 			$old = RWMB_Field::call( $field, 'raw_meta', $post['ID'] );
 			$new = isset( $attachment[ $key ] ) ? $attachment[ $key ] : '';
 
-			// Allow field class change the value.
-			if ( $field['clone'] ) {
-				$new = RWMB_Clone::value( $new, $old, $post['ID'], $field );
-			} else {
-				$new = RWMB_Field::call( $field, 'value', $new, $old, $post['ID'] );
-				$new = RWMB_Field::filter( 'sanitize', $new, $field );
-			}
-			$new = RWMB_Field::filter( 'value', $new, $field, $old );
+			$new = RWMB_Field::process_value( $new, $post['ID'], $field );
 
 			// Call defined method to save meta value, if there's no methods, call common one.
 			RWMB_Field::call( $field, 'save', $new, $old, $post['ID'] );
@@ -107,9 +102,7 @@ class RWMB_Media_Modal {
 	 * @return bool
 	 */
 	public function is_in_normal_mode( $show, $meta_box ) {
-		$show = $show && ! $this->is_in_modal( $meta_box );
-
-		return $show;
+		return $show && ! $this->is_in_modal( $meta_box );
 	}
 
 	/**

@@ -18,19 +18,6 @@ class RWMB_Field_Registry {
 	private $data = array();
 
 	/**
-	 * Add all fields in a meta box to the registry.
-	 *
-	 * @param RW_Meta_Box $meta_box Meta box object.
-	 */
-	public function add_from_meta_box( RW_Meta_Box $meta_box ) {
-		foreach ( $meta_box->fields as $field ) {
-			foreach ( $meta_box->post_types as $post_type ) {
-				$this->add( $field, $post_type );
-			}
-		}
-	}
-
-	/**
 	 * Add a single field to the registry.
 	 *
 	 * @param array  $field       Field configuration.
@@ -49,6 +36,8 @@ class RWMB_Field_Registry {
 			$this->data[ $object_type ][ $type ] = array();
 		}
 		$this->data[ $object_type ][ $type ][ $field['id'] ] = $field;
+
+		do_action( 'rwmb_field_registered', $field, $type, $object_type );
 	}
 
 	/**
@@ -62,5 +51,16 @@ class RWMB_Field_Registry {
 	 */
 	public function get( $id, $type, $object_type = 'post' ) {
 		return isset( $this->data[ $object_type ][ $type ][ $id ] ) ? $this->data[ $object_type ][ $type ][ $id ] : false;
+	}
+
+	/**
+	 * Retrieve fields by object type.
+	 *
+	 * @param string $object_type Object type which the field belongs to.
+	 *
+	 * @return array List of fields.
+	 */
+	public function get_by_object_type( $object_type = 'post' ) {
+		return isset( $this->data[ $object_type ] ) ? $this->data[ $object_type ] : array();
 	}
 }

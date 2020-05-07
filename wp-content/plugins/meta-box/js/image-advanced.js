@@ -1,6 +1,4 @@
-window.rwmb = window.rwmb || {};
-
-jQuery( function ( $ ) {
+( function ( $, rwmb ) {
 	'use strict';
 
 	var views = rwmb.views = rwmb.views || {},
@@ -14,7 +12,7 @@ jQuery( function ( $ ) {
 			this.list = new MediaList( {
 				controller: this.controller,
 				itemView: MediaItem.extend( {
-					className: 'rwmb-image-item',
+					className: 'rwmb-image-item attachment',
 					template: wp.template( 'rwmb-image-item' ),
 					initialize: function( models, options ) {
 						MediaItem.prototype.initialize.call( this, models, options );
@@ -29,9 +27,25 @@ jQuery( function ( $ ) {
 	 * Initialize image fields
 	 */
 	function initImageField() {
-		new ImageField( {input: this, el: $( this ).siblings( 'div.rwmb-media-view' )} );
+		var $this = $( this ),
+			view = $this.data( 'view' );
+
+		if ( view ) {
+			return;
+		}
+
+		view = new ImageField( { input: this } );
+
+		$this.siblings( '.rwmb-media-view' ).remove();
+		$this.after( view.el );
+		$this.data( 'view', view );
 	}
 
-	$( 'input.rwmb-image_advanced' ).each( initImageField );
-	$( document ).on( 'clone', 'input.rwmb-image_advanced', initImageField )
-} );
+	function init( e ) {
+		$( e.target ).find( '.rwmb-image_advanced' ).each( initImageField );
+	}
+
+	rwmb.$document
+		.on( 'mb_ready', init )
+		.on( 'clone', '.rwmb-image_advanced', initImageField );
+} )( jQuery, rwmb );
