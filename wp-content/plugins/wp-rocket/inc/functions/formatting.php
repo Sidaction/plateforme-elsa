@@ -1,5 +1,5 @@
 <?php
-defined( 'ABSPATH' ) or	die( 'Cheatin&#8217; uh?' );
+defined( 'ABSPATH' ) || die( 'Cheatin&#8217; uh?' );
 
 /**
  * Get relative url
@@ -8,20 +8,25 @@ defined( 'ABSPATH' ) or	die( 'Cheatin&#8217; uh?' );
  *
  * @since 1.3.5 Redo the function
  * @since 1.0
+ *
+ * @param string $file URL we want to parse.
+ * @return bool\string false if $file is empty or false, relative path otherwise
  */
 function rocket_clean_exclude_file( $file ) {
 	if ( ! $file ) {
 		return false;
 	}
 
-	$path = parse_url( $file, PHP_URL_PATH );
-    return $path;
+	return wp_parse_url( $file, PHP_URL_PATH );
 }
 
 /**
  * Used with array_filter to remove files without .css extension
  *
  * @since 1.0
+ *
+ * @param string $file filepath to sanitize.
+ * @return bool\string false if not a css file, filepath otherwise
  */
 function rocket_sanitize_css( $file ) {
 	$file = preg_replace( '#\?.*$#', '', $file );
@@ -33,6 +38,9 @@ function rocket_sanitize_css( $file ) {
  * Used with array_filter to remove files without .js extension
  *
  * @since 1.0
+ *
+ * @param string $file filepath to sanitize.
+ * @return bool\string false if not a js file, filepath otherwise
  */
 function rocket_sanitize_js( $file ) {
 	$file = preg_replace( '#\?.*$#', '', $file );
@@ -46,7 +54,7 @@ function rocket_sanitize_js( $file ) {
  * @since 2.8
  * @author Remy Perona
  *
- * @param string $file filename
+ * @param string $file filepath to sanitize.
  * @return string|boolean filename or false if not xml
  */
 function rocket_sanitize_xml( $file ) {
@@ -56,16 +64,42 @@ function rocket_sanitize_xml( $file ) {
 }
 
 /**
+ * Sanitizes a string key like the sanitize_key() WordPress function without forcing lowercase.
+ *
+ * @since 2.7
+ *
+ * @param string $key Key string to sanitize.
+ * @return string
+ */
+function rocket_sanitize_key( $key ) {
+	$key = preg_replace( '/[^a-z0-9_\-]/i', '', $key );
+	return $key;
+}
+
+/**
+ * Used to sanitize values of the "Never send cache pages for these user agents" option.
+ *
+ * @since 2.6.4
+ *
+ * @param string $user_agent User Agent string.
+ * @return string
+ */
+function rocket_sanitize_ua( $user_agent ) {
+	$user_agent = preg_replace( '/[^a-z0-9._\(\)\*\-\/\s\x5c]/i', '', $user_agent );
+	return $user_agent;
+}
+
+/**
  * Get an url without HTTP protocol
  *
  * @since 1.3.0
  *
- * @param string $url The URL to parse
- * @param bool 	 $no_dots (default: false)
+ * @param string $url The URL to parse.
+ * @param bool   $no_dots (default: false).
  * @return string $url The URL without protocol
  */
-function rocket_remove_url_protocol( $url, $no_dots=false ) {
-	$url = str_replace( array( 'http://', 'https://' ) , '', $url );
+function rocket_remove_url_protocol( $url, $no_dots = false ) {
+	$url = str_replace( array( 'http://', 'https://' ), '', $url );
 
 	/** This filter is documented in inc/front/htaccess.php */
 	if ( apply_filters( 'rocket_url_no_dots', $no_dots ) ) {
@@ -79,14 +113,15 @@ function rocket_remove_url_protocol( $url, $no_dots=false ) {
  *
  * @since 2.2.1
  *
- * @param string $url The URL to parse
+ * @param string $url The URL to parse.
  * @return string $url The URL with protocol
  */
 function rocket_add_url_protocol( $url ) {
+
 	if ( strpos( $url, 'http://' ) === false && strpos( $url, 'https://' ) === false ) {
-    	if ( substr( $url, 0, 2 ) !== '//' ) {
-        	$url = '//' . $url;
-    	}
+		if ( substr( $url, 0, 2 ) !== '//' ) {
+			$url = '//' . $url;
+		}
 		$url = set_url_scheme( $url );
 	}
 	return $url;
@@ -97,17 +132,17 @@ function rocket_add_url_protocol( $url ) {
  *
  * @since 2.6
  *
- * @param 	string $url Absolute url that includes a scheme
- * @return 	string $url URL with a scheme.
+ * @param   string $url Absolute url that includes a scheme.
+ * @return  string $url URL with a scheme.
  */
 function rocket_set_internal_url_scheme( $url ) {
 	$tmp_url = set_url_scheme( $url );
 
-    if( parse_url( $tmp_url, PHP_URL_HOST ) == parse_url( home_url(), PHP_URL_HOST ) ) {
-            $url = $tmp_url;
-    }
+	if ( rocket_extract_url_component( $tmp_url, PHP_URL_HOST ) === rocket_extract_url_component( home_url(), PHP_URL_HOST ) ) {
+			$url = $tmp_url;
+	}
 
-    return $url;
+	return $url;
 }
 
 /**
@@ -118,26 +153,26 @@ function rocket_set_internal_url_scheme( $url ) {
  * @since 2.7.3 undeprecated & updated
  * @since 1.0
  *
- * @param $url URL to parse
+ * @param string $url URL to parse.
  * @return string|bool Domain or false
  */
 function rocket_get_domain( $url ) {
-    // Add URL protocol if the $url doesn't have one to prevent issue with parse_url
-    $url = rocket_add_url_protocol( trim( $url ) );
+	// Add URL protocol if the $url doesn't have one to prevent issue with parse_url.
+	$url = rocket_add_url_protocol( trim( $url ) );
 
-    $url_array = parse_url( $url );
-    $host = $url_array['host'];
-    /**
-     * Filters the tld max range for edge cases
-     *
-     * @since 2.7.3
-     *
-     * @param string Max range number
-     */
-    $match = '/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,' . apply_filters( 'rocket_get_domain_preg', '6' ) . '})$/i';
+	$url_array = wp_parse_url( $url );
+	$host      = $url_array['host'];
+	/**
+	 * Filters the tld max range for edge cases
+	 *
+	 * @since 2.7.3
+	 *
+	 * @param string Max range number
+	 */
+	$match = '/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,' . apply_filters( 'rocket_get_domain_preg', '6' ) . '})$/i';
 
 	if ( preg_match( $match, $host, $regs ) ) {
-        return $regs['domain'];
+		return $regs['domain'];
 	}
 
 	return false;
@@ -146,10 +181,11 @@ function rocket_get_domain( $url ) {
 /**
  * Extract and return host, path, query and scheme of an URL
  *
+ * @since 2.11.5 Supports UTF-8 URLs
  * @since 2.1 Add $query variable
  * @since 2.0
  *
- * @param string $url The URL to parse
+ * @param string $url The URL to parse.
  * @return array Components of an URL
  */
 function get_rocket_parse_url( $url ) {
@@ -157,11 +193,20 @@ function get_rocket_parse_url( $url ) {
 		return;
 	}
 
-	$url    = parse_url( $url );
-	$host   = isset( $url['host'] ) ? strtolower( $url['host'] ) : '';
-	$path   = isset( $url['path'] ) ? $url['path'] : '';
-	$scheme = isset( $url['scheme'] ) ? $url['scheme'] : '';
-	$query  = isset( $url['query'] ) ? $url['query'] : '';
+	$encoded_url = preg_replace_callback(
+		'%[^:/@?&=#]+%usD',
+		function ( $matches ) {
+			return rawurlencode( $matches[0] );
+		},
+		$url
+	);
+
+	$url      = wp_parse_url( $encoded_url );
+	$host     = isset( $url['host'] ) ? strtolower( urldecode( $url['host'] ) ) : '';
+	$path     = isset( $url['path'] ) ? urldecode( $url['path'] ) : '';
+	$scheme   = isset( $url['scheme'] ) ? urldecode( $url['scheme'] ) : '';
+	$query    = isset( $url['query'] ) ? urldecode( $url['query'] ) : '';
+	$fragment = isset( $url['fragment'] ) ? urldecode( $url['fragment'] ) : '';
 
 	/**
 	 * Filter components of an URL
@@ -170,7 +215,31 @@ function get_rocket_parse_url( $url ) {
 	 *
 	 * @param array Components of an URL
 	*/
-	return apply_filters( 'rocket_parse_url', array( $host, $path, $scheme, $query ) );
+	return apply_filters(
+		'rocket_parse_url',
+		[
+			'host'     => $host,
+			'path'     => $path,
+			'scheme'   => $scheme,
+			'query'    => $query,
+			'fragment' => $fragment,
+		]
+	);
+}
+
+
+/**
+ * Extract a component from an URL.
+ *
+ * @since 2.11
+ * @author Remy Perona
+ *
+ * @param string $url URL to parse and extract component of.
+ * @param string $component URL component to extract using constant as in parse_url().
+ * @return string extracted component
+ */
+function rocket_extract_url_component( $url, $component ) {
+	return _get_component_from_parsed_url_array( wp_parse_url( $url ), $component );
 }
 
 /**
@@ -179,16 +248,16 @@ function get_rocket_parse_url( $url ) {
  * @since 2.9
  * @author Remy Perona
  *
- * @param string $filename name of the cache busting file
- * @param string $extension file extension
+ * @param string $filename name of the cache busting file.
+ * @param string $extension file extension.
  * @return array Array of paths used for cache busting
  */
 function rocket_get_cache_busting_paths( $filename, $extension ) {
-    $blog_id                = get_current_blog_id();
-    $cache_busting_path     = WP_ROCKET_CACHE_BUSTING_PATH . $blog_id . '/';
-    $filename				= rtrim( str_replace( array( '/', ' ', '%20' ), '-', $filename ) );
-    $cache_busting_filepath = $cache_busting_path . $filename;
-    $cache_busting_url      = get_rocket_cdn_url( WP_ROCKET_CACHE_BUSTING_URL . $blog_id . '/' . $filename, array( 'all', 'css_and_js', $extension ) );
+	$blog_id                = get_current_blog_id();
+	$cache_busting_path     = WP_ROCKET_CACHE_BUSTING_PATH . $blog_id;
+	$filename               = rocket_realpath( rtrim( str_replace( array( ' ', '%20' ), '-', $filename ) ) );
+	$cache_busting_filepath = $cache_busting_path . $filename;
+	$cache_busting_url      = get_rocket_cdn_url( WP_ROCKET_CACHE_BUSTING_URL . $blog_id . $filename, array( 'all', 'css_and_js', $extension ) );
 
 	switch ( $extension ) {
 		case 'css':
@@ -201,9 +270,140 @@ function rocket_get_cache_busting_paths( $filename, $extension ) {
 			break;
 	}
 
-    return array(
-    	'bustingpath' => $cache_busting_path,
-    	'filepath'    => $cache_busting_filepath,
-    	'url'         => $cache_busting_url
-    );
+	return array(
+		'bustingpath' => $cache_busting_path,
+		'filepath'    => $cache_busting_filepath,
+		'url'         => $cache_busting_url,
+	);
+}
+
+/**
+ * Returns realpath to file (used for relative path with /../ in it or not-yet existing file)
+ *
+ * @since 2.11
+ * @author Remy Perona
+ *
+ * @param string $file File to determine realpath for.
+ * @return string Resolved file path
+ */
+function rocket_realpath( $file ) {
+	$path = array();
+
+	foreach ( explode( '/', $file ) as $part ) {
+		if ( '' === $part || '.' === $part ) {
+			continue;
+		}
+
+		if ( '..' !== $part ) {
+			array_push( $path, $part );
+		}
+		elseif ( count( $path ) > 0 ) {
+			array_pop( $path );
+		}
+	}
+
+	$prefix = 'WIN' === strtoupper( substr( PHP_OS, 0, 3 ) ) ? '' : '/';
+
+	return $prefix . join( '/', $path );
+}
+
+/**
+ * Converts an URL to an absolute path.
+ *
+ * @since 2.11.7
+ * @author Remy Perona
+ *
+ * @param string $url   URL to convert.
+ * @param array  $hosts An array of possible hosts for the URL.
+ * @return string|bool
+ */
+function rocket_url_to_path( $url, $hosts = '' ) {
+	$root_dir = trailingslashit( dirname( WP_CONTENT_DIR ) );
+	$root_url = str_replace( wp_basename( WP_CONTENT_DIR ), '', content_url() );
+	$url_host = wp_parse_url( $url, PHP_URL_HOST );
+
+	// relative path.
+	if ( null === $url_host ) {
+		$subdir_levels = substr_count( preg_replace( '/https?:\/\//', '', site_url() ), '/' );
+		$url           = trailingslashit( site_url() . str_repeat( '/..', $subdir_levels ) ) . ltrim( $url, '/' );
+	}
+
+	// CDN.
+	if ( isset( $hosts[ $url_host ] ) && 'home' !== $hosts[ $url_host ] ) {
+		$url = str_replace( $url_host, wp_parse_url( site_url(), PHP_URL_HOST ), $url );
+	}
+
+	$root_url = preg_replace( '/^https?:/', '', $root_url );
+	$url      = preg_replace( '/^https?:/', '', $url );
+	$file     = str_replace( $root_url, $root_dir, $url );
+	$file     = rocket_realpath( $file );
+	/**
+	 * Filters the absolute path to the asset file
+	 *
+	 * @since 3.3
+	 * @author Remy Perona
+	 *
+	 * @param string $file Absolute path to the file.
+	 * @param string $url  URL of the asset.
+	 */
+	$file = apply_filters( 'rocket_url_to_path', $file, $url );
+
+	if ( ! rocket_direct_filesystem()->is_readable( $file ) ) {
+		return false;
+	}
+
+	return $file;
+}
+
+/**
+ * Simple helper to get some external URLs.
+ *
+ * @since  2.10.10
+ * @author Grégory Viguier
+ *
+ * @param  string $target     What we want.
+ * @param  array  $query_args An array of query arguments.
+ * @return string The URL.
+ */
+function rocket_get_external_url( $target, $query_args = array() ) {
+	$site_url = WP_ROCKET_WEB_MAIN;
+
+	switch ( $target ) {
+		case 'support':
+			$locale = function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+			$paths  = array(
+				'default' => 'support',
+				'fr_FR'   => 'fr/support',
+				'fr_CA'   => 'fr/support',
+				'it_IT'   => 'it/supporto',
+				'de_DE'   => 'de/support',
+				'es_ES'   => 'es/soporte',
+			);
+
+			$url = isset( $paths[ $locale ] ) ? $paths[ $locale ] : $paths['default'];
+			$url = $site_url . $url . '/';
+			break;
+		case 'account':
+			$locale = function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+			$paths  = array(
+				'default' => 'account',
+				'fr_FR'   => 'fr/compte',
+				'fr_CA'   => 'fr/compte',
+				'it_IT'   => 'it/account/',
+				'de_DE'   => 'de/konto/',
+				'es_ES'   => 'es/cuenta/',
+			);
+
+			$url = isset( $paths[ $locale ] ) ? $paths[ $locale ] : $paths['default'];
+			$url = $site_url . $url . '/';
+			break;
+		default:
+			$url = $site_url;
+	}
+
+	if ( $query_args ) {
+		$url = add_query_arg( $query_args, $url );
+	}
+
+	return $url;
 }
