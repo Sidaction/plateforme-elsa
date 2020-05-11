@@ -15,7 +15,7 @@ class WPSEO_Premium_Free_Translations implements WPSEO_WordPress_Integration {
 	 * Registers all hooks to WordPress.
 	 */
 	public function register_hooks() {
-		add_filter( 'http_request_args', array( $this, 'request_wordpress_seo_translations' ), 10, 2 );
+		add_filter( 'http_request_args', [ $this, 'request_wordpress_seo_translations' ], 10, 2 );
 	}
 
 	/**
@@ -36,10 +36,11 @@ class WPSEO_Premium_Free_Translations implements WPSEO_WordPress_Integration {
 		 * If Yoast SEO is already in the list, don't add it again.
 		 *
 		 * Checking this by name because the install path is not guaranteed.
+		 * The capitalized json data defines the array keys, therefore we need to check and define these as such.
 		 */
 		$plugins = json_decode( $args['body']['plugins'], true );
-		foreach ( $plugins['plugins'] as $slug => $data ) {
-			if ( isset( $data['name'] ) && $data['name'] === 'Yoast SEO' ) {
+		foreach ( $plugins['plugins'] as $data ) {
+			if ( isset( $data['Name'] ) && $data['Name'] === 'Yoast SEO' ) {
 				return $args;
 			}
 		}
@@ -48,14 +49,16 @@ class WPSEO_Premium_Free_Translations implements WPSEO_WordPress_Integration {
 		 * Add an entry to the list that matches the WordPress.org slug for Yoast SEO Free.
 		 *
 		 * This entry is based on the currently present data from this plugin, to make sure the version and textdomain
-		 * settings are as expected.
+		 * settings are as expected. Take care of the capitalized array key as before.
 		 */
 		$plugins['plugins']['wordpress-seo/wp-seo.php'] = $plugins['plugins'][ plugin_basename( WPSEO_PREMIUM_PLUGIN_FILE ) ];
 		// Override the name of the plugin.
-		$plugins['plugins']['wordpress-seo/wp-seo.php']['name'] = 'Yoast SEO';
+		$plugins['plugins']['wordpress-seo/wp-seo.php']['Name'] = 'Yoast SEO';
+		// Override the version of the plugin to prevent increasing the update count.
+		$plugins['plugins']['wordpress-seo/wp-seo.php']['Version'] = '9999.0';
 
 		// Overwrite the plugins argument in the body to be sent in the upgrade request.
-		$args['body']['plugins'] = wp_json_encode( $plugins );
+		$args['body']['plugins'] = WPSEO_Utils::format_json_encode( $plugins );
 
 		return $args;
 	}

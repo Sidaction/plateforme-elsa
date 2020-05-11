@@ -15,7 +15,7 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 	 *
 	 * @var int
 	 */
-	const MODAL_DIALOG_HEIGHT_BASE = 150;
+	const MODAL_DIALOG_HEIGHT_BASE = 220;
 
 	/**
 	 * Height of the recalculation progressbar in pixels.
@@ -62,12 +62,12 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 			return;
 		}
 
-		add_action( 'wpseo_tools_overview_list_items', array( $this, 'show_tools_overview_item' ), 11 );
+		add_action( 'wpseo_tools_overview_list_items', [ $this, 'show_tools_overview_item' ], 11 );
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue' ] );
 
 		if ( $this->is_modal_page() ) {
-			add_action( 'admin_footer', array( $this, 'modal_box' ), 20 );
+			add_action( 'admin_footer', [ $this, 'modal_box' ], 20 );
 		}
 	}
 
@@ -81,6 +81,9 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 
 		echo '<li>';
 		echo '<strong>' . esc_html__( 'Internal linking', 'wordpress-seo-premium' ) . '</strong><br/>';
+
+		esc_html_e( 'This tool analyzes all content on your site and the links between that content. Yoast SEO can then give better internal linking suggestions based on this analysis. For bigger sites this analysis can take a while, but you can always stop and resume it later. You will receive a notification from Yoast SEO if you need to rerun your site-wide internal linking analysis.', 'wordpress-seo-premium' );
+		echo '<br/>';
 
 		if ( count( $total_items ) === 0 ) {
 			// phpcs:ignore WordPress.Security.EscapeOutput -- Correctly escaped in message_already_indexed() method.
@@ -126,10 +129,10 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 	 */
 	protected function get_indexable_post_type_labels( $post_types ) {
 		if ( ! is_array( $post_types ) ) {
-			return array();
+			return [];
 		}
 
-		return array_map( array( $this, 'retrieve_post_type_label' ), $post_types );
+		return array_map( [ $this, 'retrieve_post_type_label' ], $post_types );
 	}
 
 	/**
@@ -157,7 +160,7 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 	protected function generate_internal_link_calculation_interface() {
 		return sprintf(
 			'<span id="internalLinksCalculation"><a id="openInternalLinksCalculation" href="%s" title="%s" class="%s">%s</a></span>',
-			esc_url( '#TB_inline?width=600&height=' . ( self::MODAL_DIALOG_HEIGHT_BASE + self::PROGRESS_BAR_HEIGHT ) . '&inlineId=wpseo_recalculate_internal_links_wrapper' ),
+			esc_url( '#TB_inline?width=600&height=' . ( self::MODAL_DIALOG_HEIGHT_BASE + self::PROGRESS_BAR_HEIGHT ) . '&inlineId=wpseo_recalculate_internal_links_wrapper&modal=true' ),
 			esc_attr__( 'Generate internal linking suggestions', 'wordpress-seo-premium' ),
 			esc_attr( 'btn button yoast-js-calculate-prominent-words yoast-js-calculate-prominent-words--all thickbox' ),
 			esc_html__( 'Analyze your content', 'wordpress-seo-premium' )
@@ -198,6 +201,11 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 
 					?>
 				</p>
+				<p>
+					<?php
+					esc_html_e( 'Note that closing this page will stop the analysis, which you can always resume later. It is also possible to continue your other work in another tab.', 'wordpress-seo-premium' );
+					?>
+				</p>
 				<?php if ( $total_items > 0 ) : ?>
 					<div id="wpseo_internal_links_unindexed_progressbar" class="wpseo-progressbar"></div>
 					<p><?php echo $progress; // phpcs:ignore WordPress.Security.EscapeOutput -- See above. ?></p>
@@ -206,7 +214,7 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 				<?php endif; ?>
 			</div>
 
-			<button onclick="tb_remove();" type="button" class="button"><?php esc_html_e( 'Stop analyzing', 'wordpress-seo-premium' ); ?></button>
+			<button id="yoast-js-abort-analysis" onclick="tb_remove(); window.location.replace( 'admin.php?page=wpseo_tools' );" type="button" class="button"><?php esc_html_e( 'Resume later', 'wordpress-seo-premium' ); ?></button>
 		</div>
 
 		<?php
@@ -224,10 +232,10 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 		wp_register_script(
 			WPSEO_Admin_Asset_Manager::PREFIX . 'premium-site-wide-analysis',
 			plugin_dir_url( WPSEO_PREMIUM_FILE ) . 'assets/js/dist/yoast-premium-site-wide-analysis-' . $version . WPSEO_CSSJS_SUFFIX . '.js',
-			array(
+			[
 				WPSEO_Admin_Asset_Manager::PREFIX . 'analysis',
 				'yoast-seo-premium-commons',
-			),
+			],
 			WPSEO_VERSION,
 			true
 		);
@@ -245,27 +253,27 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 	protected function enqueue_dashboard_assets() {
 		$all_items = $this->post_query->get_totals( $this->get_post_types() );
 
-		$data = array(
-			'allWords'      => get_terms( WPSEO_Premium_Prominent_Words_Registration::TERM_NAME, array( 'fields' => 'ids' ) ),
-			'allItems'      => $all_items,
-			'totalItems'    => array_sum( $all_items ),
-			'message'       => array( 'analysisCompleted' => $this->message_already_indexed() ),
-			'restApi'       => array(
+		$data = [
+			'allWords'             => get_terms( WPSEO_Premium_Prominent_Words_Registration::TERM_NAME, [ 'fields' => 'ids' ] ),
+			'nrOfItemsPerPostType' => $all_items,
+			'totalItems'           => array_sum( $all_items ),
+			'message'              => [ 'analysisCompleted' => $this->message_already_indexed() ],
+			'restApi'              => [
 				'root'  => esc_url_raw( rest_url() ),
 				'nonce' => wp_create_nonce( 'wp_rest' ),
-			),
-			'l10n'          => array(
+			],
+			'l10n'                 => [
 				'calculationInProgress' => __( 'Calculation in progress...', 'wordpress-seo-premium' ),
 				'calculationCompleted'  => __( 'Calculation completed.', 'wordpress-seo-premium' ),
 				'contentLocale'         => get_locale(),
-			),
-		);
+			],
+		];
 
 		// Add feature flags to localization data.
-		$localization_data = array(
+		$localization_data = [
 			'data'            => $data,
 			'enabledFeatures' => WPSEO_Utils::retrieve_enabled_features(),
-		);
+		];
 
 		wp_enqueue_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-site-wide-analysis' );
 		wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'premium-site-wide-analysis', 'yoastSiteWideAnalysisData', $localization_data );
@@ -277,7 +285,7 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 	 * @return array Array with rest enabled post types.
 	 */
 	protected function get_post_types() {
-		return array_filter( $this->prominent_words_support->get_supported_post_types(), array( 'WPSEO_Post_Type', 'is_rest_enabled' ) );
+		return array_filter( $this->prominent_words_support->get_supported_post_types(), [ 'WPSEO_Post_Type', 'is_rest_enabled' ] );
 	}
 
 	/**
@@ -286,7 +294,7 @@ class WPSEO_Premium_Prominent_Words_Recalculation implements WPSEO_WordPress_Int
 	 * @return string The message to return when it is already indexed.
 	 */
 	private function message_already_indexed() {
-		return '<span class="wpseo-checkmark-ok-icon"></span>' . esc_html__( 'Good job! You\'ve optimized your internal linking suggestions. These suggestions will now appear alongside your content when you are writing or editing a post.', 'wordpress-seo-premium' );
+		return '<br/><span class="wpseo-checkmark-ok-icon"></span>' . esc_html__( 'Good job! You\'ve optimized your internal linking suggestions. These suggestions will now appear alongside your content when you are writing or editing a post.', 'wordpress-seo-premium' );
 	}
 
 	/**
