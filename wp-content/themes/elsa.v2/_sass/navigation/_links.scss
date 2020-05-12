@@ -23,19 +23,19 @@ a:active {
 
 .page_copy p a:not([class^='btn']),
 .page_copy ul a:not([class^='btn']) {
-  color: inherit;
-  //border-bottom: 1px dotted $gray_light;
+  color: $color_ressources;
+  border-bottom: 1px solid $color_ressources;
 
-  a:hover {
-    color: $color_ressources;
+  &:hover {
+    opacity: .7
   }
 
-  &:after {
-    @extend .icon;
-    content: "\e903";
-    padding-left: 5px;
-    font-size: 12px;
-  }
+  // &:after {
+  //   @extend .icon;
+  //   content: "\e903";
+  //   padding-left: 5px;
+  //   font-size: 12px;
+  // }
 }
 
 %btn {
