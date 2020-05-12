@@ -97,12 +97,12 @@ if($link) {
                     <?php
                       $files = rwmb_meta( 'file', 'type=file' );
                       foreach ( $files as $info ) {
-                    
+
                         $size = filesize( $info['path'] );
                         $kind = pathinfo($info['path'], PATHINFO_EXTENSION);
                         $size = false === $size ? 0 : size_format( $size, 2 );
                         
-                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>Consulter la ressource <br> ( <em>{$kind} -{$size}</em> )</a>";
+                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>{$info['title']} <br> (<em>{$kind} - {$size}</em>)</a>";
                       }?>
 
                   </div><!-- .page_actions -->  
