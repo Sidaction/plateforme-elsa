@@ -30,6 +30,46 @@ function register_custompost() {
   
 
 
+
+    // EMPLOI POST TYPE
+    $args = array(
+        'labels' => array(
+            'name' => _x('Offre d\'emploi', 'taxonomy general name'),
+            'singular_name' => _x('Offre d\'emploi', 'taxonomy singular name'),
+            'add_new_item' => __('Ajouter une offre d\'emploi'),
+            'edit_item' => __('Editer l\'offre d\'emploi'),
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'query_var' => 'emploi',
+        'has_archive' => true,
+        'menu_icon' => '',
+        'supports' => array('title', 'editor', 'thumbnail', 'author')
+    );
+
+    register_post_type('emploi', $args);
+
+    // EVENT POST TYPE
+    $args = array(
+        'labels' => array(
+            'name' => _x('Événement', 'taxonomy general name'),
+            'singular_name' => _x('Événement', 'taxonomy singular name'),
+            'add_new_item' => __('Ajouter un événement'),
+            'edit_item' => __('Editer l\'évenement'),
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'query_var' => 'evenement',
+        'has_archive' => true,
+        'menu_icon' => '',
+        'supports' => array('title', 'editor', 'thumbnail', 'author')
+    );
+
+    register_post_type('evenement', $args);
+
+
+
+
   // post type autres structures
 
     $capabilities = array(
@@ -255,6 +295,8 @@ function add_menu_icons_styles(){
 <style>
 #adminmenu .menu-icon-post div.wp-menu-image:before{content: "\f123";}
 #adminmenu .menu-icon-pays div.wp-menu-image:before {content: "\f319";}
+#adminmenu .menu-icon-emploi div.wp-menu-image:before {content: "\f319";}
+#adminmenu .menu-icon-evenement div.wp-menu-image:before {content: "\f319";}
 #adminmenu .menu-icon-diaporama div.wp-menu-image:before {content: "\f232";}
 #adminmenu .menu-icon-antenne div.wp-menu-image:before {content: "\f230";}
 #adminmenu .menu-icon-agenda div.wp-menu-image:before {content: "\f145";}
