@@ -43,13 +43,13 @@ get_header(); ?>
 
                         <?php if ( $the_query->have_posts() ) : ?>
 
-                            <div class="row medias_list">
+                            <div class="row events_list">
                                 <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
                                     <?php set_query_var( 'type', 'media' ); ?>
                                     <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                                    <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+                                    <?php get_template_part('template-parts/parts/part', 'evenement'); ?>
 
                                 <?php endwhile; ?>
                             </div>

@@ -42,33 +42,16 @@ get_header(); ?>
                         $totalpages = $the_query->max_num_pages;?>
 
                         <?php if ( $the_query->have_posts() ) : ?>
-                            <?php $i = 0; ?>
-                            <div class="results_nav clearfix row">
-                                <div class="nav_pager-top m-5col m-last">
-                                    <?php cnLib::pagination($totalpages); ?>
-                                </div>
-                            </div>
 
                             <div class="row medias_list">
-                            <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
-                                <?php set_query_var( 'type', 'media' ); ?>
-                                <?php set_query_var( 'cnSite', $cnSite ); ?>
+                                    <?php set_query_var( 'type', 'media' ); ?>
+                                    <?php set_query_var( 'cnSite', $cnSite ); ?>
 
-                                <?php if ( $i % 2 == 0 ) : ?>
-                                    <div class="m-4col m-clearfix">
+                                    <?php get_template_part('template-parts/parts/part', 'emploi'); ?>
 
-                                <?php else : ?>
-                                    <div class="m-4col">
-
-                                <?php endif; ?>
-                                        <?php set_query_var( 'ref', 'media' ); ?>
-                                        <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
-                                    </div>
-
-                                <?php $i++; ?>
-
-                            <?php endwhile; ?>
+                                <?php endwhile; ?>
                             </div>
 
                             <div class="results_nav clearfix row">

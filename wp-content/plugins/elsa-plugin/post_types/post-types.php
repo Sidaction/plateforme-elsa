@@ -31,7 +31,7 @@ function register_custompost() {
 
 
 
-    // EMPLOI POST TYPE
+    // EMPLOI POST TYPE & TAXONOMIES
     $args = array(
         'labels' => array(
             'name' => _x('Offre d\'emploi', 'taxonomy general name'),
@@ -49,7 +49,21 @@ function register_custompost() {
 
     register_post_type('emploi', $args);
 
-    // EVENT POST TYPE
+    register_taxonomy(
+      'emploi_lieu', array('emploi'), 
+      array(
+        'public' => true,
+        'show_admin_column' => true,
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => _x('Lieu de l\'offre d\'emploi', 'taxonomy general name'),
+            'singular_name' => _x('Lieu de l\'offre d\'emploi', 'taxonomy singular name'),
+        )
+      )
+    );
+
+
+    // EVENT POST TYPE & TAXONOMIES
     $args = array(
         'labels' => array(
             'name' => _x('Événement', 'taxonomy general name'),
@@ -66,6 +80,21 @@ function register_custompost() {
     );
 
     register_post_type('evenement', $args);
+
+    register_taxonomy(
+      'evenement_lieu', array('evenement'), 
+      array(
+        'public' => true,
+        'show_admin_column' => true,
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => _x('Lieu de l\'évenement', 'taxonomy general name'),
+            'singular_name' => _x('Lieu de l\'évenement', 'taxonomy singular name'),
+        )
+      )
+    );  
+
+
 
 
 
