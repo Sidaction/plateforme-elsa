@@ -84,7 +84,7 @@ function rw_register_meta_box() {
         'std' => '',
       ),
       array(
-        'name' => 'Cette ressource est recommandée par le comité de lecture',
+        'name' => 'Ressource mise en avant',
         'id' => 'homefiche',
         'type' => 'radio',
         'options' => array(1=>'Oui ', 0=>'Non')
