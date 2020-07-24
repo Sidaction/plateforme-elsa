@@ -62,6 +62,20 @@ function register_custompost() {
       )
     );
 
+    register_taxonomy(
+      'emploi_contrat', array('emploi'), 
+      array(
+        'public' => true,
+        'show_admin_column' => true,
+        'hierarchical' => false,
+        'labels' => array(
+            'name' => _x('Type de contrat', 'taxonomy general name'),
+            'singular_name' => _x('Type de contrat', 'taxonomy singular name'),
+        )
+      )
+    );
+
+
 
     // EVENT POST TYPE & TAXONOMIES
     $args = array(

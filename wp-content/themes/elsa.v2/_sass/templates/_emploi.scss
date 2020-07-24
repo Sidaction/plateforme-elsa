@@ -1,5 +1,24 @@
 
 
 .emploi-item {
-	border-bottom: 1px solid;
+	border-bottom: 1px solid #ddd;
+
+	.item_content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.item_title {
+		width: 45%;
+	}
+
+	.item_organisation {
+		width: 20%;
+	}
+
+	.item_action {
+		margin: 0;
+	}
+
 }
