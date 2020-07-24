@@ -94,6 +94,18 @@ function register_custompost() {
       )
     );  
 
+    register_taxonomy(
+      'evenement_type', array('evenement'), 
+      array(
+        'public' => true,
+        'show_admin_column' => true,
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => _x('Type d\'évenement', 'taxonomy general name'),
+            'singular_name' => _x('Type d\'évenement', 'taxonomy singular name'),
+        )
+      )
+    );  
 
 
 

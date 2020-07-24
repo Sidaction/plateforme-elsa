@@ -5,10 +5,15 @@
 
   <a href="<?php the_permalink(); ?>">
 
-  	<?php the_post_thumbnail(); ?>
+		<div class="ratio">
+			<div class="ratio_inner">
+				<?php the_post_thumbnail(); ?>
+			</div>
+		</div>
+  	
 
   	<div class="inner">
-			<p><?php the_field('date_evenement'); ?> |
+			<p><?php the_field('date_evenement'); ?> <span class="event_type"><?php $type = get_field('type_evenement'); echo $type ? '| ' . $type[0]->name : '' ; ?></span> | 
 				<?php $place = get_field('lieu_evenement'); 
 				echo $place ? $place[0]->name : 'lieu non précisé' ; ?>
 			</p>
@@ -22,3 +27,4 @@
   </a>
 
 </div>
+

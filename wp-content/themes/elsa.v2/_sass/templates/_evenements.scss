@@ -2,8 +2,8 @@
 
 .events_list {
 	display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .events_list::before,
@@ -16,11 +16,74 @@ justify-content: space-between;
 
 .evenement-item {
 	position: relative;
-	border: 1px solid gray;
+	border: 1px solid #d9d9d9;
 	width: 32%;
 	margin-bottom: 2%;
 
 	.inner {
-		padding: 10px;
+		padding: 20px;
 	}
 }
+
+
+
+
+.ratio {
+  position: relative;
+  width: 100%;
+}
+
+.ratio:after {
+  content: "";
+  display: block;
+  padding-bottom: 75%;
+}
+.ratio_inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: $color_primary;
+}
+
+.ratio_inner img {
+	height: 100%;
+	object-fit: cover;
+}
+
+
+
+
+// SINGLE
+
+.event_metas {
+	margin-top: 20px;
+	font-size: 1.8rem;
+}
+
+.event_date {
+	margin-bottom: 5px;
+}
+.place_name {
+	font-weight: bold;
+}
+
+.event_shortdescription {
+	margin-bottom: 50px;
+	font-weight: bold;
+	font-size: 2.4rem;
+	padding-right: 20%;
+}
+.event_content {
+	padding-right: 10%;
+	margin-bottom: 50px;
+}
+
+.event_media {
+	margin-bottom: 50px;
+}
+
+.event_action {
+
+}
+
+
