@@ -10,7 +10,8 @@
 	}
 
 	.item_title {
-		width: 45%;
+		width: 50%;
+		padding-right: 20px;
 	}
 
 	.item_organisation {
@@ -19,6 +20,9 @@
 
 	.item_action {
 		margin: 0;
+		font-size: 0.8em;
+		flex: 1;
+		padding: .3em .5em;
 	}
 
 }

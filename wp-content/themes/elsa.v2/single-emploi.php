@@ -85,7 +85,7 @@
                         <a href="<?php echo get_permalink($post_prev->ID); ?>" class="btn-secondary">&lt; Offre précédente (<em><?php echo $post_prev->post_title;?></em>)</a>
                     <?php endif; ?>
 
-                <a href="/agenda" class="btn-secondary"><?php print_r('retour aux offres d\'emploi'); ?></a>
+                <a href="/offres-demploi" class="btn-secondary"><?php print_r('retour aux offres d\'emploi'); ?></a>
 
                 <?php 
                     $post_next = get_adjacent_post(false,'',false);
@@ -100,7 +100,6 @@
 
 
     </article>
-
 
 
 
