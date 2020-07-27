@@ -13,7 +13,7 @@
 
 
 
-<section id="site-content" class="site-content single-ressource">
+<section id="site-content" class="site-content single-event">
 
     <article class="main-content clearfix noback">
         <div class="page_title pays_title">
@@ -26,7 +26,7 @@
                     </h1>
 
                     <div class="event_metas row">
-                            <div class="event_practical_group">
+                            <div class="page_practical_group">
                                     <div class="event_date">
                                         <?php the_field('date_evenement'); ?> 
                                     </div>
@@ -50,11 +50,11 @@
 
                 <div class="m-5col">
 
-                    <div class="event_shortdescription">
+                    <div class="page_shortdescription">
                         <?php the_field('description_courte'); ?>
                     </div>
 
-                    <div class="event_content">
+                    <div class="page_maincontent">
                         <?php the_content(); ?>
                     </div>
 
@@ -76,8 +76,22 @@
             </div><!-- .wrap -->
 
 
-            <div class="row wrap">
+            <div class="row wrap page_action">
+
+                <?php
+                    $post_prev = get_adjacent_post(false,'',true);
+                    if ($post_prev) :?>
+                        <a href="<?php echo get_permalink($post_prev->ID); ?>" class="btn-secondary">&lt; Événement précédent (<em><?php echo $post_prev->post_title;?></em>)</a>
+                    <?php endif; ?>
+
                 <a href="/agenda" class="btn-secondary">retour à l'agenda</a>
+
+                <?php 
+                    $post_next = get_adjacent_post(false,'',false);
+                    if ($post_next):?>
+                        <a href="<?php echo get_permalink($post_next->ID); ?>" class="btn-secondary">&gt; Événement suivant (<em><?php echo $post_next->post_title;?></em>)</a>
+                    <?php endif; ?>
+
             </div>
         </div><!-- .page_content -->
 

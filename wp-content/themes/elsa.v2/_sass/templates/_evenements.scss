@@ -53,11 +53,11 @@
 	}
 }
 
-.event_practical_group {
+.page_practical_group {
 	font-size: 0.9em;
 	padding-left: 30px;
 	position: relative;
-
+	
 
 	&:before {
 		content: 'i';
@@ -122,25 +122,29 @@
 
 // SINGLE
 
+.single-event {
+	.page_content {
+		padding-bottom: 0;
+	}
+}
+
 .event_metas {
 	margin-top: 20px;
 	font-size: 2.2rem;
 	line-height: 1.2;
 }
 
-.event_date {
-}
 .place_name {
 	font-weight: bold;
 }
 
-.event_shortdescription {
+.page_shortdescription {
 	margin-bottom: 50px;
 	font-weight: bold;
 	font-size: 2.4rem;
 	padding-right: 20%;
 }
-.event_content {
+.page_maincontent {
 	padding-right: 10%;
 	margin-bottom: 50px;
 }

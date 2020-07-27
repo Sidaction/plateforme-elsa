@@ -20,7 +20,7 @@
 			  	<p><?php the_field('description_courte'); ?></p>
 				</div>
 
-				<div class="event_practical_group">
+				<div class="page_practical_group">
 						<div class="event_date">
 							<?php the_field('date_evenement'); ?> 
 						</div>

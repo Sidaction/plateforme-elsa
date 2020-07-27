@@ -45,10 +45,7 @@ a:active {
   font-weight: $semibold;
   text-align: center;
   margin-bottom: $base_line_height;
-  padding-left: $base_line_height;
-  padding-right: $base_line_height;
-  padding-top: $base_line_height / 2;
-  padding-bottom: $base_line_height / 2;
+  padding: .65em 1.3em;
   text-decoration: none;
 
   &.plain {
