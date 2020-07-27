@@ -13,7 +13,7 @@
 			<?php $contrat = get_field('emploi_contrat'); echo $contrat ? $contrat[0]->name : 'type de contrat non renseigné'; ?>
 		</div>
 		
-		<div class="item_organisation">
+		<div class="item_place">
 			<?php $place = get_field('emploi_place'); echo $place ? $place[0]->name : 'lieu non renseigné'; ?>
 		</div>
 
