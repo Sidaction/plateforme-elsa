@@ -44,7 +44,8 @@ function register_custompost() {
         'query_var' => 'emploi',
         'has_archive' => true,
         'menu_icon' => '',
-        'supports' => array('title', 'editor', 'thumbnail', 'author')
+        'supports' => array('title', 'editor', 'thumbnail', 'author'),
+        'taxonomies'          => array( 'category' )
     );
 
     register_post_type('emploi', $args);
@@ -54,7 +55,7 @@ function register_custompost() {
       array(
         'public' => true,
         'show_admin_column' => true,
-        'hierarchical' => true,
+        'hierarchical' => false,
         'labels' => array(
             'name' => _x('Lieu de l\'offre d\'emploi', 'taxonomy general name'),
             'singular_name' => _x('Lieu de l\'offre d\'emploi', 'taxonomy singular name'),
@@ -90,7 +91,8 @@ function register_custompost() {
         'query_var' => 'evenement',
         'has_archive' => true,
         'menu_icon' => '',
-        'supports' => array('title', 'editor', 'thumbnail', 'author')
+        'supports' => array('title', 'editor', 'thumbnail', 'author'),
+        'taxonomies'          => array( 'category' )
     );
 
     register_post_type('evenement', $args);
