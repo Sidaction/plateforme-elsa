@@ -26,21 +26,18 @@
                     </h1>
 
                     <div class="event_metas row">
-                        <div class=" event_date">
-                            <span><?php 
-                                $unixtimestamp = strtotime( get_field('date_evenement') );
-                                echo date_i18n( "l d F Y - H\hi", $unixtimestamp ); 
-                            ?></span> | <span class="event_type"><?php $type = get_field('type_evenement'); echo $type[0]->name; ?></span>
-                        </div>
-
-
-
-                        <div class="event_place">
-                            <?php 
-                                $place = get_field('lieu_evenement'); 
-
-                                echo $place ? '<span class="place_name">' . $place[0]->name . '</span> - ' . $place[0]->description : 'lieu non précisé' ; ?>
-                        </div>
+                            <div class="event_practical_group">
+                                    <div class="event_date">
+                                        <?php the_field('date_evenement'); ?> 
+                                    </div>
+                                    <div class="event_type">
+                                        <?php $type = get_field('type_evenement'); echo $type ? $type[0]->name : '' ; ?>
+                                    </div>
+                                    <div class="event_place">
+                                        <?php $place = get_field('lieu_evenement'); 
+                                        echo $place ? $place[0]->name : 'lieu non précisé' ; ?>
+                                    </div>
+                            </div>
                     </div>
 
                 </div>
