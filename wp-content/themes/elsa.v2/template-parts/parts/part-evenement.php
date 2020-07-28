@@ -27,7 +27,7 @@
 						<div class="event_type">
 							<?php $type = get_the_terms( $post->ID, 'evenement_type' ); echo $type ? $type[0]->name : '' ; ?>
 						</div>
-						<div class="event_place">
+						<div class="event_place--short">
 							<?php $place = get_the_terms( $post->ID, 'evenement_lieu' ); 
 							echo $place ? $place[0]->name : 'lieu non précisé' ; ?>
 						</div>

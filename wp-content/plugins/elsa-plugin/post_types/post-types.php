@@ -104,8 +104,8 @@ function register_custompost() {
         'show_admin_column' => true,
         'hierarchical' => true,
         'labels' => array(
-            'name' => _x('Lieu de l\'évenement', 'taxonomy general name'),
-            'singular_name' => _x('Lieu de l\'évenement', 'taxonomy singular name'),
+            'name' => _x('Pays de l\'évenement', 'taxonomy general name'),
+            'singular_name' => _x('Pays de l\'évenement', 'taxonomy singular name'),
         )
       )
     );  

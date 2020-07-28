@@ -33,7 +33,7 @@
                                     <div class="event_type">
                                         <?php $type = get_the_terms( $post->ID, 'evenement_type' ); echo $type ? $type[0]->name : '' ; ?>
                                     </div>
-                                    <div class="event_place">
+                                    <div class="event_place--short">
                                         <?php $place = get_the_terms( $post->ID, 'evenement_lieu' ); 
                                         echo $place ? $place[0]->name : 'lieu non précisé' ; ?>
                                     </div>
@@ -64,6 +64,10 @@
 
                     <div class="event_media">
                         <?php the_post_thumbnail(); ?>
+                    </div>
+
+                    <div class="event_place">
+                        <?php the_field('adresse_evenement'); ?>
                     </div>
 
                     <div class="event_action">

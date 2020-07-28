@@ -42,8 +42,15 @@ get_header(); ?>
                                 <span class="icon-arrow_right-big"></span>
                               </div>
                             </div>
-                            
-                            <div class="filter-date m-3col">
+
+                            <div class="filter-date m-2col">
+                              <div class="input--select">
+                                <?php cnLib::custom_taxonomy_dropdown('evenement_lieu','selectBox','Pays / En ligne','','',false);?>
+                                <span class="icon-arrow_right-big"></span>
+                              </div>
+                            </div>
+
+                            <div class="filter-date m-2col">
                               <div class="input--select">
                                 <?php cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
                                 <span class="icon-arrow_right-big"></span>
@@ -85,7 +92,7 @@ get_header(); ?>
                         );
 
 
-                        // SI lieu
+                        // SI type d'évenement is set
                         if(isset($_GET['evenement_type'])) {
                           $args['evenement_type'] = $_GET['evenement_type'];
                         } 
@@ -93,14 +100,25 @@ get_header(); ?>
                           $args['evenement_type'] = '';
                         }
 
+                        // Si Pays / En ligne is set
+                        if(isset($_GET['evenement_lieu'])) {
+                          $args['evenement_lieu'] = $_GET['evenement_lieu'];
+                        } 
+                        else {
+                          $args['evenement_lieu'] = '';
+                        }
 
-                        // SI Type contrat
+                        // Si thématique is set
                         if(isset($_GET['category'])) {
                           $args['category_name'] = $_GET['category'];
                         } 
                         else {
                           $args['category_name'] = '';
                         }
+
+
+
+
 
 
                         $the_query = new WP_Query( $args ); 
