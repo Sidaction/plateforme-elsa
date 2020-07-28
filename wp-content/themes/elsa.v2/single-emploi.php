@@ -50,17 +50,23 @@
 
                     <div class="page_practical_group">
                         <div class="emploi_contrat">
-                            <?php $contrat = get_the_terms( $post->ID, 'emploi_contrat' ); echo $contrat ? $contrat[0]->name : 'type de contrat non renseigné'; ?>
+                            <?php $contrat = get_the_terms( $post->ID, 'emploi_contrat' ); echo $contrat ? $contrat[0]->name : 'type de contrat non renseigné'; ?> <br>
+                            <?php $domaine = get_the_terms( $post->ID, 'emploi_domaine' ); echo $domaine ? $domaine[0]->name : 'domaine non renseigné'; ?>
+
                         </div>
                         <div class="emploi_place">
-                            <?php $place = get_the_terms( $post->ID, 'emploi_lieu'); echo $place ? $place[0]->name . ', ' . $place[0]->description : 'lieu non renseigné'; ?>
+                            <?php the_field('emploi_place'); ?>
+                            <?php $place = get_the_terms( $post->ID, 'emploi_lieu'); echo $place ? $place[0]->name : 'lieu non renseigné'; ?>
                         </div>
+
+
 
                         <?php if( get_field('emploi_fiche')) : ?>
                             <a role="button" class="btn-inline" target="_blank" href="<?php the_field('emploi_fiche'); ?>"><?php print_r('Lire le détail du poste'); ?></a>
                         <?php endif; ?>
 
                     </div>
+
 
                     <div class="emploi_action">
                         <?php if( get_field('emploi_link')) : ?>

@@ -44,7 +44,7 @@ function register_custompost() {
         'query_var' => 'emploi',
         'has_archive' => true,
         'menu_icon' => '',
-        'supports' => array('title', 'editor', 'thumbnail', 'author'),
+        'supports' => array('title', 'editor', 'author'),
         'taxonomies'          => array( 'category' )
     );
 
@@ -57,8 +57,8 @@ function register_custompost() {
         'show_admin_column' => true,
         'hierarchical' => false,
         'labels' => array(
-            'name' => _x('Lieu de l\'offre d\'emploi', 'taxonomy general name'),
-            'singular_name' => _x('Lieu de l\'offre d\'emploi', 'taxonomy singular name'),
+            'name' => _x('Lieu de l\'offre d\'emploi (Pays / A distance)', 'taxonomy general name'),
+            'singular_name' => _x('Lieu de l\'offre d\'emploi (Pays / A distance)', 'taxonomy singular name'),
         )
       )
     );
@@ -75,6 +75,20 @@ function register_custompost() {
         )
       )
     );
+
+    register_taxonomy(
+      'emploi_domaine', array('emploi'), 
+      array(
+        'public' => true,
+        'show_admin_column' => true,
+        'hierarchical' => false,
+        'labels' => array(
+            'name' => _x('Domaine emploi', 'taxonomy general name'),
+            'singular_name' => _x('Domaine emploi', 'taxonomy singular name'),
+        )
+      )
+    );
+
 
 
 

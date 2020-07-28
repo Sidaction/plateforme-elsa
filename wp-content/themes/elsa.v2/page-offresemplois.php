@@ -50,6 +50,13 @@ get_header(); ?>
                           </div>
                     </div>
 
+                    <div class="filter-date m-2col">
+                          <div class="input--select">
+                            <?php cnLib::custom_taxonomy_dropdown('emploi_domaine','selectBox','Domaine','','',false);?>
+                            <span class="icon-arrow_right-big"></span>
+                          </div>
+                    </div>
+
                     <div class="m-2col">
                         <input type="submit" id="formatbtn" class="btn-primary plain" value="Filtrer">
                     </div>

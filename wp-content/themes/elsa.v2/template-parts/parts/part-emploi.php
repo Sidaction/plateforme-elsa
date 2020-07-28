@@ -14,7 +14,7 @@
 		</div>
 		
 		<div class="item_place">
-			<?php $place = get_the_terms( $post->ID, 'emploi_lieu'); echo $place ? $place[0]->name . ', ' . $place[0]->description : 'lieu non renseigné'; ?>
+			<?php $place = get_the_terms( $post->ID, 'emploi_lieu'); echo $place ? $place[0]->name : 'lieu non renseigné'; ?>
 		</div>
 
 		<span class="btn-secondary item_action">Consulter l'offre d'emploi</span>
