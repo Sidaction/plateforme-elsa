@@ -10,11 +10,11 @@
   	</div>
 
 		<div class="item_organisation">
-			<?php $contrat = get_field('emploi_contrat'); echo $contrat ? $contrat[0]->name : 'type de contrat non renseigné'; ?>
+			<?php $contrat = get_the_terms( $post->ID, 'emploi_contrat' ); echo $contrat ? $contrat[0]->name : 'type de contrat non renseigné'; ?>
 		</div>
 		
 		<div class="item_place">
-			<?php $place = get_field('emploi_place'); echo $place ? $place[0]->name : 'lieu non renseigné'; ?>
+			<?php $place = get_the_terms( $post->ID, 'emploi_lieu'); echo $place ? $place[0]->name . ', ' . $place[0]->description : 'lieu non renseigné'; ?>
 		</div>
 
 		<span class="btn-secondary item_action">Consulter l'offre d'emploi</span>

@@ -31,10 +31,10 @@
                                         <?php the_field('date_evenement'); ?> 
                                     </div>
                                     <div class="event_type">
-                                        <?php $type = get_field('type_evenement'); echo $type ? $type[0]->name : '' ; ?>
+                                        <?php $type = get_the_terms( $post->ID, 'evenement_type' ); echo $type ? $type[0]->name : '' ; ?>
                                     </div>
                                     <div class="event_place">
-                                        <?php $place = get_field('lieu_evenement'); 
+                                        <?php $place = get_the_terms( $post->ID, 'evenement_lieu' ); 
                                         echo $place ? $place[0]->name : 'lieu non précisé' ; ?>
                                     </div>
                             </div>

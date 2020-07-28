@@ -71,7 +71,7 @@ get_header(); ?>
                         );
 
                         // SI lieu
-                        if(isset($_GET['emploi_lieu'])) {
+                        if(isset($_GET['emploi_lieu'])  && $_GET['emploi_lieu'] != '' ) {
                           $args['emploi_lieu'] = $_GET['emploi_lieu'];
                         } 
                         else {
@@ -79,7 +79,7 @@ get_header(); ?>
                         }
 
                         // SI Type contrat
-                        if(isset($_GET['emploi_contrat'])) {
+                        if( isset($_GET['emploi_contrat']) && $_GET['emploi_contrat'] != '' ) {
                           $args['emploi_contrat'] = $_GET['emploi_contrat'];
                         } 
                         else {
