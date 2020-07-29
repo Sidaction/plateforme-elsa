@@ -77,7 +77,7 @@ get_header(); ?>
                             'paged' => get_query_var( 'paged' )
                         );
 
-                        // SI lieu
+                        // SI Pays 
                         if(isset($_GET['emploi_lieu'])  && $_GET['emploi_lieu'] != '' ) {
                           $args['emploi_lieu'] = $_GET['emploi_lieu'];
                         } 
@@ -93,6 +93,13 @@ get_header(); ?>
                           $args['emploi_contrat'] = '';
                         }
 
+                        // SI Domaine emploi
+                        if( isset($_GET['emploi_domaine']) && $_GET['emploi_domaine'] != '' ) {
+                          $args['emploi_domaine'] = $_GET['emploi_domaine'];
+                        } 
+                        else {
+                          $args['emploi_domaine'] = '';
+                        }
 
 
                         $the_query = new WP_Query( $args ); 
@@ -120,7 +127,7 @@ get_header(); ?>
                             <?php wp_reset_postdata(); ?>
 
                         <?php else : ?>
-                            <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+                            <p><?php _e( 'Désolé, il n\'y a aucun événement correspondant à votre sélection.' ); ?></p>
                         <?php endif; ?>
 
                     </div>

@@ -62,7 +62,7 @@
 
 
                         <?php if( get_field('emploi_fiche')) : ?>
-                            <a role="button" class="btn-inline" target="_blank" href="<?php the_field('emploi_fiche'); ?>"><?php print_r('Lire le détail du poste'); ?></a>
+                            <a role="button" class="btn-inline" target="_blank" href="<?php the_field('emploi_fiche'); ?>"><?php print_r('Consulter la fiche du poste'); ?></a>
                         <?php endif; ?>
 
                     </div>
@@ -79,7 +79,6 @@
 
 
             </div><!-- .wrap -->
-
 
 
 

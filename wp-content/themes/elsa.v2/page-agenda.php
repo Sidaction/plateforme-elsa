@@ -146,7 +146,7 @@ get_header(); ?>
                             <?php wp_reset_postdata(); ?>
 
                         <?php else : ?>
-                            <p><?php _e( 'Désolé, il n\'y a aucun post correspondant.' ); ?></p>
+                            <p><?php _e( 'Désolé, il n\'y a aucune offre d\'emploi correspondant à la sélection.' ); ?></p>
                         <?php endif; ?>
 
                     </div>
