@@ -70,14 +70,15 @@ class doc  {
 				self::upload_file($newpost_id);
 			}	
 
-			$to = get_bloginfo('admin_email');
+			$to = 'hello@thomasflorentin.net';
 			$subject = 'Une ressource a été soumise';
 			$body = 'Bonjour,<br>';
 			$body .= 'La ressource <em>' . $this->args['title'] . '</em> (au format "'. $this->args['format'] .'") a été soumise par ' . $this->args['contname'] . ' (' . $this->args['contemail'] . ') ' . '.<br>';
 			$body .= 'Bonne journée ! :)<br>HAL';
 			$headers = array('Content-Type: text/html; charset=UTF-8');
-			$headers[] = 'Cci: Thomas Florentin <hello@thomasflorentin.net>';
-
+			
+			$headers[] = 'Cc: hello@thomasflorentin.net'; // note you can just use a simple email address
+			
 			wp_mail( $to, $subject, $body, $headers );
 
 		
