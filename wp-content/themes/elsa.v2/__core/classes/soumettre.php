@@ -76,7 +76,8 @@ class doc  {
 			$body .= 'La ressource <em>' . $this->args['title'] . '</em> (au format "'. $this->args['format'] .'") a été soumise par ' . $this->args['contname'] . ' (' . $this->args['contemail'] . ') ' . '.<br>';
 			$body .= 'Bonne journée ! :)<br>HAL';
 			$headers = array('Content-Type: text/html; charset=UTF-8');
-			 
+			$headers[] = 'Cci: Thomas Florentin <hello@thomasflorentin.net>';
+
 			wp_mail( $to, $subject, $body, $headers );
 
 		
