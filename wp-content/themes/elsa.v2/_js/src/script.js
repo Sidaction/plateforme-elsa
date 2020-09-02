@@ -26,7 +26,7 @@ jQuery(document).ready(function($){
 
 
 
-
+ 
 
 //ADD POST TO RIL
   $('.addToReadItLaterButton').click(function(event){
@@ -202,63 +202,61 @@ jQuery(document).ready(function($){
     $('body').removeClass('no-scroll');
     $('.modal').hide();
   }); 
+ 
 
 
-
-
+ 
   /*
    * DROPDOWNS
    */
 
   dropdowns_trigger.on('click', function(event) {
-      console.log('hello');
 
-    if( $(this).parent().hasClass('direct-link') ) {
-      console.log('hellooooo');
-      return;
-    }
+    if( !$(this).parent().hasClass('direct-link') ) {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    var header = $('.site-header');
-    var viewportHeight = $(window).height();
-    var headerHeight = header.outerHeight();
+      var header = $('.site-header');
+      var viewportHeight = $(window).height();
+      var headerHeight = header.outerHeight();
 
-    var dropdownHeight = viewportHeight - headerHeight;
-    var dropdownHeightPourcentage = ( dropdownHeight * 100 ) / viewportHeight - 12;
+      var dropdownHeight = viewportHeight - headerHeight;
+      var dropdownHeightPourcentage = ( dropdownHeight * 100 ) / viewportHeight - 12;
 
-    if( dropdowns_trigger.hasClass('e-open') ) {
-    
-      if( $(this).hasClass('e-open') ) {
-        $(this).removeClass('e-open');
-        $('#site-content').removeClass('dd-open');
+      if( dropdowns_trigger.hasClass('e-open') ) {
+      
+        if( $(this).hasClass('e-open') ) {
+          $(this).removeClass('e-open');
+          $('#site-content').removeClass('dd-open');
 
-        if( main_nav_trigger.hasClass('e-open') ) {
+          if( main_nav_trigger.hasClass('e-open') ) {
 
+          }
+          else {
+            $('body').removeClass('no-scroll');
+          }
         }
         else {
-          $('body').removeClass('no-scroll');
+          dropdowns_trigger.removeClass('e-open');
+          $(this).addClass('e-open');
+          $('#site-content').addClass('dd-open');
+          $('body').addClass('no-scroll');
+          $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
         }
       }
       else {
-        dropdowns_trigger.removeClass('e-open');
         $(this).addClass('e-open');
         $('#site-content').addClass('dd-open');
         $('body').addClass('no-scroll');
         $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
       }
     }
-    else {
-      $(this).addClass('e-open');
-      $('#site-content').addClass('dd-open');
-      $('body').addClass('no-scroll');
-      $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
-    }
+
   });
+ 
 
 
-
-
+ 
   /*
    * BX SLIDERS
    */

@@ -97,11 +97,18 @@ var gulp = require("gulp"),
     cssnano = require("cssnano"),
     rename = require("gulp-rename"),
     sourcemaps = require("gulp-sourcemaps");
+    concat = require("gulp-concat");
+    uglify = require("gulp-uglify");
     
 var paths = {
     styles: {
         src: "wp-content/themes/elsa.v2/_sass/**/*.scss",
         dest: "wp-content/themes/elsa.v2/"
+    },
+    scripts: {
+        main: "wp-content/themes/elsa.v2/_js/src/script.js",
+        all: "wp-content/themes/elsa.v2/_js/src/**/*.js",
+        dest: "wp-content/themes/elsa.v2/_js/"
     }
 };
 
@@ -126,11 +133,25 @@ function style() {
     
 }
 
+function scripts() {
+
+    return (
+        gulp.src(paths.scripts.all)
+            .pipe(concat('all.js'))
+            .pipe(gulp.dest(paths.scripts.dest))
+            .pipe(rename('all.min.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest(paths.scripts.dest))
+    );
+}
+
     
 function watch() {
     style();
-    
+    scripts();
+
     gulp.watch(paths.styles.src, style);
+    gulp.watch(paths.scripts.main, scripts);
 }
 
     
