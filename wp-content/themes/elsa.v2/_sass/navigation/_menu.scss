@@ -118,7 +118,8 @@
 
   } 
   .main_nav-dropdowns {
-    display: block;
+    display: flex;
+    justify-content: space-between;
   } 
 
   .menu-menu-principal-container > ul {
@@ -142,11 +143,10 @@
       margin-left: $base_line_height;
 
       @include at-least(medium) {
-        &:nth-last-child(1),
-        &:nth-last-child(2),
-        &:nth-last-child(3) {
-          float: right;
-        }
+        // &:nth-child(3),
+        // &:nth-child(4) {
+        //   float: right;
+        // }        
       }
 
       @include up-to(large) {
@@ -225,7 +225,6 @@
           a {
             margin-left: $base_line_height / 2;
             margin-right: $base_line_height / 2;
-            font-size: 1.8rem;
           }
 
           @include up-to(medium) {

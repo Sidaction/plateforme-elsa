@@ -56,6 +56,11 @@
             <div class="main_nav-dropdowns">
                 <?php $walker = new Menu_With_Description; ?>
                 <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'walker' => $walker ) ); ?>
+
+                <div class="">
+                    <?php wp_nav_menu( array( 'theme_location' => 'headright', 'menu_id' => 'primary-menu', 'walker' => $walker ) ); ?>
+                </div>
+
             </div>
             
         </div>

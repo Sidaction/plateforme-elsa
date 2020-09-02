@@ -201,7 +201,7 @@ jQuery(document).ready(function($){
 
     $('body').removeClass('no-scroll');
     $('.modal').hide();
-  });
+  }); 
 
 
 
@@ -211,6 +211,12 @@ jQuery(document).ready(function($){
    */
 
   dropdowns_trigger.on('click', function(event) {
+      console.log('hello');
+
+    if( $(this).parent().hasClass('direct-link') ) {
+      console.log('hellooooo');
+      return;
+    }
 
     event.preventDefault();
 
