@@ -142,13 +142,6 @@
       color: $white;
       margin-left: $base_line_height;
 
-      @include at-least(medium) {
-        // &:nth-child(3),
-        // &:nth-child(4) {
-        //   float: right;
-        // }        
-      }
-
       @include up-to(large) {
         font-size: 18px;
         font-size: 1.8rem;
