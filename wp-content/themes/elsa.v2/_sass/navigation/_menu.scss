@@ -132,7 +132,7 @@
 
   }
     .main_nav_item {
-      @include type-setting(2);
+      font-size: 2rem;
       line-height: 30px;
       display: inline-block;
       font-weight: $thin;
@@ -142,10 +142,10 @@
       margin-left: $base_line_height;
 
       @include at-least(medium) {
-        &:nth-child(3),
-        &:nth-child(4) {
+        &:nth-last-child(1),
+        &:nth-last-child(2) {
           float: right;
-        }        
+        }
       }
 
       @include up-to(large) {
@@ -224,6 +224,7 @@
           a {
             margin-left: $base_line_height / 2;
             margin-right: $base_line_height / 2;
+            font-size: 1.8rem;
           }
 
           @include up-to(medium) {
