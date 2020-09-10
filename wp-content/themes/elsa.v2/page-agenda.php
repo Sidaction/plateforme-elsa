@@ -77,8 +77,8 @@ get_header(); ?>
                             'post_type'         => array('evenement'),
                             'post_status'       => 'publish',
                             'paged'             => get_query_var( 'paged' ),
+                            'orderby'           => 'meta_value',
                             'meta_key'          => 'date_evenement',
-                            'orderby'           => 'meta_value_num',
                             'order'             => 'ASC',
                             'meta_type'         => 'DATETIME',
                             'meta_query'        => array(
