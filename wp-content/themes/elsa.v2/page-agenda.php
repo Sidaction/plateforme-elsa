@@ -81,16 +81,30 @@ get_header(); ?>
                             'meta_key'          => 'date_evenement',
                             'order'             => 'ASC',
                             'meta_type'         => 'DATETIME',
-                            'meta_query'        => array(
+                        );
+
+
+                        // SI type d'évenement is set
+                        if(isset($_GET['evenement_passes'])) {
+                            $args['meta_query'] =array(
+                                array(
+                                    'key'           => 'date_evenement',
+                                    'compare'       => '<=',
+                                    'value'         => $date_now,
+                                    'type'          => 'DATETIME',
+                                )
+                            );
+                        } 
+                        else {
+                            $args['meta_query'] =array(
                                 array(
                                     'key'           => 'date_evenement',
                                     'compare'       => '>=',
                                     'value'         => $date_now,
                                     'type'          => 'DATETIME',
                                 )
-                            ),
-                        );
-
+                            );
+                        }
 
                         // SI type d'évenement is set
                         if(isset($_GET['evenement_type'])) {
@@ -115,9 +129,6 @@ get_header(); ?>
                         else {
                           $args['category_name'] = '';
                         }
-
-
-
 
 
 
@@ -150,6 +161,20 @@ get_header(); ?>
                         <?php endif; ?>
 
                     </div>
+
+                    <?php 
+                        // SI type d'évenement is set
+                        if(isset($_GET['evenement_passes'])) { ?>
+                            <a href="/agenda" class="btn-primary">Voir les événements à venir</a>
+
+                        <?php } 
+                        else { ?>
+                            <a href="/agenda?evenement_passes" class="btn-primary">Voir les événements passés</a>
+
+                        <?php }
+                    ?>
+
+
 
             </div><!-- .wrap -->
         </div><!-- .page_content -->
