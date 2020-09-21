@@ -4,6 +4,10 @@
 <div class="emploi-item">
   <a href="<?php the_permalink(); ?>" class="item_content">
   
+  	<div class="item_media">
+  		<?php the_post_thumbnail( $post->ID ); ?>
+  	</div>
+
   	<div class="item_title">
     	<h3><?php the_title(); ?></h3>
   		<p><?php the_field('description_courte'); ?></p>		

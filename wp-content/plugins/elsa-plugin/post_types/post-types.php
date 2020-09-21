@@ -44,7 +44,7 @@ function register_custompost() {
         'query_var' => 'emploi',
         'has_archive' => true,
         'menu_icon' => '',
-        'supports' => array('title', 'editor', 'author'),
+        'supports' => array('title', 'editor', 'author', 'thumbnail'),
         'taxonomies'          => array( 'category' )
     );
 
