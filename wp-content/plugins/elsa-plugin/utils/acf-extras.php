@@ -77,7 +77,7 @@ acf_add_local_field_group(array(
         'id' => '',
       ),
       'display_format' => 'd/m/Y g:i a',
-      'return_format' => 'd-m-Y g:i a',
+      'return_format' => 'd-m-Y G:i a',
       'first_day' => 1,
     ),
     array(
