@@ -79,14 +79,13 @@ get_header(); ?>
                             'paged'             => get_query_var( 'paged' ),
                             'orderby'           => 'meta_value',
                             'meta_key'          => 'date_evenement',
-                            'order'             => 'ASC',
                             'meta_type'         => 'DATETIME',
                         );
 
 
                         // SI type d'évenement is set
                         if(isset($_GET['evenement_passes'])) {
-                            $args['meta_query'] =array(
+                            $args['meta_query'] = array(
                                 array(
                                     'key'           => 'date_evenement',
                                     'compare'       => '<=',
@@ -94,9 +93,10 @@ get_header(); ?>
                                     'type'          => 'DATETIME',
                                 )
                             );
+                            $args['order'] = "DESC";
                         } 
                         else {
-                            $args['meta_query'] =array(
+                            $args['meta_query'] = array(
                                 array(
                                     'key'           => 'date_evenement',
                                     'compare'       => '>=',
@@ -104,6 +104,7 @@ get_header(); ?>
                                     'type'          => 'DATETIME',
                                 )
                             );
+                            $args['order'] = "ASC";
                         }
 
                         // SI type d'évenement is set
