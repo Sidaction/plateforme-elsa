@@ -37,14 +37,21 @@ setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
                                     $date = strtotime($date); 
                                     $end_date = strtotime($end_date); 
 
-                                    if( strftime('%A %d %B %G', $date ) == strftime('%A %d %B %G', $end_date ) ) {
-                                        echo 'Le ' . strftime('%A %d %B %G ・ %kh%M', $date );   
-                                        echo ' - ' . strftime('%kh%M', $end_date );
+                                    if( $end_date != '') {
+
+                                        if( strftime('%A %d %B %G', $date ) == strftime('%A %d %B %G', $end_date ) ) {
+                                            echo 'Le ' . strftime('%A %d %B %G ・ %kh%M', $date );   
+                                            echo ' - ' . strftime('%kh%M', $end_date );
+                                        }
+                                        else {
+                                            echo 'Du ' . strftime('%A %d %B %G ・ %kh%M', $date );   
+                                            echo ' <br>au ' . strftime('%A %d %B %G ・ %kh%M', $end_date ); 
+                                        } 
                                     }
                                     else {
-                                        echo 'Du ' . strftime('%A %d %B %G ・ %kh%M', $date );   
-                                        echo ' <br>au ' . strftime('%A %d %B %G ・ %kh%M', $end_date ); 
-                                    } 
+                                        echo strftime('%A %d %B %G ・ %kh%M', $date ); 
+                                    }
+
                                       
             
                                     if( get_field('utc_evenement') != '' ) {
