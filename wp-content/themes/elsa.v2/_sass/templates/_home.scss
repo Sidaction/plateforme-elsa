@@ -18,7 +18,7 @@
 .featured-content {
   background-color: $color_ressources;
   color: $white;
-  margin-bottom: $base_line_height * 5;
+  margin-bottom: $base_line_height * 3;
   padding-top: $base_line_height;
   padding-bottom: $base_line_height;
 
@@ -80,3 +80,35 @@
   }
 
 
+.home_featured_vid {
+  margin: 0 0 $base_line_height * 4 0;
+}
+.vid_container {
+  max-width: 750px;
+  margin: $base_line_height * 2 auto;
+
+  iframe {
+    height: 400px;
+    margin: 0;
+  }
+}
+.section_action {
+
+}
+
+
+.home_featured_docs {
+  margin: $base_line_height * 4 0 $base_line_height * 4 0;
+
+}
+.docs_container {
+  margin: $base_line_height * 2 auto;
+  display: flex;
+  justify-content: space-between;
+
+  .doc_item {
+    flex: 0 0 30%;
+    width: 30%;
+  }
+
+}

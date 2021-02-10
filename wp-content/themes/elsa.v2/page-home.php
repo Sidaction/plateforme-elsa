@@ -29,7 +29,7 @@ $zoom_association_text = get_field('zoom_association_text');
 ?>
 
 
-<section id="site-content" class="site-content template-home">
+<main id="site-content" class="site-content template-home">
 
     
     <div id="" class="home-featured">
@@ -78,6 +78,27 @@ $zoom_association_text = get_field('zoom_association_text');
     
     
 
+
+    <section class="home_featured_vid m-clearfix">
+        <div class="wrap row">
+            
+            <h2 class="text-on-center h3_alt"><?php the_field('video_title'); ?></h2>
+
+            <div class="vid_container">
+                <iframe width="750" height="400" src="<?php the_field('video_url'); ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="section_action text-on-center">
+                <a href="<?php the_field('video_btn_url'); ?>" class="btn-primary"><?php the_field('video_btn_label'); ?></a>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
 <?php 
 
     $page_1 = get_field('grille_page_1');
@@ -87,7 +108,7 @@ $zoom_association_text = get_field('zoom_association_text');
 
 ?>
     
-    <div id="" class="home-grid blocs_group">
+    <section id="" class="home-grid blocs_group">
         <div class="wrap row">
 
             <div class="group_title grid-title m-2col">
@@ -169,9 +190,45 @@ $zoom_association_text = get_field('zoom_association_text');
             </div><!-- .grid-list -->
 
         </div><!-- .wrap -->
-     </div>
+     </section>
 
 
-</section>
+
+
+    <section class="home_featured_docs m-clearfix">
+        <div class="wrap">
+            
+            <h2 class="text-on-center h3_alt"><?php the_field('docs_title'); ?></h2>
+
+            <div class="docs_container row">
+                <?php
+                $featured_posts = get_field('docs_files');
+                if( $featured_posts ): ?>
+                    <?php foreach( $featured_posts as $post ): 
+
+                        setup_postdata($post); ?>
+                        <div class="doc_item">
+                            <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php 
+                    wp_reset_postdata(); ?>
+                <?php endif; ?>
+
+            </div>
+
+
+            <?php if( get_field('docs_btn_label' ) != '' ) : ?>
+                <div class="section_action text-on-center">
+                    <a href="<?php the_field('docs_btn_url'); ?>" class="btn-primary"><?php the_field('docs_btn_label'); ?></a>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    </section>
+
+
+
+</main>
 
 <?php get_footer(); ?>
