@@ -27,25 +27,36 @@ setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
                     </h1>
 
                     <div class="event_metas row">
-                            <div class="page_practical_group">
-                                    <div class="event_date">
-                                        <?php 
+                        <div class="page_practical_group">
+                            <div class="event_date">
+                                <?php 
 
-                                            $date = get_field('date_evenement');
+                                    $date = get_field('date_evenement');
+                                    $end_date = get_field('end_date_evenement');
 
-                                            $date = strtotime($date); 
-                                            echo strftime('%A %d %B %G - %kh%M', $date );   
+                                    $date = strtotime($date); 
+                                    $end_date = strtotime($end_date); 
+
+                                    if( strftime('%A %d %B %G', $date ) == strftime('%A %d %B %G', $end_date ) ) {
+                                        echo 'Le ' . strftime('%A %d %B %G ・ %kh%M', $date );   
+                                        echo ' - ' . strftime('%kh%M', $end_date );
+                                    }
+                                    else {
+                                        echo 'Du ' . strftime('%A %d %B %G ・ %kh%M', $date );   
+                                        echo ' <br>au ' . strftime('%A %d %B %G ・ %kh%M', $end_date ); 
+                                    } 
+                                      
             
-                                            if( get_field('utc_evenement') != '' ) {
-                                                echo ' (' . get_field('utc_evenement') . ')';
-                                            }
+                                    if( get_field('utc_evenement') != '' ) {
+                                        echo ' (' . get_field('utc_evenement') . ')';
+                                    }
             
-                                        ?> 
-                                    </div>
-                                    <div class="event_type">
-                                        <?php $type = get_the_terms( $post->ID, 'evenement_type' ); echo $type ? $type[0]->name : '' ; ?>
-                                    </div>
+                                ?> 
                             </div>
+                            <div class="event_type">
+                                <?php $type = get_the_terms( $post->ID, 'evenement_type' ); echo $type ? $type[0]->name : '' ; ?>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -57,10 +68,10 @@ setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
             <div class="wrap row">
 
                 <div class="m-5col">
-
+<!-- 
                     <div class="page_shortdescription">
                         <?php the_field('description_courte'); ?>
-                    </div>
+                    </div> -->
 
                     <div class="page_maincontent">
                         <?php the_content(); ?>

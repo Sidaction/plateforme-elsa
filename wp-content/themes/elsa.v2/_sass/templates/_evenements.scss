@@ -60,6 +60,9 @@
 	position: relative;
 	min-height: 70px;
 	
+	.event_date {
+		margin-bottom: 5px;
+	}
 
 	&:before {
 		content: 'i';

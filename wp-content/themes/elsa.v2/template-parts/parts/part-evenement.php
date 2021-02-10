@@ -34,9 +34,19 @@ setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
 						<div class="event_date">
 							<?php 
 								$date = get_field('date_evenement');
+								$end_date = get_field('end_date_evenement');
 
 								$date = strtotime($date); 
-								echo strftime('%A %d %B %G - %kh%M', $date );	
+								$end_date = strtotime($end_date); 
+
+                if( strftime('%A %d %B %G', $date ) == strftime('%A %d %B %G', $end_date ) ) {
+										echo 'Le ' . strftime('%A %d %B %G ・ %kh%M', $date );	
+                    echo ' - ' . strftime('%kh%M', $end_date );
+                }
+                else {
+                		echo 'Du ' . strftime('%A %d %B %G ・ %kh%M', $date );	
+                    echo ' <br>au ' . strftime('%A %d %B %G ・ %kh%M', $end_date ); 
+                } 
 
 								if( get_field('utc_evenement') != '' ) {
 									echo ' (' . get_field('utc_evenement') . ')';

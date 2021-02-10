@@ -81,6 +81,23 @@ acf_add_local_field_group(array(
       'first_day' => 1,
     ),
     array(
+      'key' => 'field_5f19998bb99cz',
+      'label' => 'Date de fin de l\'événement',
+      'name' => 'end_date_evenement',
+      'type' => 'date_time_picker',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array(
+        'width' => '33',
+        'class' => '',
+        'id' => '',
+      ),
+      'display_format' => 'd/m/Y g:i a',
+      'return_format' => 'd-m-Y G:i a',
+      'first_day' => 1,
+    ),
+    array(
       'key' => 'field_5f19998zb99c4',
       'label' => 'UTC date de l\'événement',
       'name' => 'utc_evenement',
