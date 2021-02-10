@@ -16,7 +16,6 @@ $zoom_pays_img = get_field('zoom_pays_img');
 $zoom_association = get_field('zoom_association');
 $zoom_association_text = get_field('zoom_association_text');
 
-
     // cover
     $cover_size = 'cover';
     $cover = $image['sizes'][ $cover_size ];
@@ -100,14 +99,14 @@ $zoom_association_text = get_field('zoom_association_text');
                     $args = array(
                         'post_type' => array('post'), 
                         'posts_per_page' => 5,
-                        'tax_query' => array(
-                            array(
-                                'taxonomy' => 'format',
-                                'field'    => 'slug',
-                                'terms'    => array('video', 'diaporama', 'audio'),
-                                'operator' => 'NOT IN',
-                            ),
-                        ),
+                        // 'tax_query' => array(
+                        //     array(
+                        //         'taxonomy' => 'format',
+                        //         'field'    => 'slug',
+                        //         'terms'    => array('video', 'diaporama', 'audio'),
+                        //         'operator' => 'NOT IN',
+                        //     ),
+                        // ),
                         'orderby'    => 'date',
                         'order'      => 'DESC'
                     );
