@@ -70,11 +70,14 @@ get_header(); ?>
                   <div>
                     <?php
 
+                        $two_month_ago = date('Y-m-d', strtotime('-2 months'));
+
                         $args = array(
                             'posts_per_page' => 16,
                             'post_type' => array('emploi'),
                             'post_status' => 'publish',
-                            'paged' => get_query_var( 'paged' )
+                            'paged' => get_query_var( 'paged' ),
+                            'date_query'     => array( 'after' => $two_month_ago ),
                         );
 
                         // SI Pays 
