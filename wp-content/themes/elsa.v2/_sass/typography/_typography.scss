@@ -107,6 +107,7 @@ $thin               : 300;
 body {
   font-family: $worksans;
   @include type-setting(0);
+  line-height: 1.6;
 }
 
 html {

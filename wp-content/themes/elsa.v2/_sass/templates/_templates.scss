@@ -127,6 +127,18 @@ body {
   margin-bottom: $base_line_height;
   background-color: $gray_lighter;
 
+  p {
+    line-height: 1.6;
+  }
+
+  p a {
+    border-bottom: 1px solid $gray_light;
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+
   @include up-to(medium) {
     padding-top: $base_line_height;
   }
