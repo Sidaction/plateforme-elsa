@@ -26,8 +26,10 @@
 		padding: .3em .5em;
 	}
 	.item_media img {
-		max-width: 80px;
 		margin-right: 40px;
+		width: 80px;
+		height: 80px;
+		object-fit: contain;
 	}
 }
 
