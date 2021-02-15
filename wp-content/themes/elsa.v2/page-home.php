@@ -15,6 +15,7 @@ $zoom_pays_img = get_field('zoom_pays_img');
 
 $zoom_association = get_field('zoom_association');
 $zoom_association_text = get_field('zoom_association_text');
+set_query_var( 'cnSite', $cnSite ); 
 
     // cover
     $cover_size = 'cover';
@@ -79,17 +80,36 @@ $zoom_association_text = get_field('zoom_association_text');
     
 
 
-    <section class="home_featured_vid m-clearfix">
+    <section class="home_featured_vid m-clearfix blocs_group">
         <div class="wrap row">
             
-            <h2 class="text-on-center h3_alt"><?php the_field('video_title'); ?></h2>
-
-            <div class="vid_container">
-                <iframe width="750" height="400" src="<?php the_field('video_url'); ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="group_title grid-title m-2col">
+                <h3 class="h3_alt"><?php the_field('video_title'); ?></h3>
             </div>
 
+
+            <div class="docs_container row">
+                <?php
+                $featured_posts = get_field('video_url');
+                if( $featured_posts ):
+                    foreach( $featured_posts as $post ): ?>
+                        <div class="m-4col">
+                            <?php setup_postdata($post); 
+                            set_query_var( 'type', 'media' ); 
+                            get_template_part('template-parts/parts/part', 'bloc'); ?>
+
+                        </div>
+                    <?php endforeach;
+                    wp_reset_postdata();
+                endif; ?>
+
+            </div>
+
+
             <div class="section_action text-on-center">
-                <a href="<?php the_field('video_btn_url'); ?>" class="btn-primary"><?php the_field('video_btn_label'); ?></a>
+                <a href="<?php the_field('video_btn1_url'); ?>" class="btn-primary"><?php the_field('video_btn1_label'); ?></a>
+
+                <a href="<?php the_field('video_btn2_url'); ?>" class="btn-primary"><?php the_field('video_btn2_label'); ?></a>
             </div>
 
         </div>

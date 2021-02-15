@@ -81,7 +81,15 @@
 
 
 .home_featured_vid {
-  margin: 0 0 $base_line_height * 4 0;
+  margin: $base_line_height * 6 0 $base_line_height * 6 0;
+
+  .group_title {
+    background-color: $color_medias;
+
+    &:before {
+      background-color: $color_medias;
+    }
+  }
 }
 .vid_container {
   max-width: 750px;
