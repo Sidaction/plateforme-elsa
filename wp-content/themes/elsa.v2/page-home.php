@@ -189,6 +189,11 @@ $zoom_association_text = get_field('zoom_association_text');
 
             </div><!-- .grid-list -->
 
+
+            <div class="text-on-center">
+                <a href="/recherche-documentaire/" class="btn-primary">Toutes les ressources</a>
+            </div>
+
         </div><!-- .wrap -->
      </section>
 
@@ -208,7 +213,7 @@ $zoom_association_text = get_field('zoom_association_text');
 
                         setup_postdata($post); ?>
                         <div class="doc_item">
-                            <?php get_template_part('template-parts/parts/part', 'bloc'); ?>
+                            <?php get_template_part('template-parts/parts/part', 'bloc-image'); ?>
                         </div>
                     <?php endforeach; ?>
                     <?php 

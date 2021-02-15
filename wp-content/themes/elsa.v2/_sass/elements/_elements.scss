@@ -76,7 +76,22 @@
   .medias_list & {
     height: 275px;
   }
+
 }
+
+.bloc_item--image {
+  @extend .bloc_item;
+  padding: 0;
+  height: auto;
+
+  .bloc_inner {
+    padding: 21px 31.5px 42px 21px;
+  }
+  .bloc_img {
+
+  }
+}
+
 
   .grid-list > div:last-child {
     margin-bottom: $base_line_height;
