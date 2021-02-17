@@ -568,3 +568,23 @@ function sf_admin_menu() {
   if( isset($submenu['edit.php'][5][0]) && $submenu['edit.php'][5][0] == __('All Posts') )
     $submenu['edit.php'][5][0] = __('Toutes les ressources', 'mon-theme');
 }
+
+
+
+
+
+
+function elsa_wp_insert_post_endate_empty( $post_id, $post ) {
+  if ($post->post_type == 'evenement'):
+    $startdate = get_field('date_evenement', $post_id);
+    $enddate = get_field('end_date_evenement', $post_id);
+    if ($startdate && empty($enddate)):
+       update_post_meta($post_id,'end_date_evenement',$startdate);
+    endif;
+  endif;
+}
+add_action('save_post', 'elsa_wp_insert_post_endate_empty', 99, 2);
+
+
+
+
