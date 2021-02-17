@@ -78,7 +78,7 @@ get_header(); ?>
                             'post_status'       => 'publish',
                             'paged'             => get_query_var( 'paged' ),
                             'orderby'           => 'meta_value',
-                            'meta_key'          => 'date_evenement',
+                            'meta_key'          => 'end_date_evenement',
                             'meta_type'         => 'DATETIME',
                         );
 
