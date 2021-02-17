@@ -88,31 +88,35 @@ set_query_var( 'cnSite', $cnSite );
                     <h3 class="h3_alt"><?php the_field('video_title'); ?></h3>
                 </div>
 
+                <div class="m-6col">
 
-                <div class="docs_container row">
-                    <?php
-                    $featured_posts = get_field('video_url');
-                    if( $featured_posts ):
-                        foreach( $featured_posts as $post ): ?>
-                            <div class="m-4col">
-                                <?php setup_postdata($post); 
-                                set_query_var( 'type', 'media' ); 
-                                set_query_var( 'hide_allmediasbtn', true );
-                                get_template_part('template-parts/parts/part', 'bloc'); ?>
+                    <div class="docs_container">
+                        <?php
+                        $featured_posts = get_field('video_url');
+                        if( $featured_posts ):
+                            foreach( $featured_posts as $post ): ?>
+                                <div class="s-8col m-4col">
+                                    <?php setup_postdata($post); 
+                                    set_query_var( 'type', 'media' ); 
+                                    set_query_var( 'hide_allmediasbtn', true );
+                                    get_template_part('template-parts/parts/part', 'bloc'); ?>
 
-                            </div>
-                        <?php endforeach;
-                        wp_reset_postdata();
-                    endif; ?>
+                                </div>
+                            <?php endforeach;
+                            wp_reset_postdata();
+                        endif; ?>
+
+
+
+                    </div>
 
                 </div>
 
+                    <div class="section_action text-on-center">
+                        <a href="<?php the_field('video_btn1_url'); ?>" class="btn-primary"><?php the_field('video_btn1_label'); ?></a>
 
-                <div class="section_action text-on-center">
-                    <a href="<?php the_field('video_btn1_url'); ?>" class="btn-primary"><?php the_field('video_btn1_label'); ?></a>
-
-                    <a href="<?php the_field('video_btn2_url'); ?>" class="btn-primary"><?php the_field('video_btn2_label'); ?></a>
-                </div>
+                        <a href="<?php the_field('video_btn2_url'); ?>" class="btn-primary"><?php the_field('video_btn2_label'); ?></a>
+                    </div>
 
             </div>
         </section>
