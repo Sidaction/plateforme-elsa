@@ -79,41 +79,45 @@ set_query_var( 'cnSite', $cnSite );
     
     
 
+    <?php if( get_field('video_title') != '') : ?>
 
-    <section class="home_featured_vid m-clearfix blocs_group">
-        <div class="wrap row">
-            
-            <div class="group_title grid-title m-2col">
-                <h3 class="h3_alt"><?php the_field('video_title'); ?></h3>
+        <section class="home_featured_vid m-clearfix blocs_group">
+            <div class="wrap row">
+                
+                <div class="group_title grid-title m-2col">
+                    <h3 class="h3_alt"><?php the_field('video_title'); ?></h3>
+                </div>
+
+
+                <div class="docs_container row">
+                    <?php
+                    $featured_posts = get_field('video_url');
+                    if( $featured_posts ):
+                        foreach( $featured_posts as $post ): ?>
+                            <div class="m-4col">
+                                <?php setup_postdata($post); 
+                                set_query_var( 'type', 'media' ); 
+                                set_query_var( 'hide_allmediasbtn', true );
+                                get_template_part('template-parts/parts/part', 'bloc'); ?>
+
+                            </div>
+                        <?php endforeach;
+                        wp_reset_postdata();
+                    endif; ?>
+
+                </div>
+
+
+                <div class="section_action text-on-center">
+                    <a href="<?php the_field('video_btn1_url'); ?>" class="btn-primary"><?php the_field('video_btn1_label'); ?></a>
+
+                    <a href="<?php the_field('video_btn2_url'); ?>" class="btn-primary"><?php the_field('video_btn2_label'); ?></a>
+                </div>
+
             </div>
+        </section>
 
-
-            <div class="docs_container row">
-                <?php
-                $featured_posts = get_field('video_url');
-                if( $featured_posts ):
-                    foreach( $featured_posts as $post ): ?>
-                        <div class="m-4col">
-                            <?php setup_postdata($post); 
-                            set_query_var( 'type', 'media' ); 
-                            get_template_part('template-parts/parts/part', 'bloc'); ?>
-
-                        </div>
-                    <?php endforeach;
-                    wp_reset_postdata();
-                endif; ?>
-
-            </div>
-
-
-            <div class="section_action text-on-center">
-                <a href="<?php the_field('video_btn1_url'); ?>" class="btn-primary"><?php the_field('video_btn1_label'); ?></a>
-
-                <a href="<?php the_field('video_btn2_url'); ?>" class="btn-primary"><?php the_field('video_btn2_label'); ?></a>
-            </div>
-
-        </div>
-    </section>
+    <?php endif; ?>
 
 
 
@@ -174,7 +178,10 @@ set_query_var( 'cnSite', $cnSite );
 
                             <?php elseif ( $i == 2 ) : ?>
                                 <div class="m-4col m-clearfix">
-                                    <?php set_query_var( 'type', 'media' ); ?>
+
+                                    <?php 
+                                    set_query_var( 'hide_allmediasbtn', false );
+                                    set_query_var( 'type', 'media' ); ?>
 
                             <?php elseif ( $i == 3 ) : ?>
                                 <div class="m-2col">
