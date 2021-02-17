@@ -98,7 +98,7 @@ get_header(); ?>
                         else {
                             $args['meta_query'] = array(
                                 array(
-                                    'key'           => 'end_date_evenement',
+                                    'key'           => 'date_evenement',
                                     'compare'       => '>=',
                                     'value'         => $date_now,
                                     'type'          => 'DATETIME',
