@@ -78,7 +78,7 @@ get_header(); ?>
                             'post_status'       => 'publish',
                             'paged'             => get_query_var( 'paged' ),
                             'orderby'           => 'meta_value',
-                            'meta_key'          => 'end_date_evenement',
+                            'meta_key'          => 'date_evenement',
                             'meta_type'         => 'DATETIME',
                         );
 
@@ -98,7 +98,7 @@ get_header(); ?>
                         else {
                             $args['meta_query'] = array(
                                 array(
-                                    'key'           => 'date_evenement',
+                                    'key'           => 'end_date_evenement',
                                     'compare'       => '>=',
                                     'value'         => $date_now,
                                     'type'          => 'DATETIME',
