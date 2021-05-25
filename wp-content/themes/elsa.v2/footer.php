@@ -65,7 +65,13 @@
     </div>
 
     <div class="wrap row">
-        <?php wp_nav_menu( array( 'theme_location' => 'bottom', 'menu_id' => 'bottom-menu' ) ); ?>
+        <?php wp_nav_menu( array( 
+            'theme_location'    => 'bottom', 
+            'menu_id'           => 'bottom-menu',   
+            'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s <a href="#" id="tarteaucitronManager"> Cookies</a></ul>', ) ); ?>
+
+
+
     </div>
     
 

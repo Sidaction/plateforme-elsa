@@ -25,8 +25,10 @@ jQuery(document).ready(function($){
   });
 
 
+  document.getElementById('tarteaucitronManager').addEventListener('click', function(e) {
+    e.preventDefault()
+  })
 
- 
 
 //ADD POST TO RIL
   $('.addToReadItLaterButton').click(function(event){
