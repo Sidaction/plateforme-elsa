@@ -50,13 +50,13 @@
         });
 
 
-        tarteaucitron.services.mycustomservice = {
+        tarteaucitron.services.sendinblue = {
           "key": "sendinblue",
           "type": "api",
           "name": "SendInBlue",
-          "needConsent": false,
+          "needConsent": true,
           "cookies": ['PHPSESSID'],
-          "readmoreLink": "/custom_read_more", // If you want to change readmore link
+          "readmoreLink": "https://fr.sendinblue.com/legal/cookies/", // If you want to change readmore link
           "js": function () {
             "use strict";
             // When user allow cookie
