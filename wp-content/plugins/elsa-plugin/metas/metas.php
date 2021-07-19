@@ -226,6 +226,30 @@ function rw_register_meta_box() {
                     'type' => 'url',
                 ),
           array(
+                    'name' => 'Page Youtube',
+                    'desc' => 'Entrez l\'url complète',
+                    'id' => 'link_youtube',
+                    'type' => 'url',
+                ),
+          array(
+                    'name' => 'Page Twitter',
+                    'desc' => 'Entrez l\'url complète',
+                    'id' => 'link_twitter',
+                    'type' => 'url',
+                ),
+          array(
+                    'name' => 'Page Instagram',
+                    'desc' => 'Entrez l\'url complète',
+                    'id' => 'link_instagram',
+                    'type' => 'url',
+                ),
+          array(
+                    'name' => 'Page Linkedin',
+                    'desc' => 'Entrez l\'url complète',
+                    'id' => 'link_linkedin',
+                    'type' => 'url',
+                ),
+          array(
                     'name' => 'Téléphone',
                     'id' => 'tel',
                     'type' => 'text',
@@ -297,6 +321,11 @@ function rw_register_meta_box() {
             'name' => 'Sur le web',
             'id' => 'web',
             'type' => 'wysiwyg',
+          ),
+          array(
+            'name' => 'Document à télécharger',
+            'id'   => "file",
+            'type' => 'file_advanced'
           ),
         )
   );

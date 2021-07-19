@@ -12,11 +12,16 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
  $pays = cnLib::get_main_term_slug($post->ID, 'pays_assoc');
  $link = get_post_meta($post->ID, 'link', true);
  $link2 = get_post_meta($post->ID, 'link2', true);
+ $link_youtube = get_post_meta($post->ID, 'link_youtube', true);
+ $link_twitter = get_post_meta($post->ID, 'link_twitter', true);
+ $link_instagram = get_post_meta($post->ID, 'link_instagram', true);
+ $link_linkedin = get_post_meta($post->ID, 'link_linkedin', true);
  $email = get_post_meta($post->ID, 'email', true);
  $email_2 = get_post_meta($post->ID, 'email_2', true);
  $antenne = get_post_meta($post->ID, 'antenne', true);
  $ligne = get_post_meta($post->ID, 'ligne', true);
  $rapport_activite = get_post_meta($post->ID, 'rapport_activite', true);
+
 
  $web = get_post_meta($post->ID, 'web', true);
 
@@ -113,11 +118,47 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                                     <a href="mailto:<?php echo $email_2;?>" class=""><?php echo $email_2;?></a></li>
                             <?php endif;?>
 
-                            <?php if(!empty($link2)):?>
+
+                            <?php if( !empty($link2) || !empty($link_youtube) || !empty($link_twitter) || !empty($link_instagram) || !empty($link_linkedin) ):?>
+                                <span><br>Sur les réseaux : </span>
+                            <?php endif;?>
+
+                            <?php if( !empty($link2) ):?>
                                 <li class="contact-item">
                                     <span class="icon-arrow_right"></span>
-                                    <a href="<?php echo $link2;?>" target="_blank" class=""><span class="icon-facebook"></span></a></li>
+                                    <a href="<?php echo $link2;?>" target="_blank" class="">Facebook</a>
+                                </li>
                             <?php endif;?>
+
+
+                            <?php if( !empty($link_youtube) ):?>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="<?php echo $link_youtube;?>" target="_blank" class="">Youtube</a>
+                                </li>
+                            <?php endif;?>
+
+                            <?php if( !empty($link_twitter) ):?>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="<?php echo $link_twitter;?>" target="_blank" class="">Twitter</a>
+                                </li>
+                            <?php endif;?>
+
+                            <?php if( !empty($link_instagram) ):?>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="<?php echo $link_instagram;?>" target="_blank" class="">Instagram</a>
+                                </li>
+                            <?php endif;?>
+
+                            <?php if( !empty($link_linkedin) ):?>
+                                <li class="contact-item">
+                                    <span class="icon-arrow_right"></span>
+                                    <a href="<?php echo $link_linkedin;?>" target="_blank" class="">LinkedIn</a>
+                                </li>
+                            <?php endif;?>
+
 
                         </ul>
 
@@ -126,6 +167,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                         ob_end_flush(); ?>
 
                     </div>
+
 
                 </div>
 
@@ -176,6 +218,19 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                     <div class="page_metas">
                         <?php echo $metas_html; ?>
                     </div><!-- .page_metas -->
+
+
+                    <?php
+                      $files = rwmb_meta( 'file', 'type=file' );
+                      foreach ( $files as $info ) {
+
+                        $size = filesize( $info['path'] );
+                        $kind = pathinfo($info['path'], PATHINFO_EXTENSION);
+                        $size = false === $size ? 0 : size_format( $size, 2 );
+                        
+                        echo "<a href='{$info['url']}' title='{$info['title']}' class='btn-primary' target='_blank'>{$info['title']} <br> (<em>{$kind} - {$size}</em>)</a>";
+                      }?>
+
 
                 </div><!-- .page_aside -->
             </div><!-- .wrap -->
