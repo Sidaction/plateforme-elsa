@@ -52,7 +52,8 @@
     }
 
     li {
-      font-size: 14px;
+      font-size: 18px;
+      line-height: 3;
       font-weight: $thin;
 
       &:not(:first-child):not(:last-child):before {
@@ -98,14 +99,30 @@
     display: none;
     overflow-y: scroll;
     text-align: center;
-    padding-top: $base_line_height * 6;
+    padding-top: 200px;
     padding-bottom: $base_line_height * 2;
     top: $base_line_height * 4;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 3;
+    max-height: 100vh;
+
+    & > .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      padding: 0 20px;
+    }
+
   }
+
+
+
 }
 
   .main_nav-search {
@@ -120,6 +137,16 @@
   .main_nav-dropdowns {
     display: flex;
     justify-content: space-between;
+    @include up-to(medium) {
+      flex-direction: column;
+      width: 100%;
+
+      .menu {
+        margin: 0;
+        padding: 20px 0;
+        border-top: 1px solid #999;
+      }
+    }
   } 
 
   .menu-menu-principal-container > ul {
@@ -164,15 +191,14 @@
     }
       .main_nav_searchform {
         margin-left: 0;
+        position: relative;
         //padding-bottom: $base_line_height / 4;
 
         @include at-least(medium) {
           border-bottom: 1px solid $white;
         }
       }
-        button.main_search_btn,
-        input.main_search_input {
-        }
+
         input.main_search_input {
           @include placeholder( $white );
           @include type-setting(1);
@@ -194,6 +220,8 @@
             text-align: center;
             border-bottom: 1px solid $gray_light;
             margin-bottom: $base_line_height / 2;
+            font-size: 20px;
+            padding: 10px;
           }
         }
         .main_search_btn {
@@ -206,6 +234,9 @@
           @include up-to(medium) {
             margin-left: auto;
             margin-right: auto;
+            position: absolute;
+            top: 8px;
+            right: 20px;
           }
         }
         .search-all {
