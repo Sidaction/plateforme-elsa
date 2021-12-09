@@ -39,7 +39,7 @@
                         <?php the_field('description_courte'); ?>
                     </div>
 
-                    <div class="page_maincontent">
+                    <div class="page_maincontent page_copy">
                         <?php the_content(); ?>
                     </div>
 

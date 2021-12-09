@@ -80,7 +80,7 @@ setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
                         <?php the_field('description_courte'); ?>
                     </div> -->
 
-                    <div class="page_maincontent">
+                    <div class="page_maincontent page_copy">
                         <?php the_content(); ?>
                     </div>
 
