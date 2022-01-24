@@ -7,6 +7,7 @@
 
 namespace Smush\App;
 
+use Smush\Core\Helper;
 use Smush\Core\Settings;
 use WP_Smush;
 use WPMUDEV_Dashboard;
@@ -42,6 +43,15 @@ abstract class Abstract_Page {
 	protected $meta_boxes = array();
 
 	/**
+	 * Modals to render.
+	 *
+	 * @since 3.8.3
+	 *
+	 * @var array
+	 */
+	protected $modals = array();
+
+	/**
 	 * Submenu tabs.
 	 *
 	 * @var array
@@ -62,7 +72,7 @@ abstract class Abstract_Page {
 	 *
 	 * @var string $upgrade_url
 	 */
-	protected $upgrade_url = 'https://premium.wpmudev.org/project/wp-smush-pro/';
+	protected $upgrade_url = 'https://wpmudev.com/project/wp-smush-pro/';
 
 	/**
 	 * Abstract_Page constructor.
@@ -82,7 +92,7 @@ abstract class Abstract_Page {
 				$title,
 				'manage_options',
 				$this->slug,
-				$parent ? array( $this, 'render' ) : null,
+				null,
 				$this->get_menu_icon()
 			);
 		} else {
@@ -110,8 +120,11 @@ abstract class Abstract_Page {
 	 * @since 2.9.0
 	 */
 	public function add_action_hooks() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
 		// Notices.
-		add_action( 'admin_notices', array( $this, 'smush_upgrade_notice' ) );
+		//add_action( 'admin_notices', array( $this, 'smush_upgrade_notice' ) );
+		//add_action( 'network_admin_notices', array( $this, 'smush_upgrade_notice' ) );
 		add_action( 'admin_notices', array( $this, 'smush_deactivated' ) );
 		add_action( 'network_admin_notices', array( $this, 'smush_deactivated' ) );
 		add_action( 'wp_smush_header_notices', array( $this, 'settings_updated' ) );
@@ -120,11 +133,22 @@ abstract class Abstract_Page {
 
 		add_action( 'admin_notices', array( $this, 'smush_dash_required' ) );
 		add_action( 'network_admin_notices', array( $this, 'smush_dash_required' ) );
+		add_action( 'wp_smush_render_setting_row', array( $this, 'render_row' ), 10, 4 );
 
 		add_filter( 'admin_body_class', array( $this, 'smush_body_classes' ) );
-		// Filter built-in wpmudev branding script.
-		add_filter( 'wpmudev_whitelabel_plugin_pages', array( $this, 'builtin_wpmudev_branding' ) );
+
+		// Filter query args to remove from the URL.
+		add_filter( 'removable_query_args', array( $this, 'add_removable_query_args' ) );
 	}
+
+	/**
+	 * Enqueue scripts.
+	 *
+	 * @since 3.8.8
+	 *
+	 * @param string $hook Hook from where the call is made.
+	 */
+	public function enqueue_scripts( $hook ) {}
 
 	/**
 	 * Return the admin menu slug
@@ -174,7 +198,7 @@ abstract class Abstract_Page {
 		}
 
 		// Return if notice is already dismissed.
-		if ( get_site_option( WP_SMUSH_PREFIX . 'hide_upgrade_notice' ) ) {
+		if ( get_site_option( 'wp-smush-hide_upgrade_notice' ) ) {
 			return;
 		}
 
@@ -189,17 +213,17 @@ abstract class Abstract_Page {
 
 		// Prepare notice.
 		if ( 'new' === $install_type ) {
-			$notice_heading = __( 'Thanks for installing Smush. We hope you like it!', 'wp-smushit' );
-			$notice_content = __( 'And hey, if you do, you can join WPMU DEV for a free trial and get access to even more features!', 'wp-smushit' );
-			$button_content = __( 'Try Smush Pro Free', 'wp-smushit' );
+			/* translators: 1. opening 'strong' tag, 2. closing 'strong' tag. */
+			$message = __( 'Thanks for installing Smush! %1$sGet a free trial + 30%% OFF%2$s Smush Pro for a limited time - an exclusive welcome discount for free version users! Grab it while it lasts.', 'wp-smushit' );
 		} else {
-			$notice_heading = __( 'Thanks for updating Smush!', 'wp-smushit' );
-			$notice_content = __( 'Did you know she has secret super powers? Yes, she can super-smush images for double the savings, store original images, bulk smush thousands of images in one go, and serve \'em up in a next-gen format(WebP) with one-click via her blazing-fast CDN. Get started with a free WPMU DEV trial to access these advanced features.', 'wp-smushit' );
-			$button_content = __( 'Try Smush Pro Free', 'wp-smushit' );
+			/* translators: 1. opening 'strong' tag, 2. closing 'strong' tag. */
+			$message = __( 'Thanks for updating Smush! %1$sGet 30%% OFF Smush Pro + Free Trial%2$s - Did you know we now offer Smush Pro only plans? With a limited time intro discount! Grab it while it lasts.', 'wp-smushit' );
 		}
 
 		$upgrade_url = add_query_arg(
 			array(
+				'coupon'       => 'SMUSH30OFF',
+				'checkout'     => 0,
 				'utm_source'   => 'smush',
 				'utm_medium'   => 'plugin',
 				'utm_campaign' => 'smush_dashboard_upgrade_notice',
@@ -207,15 +231,21 @@ abstract class Abstract_Page {
 			$this->upgrade_url
 		);
 		?>
-		<div class="notice smush-notice" style="display: none;">
-			<div class="smush-notice-logo"><span></span></div>
+		<div class="notice smush-notice">
+			<div class="smush-notice-logo">
+				<img
+					src="<?php echo esc_url( WP_SMUSH_URL . 'app/assets/images/incsub-logo.png' ); ?>"
+					srcset="<?php echo esc_url( WP_SMUSH_URL . 'app/assets/images/incsub-logo@2x.png' ); ?> 2x"
+					alt="<?php esc_html_e( 'Smush CDN', 'wp-smushit' ); ?>"
+				>
+			</div>
 			<div class="smush-notice-message<?php echo 'new' === $install_type ? ' wp-smush-fresh' : ' wp-smush-existing'; ?>">
-				<strong><?php echo esc_html( $notice_heading ); ?></strong>
-				<?php echo esc_html( $notice_content ); ?>
+				<?php printf( esc_html( $message ), '<strong>', '</strong>' ); ?><br/>
+				<small><?php esc_html_e( '*Only admin users can see this message', 'wp-smushit' ); ?></small>
 			</div>
 			<div class="smush-notice-cta">
 				<a href="<?php echo esc_url( $upgrade_url ); ?>" class="smush-notice-act button-primary" target="_blank">
-					<?php echo esc_html( $button_content ); ?>
+					<?php esc_html_e( 'Try Smush Pro Free', 'wp-smushit' ); ?>
 				</a>
 				<button class="smush-notice-dismiss smush-dismiss-welcome" data-msg="<?php esc_html_e( 'Saving', 'wp-smushit' ); ?>">
 					<?php esc_html_e( 'Dismiss', 'wp-smushit' ); ?>
@@ -264,7 +294,13 @@ abstract class Abstract_Page {
 		);
 		?>
 		<div class="notice smush-notice">
-			<div class="smush-notice-logo"><span></span></div>
+			<div class="smush-notice-logo">
+				<img
+					src="<?php echo esc_url( WP_SMUSH_URL . 'app/assets/images/incsub-logo.png' ); ?>"
+					srcset="<?php echo esc_url( WP_SMUSH_URL . 'app/assets/images/incsub-logo@2x.png' ); ?> 2x"
+					alt="<?php esc_html_e( 'Smush CDN', 'wp-smushit' ); ?>"
+				>
+			</div>
 			<div class="smush-notice-message">
 				<?php esc_html_e( 'Smush Pro requires the WPMU DEV Dashboard plugin to unlock pro features. Please make sure you have installed, activated and logged into the Dashboard.', 'wp-smushit' ); ?>
 			</div>
@@ -296,10 +332,8 @@ abstract class Abstract_Page {
 			return $classes;
 		}
 
-		$current_screen = get_current_screen();
-
 		// If not on plugin page.
-		if ( ! in_array( $current_screen->id, Admin::$plugin_pages, true ) ) {
+		if ( ! in_array( get_current_screen()->id, Admin::$plugin_pages, true ) && false === strpos( get_current_screen()->id, 'page_smush' ) ) {
 			return $classes;
 		}
 
@@ -309,6 +343,19 @@ abstract class Abstract_Page {
 		$classes .= ' ' . WP_SHARED_UI_VERSION;
 
 		return $classes;
+	}
+
+	/**
+	 * Filters the query args to remove from the URL.
+	 *
+	 * @since 3.8.0
+	 *
+	 * @param array $args Removable query args.
+	 * @return array
+	 */
+	public function add_removable_query_args( $args ) {
+		$args[] = 'notice';
+		return $args;
 	}
 
 	/**
@@ -371,12 +418,11 @@ abstract class Abstract_Page {
 	public function render() {
 		// Shared UI wrapper with accessible color option.
 		$classes = $this->settings->get( 'accessible_colors' ) ? 'sui-wrap sui-color-accessible' : 'sui-wrap';
-		echo '<div class="' . esc_attr( $classes ) . '">';
+		echo '<div class="' . esc_attr( $classes ) . ' wrap-' . esc_attr( $this->slug ) . '">';
 
-		// Load page header.
+		$this->black_friday_notice();
 		$this->render_page_header();
-		$this->add_update_dialog();
-		$this->show_modals();
+		$this->render_modals();
 		$this->render_inner_content();
 
 		// Nonce field.
@@ -387,52 +433,84 @@ abstract class Abstract_Page {
 	}
 
 	/**
-	 * Show an update dialog.
+	 * Show black friday notice.
 	 *
-	 * @since 3.3.2
+	 * @since 3.9.2
 	 */
-	private function add_update_dialog() {
-		$show_modal = get_site_transient( 'wp-smush-update-modal' );
-		if ( ! $show_modal ) {
+	private function black_friday_notice() {
+		if ( ! get_site_option( 'wp-smush-show-black-friday' ) ) {
 			return;
 		}
 
-		delete_site_transient( 'wp-smush-update-modal' );
+		if ( ! is_main_site() || apply_filters( 'wpmudev_branding_hide_branding', false ) ) {
+			return;
+		}
 
-		$this->view( 'resizing-update', array(), 'modals' );
-		?>
-		<script>
-			window.addEventListener('load', function() {
-				SUI.dialogs['resizing-update'].show();
-			});
-		</script>
-		<?php
+		if ( WP_Smush::is_pro() && ! Helper::is_wpmu_dev_admin() ) {
+			return;
+		}
+
+		// After 6 December.
+		if ( date_create( date_i18n( 'd-m-Y' ) ) >= date_create( date_i18n( '06-12-Y' ) ) ) {
+			delete_site_option( 'wp-smush-show-black-friday' );
+			return;
+		}
+
+		wp_enqueue_script(
+			'smush-black-friday',
+			WP_SMUSH_URL . 'app/assets/js/smush-black-friday.min.js',
+			array( 'wp-i18n' ),
+			WP_SMUSH_VERSION,
+			true
+		);
+
+		$strings = array(
+			'header'  => esc_html__( 'Black Friday Offer!', 'wp-smushit' ),
+			'message' => esc_html__( 'Get 11 Pro plugins on unlimited sites and much more with 50% OFF WPMU DEV Agency plan FOREVER', 'wp-smushit' ),
+			'notice'  => esc_html__( '*Only admin users can see this message', 'wp-smushit' ),
+			'link'    => 'https://wpmudev.com/black-friday/?coupon=BFP-2021&utm_source=smush_' . ( WP_Smush::is_pro() ? 'pro' : 'free' ) . '&utm_medium=referral&utm_campaign=bf2021',
+		);
+
+		wp_localize_script( 'smush-black-friday', 'smush_bf', $strings );
+
+		echo '<div id="smush-black-friday"></div>';
 	}
 
 	/**
-	 * Show onboarding and new feature dialogs.
+	 * Renders all the modals to be used in the page.
 	 *
 	 * @since 3.7.0
 	 */
-	private function show_modals() {
+	private function render_modals() {
 		$hide_quick_setup = false !== get_option( 'skip-smush-setup' );
 
 		// Show configure screen for only a new installation and for only network admins.
 		if ( ( ! is_multisite() && ! $hide_quick_setup ) || ( is_multisite() && ! is_network_admin() && ! $this->settings->is_network_enabled() && ! $hide_quick_setup ) ) {
-			$this->view( 'onboarding', array(), 'modals' );
-			$this->view( 'checking-files', array(), 'modals' );
+			$this->modals['onboarding']     = array();
+			$this->modals['checking-files'] = array();
 		}
 
-		// Show new features modal.
-		if ( $hide_quick_setup && get_option( WP_SMUSH_PREFIX . 'show_upgrade_modal' ) ) {
-			$this->view( 'updated', array(), 'modals' );
-			?>
-			<script>
-				window.addEventListener("load", function(){
-					window.SUI.openModal( 'smush-updated-dialog', 'wpbody-content', undefined, false );
-				});
-			</script>
-			<?php
+		// Show new features modal if the modal wasn't dismissed.
+		if ( get_site_option( 'wp-smush-show_upgrade_modal' ) ) {
+			// Display only on single installs and on Network admin for multisites.
+			if ( ( ! is_multisite() && $hide_quick_setup ) || ( is_multisite() && is_network_admin() ) ) {
+				$cta_url = $this->get_url( 'smush-bulk' );
+				if ( is_multisite() ) {
+					$access = get_site_option( 'wp-smush-networkwide' );
+					if ( '1' === $access || ( is_array( $access ) && in_array( 'bulk', $access, true ) ) ) {
+						$cta_url = $this->get_url( 'smush' );
+					}
+				}
+
+				$this->modals['updated'] = array(
+					'cta_url' => $cta_url,
+				);
+			}
+		}
+
+		// Render all modals.
+		foreach ( $this->modals as $modal_file => $args ) {
+			$this->view( $modal_file, $args, 'modals' );
 		}
 	}
 
@@ -502,7 +580,7 @@ abstract class Abstract_Page {
 	 * Render inner content.
 	 */
 	protected function render_inner_content() {
-		$this->view( $this->slug . '-page' );
+		$this->view( 'smush-page' );
 	}
 
 	/**
@@ -528,6 +606,17 @@ abstract class Abstract_Page {
 			);
 			$this->view( 'meta-box', $args );
 		}
+	}
+
+	/**
+	 * Check if there is any meta box for a given context.
+	 *
+	 * @param string $context  Meta box context.
+	 *
+	 * @return bool
+	 */
+	protected function has_meta_boxes( $context ) {
+		return ! empty( $this->meta_boxes[ $this->slug ][ $context ] );
 	}
 
 	/**
@@ -562,37 +651,87 @@ abstract class Abstract_Page {
 	}
 
 	/**
+	 * Get the documentation url.
+	 *
+	 * @since 3.8.6
+	 *
+	 * @return string
+	 */
+	public function get_doc_url() {
+		$doc = 'https://wpmudev.com/docs/wpmu-dev-plugins/smush/';
+		if ( WP_Smush::is_pro() ) {
+			$doc = 'https://wpmudev.com/docs/wpmu-dev-plugins/smush/?utm_source=smush&utm_medium=plugin&utm_campaign=smush_pluginlist_docs';
+		}
+
+		switch ( $this->get_slug() ) {
+			case 'smush-bulk':
+				$doc .= '#bulk-smush';
+				break;
+
+			case 'smush-directory':
+				$doc .= '#directory-smush';
+				break;
+
+			case 'smush-lazy-load':
+				$doc .= '#lazy-loading';
+				break;
+
+			case 'smush-cdn':
+				$doc .= '#cdn';
+				break;
+
+			case 'smush-webp':
+				$doc .= '#local-webp';
+				break;
+
+			case 'smush-integrations':
+				$doc .= '#integrations';
+				break;
+
+			case 'smush-tools':
+				$doc .= '#tools';
+				break;
+
+			case 'smush-settings':
+				$doc .= '#settings';
+				break;
+		}
+
+		return $doc;
+	}
+
+	/**
 	 * Prints out the page header for bulk smush page.
 	 *
 	 * @return void
 	 */
-	private function render_page_header() {
+	public function render_page_header() {
 		$current_screen = get_current_screen();
 		?>
-
-		<div class="sui-header wp-smush-page-header">
-			<h1 class="sui-header-title"><?php esc_html_e( 'DASHBOARD', 'wp-smushit' ); ?></h1>
+		<div class="sui-header">
+			<h1 class="sui-header-title"><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<div class="sui-actions-right">
 				<?php
 				if (
 					! is_network_admin() &&
-					( 'bulk' === $this->get_current_tab() || in_array( $this->page_id, array( 'nextgen-gallery_page_wp-smush-nextgen-bulk', 'gallery_page_wp-smush-nextgen-bulk' ), true ) )
+					( 'smush-bulk' === $this->get_slug() || in_array( $this->page_id, array( 'nextgen-gallery_page_wp-smush-nextgen-bulk', 'gallery_page_wp-smush-nextgen-bulk' ), true ) )
 				) :
 					?>
 					<?php $data_type = in_array( $current_screen->id, array( 'nextgen-gallery_page_wp-smush-nextgen-bulk', 'gallery_page_wp-smush-nextgen-bulk' ), true ) ? 'nextgen' : 'media'; ?>
 					<button class="sui-button wp-smush-scan" data-tooltip="<?php esc_attr_e( 'Lets you check if any images can be further optimized. Useful after changing settings.', 'wp-smushit' ); ?>" data-type="<?php echo esc_attr( $data_type ); ?>">
-						<i class="sui-icon-update" aria-hidden="true"></i>
-						<?php esc_html_e( 'Re-Check Images', 'wp-smushit' ); ?>
+						<span class="sui-loading-text wp-smush-default-text">
+							<i class="sui-icon-update" aria-hidden="true"></i>
+							<?php esc_html_e( 'Re-Check Images', 'wp-smushit' ); ?>
+						</span>
+						<span class="sui-hidden wp-smush-completed-text">
+							<i class="sui-icon-check-tick" aria-hidden="true"></i>
+							<?php esc_html_e( 'Check Complete', 'wp-smushit' ); ?>
+						</span>
+						<i class="sui-icon-loader sui-loading" aria-hidden="true"></i>
 					</button>
 				<?php endif; ?>
 				<?php if ( ! apply_filters( 'wpmudev_branding_hide_doc_link', false ) ) : ?>
-					<?php
-					$doc = 'https://premium.wpmudev.org/project/wp-smush-pro/#wpmud-hg-project-documentation';
-					if ( WP_Smush::is_pro() ) {
-						$doc = 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/smush/?utm_source=smush&utm_medium=plugin&utm_campaign=smush_pluginlist_docs';
-					}
-					?>
-					<a href="<?php echo esc_url( $doc ); ?>>" class="sui-button sui-button-ghost" target="_blank">
+					<a href="<?php echo esc_url( $this->get_doc_url() ); ?>" class="sui-button sui-button-ghost" target="_blank">
 						<i class="sui-icon-academy" aria-hidden="true"></i> <?php esc_html_e( 'Documentation', 'wp-smushit' ); ?>
 					</a>
 				<?php endif; ?>
@@ -601,8 +740,7 @@ abstract class Abstract_Page {
 
 		<div class="sui-floating-notices">
 			<div role="alert" id="wp-smush-ajax-notice" class="sui-notice" aria-live="assertive"></div>
-			<div role="alert" id="wp-smush-s3support-alert" class="sui-notice" aria-live="assertive"></div>
-			<?php do_action( 'wp_smush_header_notices' ); ?>
+			<?php do_action( 'wp_smush_header_notices', $this->get_current_tab() ); ?>
 		</div>
 		<?php
 	}
@@ -616,7 +754,7 @@ abstract class Abstract_Page {
 			return;
 		}
 
-		$api_message = get_site_option( WP_SMUSH_PREFIX . 'api_message', array() );
+		$api_message = get_site_option( 'wp-smush-api_message', array() );
 		$api_message = current( $api_message );
 
 		// Return if the API message is not set or user dismissed it earlier.
@@ -650,7 +788,6 @@ abstract class Abstract_Page {
 	 * Displays a admin notice for settings update.
 	 *
 	 * @TODO: Refactor. This is a weird way to check for settings update.
-	 * @see Settings::save()
 	 */
 	public function settings_updated() {
 		// Check if network-wide settings are enabled, do not show settings updated message.
@@ -659,7 +796,7 @@ abstract class Abstract_Page {
 		}
 
 		// Show settings saved message.
-		if ( ! get_option( WP_SMUSH_PREFIX . 'settings_updated' ) ) {
+		if ( ! get_option( 'wp-smush-settings_updated' ) ) {
 			return;
 		}
 
@@ -670,8 +807,8 @@ abstract class Abstract_Page {
 		// Notice class.
 		$message_class = 'success';
 
-		if ( 'cdn' === $this->get_current_tab() ) {
-			$cdn = $this->settings->get_setting( WP_SMUSH_PREFIX . 'cdn_status' );
+		if ( 'smush-cdn' === $this->get_slug() ) {
+			$cdn = $this->settings->get_setting( 'wp-smush-cdn_status' );
 			if ( isset( $cdn->cdn_enabling ) && $cdn->cdn_enabling ) {
 				$message = esc_html__( 'Your settings have been saved and changes are now propagating to the CDN. Changes can take up to 30 minutes to take effect but your images will continue to be served in the mean time, please be patient.', 'wp-smushit' );
 			}
@@ -684,7 +821,7 @@ abstract class Abstract_Page {
 		if ( $smush_count || $resmush_count ) {
 			$message_class = 'warning';
 			// Show link to bulk smush tab from other tabs.
-			$bulk_smush_link = 'bulk' === $this->get_current_tab() ? '<a href="#" class="wp-smush-trigger-bulk">' : '<a href="' . $this->get_page_url() . '">';
+			$bulk_smush_link = 'smush-bulk' === $this->get_slug() ? '<a href="#" class="wp-smush-trigger-bulk">' : '<a href="' . $this->get_page_url() . '">';
 			/* translators: %1$s - <a>, %2$s - </a> */
 			$message .= ' ' . sprintf( esc_html__( 'You have images that need smushing. %1$sBulk smush now!%2$s', 'wp-smushit' ), $bulk_smush_link, '</a>' );
 		}
@@ -703,64 +840,45 @@ abstract class Abstract_Page {
 		</script>
 		<?php
 		// Remove the option.
-		$this->settings->delete_setting( WP_SMUSH_PREFIX . 'settings_updated' );
-	}
-
-	/**
-	 * Add more pages to builtin wpmudev branding.
-	 *
-	 * @since 3.0
-	 *
-	 * @param array $plugin_pages  Nextgen pages is not introduced in built in wpmudev branding.
-	 *
-	 * @return array
-	 */
-	public function builtin_wpmudev_branding( $plugin_pages ) {
-		$plugin_pages['gallery_page_wp-smush-nextgen-bulk'] = array(
-			'wpmudev_whitelabel_sui_plugins_branding',
-			'wpmudev_whitelabel_sui_plugins_footer',
-			'wpmudev_whitelabel_sui_plugins_doc_links',
-		);
-
-		// There's a different page ID since NextGen 3.3.6.
-		$plugin_pages['nextgen-gallery_page_wp-smush-nextgen-bulk'] = array(
-			'wpmudev_whitelabel_sui_plugins_branding',
-			'wpmudev_whitelabel_sui_plugins_footer',
-			'wpmudev_whitelabel_sui_plugins_doc_links',
-		);
-
-		return $plugin_pages;
+		$this->settings->delete_setting( 'wp-smush-settings_updated' );
 	}
 
 	/**
 	 * Check if the page should be rendered.
 	 *
 	 * @since 3.2.2
+	 * @since 3.8.0  Added $tab parameter.
+	 *
+	 * @param string $page  Page to check for.
 	 *
 	 * @return bool
 	 */
-	public function should_render() {
+	public static function should_render( $page = '' ) {
 		// Render all pages on single site installs.
 		if ( ! is_multisite() ) {
 			return true;
 		}
 
-		$access = get_site_option( WP_SMUSH_PREFIX . 'networkwide' );
+		if ( empty( $page ) ) {
+			return false;
+		}
 
-		if ( ! $access || 'directory' === $this->get_current_tab() ) {
-			return is_network_admin() ? true : false;
+		$access = get_site_option( 'wp-smush-networkwide' );
+
+		if ( ! $access || in_array( $page, array( 'directory', 'webp', 'configs' ), true ) ) {
+			return is_network_admin();
 		}
 
 		if ( '1' === $access ) {
-			return is_network_admin() ? false : true;
+			return ! is_network_admin();
 		}
 
 		if ( is_array( $access ) ) {
-			if ( is_network_admin() && ! in_array( $this->get_current_tab(), $access, true ) ) {
+			if ( is_network_admin() && ! in_array( $page, $access, true ) ) {
 				return true;
 			}
 
-			if ( ! is_network_admin() && in_array( $this->get_current_tab(), $access, true ) ) {
+			if ( ! is_network_admin() && in_array( $page, $access, true ) ) {
 				return true;
 			}
 		}
@@ -790,12 +908,157 @@ abstract class Abstract_Page {
 				$url = '';
 			}
 
-			$url = esc_url( $url );
-
-			return $url;
+			return esc_url( $url );
 		} else {
 			return menu_page_url( $this->slug, false );
 		}
 	}
 
+	/**
+	 * Get a page URL.
+	 *
+	 * @param string $page  Page slug.
+	 *
+	 * @return string
+	 */
+	public function get_url( $page = '' ) {
+		if ( ! $page ) {
+			$page = $this->get_slug();
+		}
+
+		if ( is_multisite() && is_network_admin() ) {
+			return network_admin_url( 'admin.php?page=' . $page );
+		}
+
+		return admin_url( 'admin.php?page=' . $page );
+	}
+
+	/**
+	 * Render setting row.
+	 *
+	 * @param string $name     Setting name.
+	 * @param bool   $value    Setting value.
+	 * @param bool   $disable  Disable row/option.
+	 * @param bool   $upsell   Is the row an upsell.
+	 */
+	public function render_row( $name, $value, $disable = false, $upsell = false ) {
+		$this->view( 'settings-row', compact( 'name', 'value', 'disable', 'upsell' ) );
+	}
+
+	/**
+	 * Enqueue scripts.
+	 * Used by the Tutorials and Dashboard pages.
+	 */
+	protected function enqueue_tutorials_scripts() {
+		wp_enqueue_script(
+			'smush-tutorials',
+			WP_SMUSH_URL . 'app/assets/js/smush-tutorials.min.js',
+			array( 'wp-i18n' ),
+			WP_SMUSH_VERSION,
+			true
+		);
+
+		$strings = array(
+			'tutorials'         => esc_html__( 'Tutorials', 'wp-smushit' ),
+			'tutorials_link'    => 'https://wpmudev.com/blog/tutorials/tutorial-category/smush-pro/',
+			'tutorials_strings' => array(
+				array(
+					'loading'      => esc_html__( 'Loading tutorials...', 'wp-smushit' ),
+					'min_read'     => esc_html__( 'min read', 'wp-smushit' ),
+					'read_article' => esc_html__( 'Read article', 'wp-smushit' ),
+				),
+			),
+		);
+
+		wp_localize_script( 'smush-tutorials', 'smush_tutorials', $strings );
+	}
+
+	/**
+	 * Enqueue the scripts for configs.
+	 * Used in the Settings and Dashboard pages.
+	 *
+	 * @since 3.9.0
+	 */
+	protected function enqueue_configs_scripts() {
+		// Configs are only used on single installs and on the network admin on MU.
+		if ( is_multisite() && ! is_network_admin() ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'smush-react-configs',
+			WP_SMUSH_URL . 'app/assets/js/smush-react-configs.min.js',
+			array( 'wp-i18n', 'smush-sui' ),
+			WP_SMUSH_VERSION,
+			true
+		);
+
+		wp_add_inline_script(
+			'smush-react-configs',
+			'wp.i18n.setLocaleData( ' . wp_json_encode( $this->get_locale_data() ) . ', "wp-smushit" );',
+			'before'
+		);
+
+		// Configs.
+		wp_localize_script(
+			'smush-react-configs',
+			'smushReact',
+			array(
+				'hideBranding' => apply_filters( 'wpmudev_branding_hide_branding', false ),
+				'isPro'        => WP_Smush::is_pro(),
+				'links'        => array(
+					'configsPage'  => network_admin_url( 'admin.php?page=smush-settings&view=configs' ),
+					'accordionImg' => WP_SMUSH_URL . 'app/assets/images/smush-config-icon@2x.png',
+					'hubConfigs'   => 'https://wpmudev.com/hub2/configs/my-configs',
+					'hubWelcome'   => 'https://wpmudev.com/hub-welcome/?utm_source=smush&utm_medium=plugin&utm_campaign=smush_hub_config',
+				),
+				'requestsData' => array(
+					'root'           => esc_url_raw( rest_url( 'wp-smush/v1/' . \Smush\Core\Configs::OPTION_NAME ) ),
+					'nonce'          => wp_create_nonce( 'wp_rest' ),
+					'apiKey'         => \Smush\Core\Helper::get_wpmudev_apikey(),
+					'hubBaseURL'     => defined( 'WPMUDEV_CUSTOM_API_SERVER' ) && WPMUDEV_CUSTOM_API_SERVER ? trailingslashit( WPMUDEV_CUSTOM_API_SERVER ) . 'api/hub/v1/package-configs' : null,
+					// Hardcoding these because the Free version doesn't have the WDP ID header in wp-smushit.php.
+					'pluginData'     => array(
+						'name' => 'Smush' . ( WP_Smush::is_pro() ? ' Pro' : '' ),
+						'id'   => '912164',
+					),
+					'pluginRequests' => array(
+						'nonce'        => wp_create_nonce( 'smush_handle_config' ),
+						'uploadAction' => 'smush_upload_config',
+						'createAction' => 'smush_save_config',
+						'applyAction'  => 'smush_apply_config',
+					),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Gets the translated strings for javascript translations.
+	 *
+	 * @since 3.8.5
+	 * @since 3.9.0 Moved from Smush\App\Admin to here.
+	 *
+	 * @return array
+	 */
+	protected function get_locale_data() {
+		$translations = get_translations_for_domain( 'wp-smushit' );
+
+		$locale = array(
+			'' => array(
+				'domain' => 'wp-smushit',
+				'lang'   => get_user_locale(),
+			),
+		);
+
+		if ( ! empty( $translations->headers['Plural-Forms'] ) ) {
+			$locale['']['plural_forms'] = $translations->headers['Plural-Forms'];
+		}
+
+		foreach ( $translations->entries as $msgid => $entry ) {
+			$locale[ $msgid ] = $entry->translations;
+		}
+
+		return $locale;
+	}
 }

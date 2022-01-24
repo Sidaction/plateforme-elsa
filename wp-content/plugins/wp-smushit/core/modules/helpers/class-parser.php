@@ -293,7 +293,7 @@ class Parser {
 	private static function get_background_images( $content ) {
 		$images = array();
 
-		if ( preg_match_all( '/(?:background-image:\s*?url\([\'"]?(?P<img_url>.*?[^)\'"]+)[\'"]?\))/i', $content, $images ) ) {
+		if ( preg_match_all( '/(?:background-image:\s*?url\(\s*[\'"]?(?P<img_url>.*?[^)\'"]+)[\'"]?\s*\))/i', $content, $images ) ) {
 			foreach ( $images as $key => $unused ) {
 				// Simplify the output as much as possible, mostly for confirming test results.
 				if ( is_numeric( $key ) && $key > 0 ) {
@@ -311,6 +311,8 @@ class Parser {
 			function ( $image ) {
 				// Quote entities.
 				$quotes = apply_filters( 'wp_smush_background_image_quotes', array( '&quot;', '&#034;', '&#039;', '&apos;' ) );
+
+				$image = trim( $image );
 
 				// Remove the starting quotes.
 				if ( in_array( substr( $image, 0, 6 ), $quotes, true ) ) {
@@ -363,6 +365,13 @@ class Parser {
 			return true;
 		}
 
+		// BuddyBoss' AJAX requests. They do something strange and end up defining
+		// DOING_AJAX on template_redirect after self::parse_page() runs. That makes
+		// our lazy load page parsing break some of their AJAX requests.
+		if ( function_exists( 'bbp_is_ajax' ) && bbp_is_ajax() ) {
+			return true;
+		}
+
 		return false;
 	}
 
@@ -379,8 +388,10 @@ class Parser {
 	 */
 	public static function add_attribute( &$element, $name, $value = null ) {
 		$closing = false === strpos( $element, '/>' ) ? '>' : ' />';
+		$quotes  = false === strpos( $element, '"' ) ? '\'' : '"';
+
 		if ( ! is_null( $value ) ) {
-			$element = rtrim( $element, $closing ) . " {$name}=\"{$value}\"{$closing}";
+			$element = rtrim( $element, $closing ) . " {$name}={$quotes}{$value}{$quotes}{$closing}";
 		} else {
 			$element = rtrim( $element, $closing ) . " {$name}{$closing}";
 		}

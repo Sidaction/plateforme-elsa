@@ -99,6 +99,9 @@ class NextGen extends Abstract_Integration {
 			add_action( 'ngg_added_new_image', array( $this, 'auto_smush' ) );
 		}
 
+		// Update Total Image count.
+		add_action( 'ngg_added_new_image', array( $this, 'update_stats_image_count' ), 10 );
+
 		/**
 		 * AJAX
 		 */
@@ -188,7 +191,7 @@ class NextGen extends Abstract_Integration {
 			// Check for timeout error and suggest to filter timeout.
 			if ( strpos( $error_message, 'timed out' ) ) {
 				$error         = 'timeout';
-				$error_message = esc_html__( 'Smush request timed out. You can try setting a higher value ( > 60 ) for `WP_SMUSH_API_TIMEOUT`.', 'wp-smushit' );
+				$error_message = esc_html__( 'Smush request timed out. You can try setting a higher value ( > 60 ) for `WP_SMUSH_TIMEOUT`.', 'wp-smushit' );
 			}
 
 			$error     = isset( $error ) ? $error : 'other';
@@ -379,6 +382,14 @@ class NextGen extends Abstract_Integration {
 		}
 
 		return $smush;
+	}
+
+	/**
+	 * Refreshes the total image count from the stats when a new image is added to nextgen gallery
+	 * Should be called only if image count need to be updated, use total_count(), otherwise
+	 */
+	public function update_stats_image_count() {
+		NextGen\Stats::total_count( true );
 	}
 
 	/**
@@ -608,6 +619,15 @@ class NextGen extends Abstract_Integration {
 			// Get the Button html without wrapper.
 			$button_html = $this->ng_admin->wp_smush_column_options( '', $image_id );
 
+			/**
+			 * Called after the image has been successfully restored
+			 *
+			 * @since 3.7.0
+			 *
+			 * @param int $image_id ID of the restored image.
+			 */
+			do_action( 'wp_smush_image_nextgen_restored', $image_id );
+
 			wp_send_json_success(
 				array(
 					'stats' => $button_html,
@@ -644,7 +664,7 @@ class NextGen extends Abstract_Integration {
 			);
 		}
 
-		$status = $this->smush_image( intval( $_POST['attachment_id'] ) );
+		$status = $this->smush_image( (int) $_POST['attachment_id'] );
 
 		// If any of the image is restored, we count it as success.
 		if ( ! empty( $status ) && ! is_wp_error( $status ) ) {
@@ -773,7 +793,7 @@ class NextGen extends Abstract_Integration {
 		if ( ! empty( $sizes ) ) {
 			foreach ( $sizes as $size ) {
 				// Skip Full size, if smush original is not checked.
-				if ( 'full' === $size && ! $this->settings->get( 'original' ) && ! WP_Smush::is_pro() ) {
+				if ( 'full' === $size && ! $this->settings->get( 'original' ) ) {
 					continue;
 				}
 

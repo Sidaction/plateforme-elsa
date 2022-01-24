@@ -15,6 +15,7 @@ namespace Smush\Core\Integrations;
 
 use Amazon_S3_And_CloudFront;
 use DeliciousBrains\WP_Offload_Media\Items\Media_Library_Item;
+use Smush\App\Admin;
 use Smush\Core\Settings;
 use WP_Smush;
 
@@ -39,8 +40,9 @@ class S3 extends Abstract_Integration {
 
 		// Hook at the end of setting row to output a error div.
 		add_action( 'smush_setting_column_right_inside', array( $this, 's3_setup_message' ), 15 );
+
 		// Show S3 integration message, if user hasn't enabled it.
-		add_action( 'wp_ajax_smush_notice_s3_support_required', array( $this, 's3_support_required_notice' ) );
+		add_action( 'wp_smush_header_notices', array( $this, 'show_s3_support_required_notice' ) );
 
 		// Add Pro tag.
 		if ( ! WP_Smush::is_pro() || ! $this->enabled ) {
@@ -67,6 +69,8 @@ class S3 extends Abstract_Integration {
 		add_action( 'smush_file_exists', array( $this, 'maybe_download_file' ), 10, 3 );
 		// Fetch file and make sure it is returned back to S3 bucket.
 		add_action( 'smush_s3_integration_fetch_file', array( $this, 'fetch_file' ) );
+		// Remove .bak files on restore.
+		add_action( 'smush_s3_backup_remove', array( $this, 'remove_backup' ) );
 	}
 
 	/**************************************
@@ -86,7 +90,7 @@ class S3 extends Abstract_Integration {
 		$settings[ $this->module ] = array(
 			'label'       => __( 'Enable Amazon S3 support', 'wp-smushit' ),
 			'short_label' => __( 'Amazon S3', 'wp-smushit' ),
-			'desc'        => sprintf(
+			'desc'        => sprintf( /* translators: %1$s - <a>, %2$s - </a> */
 				esc_html__(
 					"Storing your image on S3 buckets using %1\$sWP Offload Media%2\$s? Smush can detect
 				and smush those assets for you, including when you're removing files from your host server.",
@@ -176,7 +180,7 @@ class S3 extends Abstract_Integration {
 	 * Show a error message to admins, if they need to enable S3 support. If "remove files from
 	 * server" option is enabled in WP Offload Media plugin, we need WP Smush Pro to enable S3 support.
 	 */
-	public function s3_support_required_notice() {
+	public function show_s3_support_required_notice() {
 		// Do not display it for other users. Do not display on network screens, if network-wide option is disabled.
 		if ( ! current_user_can( 'manage_options' ) || ! Settings::can_access( 'integrations' ) ) {
 			return;
@@ -185,14 +189,7 @@ class S3 extends Abstract_Integration {
 		// Do not display the notice on Bulk Smush Screen.
 		global $current_screen;
 
-		$allowed_pages = array(
-			'toplevel_page_smush',
-			'gallery_page_wp-smush-nextgen-bulk',
-			'nextgen-gallery_page_wp-smush-nextgen-bulk', // Different since NextGen 3.3.6.
-			'toplevel_page_smush-network',
-		);
-
-		if ( ! empty( $current_screen->base ) && ! in_array( $current_screen->base, $allowed_pages, true ) ) {
+		if ( ! empty( $current_screen->id ) && ! in_array( $current_screen->id, Admin::$plugin_pages, true ) && false === strpos( $current_screen->id, 'page_smush' ) ) {
 			return;
 		}
 
@@ -208,19 +205,17 @@ class S3 extends Abstract_Integration {
 
 		// Settings link.
 		$settings_link = is_multisite() && is_network_admin()
-			? network_admin_url( 'admin.php?page=smush' )
-			: menu_page_url( 'smush', false );
+			? network_admin_url( 'admin.php?page=smush-integrations' )
+			: menu_page_url( 'smush-integrations', false );
 
 		if ( WP_Smush::is_pro() ) {
+			/**
+			 * If premium user, but S3 support is not enabled.
+			 */
 			$message = sprintf(
-				/**
-				 * If premium user, but S3 support is not enabled.
-				 *
-				 * Translators: %1$s: opening strong tag, %2$s: closing strong tag, %s: settings link,
-				 * %3$s: opening a and strong tags, %4$s: closing a and strong tags
-				 */
+				/* Translators: %1$s: opening strong tag, %2$s: closing strong tag, %s: settings link, %3$s: opening a and strong tags, %4$s: closing a and strong tags */
 				__(
-					"We can see you have WP Offload Media installed with the %1\$sRemove Files From Server%2\$s option activated. If you want to optimize your S3 images you'll need to enable the %3\$sAmazon S3 Support%4\$s feature in Smush's settings.",
+					'We can see you have WP Offload Media installed with the %1$sRemove Files From Server%2$s option activated. If you want to optimize your S3 images, you’ll need to enable the %3$sAmazon S3 Support%4$s feature in Smush’s Integrations.',
 					'wp-smushit'
 				),
 				'<strong>',
@@ -229,25 +224,23 @@ class S3 extends Abstract_Integration {
 				'</strong></a>'
 			);
 		} else {
+			/**
+			 * If not a premium user.
+			 */
 			$message = sprintf(
-				/**
-				 * If not a premium user.
-				 *
-				 * Translators: %1$s: opening strong tag, %2$s: closing strong tag, %s: settings link,
-				 * %3$s: opening a and strong tags, %4$s: closing a and strong tags
-				 */
+				/* Translators: %1$s: opening strong tag, %2$s: closing strong tag, %s: settings link, %3$s: opening a and strong tags, %4$s: closing a and strong tags */
 				__(
 					"We can see you have WP Offload Media installed with the %1\$sRemove Files From Server%2\$s option activated. If you want to optimize your S3 images you'll need to %3\$supgrade to Smush Pro%4\$s",
 					'wp-smushit'
 				),
 				'<strong>',
 				'</strong>',
-				'<a href=' . esc_url( 'https://premium.wpmudev.org/project/wp-smush-pro' ) . '><strong>',
+				'<a href=' . esc_url( 'https://wpmudev.com/project/wp-smush-pro' ) . '><strong>',
 				'</strong></a>'
 			);
 		}
-
-		wp_send_json_success( array( '<p>' . wp_kses_post( $message ) . '</p>' ) );
+		$message = '<p>' . $message . '</p>';
+		echo '<div role="alert" id="wp-smush-s3support-alert" class="sui-notice" data-message="' . esc_attr( $message ) . '" aria-live="assertive"></div>';
 	}
 
 	/**
@@ -283,20 +276,18 @@ class S3 extends Abstract_Integration {
 		} elseif ( ! method_exists( $as3cf, 'is_plugin_setup' ) ) {
 			// Check if in case for some reason, we couldn't find the required function.
 			$class   = ' sui-notice-warning';
-			$message = sprintf(
-				/* translators: %1$s: opening a tag, %2$s: closing a tag */
+			$message = sprintf( /* translators: %1$s: opening a tag, %2$s: closing a tag */
 				esc_html__(
 					'We are having trouble interacting with WP Offload Media, make sure the plugin is activated. Or you can %1$sreport a bug%2$s.',
 					'wp-smushit'
 				),
-				'<a href="' . esc_url( 'https://premium.wpmudev.org/contact' ) . '" target="_blank">',
+				'<a href="' . esc_url( 'https://wpmudev.com/contact' ) . '" target="_blank">',
 				'</a>'
 			);
 		} elseif ( ! $as3cf->is_plugin_setup() ) {
 			// Plugin is not setup, or some information is missing.
 			$class   = ' sui-notice-warning';
-			$message = sprintf(
-				/* translators: %1$s: opening a tag, %2$s: closing a tag */
+			$message = sprintf( /* translators: %1$s: opening a tag, %2$s: closing a tag */
 				esc_html__(
 					'It seems you haven’t finished setting up WP Offload Media yet. %1$sConfigure it now%2$s to enable Amazon S3 support.',
 					'wp-smushit'
@@ -350,8 +341,55 @@ class S3 extends Abstract_Integration {
 	 */
 	public function fetch_file() {
 		if ( $this->enabled && $this->settings->get( $this->module ) ) {
-			add_filter( 'as3cf_get_attached_file_copy_back_to_local', '__return_true' );
+			global $as3cf;
+			$as3cf->plugin_compat->enable_get_attached_file_copy_back_to_local();
 		}
+	}
+
+	/**
+	 * Remove the backup file from S3 when image is restored.
+	 *
+	 * @since 3.8.4
+	 *
+	 * @param int $attachment_id  Attachment ID.
+	 */
+	public function remove_backup( $attachment_id ) {
+		/**
+		 * Amazon_S3_And_CloudFront global.
+		 *
+		 * @var Amazon_S3_And_CloudFront $as3cf
+		 */
+		global $as3cf;
+
+		// If S3 offload global variable is not available, plugin is not active.
+		if ( ! is_object( $as3cf ) ) {
+			return;
+		}
+
+		// Get bucket details.
+		$bucket = $as3cf->get_setting( 'bucket' );
+		$region = $as3cf->get_setting( 'region' );
+
+		if ( is_wp_error( $region ) ) {
+			return;
+		}
+
+		$s3_object = $this->is_attachment_served_by_provider( $as3cf, $attachment_id );
+
+		// If we have plugin method available, us that otherwise check it ourselves.
+		if ( ! $s3_object || ( ! is_array( $s3_object ) && ! $s3_object instanceof Media_Library_Item ) ) {
+			return;
+		}
+
+		$objects_to_remove[] = array(
+			'Key' => is_array( $s3_object ) ? $s3_object['key'] : $s3_object->path(),
+		);
+
+		if ( ! method_exists( $as3cf, 'delete_objects' ) ) {
+			return;
+		}
+
+		$as3cf->delete_objects( $region, $bucket, $objects_to_remove );
 	}
 
 	/**************************************

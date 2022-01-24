@@ -16,9 +16,9 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Class API.
+ * Class Smush_API.
  */
-class API {
+class Smush_API extends Abstract_API {
 
 	/**
 	 * Endpoint name.
@@ -39,38 +39,6 @@ class API {
 	public $version = 'v1';
 
 	/**
-	 * API key.
-	 *
-	 * @since 3.0
-	 *
-	 * @var string
-	 */
-	public $api_key = '';
-
-	/**
-	 * API request instance.
-	 *
-	 * @since 3.0
-	 *
-	 * @var Request
-	 */
-	private $request;
-
-	/**
-	 * API constructor.
-	 *
-	 * @since 3.0
-	 *
-	 * @param string $key  API key.
-	 *
-	 * @throws Exception  API Request exception.
-	 */
-	public function __construct( $key ) {
-		$this->api_key = $key;
-		$this->request = new Request( $this );
-	}
-
-	/**
 	 * Check CDN status (same as verify the is_pro status).
 	 *
 	 * @since 3.0
@@ -80,6 +48,10 @@ class API {
 	 * @return mixed|WP_Error
 	 */
 	public function check( $manual = false ) {
+		if ( isset( $_SERVER['WPMUDEV_HOSTING_ENV'] ) && 'staging' === $_SERVER['WPMUDEV_HOSTING_ENV'] ) {
+			return new WP_Error( '503', __( 'Unable to check status on staging.', 'wp-smushit' ) );
+		}
+
 		return $this->request->get(
 			"check/{$this->api_key}",
 			array(

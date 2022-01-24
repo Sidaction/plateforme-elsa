@@ -12,6 +12,7 @@ namespace Smush\App;
 
 use Smush\Core\Core;
 use Smush\Core\Helper;
+use Smush\Core\Configs;
 use Smush\Core\Modules\CDN;
 use Smush\Core\Modules\Helpers\Parser;
 use Smush\Core\Modules\Smush;
@@ -50,6 +51,10 @@ class Ajax {
 		add_action( 'wp_ajax_skip_smush_setup', array( $this, 'skip_smush_setup' ) );
 		// Ajax request for quick setup.
 		add_action( 'wp_ajax_smush_setup', array( $this, 'smush_setup' ) );
+
+		// Hide tutorials.
+		add_action( 'wp_ajax_smush_hide_tutorials', array( $this, 'hide_tutorials' ) );
+		add_action( 'wp_ajax_smush_hide_black_friday', array( $this, 'hide_black_friday' ) );
 
 		/**
 		 * NOTICES
@@ -109,16 +114,40 @@ class Ajax {
 		add_action( 'wp_ajax_get_cdn_stats', array( new CDN( new Parser() ), 'update_stats' ) );
 
 		/**
+		 * WebP
+		 */
+		// Toggle WebP.
+		add_action( 'wp_ajax_smush_webp_toggle', array( $this, 'webp_toggle' ) );
+		// Check server configuration status for WebP.
+		add_action( 'wp_ajax_smush_webp_get_status', array( $this, 'webp_get_status' ) );
+		// Apply apache rules for WebP support into .htaccess file.
+		add_action( 'wp_ajax_smush_webp_apply_htaccess_rules', array( $this, 'webp_apply_htaccess_rules' ) );
+		// Delete all webp images for all attachments.
+		add_action( 'wp_ajax_smush_webp_delete_all', array( $this, 'webp_delete_all' ) );
+		// Hide the webp wizard.
+		add_action( 'wp_ajax_smush_toggle_webp_wizard', array( $this, 'webp_toggle_wizard' ) );
+
+		/**
 		 * LAZY LOADING
 		 */
 		add_action( 'wp_ajax_smush_toggle_lazy_load', array( $this, 'smush_toggle_lazy_load' ) );
 		add_action( 'wp_ajax_smush_remove_icon', array( $this, 'remove_icon' ) );
 
 		/**
+		 * Configs
+		 */
+		add_action( 'wp_ajax_smush_upload_config', array( $this, 'upload_config' ) );
+		add_action( 'wp_ajax_smush_save_config', array( $this, 'save_config' ) );
+		add_action( 'wp_ajax_smush_apply_config', array( $this, 'apply_config' ) );
+
+		/**
 		 * SETTINGS
 		 */
 		add_action( 'wp_ajax_recheck_api_status', array( $this, 'recheck_api_status' ) );
 
+		/**
+		 * MODALS
+		 */
 		// Hide the new features modal.
 		add_action( 'wp_ajax_hide_new_features', array( $this, 'hide_new_features_modal' ) );
 	}
@@ -134,16 +163,6 @@ class Ajax {
 	public function skip_smush_setup() {
 		check_ajax_referer( 'smush_quick_setup' );
 		update_option( 'skip-smush-setup', true );
-		wp_send_json_success();
-	}
-
-	/**
-	 * Hide the new features modal
-	 *
-	 * @since 3.7.0
-	 */
-	public function hide_new_features_modal() {
-		delete_site_option( WP_SMUSH_PREFIX . 'show_upgrade_modal' );
 		wp_send_json_success();
 	}
 
@@ -172,7 +191,7 @@ class Ajax {
 			}
 
 			// Skip premium features if not a member.
-			if ( ! in_array( $name, Settings::$basic_features, true ) && ! WP_Smush::is_pro() ) {
+			if ( ! in_array( $name, Settings::$basic_features, true ) && 'usage' !== $name && ! WP_Smush::is_pro() ) {
 				continue;
 			}
 
@@ -191,10 +210,34 @@ class Ajax {
 		}
 
 		// Update the resize sizes.
-		$this->settings->set_setting( WP_SMUSH_PREFIX . 'settings', $settings );
+		$this->settings->set_setting( 'wp-smush-settings', $settings );
 
 		update_option( 'skip-smush-setup', true );
 
+		wp_send_json_success();
+	}
+
+	/**
+	 * Hide tutorials.
+	 *
+	 * @sinde 3.8.6
+	 */
+	public function hide_tutorials() {
+		check_ajax_referer( 'wp-smush-ajax' );
+
+		update_option( 'wp-smush-hide-tutorials', true, false );
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Hide Black Friday notice.
+	 *
+	 * @since 3.9.2
+	 */
+	public function hide_black_friday() {
+		check_ajax_referer( 'wp-smush-ajax' );
+		delete_site_option( 'wp-smush-show-black-friday' );
 		wp_send_json_success();
 	}
 
@@ -209,7 +252,7 @@ class Ajax {
 	 * @param bool $ajax  Does this come from an AJAX request.
 	 */
 	public function dismiss_upgrade_notice( $ajax = true ) {
-		update_site_option( WP_SMUSH_PREFIX . 'hide_upgrade_notice', true );
+		update_site_option( 'wp-smush-hide_upgrade_notice', true );
 		// No Need to send json response for other requests.
 		if ( $ajax ) {
 			wp_send_json_success();
@@ -220,7 +263,7 @@ class Ajax {
 	 * Store a key/value to hide the smush features on bulk page
 	 */
 	public function dismiss_welcome_notice() {
-		update_site_option( WP_SMUSH_PREFIX . 'hide_smush_welcome', true );
+		update_site_option( 'wp-smush-hide_smush_welcome', true );
 		wp_send_json_success();
 	}
 
@@ -246,7 +289,7 @@ class Ajax {
 	 * Store user preference for PageSpeed suggestions.
 	 */
 	public function hide_pagespeed_suggestion() {
-		update_site_option( WP_SMUSH_PREFIX . 'hide_pagespeed_suggestion', true );
+		update_site_option( 'wp-smush-hide_pagespeed_suggestion', true );
 		wp_send_json_success();
 	}
 
@@ -258,10 +301,10 @@ class Ajax {
 			return;
 		}
 
-		$api_message = get_site_option( WP_SMUSH_PREFIX . 'api_message', array() );
+		$api_message = get_site_option( 'wp-smush-api_message', array() );
 		if ( ! empty( $api_message ) && is_array( $api_message ) ) {
 			$api_message[ key( $api_message ) ]['status'] = 'hide';
-			update_site_option( WP_SMUSH_PREFIX . 'api_message', $api_message );
+			update_site_option( 'wp-smush-api_message', $api_message );
 		}
 
 		wp_send_json_success();
@@ -272,7 +315,7 @@ class Ajax {
 	 */
 	public function show_warning_ajax() {
 		$show = WP_Smush::get_instance()->core()->mod->smush->show_warning();
-		wp_send_json( intval( $show ) );
+		wp_send_json( (int) $show );
 	}
 
 	/**
@@ -281,7 +324,7 @@ class Ajax {
 	 * @since 3.6.0
 	 */
 	public function dismiss_check_for_conflicts() {
-		update_option( WP_SMUSH_PREFIX . 'hide-conflict-notice', true );
+		update_option( 'wp-smush-hide-conflict-notice', true );
 		wp_send_json_success();
 	}
 
@@ -315,7 +358,7 @@ class Ajax {
 			);
 		}
 
-		$attachment_id = intval( $_GET['attachment_id'] );
+		$attachment_id = (int) $_GET['attachment_id'];
 
 		/**
 		 * Filter: wp_smush_image.
@@ -330,7 +373,7 @@ class Ajax {
 			wp_send_json_error(
 				array(
 					'error_msg'    => sprintf( '<p class="wp-smush-error-message">%s</p>', $error ),
-					'show_warning' => intval( WP_Smush::get_instance()->core()->mod->smush->show_warning() ),
+					'show_warning' => (int) WP_Smush::get_instance()->core()->mod->smush->show_warning(),
 				)
 			);
 		}
@@ -363,7 +406,7 @@ class Ajax {
 			);
 		}
 
-		$image_id = intval( $_POST['attachment_id'] );
+		$image_id = (int) $_POST['attachment_id'];
 
 		WP_Smush::get_instance()->core()->mod->smush->smush_single( $image_id );
 	}
@@ -377,8 +420,6 @@ class Ajax {
 	public function scan_images() {
 		check_ajax_referer( 'save_wp_smush_options', 'wp_smush_options_nonce' );
 
-		wp_cache_delete( 'media_attachments', 'wp-smush' );
-
 		$resmush_list = array();
 
 		// Scanning for NextGen or Media Library.
@@ -388,8 +429,6 @@ class Ajax {
 
 		// Save settings only if networkwide settings are disabled.
 		if ( Settings::can_access() && ( ! isset( $_REQUEST['process_settings'] ) || 'false' !== $_REQUEST['process_settings'] ) ) {
-			// Save Settings.
-			$this->settings->save( false );
 			// Fetch the new settings.
 			$this->settings->init();
 		}
@@ -403,9 +442,6 @@ class Ajax {
 				)
 			);
 		}
-
-		// If a user manually runs smush check.
-		$return_ui = isset( $_REQUEST['get_ui'] ) && 'true' == $_REQUEST['get_ui'] ? true : false;
 
 		/**
 		 * Logic: If none of the required settings is on, don't need to resmush any of the images
@@ -427,7 +463,13 @@ class Ajax {
 
 		$remaining_count = 'nextgen' === $type ? $core->nextgen->ng_admin->remaining_count : $core->remaining_count;
 
-		if ( 0 === (int) $remaining_count && ( ! WP_Smush::is_pro() || ! $this->settings->get( 'lossy' ) ) && ( ! $this->settings->get( 'original' ) || ! WP_Smush::is_pro() ) && ! $this->settings->get( 'strip_exif' ) ) {
+		if (
+			0 === (int) $remaining_count &&
+			( ! WP_Smush::is_pro() || ! $this->settings->get( 'lossy' ) ) &&
+			( ! $this->settings->get( 'original' ) || ! WP_Smush::is_pro() ) &&
+			( ! $this->settings->get( 'webp_mod' ) || ! WP_Smush::is_pro() ) &&
+			! $this->settings->get( 'strip_exif' )
+		) {
 			delete_option( $key );
 			// Default Notice, to be displayed at the top of page. Show a message, at the top.
 			wp_send_json_success(
@@ -449,22 +491,22 @@ class Ajax {
 			$attachments = $core->nextgen->ng_stats->get_ngg_images();
 		}
 
+		$stats = array(
+			'size_before'        => 0,
+			'size_after'         => 0,
+			'savings_resize'     => 0,
+			'savings_conversion' => 0,
+		);
+
 		$image_count = $super_smushed_count = $smushed_count = $resized_count = 0;
 		// Check if any of the smushed image needs to be resmushed.
 		if ( ! empty( $attachments ) && is_array( $attachments ) ) {
-			$stats = array(
-				'size_before'        => 0,
-				'size_after'         => 0,
-				'savings_resize'     => 0,
-				'savings_conversion' => 0,
-			);
-
 			// Initialize resize class.
 			$core->mod->resize->initialize();
 
 			foreach ( $attachments as $attachment_k => $attachment ) {
 				// Skip if already in resmush list.
-				if ( ! empty( $core->resmush_ids ) && in_array( $attachment, $core->resmush_ids ) ) {
+				if ( ! empty( $core->resmush_ids ) && in_array( $attachment, $core->resmush_ids ) || ( ! empty( $core->skipped_attachments ) && in_array( $attachment, $core->skipped_attachments ) ) ) {
 					continue;
 				}
 				$should_resmush = false;
@@ -493,7 +535,7 @@ class Ajax {
 					}
 
 					// Check if new sizes have been selected.
-					$image_sizes = $this->settings->get_setting( WP_SMUSH_PREFIX . 'image_sizes' );
+					$image_sizes = $this->settings->get_setting( 'wp-smush-image_sizes' );
 
 					// Empty means we need to smush all images. So get all sizes of current site.
 					if ( empty( $image_sizes ) ) {
@@ -511,7 +553,7 @@ class Ajax {
 					 *
 					 * @since 3.2.1
 					 */
-					if ( is_array( $image_sizes ) && count( $image_sizes ) > count( $smush_data['sizes'] ) ) {
+					if ( is_array( $image_sizes ) && count( $image_sizes ) > count( $smush_data['sizes'] ) && ! has_filter( 'wp_image_editors', 'photon_subsizes_override_image_editors' ) ) {
 						// Move this inside an if statement.
 						$attachment_data = wp_get_attachment_metadata( $attachment );
 						if ( isset( $attachment_data['sizes'] ) && count( $attachment_data['sizes'] ) !== count( $smush_data['sizes'] ) ) {
@@ -540,6 +582,11 @@ class Ajax {
 						$should_resmush = $core->mod->png2jpg->can_be_converted( $attachment );
 					}
 
+					// If image needs to be converted to webp.
+					if ( ! $should_resmush ) {
+						$should_resmush = WP_Smush::get_instance()->core()->mod->webp->should_be_converted( $attachment );
+					}
+
 					// If the image needs to be resmushed add it to the list.
 					if ( $should_resmush ) {
 						$resmush_list[] = 'nextgen' === $type ? $attachment_k : $attachment;
@@ -549,7 +596,7 @@ class Ajax {
 					 * Calculate stats during re-check images action.
 					 */
 					if ( 'nextgen' !== $type ) {
-						$resize_savings     = get_post_meta( $attachment, WP_SMUSH_PREFIX . 'resize_savings', true );
+						$resize_savings     = get_post_meta( $attachment, 'wp-smush-resize_savings', true );
 						$conversion_savings = Helper::get_pngjpg_savings( $attachment );
 
 						// Increase the smushed count.
@@ -601,26 +648,29 @@ class Ajax {
 			$smushed_count       = $core->nextgen->ng_admin->smushed_count;
 			$super_smushed_count = $core->nextgen->ng_admin->super_smushed;
 
-			$count = $core->nextgen->ng_admin->remaining_count;
+			$unsmushed_count = $core->nextgen->ng_admin->remaining_count;
 
-			if ( 0 < $count ) {
+			if ( 0 < $unsmushed_count ) {
 				$raw_unsmushed = $core->nextgen->ng_stats->get_ngg_images( 'unsmushed' );
 				if ( ! empty( $raw_unsmushed ) && is_array( $raw_unsmushed ) ) {
 					$unsmushed_ids = array_keys( $raw_unsmushed );
 				}
 			}
 		} else {
-			$count = $core->remaining_count;
+			$unsmushed_count = $core->remaining_count;
 
-			if ( 0 < $count ) {
+			if ( 0 < $unsmushed_count ) {
 				$unsmushed_ids = array_values( $core->get_unsmushed_attachments() );
 			}
 		}
 
 		$resmush_count = count( $resmush_list );
-		$count        += $resmush_count;
+		$count         = $unsmushed_count + $resmush_count;
 
+		// If a user manually runs smush check.
 		// Return the Remsmush list and UI to be appended to Bulk Smush UI.
+		$return_ui = isset( $_REQUEST['get_ui'] ) && 'true' == $_REQUEST['get_ui'] ? true : false;
+
 		if ( $return_ui ) {
 			if ( 'nextgen' !== $type ) {
 				// Set the variables.
@@ -630,8 +680,10 @@ class Ajax {
 				$core->nextgen->ng_admin->resmush_ids = $resmush_list;
 			}
 
-			if ( $resmush_count ) {
-				$content = WP_Smush::get_instance()->admin()->bulk_resmush_content( $count );
+			if ( $count ) {
+				ob_start();
+				WP_Smush::get_instance()->admin()->print_pending_bulk_smush_content( $count, $resmush_count, $unsmushed_count );
+				$content = ob_get_clean();
 			}
 		}
 
@@ -661,8 +713,8 @@ class Ajax {
 			'count_supersmushed' => $super_smushed_count,
 			'count_smushed'      => $smushed_count,
 			'count_resize'       => $resized_count,
-			'size_before'        => $stats['size_before'],
-			'size_after'         => $stats['size_after'],
+			'size_before'        => ! empty( $stats['size_before'] ) ? $stats['size_before'] : 0,
+			'size_after'         => ! empty( $stats['size_after'] ) ? $stats['size_after'] : 0,
 			'savings_resize'     => ! empty( $stats['savings_resize'] ) ? $stats['savings_resize'] : 0,
 			'savings_conversion' => ! empty( $stats['savings_conversion'] ) ? $stats['savings_conversion'] : 0,
 		);
@@ -793,7 +845,7 @@ class Ajax {
 					'error'         => 'missing_id',
 					'error_message' => Helper::filter_error( esc_html__( 'No attachment ID was received.', 'wp-smushit' ) ),
 					'file_name'     => 'undefined',
-					'show_warning'  => intval( $smush->show_warning() ),
+					'show_warning'  => (int) $smush->show_warning(),
 				)
 			);
 		}
@@ -851,21 +903,24 @@ class Ajax {
 				array(
 					'error'         => 'skipped',
 					'error_message' => Helper::filter_error( esc_html__( 'Skipped with wp_smush_image filter', 'wp-smushit' ) ),
-					'show_warning'  => intval( $smush->show_warning() ),
+					'show_warning'  => (int) $smush->show_warning(),
 					'file_name'     => Helper::get_image_media_link( $attachment_id, $file_name ),
 					'thumbnail'     => wp_get_attachment_image( $attachment_id ),
 				)
 			);
 		}
 
+		// Allow downloading the file from S3 all throughout the process.
+		do_action( 'smush_s3_integration_fetch_file' );
+
 		// Get the file path for backup.
-		$attachment_file_path = Helper::get_attached_file( $attachment_id );
+		$attachment_file_path = get_attached_file( $attachment_id );
 
 		Helper::check_animated_status( $attachment_file_path, $attachment_id );
 
 		WP_Smush::get_instance()->core()->mod->backup->create_backup( $attachment_file_path, $attachment_id );
 
-		// Proceed only if Smushing Transient is not set for the given attachment id.
+		// Proceed only if transient is not set for the given attachment id.
 		if ( ! get_option( 'smush-in-progress-' . $attachment_id, false ) ) {
 			// Set a transient to avoid multiple request.
 			update_option( 'smush-in-progress-' . $attachment_id, true );
@@ -880,14 +935,16 @@ class Ajax {
 			 * @param bool $should_resize Set to True by default.
 			 * @param int  $attachment_id Image Attachment ID.
 			 */
-			if ( $should_resize = apply_filters( 'wp_smush_resize_media_image', true, $attachment_id ) ) {
+			if ( apply_filters( 'wp_smush_resize_media_image', true, $attachment_id ) ) {
 				$updated_meta  = $smush->resize_image( $attachment_id, $original_meta );
 				$original_meta = ! empty( $updated_meta ) ? $updated_meta : $original_meta;
 			}
 
 			$original_meta = WP_Smush::get_instance()->core()->mod->png2jpg->png_to_jpg( $attachment_id, $original_meta );
 
-			$smush_response = $smush->resize_from_meta_data( $original_meta, $attachment_id );
+			WP_Smush::get_instance()->core()->mod->webp->convert_to_webp( $attachment_id, $original_meta );
+
+			$smush_response = $smush->resize_from_meta_data( $attachment_id, $original_meta );
 			wp_update_attachment_metadata( $attachment_id, $original_meta );
 		}
 
@@ -895,7 +952,7 @@ class Ajax {
 		delete_option( 'smush-in-progress-' . $attachment_id );
 
 		$smush_data         = get_post_meta( $attachment_id, Smush::$smushed_meta_key, true );
-		$resize_savings     = get_post_meta( $attachment_id, WP_SMUSH_PREFIX . 'resize_savings', true );
+		$resize_savings     = get_post_meta( $attachment_id, 'wp-smush-resize_savings', true );
 		$conversion_savings = Helper::get_pngjpg_savings( $attachment_id );
 
 		$stats = array(
@@ -910,10 +967,10 @@ class Ajax {
 		if ( isset( $smush_response ) && is_wp_error( $smush_response ) ) {
 			$error_message = $smush_response->get_error_message();
 
-			// Check for timeout error and suggest to filter timeout.
+			// Check for timeout error and suggest filtering timeout.
 			if ( strpos( $error_message, 'timed out' ) ) {
 				$error         = 'timeout';
-				$error_message = esc_html__( "Timeout error. You can increase the request timeout to make sure Smush has enough time to process larger files. `define('WP_SMUSH_API_TIMEOUT', 150);`", 'wp-smushit' );
+				$error_message = esc_html__( "Timeout error. You can increase the request timeout to make sure Smush has enough time to process larger files. `define('WP_SMUSH_TIMEOUT', 150);`", 'wp-smushit' );
 			}
 
 			$error = isset( $error ) ? $error : 'other';
@@ -928,7 +985,7 @@ class Ajax {
 					'stats'         => $stats,
 					'error'         => $error,
 					'error_message' => $error_message,
-					'show_warning'  => intval( $smush->show_warning() ),
+					'show_warning'  => (int) $smush->show_warning(),
 					'error_class'   => isset( $error_class ) ? $error_class : '',
 					'file_name'     => Helper::get_image_media_link( $attachment_id, $file_name ),
 				)
@@ -938,6 +995,8 @@ class Ajax {
 		// Check if a resmush request, update the resmush list.
 		if ( ! empty( $_REQUEST['is_bulk_resmush'] ) && 'false' !== $_REQUEST['is_bulk_resmush'] && $_REQUEST['is_bulk_resmush'] ) {
 			$smush->update_resmush_list( $attachment_id );
+		} else {
+			Core::add_to_smushed_list( $attachment_id );
 		}
 
 		// Runs after a image is successfully smushed.
@@ -950,7 +1009,7 @@ class Ajax {
 		wp_send_json_success(
 			array(
 				'stats'        => $stats,
-				'show_warning' => intval( $smush->show_warning() ),
+				'show_warning' => (int) $smush->show_warning(),
 			)
 		);
 	}
@@ -1030,33 +1089,133 @@ class Ajax {
 			);
 		}
 
-		$param = isset( $_POST['param'] ) ? sanitize_text_field( wp_unslash( $_POST['param'] ) ) : '';
+		$enable   = filter_input( INPUT_POST, 'param', FILTER_VALIDATE_BOOLEAN );
+		$response = WP_Smush::get_instance()->core()->mod->cdn->toggle_cdn( $enable );
 
-		$this->settings->set( 'cdn', 'true' === $param );
-
-		if ( 'true' === $param ) {
-			// Maybe here is not the place for this. Check CDN settings on page load.
-			$status = $this->settings->get_setting( WP_SMUSH_PREFIX . 'cdn_status' );
-			$smush  = WP_Smush::get_instance();
-
-			if ( ! $status ) {
-				$status = $smush->api()->check();
-				$data   = $smush->core()->mod->cdn->process_cdn_status( $status );
-				$this->settings->set_setting( WP_SMUSH_PREFIX . 'cdn_status', $data );
-			}
-
-			$smush->core()->mod->cdn->schedule_cron();
-
-			// Clear HB page cache.
-			do_action( 'wphb_clear_page_cache' );
-		} else {
-			// Remove CDN settings if disabling.
-			$this->settings->delete_setting( WP_SMUSH_PREFIX . 'cdn_status' );
-
-			WP_Smush::get_instance()->core()->mod->cdn->unschedule_cron();
+		if ( is_wp_error( $response ) ) {
+			wp_send_json_error(
+				array( 'message' => $response->get_error_message() )
+			);
 		}
 
 		wp_send_json_success();
+	}
+
+	/***************************************
+	 *
+	 * WebP
+	 *
+	 * @since 3.8.0
+	 */
+
+	/**
+	 * Toggle WebP.
+	 *
+	 * Handles "Activate" button press on the disabled WebP meta box.
+	 * Handles "Deactivate" button press on the WebP meta box.
+	 * Refreshes page on success.
+	 *
+	 * @since 3.8.0
+	 */
+	public function webp_toggle() {
+		check_ajax_referer( 'save_wp_smush_options' );
+
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( "You don't have permission to do this.", 'wp-smushit' ),
+				),
+				403
+			);
+		}
+
+		$param       = isset( $_POST['param'] ) ? sanitize_text_field( wp_unslash( $_POST['param'] ) ) : '';
+		$enable_webp = 'true' === $param;
+
+		WP_Smush::get_instance()->core()->mod->webp->toggle_webp( $enable_webp );
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Check server configuration status and other info for WebP.
+	 *
+	 * Handles "Re-Check Status" button press on the WebP meta box.
+	 *
+	 * @since 3.8.0
+	 */
+	public function webp_get_status() {
+		if ( ! check_ajax_referer( 'wp-smush-webp-nonce', false, false ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( esc_html__( "Either the nonce expired or you can't modify options. Please reload the page and try again.", 'wp-smushit' ) );
+		}
+
+		$is_configured = WP_Smush::get_instance()->core()->mod->webp->get_is_configured_with_error_message( true );
+
+		if ( true === $is_configured ) {
+			wp_send_json_success();
+		}
+
+		// The messages are set in React with dangerouslySetInnerHTML so they must be html-escaped.
+		wp_send_json_error( esc_html( $is_configured ) );
+	}
+
+	/**
+	 * Write apache rules for WebP support from .htaccess file.
+	 * Handles the "Apply Rules" button press on the WebP meta box.
+	 *
+	 * @since 3.8.0
+	 */
+	public function webp_apply_htaccess_rules() {
+		if ( ! check_ajax_referer( 'wp-smush-webp-nonce', false, false ) || ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( "Either the nonce expired or you can't modify options. Please reload the page and try again." );
+		}
+
+		$was_written = WP_Smush::get_instance()->core()->mod->webp->save_htaccess();
+
+		if ( true === $was_written ) {
+			wp_send_json_success();
+		}
+
+		wp_send_json_error( wp_kses_post( $was_written ) );
+	}
+
+	/**
+	 * Delete all webp images.
+	 * Triggered by the "Delete WebP images" button in the webp tab.
+	 *
+	 * @since 3.8.0
+	 */
+	public function webp_delete_all() {
+		check_ajax_referer( 'save_wp_smush_options' );
+
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'This user can not delete all WebP images.', 'wp-smushit' ),
+				),
+				403
+			);
+		}
+
+		WP_Smush::get_instance()->core()->mod->webp->delete_all();
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Toggles the webp wizard.
+	 *
+	 * @since 3.8.8
+	 */
+	public function webp_toggle_wizard() {
+		if ( check_ajax_referer( 'wp-smush-webp-nonce', false, false ) && current_user_can( 'manage_options' ) ) {
+			$is_hidden = get_site_option( 'wp-smush-webp_hide_wizard' );
+			update_site_option( 'wp-smush-webp_hide_wizard', ! $is_hidden );
+			wp_send_json_success();
+		}
 	}
 
 	/***************************************
@@ -1090,7 +1249,7 @@ class Ajax {
 		$param = isset( $_POST['param'] ) ? sanitize_text_field( wp_unslash( $_POST['param'] ) ) : false;
 
 		if ( 'true' === $param ) {
-			$settings = $this->settings->get_setting( WP_SMUSH_PREFIX . 'lazy_load' );
+			$settings = $this->settings->get_setting( 'wp-smush-lazy_load' );
 
 			// No settings, during init - set defaults.
 			if ( ! $settings ) {
@@ -1114,14 +1273,98 @@ class Ajax {
 		$id   = filter_input( INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT );
 		$type = filter_input( INPUT_POST, 'type', FILTER_SANITIZE_STRING );
 		if ( $id && $type ) {
-			$settings = $this->settings->get_setting( WP_SMUSH_PREFIX . 'lazy_load' );
+			$settings = $this->settings->get_setting( 'wp-smush-lazy_load' );
 			if ( false !== ( $key = array_search( $id, $settings['animation'][ $type ]['custom'] ) ) ) {
 				unset( $settings['animation'][ $type ]['custom'][ $key ] );
-				$this->settings->set_setting( WP_SMUSH_PREFIX . 'lazy_load', $settings );
+				$this->settings->set_setting( 'wp-smush-lazy_load', $settings );
 			}
 		}
 
 		wp_send_json_success();
+	}
+
+	/***************************************
+	 *
+	 * CONFIGS
+	 *
+	 * @since 3.8.5
+	 */
+
+	/**
+	 * Handles the upload of a config file.
+	 *
+	 * @since 3.8.5
+	 */
+	public function upload_config() {
+		check_ajax_referer( 'smush_handle_config' );
+
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( null, 403 );
+		}
+
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$file = isset( $_FILES['file'] ) ? wp_unslash( $_FILES['file'] ) : false;
+
+		$configs_handler = new Configs();
+		$new_config      = $configs_handler->save_uploaded_config( $file );
+
+		if ( ! is_wp_error( $new_config ) ) {
+			wp_send_json_success( $new_config );
+		}
+
+		wp_send_json_error(
+			array( 'error_msg' => $new_config->get_error_message() )
+		);
+	}
+	/**
+	 * Handles the upload of a config file.
+	 *
+	 * @since 3.8.5
+	 */
+	public function save_config() {
+		check_ajax_referer( 'smush_handle_config' );
+
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( null, 403 );
+		}
+
+		$configs_handler = new Configs();
+		wp_send_json_success( $configs_handler->get_config_from_current() );
+	}
+
+	/**
+	 * Applies the given config.
+	 *
+	 * @since 3.8.5
+	 */
+	public function apply_config() {
+		check_ajax_referer( 'smush_handle_config' );
+
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! current_user_can( $capability ) ) {
+			wp_send_json_error( null, 403 );
+		}
+
+		$id = filter_input( INPUT_POST, 'id', FILTER_SANITIZE_STRING );
+		if ( ! $id ) {
+			// Abort if no config ID was given.
+			wp_send_json_error(
+				array( 'error_msg' => esc_html__( 'Missing config ID', 'wp-smushit' ) )
+			);
+		}
+
+		$configs_handler = new Configs();
+		$response        = $configs_handler->apply_config_by_id( $id );
+
+		if ( ! is_wp_error( $response ) ) {
+			wp_send_json_success();
+		}
+
+		wp_send_json_error(
+			array( 'error_msg' => esc_html( $response->get_error_message() ) )
+		);
 	}
 
 	/***************************************
@@ -1138,6 +1381,23 @@ class Ajax {
 	 */
 	public function recheck_api_status() {
 		WP_Smush::get_instance()->validate_install( true );
+		wp_send_json_success();
+	}
+
+	/***************************************
+	 *
+	 * MODALS
+	 *
+	 * @since 3.7.0
+	 */
+
+	/**
+	 * Hide the new features modal
+	 *
+	 * @since 3.7.0
+	 */
+	public function hide_new_features_modal() {
+		delete_site_option( 'wp-smush-show_upgrade_modal' );
 		wp_send_json_success();
 	}
 
