@@ -247,6 +247,19 @@ class ConfigCompiler {
 		}
 
 		//
+		// changes in 0.15.2
+		//
+		if ( version_compare( $file_data['version'], '0.15.2', '<' ) ) {
+			if ( isset( $file_data['minify.js.combine.header'] ) && $file_data['minify.js.combine.header'] ) {
+				$file_data['minify.js.method'] = 'combine';
+			}
+
+			if ( isset( $file_data['minify.css.combine'] ) && $file_data['minify.css.combine'] ) {
+				$file_data['minify.css.method'] = 'combine';
+			}
+		}
+
+		//
 		// changes in 0.13
 		//
 		if ( version_compare( $file_data['version'], '0.12.0', '<=' ) ) {
@@ -335,7 +348,6 @@ class ConfigCompiler {
 				'w3-total-cache/Extension_NewRelic_Plugin.php';
 			$file_data['extensions.active']['fragmentcache'] =
 				'w3-total-cache/Extension_FragmentCache_Plugin.php';
-
 		}
 
 		// newrelic settings - migrate to extension

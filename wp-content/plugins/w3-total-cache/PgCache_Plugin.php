@@ -45,6 +45,10 @@ class PgCache_Plugin {
 		add_filter( 'cron_schedules',
 			array( $this, 'cron_schedules' ) );
 
+		add_action( 'w3tc_config_save',
+			array( $this, 'w3tc_config_save' ),
+			10, 1 );
+
 		$o = Dispatcher::component( 'PgCache_ContentGrabber' );
 
 		add_filter( 'w3tc_footer_comment',
@@ -187,7 +191,7 @@ class PgCache_Plugin {
 	public function redirect_on_foreign_domain() {
 		$request_host = Util_Environment::host();
 		// host not known, potentially we are in console mode not http request
-		if ( empty( $request_host ) )
+		if ( empty( $request_host ) || defined( 'WP_CLI' ) && WP_CLI )
 			return;
 
 		$home_url = get_home_url();
@@ -380,4 +384,14 @@ class PgCache_Plugin {
 
 		return $header;
 	}
+
+
+
+	public function w3tc_config_save( $config ) {
+		// frontend activity
+		if ( $config->get_boolean( 'pgcache.cache.feed' ) ) {
+			$config->set( 'pgcache.cache.nginx_handle_xml', true );
+		}
+	}
+
 }

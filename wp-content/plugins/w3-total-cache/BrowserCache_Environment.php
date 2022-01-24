@@ -97,6 +97,8 @@ class BrowserCache_Environment {
 		$other_compression = $a['other'];
 		unset( $other_compression['asf|asx|wax|wmv|wmx'] );
 		unset( $other_compression['avi'] );
+		unset( $other_compression['avif'] );
+		unset( $other_compression['avifs'] );
 		unset( $other_compression['divx'] );
 		unset( $other_compression['gif'] );
 		unset( $other_compression['br'] );
@@ -106,6 +108,7 @@ class BrowserCache_Environment {
 		unset( $other_compression['mov|qt'] );
 		unset( $other_compression['mp3|m4a'] );
 		unset( $other_compression['mp4|m4v'] );
+		unset( $other_compression['ogv'] );
 		unset( $other_compression['mpeg|mpg|mpe'] );
 		unset( $other_compression['png'] );
 		unset( $other_compression['ra|ram'] );
@@ -357,9 +360,12 @@ class BrowserCache_Environment {
 			$rules .= "</IfModule>\n";
 		}
 
-		foreach ( $mime_types2 as $type => $extensions )
-			$rules .= $this->_rules_cache_generate_apache_for_type( $config,
-				$extensions, $type );
+		$rules .= $this->_rules_cache_generate_apache_for_type( $config,
+			$mime_types2['cssjs'], 'cssjs' );
+		$rules .= $this->_rules_cache_generate_apache_for_type( $config,
+			$mime_types2['html'], 'html' );
+		$rules .= $this->_rules_cache_generate_apache_for_type( $config,
+			$mime_types2['other'], 'other' );
 
 		if ( $config->get_boolean( 'browsercache.hsts' ) ||
 			 $config->get_boolean( 'browsercache.security.xfo' ) ||
@@ -376,7 +382,7 @@ class BrowserCache_Environment {
 
 			if ( $config->get_boolean( 'browsercache.hsts' ) ) {
 				$dir = $config->get_string( 'browsercache.security.hsts.directive' );
-				$rules .= "    Header set Strict-Transport-Security \"max-age=$lifetime" . ( strpos( $dir,"inc" ) ? "; includeSubDomains" : "" ) . ( strpos( $dir, "pre" ) ? "; preload" : "" ) . "\"\n";
+				$rules .= "    Header always set Strict-Transport-Security \"max-age=$lifetime" . ( strpos( $dir,"inc" ) ? "; includeSubDomains" : "" ) . ( strpos( $dir, "pre" ) ? "; preload" : "" ) . "\"\n";
 			}
 
 			if ( $config->get_boolean( 'browsercache.security.xfo' ) ) {
@@ -576,18 +582,18 @@ class BrowserCache_Environment {
 		} else {
 			if ( $compatibility ) {
 				$rules .= "    FileETag None\n";
-				$headers_rules .= "         Header unset ETag\n";
+				$headers_rules .= "        Header unset ETag\n";
 			}
 		}
 
 		if ( $unset_setcookie )
-			$headers_rules .= "         Header unset Set-Cookie\n";
+			$headers_rules .= "        Header unset Set-Cookie\n";
 
 		if ( !$set_last_modified )
-			$headers_rules .= "         Header unset Last-Modified\n";
+			$headers_rules .= "        Header unset Last-Modified\n";
 
 		if ( $w3tc )
-			$headers_rules .= "         Header set X-Powered-By \"" .
+			$headers_rules .= "        Header set X-Powered-By \"" .
 				Util_Environment::w3tc_header() . "\"\n";
 
 		if ( strlen( $headers_rules ) > 0 ) {

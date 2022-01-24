@@ -133,10 +133,41 @@ if ( file_exists( $html_engine_file2 ) ) {
 
 		<?php Util_Ui::postbox_header( __( '<acronym title="JavaScript">JS</acronym>', 'w3-total-cache' ), '', 'js' ); ?>
 		<table class="form-table">
+			<?php
+			Util_Ui::config_item( array(
+				'key' => 'minify.js.enable',
+				'label' => sprintf(
+				// translators: 1: JS acronym open tag, 2: JS acronym and close tag 
+				__( '%1$sJavaScript%2$s minify settings:', 'w3-total-cache' ),
+				'<acronym title="', 
+				'">JS</acronym>' ), 
+				'control' => 'checkbox',
+				'checkbox_label' => __( 'Enable', 'w3-total-cache' )
+			) );
+			?>
+			<?php
+			if ( $auto ):
+				Util_Ui::config_item( array(
+					'key' => 'minify.js.method',
+					'label' => __( 'Minify method:', 'w3-total-cache' ),
+					'control' => 'selectbox',
+					'selectbox_values' => array(
+						'both' => array(
+							'label' => __( 'Combine & Minify', 'w3-total-cache' )
+						),
+						'minify' => array(
+							'label' => __( 'Minify only', 'w3-total-cache' )
+						),
+						'combine' => array(
+							'label' => __( 'Combine only', 'w3-total-cache' )
+						)
+					)
+				) );
+			endif;
+			?>
 			<tr>
-				<th><?php _e( '<acronym title="JavaScript">JS</acronym> minify settings:', 'w3-total-cache' ); ?></th>
+				<th><?php _e( 'Minify engine settings:', 'w3-total-cache' ); ?></th>
 				<td>
-					<?php $this->checkbox( 'minify.js.enable' ) ?> <?php Util_Ui::e_config_label( 'minify.js.enable' ) ?></label><br />
 					<fieldset><legend><?php _e( 'Operations in areas:', 'w3-total-cache' ); ?></legend>
 						<table id="minify_table">
 							<tr>
@@ -205,11 +236,6 @@ if ( file_exists( $html_engine_file2 ) ) {
 							<?php endif; ?>
 						</table>
 					</fieldset>
-					<?php if ( $auto ): ?>
-						<p>
-							<?php $this->radio( 'minify.js.combine.header', false, false, 'js_' ) ?> <?php _e( 'Minify', 'w3-total-cache' ); ?> </label> <?php $this->radio( 'minify.js.combine.header', true, false, 'js_' ) ?> <?php Util_Ui::e_config_label( 'minify.js.combine.header' ) ?></label>
-						</p>
-					<?php endif; ?>
 
 					<?php
 $js_engine_file = '';
@@ -317,7 +343,7 @@ Util_Ui::config_item( array(
 		'label' => '<acronym title="Hypertext Markup Language">HTTP</acronym>/2 push',
 		'control' => 'checkbox',
 		'checkbox_label' => __( 'Enable', 'w3-total-cache' ),
-		'description' => __( 'For better performance, send files to browser before they are requested when using the <acronym title="Hypertext Markup Language">HTTP</acronym>/2 protocol.',
+		'description' => __( 'For better performance, send files to browser before they are requested when using the <acronym title="Hypertext Transfer Protocol">HTTP</acronym>/2 protocol.',
 			'w3-total-cache' ) .
 			( $this->_config->get_string( 'pgcache.engine' ) != 'file_generic' ? '' :
 				__( ' <br /><b>Not supported by "Disk: Enhanced" page cache method for Nginx</b>', 'w3-total-cache' ) )
@@ -329,11 +355,35 @@ Util_Ui::config_item( array(
 
 		<?php Util_Ui::postbox_header( __( '<acronym title="Cascading Style Sheet">CSS</acronym>', 'w3-total-cache' ), '', 'css' ); ?>
 		<table class="form-table">
+			<?php
+			Util_Ui::config_item( array(
+				'key' => 'minify.css.enable',
+				'label' => __( '<acronym title="Cascading Style Sheet">CSS</acronym> minify settings:', 'w3-total-cache' ),
+				'control' => 'checkbox',
+				'checkbox_label' => __( 'Enable', 'w3-total-cache' )
+			) );
+			?>
+			<?php
+			Util_Ui::config_item( array(
+				'key' => 'minify.css.method',
+				'label' => 'Minify method:',
+				'control' => 'selectbox',
+				'selectbox_values' => array(
+					'both' => array(
+						'label' => __( 'Combine & Minify', 'w3-total-cache' )
+					),
+					'minify' => array(
+						'label' => __( 'Minify only', 'w3-total-cache' )
+					),
+					'combine' => array(
+						'label' => __( 'Combine only', 'w3-total-cache' )
+					)
+				)
+			) );
+			?>
 			<tr>
-				<th><?php _e( '<acronym title="Cascading Style Sheet">CSS</acronym> minify settings:', 'w3-total-cache' ); ?></th>
+				<th><?php _e( 'Minify engine settings:', 'w3-total-cache' ); ?></th>
 				<td>
-					<?php $this->checkbox( 'minify.css.enable' ) ?> <?php Util_Ui::e_config_label( 'minify.css.enable' ) ?></label><br />
-					<?php $this->checkbox( 'minify.css.combine', false, 'css_' ) ?> <?php Util_Ui::e_config_label( 'minify.css.combine' ) ?></label><br />
 					<?php
 $css_engine_file = '';
 
@@ -442,7 +492,7 @@ Util_Ui::config_item( array(
 		'label' => '<acronym title="Hypertext Markup Language">HTTP</acronym>/2 push',
 		'control' => 'checkbox',
 		'checkbox_label' => __( 'Enable', 'w3-total-cache' ),
-		'description' => __( 'For better performance, send files to browser before they are requested when using the <acronym title="Hypertext Markup Language">HTTP</acronym>/2 protocol.',
+		'description' => __( 'For better performance, send files to browser before they are requested when using the <acronym title="Hypertext Transfer Protocol">HTTP</acronym>/2 protocol.',
 			'w3-total-cache' ) .
 			( $this->_config->get_string( 'pgcache.engine' ) != 'file_generic' ? '' :
 				__( ' <br /><b>Not supported by "Disk: Enhanced" page cache method for Nginx</b>', 'w3-total-cache' ) )

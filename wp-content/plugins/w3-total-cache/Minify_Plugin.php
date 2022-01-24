@@ -513,7 +513,7 @@ class Minify_Plugin {
 		$ignored_comments = $this->_config->get_array( 'minify.html.comments.ignore' );
 
 		if ( count( $ignored_comments ) ) {
-			$ignored_comments_preserver = new \Minify_IgnoredCommentPreserver();
+			$ignored_comments_preserver = new \W3TCL\Minify\Minify_IgnoredCommentPreserver();
 			$ignored_comments_preserver->setIgnoredComments( $ignored_comments );
 
 			$html = $ignored_comments_preserver->search( $html );
@@ -531,7 +531,7 @@ class Minify_Plugin {
 
 			$w3_minifier->init( $js_engine );
 
-			$html = \Minify_Inline_JavaScript::minify( $html, $js_minifier, $js_options );
+			$html = \W3TCL\Minify\Minify_Inline_JavaScript::minify( $html, $js_minifier, $js_options );
 		}
 
 		if ( $this->_config->get_boolean( 'minify.html.inline.css' ) ) {
@@ -546,7 +546,7 @@ class Minify_Plugin {
 
 			$w3_minifier->init( $css_engine );
 
-			$html = \Minify_Inline_CSS::minify( $html, $css_minifier, $css_options );
+			$html = \W3TCL\Minify\Minify_Inline_CSS::minify( $html, $css_minifier, $css_options );
 		}
 
 		$engine = $this->_config->get_string( 'minify.html.engine' );
@@ -1053,6 +1053,8 @@ class _W3_MinifyHelpers {
 		$url = Minify_Core::minified_url( $minify_filename );
 		$url = Util_Environment::url_to_maybe_https( $url );
 
+		$url = apply_filters( 'w3tc_minify_url_for_files', $url, $files, $type );
+
 		return $url;
 	}
 
@@ -1091,8 +1093,13 @@ class _W3_MinifyHelpers {
 	function generate_script_tag( $url, $embed_type = 'blocking' ) {
 		static $non_blocking_function = false;
 
+		$rocket_loader_ignore = "";
+		if( $this->config->get_boolean( array( 'cloudflare', 'minify_js_rl_exclude' ) ) ){
+			$rocket_loader_ignore = 'data-cfasync="false"';
+		}
+
 		if ( $embed_type == 'blocking' ) {
-			$script = '<script src="' .
+			$script = '<script ' . $rocket_loader_ignore . ' src="' .
 				str_replace( '&', '&amp;', $url ) . '"></script>';
 		} else {
 			$script = '';
@@ -1107,19 +1114,19 @@ class _W3_MinifyHelpers {
 					$url . "');</script>";
 
 			} elseif ( $embed_type == 'nb-async' ) {
-				$script = '<script async src="' .
+				$script = '<script ' . $rocket_loader_ignore . ' async src="' .
 					str_replace( '&', '&amp;', $url ) . '"></script>';
 			} elseif ( $embed_type == 'nb-defer' ) {
-				$script = '<script defer src="' .
+				$script = '<script ' . $rocket_loader_ignore . ' defer src="' .
 					str_replace( '&', '&amp;', $url ) . '"></script>';
 			} elseif ( $embed_type == 'extsrc' ) {
-				$script = '<script extsrc="' .
+				$script = '<script ' . $rocket_loader_ignore . ' extsrc="' .
 					str_replace( '&', '&amp;', $url ) . '"></script>';
 			} elseif ( $embed_type == 'asyncsrc' ) {
-				$script = '<script asyncsrc="' .
+				$script = '<script ' . $rocket_loader_ignore . ' asyncsrc="' .
 					str_replace( '&', '&amp;', $url ) . '"></script>';
 			} else {
-				$script = '<script src="' .
+				$script = '<script ' . $rocket_loader_ignore . ' src="' .
 					str_replace( '&', '&amp;', $url ) . '"></script>';
 			}
 		}

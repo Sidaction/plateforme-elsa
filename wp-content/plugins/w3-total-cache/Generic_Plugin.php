@@ -301,6 +301,13 @@ class Generic_Plugin {
 				);
 			}
 
+			$menu_items['30000.generic'] = array(
+				'id'     => 'w3tc_feature_showcase',
+				'parent' => 'w3tc',
+				'title'  => __( 'Feature Showcase', 'w3-total-cache' ),
+				'href'   => wp_nonce_url( network_admin_url( 'admin.php?page=w3tc_feature_showcase' ), 'w3tc' ),
+			);
+
 			$menu_items['40010.generic'] = array(
 				'id' => 'w3tc_settings_general',
 				'parent' => 'w3tc',
@@ -639,13 +646,16 @@ class Generic_Plugin {
 	}
 
 	function popup_script() {
-?>
+		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+			return;
+		}
+		?>
 		<script type="text/javascript">
 			function w3tc_popupadmin_bar(url) {
 				return window.open(url, '', 'width=800,height=600,status=no,toolbar=no,menubar=no,scrollbars=yes');
 			}
 		</script>
-			<?php
+		<?php
 	}
 
 	private function is_debugging() {

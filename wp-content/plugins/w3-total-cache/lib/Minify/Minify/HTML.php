@@ -1,4 +1,6 @@
 <?php
+namespace W3TCL\Minify;
+
 /**
  * Class Minify_HTML
  * @package Minify
@@ -140,7 +142,7 @@ class Minify_HTML {
 		// remove ws around block/undisplayed elements
 		$this->_html = preg_replace('/\\s+(<\\/?(?:area|article|aside|base(?:font)?|blockquote|body'
 			.'|canvas|caption|center|col(?:group)?|dd|dir|div|dl|dt|fieldset|figcaption|figure|footer|form'
-			.'|frame(?:set)?|h[1-6]|head|header|hgroup|hr|html|legend|li|link|main|map|menu|meta|nav'
+			.'|frame(?:set)?|h[1-6]|head|header|hgroup|hr|html|legend|link|main|map|menu|meta|nav'
 			.'|ol|opt(?:group|ion)|output|p|param|section|t(?:able|body|head|d|h||r|foot|itle)'
 			.'|ul|video)\\b[^>]*>)/i', '$1', $this->_html);
 
@@ -201,7 +203,7 @@ class Minify_HTML {
 
 		// unquote attribute values without spaces
 		$this->_html = preg_replace_callback(
-			'/(<[a-z\\-]+\\s)\\s*([^>]+>)/m'
+			'/(<([a-z\\-]+)\\s)\\s*([^>]+>)/m'
 			,array($this, '_removeAttributeQuotes')
 			,$this->_html);
 
@@ -349,10 +351,13 @@ class Minify_HTML {
 	}
 
 	protected function _removeAttributeQuotes($m) {
-		$m[2] = preg_replace_callback( '~([a-z0-9\\-])=(?<quote>[\'"])([^"\'\\s=]*)\k<quote>(\\s|>|/>)~i',
-			array( $this, '_removeAttributeQuotesCallback'), $m[2] );
+		// whatsapp/fb bots dont read meta tags without quotes well
+		if (strtolower($m[2]) != 'meta') {
+			$m[3] = preg_replace_callback( '~([a-z0-9\\-])=(?<quote>[\'"])([^"\'\\s=]*)\k<quote>(\\s|>|/>)~i',
+				array( $this, '_removeAttributeQuotesCallback'), $m[3] );
+		}
 
-		return $m[1] . $m[2];
+		return $m[1] . $m[3];
 	}
 
 

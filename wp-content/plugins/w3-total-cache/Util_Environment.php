@@ -512,12 +512,22 @@ class Util_Environment {
 		$home_path = ABSPATH;
 		if ( ! empty( $home ) && 0 !== strcasecmp( $home, $siteurl ) ) {
 			$wp_path_rel_to_home = str_ireplace( $home, '', $siteurl ); /* $siteurl - $home */
-			$pos = strripos( str_replace( '\\', '/', $_SERVER['SCRIPT_FILENAME'] ), trailingslashit( $wp_path_rel_to_home ) );
 			// fix of get_home_path, used when index.php is moved outside of
 			// wp folder.
+			$pos = strripos(
+				str_replace( '\\', '/', $_SERVER['SCRIPT_FILENAME'] ),
+				trailingslashit( $wp_path_rel_to_home ) );
 			if ( $pos !== false ) {
 				$home_path = substr( $_SERVER['SCRIPT_FILENAME'], 0, $pos );
 				$home_path = trailingslashit( $home_path );
+			} else if ( defined( 'WP_CLI' ) ) {
+				$pos = strripos(
+					str_replace( '\\', '/', ABSPATH ),
+					trailingslashit( $wp_path_rel_to_home ) );
+				if ( $pos !== false ) {
+					$home_path = substr( ABSPATH, 0, $pos );
+					$home_path = trailingslashit( $home_path );
+				}
 			}
 		}
 
@@ -538,6 +548,14 @@ class Util_Environment {
 
 		if ( !is_null( $document_root ) )
 			return $document_root;
+
+		$c = Dispatcher::config();
+		$docroot_fix = $c->get_boolean( 'docroot_fix.enable' );
+
+		if ( $docroot_fix ) {
+			$document_root = untrailingslashit( ABSPATH );
+			return $document_root;
+		}
 
 		if ( !empty( $_SERVER['SCRIPT_FILENAME'] ) &&
 			!empty( $_SERVER['PHP_SELF'] ) ) {
@@ -1191,6 +1209,31 @@ class Util_Environment {
 
 
 	/**
+	 * Checks if post belongs to a custom post type
+	 *
+	 * @since 2.1.7
+	 * 
+	 * @param unknown $post
+	 *
+	 * @return bool
+	 */
+	static public function is_custom_post_type( $post ) {
+		$post_type = get_post_type_object( $post->post_type );
+
+		// post type not found belongs to default post type(s)
+		if ( empty ( $post_type ) )
+			return false;
+		
+		// check if custom
+		if ( $post_type->_builtin === false )
+			return true;
+
+		return false;
+	}
+
+
+
+	/**
 	 * Converts value to boolean
 	 *
 	 * @param mixed   $value
@@ -1228,7 +1271,7 @@ class Util_Environment {
 	 * @return string
 	 */
 	static public function get_server_version() {
-		$sig= explode( '/', $_SERVER['SERVER_SOFTWARE'] );
+		$sig = explode( '/', $_SERVER['SERVER_SOFTWARE'] );
 		$temp = isset( $sig[1] ) ? explode( ' ', $sig[1] ) : array( '0' );
 		$version = $temp[0];
 		return $version;
