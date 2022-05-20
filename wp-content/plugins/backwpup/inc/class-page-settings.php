@@ -1,10 +1,6 @@
 <?php
 
-use Inpsyde\BackWPup\Pro\License\Api\LicenseActivation;
-use Inpsyde\BackWPup\Pro\License\Api\LicenseDeactivation;
-use Inpsyde\BackWPup\Pro\License\Api\LicenseStatusRequest;
 use Inpsyde\BackWPup\Settings;
-use Inpsyde\BackWPup\Pro\License\License;
 
 /**
  * Class BackWPup_Page_Settings
@@ -393,7 +389,7 @@ class BackWPup_Page_Settings
 			delete_site_option( 'backwpup_cfg_sugarsyncsecret' );
 			delete_site_option( 'backwpup_cfg_sugarsyncappid' );
 			delete_site_option( 'backwpup_cfg_hash' );
-            delete_site_option('backwpup_cfg_phone_home_client');
+            delete_site_option('backwpup_cfg_keepplugindata');
 
 			foreach ( $this->settings_updaters as $setting ) {
 				$setting->reset();
@@ -484,7 +480,7 @@ class BackWPup_Page_Settings
 		update_site_option( 'backwpup_cfg_authentication', $authentication );
 		delete_site_transient( 'backwpup_cookies' );
 
-        update_site_option('backwpup_cfg_phone_home_client', !empty($_POST['phone_home_client']));
+        update_site_option('backwpup_cfg_keepplugindata', !empty($_POST['keepplugindata']));
 
         do_action('backwpup_page_settings_save');
 
@@ -611,63 +607,32 @@ class BackWPup_Page_Settings
 						</tr>
 					</table>
 
-                    <?php
-                    if (!BackWPup::is_pro()) :
-                        $checked = checked(
-                            get_site_option('backwpup_cfg_phone_home_client'),
-                            true,
-                            false
-                        );
-                        ?>
-                        <h3 class="title"><?php esc_html_e('Phone Home Client', 'backwpup'); ?></h3>
-                        <p>
-                            <?php
-                            esc_html_e(
-                                'Phone Home Client allows BackWPup to collect data about your system to improve the plugin.',
-                                'backwpup'
-                            );
-                            ?>
-                            <br/>
-                            <strong>
-                                <?php
-                                esc_html_e(
-                                    'Any data is sent anonymously. We don\'t collect any personal data.',
-                                    'backwpup'
-                                )
-                                ?>
-                            </strong>
-                        </p>
-                        <table class="form-table">
-                            <tr>
-                                <th scope="row">
-                                    <?php esc_html_e('Enable Phone Home Client', 'backwpup'); ?>
-                                </th>
-                                <td>
-                                    <fieldset>
-                                        <legend class="screen-reader-text">
-                                        <span>
-                                            <?php esc_html_e(
-                                                'Enable Phone Home Client',
-                                                'backwpup'
-                                            ); ?>
-                                        </span>
-                                        </legend>
-                                        <label for="phone_home_client">
-                                            <input name="phone_home_client"
-                                                   type="checkbox"
-                                                   id="phone_home_client"
-                                                   value="1"
-                                                <?php echo esc_attr($checked); ?>
-                                            />
-                                        </label>
-                                        <?php esc_html_e('Enable Phone Home', 'backwpup'); ?>
-                                    </fieldset>
-                                </td>
-                            </tr>
-                        </table>
-                    <?php
-                    endif; ?>
-
+                    <table class="form-table">
+                        <tr>
+                            <th scope="row"><?php esc_html_e('Plugin data', 'backwpup'); ?></th>
+                            <td>
+                                <fieldset>
+                                    <legend class="screen-reader-text">
+											<span>
+												<?php esc_html_e('Keep plugin data', 'backwpup'); ?>
+											</span>
+                                    </legend>
+                                    <label for="keepplugindata">
+                                        <input name="keepplugindata" type="checkbox"
+                                               id="keepplugindata"
+                                               value="1" <?php checked(
+                                            get_site_option('backwpup_cfg_keepplugindata'),
+                                            true
+                                        ); ?> />
+                                        <?php esc_html_e(
+                                            'Keep BackWPup data stored in the database after uninstall',
+                                            'backwpup'
+                                        ); ?>
+                                    </label>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </table>
 					<?php do_action( 'backwpup_page_settings_tab_generel' ); ?>
 				</div>
 
@@ -1272,6 +1237,6 @@ class BackWPup_Page_Settings
 			</form>
 		</div>
 
-		<?php
-	}
+        <?php
+    }
 }

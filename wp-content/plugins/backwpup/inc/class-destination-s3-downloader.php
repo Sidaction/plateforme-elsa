@@ -14,20 +14,15 @@
  */
 final class BackWPup_Destination_S3_Downloader implements BackWPup_Destination_Downloader_Interface {
 
+	const OPTION_BASE_URL = 's3base_url';
 	const OPTION_BUCKET = 's3bucket';
 	const OPTION_ACCESS_KEY = 's3accesskey';
 	const OPTION_SECRET_KEY = 's3secretkey';
-	const OPTION_REGION = 's3region';
 
 	/**
 	 * @var \BackWpUp_Destination_Downloader_Data
 	 */
 	private $data;
-
-	/**
-	 * @var string
-	 */
-	private $base_url;
 
 	/**
 	 * @var Aws\S3\S3Client
@@ -43,13 +38,10 @@ final class BackWPup_Destination_S3_Downloader implements BackWPup_Destination_D
 	 * BackWPup_Destination_S3_Downloader constructor
 	 *
 	 * @param \BackWpUp_Destination_Downloader_Data $data
-	 * @param string                                $base_url
 	 */
-	public function __construct( BackWpUp_Destination_Downloader_Data $data, $base_url ) {
+	public function __construct( BackWpUp_Destination_Downloader_Data $data ) {
 
 		$this->data     = $data;
-		$this->base_url = $base_url;
-
 		$this->s3_client();
 	}
 
@@ -118,18 +110,21 @@ final class BackWPup_Destination_S3_Downloader implements BackWPup_Destination_D
 	 */
 	private function s3_client() {
 
-		if ( $this->s3_client ) {
+		if ($this->s3_client) {
 			return;
 		}
 
-		$region = $this->base_url;
-        if (!$region) {
-            $region = BackWPup_Option::get($this->data->job_id(), self::OPTION_REGION);
-        }
-        $aws_destination = BackWPup_S3_Destination::fromOption($region);
-        $this->s3_client = $aws_destination->client(
-            BackWPup_Option::get($this->data->job_id(), self::OPTION_ACCESS_KEY),
-            BackWPup_Option::get($this->data->job_id(), self::OPTION_SECRET_KEY)
-        );
+		if ( empty( BackWPup_Option::get( $this->data->job_id(), self::OPTION_BASE_URL ) ) ) {
+			$aws_destination = BackWPup_S3_Destination::fromOption(
+				BackWPup_Option::get( $this->data->job_id(), self::OPTION_BASE_URL )
+			);
+		} else {
+			$aws_destination = BackWPup_S3_Destination::fromJobId( $this->data->job_id() );
+		}
+
+		$this->s3_client = $aws_destination->client(
+			BackWPup_Option::get($this->data->job_id(), self::OPTION_ACCESS_KEY),
+			BackWPup_Option::get($this->data->job_id(), self::OPTION_SECRET_KEY)
+		);
 	}
 }

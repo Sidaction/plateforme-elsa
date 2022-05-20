@@ -19,6 +19,12 @@ jQuery( document ).ready( function ( $ ) {
 		$( '#default_settings' ).hide();
 	}
 
+	if ( anchor.val() === '#backwpup-tab-license' ) {
+		$( '#submit' ).hide();
+		$( '#default_settings' ).hide();
+		$( 'input[name="license_submit"]' ).attr( 'type', 'submit' );
+	}
+
 	tab_wrapper_a.removeClass( 'nav-tab-active' );
 	tab_wrapper_a.each( function () {
 		if ( $( this ).attr( 'href' ) === anchor.val() ) {
@@ -37,9 +43,14 @@ jQuery( document ).ready( function ( $ ) {
 		if ( clickedid === '#backwpup-tab-information' ) {
 			$( '#submit' ).hide();
 			$( '#default_settings' ).hide();
+		} else if ( clickedid === '#backwpup-tab-license' ) {
+			$( '#submit' ).hide();
+			$( '#default_settings' ).hide();
+			$( 'input[name="license_submit"]' ).attr( 'type', 'submit' );
 		} else {
 			$( '#submit' ).show();
 			$( '#default_settings' ).show();
+			$( 'input[name="license_submit"]' ).attr( 'type', 'button' );
 		}
 		window.location.hash = clickedid;
 		window.scrollTo( 0, 0 );
