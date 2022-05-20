@@ -704,7 +704,7 @@ acf_add_local_field_group(array(
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
-				'width' => '',
+				'width' => '40',
 				'class' => '',
 				'id' => '',
 			),
@@ -728,7 +728,7 @@ acf_add_local_field_group(array(
 			'required' => 1,
 			'conditional_logic' => 0,
 			'wrapper' => array(
-				'width' => '',
+				'width' => '60',
 				'class' => '',
 				'id' => '',
 			),
@@ -749,7 +749,7 @@ acf_add_local_field_group(array(
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
-				'width' => '',
+				'width' => '50',
 				'class' => '',
 				'id' => '',
 			),
@@ -763,6 +763,21 @@ acf_add_local_field_group(array(
 			'multiple' => 0,
 		),
 		array(
+			'key' => 'field_62879f739a128',
+			'label' => 'Lien de l\'élément',
+			'name' => 'zoom_thematique_link',
+			'type' => 'link',
+			'instructions' => 'Laisser vide pour que le lien par défaut s\'applique',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '50',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+		),
+    array(
 			'key' => 'field_58779fa36b254',
 			'label' => 'Chapo du Zoom',
 			'name' => 'zoom_texte',
@@ -780,21 +795,6 @@ acf_add_local_field_group(array(
 			'toolbar' => 'full',
 			'media_upload' => 1,
 			'delay' => 0,
-		),
-		array(
-			'key' => 'field_62879f739a128',
-			'label' => 'Lien de l\'élément',
-			'name' => 'zoom_thematique_link',
-			'type' => 'link',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'return_format' => 'array',
 		),
 		array(
 			'key' => 'field_62879f249a124',
@@ -877,7 +877,7 @@ acf_add_local_field_group(array(
 			'label' => 'Lien de l\'élément',
 			'name' => 'zoom_association_link',
 			'type' => 'link',
-			'instructions' => '',
+			'instructions' => 'Laisser vide pour que le lien par défaut s\'applique',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
@@ -973,7 +973,7 @@ acf_add_local_field_group(array(
 			'label' => 'Lien de l\'élément',
 			'name' => 'zoom_pays_link',
 			'type' => 'link',
-			'instructions' => '',
+			'instructions' => 'Laisser vide pour que le lien par défaut s\'applique',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
