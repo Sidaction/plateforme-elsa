@@ -72,6 +72,8 @@ class UpdraftPlus {
 
 	public $no_checkin_last_time;
 	
+	private $removed_autoloaders = array();
+	
 	/**
 	 * Class constructor
 	 */
@@ -94,6 +96,7 @@ class UpdraftPlus {
 			'UpdraftPlus_Filesystem_Functions' => 'includes/class-filesystem-functions.php',
 			'UpdraftPlus_Storage_Methods_Interface' => 'includes/class-storage-methods-interface.php',
 			'UpdraftPlus_Job_Scheduler' => 'includes/class-job-scheduler.php',
+			'UpdraftPlus_HTTP_Error_Descriptions' => 'includes/class-http-error-descriptions.php',
 		);
 		
 		foreach ($load_classes as $class => $relative_path) {
@@ -670,6 +673,11 @@ class UpdraftPlus {
 		return $allow_override ? apply_filters('updraftplus_get_table_prefix', $prefix) : $prefix;
 	}
 
+	/**
+	 * Get the site's identifier
+	 *
+	 * @return String
+	 */
 	public function siteid() {
 		$sid = get_site_option('updraftplus-addons_siteid');
 		if (!is_string($sid) || empty($sid)) {
@@ -2021,8 +2029,8 @@ class UpdraftPlus {
 
 		if ($full_info) {
 			$arr = array(
-				'plugins' => array('path' => untrailingslashit(WP_PLUGIN_DIR), 'description' => __('Plugins', 'updraftplus')),
-				'themes' => array('path' => WP_CONTENT_DIR.'/themes', 'description' => __('Themes', 'updraftplus')),
+				'plugins' => array('path' => untrailingslashit(WP_PLUGIN_DIR), 'description' => __('Plugins', 'updraftplus'), 'singular_description' => __('Plugin', 'updraftplus')),
+				'themes' => array('path' => WP_CONTENT_DIR.'/themes', 'description' => __('Themes', 'updraftplus'), 'singular_description' => __('Theme', 'updraftplus')),
 				'uploads' => array('path' => untrailingslashit($wp_upload_dir['basedir']), 'description' => __('Uploads', 'updraftplus'))
 			);
 		} else {
@@ -2115,7 +2123,7 @@ class UpdraftPlus {
 		if ('E_DEPRECATED' == $e_type && !empty($this->no_deprecation_warnings)) {
 			return false;
 		}
-		
+
 		return "PHP event: code $e_type: $errstr (line $errline, $errfile)";
 
 	}
@@ -2288,8 +2296,19 @@ class UpdraftPlus {
 
 		$first_run = apply_filters('updraftplus_filerun_firstrun', 0);
 
-		// We don't want to be in permanent conflict with the overlap detector
-		if ($resumption_no >= $first_run + 8 && $resumption_no < $first_run + 15 && $resume_interval >= 300) {
+		// April 2022: a similar situation is handled further down, but takes longer to kick in; so extra check has been added (a case where the first runtime under cli was > 4 hours was followed by running under cgi-fci with only 20 minute resumption times; it's better to detect this early)
+		if ($resumption_no == $first_run + 1 && $resume_interval >= 600 && '' != PHP_SAPI) {
+			
+			$last_sapi = $this->jobdata_get('last_sapi');
+			
+			if ('' != $last_sapi && PHP_SAPI != $last_sapi) {
+				$resume_interval = $this->get_initial_resume_interval();
+				$this->log(sprintf("Run environment has changed (%s -> %s) - resetting resumption interval to %d", $last_sapi, PHP_SAPI, $resume_interval));
+				$this->jobdata_set('last_sapi', PHP_SAPI);
+			}
+			
+			// We don't want to be in permanent conflict with the overlap detector
+		} elseif ($resumption_no >= $first_run + 8 && $resumption_no < $first_run + 15 && $resume_interval >= 300) {
 
 			// $time_passed is set earlier
 			list($max_time, $timings_string, $run_times_known) = UpdraftPlus_Manipulation_Functions::max_time_passed($time_passed, $resumption_no - 1, $first_run);
@@ -2617,6 +2636,10 @@ class UpdraftPlus {
 			if ('begun' == $this->jobdata_get('prune')) {
 				// Begun, but not finished
 				$this->log('Restarting backup prune operation');
+				$updraftplus_backup->do_prune_standalone();
+				$allow_email = true;
+			} elseif ('finished' != $this->jobdata_get('prune')) {
+				// If prune has not begun or finished but we have undone files then start it
 				$updraftplus_backup->do_prune_standalone();
 				$allow_email = true;
 			}
@@ -3130,6 +3153,23 @@ class UpdraftPlus {
 	}
 
 	/**
+	 * Get the initial resumption interval, in seconds
+	 *
+	 * @return Integer
+	 */
+	private function get_initial_resume_interval() {
+		// Allow the resume interval to be more than 300 if last time we know we went beyond that - but never more than 600
+		if (defined('UPDRAFTPLUS_INITIAL_RESUME_INTERVAL') && is_numeric(UPDRAFTPLUS_INITIAL_RESUME_INTERVAL)) {
+			$resume_interval = UPDRAFTPLUS_INITIAL_RESUME_INTERVAL;
+		} else {
+			$resume_interval = (int) min(max(300, get_site_transient('updraft_initial_resume_interval')), 600);
+		}
+		// We delete it because we only want to know about behaviour found during the very last backup run (so, if you move servers then old data is not retained)
+		delete_site_transient('updraft_initial_resume_interval');
+		return $resume_interval;
+	}
+	
+	/**
 	 * This procedure initiates a backup run
 	 * $backup_files/$backup_database: true/false = yes/no (over-write allowed); 1/0 = yes/no (force)
 	 *
@@ -3320,14 +3360,7 @@ class UpdraftPlus {
 			return false;
 		}
 		
-		// Allow the resume interval to be more than 300 if last time we know we went beyond that - but never more than 600
-		if (defined('UPDRAFTPLUS_INITIAL_RESUME_INTERVAL') && is_numeric(UPDRAFTPLUS_INITIAL_RESUME_INTERVAL)) {
-			$resume_interval = UPDRAFTPLUS_INITIAL_RESUME_INTERVAL;
-		} else {
-			$resume_interval = (int) min(max(300, get_site_transient('updraft_initial_resume_interval')), 600);
-		}
-		// We delete it because we only want to know about behaviour found during the very last backup run (so, if you move servers then old data is not retained)
-		delete_site_transient('updraft_initial_resume_interval');
+		$resume_interval = $this->get_initial_resume_interval();
 
 		$job_file_entities = array();
 		if ($backup_files) {
@@ -3373,6 +3406,8 @@ class UpdraftPlus {
 			$one_shot,
 			'followsups_allowed',
 			$followups_allowed,
+			'last_sapi',
+			PHP_SAPI,
 		);
 
 		if ($one_shot) update_site_option('updraft_oneshotnonce', $this->nonce);
@@ -3451,6 +3486,8 @@ class UpdraftPlus {
 		if (!empty($this->semaphore)) $this->semaphore->unlock();
 		if (!empty($this->backup_semaphore)) $this->backup_semaphore->release();
 
+		$this->restore_composer_autoloaders();
+		
 		$delete_jobdata = false;
 
 		$clone_job = $this->jobdata_get('clone_job');
@@ -3720,7 +3757,6 @@ class UpdraftPlus {
 
 		$this->attachments = apply_filters('updraft_report_attachments', $attachments);
 
-		if (count($this->attachments) > 0) add_action('phpmailer_init', array($this, 'phpmailer_init'));
 		add_action('phpmailer_init', array($this, 'set_sender_email_address'), 9);
 
 		$attach_size = 0;
@@ -3763,7 +3799,7 @@ class UpdraftPlus {
 					$this->log("Sending email ('$backup_contains') report (attachments: ".count($attachments).", size: ".round($attach_size/1024, 1)." KB) to: ".substr($sendmail_addr, 0, 5)."...");
 					try {
 						add_action('wp_mail_failed', array($this, 'log_email_delivery_failure'));
-						wp_mail(trim($sendmail_addr), $subject, $body, array("X-UpdraftPlus-Backup-ID: ".$this->nonce));
+						wp_mail(trim($sendmail_addr), $subject, $body, array("X-UpdraftPlus-Backup-ID: ".$this->nonce), is_array($this->attachments) ? $this->attachments : array());
 						remove_action('wp_mail_failed', array($this, 'log_email_delivery_failure'));
 					} catch (Exception $e) {
 						$this->log("Exception occurred when sending mail (".get_class($e)."): ".$e->getMessage());
@@ -3776,7 +3812,6 @@ class UpdraftPlus {
 
 		do_action('updraft_report_finished');
 		remove_action('phpmailer_init', array($this, 'set_sender_email_address'), 9);
-		if (count($this->attachments) > 0) remove_action('phpmailer_init', array($this, 'phpmailer_init'));
 
 	}
 
@@ -3787,23 +3822,6 @@ class UpdraftPlus {
 	 */
 	public function log_email_delivery_failure($error) {
 		$this->log("An error occurred when sending a backup report email and/or backup file(s) via email (".$error->get_error_code()."): ".$error->get_error_message());
-	}
-
-	/**
-	 * Called upon the WP action phpmailer_init
-	 *
-	 * @param Object $phpmailer
-	 */
-	public function phpmailer_init($phpmailer) {
-		if (empty($this->attachments) || !is_array($this->attachments)) return;
-		foreach ($this->attachments as $attach) {
-			$mime_type = preg_match('/\.gz$/i', $attach) ? 'application/x-gzip' : 'text/plain';
-			try {
-				$phpmailer->AddAttachment($attach, '', 'base64', $mime_type);
-			} catch (Exception $e) {
-				$this->log("Exception occurred when adding attachment (".get_class($e)."): ".$e->getMessage());
-			}
-		}
 	}
 
 	/**
@@ -5462,7 +5480,7 @@ class UpdraftPlus {
 	}
 
 	/**
-	 * Retrieves current clean url for anchor link where href attribute value is not url (for ex. #div) or empty
+	 * Retrieves current clean url for anchor link where href attribute value is not url (for ex. #div) or empty. Output is not escaped - caller should escape.
 	 *
 	 * @return String - current clean url
 	 */
@@ -5762,6 +5780,69 @@ class UpdraftPlus {
 	}
 	
 	/**
+	 * Restore any previously-removed autoloaders
+	 */
+	public function restore_composer_autoloaders() {
+		foreach ($this->removed_autoloaders as $callable) {
+			if (is_callable($callable, false, $callable_name)) {
+				$this->log("Clean-up: re-registering composer autoloader: $callable_name");
+				spl_autoload_register($callable, false);
+			}
+		}
+		$this->removed_autoloaders = array();
+	}
+	
+	/**
+	 * Remove any potentially clashing composer PSR4 autoloaders. Only to be used inside a backup when no other plugins' libraries should be needed
+	 *
+	 * @param Array $prefixes
+	 */
+	public function potentially_remove_composer_autoloaders($prefixes) {
+		
+		if (!defined('UPDRAFTPLUS_REMOVE_COMPOSER_AUTOLOADERS') || !UPDRAFTPLUS_REMOVE_COMPOSER_AUTOLOADERS) return;
+		
+		$functions = spl_autoload_functions();
+		foreach ($functions as $callable) {
+			if (!is_array($callable) || !isset($callable[0]) || !is_object($callable[0])) continue;
+			if (!is_a($callable[0], 'Composer\Autoload\ClassLoader') || !is_callable(array($callable[0], 'getPrefixesPsr4'))) continue;
+			$prefixes_psr4 = $callable[0]->getPrefixesPsr4();
+			if (!is_array($prefixes_psr4)) continue;
+			foreach ($prefixes as $prefix) {
+				if (!isset($prefixes_psr4[$prefix])) continue;
+				$is_ud = false;
+				if (is_array($prefixes_psr4[$prefix])) {
+					foreach ($prefixes_psr4[$prefix] as $path) {
+						if (false !== strpos(UpdraftPlus_Manipulation_Functions::wp_normalize_path($path), '/'.basename(UpdraftPlus_Manipulation_Functions::wp_normalize_path(UPDRAFTPLUS_DIR)).'/vendor/')) {
+							$is_ud = true;
+						}
+					}
+				}
+				if ($is_ud) continue;
+				if (is_callable($callable, false, $callable_name)) {
+					$this->log("Conflict prevention: de-registering composer autoloader: $callable_name");
+				}
+				$this->removed_autoloaders[] = $callable;
+				spl_autoload_unregister($callable);
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Try to deal with other plugins with incompatible versions and bugs
+	 */
+	public function mitigate_guzzle_autoloader_conflicts() {
+		// Work round bug in the JetPack autoloader which loads a file in a different namespace
+		$potentially_include_in = array('guzzlehttp/guzzle', 'guzzlehttp/promises', 'guzzlehttp/psr7');
+		foreach ($potentially_include_in as $package) {
+			$file = UPDRAFTPLUS_DIR.'/vendor/'.$package.'/src/functions_include.php';
+			// Avoid conflicting with Google Ads and Listings which has already loaded this function
+			if ('guzzlehttp/guzzle' == $package && function_exists('\GuzzleHttp\choose_handler')) continue;
+			if (file_exists($file)) include_once($file);
+		}
+	}
+	
+	/**
 	 * Checks whether POSIX functions exists or not
 	 *
 	 * @return boolean true if POSIX functions exists or not
@@ -5773,16 +5854,33 @@ class UpdraftPlus {
 	/**
 	 * Wipe state-related data (e.g. on wiping settings, or on a restore). Note that there is some internal knowledge within the method below of how it is being used (if not including locks, then check for an active job)
 	 *
-	 * @param Boolean $include_locks
+	 * @param Boolean $include_locks Whether to also wipe out data other than just updraft_jobdata (e.g. updraft semaphore, lock, schedule, etc.)
+	 * @param String  $table         What table the data is in. It recognises only two tables ('options', 'sitemeta'), the default is 'options'
 	 */
-	public function wipe_state_data($include_locks = false) {
+	public function wipe_state_data($include_locks = false, $table = 'options') {
 		// These aren't in get_settings_keys() because they are always in the options table, regardless of context
 		global $wpdb;
+		switch ($table) {
+			case 'sitemeta':
+				$table = $wpdb->sitemeta;
+				$field = 'meta_key';
+				break;
+			default:
+				$table = $wpdb->options;
+				$field = 'option_name';
+				// if multisite do we need site_id column in the where clause?
+				break;
+		}
+		if (!class_exists('UpdraftPlus_Database_Utility')) include_once(UPDRAFTPLUS_DIR.'/includes/class-database-utility.php');
 		if ($include_locks) {
-			$wpdb->query("DELETE FROM $wpdb->options WHERE (option_name LIKE 'updraftplus_unlocked_%' OR option_name LIKE 'updraftplus_locked_%' OR option_name LIKE 'updraftplus_last_lock_time_%' OR option_name LIKE 'updraftplus_semaphore_%' OR option_name LIKE 'updraft_jobdata_%' OR option_name LIKE 'updraft_last_scheduled_%' )");
+			$wpdb->query($wpdb->prepare("DELETE FROM $table WHERE ($field LIKE %s OR $field LIKE %s OR $field LIKE %s OR $field LIKE %s OR $field LIKE %s OR $field LIKE %s)", UpdraftPlus_Database_Utility::esc_like('updraftplus_unlocked_').'%', UpdraftPlus_Database_Utility::esc_like('updraftplus_locked_').'%', UpdraftPlus_Database_Utility::esc_like('updraftplus_last_lock_time_').'%', UpdraftPlus_Database_Utility::esc_like('updraftplus_semaphore_').'%', UpdraftPlus_Database_Utility::esc_like('updraft_jobdata_').'%', UpdraftPlus_Database_Utility::esc_like('updraft_last_scheduled_').'%'));
 		} else {
-			$sql = "DELETE FROM $wpdb->options WHERE option_name LIKE 'updraft_jobdata_%'";
-			if (!empty($this->nonce)) $sql .= " AND option_name != 'updraft_jobdata_".$this->nonce."'";
+			$sql = '';
+			if (!empty($this->nonce)) {
+				$sql = $wpdb->prepare("DELETE FROM $table WHERE $field LIKE %s AND $field != %s", UpdraftPlus_Database_Utility::esc_like('updraft_jobdata_').'%', "updraft_jobdata_{$this->nonce}");
+			} else {
+				$sql = $wpdb->prepare("DELETE FROM $table WHERE $field LIKE %s", UpdraftPlus_Database_Utility::esc_like('updraft_jobdata_').'%');
+			}
 			$wpdb->query($sql);
 		}
 	}
