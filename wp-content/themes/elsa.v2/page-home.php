@@ -24,8 +24,8 @@ set_query_var( 'cnSite', $cnSite );
     // thumbnail
     $thumb_size = 'small';
     $pays_small_img = $zoom_pays_img['sizes'][ $thumb_size ];
-    $width = $zoom_pays_img['sizes'][ $thumb_size . '-width' ];
-    $height = $zoom_pays_img['sizes'][ $thumb_size . '-height' ];
+    // $width = $zoom_pays_img['sizes'][ $thumb_size . '-width' ];
+    // $height = $zoom_pays_img['sizes'][ $thumb_size . '-height' ];
 
 ?>
 
