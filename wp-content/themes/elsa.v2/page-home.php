@@ -50,26 +50,68 @@ set_query_var( 'cnSite', $cnSite );
                         <div class="featured_intro"><?php the_field('zoom_texte'); ?></div>
                     
                         <div class="featured_actions">
-                            <a class="btn-primary" href="/category/<?php echo $zoom_thematique->slug; ?>">En savoir plus</a>
+
+                            <?php 
+                                $link = get_field('zoom_thematique_link');
+                                
+                                if( $link ) : 
+                                    $zoom_thematique_link = $link['url'];
+                                else : 
+                                    $zoom_thematique_link = "/category/" . $zoom_thematique->slug;
+                                endif; 
+                            ?>
+
+
+                            <a class="btn-primary" href="<?php echo $zoom_thematique_link; ?>">En savoir plus</a>
                             <a href="/recherche-documentaire/?totalcat=<?php echo $zoom_thematique->slug; ?>" class="btn-secondary">Les ressources de la thématique</a>
                         </div>
                     </div>
 
 
                     <div class="m-2col featured-asso">
-                        <a href="/structure/<?php echo $zoom_association->post_name?>" class="featured_btns">
-                            <h4 class="h2"><?php echo $zoom_association->post_title; ?></h4>
-                            <div><?php echo $zoom_association_text; ?></div>
-                            <span class="icon-arrow_right"></span>
-                        </a>
+                        <?php if( ! get_field('hide_zoom_association') ) : ?>
+                            <?php 
+                                $link = get_field('zoom_association_link');
+                                
+                                if( $link ) : 
+                                    $zoom_association_link = $link['url'];
+                                else : 
+                                    $zoom_association_link = "/structure/" . $zoom_association->post_name;
+                                endif; 
+                            ?>
+                            <a href="<?php echo $zoom_association_link; ?>" class="featured_btns">
+                                <h4 class="h2"><?php echo $zoom_association->post_title; ?></h4>
+                                <div><?php echo $zoom_association_text; ?></div>
+                                <br>
+                                <span class="btn-link">En savoir plus</span>
+                            </a>
+                        <?php else : ?>
+                            <span>&nbsp;</span>
+                        <?php endif; ?>
                     </div>
 
                     <div class="m-2col featured-pays">
-                        <a href="/pays/<?php echo $zoom_pays->post_name; ?>" class="featured_btns">
-                            <h4 class="h2"><?php echo $zoom_pays->post_title; ?></h4>
-                            <p><img src="<?php echo $pays_small_img; ?>"></p>
-                           <span class="icon-arrow_right"></span>
-                       </a>
+                        <?php if( ! get_field('hide_zoom_pays') ) : ?>
+
+                            <?php 
+                                $link = get_field('zoom_pays_link');
+                                
+                                if( $link ) : 
+                                    $zoom_pays_link = $link['url'];
+                                else : 
+                                    $zoom_pays_link = "/pays/" . $zoom_pays->post_name;
+                                endif; 
+                            ?>                        
+
+                            <a href="<?php echo $zoom_pays_link; ?>" class="featured_btns">
+                                <h4 class="h2"><?php echo $zoom_pays->post_title; ?></h4>
+                                <p><img src="<?php echo $pays_small_img; ?>"></p>
+                                <br>
+                                <span class="btn-link">En savoir plus</span>
+                            </a>
+                        <?php else : ?>
+                            <span>&nbsp;</span>
+                       <?php endif; ?>
                     </div>
                 </div>
             </div><!-- .wrap -->   
