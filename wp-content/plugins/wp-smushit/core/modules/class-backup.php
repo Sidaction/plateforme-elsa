@@ -468,7 +468,8 @@ class Backup extends Abstract_Module {
 
 					// Restore all other image sizes.
 					if ( $restored ) {
-						$restored = $this->restore_png( $attachment_id, $backup_full_path, $file_path );
+						$metadata = $this->restore_png( $attachment_id, $backup_full_path, $file_path );
+						$restored = ! empty( $metadata );
 						if ( $restored && ! $is_real_filename ) {
 							// Reset the backup file to delete it later.
 							$backup_full_path = $org_backup_full_path;
@@ -505,9 +506,11 @@ class Backup extends Abstract_Module {
 		 *
 		 * All this is handled in self::restore_png().
 		 */
-		if ( ! $restore_png && $restored ) {
-			// Generate all other image size, and update attachment metadata.
-			$metadata = wp_generate_attachment_metadata( $attachment_id, $file_path );
+		if ( $restored ) {
+			if ( ! $restore_png ) {
+				// Generate all other image size, and update attachment metadata.
+				$metadata = wp_generate_attachment_metadata( $attachment_id, $file_path );
+			}
 
 			// Update metadata to db if it was successfully generated.
 			if ( ! empty( $metadata ) && ! is_wp_error( $metadata ) ) {
@@ -591,7 +594,10 @@ class Backup extends Abstract_Module {
 	 * @param string $backup_file_path  Full backup file, the result of self::get_backup_file().
 	 * @param string $file_path         File path.
 	 *
-	 * @return bool
+	 * @since 3.9.10 Moved wp_update_attachment_metadata into self::restore_image() after deleting the backup file,
+	 *               in order to support S3 - @see SMUSH-1141.
+	 *
+	 * @return bool|array
 	 */
 	private function restore_png( $attachment_id, $backup_file_path, $file_path ) {
 		if ( empty( $attachment_id ) || empty( $backup_file_path ) || empty( $file_path ) ) {
@@ -633,11 +639,9 @@ class Backup extends Abstract_Module {
 				// Add to delete the thumbnails jpg.
 				$files_to_remove[ $size_key ] = $size_path;
 			}
-			// We also try to delete this file on cloud, e.g S3.
-			Helper::delete_permanently( $files_to_remove, $attachment_id, false );
 
 			// Re-generate metadata for PNG file.
-			$meta = wp_generate_attachment_metadata( $attachment_id, $backup_file_path );
+			$metadata = wp_generate_attachment_metadata( $attachment_id, $backup_file_path );
 
 			// Perform an action after the image URL is updated in post content.
 			do_action( 'wp_smush_image_url_updated', $attachment_id, $file_path, $backup_file_path );
@@ -645,9 +649,10 @@ class Backup extends Abstract_Module {
 			Helper::logger()->backup()->warning( sprintf( 'Backup file [%s(%d)] does not exist.', Helper::clean_file_path( $backup_file_path ), $attachment_id ) );
 		}
 
-		if ( ! empty( $meta ) ) {
-			Helper::wp_update_attachment_metadata( $attachment_id, $meta );
-			return true;
+		if ( ! empty( $metadata ) ) {
+			// Delete jpg files, we also try to delete these files on cloud, e.g S3.
+			Helper::delete_permanently( $files_to_remove, $attachment_id, false );
+			return $metadata;
 		} else {
 			Helper::logger()->backup()->warning( sprintf( 'Meta file [%s(%d)] is empty.', Helper::clean_file_path( $backup_file_path ), $attachment_id ) );
 		}

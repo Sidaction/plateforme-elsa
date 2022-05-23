@@ -838,19 +838,34 @@ class Smush extends Abstract_Module {
 			return $this->no_smushit( $attachment_id, $ref_errors );
 		}
 
-		// Check if the file is ignored.
-		if ( Helper::is_ignored( $attachment_id ) ) {
-			$ref_errors->add(
-				'ignored',
-				__( 'Skip ignored file.', 'wp-smushit' ),
-				array(
-					'file_name'     => sprintf(
-						/* translators: %d - attachment ID */
-						esc_html__( 'undefined (attachment ID: %d)', 'wp-smushit' ),
-						(int) $attachment_id
-					),
-				)
-			);
+		// Check if the file is ignored or animated.
+		$is_ignored = Helper::is_ignored( $attachment_id );
+		if ( $is_ignored > 0 ) {
+			if ( Core::STATUS_ANIMATED === $is_ignored ) {
+				$ref_errors->add(
+					'animated',
+					esc_html__( 'Skip animated file.', 'wp-smushit' ),
+					array(
+						'file_name' => sprintf(
+							/* translators: %d - attachment ID */
+							esc_html__( 'undefined (attachment ID: %d)', 'wp-smushit' ),
+							(int) $attachment_id
+						),
+					)
+				);
+			} else {
+				$ref_errors->add(
+					'ignored',
+					__( 'Skip ignored file.', 'wp-smushit' ),
+					array(
+						'file_name' => sprintf(
+							/* translators: %d - attachment ID */
+							esc_html__( 'undefined (attachment ID: %d)', 'wp-smushit' ),
+							(int) $attachment_id
+						),
+					)
+				);
+			}
 			return $this->no_smushit( $attachment_id, $ref_errors );
 		}
 
@@ -941,11 +956,12 @@ class Smush extends Abstract_Module {
 		if ( Helper::check_animated_status( $file_path, $attachment_id ) ) {
 			$ref_errors->add(
 				'animated',
-				esc_html__( 'Skip animate file.', 'wp-smushit' ),
+				esc_html__( 'Skip animated file.', 'wp-smushit' ),
 				array(
 					'file_name' => Helper::get_image_media_link( $attachment_id, $file_name ),
 				)
 			);
+
 			return $this->no_smushit( $attachment_id, $ref_errors );
 		}
 
@@ -1128,8 +1144,9 @@ class Smush extends Abstract_Module {
 			// Prepare data for ajax.
 			$error_code = $errors->get_error_code();
 			$error_data = $errors->get_error_data();
+
 			$status = array(
-				'error' => $error_code,
+				'error'        => $error_code,
 				'error_msg'    => '<p class="wp-smush-error-message">' . Helper::filter_error( $errors->get_error_message( $error_code ), $attachment_id ) . '</p>',
 				'show_warning' => (int) $this->show_warning(),
 			);

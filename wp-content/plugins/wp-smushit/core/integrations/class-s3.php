@@ -504,19 +504,35 @@ class S3 extends Abstract_Integration {
 		// Release smush mode.
 		$this->release_smush_mode();
 
-		if ( WP_SMUSH_ASYNC && $this->settings->get( 'auto' ) && doing_filter( 'wp_async_wp_generate_attachment_metadata' ) ) {
+		if ( WP_SMUSH_ASYNC && $this->settings->get( 'auto' ) && doing_filter( 'wp_async_wp_generate_attachment_metadata' ) && did_action( 'wp_smush_no_smushit' ) && ! Helper::file_in_progress( $attachment_id ) ) {
 			// Make sure all images will upload to cloud.
-			if ( ! did_action( 'wp_smush_before_update_attachment_metadata' ) && ! did_action( 'wp_smush_before_restore_backup' ) ) {
+			if ( ! did_action( 'wp_smush_before_update_attachment_metadata' ) ) {
 				global $as3cf;
-				// Make sure method exits.
-				if ( ! method_exists( $as3cf, 'upload_attachment' ) ) {
-					Helper::logger()->integrations()->error( 'S3 - Method $as3cf->upload_attachment() does not exists.' );
+				// If the image is already uploaded, returns.
+				if ( ! $as3cf->get_setting( 'copy-to-s3' ) || $this->does_image_exists( $attachment_id, $this->get_raw_attached_file( $attachment_id, 'original' ) ) ) {
 					return;
 				}
-				if ( $as3cf->get_setting( 'copy-to-s3' )
-					&& ! $this->does_image_exists( $attachment_id, $this->get_raw_attached_file( $attachment_id, 'original' ) ) ) {
+				// Make sure method exits.
+				if ( method_exists( $as3cf, 'upload_attachment' ) ) {
 					$as3cf->upload_attachment( $attachment_id, wp_get_attachment_metadata( $attachment_id ) );
+					return;
 				}
+
+				$s3_filter_obj = $this->get_s3_filter_class();
+				if ( $s3_filter_obj && method_exists( $s3_filter_obj, 'wp_update_attachment_metadata' ) ) {
+					$s3_filter_obj->wp_update_attachment_metadata( wp_get_attachment_metadata( $attachment_id ), $attachment_id );
+					return;
+				}
+
+				// Log a warning.
+				Helper::logger()->integrations()->warning( 'S3 - the upload method does not exists, try to upload files via filter wp_update_attachment_metadata.' );
+
+				// Try to upload attachments via filter.
+				// Temporary disable our filters.
+				remove_filter( 'wp_update_attachment_metadata', array( $this, 'maybe_active_smush_mode' ), 1 );
+                apply_filters( 'wp_update_attachment_metadata', wp_get_attachment_metadata( $attachment_id ), $attachment_id );
+				// Restore our filters.
+				add_filter( 'wp_update_attachment_metadata', array( $this, 'maybe_active_smush_mode' ), 1, 2 );
 			}
 		}
 	}
@@ -635,7 +651,7 @@ class S3 extends Abstract_Integration {
 			 */
 			foreach ( $file_paths as $size_key => $file_path ) {
 				if ( ! $removed && file_exists( $file_path ) ) {
-					@unlink( $file_path );// phpcs:ignore.
+					unlink( $file_path );
 				}
 
 				$objects_to_remove[] = array(
@@ -655,7 +671,7 @@ class S3 extends Abstract_Integration {
 
 			foreach ( $file_paths as $file_path ) {
 				if ( ! $removed && file_exists( $file_path ) ) {
-					@unlink( $file_path );// phpcs:ignore.
+					unlink( $file_path );
 				}
 				// Get the File path using basename for given attachment path.
 				$objects_to_remove[] = array(
@@ -897,10 +913,16 @@ class S3 extends Abstract_Integration {
 	 * @return array List of file paths.
 	 */
 	public function maybe_add_missing_files_to_the_list( $file_paths ) {
-
+		/**
+		 * Get the full size key.
+		 * From S3 2.6, they changed the full size key.
+		 *
+		 * @since 3.9.10
+		 */
+		$full_size_key = is_callable( array( '\DeliciousBrains\WP_Offload_Media\Items\Media_Library_Item', 'primary_object_key' ) ) ? Media_Library_Item::primary_object_key() : 'original';
 		// Make sure exits the main file, not original file, and activating backup.
 		if (
-			isset( $file_paths['original'] )
+			isset( $file_paths[ $full_size_key ] )
 			&& $this->doing_files
 			&& $this->enable_private_media()
 			&& WP_Smush::get_instance()->core()->mod->backup->is_active()
@@ -1177,7 +1199,7 @@ class S3 extends Abstract_Integration {
 			$temp_file = download_url( $s3_url );
 			$renamed   = false;
 			if ( ! is_wp_error( $temp_file ) ) {
-				$renamed = @copy( $temp_file, $file_path );
+				$renamed = copy( $temp_file, $file_path );
 				unlink( $temp_file );
 			} else {
 				Helper::logger()->integrations()->error( 'S3 - Cannot download file [%s] due to error: %s', Helper::clean_file_path( $file_path ), $temp_file->get_error_message() );
@@ -1420,13 +1442,28 @@ class S3 extends Abstract_Integration {
 		global $as3cf;
 		$as3cf_item = $this->is_attachment_served_by_provider( $as3cf, $attachment_id );
 		if ( ! ( $as3cf_item && is_object( $as3cf_item ) && $as3cf_item instanceof Media_Library_Item && method_exists( $as3cf_item, 'key' ) && method_exists( $as3cf_item, 'is_private' ) ) ) {
-			Helper::logger()->integrations()->error( 'S3 - Media_Library_Item->is_private does not exist.' );
+			Helper::logger()->integrations()->warning( 'S3 - Empty $as3cf_item or Media_Library_Item->is_private does not exist.' );
 			return false;
 		}
 		// If user enabling remove file on local, we will remove all our old PNG/JPG files from list of file paths to avoid error log.
 		if ( $as3cf && $as3cf->get_setting( 'remove-local-file' ) ) {
 			// We don't remove the filter because it might be called later.
 			add_filter( 'as3cf_upload_attachment_local_files_to_remove', array( $this, 'remove_missing_files_to_avoid_error_log_from_s3' ), 99 );
+		}
+
+		$extra_info = array();
+		if ( method_exists( $as3cf_item, 'extra_info' ) ) {
+			$extra_info = $as3cf_item->extra_info();
+		}
+		/**
+		 * Remove backup key from extra info.
+		 * From S3 2.6, they re-build the upload files base on extra info,
+		 * so we also need to remove the backup file from this data.
+		 *
+		 * @since 3.9.10
+		 */
+		if ( $is_restoring && isset( $extra_info['objects']['smush-full'] ) ) {
+			unset( $extra_info['objects']['smush-full'] );
 		}
 
 		$new_filename = basename( $new_file );
@@ -1439,7 +1476,7 @@ class S3 extends Abstract_Integration {
 			$as3cf_item->source_id(),
 			path_join( dirname( $as3cf_item->source_path() ), $new_filename ),
 			$new_filename,
-			$as3cf_item->extra_info(),
+			$extra_info,
 			$as3cf_item->id()
 		);
 

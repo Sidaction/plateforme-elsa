@@ -1035,16 +1035,9 @@ class Smush {
 
 					self.log.show();
 
-					if ( self.errors.length > 5 ) {
-						jQuery( '.smush-bulk-errors-actions' ).removeClass(
-							'sui-hidden'
-						);
-					} else {
-						// Print the error on screen.
-						self.log
-							.find( '.smush-bulk-errors' )
-							.append( errorMsg );
-					}
+					// Print the error on screen.
+					self.log.find( '.smush-bulk-errors' ).append( errorMsg );
+					jQuery( '.smush-bulk-errors-actions' ).removeClass( 'sui-hidden' );
 				} else if (
 					'undefined' !== typeof res.success &&
 					res.success
@@ -1141,7 +1134,7 @@ class Smush {
 			tableDiv =
 				tableDiv +
 				'<div class="smush-bulk-image-actions">' +
-				'<button type="button" class="sui-button-icon sui-tooltip sui-tooltip-constrained sui-tooltip-top-right smush-ignore-image" data-tooltip="' +
+				'<button type="button" class="sui-button-icon sui-tooltip sui-tooltip-constrained sui-tooltip-left smush-ignore-image" data-tooltip="' +
 				window.wp_smush_msgs.error_ignore +
 				'" data-id="' +
 				id +

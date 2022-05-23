@@ -20,6 +20,13 @@ if ( ! defined( 'WPINC' ) ) {
 class Core extends Stats {
 
 	/**
+	 * Animated status.
+	 *
+	 * @var int
+	 */
+	const STATUS_ANIMATED = 2;
+
+	/**
 	 * S3 module
 	 *
 	 * @var Integrations\S3
@@ -206,6 +213,7 @@ class Core extends Stats {
 
 		new Integrations\Gutenberg();
 		new Integrations\Composer();
+		new Integrations\Gravity_Forms();
 		new Integrations\Envira( $this->mod->cdn );
 		new Integrations\Avada( $this->mod->cdn );
 	}
@@ -224,11 +232,6 @@ class Core extends Stats {
 	 * Initialize the Smush Async class.
 	 */
 	private function wp_smush_async() {
-		// Don't load the Async task, if user not logged in or not in backend.
-		if ( ! is_admin() || ! is_user_logged_in() ) {
-			return;
-		}
-
 		// Check if Async is disabled.
 		if ( defined( 'WP_SMUSH_ASYNC' ) && ! WP_SMUSH_ASYNC ) {
 			return;
@@ -236,7 +239,11 @@ class Core extends Stats {
 
 		// Instantiate class.
 		new Modules\Async\Async();
-		new Modules\Async\Editor();
+
+		// Load the Editor Async task only if user logged in or in backend.
+		if ( is_admin() && is_user_logged_in() ) {
+			new Modules\Async\Editor();
+		}
 	}
 
 	/**

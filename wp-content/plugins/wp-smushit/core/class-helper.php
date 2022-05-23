@@ -463,6 +463,14 @@ class Helper {
 		// Try to check from saved meta.
 		$is_animated = get_post_meta( $id, 'wp-smush-animated', true );
 		if ( $is_animated ) {
+			/**
+			 * Support old version.
+			 *
+			 * @since 3.9.10
+			 */
+			self::ignore_file( $id, Core::STATUS_ANIMATED );
+			// Clean the old meta data.
+			delete_post_meta( $id, 'wp-smush-animated' );
 			return true;
 		} else {
 			$enabled_backup = WP_Smush::get_instance()->core()->mod->backup->is_active();
@@ -499,8 +507,12 @@ class Helper {
 
 		$is_animated = 0;
 		if ( $count > 1 ) {
-			$is_animated = 1;
-			update_post_meta( $id, 'wp-smush-animated', $is_animated );
+			/**
+			 * Set it as an ignored image to exclude from unsmushed list.
+			 *
+			 * @since 3.9.10
+			 */
+			self::ignore_file( $id, Core::STATUS_ANIMATED );
 		} elseif ( $enabled_backup ) {
 			// Cache the result if user enabled the backup mode.
 			update_post_meta( $id, 'wp-smush-animated', $is_animated );
@@ -640,27 +652,32 @@ class Helper {
 	 *
 	 * @param int $attachment_id Attachment ID.
 	 *
-	 * @return bool  True if the file is ignored.
+	 * @return null|int
+	 * 1    If the file is ignored.
+	 * 2    If the file is an animated image.
 	 */
 	public static function is_ignored( $attachment_id ) {
 		if ( empty( $attachment_id ) ) {
 			return null;// Nothing to do.
 		}
-		return (bool) get_post_meta( $attachment_id, 'wp-smush-ignore-bulk', true );
+		return (int) get_post_meta( $attachment_id, 'wp-smush-ignore-bulk', true );
 	}
 
 	/**
 	 * Ignore a file.
 	 *
 	 * @param int $attachment_id Attachment ID.
+	 * @param int $value The meta value, default is 1.
+	 *
+	 * @since 3.9.10 Add new param $value to allow ignore the animated file or failed case.
 	 *
 	 * @return bool|int
 	 */
-	public static function ignore_file( $attachment_id ) {
+	public static function ignore_file( $attachment_id, $value = 1 ) {
 		if ( empty( $attachment_id ) ) {
 			return null;// Nothing to do.
 		}
-		return update_post_meta( $attachment_id, 'wp-smush-ignore-bulk', true );
+		return update_post_meta( $attachment_id, 'wp-smush-ignore-bulk', (int) $value );
 	}
 
 	/**
@@ -708,18 +725,24 @@ class Helper {
 	 * @since 3.9.6
 	 *
 	 * @param int    $attachment_id  Attachment ID.
-	 * @param string $type           false|original|smush|backup|resize.
+	 * @param string $type           false|original|scaled|smush|backup|resize|check-resize.
 	 * @param bool   $unfiltered     Whether to get unfiltered path or not.
 	 *
 	 * $type = original|backup => Try to get the original image file path.
 	 * $type = false|smush     => Get the file path base on the setting "compress original".
+	 * $type = scaled|resize   => Get the full file path, for large jpg it's scaled file not the original file.
 	 *
 	 * @return bool|string
 	 */
 	public static function get_raw_attached_file( $attachment_id, $type = 'smush', $unfiltered = false ) {
 		if ( function_exists( 'wp_get_original_image_path' ) ) {
+			if ( 'backup' === $type ) {
+				$type = 'original';
+			} elseif ( 'resize' === $type || 'check-resize' === $type ) {
+				$type = 'scaled';
+			}
 			// We will get the original file if we are doing for backup or restore, or smush original file.
-			if ( 'original' === $type || 'backup' === $type || Settings::get_instance()->get( 'original' ) ) {
+			if ( 'original' === $type || 'scaled' !== $type && Settings::get_instance()->get( 'original' ) ) {
 				$file_path = wp_get_original_image_path( $attachment_id, $unfiltered );
 			} else {
 				$file_path = get_attached_file( $attachment_id, $unfiltered );
@@ -739,10 +762,11 @@ class Helper {
 	 *
 	 * @param int    $attachment_id  Attachment ID.
 	 * @param string $type           false|original|smush|backup|resize
-	 * $type = smush|backup => Get the file path and download the attached file if it doesn't exist.
-	 * $type = resize       => Get the file path ( if it exists ), or filtered file path if it doesn't exist.
-	 * $type = original     => Only get the file path.
-	 * $type = false        => Get the file path base on the setting "compress original".
+	 * $type = smush|backup  => Get the file path and download the attached file if it doesn't exist.
+	 * $type = check-resize  => Get the file path ( if it exists ), or filtered file path if it doesn't exist.
+	 * $type = original      => Only get the original file path (not scaled file).
+	 * $type = scaled|resize => Get the full file path, for large jpg it's scaled file not the original file.
+	 * $type = false         => Get the file path base on the setting "compress original".
 	 *
 	 * @since 3.9.6 Moved S3 to S3 integration.
 	 * Add a hook filter to allow 3rd party to custom the result.
@@ -761,14 +785,14 @@ class Helper {
 		 * @param int         $attachment_id    Attachment ID.
 		 * @param bool        $should_download  Should download the file if it doesn't exist.
 		 * @param bool        $should_real_path Expecting a real file path instead an URL.
-		 * @param string      $type             false|original|smush|backup|resize.
+		 * @param string      $type             false|original|smush|backup|resize|scaled|check-resize.
 		 *
 		 * @usedby Smush\Core\Integrations\S3::get_attached_file
 		 */
-		// If the site is using S3, we only need to download the file when doing smush.
-		$should_download  = $type === 'smush' || 'backup' === $type;// phpcs:ignore
+		// If the site is using S3, we only need to download the file when doing smush, backup or resizing.
+		$should_download = in_array( $type, array( 'smush', 'backup', 'resize' ), true );
 		// But when restoring/smushing we are expecting a real file path.
-		$should_real_path = $type !== 'resize';// phpcs:ignore
+		$should_real_path = 'check-resize' !== $type;
 		$file_path        = apply_filters( 'wp_smush_get_attached_file', null, $attachment_id, $should_download, $should_real_path, $type );
 
 		if ( is_null( $file_path ) ) {

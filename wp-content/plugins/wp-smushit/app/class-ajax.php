@@ -174,7 +174,8 @@ class Ajax {
 		$quick_settings = array();
 		// Get the settings from $_POST.
 		if ( ! empty( $_POST['smush_settings'] ) ) {
-			$quick_settings = json_decode( wp_unslash( $_POST['smush_settings'] ) );
+			// Required $quick_settings data is escaped later on in code.
+			$quick_settings = json_decode( wp_unslash( $_POST['smush_settings'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 
 		// Check the last settings stored in db.
@@ -203,7 +204,7 @@ class Ajax {
 			}
 
 			// If lazy load enabled - init defaults.
-			if ( 'lazy_load' === $name && (bool) $quick_settings->{$name} ) {
+			if ( 'lazy_load' === $name && $quick_settings->{$name} ) {
 				$this->settings->init_lazy_load_defaults();
 			}
 		}
@@ -494,7 +495,10 @@ class Ajax {
 			'savings_conversion' => 0,
 		);
 
-		$image_count = $super_smushed_count = $smushed_count = $resized_count = 0;
+		$image_count         = 0;
+		$super_smushed_count = 0;
+		$smushed_count       = 0;
+		$resized_count       = 0;
 		// Check if any of the smushed image needs to be resmushed.
 		if ( ! empty( $attachments ) && is_array( $attachments ) ) {
 			// Initialize resize class.
@@ -528,7 +532,7 @@ class Ajax {
 
 					if ( $smush_lossy || $strip_exif || $smush_original ) {
 						$should_resmush = true;
-					}else{
+					} else {
 						// If shouldn't resmush, check if new sizes have been selected.
 						$image_sizes = $this->settings->get_setting( 'wp-smush-image_sizes' );
 
@@ -724,11 +728,9 @@ class Ajax {
 		}
 
 		// Include the count.
-		if ( ! empty( $count ) && $count ) {
-			$return['count'] = $count;
-		}
-
 		if ( ! empty( $count ) ) {
+			$return['count'] = $count;
+
 			$return['noticeType'] = 'warning';
 			$return['notice']     = sprintf(
 				/* translators: %1$d - number of images, %2$s - opening a tag, %3$s - closing a tag */
@@ -738,6 +740,7 @@ class Ajax {
 				'</a>'
 			);
 		}
+
 		$return['super_smush'] = WP_Smush::is_pro() && $this->settings->get( 'lossy' );
 		if ( WP_Smush::is_pro() && $this->settings->get( 'lossy' ) && 'nextgen' === $type ) {
 			$ss_count                    = $core->nextgen->ng_stats->nextgen_super_smushed_count( $core->nextgen->ng_stats->get_ngg_images( 'smushed' ) );
@@ -878,7 +881,7 @@ class Ajax {
 			'count'              => ! empty( $smush_data['sizes'] ) ? count( $smush_data['sizes'] ) : 0,
 			'size_before'        => ! empty( $smush_data['stats'] ) ? $smush_data['stats']['size_before'] : 0,
 			'size_after'         => ! empty( $smush_data['stats'] ) ? $smush_data['stats']['size_after'] : 0,
-			'savings_resize'     => $resize_savings > 0 ? $resize_savings : 0,
+			'savings_resize'     => max( $resize_savings, 0 ),
 			'savings_conversion' => $conversion_savings['bytes'] > 0 ? $conversion_savings : 0,
 			'is_lossy'           => ! empty( $smush_data ['stats'] ) ? $smush_data['stats']['lossy'] : false,
 		);

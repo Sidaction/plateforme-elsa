@@ -191,7 +191,6 @@ class Media_Library extends Abstract_Module {
 		return array(
 			array(
 				'key'     => 'wp-smush-ignore-bulk',
-				'value'   => 'true',
 				'compare' => 'EXISTS',
 			),
 		);
@@ -388,7 +387,7 @@ class Media_Library extends Abstract_Module {
 		if ( ! empty( $skip_msg[ $msg_id ] ) ) {
 			$skip_rsn = '<a href="https://wpmudev.com/project/wp-smush-pro/?utm_source=smush&utm_medium=plugin&utm_campaign=smush_medialibrary_savings" target="_blank">
 				<span class="sui-tooltip sui-tooltip-left sui-tooltip-constrained sui-tooltip-top-right-mobile" data-tooltip="' . $skip_msg[ $msg_id ] . '">
-				<span class="sui-tag sui-tag-purple sui-tag-sm">' . esc_html__( 'PRO', 'wp-smushit' ) .  '</span></span></a>';
+				<span class="sui-tag sui-tag-purple sui-tag-sm">' . esc_html__( 'PRO', 'wp-smushit' ) . '</span></span></a>';
 		}
 
 		return $skip_rsn;
@@ -401,11 +400,12 @@ class Media_Library extends Abstract_Module {
 	 *
 	 * @param int $id  Attachment ID.
 	 *
-	 * @return string|array  HTML content or array of results.
+	 * @return string  HTML content or array of results.
 	 */
 	public function generate_markup( $id ) {
 		// Don't proceed if attachment is not image, or if image is not a jpg, png or gif, or if is not found.
-		if ( ! ( $is_smushable = Helper::is_smushable( $id ) ) ) {// phpcs:ignore
+		$is_smushable = Helper::is_smushable( $id );
+		if ( ! $is_smushable ) {
 			return false === $is_smushable ? __( 'Image not found!', 'wp-smushit' ) : __( 'Not processed', 'wp-smushit' );
 		}
 
@@ -449,7 +449,12 @@ class Media_Library extends Abstract_Module {
 			return __( 'Smushing in progress...', 'wp-smushit' );
 		}
 
-		if ( Helper::is_ignored( $id ) ) {
+		$is_ignored = Helper::is_ignored( $id );
+		if ( $is_ignored > 0 ) {
+			if ( Core::STATUS_ANIMATED === $is_ignored ) {
+				return __( 'Skip animated file.', 'wp-smushit' );
+			}
+
 			return __( 'Ignored from auto-smush', 'wp-smushit' );
 		}
 
@@ -502,7 +507,12 @@ class Media_Library extends Abstract_Module {
 		}
 
 		// Skipped.
-		if ( Helper::is_ignored( $id ) ) {
+		$is_ignored = Helper::is_ignored( $id );
+		if ( $is_ignored ) {
+			// If there is an animated file, return.
+			if ( Core::STATUS_ANIMATED === $is_ignored ) {
+				return '';
+			}
 			$nonce = wp_create_nonce( 'wp-smush-remove-skipped' );
 			return "<a href='#' class='wp-smush-remove-skipped' data-id='{$id}' data-nonce='{$nonce}'>" . __( 'Undo', 'wp-smushit' ) . '</a>';
 		}
@@ -649,7 +659,8 @@ class Media_Library extends Abstract_Module {
 	 */
 	private function column_html( $id, $html = '', $button_txt = '', $show_button = true ) {
 		// Don't proceed if attachment is not image, or if image is not a jpg, png or gif, or if is not found.
-		if ( ! ( $is_smushable = Helper::is_smushable( $id ) ) ) {// phpcs:ignore
+		$is_smushable = Helper::is_smushable( $id );
+		if ( ! $is_smushable ) {
 			return false === $is_smushable ? __( 'Image not found!', 'wp-smushit' ) : __( 'Not processed', 'wp-smushit' );
 		}
 

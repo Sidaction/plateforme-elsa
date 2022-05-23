@@ -122,9 +122,10 @@ abstract class Abstract_Page {
 	public function add_action_hooks() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		// Notices.
 		//add_action( 'admin_notices', array( $this, 'smush_upgrade_notice' ) );
 		//add_action( 'network_admin_notices', array( $this, 'smush_upgrade_notice' ) );
+
+		// Notices.
 		add_action( 'admin_notices', array( $this, 'smush_deactivated' ) );
 		add_action( 'network_admin_notices', array( $this, 'smush_deactivated' ) );
 		add_action( 'wp_smush_header_notices', array( $this, 'settings_updated' ) );
@@ -179,13 +180,13 @@ abstract class Abstract_Page {
 			}
 			extract( $args );
 
-			/* @noinspection PhpIncludeInspection */
 			include $file;
 
 			$content = ob_get_clean();
 		}
 
-		echo $content;
+		// Everything escaped in all template files.
+		echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -447,19 +448,24 @@ abstract class Abstract_Page {
 
 		// Show new features modal if the modal wasn't dismissed.
 		if ( get_site_option( 'wp-smush-show_upgrade_modal' ) ) {
-			// Display only on single installs and on Network admin for multisites.
-			if ( ( ! is_multisite() && $hide_quick_setup ) || ( is_multisite() && is_network_admin() ) ) {
-				$cta_url = $this->get_url( 'smush-bulk' );
-				if ( is_multisite() ) {
-					$access = get_site_option( 'wp-smush-networkwide' );
-					if ( '1' === $access || ( is_array( $access ) && in_array( 'bulk', $access, true ) ) ) {
-						$cta_url = $this->get_url( 'smush' );
+			if ( apply_filters( 'wpmudev_branding_hide_doc_link', false ) ) {
+				// Disable upgrade modal while hiding "Documentation, Tutorials and What’s New Modal" from White Label.
+				delete_site_option( 'wp-smush-show_upgrade_modal' );
+			} else {
+				// Display only on single installs and on Network admin for multisites.
+				if ( ( ! is_multisite() && $hide_quick_setup ) || ( is_multisite() && is_network_admin() ) ) {
+					$cta_url = $this->get_url( 'smush-bulk' );
+					if ( is_multisite() ) {
+						$access = get_site_option( 'wp-smush-networkwide' );
+						if ( '1' === $access || ( is_array( $access ) && in_array( 'bulk', $access, true ) ) ) {
+							$cta_url = $this->get_url( 'smush' );
+						}
 					}
-				}
 
-				$this->modals['updated'] = array(
-					'cta_url' => $cta_url,
-				);
+					$this->modals['updated'] = array(
+						'cta_url' => $cta_url,
+					);
+				}
 			}
 		}
 
@@ -582,7 +588,7 @@ abstract class Abstract_Page {
 	 * @return bool
 	 */
 	protected function view_exists( $name ) {
-		$file = WP_SMUSH_DIR . "app/views/{$name}.php";
+		$file = WP_SMUSH_DIR . "app/views/$name.php";
 		return is_file( $file );
 	}
 
@@ -716,7 +722,7 @@ abstract class Abstract_Page {
 		}
 
 		$message      = empty( $api_message['message'] ) ? '' : $api_message['message'];
-		$message_type = ( is_array( $api_message ) && ! empty( $api_message['type'] ) ) ? $api_message['type'] : 'info';
+		$message_type = ! empty( $api_message['type'] ) ? $api_message['type'] : 'info';
 		$type_class   = 'warning' === $message_type ? 'sui-notice-warning' : 'sui-notice-info';
 		?>
 
@@ -783,9 +789,9 @@ abstract class Abstract_Page {
 			document.addEventListener("DOMContentLoaded", function() {
 				window.SUI.openNotice(
 					'wp-smush-ajax-notice',
-					'<p><?php echo $message; ?></p>',
+					'<p><?php echo wp_kses_post( $message ); ?></p>',
 					{
-						type: '<?php echo $message_class; ?>',
+						type: '<?php echo esc_attr( $message_class ); ?>',
 						icon: 'info',
 					}
 				);
@@ -968,9 +974,9 @@ abstract class Abstract_Page {
 				'requestsData' => array(
 					'root'           => esc_url_raw( rest_url( 'wp-smush/v1/' . \Smush\Core\Configs::OPTION_NAME ) ),
 					'nonce'          => wp_create_nonce( 'wp_rest' ),
-					'apiKey'         => \Smush\Core\Helper::get_wpmudev_apikey(),
+					'apiKey'         => Helper::get_wpmudev_apikey(),
 					'hubBaseURL'     => defined( 'WPMUDEV_CUSTOM_API_SERVER' ) && WPMUDEV_CUSTOM_API_SERVER ? trailingslashit( WPMUDEV_CUSTOM_API_SERVER ) . 'api/hub/v1/package-configs' : null,
-					// Hardcoding these because the Free version doesn't have the WDP ID header in wp-smushit.php.
+					// Hard-coding these because the Free version doesn't have the WDP ID header in wp-smushit.php.
 					'pluginData'     => array(
 						'name' => 'Smush' . ( WP_Smush::is_pro() ? ' Pro' : '' ),
 						'id'   => '912164',

@@ -50,9 +50,9 @@ class Settings {
 	 * @var array
 	 */
 	private $defaults = array(
-		'auto'              => true,  // works with CDN.
+		'auto'              => true, // works with CDN.
 		'lossy'             => false, // works with CDN.
-		'strip_exif'        => true,  // works with CDN.
+		'strip_exif'        => true, // works with CDN.
 		'resize'            => false,
 		'detection'         => false,
 		'original'          => false,
@@ -63,6 +63,7 @@ class Settings {
 		's3'                => false,
 		'gutenberg'         => false,
 		'js_builder'        => false,
+		'gform'             => false,
 		'cdn'               => false,
 		'auto_resize'       => false,
 		'webp'              => true,
@@ -89,7 +90,7 @@ class Settings {
 	 *
 	 * @var array $basic_features
 	 */
-	public static $basic_features = array( 'bulk', 'auto', 'strip_exif', 'resize', 'original', 'gutenberg', 'js_builder', 'lazy_load' );
+	public static $basic_features = array( 'bulk', 'auto', 'strip_exif', 'resize', 'original', 'gutenberg', 'js_builder', 'gform', 'lazy_load' );
 
 	/**
 	 * List of fields in bulk smush form.
@@ -107,7 +108,7 @@ class Settings {
 	 *
 	 * @var array
 	 */
-	private $integrations_fields = array( 'gutenberg', 'js_builder', 's3', 'nextgen' );
+	private $integrations_fields = array( 'gutenberg', 'gform', 'js_builder', 's3', 'nextgen' );
 
 	/**
 	 * List of fields in CDN form.
@@ -811,20 +812,20 @@ class Settings {
 
 		$args = array(
 			'format'          => array(
-				'filter'  => FILTER_VALIDATE_BOOLEAN,
-				'flags'   => FILTER_REQUIRE_ARRAY,
+				'filter' => FILTER_VALIDATE_BOOLEAN,
+				'flags'  => FILTER_REQUIRE_ARRAY,
 			),
 			'output'          => array(
-				'filter'  => FILTER_VALIDATE_BOOLEAN,
-				'flags'   => FILTER_REQUIRE_ARRAY,
+				'filter' => FILTER_VALIDATE_BOOLEAN,
+				'flags'  => FILTER_REQUIRE_ARRAY,
 			),
 			'animation'       => array(
-				'filter'  => FILTER_SANITIZE_SPECIAL_CHARS,
-				'flags'   => FILTER_REQUIRE_ARRAY,
+				'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+				'flags'  => FILTER_REQUIRE_ARRAY,
 			),
 			'include'         => array(
-				'filter'  => FILTER_VALIDATE_BOOLEAN,
-				'flags'   => FILTER_REQUIRE_ARRAY,
+				'filter' => FILTER_VALIDATE_BOOLEAN,
+				'flags'  => FILTER_REQUIRE_ARRAY,
 			),
 			'exclude-pages'   => array(
 				'filter'  => FILTER_CALLBACK,

@@ -13,7 +13,6 @@
 namespace Smush\Core;
 
 use WP_Smush;
-use Smush\Core\Helper;
 
 if ( ! defined( 'WPINC' ) ) {
 	die;
