@@ -46,7 +46,15 @@ set_query_var( 'cnSite', $cnSite );
                 </div>
 
                 <div class="row">
-                    <div class="m-4col">
+
+                    <?php if( get_field('hide_zoom_association') || get_field('hide_zoom_pays') ) : 
+                        $class = "m-6col";
+                    else: 
+                        $class = "m-4col";
+                    endif; ?>
+
+
+                    <div class="<?php echo $class; ?>">
                         <div class="featured_intro"><?php the_field('zoom_texte'); ?></div>
                     
                         <div class="featured_actions">
@@ -85,8 +93,7 @@ set_query_var( 'cnSite', $cnSite );
                                 <br>
                                 <span class="btn-link">En savoir plus</span>
                             </a>
-                        <?php else : ?>
-                            <span>&nbsp;</span>
+
                         <?php endif; ?>
                     </div>
 
@@ -109,8 +116,7 @@ set_query_var( 'cnSite', $cnSite );
                                 <br>
                                 <span class="btn-link">En savoir plus</span>
                             </a>
-                        <?php else : ?>
-                            <span>&nbsp;</span>
+
                        <?php endif; ?>
                     </div>
                 </div>
