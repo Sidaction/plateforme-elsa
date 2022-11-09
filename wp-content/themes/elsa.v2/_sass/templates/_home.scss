@@ -30,7 +30,7 @@
   }
   p {
     font-weight: $thin;
-    margin-bottom: $base_line_height / 2;
+    margin-bottom: calc($base_line_height / 2);
   }
 }
   
@@ -39,7 +39,7 @@
     display: inline-block;
     top: - $base_line_height * 3;
     left: 0;
-    padding: $base_line_height / 2 $base_line_height * 2;
+    padding: calc($base_line_height / 2) $base_line_height * 2;
     background-color: $color_ressources;
   }
   .featured_intro {

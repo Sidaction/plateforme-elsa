@@ -40,7 +40,7 @@
       margin-bottom: $base_line_height * 1.5;
     }
     li {
-      margin-bottom: $base_line_height / 2;
+      margin-bottom: calc($base_line_height / 2);
     }
     .shortcode_wysija {
       margin-top: - $base_line_height * 0.75;
@@ -55,6 +55,6 @@
 
   .social_links {
     a {
-      margin-left: $base_line_height / 2;
+      margin-left: calc($base_line_height / 2);
     }
   }

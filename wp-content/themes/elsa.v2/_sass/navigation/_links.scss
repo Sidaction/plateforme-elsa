@@ -108,7 +108,7 @@ a:active {
 
 
 .e-open {
-  padding-left: $base_line_height / 2;
+  padding-left: calc($base_line_height / 2);
   
   &:before {
     @extend .icon;

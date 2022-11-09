@@ -54,7 +54,7 @@ $bloc_height            : 242px;
  * DON'T TOUCHE THIS !
  */
 
-$one_col: (100% - ($gutter * ($cols - 1))) / $cols;
+$one_col: calc((100% - ($gutter * ($cols - 1))) / $cols);
 
 @mixin cols($num) {
     @include box-sizing();
@@ -64,8 +64,8 @@ $one_col: (100% - ($gutter * ($cols - 1))) / $cols;
 @mixin sub_cols($num_child, $num_parent) {
     $parent_size: ($one_col * $num_parent) + ($gutter * ($num_parent - 1));
     $child_size: ($one_col * $num_child) + ($gutter * ($num_child - 1));
-    margin-left: ($gutter / $parent_size) * 100%;
-    width: ($child_size / $parent_size) * 100%;
+    margin-left: (calc($gutter / $parent_size)) * 100%;
+    width: calc($child_size / $parent_size) * 100%;
 }
 
 @mixin parse-columns($suffix: ''){
@@ -88,8 +88,8 @@ $one_col: (100% - ($gutter * ($cols - 1))) / $cols;
             }
             
 
-            %#{$suffix}-#{$i}col-push, .#{$suffix}-#{$i}col-push { left: $i / $cols * 100%; position: relative; right: auto; }
-            %#{$suffix}-#{$i}col-pull, .#{$suffix}-#{$i}col-pull { right: $i / $cols * 100%; position: relative; left: auto; }
+            %#{$suffix}-#{$i}col-push, .#{$suffix}-#{$i}col-push { left: calc($i / $cols) * 100%; position: relative; right: auto; }
+            %#{$suffix}-#{$i}col-pull, .#{$suffix}-#{$i}col-pull { right: calc($i / $cols) * 100%; position: relative; left: auto; }
         }
         .#{$suffix}-clearfix { margin-left: 0 !important; clear: both; }
         %#{$suffix}-hide, .#{$suffix}-hide { display: none; }

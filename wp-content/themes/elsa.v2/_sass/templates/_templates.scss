@@ -102,7 +102,7 @@ body {
 .page_title:not(.media_title) {
   padding: $base_line_height * 3 0;
   color: $white;
-  margin-bottom: $base_line_height / 2;
+  margin-bottom: calc($base_line_height / 2);
 }
 .page_title-little {
   padding: $base_line_height * 1.5;
@@ -162,7 +162,7 @@ body {
     bottom: 0;
 
     @include up-to(medium) {
-      width: $base_line_height / 2;
+      width: calc($base_line_height / 2);
     }
   }
 }
@@ -243,7 +243,7 @@ body {
       }
     }
       .page_metas_row {
-        margin-bottom: $base_line_height / 2;
+        margin-bottom: calc($base_line_height / 2);
         
         &.logo img {
           display: block;
@@ -260,11 +260,11 @@ body {
         .group_content {
 
           & > div {
-            margin-right: $base_line_height / 2;
+            margin-right: calc($base_line_height / 2);
           }
           .btn-secondary {
-            padding-left: $base_line_height / 2;
-            padding-right: $base_line_height / 2;
+            padding-left: calc($base_line_height / 2);
+            padding-right: calc($base_line_height / 2);
           }
 
           @include up-to(medium) {

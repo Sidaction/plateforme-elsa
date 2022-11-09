@@ -17,7 +17,7 @@ h2 {
 h3 {
   @include type-setting(2);
   font-weight: $semibold;
-  margin-bottom: $base_line_height / 2;
+  margin-bottom: calc($base_line_height / 2);
   margin-top: $base_line_height;
 }
 
@@ -27,7 +27,7 @@ h4 {
 
 h5 {
   @include type-setting(3);
-  margin-bottom: $base_line_height / 2;
+  margin-bottom: calc($base_line_height / 2);
 }
 
 h6 {

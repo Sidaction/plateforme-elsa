@@ -91,7 +91,7 @@
 .main-navigation {
   @include box-sizing();
   background-color: $color_primary;
-  padding: $base_line_height / 2 0;
+  padding: calc($base_line_height / 2) 0;
   position: relative;
 
   @include up-to(medium) {
@@ -172,7 +172,7 @@
       @include up-to(large) {
         font-size: 18px;
         font-size: 1.8rem;
-        margin-left: $base_line_height / 2;     
+        margin-left: calc($base_line_height / 2);     
       }
 
       @include up-to(medium) {
@@ -192,7 +192,7 @@
       .main_nav_searchform {
         margin-left: 0;
         position: relative;
-        //padding-bottom: $base_line_height / 4;
+        //padding-bottom: calc($base_line_height / 4);
 
         @include at-least(medium) {
           border-bottom: 1px solid $white;
@@ -219,7 +219,7 @@
             width: 100%;
             text-align: center;
             border-bottom: 1px solid $gray_light;
-            margin-bottom: $base_line_height / 2;
+            margin-bottom: calc($base_line_height / 2);
             font-size: 20px;
             padding: 10px;
           }
@@ -247,8 +247,8 @@
           } 
 
           a {
-            margin-left: $base_line_height / 2;
-            margin-right: $base_line_height / 2;
+            margin-left: calc($base_line_height / 2);
+            margin-right: calc($base_line_height / 2);
           }
 
           @include up-to(medium) {
@@ -354,7 +354,7 @@
     padding-bottom: $base_line_height;
      
     .h5 {
-      margin-bottom: $base_line_height / 4;
+      margin-bottom: calc($base_line_height / 4);
     }
 
     @include up-to(medium) {
@@ -405,7 +405,7 @@
         font-size: 2.2rem;
 
         li {
-          margin-bottom: $base_line_height / 2;
+          margin-bottom: calc($base_line_height / 2);
         }
       }
     }
@@ -498,7 +498,7 @@
 
 .ui-autocomplete {
   list-style: none;
-  margin: 0 0 0 - $base_line_height / 2;
+  margin: 0 0 0 - calc($base_line_height / 2);
   font-family: $font_family_paragraph;
   z-index: 999999;
   box-shadow: none;
@@ -508,7 +508,7 @@
   font-size: 15px;
   font-weight: $thin;
   border: none;
-  padding: $base_line_height / 2;
+  padding: calc($base_line_height / 2);
   opacity: 0.98;
 }
 

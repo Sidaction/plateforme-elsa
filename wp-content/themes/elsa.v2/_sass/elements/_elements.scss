@@ -66,7 +66,7 @@
   .bookmark {
     position: absolute;
     top: -4px;
-    right: - $base_line_height / 4;
+    right: - calc($base_line_height / 4);
     z-index: 99;
   }
 
@@ -102,9 +102,9 @@
     
     .bloc--media & {
       position: absolute;
-      left: $base_line_height / 2;
-      bottom: - $base_line_height / 2;
-      padding: $base_line_height / 4 $base_line_height / 2;
+      left: calc($base_line_height / 2);
+      bottom: - calc($base_line_height / 2);
+      padding: calc($base_line_height / 4) calc($base_line_height / 2);
       background-color: $color_medias;
       opacity: 0.9;
 
@@ -127,26 +127,26 @@
     .bloc--media & {
       position: absolute;
       top: 0;
-      padding: 0 $base_line_height / 2;
+      padding: 0 calc($base_line_height / 2);
       background-color: $color_medias;
       opacity: 0.9;
-      left: $base_line_height / 2;
+      left: calc($base_line_height / 2);
       color: $white !important;
     }
   }
   .bloc_category {
-    margin-bottom: $base_line_height / 4;
+    margin-bottom: calc($base_line_height / 4);
   }
   .bloc_authors {
     position: absolute;
-    bottom: $base_line_height / 2;
+    bottom: calc($base_line_height / 2);
     left: $base_line_height;
   }
 
   .bloc_icons {
     position: absolute;
-    bottom: $base_line_height / 2;
-    right: $base_line_height / 2;
+    bottom: calc($base_line_height / 2);
+    right: calc($base_line_height / 2);
   }
 
   .bloc-media_format {
@@ -200,11 +200,11 @@
       float: left;
     }
     .list_item-title {
-      margin-bottom: $base_line_height / 2;
+      margin-bottom: calc($base_line_height / 2);
       padding-right: $base_line_height * 2;
     }
     .list_item-thematiques {
-      padding-right: $base_line_height / 2;
+      padding-right: calc($base_line_height / 2);
     }
 
 

@@ -12,7 +12,7 @@
 .check-item {
   float: left;
   margin-right: $base_line_height * 3;
-  margin-bottom: $base_line_height / 2;
+  margin-bottom: calc($base_line_height / 2);
  
   label {
     @include type-setting(-1);
@@ -28,7 +28,7 @@
   margin-bottom: $base_line_height;
 }
   .filter_subgroup {
-    margin-bottom: $base_line_height / 2;
+    margin-bottom: calc($base_line_height / 2);
   }
 
     .filters_list {
@@ -38,11 +38,11 @@
     }
       .filters_list_item {
         display: inline;
-        margin-right: $base_line_height / 2;
+        margin-right: calc($base_line_height / 2);
 
         .icon-close {
           font-size: 11px;
-          margin-right: $base_line_height / 4;
+          margin-right: calc($base_line_height / 4);
         }
 
       }

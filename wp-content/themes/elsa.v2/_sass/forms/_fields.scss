@@ -16,8 +16,8 @@ textarea {
   
 	color: $color_primary;
 	border: 2px solid $color_primary;
-  padding: $base_line_height / 2;
-  margin-bottom: $base_line_height / 2;
+  padding: calc($base_line_height / 2);
+  margin-bottom: calc($base_line_height / 2);
   
 	&:focus {
 
@@ -63,9 +63,9 @@ input[type="search"]::-webkit-search-decoration { /* Corrects inner padding disp
 label.error {
   @include type-setting(-1);
   color: $color_medias;
-  margin-top: - $base_line_height / 2;
+  margin-top: - calc($base_line_height / 2);
   display: block;
-  margin-bottom: $base_line_height / 2;
+  margin-bottom: calc($base_line_height / 2);
 }
 
 
@@ -96,7 +96,7 @@ select {
   position: relative;
   overflow: hidden;
   border: 2px solid $color_primary;
-  margin-bottom: $base_line_height / 2;
+  margin-bottom: calc($base_line_height / 2);
 
   &--subtil {
     text-transform: none;
@@ -136,7 +136,7 @@ select {
 
 .input--file {
   position: relative; 
-  margin-bottom: $base_line_height / 2;
+  margin-bottom: calc($base_line_height / 2);
 
   .msg {
     @include type-setting(-2);
@@ -167,7 +167,7 @@ input[type="file"] {
 
     color: $color_primary;
     border: 2px solid $color_primary;
-    padding: $base_line_height / 2;
+    padding: calc($base_line_height / 2);
     background-color: $white;
 
     span {

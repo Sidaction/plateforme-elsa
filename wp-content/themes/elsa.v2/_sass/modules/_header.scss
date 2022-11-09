@@ -6,7 +6,7 @@
 
 
 .site-header {
-  padding: $base_line_height / 2 0 $base_line_height 0;
+  padding: calc($base_line_height / 2) 0 $base_line_height 0;
   background-color: $white;
   left: 0;
   right: 0;
@@ -20,7 +20,7 @@
   @include at-least(medium) {
   
     &.is-reduced {
-      padding: $base_line_height / 4 0 0 0;
+      padding: calc($base_line_height / 4) 0 0 0;
       font-size: 0.9em; 
 
       .site-logo {
@@ -44,7 +44,7 @@
       float: right !important;
       width: 100%;
       height: $base_line_height * 3;
-      padding-bottom: $base_line_height / 2;
+      padding-bottom: calc($base_line_height / 2);
     }
   }
 
@@ -82,7 +82,7 @@
       background-color: white;
       opacity: 0.99;
       z-index: 9999;
-      padding: $base_line_height / 2 0 0 0;
+      padding: calc($base_line_height / 2) 0 0 0;
     }
   }
 

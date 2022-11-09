@@ -63,7 +63,7 @@
         }
         
         li:not(:last-child) {
-          margin-bottom: $base_line_height / 2;
+          margin-bottom: calc($base_line_height / 2);
         }
       }
 
@@ -104,6 +104,6 @@
 
 .share_links {
   a {
-    margin-left: $base_line_height / 2;
+    margin-left: calc($base_line_height / 2);
   }
 }

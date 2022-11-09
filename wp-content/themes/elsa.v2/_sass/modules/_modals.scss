@@ -51,8 +51,8 @@
   }
     .modal_close {
       position: absolute;
-      right: $base_line_height / 2;
-      top: $base_line_height / 2;
+      right: calc($base_line_height / 2);
+      top: calc($base_line_height / 2);
       
       @include up-to(medium) {
         right: 2px;
