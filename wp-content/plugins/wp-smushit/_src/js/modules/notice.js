@@ -31,7 +31,12 @@
 
 	// Dismiss S3 support alert.
 	s3alert.on( 'click', 'button', () => {
-		$.post( ajaxurl, { action: 'dismiss_s3support_alert' } );
+		$.post( ajaxurl,
+			{
+				action: 'dismiss_s3support_alert',
+				_ajax_nonce: window.wp_smush_msgs.nonce,
+			}
+		);
 	} );
 
 	// Remove API message.
@@ -41,7 +46,12 @@
 		notice.slideUp( 'slow', function() {
 			notice.remove();
 		} );
-		$.post( ajaxurl, { action: 'hide_api_message' } );
+		$.post( ajaxurl,
+			{
+				action: 'hide_api_message',
+				_ajax_nonce: window.wp_smush_msgs.nonce,
+			}
+		);
 	} );
 
 	// Hide the notice after a CTA button was clicked
@@ -57,16 +67,15 @@
 		removeNotice( e );
 	} );
 
-	// Only used for the upgrade notice.
-	$( '.smush-notice .smush-notice-dismiss' ).on( 'click', ( e ) => {
-		removeNotice( e );
-		$.post( ajaxurl, { action: 'dismiss_upgrade_notice' } );
-	} );
-
 	// Dismiss the update notice.
 	$( '.wp-smush-update-info' ).on( 'click', '.notice-dismiss', ( e ) => {
 		e.preventDefault();
 		removeNotice( e );
-		$.post( ajaxurl, { action: 'dismiss_update_info' } );
+		$.post( ajaxurl,
+			{
+				action: 'dismiss_update_info',
+				_ajax_nonce: window.wp_smush_msgs.nonce,
+			}
+		);
 	} );
 }( jQuery ) );

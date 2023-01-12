@@ -1,13 +1,13 @@
 === Smush - Lazy Load Images, Optimize & Compress Images ===
 Plugin Name: Smush - Lazy Load Images, Optimize & Compress Images
-Version: 3.9.11
+Version: 3.12.4
 Author: WPMU DEV
 Author URI: https://wpmudev.com/
 Contributors: WPMUDEV, alexdunae
 Tags: optimize images, convert webp, lazy load, resize images, compress images, webp, performance, optimization, photography, optimizer, image optimizer, image compress, image optimize, webp format
 Requires at least: 5.3
-Tested up to: 6.0
-Stable tag: 3.9.11
+Tested up to: 6.1
+Stable tag: 3.12.4
 Requires PHP: 5.6
 License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -24,11 +24,13 @@ Image optimization is the easiest way to make your site load super fast!
 ### Award Winning Image Optimizer
 Smush has been benchmarked and tested number one for speed and quality. It is also the [award-winning](https://torquemag.io/2018/04/smush-image-compression-wins-2018-plugin-madness/), back-to-back proven crowd favorite image optimization & image compression plugin for WordPress.
 
+- Super Smush - Optimize images up to 2x more than regular with our multi-pass lossy compression.
 - Lossless Compression – Strip unused data and compress images without affecting image quality.
 - Lazy Load - Defer offscreen images with the flip of a switch.
-- Bulk Smush – Optimize & compress up to 50 images with one click.
+- Bulk Smush – Optimize & compress unlimited images with one click.
+- Background Optimization - Smush’s powerful optimization features will continue to run in the background, even when the plugin is closed.
 - Image Resizing – Set a max width and height and large images will scale down as they are being compressed.
-- Incorrect Size Image Detection – Quickly locate images that are slowing down your site.
+- Incorrect Image Size Detection – Quickly locate images that are slowing down your site.
 - Directory Smush – Optimize images even if they are not located in the media library.
 - Automated Optimization – Asynchronously auto-smush your attachments for super fast compression on upload.
 - Without Monthly Limits – Optimize all of your images up to 5MB in size, free forever (no daily, monthly, or annual caps).
@@ -55,6 +57,10 @@ Some image compression tools destroy images with as much as a 30% loss in qualit
 [youtube https://www.youtube.com/watch?v=Z1kTcyLFE2g&feature=youtu.be]
 
 Smush meticulously scans every image you upload – or have already added to your site – cuts all the unnecessary data and scales it for you before adding it to your media library. And it can serve images in the WebP format.
+
+### Compress Images While You Sleep With Background Optimization
+
+Have a large number of images to compress? Smush’s powerful optimization features will continue to work their magic in the background, even when you’ve closed the plugin completely. You’ll receive an email when optimization has completed with a full report.
 
 ### Compress any Image in any Directory
 
@@ -100,7 +106,7 @@ Configs allow you to save your preferred Smush configuration settings and apply 
 
 Smush can be used to optimize all the images across your entire network! Use global settings or configure each site individually.
 
-Smush is super easy to use – no confusing compression software settings. Smush images in your library one at a time or bulk smush up to 50 images at a time.  Plus, configure auto-smush to asynchronously scale and compress some or all of your images as they are being uploaded – it's incredibly fast.
+Smush is super easy to use – no confusing compression software settings. Smush images in your library one at a time or all together.  Plus, configure auto-smush to asynchronously scale and compress some or all of your images as they are being uploaded – it's incredibly fast.
 
 The faster your site loads, the more Google, Bing, Yahoo, and other search engines will like it. Your site will load faster and rank higher.
 
@@ -115,7 +121,7 @@ The faster your site loads, the more Google, Bing, Yahoo, and other search engin
 
 Smush can take care of all your image compression needs, for free!
 
-However, if you’d like Super Smush lossy compression, fast CDN image delivery, WebP conversion, automatic resizing, the ability to optimize (or optimise) images up to 32MB, bulk smush optimization for all your images in just one-click, auto-convert PNG to JPEG, the ability to Smush and make a copy of your full-sized images (to restore them at any point), you can always take the next step with [WP Smush Pro](https://wpmudev.com/project/wp-smush-pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=smush-readme&utm_content=wp_smush_pro#trial). And get even more with her whole team of WordPress optimization hero friends (security, SEO, performance, support, and maintenance automation) – trusted by thousands of agencies and freelancers offering site maintenance services.
+However, if you’d like fast CDN image delivery, WebP conversion, automatic resizing, the ability to optimize (or optimise) images up to 32MB, bulk smush optimization for all your images in just one-click, auto-convert PNG to JPEG, the ability to Smush and make a copy of your full-sized images (to restore them at any point), you can always take the next step with [WP Smush Pro](https://wpmudev.com/project/wp-smush-pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=smush-readme&utm_content=wp_smush_pro#trial). And get even more with her whole team of WordPress optimization hero friends (security, SEO, performance, support, and maintenance automation) – trusted by thousands of agencies and freelancers offering site maintenance services.
 
 ### Privacy
 
@@ -183,11 +189,83 @@ It depends what side of the pond you live on...but whether you say optimize, opt
 == Screenshots ==
 
 1. Simple to get started with the Smush setup wizard.
-2. Watch as your image library is processed – up to 50 images at a time.
-3. Set automatic smush to resize and optimize every image as it is uploaded.
-4. Smush will find and optimize images for you.
+2. Smush will find and optimize the images for you.
+3. Watch as your image library is processed.
+4. Set automatic smush to resize and optimize every image as it is uploaded.
 
 == Changelog ==
+
+= 3.12.4 ( 2022-11-17 ) =
+
+- Improvement: Code and compatibility improvements
+
+= 3.12.3 ( 2022-10-24 )
+- Fix: Free to pro upgrade issue
+
+= 3.12.2 ( 2022-10-19 )
+- Improvement: Security hardening
+- Fix: Issues on older PHP versions
+
+= 3.12.1 ( 2022-10-11 )
+- Fix: PHP error on non-English language sites
+
+= 3.12.0 ( 2022-10-11 )
+- New: Bulk smush images in the background!
+- New: 50 images limit removed for free users
+- New: Better GDPR compliance by replacing Google fonts with Bunny fonts
+- New: Filter on media library page to view media items with errors
+- New: Option to receive an email once bulk smush is complete
+- Fix: Some images incorrectly selected for resmush
+- Fix: Database error while converting PNG to JPG on WordPress 6.1 Beta
+
+= 3.11.1 ( 2022-08-22 ) =
+- Fix: Fallback to sequential processing when parallel processing not possible
+
+= 3.11.0 ( 2022-08-22 ) =
+- New: Smush all image sizes in parallel for improved performance
+- Improvement: Code improvements
+
+= 3.10.3 ( 2022-07-14 ) =
+
+- Enhance: CDN activation process
+- Enhance: Improve media library image filters
+- Enhance: CDN compatibility with Avada theme
+- Enhance: Add notice about disabled folders in directory Smush module
+- Fix: Errors table UI on bulk smush page
+- Fix: Bulk smush UI when images have been removed when page was already loaded
+- Fix: Cron job of logger library not running properly
+- Fix: Remove tools meta box from dashboard page
+- Fix: Recover image from NextGen Gallery button does not reset Smush data
+- Fix: Image dimensions meta does not reset after restoring a resized image in NextGen Gallery
+- Fix: Incorrect percent of total savings on Dashboard page
+- Fix: Pro feature enable/disable toggles are clickable in free version
+
+= 3.10.2 ( 2022-06-16 ) =
+
+- Enhance: Data processing
+- Enhance: Database calls
+- Fix: Loading images from remote location
+
+= 3.10.1 ( 2022-06-09 ) =
+
+- Fix: PHP error on dash page
+
+= 3.10.0 ( 2022-06-09 ) =
+
+- New: Lossy compression is now free for all users
+- New: Summary meta box
+- Enhance: Move out image restore to bulk smush module
+- Enhance: Move out image resize detection to settings module
+- Enhance: Update opt-in notice design
+- Fix: Upsell notice logic
+- Fix: Skip image sizes not in WordPress format
+- Fix: Skip onboarding wizard if a config has been applied
+- Fix: Image sizes selector
+- Fix: Rename "Basic" config to "Default"
+- Fix: Do not show WebP notice in case of error
+- Fix: Auto compression does not work for NextGen Gallery
+- Fix: Settings link on Plugins page
+- Fix: Welcome modal does not close when we go to the Bulk Smush page
 
 = 3.9.11 ( 2022-05-23 ) =
 

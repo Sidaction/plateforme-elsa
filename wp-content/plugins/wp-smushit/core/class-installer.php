@@ -12,6 +12,7 @@
 
 namespace Smush\Core;
 
+use Smush\App\Abstract_Page;
 use WP_Smush;
 
 if ( ! defined( 'WPINC' ) ) {
@@ -152,6 +153,20 @@ class Installer {
 				self::dir_smush_set_primary_key();
 			}
 
+			if ( version_compare( $version, '3.10.0', '<' ) ) {
+				self::upgrade_3_10_0();
+			}
+
+			if ( version_compare( $version, '3.10.3', '<' ) ) {
+				self::upgrade_3_10_3();
+			}
+
+			$hide_new_feature_highlight_modal = apply_filters( 'wpmudev_branding_hide_doc_link', false );
+			if ( ! $hide_new_feature_highlight_modal && version_compare( $version, '3.12.0', '<' ) ) {
+				// Add the flag to display the new feature background process modal.
+				add_site_option( 'wp-smush-show_upgrade_modal', true );
+			}
+
 			// Create/upgrade directory smush table.
 			self::directory_smush_table();
 
@@ -248,6 +263,53 @@ class Installer {
 		if ( '0' === $lazy['animation']['selected'] ) {
 			$lazy['animation']['selected'] = 'none';
 			Settings::get_instance()->set_setting( 'wp-smush-lazy_load', $lazy );
+		}
+	}
+
+	/**
+	 * Upgrade to 3.10.0
+	 *
+	 * @since 3.10.0
+	 *
+	 * @return void
+	 */
+	private static function upgrade_3_10_0() {
+		// Remove unused options.
+		delete_site_option( 'wp-smush-hide_pagespeed_suggestion' );
+		delete_site_option( 'wp-smush-hide_upgrade_notice' );
+
+		// Rename the default config.
+		$stored_configs = get_site_option( 'wp-smush-preset_configs', false );
+		if ( is_array( $stored_configs ) && isset( $stored_configs[0] ) && isset( $stored_configs[0]['name'] ) && 'Basic config' === $stored_configs[0]['name'] ) {
+			$stored_configs[0]['name'] = __( 'Default config', 'wp-smushit' );
+			update_site_option( 'wp-smush-preset_configs', $stored_configs );
+		}
+
+		// Show new features modal for free users.
+		if ( ! WP_Smush::is_pro() ) {
+			if ( is_multisite() && ! Abstract_Page::should_render( 'bulk' ) ) {
+				return;
+			}
+
+			add_site_option( 'wp-smush-show_upgrade_modal', true );
+		}
+	}
+
+	/**
+	 * Upgrade 3.10.3
+	 *
+	 * @since 3.10.3
+	 *
+	 * @return void
+	 */
+	private static function upgrade_3_10_3() {
+		delete_site_option( 'wp-smush-hide_smush_welcome' );
+		// Logger options.
+		delete_site_option( 'wdev_logger_wp-smush-pro' );
+		delete_site_option( 'wdev_logger_wp-smushit' );
+		// Clean old cronjob (missing callback).
+		if ( wp_next_scheduled( 'wdev_logger_clear_logs' ) ) {
+			wp_clear_scheduled_hook( 'wdev_logger_clear_logs' );
 		}
 	}
 }

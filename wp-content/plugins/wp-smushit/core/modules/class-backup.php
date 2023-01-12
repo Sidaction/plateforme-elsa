@@ -396,6 +396,15 @@ class Backup extends Abstract_Module {
 					)
 				);
 			}
+
+			// Check capability.
+			if ( ! Helper::is_user_allowed( 'upload_files' ) ) {
+				wp_send_json_error(
+					array(
+						'error_msg' => esc_html__( "You don't have permission to work with uploaded files.", 'wp-smushit' ),
+					)
+				);
+			}
 		}
 
 		$attachment_id = (int) $attachment_id;
@@ -403,7 +412,7 @@ class Backup extends Abstract_Module {
 		$mod = WP_Smush::get_instance()->core()->mod;
 
 		// Set an option to avoid the smush-restore-smush loop.
-		Helper::lock_file_before_doing( 'restore', $attachment_id );
+		set_transient( 'wp-smush-restore-' . $attachment_id, 1, HOUR_IN_SECONDS );
 
 		/**
 		 * Delete WebP.
@@ -558,7 +567,7 @@ class Backup extends Abstract_Module {
 			$button_html = WP_Smush::get_instance()->library()->generate_markup( $attachment_id );
 
 			// Release the attachment after restoring.
-			Helper::release_file_after_doing( 'restore', $attachment_id );
+			delete_transient( 'wp-smush-restore-' . $attachment_id );
 
 			if ( ! $resp ) {
 				return true;
@@ -578,7 +587,7 @@ class Backup extends Abstract_Module {
 		}
 
 		// Release the attachment after restoring.
-		Helper::release_file_after_doing( 'restore', $attachment_id );
+		delete_transient( 'wp-smush-restore-' . $attachment_id );
 
 		if ( $resp ) {
 			wp_send_json_error( array( 'error_msg' => esc_html__( 'Unable to restore image', 'wp-smushit' ) ) );
@@ -714,6 +723,10 @@ class Backup extends Abstract_Module {
 	 */
 	public function get_image_count() {
 		check_ajax_referer( 'smush_bulk_restore' );
+		// Check for permission.
+		if ( ! Helper::is_user_allowed( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'wp-smushit' ), 403 );
+		}
 		wp_send_json_success(
 			array(
 				'items' => $this->get_attachments_with_backups(),
@@ -728,6 +741,12 @@ class Backup extends Abstract_Module {
 	 */
 	public function restore_step() {
 		check_ajax_referer( 'smush_bulk_restore' );
+
+		// Check for permission.
+		if ( ! Helper::is_user_allowed( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'wp-smushit' ), 403 );
+		}
+
 		$id = filter_input( INPUT_POST, 'item', FILTER_SANITIZE_NUMBER_INT, FILTER_NULL_ON_FAILURE );
 
 		$status = $id && $this->restore_image( $id, false );

@@ -1,6 +1,6 @@
 # WDEV Logger #
 
-WPMUDEV Logger - A simple logger module.
+WPMU DEV Logger - A simple logger module.
 
 It's created based on Hummingbird\Core\Logger.
 This logger lib will handle the old messages based on the expected size.
@@ -28,7 +28,8 @@ $logger = WDEV_Logger::create(array(
     'max_log_size'                 => 10,//10MB
     'expected_log_size_in_percent' => 0.7,//70%
     'log_dir'                      => 'uploads/your_plugin_name',
-    'add_subsite_dir'              => true,//For MU site, @see self::get_log_directory()
+    'add_subsite_dir'              => true,//For MU site, @see self::get_log_directory(),
+    'is_private'                   => false,        
     'modules'                      => array(
         'foo' => array(
             'is_private' => true,//-log.php,
@@ -98,6 +99,26 @@ $logger->main_module()->set_log_level( true );// While setting the log level via
 $logger->set_debug_level( LOG_DEBUG );
 
 /**
+ * Add a new module.
+ */
+
+$logger->add_module('new-module', array(
+    'is_private' => true,
+    'log_level'  => LOG_DEBUG
+));
+
+/**
+ * Update a module (it will also inherit from the old module option)
+ * @see WDEV_Logger::update_module()
+ */
+
+$logger->update_module('exist-module', array(
+    'is_private'   => true,
+    'log_level'    => LOG_DEBUG,
+    'max_log_size' => 5,
+));
+
+/**
  * Get the download link
  */
 
@@ -131,7 +152,7 @@ function wpmudev_logger_ajax() {
 /**
  * Cleanup.
  */
-WDEV_Logger::create_from_option( $your_plugin_key_or_null )->cleanup();
+$logger->cleanup();
 
 // End.
 ```

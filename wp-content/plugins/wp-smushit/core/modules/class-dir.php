@@ -72,7 +72,7 @@ class Dir extends Abstract_Module {
 		 *
 		 * This needs to be before self::should_continue so that the request from network admin is processed.
 		 */
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		if ( wp_doing_ajax() ) {
 			if ( ! $this->scanner ) {
 				$this->scanner = new Helpers\DScanner();
 			}
@@ -143,7 +143,7 @@ class Dir extends Abstract_Module {
 	 * @return bool True/False, whether to display the Directory smush or not
 	 */
 	public static function should_continue() {
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_SERVER['HTTP_REFERER'] ) && preg_match( '#^' . network_admin_url() . '#i', wp_unslash( $_SERVER['HTTP_REFERER'] ) ) ) { // Input var ok.
+		if ( Settings::is_ajax_network_admin() ) {
 			return true;
 		}
 
@@ -180,7 +180,13 @@ class Dir extends Abstract_Module {
 	 */
 	public function directory_smush_start() {
 		check_ajax_referer( 'wp-smush-ajax' );
+		// Check for permission.
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! Helper::is_user_allowed( $capability ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'wp-smushit' ), 403 );
+		}
 		$this->scanner->init_scan();
+		do_action('wp_smush_directory_smush_start');
 		wp_send_json_success();
 	}
 
@@ -191,6 +197,12 @@ class Dir extends Abstract_Module {
 	 */
 	public function directory_smush_check_step() {
 		check_ajax_referer( 'wp-smush-ajax' );
+
+		// Check for permission.
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! Helper::is_user_allowed( $capability ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'wp-smushit' ), 403 );
+		}
 
 		$urls         = $this->get_scanned_images();
 		$current_step = isset( $_POST['step'] ) ? absint( $_POST['step'] ) : 0;
@@ -211,6 +223,12 @@ class Dir extends Abstract_Module {
 	 */
 	public function directory_smush_finish() {
 		check_ajax_referer( 'wp-smush-ajax' );
+
+		// Check for permission.
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! Helper::is_user_allowed( $capability ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'wp-smushit' ), 403 );
+		}
 
 		$items   = isset( $_POST['items'] ) ? absint( $_POST['items'] ) : 0;
 		$failed  = isset( $_POST['failed'] ) ? absint( $_POST['failed'] ) : 0;
@@ -238,6 +256,11 @@ class Dir extends Abstract_Module {
 	 */
 	public function directory_smush_cancel() {
 		check_ajax_referer( 'wp-smush-ajax' );
+		// Check for permission.
+		$capability = is_multisite() ? 'manage_network' : 'manage_options';
+		if ( ! Helper::is_user_allowed( $capability ) ) {
+			wp_die( esc_html__( 'Unauthorized', 'wp-smushit' ), 403 );
+		}
 		$this->scanner->reset_scan();
 		wp_send_json_success();
 	}
@@ -256,22 +279,6 @@ class Dir extends Abstract_Module {
 		if ( $id < 1 ) {
 			$error_msg = esc_html__( 'Incorrect image id', 'wp-smushit' );
 			wp_send_json_error( $error_msg );
-		}
-
-		// Check smush limit for free users.
-		if ( ! WP_Smush::is_pro() ) {
-			// Free version bulk smush, check the transient counter value.
-			$should_continue = Core::check_bulk_limit( false, 'dir_sent_count' );
-
-			// Send a error for the limit.
-			if ( ! $should_continue ) {
-				wp_send_json_error(
-					array(
-						'error'    => 'dir_smush_limit_exceeded',
-						'continue' => false,
-					)
-				);
-			}
 		}
 
 		$scanned_images = $this->get_unsmushed_images();
@@ -339,14 +346,11 @@ class Dir extends Abstract_Module {
 				"UPDATE {$wpdb->base_prefix}smush_dir_images SET error=NULL, image_size=%d, file_time=%d, lossy=%d, meta=%d WHERE id=%d LIMIT 1",
 				$results['data']->after_size,
 				filectime( $path ), // Get file time.
-				WP_Smush::is_pro() && $this->settings->get( 'lossy' ),
+				$this->settings->get( 'lossy' ),
 				$this->settings->get( 'strip_exif' ),
 				$id
 			)
 		); // Db call ok; no-cache ok.
-
-		// Update bulk limit transient.
-		Core::update_smush_count( 'dir_sent_count' );
 	}
 
 	/**
@@ -402,7 +406,7 @@ class Dir extends Abstract_Module {
 		// Hide errors.
 		$wpdb->hide_errors();
 		// Create table.
-		$wpdb->query( $sql );//phpcs:ignore
+		$wpdb->query( $sql );
 
 		// Set flag.
 		self::$table_exist = self::table_exist( true );
@@ -438,7 +442,7 @@ class Dir extends Abstract_Module {
 		global $wpdb;
 
 		$condition = 'image_size IS NULL';
-		if ( WP_Smush::is_pro() && $this->settings->get( 'lossy' ) ) {
+		if ( $this->settings->get( 'lossy' ) ) {
 			$condition .= ' OR lossy <> 1';
 		}
 
@@ -521,7 +525,7 @@ class Dir extends Abstract_Module {
 	 */
 	public function directory_list() {
 		// Check For permission.
-		if ( ! current_user_can( 'manage_options' ) || ! is_user_logged_in() ) {
+		if ( ! Helper::is_user_allowed( 'manage_options' ) || ! is_user_logged_in() ) {
 			Helper::logger()->dir()->error( 'Unauthorized - Permission access.' );
 			wp_send_json_error( __( 'Unauthorized', 'wp-smushit' ) );
 		}
