@@ -56,24 +56,27 @@ class Util_AttachToActions {
 	/**
 	 * Pre-Post changed action for published post changed to draft which invalidates the published URL.
 	 *
+	 * @link https://developer.wordpress.org/reference/hooks/pre_post_update/
+	 *
 	 * @param integer $post_id Post ID.
-	 * @param null    $post    Post.
+	 * @param array   $data    Array of unslashed post data.
+	 *
 	 * @return void
 	 */
-	public function on_pre_post_update( $post_id, $post = null ) {
-		if ( is_null( $post ) ) {
-			$post = get_post( $post_id );
+	public function on_pre_post_update( $post_id, $data = null ) {
+		if ( is_null( $data ) ) {
+			$data = get_post( $post_id, ARRAY_A );
 		}
 
 		// if attachment changed - parent post has to be flushed
 		// since there are usually attachments content like title
 		// on the page (gallery).
-		if ( 'attachment' === $post['post_type'] ) {
-			$post_id = $post['post_parent'];
-			$post    = get_post( $post_id );
+		if ( isset( $data['post_type'] ) && 'attachment' === $data['post_type'] ) {
+			$post_id = $data['post_parent'];
+			$data    = get_post( $post_id, ARRAY_A );
 		}
 
-		if ( 'draft' !== $post['post_status'] ) {
+		if ( ! isset( $data['post_status'] ) || 'draft' !== $data['post_status'] ) {
 			return;
 		}
 
@@ -84,8 +87,11 @@ class Util_AttachToActions {
 	/**
 	 * Post changed action
 	 *
+	 * @link https://developer.wordpress.org/reference/hooks/save_post/
+	 *
 	 * @param integer $post_id Post ID.
-	 * @param null    $post    Post.
+	 * @param WP_Post $post    Post.
+	 *
 	 * @return void
 	 */
 	public function on_post_change( $post_id, $post = null ) {
@@ -96,7 +102,7 @@ class Util_AttachToActions {
 		// if attachment changed - parent post has to be flushed
 		// since there are usually attachments content like title
 		// on the page (gallery).
-		if ( 'attachment' === $post->post_type ) {
+		if ( isset( $post->post_type ) && 'attachment' === $post->post_type ) {
 			$post_id = $post->post_parent;
 			$post    = get_post( $post_id );
 		}
@@ -110,7 +116,7 @@ class Util_AttachToActions {
 	}
 
 	/**
-	 * Comment change action
+	 * Comment change action.
 	 *
 	 * @param integer $comment_id Comment ID.
 	 */
@@ -123,6 +129,19 @@ class Util_AttachToActions {
 		}
 
 		$this->on_post_change( $post_id );
+	}
+
+	/**
+	 * Comment status action fired immediately after transitioning a comment’s status from one to another
+	 * in the database and removing the comment, but prior to all status transition hooks.
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/wp_set_comment_status/
+	 *
+	 * @param integer $comment_id Comment ID.
+	 * @param string  $status Status.
+	 */
+	public function on_comment_status( $comment_id, $status ) {
+		$this->on_comment_change( $comment_id );
 	}
 
 	/**
