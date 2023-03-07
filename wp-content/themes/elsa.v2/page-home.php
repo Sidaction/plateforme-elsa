@@ -138,7 +138,7 @@ set_query_var( 'cnSite', $cnSite );
 
                 <div class="m-6col">
 
-                    <div class="docs_container">
+                    <div class="docs_container row">
                         <?php
                         $featured_posts = get_field('video_url');
                         if( $featured_posts ):
@@ -284,7 +284,7 @@ set_query_var( 'cnSite', $cnSite );
             
             <h2 class="text-on-center h3_alt"><?php the_field('docs_title'); ?></h2>
 
-            <div class="docs_container row">
+            <div class="docs_container">
                 <?php
                 $featured_posts = get_field('docs_files');
                 if( $featured_posts ): ?>

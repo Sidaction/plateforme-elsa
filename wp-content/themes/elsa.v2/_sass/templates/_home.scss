@@ -117,15 +117,22 @@
 .docs_container {
   margin: $base_line_height * 2 auto;
   display: flex;
-  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  &.row {
+    flex-wrap: nowrap;
+    gap: unset;
+  }
 
   @include up-to(medium) {
     flex-direction: column;
 
   }
   .doc_item {
-    flex: 0 0 30%;
-    width: 30%;
+    flex: 0 0 calc( calc(100% - 80px) / 3);
+    width: calc( calc(100% - 80px) / 3);
 
     @include up-to(medium) {
       flex: 0 0 100%;
