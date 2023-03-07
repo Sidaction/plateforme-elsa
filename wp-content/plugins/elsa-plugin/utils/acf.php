@@ -12,6 +12,61 @@ function acf_location_rules_types( $choices ) {
 
 if( function_exists('acf_add_local_field_group') ):
 
+  acf_add_local_field_group(array(
+    'key' => 'group_6406f45a970ff',
+    'title' => 'Page Tous les documents ELSA',
+    'fields' => array(
+      array(
+        'key' => 'field_6406f45b56630',
+        'label' => 'Page à intégrer',
+        'name' => 'docs_files',
+        'aria-label' => '',
+        'type' => 'relationship',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'post_type' => array(
+          0 => 'post',
+          1 => 'page',
+        ),
+        'taxonomy' => '',
+        'filters' => array(
+          0 => 'search',
+          1 => 'post_type',
+          2 => 'taxonomy',
+        ),
+        'return_format' => 'object',
+        'min' => '',
+        'max' => '',
+        'elements' => '',
+      ),
+    ),
+    'location' => array(
+      array(
+        array(
+          'param' => 'post_template',
+          'operator' => '==',
+          'value' => 'page-alldocs.php',
+        ),
+      ),
+    ),
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+    'show_in_rest' => 0,
+  ));
+  
+
 acf_add_local_field_group(array (
   'key' => 'group_587634d6db551e',
   'title' => 'Colonne',
