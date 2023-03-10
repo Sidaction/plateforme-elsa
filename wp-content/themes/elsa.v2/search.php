@@ -120,7 +120,7 @@ if(strpos($keyword, "\'")) {
   			$after='1 year ago';
   		break;
   		default:
-  			$after='5 years ago';
+  			$after='50 years ago';
   		break;
   	}
   	$args['date_query'] = array(
