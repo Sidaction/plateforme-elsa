@@ -40,7 +40,7 @@ class PageSpeed_Widget {
 	public static function admin_print_scripts_w3tc_pagespeed_widget() {
 		wp_register_script(
 			'w3tc-widget-pagespeed',
-			plugins_url( 'PageSpeed_Widget_View.js', W3TC_FILE ),
+			esc_url( plugins_url( 'PageSpeed_Widget_View.js', W3TC_FILE ) ),
 			array(),
 			W3TC_VERSION,
 			'true'
@@ -58,7 +58,7 @@ class PageSpeed_Widget {
 
 		wp_enqueue_style(
 			'w3tc-widget-pagespeed',
-			plugins_url( 'PageSpeed_Widget_View.css', W3TC_FILE ),
+			esc_url( plugins_url( 'PageSpeed_Widget_View.css', W3TC_FILE ) ),
 			array(),
 			W3TC_VERSION
 		);
@@ -77,7 +77,7 @@ class PageSpeed_Widget {
 			'<div class="w3tc-widget-pagespeed-logo"></div>' .
 				'<div class="w3tc-widget-text">' . esc_html__( 'PageSpeed Report', 'w3-total-cache' ) . '</div>',
 			array( $this, 'widget_pagespeed' ),
-			Util_Ui::admin_url( 'admin.php?page=w3tc_general#google_page_speed' ),
+			Util_Ui::admin_url( 'admin.php?page=w3tc_general#google_pagespeed' ),
 			'normal'
 		);
 	}
@@ -129,7 +129,7 @@ class PageSpeed_Widget {
 								'Before you can get started using the Google PageSpeed tool, you’ll first need to authorize access. Please click %1$s.',
 								'w3-total-cache'
 							),
-							'<a href="' . esc_url( Util_Ui::admin_url( 'admin.php?page=w3tc_general#google_page_speed' ) ) . '" target="_blank">' . esc_html__( 'here', 'w3-total-cache' ) . '</a>'
+							'<a href="' . esc_url( Util_Ui::admin_url( 'admin.php?page=w3tc_general#google_pagespeed' ) ) . '" target="_blank">' . esc_html__( 'here', 'w3-total-cache' ) . '</a>'
 						),
 					)
 				);
@@ -174,7 +174,7 @@ class PageSpeed_Widget {
 			} else {
 				$api_response['time']         = time();
 				$api_response['display_time'] = \current_time( 'M jS, Y g:ia', false );
-				update_option( 'w3tc_pagespeed_data_' . $home_url, wp_json_encode( $api_response ), Util_PageSpeed::get_cache_life() );
+				update_option( 'w3tc_pagespeed_data_' . $home_url, wp_json_encode( $api_response ), 'yes' );
 			}
 		}
 

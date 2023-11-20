@@ -40,7 +40,7 @@ class Root_Loader {
 			$plugins[] = new DbCache_Plugin();
 		}
 
-		if ( $c->get_boolean( 'objectcache.enabled' ) ) {
+		if ( $c->getf_boolean( 'objectcache.enabled' ) ) {
 			$plugins[] = new ObjectCache_Plugin();
 		}
 
@@ -235,15 +235,14 @@ class Root_Loader {
 			return;
 		}
 
-		$query->set(
-			'meta_query',
-			array(
-				array(
-					'key'     => 'w3tc_imageservice_file',
-					'compare' => 'NOT EXISTS',
-				),
-			)
+		// Get the existing meta query array, add ours, and then save it.
+		$meta_query   = (array) $query->get( 'meta_query' );
+		$meta_query[] = array(
+			'key'     => 'w3tc_imageservice_file',
+			'compare' => 'NOT EXISTS',
 		);
+
+		$query->set( 'meta_query', $meta_query );
 	}
 
 	/**
