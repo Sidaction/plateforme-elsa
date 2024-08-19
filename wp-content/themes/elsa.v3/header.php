@@ -6,7 +6,7 @@
   <?php wp_head();?>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/_img/favicon.png" />
+    <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/assets/img/favicon.png" />
 
 
 
@@ -96,7 +96,7 @@
 
             <div class="m-4col l-3col site-branding">
                 <a href="#" class="btn-secondary main_nav-trigger">Menu </a>
-                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/_img/Logo_ELSA-Version2019_500px.png" width="86" height="auto" alt="logo ELSA" class="site-logo"></a>
+                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/Logo_ELSA-Version2019_500px.png" width="86" height="auto" alt="logo ELSA" class="site-logo"></a>
                 <div class="site-title">
                     <h1><a href="<?php echo esc_url( home_url() ) ?>">Plateforme ELSA</a></h1>
                     <p class="site-resume">Centre de ressources francophones sur le VIH/sida en Afrique</p>
@@ -123,6 +123,13 @@
                         <button class="main_search_btn main_nav_item"><span class="icon-loupe"></span></button>
                         <li class="main_nav_item search-all"><span> ı </span><a href="/recherche-documentaire">Tout voir</a></li>
                 </form>  
+
+                <div id="app">
+                    <label for="name">Name:</label>
+                    <input id="name" type="text" v-model="name" /> <!--v-model is doing the magic here-->
+                    <p>{{ name }}</p>
+                </div>
+
             </section>
     
             <div class="main_nav-dropdowns">

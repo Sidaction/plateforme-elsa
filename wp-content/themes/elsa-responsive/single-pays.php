@@ -154,10 +154,10 @@ $poi[] = array('lat'=> $lat, 'lng'=> $lng, 'slug'=>'', 'title'=>get_the_title())
 					
                     <a href="<?php the_permalink();?>">
                     
-                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></div>
-                    <!-- <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/video.png" /></div>
-                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/lien.png" /></div>
-                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/document.png" /></div> -->
+                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></div>
+                    <!-- <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/video.png" /></div>
+                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/lien.png" /></div>
+                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/document.png" /></div> -->
                     
 					<div class="leftProg">
 						 <?php the_post_thumbnail('medium');?>

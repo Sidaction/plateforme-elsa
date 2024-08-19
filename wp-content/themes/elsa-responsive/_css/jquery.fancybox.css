@@ -77,7 +77,7 @@
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url('../_img/elmts/fancybox_sprite.png');
+	background-image: url('../assets/img/elmts/fancybox_sprite.png');
 }
 
 #fancybox-loading {
@@ -95,7 +95,7 @@
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-	background: url('../_img/elmts/fancybox_loading.gif') center center no-repeat;
+	background: url('../assets/img/elmts/fancybox_loading.gif') center center no-repeat;
 }
 
 .fancybox-close {
@@ -115,7 +115,7 @@
 	height: 100%;
 	cursor: pointer;
 	text-decoration: none;
-	background: transparent url('../_img/elmts/blank.gif'); /* helps IE */
+	background: transparent url('../assets/img/elmts/blank.gif'); /* helps IE */
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	z-index: 8040;
 }
@@ -176,7 +176,7 @@
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: url('../_img/elmts/fancybox_overlay.png');
+	background: url('../assets/img/elmts/fancybox_overlay.png');
 }
 
 .fancybox-overlay-fixed {

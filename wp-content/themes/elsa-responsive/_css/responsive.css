@@ -98,7 +98,7 @@ section#contentSite article ul#navFiches {margin:0}
 section#contentSite article ul#navFiches li > a {top:0}
 div#acteursLocauxWrapper div.blockActeurs li {text-indent: inherit}
 div#acteursLocauxWrapper div.blockActeurs li+li {border:none;}
-div#logo > a > h1 {font-size: 20px; background:url(../_img/logo-elsa.png) no-repeat center left; padding:20px 32px 0 95px}
+div#logo > a > h1 {font-size: 20px; background:url(../assets/img/logo-elsa.png) no-repeat center left; padding:20px 32px 0 95px}
 div#logo {background: none}
 div#topFollowWrapper > ul > li+li+li, div#topFollowWrapper > ul > li.facebookTop, div#topFollowWrapper > ul > li.twitterTop, div#topFollowWrapper > ul > li.youtubeTop, div#topFollowWrapper > ul > li.rssTop {display:none}
 div#topFollow {height:auto; padding:1.5% 0 2.5% 0}
@@ -170,10 +170,10 @@ div#newsRessources div.recom div.leftProg img {}
 div#newsRessources div.recom div.rightProg {width:auto; float:none; margin:0 30px 0 0}
 section#contentSite.marron article div#newsRessources h3 {text-align:center}
 
-div#sliderHome {width: 100%; margin: auto; color: #FFF; height: auto; -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; overflow: hidden; margin-top:0; background: url(../_img/shadowBottomslider.png) 50% 100% no-repeat; padding-bottom: 17px; }
+div#sliderHome {width: 100%; margin: auto; color: #FFF; height: auto; -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; overflow: hidden; margin-top:0; background: url(../assets/img/shadowBottomslider.png) 50% 100% no-repeat; padding-bottom: 17px; }
 div.infosSlide { float: none; background: #e7512d; width: 90%; padding:5%; height: auto; line-height: 24px; } 
 div.imgSlide {float: none; width: 100%; height: auto; overflow: inherit;}
-div.listSlide { float: none; background: url(../_img/bgSlider.gif); width: 90%; padding:5%; height: auto;}
+div.listSlide { float: none; background: url(../assets/img/bgSlider.gif); width: 90%; padding:5%; height: auto;}
 div.imgSlide img {width:100%; height:auto}
 div.listSlide > ul > li { height: auto; margin-bottom: 10px;}
 div.titreSoul {text-align:margin: 0 auto 35px auto; border-bottom: none}

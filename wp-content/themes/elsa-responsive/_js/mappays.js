@@ -147,7 +147,7 @@ function showMarkers() {
   for (var i = 0; i < numMarkers; i++) {
     var latLng = new google.maps.LatLng(datas[i].lat,datas[i].lng);
 	bounds.extend(latLng); 
-    var imageUrl = imgdir+'/_img/map_marker.png';
+    var imageUrl = imgdir+'/assets/img/map_marker.png';
    var markerImage = new google.maps.MarkerImage(imageUrl,new google.maps.Size(25, 40));
 
     var marker = new google.maps.Marker({

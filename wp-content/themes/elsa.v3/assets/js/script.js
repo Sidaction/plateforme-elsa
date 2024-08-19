@@ -1,6 +1,18 @@
 
 
 
+//this is a vue instance
+new Vue({
+  //this targets the div id app
+  el: '#app',
+  data: {
+    name: '' //this stores data values for ‘name’
+  }
+})
+
+
+
+
 
 jQuery(document).ready(function($){
 
@@ -177,7 +189,6 @@ jQuery(document).ready(function($){
 
 
 
-  
 
   /*
    * MODALS

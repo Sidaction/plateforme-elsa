@@ -57,9 +57,9 @@
             <strong><?php echo cnLib::get_term_list_link( $post->ID, 'pays_assoc', '/pays/' ); ?></strong><br /><br />
            
           
-            <?php if(!empty($link)):?><a href="<?php echo $link;?>" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/_img/i_web.png" /></a><?php endif;?>
-            <?php if(!empty($link2)):?><a href="<?php echo $link2;?>" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/_img/i_fb.png" /></a><?php endif;?>
-             <?php if(!empty($email)):?><a href="mailto:<?php echo $email;?>"><img src="<?php echo $cnSite->templatelink; ?>/_img/i_mail.png" /></a><?php endif;?>
+            <?php if(!empty($link)):?><a href="<?php echo $link;?>" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/i_web.png" /></a><?php endif;?>
+            <?php if(!empty($link2)):?><a href="<?php echo $link2;?>" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/i_fb.png" /></a><?php endif;?>
+             <?php if(!empty($email)):?><a href="mailto:<?php echo $email;?>"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/i_mail.png" /></a><?php endif;?>
               
         </div> 
  		<!-- ZONE IMAGE -->
@@ -121,10 +121,10 @@
                  <div class="programmes">
 					<a href="<?php the_permalink();?>">
                     
-                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></div>
-                    <!-- <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/video.png" /></div>
-                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/lien.png" /></div>
-                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/document.png" /></div> -->
+                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></div>
+                    <!-- <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/video.png" /></div>
+                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/lien.png" /></div>
+                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/document.png" /></div> -->
                     
                    <div class="leftProg">
 						 <?php the_post_thumbnail('medium');?>

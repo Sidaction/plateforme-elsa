@@ -14,7 +14,7 @@
      	<div class="shadowLeft"></div>
        <div class="shadowRight"></div>
        <article class="fullPage">
-        <h1><img src="<?php echo $cnSite->templatelink; ?>/_img/agendaIco.png" width="34" height="33" /> <?php the_title();?></h1>
+        <h1><img src="<?php echo $cnSite->templatelink; ?>/assets/img/agendaIco.png" width="34" height="33" /> <?php the_title();?></h1>
 		 
           <div id="legende">
               <div class="conferenceEvt">Conférence</div><div class="evenementEvt">Evénement</div><br />
@@ -31,9 +31,9 @@
                   	un agenda :
                 </li>
                 <li>
-                	<a href="https://www.google.com/calendar/render?hl=fr" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/_img/google.png" width="89" height="37" /></a><br />
+                	<a href="https://www.google.com/calendar/render?hl=fr" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/google.png" width="89" height="37" /></a><br />
                 Créer un agenda en ligne,<br />le partager</li>
-                <li> <a href="http://doodle.com/fr/" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/_img/doodle.png" width="100" height="21" /></a><br />
+                <li> <a href="http://doodle.com/fr/" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/doodle.png" width="100" height="21" /></a><br />
                     Trouver une date,<br />planifier un événement.
                 </li>
               </ul>

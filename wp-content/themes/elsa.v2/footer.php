@@ -4,7 +4,7 @@
 
     <div class="wrap row">
         <div class="m-4col">
-            <img src="<?php echo get_template_directory_uri() ?>/_img/Logo_ELSA-Version2019_500px.png" width="86" height="auto" alt="logo ELSA" class="site-logo">
+            <img src="<?php echo get_template_directory_uri() ?>/assets/img/Logo_ELSA-Version2019_500px.png" width="86" height="auto" alt="logo ELSA" class="site-logo">
             <h3 class="site-title">Plateforme ELSA</h3>
         </div>
  
@@ -105,7 +105,7 @@
         <div class="modal_content">
 
             <div id="loading-msg" class="loading-msg">
-                <img src="<?php echo get_template_directory_uri(); ?>/_img/bx_loader.gif">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/bx_loader.gif">
                 <p>Nous cherchons le contenu demandé....</p>
             </div>
 

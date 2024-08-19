@@ -213,7 +213,7 @@ class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
                     
                     if(isset($current_user_readitlater_list['posts_in_ril'][$post->ID])){
                     
-                        $content = ' <div class="bookmark">  <a href="#" class="removeFromRILButton" data-readitlater-id="'. $post->ID .'" alt="'. $gema75_read_it_later->remove_from_readitlater_text .'" title="'. $gema75_read_it_later->remove_from_readitlater_text  .'"><img src="'. get_template_directory_uri() . '/_img/book_full.png" alt="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection" title="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection"></a></div> ' ;
+                        $content = ' <div class="bookmark">  <a href="#" class="removeFromRILButton" data-readitlater-id="'. $post->ID .'" alt="'. $gema75_read_it_later->remove_from_readitlater_text .'" title="'. $gema75_read_it_later->remove_from_readitlater_text  .'"><img src="'. get_template_directory_uri() . '/assets/img/book_full.png" alt="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection" title="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection"></a></div> ' ;
                     
                     }else{
 
@@ -294,8 +294,11 @@ if (!is_admin()) add_action( 'init', 'remove_from_init', 10 );
 
 
 function my_custom_scripts() {
-    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/style.css' );
-    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/_js/all.min.js', array( 'jquery' ), '1.0.0', true );
+    wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/assets/style.css' );
+    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/assets/all.min.js', array( 'jquery' ), '1.0.0', true );
+    wp_register_script( 'vuejs', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js', array( ), '', true );
+    
+
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
     wp_enqueue_script( 'elsa-scripts' );
 }

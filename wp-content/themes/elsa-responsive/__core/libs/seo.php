@@ -88,7 +88,7 @@
 			$fbt='<meta property="og:url" content="'. get_bloginfo('url').'"/>'."\r\n";
 			$fbt.='<meta property="og:title" content="'. get_bloginfo('name').'" />'."\r\n"; 
 			$fbt.='<meta property="og:description" content="'.get_bloginfo('description').'" />'."\r\n";								
-			$fbt.='<meta property="og:image" content="http://www.plateforme-elsa.org/wp-content/themes/elsa/_img/logo-elsa.png" />'."\r\n";
+			$fbt.='<meta property="og:image" content="http://www.plateforme-elsa.org/wp-content/themes/elsa/assets/img/logo-elsa.png" />'."\r\n";
 
 			 echo $fbt;
 		}

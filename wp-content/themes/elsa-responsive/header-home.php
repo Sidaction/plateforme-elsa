@@ -10,7 +10,7 @@
   <![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/_img/favicon.png" />
+  <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/assets/img/favicon.png" />
     
   <!-- STYLES -->
   <link href="<?php echo $cnSite->templatelink; ?>/_css/reset.css" rel="stylesheet" type="text/css">

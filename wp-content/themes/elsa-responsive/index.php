@@ -78,7 +78,7 @@
                  <div class="recom">
 					<a href="<?php the_permalink();?>">
                     
-                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></div>
+                    <div class="format"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></div>
                   
                     
 					<div class="leftProg">

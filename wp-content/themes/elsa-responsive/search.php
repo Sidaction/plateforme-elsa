@@ -219,7 +219,7 @@
         <div class="check"><input type="checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
         <div class="check"><input type="checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
         <div class="check"><input type="checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
-        <div class="check"><input type="checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils <img src="<?php echo $cnSite->templatelink; ?>/_img/tools.png" width="18" height="17" /></label></div>
+        <div class="check"><input type="checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils <img src="<?php echo $cnSite->templatelink; ?>/assets/img/tools.png" width="18" height="17" /></label></div>
         <div class="check"><input type="checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
         <div class="check"><input type="checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
         <div class="check"><input type="checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
@@ -301,7 +301,7 @@
                    <?php echo get_the_date('j M Y');?>
                     </div>
                     <div class="dlProg">
-                        <a href="<?php the_permalink();?>?ref=search"><img src="<?php echo $cnSite->templatelink; ?>/_img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></a>
+                        <a href="<?php the_permalink();?>?ref=search"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/<?php echo cnLib::get_main_term_slug($post->ID, 'format');?>.png" /></a>
                     </div>
                 </div>
               <div class="clear"></div>

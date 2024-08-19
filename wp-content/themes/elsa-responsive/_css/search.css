@@ -3,7 +3,7 @@
 	#advancedSearch .barre{width:780px; margin:15px auto; background:#FFF; height:1px}
 	#advancedSearch ul{float:left;}
 		#advancedSearch ul li{font-size:14px;}
-		#advancedSearch ul li .btndel{width:14px; height:18px; float:left; margin-right:5px; background:url(../_img/croix_recherche.png) no-repeat center 5px ;}
+		#advancedSearch ul li .btndel{width:14px; height:18px; float:left; margin-right:5px; background:url(../assets/img/croix_recherche.png) no-repeat center 5px ;}
 	ul#listKeywords{width:398px;min-height:10px;}
 	ul#listKeywords li{width:199px;float:left;}
 	ul#listThemes{width:220px;min-height:10px; margin-left:18px;}

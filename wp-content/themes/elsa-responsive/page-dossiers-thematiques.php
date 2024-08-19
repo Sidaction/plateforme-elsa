@@ -37,7 +37,7 @@
         	<div class="shadowRight"></div>
         	
           <div class="imgTheme"><?php the_post_thumbnail('large');?></div>
-          <!-- <div class="imgTheme"><img src="<?php echo $cnSite->templatelink; ?>/_img/thematiques.jpg" width="262" height="468" /></div> -->
+          <!-- <div class="imgTheme"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/thematiques.jpg" width="262" height="468" /></div> -->
 		 <?php get_template_part( '_blocs/side', 'ressources' ); ?>
         </aside>
         <div class="clear"></div>

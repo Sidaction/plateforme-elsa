@@ -1904,8 +1904,8 @@ ul.no-bullets, .page_metas ul, .menu-menu-bottom-container ul, .menu-menu-footer
  */
 @font-face {
   font-family: "icomoon";
-  src: url("__fonts/icomoon.eot?n11hpb");
-  src: url("__fonts/icomoon.eot?n11hpb#iefix") format("embedded-opentype"), url("__fonts/icomoon.ttf?n11hpb") format("truetype"), url("__fonts/icomoon.woff?n11hpb") format("woff"), url("__fonts/icomoon.svg?n11hpb#icomoon") format("svg");
+  src: url("fonts/icomoon.eot?n11hpb");
+  src: url("fonts/icomoon.eot?n11hpb#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?n11hpb") format("truetype"), url("fonts/icomoon.woff?n11hpb") format("woff"), url("fonts/icomoon.svg?n11hpb#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -2293,7 +2293,7 @@ th {
 }
 
 .icon_media {
-  background-image: url("_img/icons-media.png");
+  background-image: url("assets/img/icons-media.png");
   background-repeat: no-repeat;
   width: 81px;
   height: 81px;
@@ -3058,7 +3058,7 @@ a {
 .item-selection {
   padding-left: 21px;
   margin-left: 21px;
-  background-image: url("_img/book_full.png");
+  background-image: url("assets/img/book_full.png");
   background-position: left center;
   background-repeat: no-repeat;
   color: rgb(25, 38, 55);
@@ -3651,7 +3651,7 @@ audio {
 /* LOADER */
 .bx-wrapper .bx-loading {
   min-height: 50px;
-  background: url(_img/bx_loader.gif) center center no-repeat #fff;
+  background: url(assets/img/bx_loader.gif) center center no-repeat #fff;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -4007,7 +4007,7 @@ audio {
   display: inline-block;
   padding-left: 21px;
   background-repeat: no-repeat;
-  background-image: url("_img/book_full");
+  background-image: url("assets/img/book_full");
   background-size: auto 21px;
   color: inherit !important;
   font-size: inherit !important;
@@ -4034,11 +4034,11 @@ audio {
 }
 
 .addedToRilListButton {
-  background-image: url("_img/book_full.png");
+  background-image: url("assets/img/book_full.png");
 }
 
 .addToReadItLaterButton {
-  background-image: url("_img/book_empty.png");
+  background-image: url("assets/img/book_empty.png");
 }
 
 .blocs_group, .blocs_group--rebonds {

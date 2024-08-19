@@ -43,10 +43,10 @@
             <div>
             Les réseaux sociaux / rss
             <ul id="reseaux">
-            	<li><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/_img/facebook-footer.png" width="20" height="20"></a></li>
-                <li><a href="https://twitter.com/PlateformeELSA" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/_img/twitter-footer.png" width="20" height="20"></a></li>
-                <li><a href="#"><img src="<?php echo $cnSite->templatelink; ?>/_img/youtube-footer.png" width="20" height="20"></a></li>
-                <li><a href="/rss-plateforme-elsa" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/_img/rss-footer.png" width="20" height="20"></a></li>
+            	<li><a href="https://www.facebook.com/pages/Plateforme-ELSA/843936832288790" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/facebook-footer.png" width="20" height="20"></a></li>
+                <li><a href="https://twitter.com/PlateformeELSA" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/twitter-footer.png" width="20" height="20"></a></li>
+                <li><a href="#"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/youtube-footer.png" width="20" height="20"></a></li>
+                <li><a href="/rss-plateforme-elsa" target="_blank"><img src="<?php echo $cnSite->templatelink; ?>/assets/img/rss-footer.png" width="20" height="20"></a></li>
             </ul>
             <div class="clear"></div>
             </div>
