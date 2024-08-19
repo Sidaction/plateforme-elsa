@@ -1,159 +1,79 @@
-// // Include gulp
-// var gulp = require('gulp');
 
-// // Include Our Plugins
-// var jshint = require('gulp-jshint');
-// var sass = require('gulp-ruby-sass');
-// var concat = require('gulp-concat');
-// var uglify = require('gulp-uglify');
-// var rename = require('gulp-rename');
-// var sourcemaps = require('gulp-sourcemaps');
-// var cssnano = require('gulp-cssnano');
-// var notify = require('gulp-notify');
-
-// // Set up project
-// var app_folder = 'wp-content/themes/elsa.v2/';
-// var public_folder = 'wp-content/themes/elsa.v2/';
-// var theme_folder = 'wp-content/themes/elsa.v2/';
-
-// var jsfolder = theme_folder + '_js/';
-// var mainjs = theme_folder + '_js/script.js';
-// var vendorsjs = theme_folder + '_js/lib/*.js';
-// var alljs = [vendorsjs, mainjs];
-
-// var scssfiles = theme_folder + '_sass/**/*.scss';
-// var sassfolder = theme_folder + '_sass/';
-// var sassMain = sassfolder + 'style.scss';
+// les dépendances du fichier gulp
+const { src, dest , series , watch } = require("gulp");
+const sass = require("gulp-sass")(require('sass'));
+const rename = require("gulp-rename");
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const sourcemaps = require('gulp-sourcemaps');
+sass.compiler = require("sass");
 
 
-// // Lint Task
-// gulp.task('lint', function() {
-//     return gulp.src(mainjs)
-//         .pipe(jshint())
-//         .pipe(jshint.reporter('default'));
-// });
+// VARIABLES
+var app_folder = './';
+var theme_folder = app_folder + 'wp-content/themes/elsa.v3/';
+var assets_folder = theme_folder + 'assets/';
 
-// // Compile Our Sass
-// gulp.task('styles', function() {
-//     return sass(sassMain, { style: 'nested', sourcemap: true })
-//     .on('error', sass.logError)
-//     .pipe(sourcemaps.write())
-//     .pipe(gulp.dest(theme_folder))
-//     .pipe(rename({suffix: '.min'}))
-//     .pipe(cssnano())
-//     .pipe(gulp.dest(theme_folder))
-//     .pipe(notify({ message: 'Styles task complete' }));
-// });
+var jsfolder = assets_folder + 'js/';
+var mainjs = jsfolder + 'script.js';
+var libjs = jsfolder + 'libs/*.js';
+var alljs = [libjs, mainjs];
 
-// // Concatenate & Minify JS
-// gulp.task('scripts', function() {
-//     return gulp.src(alljs)
-//         .pipe(concat('all.js'))
-//         .pipe(gulp.dest(jsfolder))
-//         .pipe(rename('all.min.js'))
-//         .pipe(uglify())
-//         .pipe(gulp.dest(jsfolder))
-//         .pipe(notify({ message: 'Scripts task complete' }));
-// });
-
-// // Watch Files For Changes
-// gulp.task('watch', function() {
-//     gulp.watch(mainjs, ['lint', 'scripts']);
-//     gulp.watch(scssfiles, ['styles']);
-// });
-
-// // Default Task
-// gulp.task('default', ['lint', 'scripts', 'watch']);
+var sassfolder = assets_folder + 'styles/';
+var sassfiles = sassfolder + '**/*.scss';
+var sassMain = sassfolder + 'style.scss';
 
 
-
-
-// Concatenate & Minify JS
-// gulp.task('scripts', function() {
-//     return gulp.src(alljs)
-//         .pipe(concat('all.js'))
-//         .pipe(gulp.dest(jsfolder))
-//         .pipe(rename('all.min.js'))
-//         .pipe(uglify())
-//         .pipe(gulp.dest(jsfolder))
-//         .pipe(notify({ message: 'Scripts task complete' }));
-// });
-
-// Watch Files For Changes
-// gulp.task('watch', function() {
-//     gulp.watch(mainjs, ['lint', 'scripts']);
-//     gulp.watch(scssfiles, ['styles']);
-// });
-
-// Default Task
-// gulp.task('default', ['lint', 'scripts', 'watch']);
-
-
-
-var gulp = require("gulp"),
-    sass = require('gulp-sass')(require('sass')),
-    postcss = require("gulp-postcss"),
-    autoprefixer = require("autoprefixer"),
-    cssnano = require("cssnano"),
-    rename = require("gulp-rename"),
-    sourcemaps = require("gulp-sourcemaps");
-    concat = require("gulp-concat");
-    uglify = require("gulp-uglify");
-    
-var paths = {
-    styles: {
-        src: "wp-content/themes/elsa.v2/_sass/**/*.scss",
-        dest: "wp-content/themes/elsa.v2/"
-    },
-    scripts: {
-        main: "wp-content/themes/elsa.v2/_js/src/script.js",
-        all: "wp-content/themes/elsa.v2/_js/src/**/*.js",
-        dest: "wp-content/themes/elsa.v2/_js/"
-    }
-};
-
-
-    
-function style() {
-    
-    return (
-        gulp
-            .src(paths.styles.src)
-            // Initialize sourcemaps before compilation starts
-            .pipe(sourcemaps.init())
-            .pipe(sass())
-            .on("error", sass.logError)
-            .pipe(postcss([autoprefixer()]))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest(paths.styles.dest))
-            .pipe(postcss([autoprefixer(), cssnano()]))
-            .pipe(rename("style.min.css"))
-            .pipe(gulp.dest(paths.styles.dest))
-    );
-    
+// task2 : compiler les fichiers dans le dossier scss => style.css
+function sassMainTask(){
+    const flags = {outputStyle: 'compressed'};
+    return src( sassMain )
+    .pipe(sourcemaps.init())
+    .pipe(sass(flags).on('error', sass.logError))
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(rename("./style.css"))
+    .pipe(dest(assets_folder));
 }
 
-function scripts() {
 
-    return (
-        gulp.src(paths.scripts.all)
-            .pipe(concat('all.js'))
-            .pipe(gulp.dest(paths.scripts.dest))
-            .pipe(rename('all.min.js'))
-            .pipe(uglify())
-            .pipe(gulp.dest(paths.scripts.dest))
-    );
+// task3.1
+const jsBundle = () =>
+  src(alljs)
+    .pipe(concat('all.js'))
+    .pipe(dest(assets_folder))
+    .pipe(rename('all.min.js'))
+    .pipe(uglify())
+    .pipe(dest(assets_folder));
+
+
+// task4 : mettre en série les tasks 1, 2 et 3
+// pas possible serie() dans une fonction, il FAUT l'associer à une variable 
+const run = series( sassMainTask, jsBundle ); 
+const runjs = series( jsBundle ); 
+const runcss = series( sassMainTask ); 
+
+
+// task5 : si modification dans le dossier scss , lancer la task4
+function watchCSS(){
+    watch(sassfiles, runcss);
+}
+// task6 : si modification dans le dossier JS , lancer la task4
+function watchJS(){
+    watch(alljs, runjs);
 }
 
-    
-function watch() {
-    style();
-    scripts();
-
-    gulp.watch(paths.styles.src, style);
-    gulp.watch(paths.scripts.main, scripts);
+function defaultTask() {
+    watchCSS();
+    watchJS();
 }
 
-    
-exports.watch = watch
 
+// Ensemble des tâches pouvant être appelée via la commande npx gulp 
+module.exports = {
+    sassmain : sassMainTask,
+    jsBundle : jsBundle,
+    run : run,
+    default : defaultTask,
+    watchcss : watchCSS,
+    watchjs : watchJS,
+  }
