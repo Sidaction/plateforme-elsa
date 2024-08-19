@@ -1,0 +1,74 @@
+
+
+.emploi-item {
+	border-bottom: 1px solid #ddd;
+
+	.item_content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.item_title {
+		width: 50%;
+		padding-right: 20px;
+	}
+
+	.item_organisation {
+		width: 15%;
+	}
+	.item_place {
+		width: 15%;
+	}
+	.item_action {
+		margin: 0;
+		font-size: 0.8em;
+		padding: .3em .5em;
+	}
+	.item_media img {
+		margin-right: 40px;
+		width: 80px;
+		height: 80px;
+		object-fit: contain;
+	}
+}
+
+
+// SINGLE
+
+.page_action {
+	margin-top: 100px;
+	font-size: .8em;
+
+	& > * {
+		margin-right: 20px;
+	}
+}
+
+.emploi_contrat {
+	margin-bottom: 15px;
+}
+
+.emploi_place {
+	margin-bottom: 15px;
+	p {
+		margin-bottom: 0;
+	}
+}
+
+.emploi_action {
+	margin-top: 40px;
+}
+
+.single-emploi {
+
+	.page_content {
+		padding-bottom: 0;
+	}
+
+	.page_practical_group {
+		font-size: 1.6rem;
+		line-height: 1.4;
+		font-weight: bold;
+	}
+}

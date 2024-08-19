@@ -1,0 +1,90 @@
+/* 
+ * templates/single
+ * 
+ * @package single
+ */
+
+
+
+
+
+  .page_sidebar {
+    // border-top : 3px solid $color_primary;
+    // padding-top: $base_line_height;
+
+    // @include up-to(medium) {
+    //   margin-top: - $base_line_height;
+    //   margin-bottom: $base_line_height * 2;
+    //   border-bottom : 3px solid $color_primary;
+    // }
+  }
+
+  .page_actions {
+    margin: $base_line_height * 2 0;
+
+    .btn-primary {
+      margin-right: $base_line_height * 2;
+    }
+  }
+
+  .page_title {
+
+    .wrap {
+      position: relative;
+    }
+
+  }
+
+
+/* 
+ * MEDIAS SINGLE
+ */
+
+  .media_title {
+    color: $white;
+    margin-bottom: $base_line_height;
+    background-color: $color_medias;
+    padding: $base_line_height;
+
+    .h1 {
+      padding: $base_line_height * 2 0;
+    }
+  }
+  .media_aside {
+    border: 1px solid $white;
+    color: $white;
+    padding: $base_line_height;
+
+    span {
+      font-weight: $semibold;
+    }
+  }
+
+
+.structure-aside {
+
+  @include up-to(medium) {
+   
+    .page_media {
+      margin-top: $base_line_height * 2;
+    }
+    .page_metas {
+      display: none;
+    }
+  }
+}
+
+.structure-metas--mobile {
+
+  @include up-to(medium) {
+    .page_metas {
+      display: block !important;
+    }
+  } 
+  
+  @include at-least(medium) {
+    display: none;
+  }
+}
+
+

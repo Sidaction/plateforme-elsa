@@ -1,0 +1,94 @@
+
+// Titles
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  font-weight: $semibold;
+}
+
+h1 {
+  @include type-setting(3);
+}
+
+h2 {
+  @include type-setting(3);
+}
+
+h3 {
+  @include type-setting(2);
+  font-weight: $semibold;
+  margin-bottom: calc($base_line_height / 2);
+  margin-top: $base_line_height;
+}
+
+h4 {
+  @include type-setting(3);
+}
+
+h5 {
+  @include type-setting(3);
+  margin-bottom: calc($base_line_height / 2);
+}
+
+h6 {
+  @include type-setting(3);
+}
+
+
+.h1 {
+  @include type-setting(5);
+  margin: 0;
+  font-weight: $semibold;
+
+  .page_content & {
+    color:$color_primary;
+    margin-bottom: $base_line_height * 2;
+  }
+}
+.h1_alt {
+  @include type-setting(6);
+  font-weight: $semibold;
+  margin-bottom: $base_line_height;
+
+  @include up-to(medium) {
+    font-size: 34px;
+    font-size: 3.4rem;
+    line-height: 34px;
+  }
+}
+
+.h2 {
+  @include type-setting(2);
+}
+.h2_alt {
+  @include type-setting(4);
+}
+
+.h3 {
+  @include type-setting(1);
+  margin: 0;
+}
+.h3_alt {
+  @include type-setting(4);
+  margin: 0;
+  font-weight: $thin;
+  text-align: right;
+}
+
+
+.h4 {
+  @include type-setting(3);
+  margin: 0;
+  font-weight: $thin;
+}
+
+.h5 {
+  @include type-setting(1);
+  margin: 0;
+}
+
+.h6 {
+  margin: 0;
+  @include type-setting(-1);
+}
+

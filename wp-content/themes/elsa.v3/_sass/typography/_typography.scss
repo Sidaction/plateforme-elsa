@@ -1,0 +1,128 @@
+/*
+ * Typography
+ *
+ * @package sasskit
+ */
+
+
+
+@import "fonts";
+
+
+
+// Base Sizes
+// ==========
+
+$base_font_size               : 15px !default;
+
+$base_line_half               : 10px;
+$base_line_height             : 21px !default;
+
+
+$type-scale: (
+  -2: 1.4rem,
+  -1: 1.5rem,
+  0: 1.6rem, // 
+  1: 1.8rem, // 
+  2: 2.2rem, //
+  3: 2.4rem, //
+  4: 3.2rem, //
+  5: 3.8rem, //
+  6: 6.4rem
+);
+
+$line-heights: (
+  -2: $base_line_height * 0.75,
+  -1: $base_line_height,
+  0: $base_line_height, 
+  1: $base_line_height, 
+  2: $base_line_height,
+  3: $base_line_height * 1.5,
+  4: $base_line_height * 1.5,
+  5: $base_line_height * 2,
+  6: $base_line_height * 2.5
+);
+
+
+@function type-scale($level) {
+  @return map-get($type-scale, $level);
+}
+
+@function line-height($level) {
+  @return map-get($line-heights, $level);
+}
+
+@mixin type-setting($level: 0) {
+  font-size: type-scale($level);
+  line-height: line-height($level);
+}
+
+@mixin fontsize($size: $base_font_size) {
+  font-size: #{$size}px;
+  font-size: ( get_rem($size) )rem;
+}
+
+
+
+/*
+ * TYPOGRAPHY VARIABLES SETTINGS
+ */
+
+// Google Font Families
+$worksans                       : 'Work Sans';
+
+// Default Fonts
+$font_family_sans               : Arial, Helvetica, sans-serif !default;
+$font_family_serif              : Georgia, Times New Roman, serif !default;
+$font_family_mono               : Menlo, Consolas, monospace !default;
+
+// Typo Attributions
+$font_family_paragraph          : $worksans, $font_family_sans;
+$font_family_title              : $worksans, $font_family_sans;
+$font_family_nav                : $worksans, $font_family_sans;
+$font_family_alt                : $worksans, $font_family_sans;
+$font_family_quote              : $worksans, $font_family_sans;
+$font_family_meta               : $worksans, $font_family_sans;
+
+
+// Set weights
+$bold              : 800;
+$semibold           : 600;
+$regular            : 400;
+$thin               : 300;
+
+
+/*
+ * Imports typo parts
+ */
+@import "copy";
+@import "heading";
+
+
+/*
+ * FOR RESPONSIVE FONT SIZE. 
+ * Adjust as you need.
+ */
+
+body {
+  font-family: $worksans;
+  @include type-setting(0);
+  line-height: 1.6;
+}
+
+html {
+  @include up-to(medium) {
+    font-size: 57.5%;
+  }
+  @include at-least(medium) {
+    font-size: 60%;
+  }
+  @include at-least(large) {
+    font-size: 62.5%;
+  }
+  @include at-least(wide) {
+    font-size: 65%;
+  }
+}
+
+

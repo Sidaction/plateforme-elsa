@@ -1,0 +1,58 @@
+
+
+
+.search_list {
+  padding: $base_line_height * 2 0;
+}
+
+.search_filters {
+  margin-bottom: $base_line_height;
+}
+
+.check-item {
+  float: left;
+  margin-right: $base_line_height * 3;
+  margin-bottom: calc($base_line_height / 2);
+ 
+  label {
+    @include type-setting(-1);
+    text-transform: uppercase;
+    color: $color_primary;
+    font-weight: $semibold;
+  }
+}
+
+
+
+.filter_group {
+  margin-bottom: $base_line_height;
+}
+  .filter_subgroup {
+    margin-bottom: calc($base_line_height / 2);
+  }
+
+    .filters_list {
+      @include type-setting(-1);
+      color: $gray;
+      display: inline;
+    }
+      .filters_list_item {
+        display: inline;
+        margin-right: calc($base_line_height / 2);
+
+        .icon-close {
+          font-size: 11px;
+          margin-right: calc($base_line_height / 4);
+        }
+
+      }
+
+      .filter-format {
+        [class^="icon-"], [class*="icon-"] {
+          font-size: 0.9em;
+          margin-left: 3px;
+        }
+      }
+
+
+

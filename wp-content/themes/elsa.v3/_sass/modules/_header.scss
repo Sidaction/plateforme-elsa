@@ -1,0 +1,89 @@
+/* 
+ * Header
+ * 
+ * @package sasskit
+ */
+
+
+.site-header {
+  padding: calc($base_line_height / 2) 0 $base_line_height 0;
+  background-color: $white;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  @include transition(all, 0.3s);
+
+  .site-resume {
+    @include type-setting(-1);
+  }
+
+  @include at-least(medium) {
+  
+    &.is-reduced {
+      padding: calc($base_line_height / 4) 0 0 0;
+      font-size: 0.9em; 
+
+      .site-logo {
+        width: 50px;
+      }
+      .site-resume {
+        display: none;
+      }
+    }
+  }
+
+  @include up-to(medium) {
+    position: static !important;
+    height: $base_line_height * 3;
+  }
+}
+
+  .site-branding {
+
+    @include up-to(medium) {
+      float: right !important;
+      width: 100%;
+      height: $base_line_height * 3;
+      padding-bottom: calc($base_line_height / 2);
+    }
+  }
+
+  .site-logo {
+    float: left;
+    margin-right: $base_line_height;
+      
+    @include up-to(medium) {
+      float: right;
+      margin-right: 0;
+      height: 100%;
+    }
+  }
+
+  .site-title {
+    
+    h1 {
+      @include type-setting(3);
+      margin: 0;
+    }
+
+    @include up-to(medium) {
+      display: none;
+    }
+  }
+
+
+  .subheader {
+
+    @include up-to(medium) {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      background-color: white;
+      opacity: 0.99;
+      z-index: 9999;
+      padding: calc($base_line_height / 2) 0 0 0;
+    }
+  }
+
+

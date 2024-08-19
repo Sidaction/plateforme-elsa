@@ -1,0 +1,143 @@
+/* 
+ * templates/home
+ * 
+ * @package elsa
+ */
+
+
+.featured-cover {
+    width: 100%;
+    height: 400px;
+
+    @include up-to(medium) {
+      height: 250px;
+    }
+}
+
+
+.featured-content {
+  background-color: $color_ressources;
+  color: $white;
+  margin-bottom: $base_line_height * 3;
+  padding-top: $base_line_height;
+  padding-bottom: $base_line_height;
+
+  .h2 {
+    margin-bottom: $base_line_height;
+  }
+  .wrap {
+    position: relative;
+  }
+  p {
+    font-weight: $thin;
+    margin-bottom: calc($base_line_height / 2);
+  }
+}
+  
+  .featured_name {
+    position: absolute;
+    display: inline-block;
+    top: - $base_line_height * 3;
+    left: 0;
+    padding: calc($base_line_height / 2) $base_line_height * 2;
+    background-color: $color_ressources;
+  }
+  .featured_intro {
+    padding-right: $base_line_height * 3;
+  }
+
+  .featured_actions {
+    margin-top: $base_line_height * 2;
+
+    .btn-primary {
+      margin-right: $base_line_height;
+    }
+  } 
+
+  .featured_btns  {
+    color: $color_primary;
+  }
+
+  .featured-asso,
+  .featured-pays {
+    color: $white;
+
+    a {
+      color: inherit;
+    }
+
+    @include up-to(medium) {
+      margin-top: $base_line_height * 2;
+    }
+  }
+  .home-grid {
+
+    @include at-least(medium) {
+      .group_title {
+        min-height: $bloc_height + $base_line_height * 3;
+      }
+    }
+  }
+
+
+.home_featured_vid {
+  margin: $base_line_height * 6 0 $base_line_height * 6 0;
+
+  .group_title {
+    background-color: $color_medias;
+
+    &:before {
+      background-color: $color_medias;
+    }
+  }
+  .bloc--media {
+    height: 300px;
+  }
+}
+.vid_container {
+  max-width: 750px;
+  margin: $base_line_height * 2 auto;
+
+  iframe {
+    height: 400px;
+    margin: 0;
+  }
+}
+.section_action {
+  .btn-primary {
+    margin: 0 20px 40px 20px;
+  }
+}
+
+
+.home_featured_docs {
+  margin: $base_line_height * 4 0 $base_line_height * 4 0;
+
+}
+.docs_container {
+  margin: $base_line_height * 2 auto;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  &.row {
+    flex-wrap: nowrap;
+    gap: unset;
+  }
+
+  @include up-to(medium) {
+    flex-direction: column;
+
+  }
+  .doc_item {
+    flex: 0 0 calc( calc(100% - 80px) / 3);
+    width: calc( calc(100% - 80px) / 3);
+
+    @include up-to(medium) {
+      flex: 0 0 100%;
+      width: 100%;    
+    }
+  }
+
+}

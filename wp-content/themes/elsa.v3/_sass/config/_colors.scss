@@ -1,0 +1,63 @@
+/* 
+ * Colors
+ * 
+ * @package sasskit
+ */
+
+
+
+// Color Scheme
+// examples based on the official Sass styleguide
+// =============
+
+// Descriptive colors (example)
+//$orange                       : rgb(255, 153, 0);
+$orange                       : rgb(247, 162, 19);
+//$rouge                        : rgb(193, 41, 46);
+$rouge                        : rgb(201, 18, 54);
+//$bleu                         : rgb(17, 75, 95);
+$bleu                         : rgb(25, 38, 55);
+//$vert                         : rgb(26, 159, 128);
+$vert                         : rgb(0, 171, 119);
+
+// Grey nuances
+$black                        : #000 !default;
+$gray_darker                  : rgb(26, 23, 20) !default;
+$gray_dark                    : #333 !default;
+$gray                         : #555 !default;
+$gray_light                   : #999 !default;
+$gray_lighter                 : rgb(241, 244, 245) !default;
+$white                        : #fff !default;
+
+// Main color palette
+$color_primary                : $bleu;
+$color_ressources             : $orange;
+$color_medias                 : $rouge;
+$color_metas                  : $vert;
+
+// Common colors
+$color_background             : $white;
+$color_text                   : $gray_darker;
+
+// Links
+$color_link                   : $color_primary;
+
+// Code
+$color_code                   : #333;
+$color_code_background        : #f3f3f3;
+$color_pre                    : #d4d4d4;
+$color_pre_background         : #333;
+
+// Selections
+$color_selection              : #b3d4fc;
+
+// Messages
+$color_message                : #f4ecbb;
+$color_success                : #2cde2c;
+$color_warning                : #cf8600;
+$color_important              : #d00;
+$color_notice                 : #66b;
+
+
+
+

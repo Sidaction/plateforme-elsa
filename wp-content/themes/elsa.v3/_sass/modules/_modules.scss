@@ -1,0 +1,109 @@
+/* 
+ * Set up general & particulars modules : headers, contents, footers
+ * 
+ * @package sasskit
+ *
+ */
+
+
+
+@import "header";
+@import "footer";
+@import "modals";
+@import "readitlater";
+
+
+
+.blocs_group {
+  background-color: $gray_lighter;
+  padding: $base_line_height 0;
+  margin-bottom: 0;
+}
+  .group_title {
+    position: relative;
+    display: inline-block;
+    background-color: $color_primary;
+    color: $white;
+    padding: $base_line_height * 3 $base_line_height;
+    margin-top: - $base_line_height * 3;
+    margin-bottom: $base_line_height;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -500px;
+      background-color: $color_primary;
+      top: 0;
+      bottom: 0;
+      width: 500px;
+    }
+    a {
+      color: inherit;
+    }
+
+    @include up-to(medium) {
+      margin-bottom: $base_line_height * 2;
+      width: 70%;
+    }
+  }
+    .group_title--small {
+      @extend .group_title;
+      padding: $base_line_height;
+    }
+      .group_title_actions {
+        text-align: right;
+        font-size: 0.9em;
+
+        .h3_alt + & {
+          margin-top: $base_line_height * 2;         
+        }
+
+        ul {
+          margin-bottom: 0;
+        }
+        
+        li:not(:last-child) {
+          margin-bottom: calc($base_line_height / 2);
+        }
+      }
+
+
+  .group_bloc {
+    background-color: $color_primary;
+    color: $white;
+    margin-bottom: $base_line_height;
+    padding: $base_line_height;
+  }
+  .group_intro {
+    margin-bottom: $base_line_height * 2
+  }
+  .group_action {
+    text-align: center;
+    margin-top: $base_line_height * 2;
+
+    @include up-to(medium) {
+    }
+  }
+
+
+.blocs_group--rebonds {
+  @extend .blocs_group;
+  margin-top: $base_line_height * 5;
+
+  .group_title {
+    margin-top: - $base_line_height * 2;
+
+    @include at-least(medium) {
+      min-height: $bloc_height + $base_line_height * 2;
+    }
+  }
+}
+
+
+
+
+.share_links {
+  a {
+    margin-left: calc($base_line_height / 2);
+  }
+}
