@@ -1,0 +1,111 @@
+/*--------------------------------------------------------------
+Weights
+--------------------------------------------------------------*/
+
+$font-extralight: 200;
+$font-light: 300;
+$font-regular: 400;
+$font-semibold: 600;
+$font-bold: 700;
+$font-black: 900;
+
+/*--------------------------------------------------------------
+Font face
+--------------------------------------------------------------*/
+
+@font-face {
+    font-family: 'Jarkata';
+    src: url('fonts/jakarta/PlusJakartaSans-ExtraLight.woff2') format('woff2'),
+         url('fonts/jakarta/PlusJakartaSans-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Jarkata';
+    src: url('fonts/jakarta/PlusJakartaSans-Regular.woff2') format('woff2'),
+         url('fonts/jakarta/PlusJakartaSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Jarkata';
+    src: url('fonts/jakarta/PlusJakartaSans-SemiBold.woff2') format('woff2'),
+         url('fonts/jakarta/PlusJakartaSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Jarkata';
+    src: url('fonts/jakarta/PlusJakartaSans-Bold.woff2') format('woff2'),
+         url('fonts/jakarta/PlusJakartaSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gravity';
+    src: url('fonts/ABCGravityVariable.woff2') format('woff2'),
+         url('fonts/ABCGravityVariable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+/*--------------------------------------------------------------
+Headings
+--------------------------------------------------------------*/
+
+h1, h2, h3 {
+    font-family: "Gravity", sans-serif;
+    color: var(--primary-color);
+}
+
+h1, .h1 {
+    font-size: 96px;
+    @include max(medium) {
+        font-size: 64px;
+    }
+}
+
+h2, .h2 {
+    font-size: 80px;
+    font-weight: $font-black;
+    @include max(medium) {
+        font-size: 64px;
+    }
+}
+
+h3, .h3 {
+    font-size: 40px;
+    font-weight: $font-black;
+    @include max(medium) {
+        font-size: 30px;
+    }
+}
+
+h4, .h4 {
+    font-size: 20px;
+}
+
+
+/*--------------------------------------------------------------
+Others
+--------------------------------------------------------------*/
+
+p {
+    font-size: 18px;
+    &.big {
+        font-size: 24px;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.menu {
+    white-space: nowrap;
+}

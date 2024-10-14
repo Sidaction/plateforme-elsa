@@ -1,0 +1,49 @@
+@import 'colors';
+@import 'mixins';
+@import 'layout';
+@import 'typography';
+@import 'generic';
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Jarkata';
+    background-color: $white;
+    color: $black;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+svg {
+    stroke: var(--font-color);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+}

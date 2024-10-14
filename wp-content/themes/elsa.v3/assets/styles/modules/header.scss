@@ -1,0 +1,72 @@
+.site-header {
+    margin-bottom: 100px;
+    padding: 16px 0;
+
+    .left {
+        
+        .site-logo {
+            width: 80px;
+        }
+    
+        .site-title {
+            font-size: 20px;
+            font-family: "Jarkata", sans-serif;
+            font-weight: 200;
+            margin-bottom: 15px;
+        }
+
+    }
+
+    .right {
+
+        .menu-item {
+            font-size: 12px;
+            font-weight: $font-extralight;
+            text-transform: uppercase;
+        }
+
+        .search-form {
+            position: relative;
+            margin-top: 20px;
+            width: 350px;
+
+            &__input {
+                border: 1px solid $primary-color;
+                padding: 15px 60px 15px 30px;
+                border-radius: 50px;
+                font-size: 12px;
+                font-weight: 600;
+                width: 100%;
+
+                &::placeholder {
+                    color: $primary-color;
+                    opacity: 0.5;
+                    font-size: 12px;
+                    text-transform: uppercase;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+            &__button {
+                position: absolute;
+                background-color: $primary-color;
+                border-radius: 50%;
+                aspect-ratio: 1;
+                right: 5px;
+                top: 5px;
+                bottom: 5px;
+            }
+        }
+    }
+
+    .menu-item a {
+        white-space: nowrap;
+    }
+    .menu-item {
+        &:nth-child(n+4) {
+            display: none;
+        }
+    }
+}
