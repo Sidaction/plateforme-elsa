@@ -1,6 +1,11 @@
 .site-header {
-    margin-bottom: 100px;
     padding: 16px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: $white;
 
     .left {
         
@@ -15,14 +20,16 @@
             margin-bottom: 15px;
         }
 
+        .menu-item {
+            @include menu-item;
+        }
+
     }
 
     .right {
 
         .menu-item {
-            font-size: 12px;
-            font-weight: $font-extralight;
-            text-transform: uppercase;
+            @include menu-item2;
         }
 
         .search-form {
@@ -61,9 +68,7 @@
         }
     }
 
-    .menu-item a {
-        white-space: nowrap;
-    }
+
     .menu-item {
         &:nth-child(n+4) {
             display: none;

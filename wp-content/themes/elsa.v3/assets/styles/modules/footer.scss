@@ -1,0 +1,35 @@
+.site-footer {
+    padding: 16px 0;
+    background-color: $black;
+    margin-top: 100px;
+    padding: 80px 0;
+    color: $white;
+
+    .bottom {
+        margin-top: 60px;
+
+        .site-logo {
+            width: 150px;
+        }
+    
+        .slide-out-div {
+            display: none;
+        }
+    
+        .footer-menu {
+            margin-right: 100px;
+            .menu-item {
+                margin-bottom: 10px;
+                @include menu-item;
+            }
+        }
+    
+        #bottom-menu {
+            margin-top: 50px;
+            .menu-item {
+                margin-bottom: 20px;
+                @include menu-item2;
+            }
+        }
+    }
+}
