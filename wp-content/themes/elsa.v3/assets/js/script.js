@@ -1,17 +1,25 @@
 
 
+// https://www.smashingmagazine.com/2018/02/jquery-vue-javascript/
+// https://fr.vuejs.org/guide/quick-start.html
+// https://css-tricks.com/how-to-build-vue-components-in-a-wordpress-theme/#lets-do-this
 
-//this is a vue instance
-new Vue({
-  //this targets the div id app
-  el: '#app',
-  data: {
-    name: '' //this stores data values for ‘name’
+
+const { createApp, ref } = Vue
+
+createApp({
+  setup() {
+    const message = ref('Hello Vue!')
+    return {
+      message
+    }
   }
-})
+}).mount('#app')
 
 
 
+
+ 
 
 
 jQuery(document).ready(function($){
@@ -716,6 +724,10 @@ function submitAdvancedSearch(){
 
   $("#rechRess").submit();
 }
+
+
+
+
 
 
 });

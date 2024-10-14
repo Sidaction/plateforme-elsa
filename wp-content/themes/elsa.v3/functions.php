@@ -295,12 +295,11 @@ if (!is_admin()) add_action( 'init', 'remove_from_init', 10 );
 
 function my_custom_scripts() {
     wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/assets/style.css' );
-    wp_register_script( 'elsa-scripts', get_stylesheet_directory_uri() . '/assets/all.min.js', array( 'jquery' ), '1.0.0', true );
-    wp_register_script( 'vuejs', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js', array( ), '', true );
-    
+
+    wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
+    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', 'vue', null, true);
 
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
-    wp_enqueue_script( 'elsa-scripts' );
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_scripts', 100 );
 

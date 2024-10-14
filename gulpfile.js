@@ -39,9 +39,9 @@ function sassMainTask(){
 // task3.1
 const jsBundle = () =>
   src(alljs)
-    .pipe(concat('all.js'))
+    .pipe(concat('main.js'))
     .pipe(dest(assets_folder))
-    .pipe(rename('all.min.js'))
+    .pipe(rename('main.min.js'))
     .pipe(uglify())
     .pipe(dest(assets_folder));
 

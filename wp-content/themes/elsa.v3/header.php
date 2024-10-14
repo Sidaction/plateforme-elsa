@@ -10,7 +10,7 @@
 
 
 
-    <script src="<?php echo get_bloginfo('stylesheet_directory');?>/_js/tarteaucitron/tarteaucitron.js"></script>
+    <script src="<?php echo get_bloginfo('stylesheet_directory');?>/assets/js/tarteaucitron/tarteaucitron.js"></script>
 
         <script>
         tarteaucitron.init({
@@ -123,12 +123,6 @@
                         <button class="main_search_btn main_nav_item"><span class="icon-loupe"></span></button>
                         <li class="main_nav_item search-all"><span> ı </span><a href="/recherche-documentaire">Tout voir</a></li>
                 </form>  
-
-                <div id="app">
-                    <label for="name">Name:</label>
-                    <input id="name" type="text" v-model="name" /> <!--v-model is doing the magic here-->
-                    <p>{{ name }}</p>
-                </div>
 
             </section>
     
