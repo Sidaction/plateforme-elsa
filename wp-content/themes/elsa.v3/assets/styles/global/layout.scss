@@ -32,7 +32,7 @@ Grid
 
 @mixin parse-columns($suffix: ''){ 
     @for $i from 1 through 12 {
-        .#{$suffix}_#{$i}column {
+        .#{$suffix}-#{$i}col {
             grid-column: span #{$i};
         }
     }

@@ -30,10 +30,40 @@ set_query_var( 'cnSite', $cnSite );
 ?>
 
 
-<main id="site-content" class="site-content template-home">
+<main id="home-page">
+
+
+    <section class="sec_hero">
+
+        <img class="cover" src="<?= $cover ?>" alt="site cover">
+            
+        <div class="grid gap-xl center-y wrapper">
+            <div class="left s-8col">
+                <span class="zoom p big">Zoom sur</span>
+                <!-- <h2 class="h2"><?php the_field('zoom_titre'); ?></h2> -->
+                <div class="featured_intro"><?php the_field('zoom_texte'); ?></div>
+            </div>
+            <div class="s-4col">
+                <?php 
+                    $link = get_field('zoom_thematique_link');
+                    
+                    if( $link ) : 
+                        $zoom_thematique_link = $link['url'];
+                    else : 
+                        $zoom_thematique_link = "/category/" . $zoom_thematique->slug;
+                    endif; 
+                ?>
+                <a href="/recherche-documentaire/?totalcat=<?php echo $zoom_thematique->slug; ?>" class="btn btn--secondary">Les ressources de la thématique</a>
+                <a class="btn" href="<?php echo $zoom_thematique_link; ?>">En savoir plus</a>
+            </div>
+
+        </div>
+        
+    </section>
+
 
     
-    <div id="" class="home-featured">
+    <!-- <div id="" class="home-featured">
         <div class="featured-cover bg_cover" style="background-image:url(<?php echo $cover; ?>);">
 
         </div>
@@ -120,14 +150,13 @@ set_query_var( 'cnSite', $cnSite );
                        <?php endif; ?>
                     </div>
                 </div>
-            </div><!-- .wrap -->   
+            </div>  
 
         </div>
-    </div><!-- .home-featured -->
-    
+    </div> -->
     
 
-    <?php if( get_field('video_title') != '') : ?>
+    <!-- <?php if( get_field('video_title') != '') : ?>
 
         <section class="home_featured_vid m-clearfix blocs_group">
             <div class="wrap row">
@@ -169,7 +198,7 @@ set_query_var( 'cnSite', $cnSite );
             </div>
         </section>
 
-    <?php endif; ?>
+    <?php endif; ?> -->
 
 
 

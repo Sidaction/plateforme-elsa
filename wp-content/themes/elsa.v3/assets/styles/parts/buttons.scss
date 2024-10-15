@@ -1,0 +1,31 @@
+.btn {
+    display: inline-block;
+    padding: 20px 30px;
+    border: 1px solid $primary-color;
+    border-radius: 100px;
+    background-color: $primary-color;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: $font-semibold;
+    color: $white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+    
+    &:hover {
+        background-color: transparent;
+        color: $primary-color;
+    }
+    &:active {
+        transform: scale(0.97);
+    }
+
+    &--secondary {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+        &:hover {
+            color: $secondary-color;
+        }
+    }
+}

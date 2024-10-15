@@ -11,8 +11,9 @@
 
 /***** Flex *****/
 
-.flex { 
-    display: flex;
+.flex { display: flex }
+
+.flex, .grid {
 
     &.space     { justify-content: space-between }
     &.center    { justify-content: center; align-items: center }

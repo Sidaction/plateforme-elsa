@@ -94,8 +94,10 @@ h4, .h4 {
 Others
 --------------------------------------------------------------*/
 
-p {
+p, .p {
     font-size: 18px;
+    font-weight: $font-extralight;
+    line-height: 32px;
     &.big {
         font-size: 24px;
     }
