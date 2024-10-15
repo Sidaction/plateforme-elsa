@@ -13,6 +13,8 @@ $font-black: 900;
 Font face
 --------------------------------------------------------------*/
 
+/* Jakarta */
+
 @font-face {
     font-family: 'Jarkata';
     src: url('fonts/jakarta/PlusJakartaSans-ExtraLight.woff2') format('woff2'),
@@ -45,25 +47,39 @@ Font face
     font-style: normal;
 }
 
+/* Gravity */
+
 @font-face {
     font-family: 'Gravity';
-    src: url('fonts/ABCGravityVariable.woff2') format('woff2'),
-         url('fonts/ABCGravityVariable.ttf') format('truetype');
+    src: url('fonts/gravity/ABCGravityVariable.woff2') format('woff2'),
+         url('fonts/gravity/ABCGravityVariable.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
 }
+
+// @font-face {
+//     font-family: 'Gravity';
+//     src: url('fonts/gravity/ABCGravity-XCompressed.woff2') format('woff2'),
+//          url('fonts/gravity/ABCGravity-XCompressed.ttf') format('truetype');
+//     font-weight: 100 900;
+//     font-style: normal;
+// }
 
 /*--------------------------------------------------------------
 Headings
 --------------------------------------------------------------*/
 
-h1, h2, h3 {
+h1, .h1, h2, .h2, h3, .h3 {
     font-family: "Gravity", sans-serif;
+    font-variation-settings: "wght" 900, "wdth" 60;
     color: var(--primary-color);
+    text-transform: uppercase;
 }
 
 h1, .h1 {
     font-size: 96px;
+    letter-spacing: 1.68px;
+    line-height: 80px;
     @include max(medium) {
         font-size: 64px;
     }
@@ -72,6 +88,7 @@ h1, .h1 {
 h2, .h2 {
     font-size: 80px;
     font-weight: $font-black;
+    line-height: 62px;
     @include max(medium) {
         font-size: 64px;
     }
@@ -79,7 +96,7 @@ h2, .h2 {
 
 h3, .h3 {
     font-size: 40px;
-    font-weight: $font-black;
+    // font-weight: $font-black;
     @include max(medium) {
         font-size: 30px;
     }
@@ -98,6 +115,11 @@ p, .p {
     font-size: 18px;
     font-weight: $font-extralight;
     line-height: 32px;
+    
+    &.small {
+        font-size: 14px;
+    }
+
     &.big {
         font-size: 24px;
     }
