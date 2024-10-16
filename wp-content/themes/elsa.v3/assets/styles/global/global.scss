@@ -22,7 +22,7 @@ body {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-    // margin-top: 120px;
+    margin-top: 120px;
 }
 
 main {
@@ -47,4 +47,68 @@ img {
 
 ul {
     list-style: none;
+}
+
+// FORMS
+
+input[type="text"], input[type="search"] , .input {
+    border: 1px solid $primary-color;
+    padding: 15px 60px 15px 30px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 100%;
+    background-color: transparent;
+
+    &::placeholder {
+        color: $primary-color;
+        opacity: 0.5;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &.select {
+        appearance: none;
+        text-transform: uppercase;
+        padding-right: 40px;
+
+        &~svg {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+}
+
+input[type="checkbox"] {
+    appearance: none;
+
+    &:checked ~ label {
+        background-color: $secondary-color;
+        color: $white;
+        font-weight: $font-semibold;
+    }
+
+    & ~ label {
+        padding: 3px 8px;
+        cursor: pointer;
+        user-select: none;
+        @include menu-item2;
+    }
+}
+
+button[type="submit"] {
+    position: absolute;
+    background-color: $primary-color;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    right: 5px;
+    top: 5px;
+    bottom: 5px;
 }

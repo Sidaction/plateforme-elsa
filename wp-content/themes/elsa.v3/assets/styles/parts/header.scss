@@ -37,35 +37,6 @@
             position: relative;
             margin-top: 20px;
             width: 350px;
-
-            &__input {
-                border: 1px solid $primary-color;
-                padding: 15px 60px 15px 30px;
-                border-radius: 50px;
-                font-size: 12px;
-                font-weight: 600;
-                width: 100%;
-
-                &::placeholder {
-                    color: $primary-color;
-                    opacity: 0.5;
-                    font-size: 12px;
-                    text-transform: uppercase;
-                }
-
-                &:focus {
-                    outline: none;
-                }
-            }
-            &__button {
-                position: absolute;
-                background-color: $primary-color;
-                border-radius: 50%;
-                aspect-ratio: 1;
-                right: 5px;
-                top: 5px;
-                bottom: 5px;
-            }
         }
     }
 

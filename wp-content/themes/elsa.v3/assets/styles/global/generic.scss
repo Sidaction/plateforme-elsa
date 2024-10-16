@@ -36,6 +36,16 @@
 .gap-xl  { gap: var(--space-xl) }
 .gap-xxl { gap: var(--space-xxl) }
 
+/***** Margin *****/
+
+.mb-xxs { margin-bottom: var(--space-xxs) }
+.mb-xs  { margin-bottom: var(--space-xs) }
+.mb-s   { margin-bottom: var(--space-s) }
+.mb-m   { margin-bottom: var(--space-m) }
+.mb-l   { margin-bottom: var(--space-l) }
+.mb-xl  { margin-bottom: var(--space-xl) }
+.mb-xxl { margin-bottom: var(--space-xxl) }
+
 /***** Position *****/
 
 .is-relative { position: relative }

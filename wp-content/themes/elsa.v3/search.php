@@ -192,6 +192,163 @@ if(strpos($keyword, "\'")) {
 
 ?>
 
+<main id="search-page">
+
+    <section class="sec_search"style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
+        <div class="wrapper">
+            
+            <div class="grid mb-l">
+                <div class="s-8col">
+                    <h2 class="h2 mb-s">Votre recherche</h2>
+                    <p>Vous avez <?php echo $wp_query->found_posts;?> résultats...</p>
+                </div>
+                <div class="help s-4col" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search-help.png);">
+              
+                    <h4 class="help__title h4">Aide</h4>
+
+                    <ul class="help__links">
+                        <li><a href="aide-a-la-recherche" class="js-popin btn-inline">Que chercher ? Comment chercher ?</a></li>
+                        <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats en format Excel</a></li>
+                        <li><a href="../extract-word" class="btn-inline">Télécharger la liste des résultats en format Word</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="mb-m">
+                <h4 class="h4 mb-l">Affiner votre recherche</h4>
+
+                <form id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+            
+                    <div id="filtres" class="search-options">
+                        <div class="search-form is-relative mb-s">
+                            <input type="search" class="input" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
+                            <button class="search-form__button" type="submit">
+                                <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.8319 0.726425L20.3651 6.21277L20.4113 6.2557C20.5965 6.43929 20.7042 6.68141 20.7202 6.96748L20.7193 7.06365C20.7059 7.29026 20.6193 7.50674 20.4486 7.70073L20.384 7.76738L14.8319 13.2736C14.4213 13.6807 13.7574 13.6807 13.3468 13.2736C12.9337 12.864 12.9337 12.198 13.3467 11.7885L17.1804 7.98627L1.77257 7.98665C1.19235 7.98665 0.720215 7.51846 0.720215 6.9387C0.720215 6.35894 1.19236 5.89075 1.77256 5.89075L17.0566 5.89038L13.3468 2.21157C12.9337 1.80197 12.9337 1.13603 13.3468 0.726425C13.7574 0.31926 14.4213 0.31926 14.8319 0.726425Z" fill="white"/>
+                                </svg>
+                            </button>
+                        </div>
+                    
+                        <div class="flex gap-m">
+                            <div class="is-relative">
+                                <?php cnLib::custom_taxonomy_dropdown('category','input select','Thématique','','',false);?>
+                                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
+                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
+                                </svg>
+                            </div>
+                            
+                            <div class="is-relative">
+                                <select class="input select" name="period" id="period">
+                                    <option value="debut">Depuis le début</option>
+                                    <option value="1semaine">Moins d'une semaine</option>
+                                    <option value="1mois">Moins d'un mois</option>
+                                    <option value="3mois">Moins de 3 mois</option>
+                                    <option value="6mois">Moins de 6 mois</option>
+                                    <option value="1an">Moins d'un an</option>
+                                </select>
+                                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
+                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
+                                </svg>
+                            </div>
+
+                            <div class="is-relative">
+                                <?php cnLib::custom_taxonomies_dropdown("region, pays_assoc", "input select", "Pays",'','',false,'','pays_assoc',array(351,131,161,126,278)); ?>
+                                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
+                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- 
+
+                        <div class="row filter_group">
+                            <div class="filter-format">
+                                <div class="check-item"><input type="checkbox" <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
+                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'pdf') !== false) { echo 'checked'; } ?> class="s_checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
+                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'video') !== false) { echo 'checked'; } ?> class="s_checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
+                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'audio') !== false) { echo 'checked'; } ?> class="s_checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
+                                <div class="check-item"><input type="checkbox" <?php if ( isset($_GET['outils']) && $_GET['outils'] === '1') { echo 'checked'; } ?> class="s_checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils <span class="icon-boite"></span></label></div>
+                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'lien') !== false) { echo 'checked'; } ?> class="s_checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
+                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'diapo') !== false) { echo 'checked'; } ?> class="s_checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
+                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'img') !== false) { echo 'checked'; } ?> class="s_checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
+                            </div>
+                        </div>
+                    
+                        <input type="hidden" name="totalcat" value="<?php echo $args['category_name'];?>" />
+                        <input type="hidden" name="totalpays" value="<?php echo $args['pays_assoc'];?>" />
+                        <input type="hidden" name="totalregions" value="<?php echo $args['region'];?>" />
+                        <input type="hidden" name="boites" value="<?php echo $args['boiteoutils'];?>" />
+
+                        <input type="hidden" name="struct" value="<?php if(isset($structure_id)) { echo $structure_id; } ?>" />
+                        <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
+
+
+                        <div class="row">
+
+                            <div id="advancedSearch" class="filter_group m-4col m-clearfix">
+
+                            <div class="clearfix filter_subgroup">
+                                <ul id="listThemes" class="filters_list no-bullets">
+                                </ul>
+                            </div>
+
+                            <div class="clearfix filter_subgroup">
+                                <ul id="listRegions" class="filters_list no-bullets">
+                                </ul>
+                            </div>
+
+                            </div>
+
+                            <div class="m-2col search_submit">
+                                <input type="submit" id="formatbtn" class="btn-primary plain" value="Filtrer">
+                                <a id="btnerase" class="btn-secondary plain" href="#">Effacer tous les critères</a>
+                            </div>
+
+                        </div> -->
+                    
+                    </div>
+                </form>
+            </div>
+
+            <div class="mb-l">
+                <div class="flex">
+                    <div class="checkbox">
+                        <input type="checkbox" <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> 
+                        <label for="tous">Tous</label>
+                    </div>
+                    <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'pdf') !== false) { echo 'checked'; } ?> class="s_checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
+                    <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'video') !== false) { echo 'checked'; } ?> class="s_checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
+                    <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'audio') !== false) { echo 'checked'; } ?> class="s_checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
+                    <div class="check-item"><input type="checkbox" <?php if ( isset($_GET['outils']) && $_GET['outils'] === '1') { echo 'checked'; } ?> class="s_checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils <span class="icon-boite"></span></label></div>
+                    <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'lien') !== false) { echo 'checked'; } ?> class="s_checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
+                    <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'diapo') !== false) { echo 'checked'; } ?> class="s_checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
+                    <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'img') !== false) { echo 'checked'; } ?> class="s_checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
+                </div>
+                  
+                <input type="hidden" name="totalcat" value="<?php echo $args['category_name'];?>" />
+                <input type="hidden" name="totalpays" value="<?php echo $args['pays_assoc'];?>" />
+                <input type="hidden" name="totalregions" value="<?php echo $args['region'];?>" />
+                <input type="hidden" name="boites" value="<?php echo $args['boiteoutils'];?>" />
+
+                <input type="hidden" name="struct" value="<?php if(isset($structure_id)) { echo $structure_id; } ?>" />
+                <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
+            </div>
+
+            <div class="flex gap-m">
+                <a id="btnerase" class="btn btn--secondary" href="#">Effacer tous les critères</a>
+                <input type="submit" id="formatbtn" class="btn" value="Filtrer">
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+
   <section id="site-content" class="site-content search-results">
 
 

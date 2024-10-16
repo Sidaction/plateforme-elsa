@@ -165,7 +165,7 @@
             <form id="" action="/recherche-documentaire/" class="search-form">   
                 <input type="text" id="main_search" class="search-form__input" placeholder="Rechercher un terme" name="totaltags" value=""/>
 
-                <button class="search-form__button">
+                <button class="search-form__button" type="submit">
                     <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.8319 0.726425L20.3651 6.21277L20.4113 6.2557C20.5965 6.43929 20.7042 6.68141 20.7202 6.96748L20.7193 7.06365C20.7059 7.29026 20.6193 7.50674 20.4486 7.70073L20.384 7.76738L14.8319 13.2736C14.4213 13.6807 13.7574 13.6807 13.3468 13.2736C12.9337 12.864 12.9337 12.198 13.3467 11.7885L17.1804 7.98627L1.77257 7.98665C1.19235 7.98665 0.720215 7.51846 0.720215 6.9387C0.720215 6.35894 1.19236 5.89075 1.77256 5.89075L17.0566 5.89038L13.3468 2.21157C12.9337 1.80197 12.9337 1.13603 13.3468 0.726425C13.7574 0.31926 14.4213 0.31926 14.8319 0.726425Z" fill="white"/>
                     </svg>

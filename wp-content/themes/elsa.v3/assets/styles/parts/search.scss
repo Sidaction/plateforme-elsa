@@ -1,0 +1,40 @@
+/*------------------------------------*\
+    SEARCH
+\*------------------------------------*/
+
+.sec_search {
+    padding: 70px 0;
+    margin-bottom: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .help {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        padding: 16px;
+        color: $white;
+        text-align: right;
+        font-size: 12px;
+
+        &__title {
+            margin-bottom: 20px;
+        }
+
+        &__links > li {
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+    }
+
+    .search-options {
+        width: 60%;
+    }
+
+    .input {
+        &::placeholder {
+            color: $black;
+        }
+    }
+
+}
