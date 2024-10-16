@@ -48,94 +48,94 @@ function register_custompost() {
         'taxonomies'          => array( 'category' )
     );
 
-    register_post_type('emploi', $args);
+    //register_post_type('emploi', $args);
 
-    register_taxonomy(
-      'emploi_lieu', array('emploi'), 
-      array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => false,
-        'labels' => array(
-            'name' => _x('Lieu de l\'offre d\'emploi (Pays / A distance)', 'taxonomy general name'),
-            'singular_name' => _x('Lieu de l\'offre d\'emploi (Pays / A distance)', 'taxonomy singular name'),
-        )
-      )
-    );
+    // register_taxonomy(
+    //   'emploi_lieu', array('emploi'), 
+    //   array(
+    //     'public' => true,
+    //     'show_admin_column' => true,
+    //     'hierarchical' => false,
+    //     'labels' => array(
+    //         'name' => _x('Lieu de l\'offre d\'emploi (Pays / A distance)', 'taxonomy general name'),
+    //         'singular_name' => _x('Lieu de l\'offre d\'emploi (Pays / A distance)', 'taxonomy singular name'),
+    //     )
+    //   )
+    // );
 
-    register_taxonomy(
-      'emploi_contrat', array('emploi'), 
-      array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => false,
-        'labels' => array(
-            'name' => _x('Type de contrat', 'taxonomy general name'),
-            'singular_name' => _x('Type de contrat', 'taxonomy singular name'),
-        )
-      )
-    );
+    // register_taxonomy(
+    //   'emploi_contrat', array('emploi'), 
+    //   array(
+    //     'public' => true,
+    //     'show_admin_column' => true,
+    //     'hierarchical' => false,
+    //     'labels' => array(
+    //         'name' => _x('Type de contrat', 'taxonomy general name'),
+    //         'singular_name' => _x('Type de contrat', 'taxonomy singular name'),
+    //     )
+    //   )
+    // );
 
-    register_taxonomy(
-      'emploi_domaine', array('emploi'), 
-      array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => false,
-        'labels' => array(
-            'name' => _x('Domaine emploi', 'taxonomy general name'),
-            'singular_name' => _x('Domaine emploi', 'taxonomy singular name'),
-        )
-      )
-    );
+    // register_taxonomy(
+    //   'emploi_domaine', array('emploi'), 
+    //   array(
+    //     'public' => true,
+    //     'show_admin_column' => true,
+    //     'hierarchical' => false,
+    //     'labels' => array(
+    //         'name' => _x('Domaine emploi', 'taxonomy general name'),
+    //         'singular_name' => _x('Domaine emploi', 'taxonomy singular name'),
+    //     )
+    //   )
+    // );
 
 
 
 
     // EVENT POST TYPE & TAXONOMIES
-    $args = array(
-        'labels' => array(
-            'name' => _x('Événement', 'taxonomy general name'),
-            'singular_name' => _x('Événement', 'taxonomy singular name'),
-            'add_new_item' => __('Ajouter un événement'),
-            'edit_item' => __('Editer l\'évenement'),
-        ),
-        'public' => true,
-        'show_ui' => true,
-        'query_var' => 'evenement',
-        'has_archive' => true,
-        'menu_icon' => '',
-        'supports' => array('title', 'editor', 'thumbnail', 'author'),
-        'taxonomies'          => array( 'category' )
-    );
+    // $args = array(
+    //     'labels' => array(
+    //         'name' => _x('Événement', 'taxonomy general name'),
+    //         'singular_name' => _x('Événement', 'taxonomy singular name'),
+    //         'add_new_item' => __('Ajouter un événement'),
+    //         'edit_item' => __('Editer l\'évenement'),
+    //     ),
+    //     'public' => true,
+    //     'show_ui' => true,
+    //     'query_var' => 'evenement',
+    //     'has_archive' => true,
+    //     'menu_icon' => '',
+    //     'supports' => array('title', 'editor', 'thumbnail', 'author'),
+    //     'taxonomies'          => array( 'category' )
+    // );
 
-    register_post_type('evenement', $args);
+    // register_post_type('evenement', $args);
 
-    register_taxonomy(
-      'evenement_lieu', array('evenement'), 
-      array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => true,
-        'labels' => array(
-            'name' => _x('Pays de l\'évenement', 'taxonomy general name'),
-            'singular_name' => _x('Pays de l\'évenement', 'taxonomy singular name'),
-        )
-      )
-    );  
+    // register_taxonomy(
+    //   'evenement_lieu', array('evenement'), 
+    //   array(
+    //     'public' => true,
+    //     'show_admin_column' => true,
+    //     'hierarchical' => true,
+    //     'labels' => array(
+    //         'name' => _x('Pays de l\'évenement', 'taxonomy general name'),
+    //         'singular_name' => _x('Pays de l\'évenement', 'taxonomy singular name'),
+    //     )
+    //   )
+    // );  
 
-    register_taxonomy(
-      'evenement_type', array('evenement'), 
-      array(
-        'public' => true,
-        'show_admin_column' => true,
-        'hierarchical' => true,
-        'labels' => array(
-            'name' => _x('Type d\'évenement', 'taxonomy general name'),
-            'singular_name' => _x('Type d\'évenement', 'taxonomy singular name'),
-        )
-      )
-    );  
+    // register_taxonomy(
+    //   'evenement_type', array('evenement'), 
+    //   array(
+    //     'public' => true,
+    //     'show_admin_column' => true,
+    //     'hierarchical' => true,
+    //     'labels' => array(
+    //         'name' => _x('Type d\'évenement', 'taxonomy general name'),
+    //         'singular_name' => _x('Type d\'évenement', 'taxonomy singular name'),
+    //     )
+    //   )
+    // );  
 
 
 
