@@ -11,7 +11,7 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color .3s linear, border-color .3s linear, color .3s linear;
+    transition: background-color .3s linear, border-color .3s linear, color .3s linear, transform .1s linear;
     
     &:hover {
         background-color: $black;

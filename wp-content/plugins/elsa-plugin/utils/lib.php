@@ -554,15 +554,29 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
             
             echo '<div class="navigation">';
                 echo '<ul class="no-bullets">';
-                    echo '<li class="previous btn-secondary"><a href="' . get_pagenum_link($prevpage) . '"> <span class="icon-arrow_left-big"></span> Page précédente</li>';
+                    echo '<li>
+                            <a class="previous btn" href="' . get_pagenum_link($prevpage) . '">  
+                                <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 11.9832L1.03125 6.78792L6 1.59265" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Page précédente
+
+                            </li>';
 
                     for ($i = 1; $i <= $pages; $i++) {
                         if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems )) {
-                            echo ($paged == $i) ? '<li class="btn-secondary active"><a href="#" >' . $i . '</a></li>' : '<li class="btn-secondary"><a href="' . get_pagenum_link($i) . '" >' . $i . '</a></li>';
+                            echo ($paged == $i) ? '<li><a class="btn active" href="#" >' . $i . '</a></li>' : '<li><a class="btn" href="' . get_pagenum_link($i) . '" >' . $i . '</a></li>';
                         }
                     }
               
-                    echo '<li class="next btn-secondary"><a href="' . get_pagenum_link($nextpage) . '">Page suivante <span class="icon-arrow_right-big"></span></a></li>';
+                    echo '<li>
+                            <a class="next btn" href="' . get_pagenum_link($nextpage) . '">
+                                Page suivante
+                                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.5 11.9832L6.46875 6.78792L1.5 1.59265" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                         </li>';
                 echo '</ul>';
             echo '</div>';       
         }

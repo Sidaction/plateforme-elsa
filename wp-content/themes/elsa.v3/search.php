@@ -194,7 +194,7 @@ if(strpos($keyword, "\'")) {
 
 <main id="search-page">
 
-    <section class="sec_search"style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
+    <section class="sec_search" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
         <div class="wrapper">
             
             <div class="grid mb-l">
@@ -262,53 +262,6 @@ if(strpos($keyword, "\'")) {
                                 </svg>
                             </div>
                         </div>
-                        <!-- 
-
-                        <div class="row filter_group">
-                            <div class="filter-format">
-                                <div class="check-item"><input type="checkbox" <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
-                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'pdf') !== false) { echo 'checked'; } ?> class="s_checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
-                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'video') !== false) { echo 'checked'; } ?> class="s_checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
-                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'audio') !== false) { echo 'checked'; } ?> class="s_checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
-                                <div class="check-item"><input type="checkbox" <?php if ( isset($_GET['outils']) && $_GET['outils'] === '1') { echo 'checked'; } ?> class="s_checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils <span class="icon-boite"></span></label></div>
-                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'lien') !== false) { echo 'checked'; } ?> class="s_checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
-                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'diapo') !== false) { echo 'checked'; } ?> class="s_checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
-                                <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'img') !== false) { echo 'checked'; } ?> class="s_checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
-                            </div>
-                        </div>
-                    
-                        <input type="hidden" name="totalcat" value="<?php echo $args['category_name'];?>" />
-                        <input type="hidden" name="totalpays" value="<?php echo $args['pays_assoc'];?>" />
-                        <input type="hidden" name="totalregions" value="<?php echo $args['region'];?>" />
-                        <input type="hidden" name="boites" value="<?php echo $args['boiteoutils'];?>" />
-
-                        <input type="hidden" name="struct" value="<?php if(isset($structure_id)) { echo $structure_id; } ?>" />
-                        <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
-
-
-                        <div class="row">
-
-                            <div id="advancedSearch" class="filter_group m-4col m-clearfix">
-
-                            <div class="clearfix filter_subgroup">
-                                <ul id="listThemes" class="filters_list no-bullets">
-                                </ul>
-                            </div>
-
-                            <div class="clearfix filter_subgroup">
-                                <ul id="listRegions" class="filters_list no-bullets">
-                                </ul>
-                            </div>
-
-                            </div>
-
-                            <div class="m-2col search_submit">
-                                <input type="submit" id="formatbtn" class="btn-primary plain" value="Filtrer">
-                                <a id="btnerase" class="btn-secondary plain" href="#">Effacer tous les critères</a>
-                            </div>
-
-                        </div> -->
-                    
                     </div>
                 </form>
             </div>
@@ -345,6 +298,30 @@ if(strpos($keyword, "\'")) {
         </div>
     </section>
 
+    <section class="sec_search-pagination">
+        <div class="wrapper">
+            <?php if($wp_query->found_posts > 0) :?>
+              <div class="flex space start-y">
+                <div class="is-relative">
+                    <select class="input select" id="pager1">
+                        <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
+                        <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
+                        <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
+                        <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
+                    </select>
+                    <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
+                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
+                    </svg>
+                </div>
+                <div class="search-pagination">
+                    <?php cnLib::pagination($totalpages); ?>
+                </div>
+              </div>
+            <?php endif;?>
+        </div>
+    </section>
+
 </main>
 
 
@@ -353,154 +330,11 @@ if(strpos($keyword, "\'")) {
 
 
     <article class="main-content clearfix noback">
-        <div class="page_title ressource_title">
-
-          <div class="wrap row">
-              <div class="m-5col m-2col-push">
-                <h1 class="h1">
-                    Votre recherche
-                </h1>
-                Vous avez <?php echo $wp_query->found_posts;?> résultats...
-              </div>
-          </div>
-        </div>
-
-
-        <div id="" class="search_filters bg-cut blocs_group">
-
-          <div class="wrap row">
-            
-            <div class="group_title m-2col dark">
-              
-              <h3 class="h3_alt">Affiner votre recherche</h3>
-
-              <div class="group_title_actions">
-                <ul class="no-bullets">
-                  <li><a href="aide-a-la-recherche" class="js-popin btn-inline">Que chercher ? Comment chercher ?</a></li>
-                  <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats en format Excel</a></li>
-                  <li><a href="../extract-word" class="btn-inline">Télécharger la liste des résultats en format Word</a></li>
-                </ul>
-              </div>
-
-            </div>
-
-
-            <div class="m-6col group_content">
-
-              <form id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
-              
-                <div id="filtres" class="search-filters">
-                  <div class="row">
-                    <input type="search" class="plain input-bg" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
-                  </div>
-                  
-                  <div class="row filter_group">
-                    <div class="filter-thematique m-2col m-clearfix">
-                      <div class="input--select">
-                        <?php cnLib::custom_taxonomy_dropdown('category','selectBox','Thématique','','',false);?>
-                        <span class="icon-arrow_right-big"></span>
-                      </div>
-                    </div>
-                    
-                    <div class="filter-date m-2col">
-                      <div class="input--select">
-                        <select class="selectBox" name="period" id="period">
-                          <option value="debut">Depuis le début</option>
-                          <option value="1semaine">Moins d'une semaine</option>
-                          <option value="1mois">Moins d'un mois</option>
-                          <option value="3mois">Moins de 3 mois</option>
-                          <option value="6mois">Moins de 6 mois</option>
-                          <option value="1an">Moins d'un an</option>
-                        </select>
-                        <span class="icon-arrow_right-big"></span>
-                      </div>
-                    </div>
-
-                    <div class="filter-pays m-2col">
-                      <div class="input--select">
-                        <?php cnLib::custom_taxonomies_dropdown("region, pays_assoc", "selectBox", "Pays",'','',false,'','pays_assoc',array(351,131,161,126,278)); ?>
-                        <span class="icon-arrow_right-big"></span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row filter_group">
-                    <div class="filter-format">
-                      <div class="check-item"><input type="checkbox" <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> <label for="tous">Tous</label></div>
-                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'pdf') !== false) { echo 'checked'; } ?> class="s_checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
-                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'video') !== false) { echo 'checked'; } ?> class="s_checkbox" id="vids" value="video"  name="format[]"/> <label for="vids">Vidéo</label></div>
-                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'audio') !== false) { echo 'checked'; } ?> class="s_checkbox" id="audio" value="audio"  name="format[]"/> <label for="audio">Audio</label></div>
-                      <div class="check-item"><input type="checkbox" <?php if ( isset($_GET['outils']) && $_GET['outils'] === '1') { echo 'checked'; } ?> class="s_checkbox" id="outils" value="1" name="outils"/> <label for="outils">Outils <span class="icon-boite"></span></label></div>
-                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'lien') !== false) { echo 'checked'; } ?> class="s_checkbox" id="lien" value="lien" name="format[]"/> <label for="lien">Lien vers un site</label></div>
-                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'diapo') !== false) { echo 'checked'; } ?> class="s_checkbox" id="diapo" value="diapo" name="format[]"/> <label for="diapo">Diaporama</label></div>
-                      <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'img') !== false) { echo 'checked'; } ?> class="s_checkbox" id="img" value="img" name="format[]"/> <label for="img">Image / visuel</label></div>
-                    </div>
-                  </div>
-                  
-                  <input type="hidden" name="totalcat" value="<?php echo $args['category_name'];?>" />
-                  <input type="hidden" name="totalpays" value="<?php echo $args['pays_assoc'];?>" />
-                  <input type="hidden" name="totalregions" value="<?php echo $args['region'];?>" />
-                  <input type="hidden" name="boites" value="<?php echo $args['boiteoutils'];?>" />
-
-                  <input type="hidden" name="struct" value="<?php if(isset($structure_id)) { echo $structure_id; } ?>" />
-                  <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
-
-
-                  <div class="row">
-
-                    <div id="advancedSearch" class="filter_group m-4col m-clearfix">
-
-                      <div class="clearfix filter_subgroup">
-                        <ul id="listThemes" class="filters_list no-bullets">
-                        </ul>
-                      </div>
-
-                      <div class="clearfix filter_subgroup">
-                        <ul id="listRegions" class="filters_list no-bullets">
-                        </ul>
-                      </div>
-
-                    </div>
-
-                    <div class="m-2col search_submit">
-                      <input type="submit" id="formatbtn" class="btn-primary plain" value="Filtrer">
-                      <a id="btnerase" class="btn-secondary plain" href="#">Effacer tous les critères</a>
-                    </div>
-
-                  </div>
-                  
-                </div>
-
-              </form>
-
-
-            </div>
-          </div>
-
-        </div>
-
 
       <div class="search_list bg-cut">
         <div class="wrap ">
 
-            <?php if($wp_query->found_posts > 0) :?>
-              <div class="results_nav clearfix row">
-                  <div class="nav_postperpage m-3col">
-                    <div class="input--select">
-                      <select class="selectBox" id="pager1">
-                          <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
-                          <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
-                          <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
-                          <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
-                      </select>
-                      <span class="icon-arrow_right-big"></span>
-                    </div>
-                  </div>
-                  <div class="nav_pager-top m-5col m-last">
-                      <?php cnLib::pagination($totalpages); ?>
-                  </div>
-              </div>
-            <?php endif;?>
+
             
 
               <ul id="search_list_container" class="no-bullets">
