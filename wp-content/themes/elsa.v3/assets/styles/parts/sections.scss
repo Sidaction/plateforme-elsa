@@ -95,3 +95,69 @@
     }
 
 }
+
+/*------------------------------------*\
+    VIDEOS
+\*------------------------------------*/
+
+.sec_videos {
+    margin: 150px 0;
+
+    .title {
+        margin-bottom: 70px;
+        color: $secondary-color;
+    }
+
+    .videos {
+        margin-bottom: 60px;
+    }
+
+    .video {
+        position: relative;
+
+        &__infos {
+            margin: 0 10px;
+        }
+
+        &__categories {
+            background-color: $primary-color;
+            color: $white;
+            padding: 8px;
+            display: flex;
+            width: fit-content;
+            .category {
+                font-size: 15px;
+            }
+        }
+
+        &__title-container {
+            background-color: $black;
+
+            padding: 12px 20px;
+        }
+        &__title {
+            color: $white;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            hyphens: auto;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+            }
+        }
+
+        &__cover {
+            width: 100%;
+            aspect-ratio: 5/3;
+            object-fit: cover;
+            margin-top: -15px;
+            position: relative;
+            z-index: -1;
+        }
+    }
+}

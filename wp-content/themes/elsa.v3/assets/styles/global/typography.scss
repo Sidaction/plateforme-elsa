@@ -97,6 +97,7 @@ h2, .h2 {
 h3, .h3 {
     font-size: 40px;
     // font-weight: $font-black;
+    line-height: 1;
     @include max(medium) {
         font-size: 30px;
     }
