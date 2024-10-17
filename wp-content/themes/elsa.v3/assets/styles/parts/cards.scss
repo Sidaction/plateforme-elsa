@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    SEARCH RESULTS
+\*------------------------------------*/
+
+.ressource-item {
+
+    &__format {
+        background-color: $primary-color;
+        color: $white;
+        padding: 4px 8px;
+        font-size: 14px;
+    }
+
+    &__title {
+        margin: 12px 0;
+    }
+
+    // &__info span {
+    //     color: $secondary-color;
+    // }
+}

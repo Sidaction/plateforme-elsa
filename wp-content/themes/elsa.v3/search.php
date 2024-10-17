@@ -199,6 +199,8 @@ if(strpos($keyword, "\'")) {
             
             <div class="grid mb-l">
                 <div class="s-8col">
+                    <?php get_template_part('components/breadcrumb'); ?>
+
                     <h2 class="h2 mb-s">Votre recherche</h2>
                     <p>Vous avez <?php echo $wp_query->found_posts;?> résultats...</p>
                 </div>
@@ -334,14 +336,14 @@ if(strpos($keyword, "\'")) {
                         $format = cnLib::get_main_term_slug($post->ID, 'format');
                     ?>
 
-                    <div class="search-result">
+                    <div class="ressource-item">
                         <?php if (!empty($format)) : ?>
-                            <span class="search-result__format"><?= $format ?></span>
+                            <span class="ressource-item__format"><?= $format ?></span>
                         <?php endif; ?>
-                        <h4 class="search-result__title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                        <p class="search-result__info"><span>Thématiques :</span> <?= $cat ?></p>
+                        <h4 class="ressource-item__title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                        <p class="ressource-meta small"><span>Thématiques :</span> <?= $cat ?></p>
                         <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
-                            <p class="search-result__info">
+                            <p class="ressource-meta small">
                                 <span>Auteur(s) : </span>
                                 <?php $permalink = get_permalink( $main_author );
                                 if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>

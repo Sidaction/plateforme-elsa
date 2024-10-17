@@ -5,6 +5,37 @@ if($link) {
 }
 ?>
 
+
+<section class="sec_ressource-hero" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
+    <div class="wrapper">
+        <?php get_template_part('components/breadcrumb'); ?>
+
+        <div class="grid gap-l">
+    
+            <div class="s-6col">
+                
+                <h1 class="h2 mb-s"><?php the_title() ?></h1>
+                
+                <?php if(!empty($auteurs)) : ?>
+                    <p class="ressource-meta small"><span>Auteur(s) : </span><?= $auteurs ?></p>
+                <?php endif; ?>
+    
+                <?php if(!empty($date_edition)) : ?>
+                    <p class="ressource-meta small"><span>Date d'édition : </span><?= $date_edition ?></p>
+                <?php endif; ?>
+    
+                <?php if(has_category()) : ?>
+                    <p class="ressource-meta small"><span>Thématique(s) : </span><?php the_category(', '); ?></p>
+                <?php endif; ?>
+    
+            </div>
+            <div class="s-6col thumbnail">
+                <?php the_post_thumbnail('post_thumb'); ?>
+            </div>
+        </div>
+    </div>
+</section>
+
   <section id="site-content" class="site-content single-ressource">
 
 
