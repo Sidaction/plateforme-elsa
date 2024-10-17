@@ -44,6 +44,7 @@
 \*------------------------------------*/
 
 .sec_search-pagination {
+    margin: 80px 0;
 
     ul {
         display: flex;
@@ -60,7 +61,7 @@
                 padding: 0px 24px;
                 
                 &:not(.active) {
-                    background-color: rgba($primary-color, 0.2);
+                    background-color: rgba($primary-color, 0.1);
                     color: $primary-color;
                 }
             }
@@ -82,6 +83,32 @@
                     vertical-align: text-top;
                 }
             }
+        }
+    }
+}
+
+/*------------------------------------*\
+    SEARCH RESULTS
+\*------------------------------------*/
+
+.sec_search-results {
+    margin: 80px 0;
+
+    .search-result {
+
+        &__format {
+            background-color: $primary-color;
+            color: $white;
+            padding: 4px 8px;
+            font-size: 14px;
+        }
+
+        &__title {
+            margin: 12px 0;
+        }
+
+        &__info span {
+            color: $secondary-color;
         }
     }
 }

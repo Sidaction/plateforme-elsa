@@ -322,87 +322,72 @@ if(strpos($keyword, "\'")) {
         </div>
     </section>
 
+    <section class="sec_search-results">
+        <div class="flex column gap-xl wrapper">
+            <?php if ( $wp_query->have_posts() ) : ?>
+                <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
+                    <?php  
+                        $results[] = $post->ID;
+                        $cat = cnLib::get_term_list_link($post->ID, 'category', 'category/');
+                        $pays = cnLib::get_term_list_link($post->ID, 'pays_assoc', 'pays/');
+                        $main_author = get_post_meta($post->ID, 'first_org', true);
+                        $format = cnLib::get_main_term_slug($post->ID, 'format');
+                    ?>
+
+                    <div class="search-result">
+                        <?php if (!empty($format)) : ?>
+                            <span class="search-result__format"><?= $format ?></span>
+                        <?php endif; ?>
+                        <h4 class="search-result__title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                        <p class="search-result__info"><span>Thématiques :</span> <?= $cat ?></p>
+                        <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
+                            <p class="search-result__info">
+                                <span>Auteur(s) : </span>
+                                <?php $permalink = get_permalink( $main_author );
+                                if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
+                                <?php echo $cnSite->get_authors($post->ID); ?>
+                            </p>
+                        <?php } ?>
+                    </div>
+
+                <?php endwhile; ?>
+            <?php else : ?>
+                <p>Désolé, il n'y a pas de résultats sur les critères sélectionnés</p>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <section class="sec_search-pagination">
+        <div class="wrapper">
+            <?php if($wp_query->found_posts > 0) :?>
+              <div class="flex space start-y">
+                <div class="is-relative">
+                    <select class="input select" id="pager1">
+                        <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
+                        <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
+                        <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
+                        <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
+                    </select>
+                    <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
+                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
+                    </svg>
+                </div>
+                <div class="search-pagination">
+                    <?php cnLib::pagination($totalpages); ?>
+                </div>
+              </div>
+            <?php endif;?>
+        </div>
+    </section>
+
 </main>
 
 
-
-  <section id="site-content" class="site-content search-results">
-
-
-    <article class="main-content clearfix noback">
-
-      <div class="search_list bg-cut">
-        <div class="wrap ">
-
-
-            
-
-              <ul id="search_list_container" class="no-bullets">
-
-                <?php if ( $wp_query->have_posts() ) : ?>
-                
-                <?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
-                
-                    <?php 
-                      $results[] = $post->ID;
-                      $cat = cnLib::get_term_list_link($post->ID, 'category', 'category/');
-                      $pays = cnLib::get_term_list_link($post->ID, 'pays_assoc', 'pays/');
-                      $main_author = get_post_meta($post->ID, 'first_org', true);
-                      $format = cnLib::get_main_term_slug($post->ID, 'format');
-
-                      set_query_var( 'cat', $cat );
-                      set_query_var( 'pays', $pays );
-                      set_query_var( 'main_author', $main_author );
-                      set_query_var( 'format', $format );
-                      set_query_var( 'cnSite', $cnSite );
-
-                      get_template_part('template-parts/parts/part', 'listitem'); ?>
-
-
-                    <?php endwhile;?>
-                    <?php else : ?>
-                    <p>Désolé, il n'y a pas de résultats sur les critères sélectionnés</p>
-                     <?php endif; 
-                $_SESSION['results'] = $results; ?>
-
-              </ul>
-
-
-            <?php if($wp_query->found_posts > 0) :?>
-              <div class="results_nav clearfix row">
-                  <div class="nav_postperpage m-3col">
-                    <div class="input--select">
-                      <select class="selectBox" id="pager2">
-                          <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
-                          <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
-                          <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
-                          <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
-                      </select>
-                      <span class="icon-arrow_right-big"></span>
-                    </div>
-                  </div>
-                  <div class="nav_pager-bottom m-5col m-last">
-                      <?php cnLib::pagination($totalpages); ?>
-                  </div>
-              </div>
-            <?php endif;?>
-            
-
-
-      <?php  
-        wp_reset_query();
-        wp_reset_postdata(); 
-        $args = null; 
-      ?>
-
-
-      </div><!-- search_list -->
-    </div>
-     
-  </section><!-- .site-content -->
-
-
-
-
+<?php  
+    wp_reset_query();
+    wp_reset_postdata(); 
+    $args = null; 
+?>
 
 <?php get_footer(); ?>
