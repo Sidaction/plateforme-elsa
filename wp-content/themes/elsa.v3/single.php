@@ -34,16 +34,16 @@
 
     <?php
       // AIGUILLER SI MEDIAS OU RESSSOURCE "SIMPLE" (pdf, link, etc.)
-      if( has_term( 'video', 'format' ) || has_term( 'diaporama', 'format' )  || has_term( 'audio', 'format' )) {
-        get_template_part('template-parts/content', 'media');
-      }
-      else {
+      // if( has_term( 'video', 'format' ) || has_term( 'diaporama', 'format' )  || has_term( 'audio', 'format' )) {
+      //   get_template_part('template-parts/content', 'media');
+      // }
+      // else {
         get_template_part('template-parts/content', 'ressource');
-      }
+      // }
     ?>
 
 
-    <?php get_template_part('template-parts/content', 'rebonds'); ?>
+    <!-- <?php get_template_part('template-parts/content', 'rebonds'); ?> -->
 
    
   </div>

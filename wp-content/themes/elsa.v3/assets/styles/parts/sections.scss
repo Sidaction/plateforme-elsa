@@ -185,6 +185,29 @@
 .sec_ressource-content {
     margin: 80px 0;
 
+    .content {
+        a {
+            text-decoration: underline;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: disc;
+            li {
+                font-size: 18px;
+                font-weight: $font-extralight;
+                line-height: 32px;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
     .btn {
         width: fit-content;
         span {
