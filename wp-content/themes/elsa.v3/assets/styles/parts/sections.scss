@@ -2,7 +2,7 @@
     HERO
 \*------------------------------------*/
 
-.sec_hero {
+.sec_home-hero {
     margin-bottom: 100px;
 
     .cover {
@@ -33,7 +33,7 @@
     RESSOURCES
 \*------------------------------------*/
 
-.sec_ressources {
+.sec_home-ressources {
     padding: 80px 0;
     background-color: $gray-1;
 
@@ -100,7 +100,7 @@
     VIDEOS
 \*------------------------------------*/
 
-.sec_videos {
+.sec_home-videos {
     margin: 150px 0;
 
     .title {
@@ -160,6 +160,103 @@
             z-index: -1;
         }
     }
+}
+
+/*------------------------------------*\
+    SEARCH
+\*------------------------------------*/
+
+.sec_search {
+    padding: 70px 0;
+    margin-bottom: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .help {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        padding: 16px;
+        color: $white;
+        text-align: right;
+        font-size: 12px;
+
+        &__title {
+            margin-bottom: 20px;
+        }
+
+        &__links > li {
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+    }
+
+    .search-options {
+        width: 60%;
+    }
+
+    .input {
+        &::placeholder {
+            color: $black;
+        }
+    }
+
+}
+
+/*------------------------------------*\
+    SEARCH PAGINATION
+\*------------------------------------*/
+
+.sec_search-pagination {
+    margin: 80px 0;
+
+    ul {
+        display: flex;
+        gap: 6px;
+
+        a {
+            user-select: none;
+
+            &:not(.previous):not(.next) {
+                aspect-ratio: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0px 24px;
+                
+                &:not(.active) {
+                    background-color: rgba($primary-color, 0.1);
+                    color: $primary-color;
+                }
+            }
+
+            &.active {
+                opacity: 1 !important;
+            }
+
+            &.next {
+                svg {
+                    margin-left: 10px;
+                    vertical-align: text-top;
+                }
+            }
+
+            &.previous {
+                svg {
+                    margin-right: 10px;
+                    vertical-align: text-top;
+                }
+            }
+        }
+    }
+}
+
+/*------------------------------------*\
+    SEARCH RESULTS
+\*------------------------------------*/
+
+.sec_search-results {
+    margin: 80px 0;
 }
 
 /*------------------------------------*\
@@ -228,4 +325,13 @@
             text-transform: uppercase;
         }
     }
-}  
+}
+
+/*------------------------------------*\
+    RESSOURCE RELATED
+\*------------------------------------*/
+
+.sec_related-ressources {
+    padding: 100px 0;
+    background-color: $gray-1;
+}

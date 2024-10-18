@@ -32,7 +32,7 @@ set_query_var( 'cnSite', $cnSite );
 
 <main id="home-page">
 
-    <section class="sec_hero">
+    <section class="sec_home-hero">
 
         <img class="cover" src="<?= $cover ?>" alt="site cover">
             
@@ -60,7 +60,7 @@ set_query_var( 'cnSite', $cnSite );
         
     </section>
 
-    <section class="sec_ressources">
+    <section class="sec_home-ressources">
         <div class="wrapper">
             <h2 class="h2 title"><?php the_field('grille_titre'); ?></h2>
             
@@ -119,7 +119,7 @@ set_query_var( 'cnSite', $cnSite );
         </div>
     </section>
 
-    <section class="sec_videos">
+    <section class="sec_home-videos">
         <div class="wrapper">
             
             <h2 class="title h2"><?php the_field('video_title'); ?></h2>

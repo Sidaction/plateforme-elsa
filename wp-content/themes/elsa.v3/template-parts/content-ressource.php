@@ -144,4 +144,50 @@ if($link) {
             </div>
         </div>
     </section>
+
+    <section class="sec_related-ressources">
+        <div class="wrapper">
+            <h2 class="h2 mb-l">Ressources en lien</h2>
+            <div class="flex column gap-l">
+                <?php
+                $related = get_posts(array(
+                    'category__in' => wp_get_post_categories($post->ID),
+                    'numberposts' => 3,
+                    'post__not_in' => array($post->ID)
+                ));
+
+                if ($related) {
+                    foreach ($related as $post) {
+                        setup_postdata($post); 
+                        $format = cnLib::get_main_term_slug($post->ID, 'format');
+                        
+                        ?>
+                        <div class="ressource-item">
+
+                            <?php if (!empty($format)) : ?>
+                                <span class="ressource-item__format"><?= $format ?></span>
+                            <?php endif; ?>
+
+                            <h4 class="ressource-item__title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                            <p class="ressource-meta small"><span>Thématiques : </span><?php the_category(', '); ?></p>
+                            
+                            <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
+                                <p class="ressource-meta small">
+                                    <span>Auteur(s) : </span>
+                                    <?php $permalink = get_permalink( $main_author );
+                                    if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
+                                    <?php echo $cnSite->get_authors($post->ID); ?>
+                                </p>
+                            <?php } ?>
+
+                        </div>
+                    <?php }
+                    wp_reset_postdata();
+                } else {
+                    echo '<p>Aucune ressource liée trouvée.</p>';
+                }
+                ?>
+            </div>
+        </div>
+    </section>
 <main>

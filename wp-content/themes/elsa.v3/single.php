@@ -43,10 +43,10 @@
     ?>
 
 
-    <!-- <?php get_template_part('template-parts/content', 'rebonds'); ?> -->
+<!--  get_template_part('template-parts/content', 'rebonds'); ?> -->
 
-   
-  </div>
+
+</div>
 </section>
 
 
