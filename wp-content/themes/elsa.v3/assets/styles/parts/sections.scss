@@ -335,3 +335,29 @@
     padding: 100px 0;
     background-color: $gray-1;
 }
+
+/*------------------------------------*\
+    CATEGORY HERO
+\*------------------------------------*/
+
+.sec_category-hero {
+    padding: 70px 0;
+
+    .ressource-meta {
+        margin-bottom: 10px;
+
+        .p {
+            line-height: 1;
+        }
+
+        ul,li {
+            display: inline;
+        }
+
+        li:not(:last-child):after {
+            content: ", ";
+
+        }
+    }
+    
+}
