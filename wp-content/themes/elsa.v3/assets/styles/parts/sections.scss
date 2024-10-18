@@ -1,5 +1,5 @@
 /*------------------------------------*\
-    HERO
+    HOME
 \*------------------------------------*/
 
 .sec_home-hero {
@@ -29,9 +29,7 @@
     }
 }
 
-/*------------------------------------*\
-    RESSOURCES
-\*------------------------------------*/
+/*** Ressources ***/
 
 .sec_home-ressources {
     padding: 80px 0;
@@ -96,9 +94,8 @@
 
 }
 
-/*------------------------------------*\
-    VIDEOS
-\*------------------------------------*/
+
+/*** Videos ***/
 
 .sec_home-videos {
     margin: 150px 0;
@@ -203,9 +200,8 @@
 
 }
 
-/*------------------------------------*\
-    SEARCH PAGINATION
-\*------------------------------------*/
+/*** Pagination ***/
+
 
 .sec_search-pagination {
     margin: 80px 0;
@@ -251,16 +247,15 @@
     }
 }
 
-/*------------------------------------*\
-    SEARCH RESULTS
-\*------------------------------------*/
+
+/*** Results ***/
 
 .sec_search-results {
     margin: 80px 0;
 }
 
 /*------------------------------------*\
-    RESSOURCE HERO
+    RESSOURCE
 \*------------------------------------*/
 
 .sec_ressource-hero {
@@ -275,9 +270,8 @@
     }
 }
 
-/*------------------------------------*\
-    RESSOURCE CONTENT
-\*------------------------------------*/
+
+/*** Content ***/
 
 .sec_ressource-content {
     margin: 80px 0;
@@ -327,9 +321,7 @@
     }
 }
 
-/*------------------------------------*\
-    RESSOURCE RELATED
-\*------------------------------------*/
+/*** Related ***/
 
 .sec_related-ressources {
     padding: 100px 0;
@@ -337,7 +329,7 @@
 }
 
 /*------------------------------------*\
-    CATEGORY HERO
+    CATEGORY
 \*------------------------------------*/
 
 .sec_category-hero {
@@ -363,10 +355,50 @@
     
 }
 
-/*------------------------------------*\
-    CATEGORY CONTENT
-\*------------------------------------*/
+/*** Content ***/
 
 .sec_category-content {
     margin: 80px 0;
+}
+
+/*------------------------------------*\
+    PAGE
+\*------------------------------------*/
+
+.sec_page-hero {
+    background-color: $primary-color;
+    color: $white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+/*** Content ***/
+
+.sec_page-content {
+
+    .navigation ul {
+        display: flex;
+        margin: 20px 0;
+
+        .childpage-item {
+            font-size: 16px;
+            padding: 4px 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+
+            &.current {
+                color: $primary-color;
+                background-color: rgba($primary-color, 0.1);
+            }
+        }
+    }
+
+    .entry-content {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    
 }
