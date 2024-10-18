@@ -20,6 +20,7 @@
     &.center-x  { justify-content: center }
     &.center-y  { align-items: center }
     &.start-y   { align-items: flex-start }
+    &.end-y   { align-items: flex-end }
     &.end-x     { justify-content: flex-end }
     &.column    { flex-direction: column }
     &.wrap      { flex-wrap: wrap }

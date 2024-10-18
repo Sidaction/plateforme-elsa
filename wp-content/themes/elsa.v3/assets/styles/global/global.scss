@@ -49,7 +49,9 @@ ul {
     list-style: none;
 }
 
-// FORMS
+/*------------------------------------*\
+    FORMS
+\*------------------------------------*/
 
 input[type="text"], input[type="search"] , .input {
     border: 1px solid $primary-color;
@@ -111,4 +113,36 @@ button[type="submit"] {
     right: 5px;
     top: 5px;
     bottom: 5px;
+}
+
+/*------------------------------------*\
+    ENTRY CONTENT
+\*------------------------------------*/
+
+.entry-content {
+
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: $font-semibold;
+        margin-bottom: 20px;
+    }
+    a {
+        text-decoration: underline;
+    }
+    p {
+        margin-bottom: 20px;
+    }
+    ul {
+        list-style: disc;
+        li {
+            font-size: 18px;
+            font-weight: $font-extralight;
+            line-height: 32px;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
 }
