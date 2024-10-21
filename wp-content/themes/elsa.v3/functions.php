@@ -195,7 +195,9 @@ function load_medias() {
  * Custom Bookmarks btn. Based on ReadItLater plugin.
  */
 
-class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
+// Check that the class exists before trying to use it
+if (class_exists('Gema75_Read_It_Later_Frontend_User')) {
+    class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
 
         //shows "add to readitlater" link/button on single product page
         function show_bookmark_btn(){
@@ -240,15 +242,12 @@ class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
             
             }           
             
-            
             return $content;
-        
         }
+    }
 
+    $Bookmarks =  new Bookmarks();
 }
-
-$Bookmarks =  new Bookmarks();
-
 
 
 /**
@@ -297,7 +296,7 @@ function my_custom_scripts() {
     wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/assets/style.css' );
 
     wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
-    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', 'vue', null, true);
+    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array('vue', 'jquery'), null, true);
 
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 }
