@@ -16,6 +16,7 @@ html {
     background-color: $white;
     color: $black;
     scroll-behavior: smooth;
+    font-size: 62.5%;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
     flex-flow: column;
     min-height: 100vh;
     margin-top: 120px;
+    font-size: 16px;
 }
 
 main {
@@ -113,6 +115,7 @@ button[type="submit"] {
     right: 5px;
     top: 5px;
     bottom: 5px;
+    height: calc(100% - 10px);
 }
 
 /*------------------------------------*\
