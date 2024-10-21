@@ -6,7 +6,7 @@ jQuery(document).ready(function($){
 
   var line_height = 21;
 
-  var dropdowns_trigger = $('.js-dropdown-trigger');
+  var dropdowns_trigger = $('.js-dropdown-trigger a');
   var header = $('.site-header');
   var header_height = header.outerHeight();
 

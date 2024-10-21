@@ -151,12 +151,9 @@
             <div>
                 <h1 class="site-title"><a href="<?php echo esc_url( home_url() ) ?>">Centre de ressources</a></h1>
                 
-                <?php wp_nav_menu( array( 
-                    'theme_location' => 'secondary',
-                    'menu_id' => 'secondary-menu',
-                    'menu_class' => 'flex gap-l',
-                    )); 
-                ?>                
+                <?php $walker = new Menu_With_Description; ?>
+                <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'walker' => $walker ) ); ?>
+         
             </div>
         </div>
         <div class="right">
