@@ -26,7 +26,6 @@ createApp({
 
 jQuery(document).ready(function($){
 
-  var line_height = 21;
 
   var dropdowns_trigger = $('.js-dropdown-trigger > a');
   var header = $('.site-header');
@@ -38,7 +37,6 @@ jQuery(document).ready(function($){
   var popin = $('.js-popin');
 
 
-
   $('a').each(function() {
      var a = new RegExp('/' + window.location.host + '/');
      if (!a.test(this.href)) {
@@ -46,20 +44,9 @@ jQuery(document).ready(function($){
      }
   });
 
-
   document.getElementById('tarteaucitronManager').addEventListener('click', function(e) {
     e.preventDefault()
   })
-
-
-//ADD POST TO RIL
-  $('.addToReadItLaterButton').click(function(event){
-  });
-
-  $('.removeFromRILButton').on('click', function(event) {
-    $(this).append('<span class="readitlater_msg">Suppres-<br>sion en cours....</span>');
-    event.preventDefault();
-  });
 
 
 
@@ -102,23 +89,6 @@ jQuery(document).ready(function($){
 
 
 
-
-/*
- * Fix page media margin on ressource title
- */
-
-  var ressource_title = $('.ressource_title');
-  var page_media = $('.page_media');
-
-  if( ressource_title.length > 0 && page_media.length > 0 ) {
-    var ressource_title_height = ressource_title.outerHeight();
-    var page_media_height = page_media.outerHeight();
-
-    if( ressource_title_height >= line_height * 8 && page_media_height > ressource_title_height / 2 ) {
-      page_media.css('margin-top', - ( ressource_title_height / 2 + line_height * 4) );
-    }
-
-  }
 
 
 /*
@@ -280,76 +250,7 @@ jQuery(document).ready(function($){
  
 
 
- 
-  /*
-   * BX SLIDERS
-   */
 
-  var bxslider_markup = $('.bxslider').clone();
-
-  if( bxslider_markup.length > 0) {
-
-    $('.bxslider').bxSlider({
-      pager: false,
-      adaptiveHeight: true,
-      nextText: '',
-      prevText: '',
-      onSliderLoad: function(){
-        $('.slider_outer').css('opacity', '1');
-      },
-    });
-
-    $('#js-sliderfull').on('click', function() {
-      
-      var slider_clone = bxslider_markup;
-      var bxslider = $('#empty_modal > .modal_inner .bx-wrapper');
-      
-      $('body').addClass('no-scroll');
-
-      if( bxslider.length === 0 ) {
-        $('#empty_modal .modal_content').append(slider_clone);
-        $('#loading-msg').hide();
-        $('#empty_modal').show();
-        $('#empty_modal .modal_content > ul').bxSlider({
-          pager: false,
-          adaptiveHeight: false,
-          nextText: '',
-          prevText: ''
-        });
-
-      } else {
-        $('#empty_modal').show();
-      }
-
-    });
-  }
-  
-
-
-  /*
-   * SMOOTH SCROLLING
-   * Add smooth when clicking an anchor
-   */
-
-  var hashTagActive = "";
-  $(".scroll").click(function (event) {
-      if(hashTagActive != this.hash) { //this will prevent if the user click several times the same link to freeze the scroll.
-          event.preventDefault();
-          //calculate destination place
-          var dest = 0;
-          if ($(this.hash).offset().top > $(document).height() - $(window).height()) {
-              dest = $(document).height() - $(window).height() - 200;
-          } else {
-              dest = $(this.hash).offset().top - 250;
-          }
-
-          //go to destination
-          $('html,body').animate({
-              scrollTop: dest
-          }, 1000, 'swing');
-          hashTagActive = this.hash;
-      }
-  });
 
 
 
@@ -568,168 +469,165 @@ jQuery(document).ready(function($){
 
 
 
-function deleteAS(){
-  $("li","#advancedSearch").remove();
-  $('.filter-format').find("input").prop( "checked", false );
-  $('.filter-format').find("#tous").prop( "checked", true );
-}
-
-function getSearchFields(){
-
-  var arrtags=[], arrcat=[], arrpays=[], arrregions=[];
-
-  if($("input[name=totalcat]").val()!=="") arrcat  = $("input[name=totalcat]").val().split(",");
-  if($("input[name=totalpays]").val()!=="") arrpays = $("input[name=totalpays]").val().split(",");
-  if($("input[name=totalregions]").val()!=="") arrregions = $("input[name=totalregions]").val().split(",");
-  
-  $("input[name=totalcat]").val("");
-  $("input[name=totalpays]").val("");
-  $("input[name=totalregions]").val("");
-  
-
-
-  if( arrtags.length !== 0 ){
-
-    jQuery.each( arrtags, function( i, val ) {
-
-      var tmpItem = $('<li class="filters_list_item" data-value="'+arrtags[i]+'"></li>');
-      
-      tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce mot clef des filtres" title="supprimer ce mot clef des filtres"></a>');
-      tmpItem.append("<span>"+arrtags[i]+"</span>");
-      
-      $("#listKeywords").append(tmpItem);
-      
-      $(".btndel",tmpItem).click(function(event) {
-        event.preventDefault();
-        $(this).parent().remove();
-        checkAS();
-      });
-
-    });
+  function deleteAS(){
+    $("li","#advancedSearch").remove();
+    $('.filter-format').find("input").prop( "checked", false );
+    $('.filter-format').find("#tous").prop( "checked", true );
   }
 
+  function getSearchFields(){
 
+    var arrtags=[], arrcat=[], arrpays=[], arrregions=[];
 
-  if(arrcat.length!==0){
-
-    thema_label = false;
-
-    jQuery.each( arrcat, function( i, val ) {
-
-      var label = getLabel('cat',arrcat[i]);
-
-      var tmpItem = $('<li class="filters_list_item" data-value="'+arrcat[i]+'"></li>');
-
-      if( !thema_label ) {
-        tmpItem.prepend('<span class="meta">Thématique(s) filtrée(s) : </span>');
-        thema_label = true;
-      }
-      
-
-      tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer cette thématique des filtres" title="supprimer cette thématique des filtres"></a>');
-      tmpItem.append("<span>"+label+"</span>");
-
-      $("#listThemes").append(tmpItem);
-      
-      $(".btndel",tmpItem).click(function(event) {
-        event.preventDefault();
-        $(this).parent().remove();
-        checkAS();
-      });
-
-    });
-  }
-
-  if(arrpays.length!==0){
-
-    pays_label = false;
-
-    jQuery.each( arrpays, function( i, val ) {
-
-      var label = getLabel('pays',arrpays[i]);
-      var tmpItem = $('<li class="filters_list_item" data-value="'+arrpays[i]+'"></li>');
-
-      if( !pays_label ) {
-        tmpItem.prepend('<span class="meta">Pays(s) filtrée(s) : </span>');
-        pays_label = true;
-      }
-
-      tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce pays des filtres" title="supprimer ce pays des filtres"></a>');
-      tmpItem.append("<span>"+label+"</span>");
-      
-      $("#listRegions").append(tmpItem);
-      
-      $(".btndel",tmpItem).click(function(event) {
-        event.preventDefault();
-        $(this).parent().remove();
-        checkAS();
-      });
-
-    });
-
-  }
-
-}
-
-
-function getLabel(type, value){
-
-  var label = "";
-
-  switch(type){
-
-    case "cat":{
-      $("option", "#select-category").each(function(index, element) {
-        if($(this).val()==value) label = $(this).text();
-      });
-    } break;
+    if($("input[name=totalcat]").val()!=="") arrcat  = $("input[name=totalcat]").val().split(",");
+    if($("input[name=totalpays]").val()!=="") arrpays = $("input[name=totalpays]").val().split(",");
+    if($("input[name=totalregions]").val()!=="") arrregions = $("input[name=totalregions]").val().split(",");
     
-    case "pays":{
-      $("option", "#select-pays_assoc").each(function(index, element) {
-        if($(this).val()==value) label = $(this).text();
+    $("input[name=totalcat]").val("");
+    $("input[name=totalpays]").val("");
+    $("input[name=totalregions]").val("");
+    
+
+
+    if( arrtags.length !== 0 ){
+
+      jQuery.each( arrtags, function( i, val ) {
+
+        var tmpItem = $('<li class="filters_list_item" data-value="'+arrtags[i]+'"></li>');
+        
+        tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce mot clef des filtres" title="supprimer ce mot clef des filtres"></a>');
+        tmpItem.append("<span>"+arrtags[i]+"</span>");
+        
+        $("#listKeywords").append(tmpItem);
+        
+        $(".btndel",tmpItem).click(function(event) {
+          event.preventDefault();
+          $(this).parent().remove();
+          checkAS();
+        });
+
       });
-    } break;
+    }
+
+
+
+    if(arrcat.length!==0){
+
+      thema_label = false;
+
+      jQuery.each( arrcat, function( i, val ) {
+
+        var label = getLabel('cat',arrcat[i]);
+
+        var tmpItem = $('<li class="filters_list_item" data-value="'+arrcat[i]+'"></li>');
+
+        if( !thema_label ) {
+          tmpItem.prepend('<span class="meta">Thématique(s) filtrée(s) : </span>');
+          thema_label = true;
+        }
+        
+
+        tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer cette thématique des filtres" title="supprimer cette thématique des filtres"></a>');
+        tmpItem.append("<span>"+label+"</span>");
+
+        $("#listThemes").append(tmpItem);
+        
+        $(".btndel",tmpItem).click(function(event) {
+          event.preventDefault();
+          $(this).parent().remove();
+          checkAS();
+        });
+
+      });
+    }
+
+    if(arrpays.length!==0){
+
+      pays_label = false;
+
+      jQuery.each( arrpays, function( i, val ) {
+
+        var label = getLabel('pays',arrpays[i]);
+        var tmpItem = $('<li class="filters_list_item" data-value="'+arrpays[i]+'"></li>');
+
+        if( !pays_label ) {
+          tmpItem.prepend('<span class="meta">Pays(s) filtrée(s) : </span>');
+          pays_label = true;
+        }
+
+        tmpItem.append('<a href="#" class="icon-close btndel" alt="supprimer ce pays des filtres" title="supprimer ce pays des filtres"></a>');
+        tmpItem.append("<span>"+label+"</span>");
+        
+        $("#listRegions").append(tmpItem);
+        
+        $(".btndel",tmpItem).click(function(event) {
+          event.preventDefault();
+          $(this).parent().remove();
+          checkAS();
+        });
+
+      });
+
+    }
+
   }
 
-  return label;
-}
+
+  function getLabel(type, value){
+
+    var label = "";
+
+    switch(type){
+
+      case "cat":{
+        $("option", "#select-category").each(function(index, element) {
+          if($(this).val()==value) label = $(this).text();
+        });
+      } break;
+      
+      case "pays":{
+        $("option", "#select-pays_assoc").each(function(index, element) {
+          if($(this).val()==value) label = $(this).text();
+        });
+      } break;
+    }
+
+    return label;
+  }
 
 
-function submitAdvancedSearch(){
+  function submitAdvancedSearch(){
 
-  var ttxt = $("input[name=tag]").val();
-  var fsep = $("li", "#listKeywords").length>0 ? ",":"";
-  
-  if(ttxt!=="") $("input[name=totaltags]").val(ttxt+fsep);
-  
-  $("li", "#listKeywords").each(function(index, element) {
-    var sep = index == $("li", "#listKeywords").length-1 ? "":",";
-    $("input[name=totaltags]").val($("input[name=totaltags]").val()+$(this).attr("data-value")+sep);
-  });
-  
-  $("li", "#listThemes").each(function(index, element) {
-    var sep = index == $("li", "#listThemes").length-1 ? "":",";
-    $("input[name=totalcat]").val($("input[name=totalcat]").val()+$(this).attr("data-value")+sep);
-  });
-  
-  $("li", "#listRegions").each(function(index, element) {
-    //var sep = index == $("li", "#listRegions").length-1 ? "":","
-    var sep = ",";
-    if($(this).attr("data-type")=="region") $("input[name=totalregions]").val($("input[name=totalregions]").val()+$(this).attr("data-value")+sep);
-    else $("input[name=totalpays]").val($("input[name=totalpays]").val()+$(this).attr("data-value")+sep);
-  });
-  
-  $("input[name=totalregions]").val($("input[name=totalregions]").val().slice(0,-1));
-  
-  $("input[name=totalpays]").val($("input[name=totalpays]").val().slice(0,-1));
-  $("input[name=struct]").val($("input[name=struct]").val());
-  $("input[name=boites]").val($("input[name=boites]").val());
+    var ttxt = $("input[name=tag]").val();
+    var fsep = $("li", "#listKeywords").length>0 ? ",":"";
+    
+    if(ttxt!=="") $("input[name=totaltags]").val(ttxt+fsep);
+    
+    $("li", "#listKeywords").each(function(index, element) {
+      var sep = index == $("li", "#listKeywords").length-1 ? "":",";
+      $("input[name=totaltags]").val($("input[name=totaltags]").val()+$(this).attr("data-value")+sep);
+    });
+    
+    $("li", "#listThemes").each(function(index, element) {
+      var sep = index == $("li", "#listThemes").length-1 ? "":",";
+      $("input[name=totalcat]").val($("input[name=totalcat]").val()+$(this).attr("data-value")+sep);
+    });
+    
+    $("li", "#listRegions").each(function(index, element) {
+      //var sep = index == $("li", "#listRegions").length-1 ? "":","
+      var sep = ",";
+      if($(this).attr("data-type")=="region") $("input[name=totalregions]").val($("input[name=totalregions]").val()+$(this).attr("data-value")+sep);
+      else $("input[name=totalpays]").val($("input[name=totalpays]").val()+$(this).attr("data-value")+sep);
+    });
+    
+    $("input[name=totalregions]").val($("input[name=totalregions]").val().slice(0,-1));
+    
+    $("input[name=totalpays]").val($("input[name=totalpays]").val().slice(0,-1));
+    $("input[name=struct]").val($("input[name=struct]").val());
+    $("input[name=boites]").val($("input[name=boites]").val());
 
-  $("#rechRess").submit();
-}
-
-
-
+    $("#rechRess").submit();
+  }
 
 
 
