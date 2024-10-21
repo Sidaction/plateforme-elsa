@@ -26,7 +26,7 @@ jQuery(document).ready(function($){
 
   var line_height = 21;
 
-  var dropdowns_trigger = $('.js-dropdown-trigger');
+  var dropdowns_trigger = $('.js-dropdown-trigger > a');
   var header = $('.site-header');
   var header_height = header.outerHeight();
 
@@ -240,14 +240,15 @@ jQuery(document).ready(function($){
       var header = $('.site-header');
       var viewportHeight = $(window).height();
       var headerHeight = header.outerHeight();
+      var dropdowns_container = $(this).parent()
 
       var dropdownHeight = viewportHeight - headerHeight;
       var dropdownHeightPourcentage = ( dropdownHeight * 100 ) / viewportHeight - 12;
 
-      if( dropdowns_trigger.hasClass('e-open') ) {
+      if( dropdowns_container.hasClass('e-open') ) {
       
-        if( $(this).hasClass('e-open') ) {
-          $(this).removeClass('e-open');
+        if( dropdowns_container.hasClass('e-open') ) {
+          dropdowns_container.removeClass('e-open');
           $('#site-content').removeClass('dd-open');
 
           if( main_nav_trigger.hasClass('e-open') ) {
@@ -258,18 +259,18 @@ jQuery(document).ready(function($){
           }
         }
         else {
-          dropdowns_trigger.removeClass('e-open');
-          $(this).addClass('e-open');
+          dropdowns_container.removeClass('e-open');
+          dropdowns_container.addClass('e-open');
           $('#site-content').addClass('dd-open');
           $('body').addClass('no-scroll');
-          $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
+          dropdowns_container.siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
         }
       }
       else {
-        $(this).addClass('e-open');
+        dropdowns_container.addClass('e-open');
         $('#site-content').addClass('dd-open');
         $('body').addClass('no-scroll');
-        $(this).siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
+        dropdowns_container.siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
       }
     }
 
