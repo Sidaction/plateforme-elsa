@@ -12,42 +12,35 @@
     $alt = $dd_boite_img_datas['alt'];
 ?>
 
-<div class="dd_group bg-cut">
-  <div class="wrap">
+<div class="dropdown">
+  <div class="wrapper">
 
-    <div class="dd_title m-3col">
-      <h4 class="h4 text-on-right"><?php echo $dd_boite_titre; ?></h4>
-    </div>
+    <h3 class="h3 mb-l"><?php echo $dd_boite_titre; ?></h3>
       
-    <div class="row">
+    <div class="grid gap-xl">
 
-      <div class="m-2col dd_img">
-        <img src="<?php echo $dd_boite_img; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="<?php echo $alt; ?>" class="">
+      <div class="s-5col">
+        <?php echo $dd_boite_texte; ?>
       </div>
-      
-      <div class="m-3col dd_actions">
+
+      <div class="s-7col">
         <?php
           $terms = get_terms( 'boiteoutils', array(
               'hide_empty' => false,
           ) );
 
           if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-              echo '<ul class="no-bullets">';
+              echo '<ul>';
               foreach ( $terms as $term ) {
-                  echo '<li><a class="btn-inline" href="' . esc_url( get_term_link( $term ) ) . '" title="">' . $term->name . '</a></li>';
+                  echo '<li><a class="menu-item2" href="' . esc_url( get_term_link( $term ) ) . '" title="">' . $term->name . '</a></li>';
               }
               echo '</ul>';
           }
 
         ?>      
       </div>
-      
-      <div class="m-3col m-last dd_content">
-        <?php echo $dd_boite_texte; ?>
-      </div>
 
     </div>
     
-
   </div>
 </div>
