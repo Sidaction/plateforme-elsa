@@ -17,8 +17,6 @@
 <?php if( $type == 'media' ) : ?>
   <div class="bloc_item bloc--<?php echo $type; ?> bg_cover" style="background-image:url(<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>)">
 
-      <?php echo $Bookmarks->show_bookmark_btn(); ?>
-
       <a href="<?php the_permalink(); ?><?php if( isset($ref) && $ref == 'media' ) echo '?ref=media'; ?>">
         <span class="bloc-media_format icon_media ic-<?php echo $format; ?>"></span>
       </a>
@@ -76,12 +74,6 @@
 <?php else : ?>
 
   <div class="bloc_item bloc--<?php echo $type; ?>">
-
-      <?php if( strpos($type, 'statique') !== false  ) : ?>
-
-      <?php else: ?>
-        <?php echo $Bookmarks->show_bookmark_btn(); ?>
-      <?php endif; ?>
 
       <a href="<?php the_permalink();?>">
 

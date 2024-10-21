@@ -21,12 +21,6 @@
           </figure>
 
 
-      <?php if( strpos($type, 'statique') !== false  ) : ?>
-
-      <?php else: ?>
-        <?php echo $Bookmarks->show_bookmark_btn(); ?>
-      <?php endif; ?>
-
       <a href="<?php the_permalink();?>" class="bloc_inner">
 
           <?php if( strpos($type, 'statique') !== true ) : ?>

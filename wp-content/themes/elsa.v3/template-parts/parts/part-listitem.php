@@ -14,19 +14,6 @@
 
       <div class="list_item_inner">
 
-          <?php if( is_search() ) : ?>
-            <?php echo $Bookmarks->show_bookmark_btn(); ?>
-
-          <?php elseif( is_page_template( 'page-boomarks.php' ) ) : ?>
-            <div class="bookmark">
-            <a href="#" class="removeFromRILButton" data-readitlater-id="<?php echo $post->ID ;?>" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/book_full.png" alt="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>" title="<?php echo $gema75_read_it_later->remove_from_readitlater_text ;?>">
-            </a>
-            </div>
-            
-          <?php endif; ?>
-
-
 
           <div class="list_item-icons">
             <?php if( isset($reco) && $reco ) : ?>
