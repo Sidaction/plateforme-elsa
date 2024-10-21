@@ -77,7 +77,7 @@ set_query_var( 'cnSite', $cnSite );
 
                 if ($media_posts->have_posts()) :
                     while ($media_posts->have_posts()) : $media_posts->the_post(); ?>
-                        <div class="ressource s-4col flex column start-y space gap-m" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/ressources/bg-ressource-<?= $media_posts->current_post + 1; ?>.png);">
+                        <div class="ressource s-4col flex column start-y space gap-m">
                             <div>
                                 <div class="ressource__metas">
                                     <?php

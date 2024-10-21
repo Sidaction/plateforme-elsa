@@ -33,7 +33,7 @@
 
 .sec_home-ressources {
     padding: 80px 0;
-    background-color: $gray-1;
+    // background-color: $gray-1;
 
     .title {
         margin-bottom: 80px;
@@ -44,16 +44,39 @@
     }
 
     .ressource {
-        // clip-path: var(--mask, url(#mask-full));
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 40px 16px;
+        clip-path: url(#mask-full-3);
+        background-color: $primary-color;
+        padding: 40px 24px;
         position: relative;
         color: $white;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('/wp-content/themes/elsa.v3/assets/img/bg-texture.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: multiply;
+            z-index: -1;
+        }
         
         &:nth-child(2),
         &:nth-child(5) {
             transform: translateY(-40px);
+        }
+
+        &:nth-child(2), &:nth-child(4) {
+            background-color: $black;
+        }
+
+        &:nth-child(3) {
+            background-color: $gray-3;
+        }
+
+        &:last-child {
+            background-color: $gray-2;
         }
 
         &__metas {
