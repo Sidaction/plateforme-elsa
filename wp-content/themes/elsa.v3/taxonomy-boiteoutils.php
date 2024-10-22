@@ -25,6 +25,82 @@
 get_header(); 
 
 ?>
+
+<main>
+    <section class="sec_post-hero" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
+        <div class="wrapper">
+            <?php get_template_part('components/breadcrumb'); ?>
+
+            <h1 class="h2 mb-m"><?= single_cat_title("", false); ?></h1>
+
+            <?php if( isset($boites_linked) && !empty($boites_linked) ) : ?>
+                <div class="ressource-meta">
+                    <span class="p small">Boites à outils : </span>
+
+                    <ul>
+
+                    <?php foreach( $boites_linked as $term ): ?>
+                        <li><a class="p small" href="<?php echo get_term_link( $term ); ?>"><?php echo $term->name; ?></a></li>
+                    <?php endforeach; ?>
+
+                    </ul>
+
+                </div>
+            <?php endif; ?>
+
+            <?php if( isset($tags_linked) && !empty($tags_linked) ) : ?>
+                <div class="ressource-meta">
+                    <span class="p small">Mots clefs : </span>
+
+                    <ul>
+                        <?php foreach( $tags_linked as $term ): ?>
+                            <li><a class="p small" href="<?php echo get_term_link( $term ); ?>"><?php echo $term->name; ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+
+                </div>
+            <?php endif; ?>
+
+            <?php if( isset($tags_linked) || isset($boites_linked) ) : ?>
+                <div class="page_metas">
+                    
+                    <?php if( isset($themes_linked) && !empty($themes_linked) ) : ?>
+                        <div class="ressource-meta">
+                            <span class="p small">Thématiques : </span>
+
+                            <ul>
+                                <?php foreach( $themes_linked as $term ): ?>
+                                    <li><a class="p small" href="<?php echo get_term_link( $term ); ?>"><?php echo $term->name; ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                        </div>
+                    <?php endif; ?>
+
+
+                    <?php if( isset($tags_linked) && !empty($tags_linked) ) : ?>
+                        <div class="ressource-meta">
+                            <span class="p small">Mots clefs : </span>
+
+                            <ul>
+                                <?php foreach( $tags_linked as $term ): ?>
+                                    <li><a class="p small   " href="<?php echo get_term_link( $term ); ?>"><?php echo $term->name; ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+</main>
+
+
+
+
     <section id="site-content" class="site-content">
 
         <article class="main-content clearfix">
@@ -194,7 +270,6 @@ get_header();
      </div>
 
 
-    <?php get_template_part('template-parts/content', 'rebonds'); ?>
 
 
 </section>
