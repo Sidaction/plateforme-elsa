@@ -96,6 +96,72 @@ get_header();
         </div>
     </section>
 
+    <section class="sec_post-content">
+        <div class="grid gap-xl wrapper">
+            <div class="s-9col entry-content">
+                <?= wpautop($presentation); ?>
+            </div>
+            <div class="s-3col flex column end-y">
+                <a href="#recommandations" class="btn btn--secondary mb-m">Nos recommandations</a>
+                <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn">Toutes les ressources</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec_related-ressources" id="recommandations">
+        <div class="wrapper">
+            <h2 class="h2 mb-l">Ressources en lien</h2>
+            <div class="flex column gap-l mb-l">
+                <?php
+                $args = array(
+                    'post_type' => array('post'), 
+                    'posts_per_page' => 6,
+                    'boiteoutils' => $boite_slug,
+                    'meta_query' => array(
+                        array(
+                            'key' => 'homefiche',
+                            'compare' => '==',
+                            'value' => '1'
+                        )
+                    )
+                );
+                $related_posts = get_posts($args);
+
+                if ($related_posts) {
+                    foreach ($related_posts as $post) {
+                        setup_postdata($post); 
+                        $format = cnLib::get_main_term_slug($post->ID, 'format');
+                        ?>
+                        <div class="ressource-item">
+
+                            <?php if (!empty($format)) : ?>
+                                <span class="ressource-item__format"><?= $format ?></span>
+                            <?php endif; ?>
+
+                            <h4 class="ressource-item__title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                            <p class="ressource-meta small"><span>Thématiques : </span><?php the_category(', '); ?></p>
+                            
+                            <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
+                                <p class="ressource-meta small">
+                                    <span>Auteur(s) : </span>
+                                    <?php $permalink = get_permalink( $main_author );
+                                    if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
+                                    <?php echo $cnSite->get_authors($post->ID); ?>
+                                </p>
+                            <?php } ?>
+
+                        </div>
+                    <?php }
+                    wp_reset_postdata();
+                } else {
+                    echo '<p>Aucune ressource liée trouvée.</p>';
+                }
+                ?>
+            </div>
+            
+            <a href="/recherche-documentaire/?boites=<?php echo $boite_slug; ?>" class="btn btn--primary">Voir toutes les ressources</a>
+        </div>
+    </section>
 </main>
 
 
