@@ -194,13 +194,25 @@
     background-size: cover;
 
     .help {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: bottom;
-        padding: 16px;
+        position: relative;
+        padding: 24px;
         color: $white;
         text-align: right;
         font-size: 12px;
+        background-color: $primary-color;
+        clip-path: url(#mask-full-3);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('/wp-content/themes/elsa.v3/assets/img/bg-texture.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: multiply;
+            z-index: -1;
+        }
 
         &__title {
             margin-bottom: 20px;
