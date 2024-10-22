@@ -29,7 +29,7 @@ get_header();
 ?>
 
 <main>
-    <section class="sec_category-hero" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
+    <section class="sec_post-hero" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
         <div class="wrapper">
             <?php get_template_part('components/breadcrumb'); ?>
 
@@ -65,7 +65,7 @@ get_header();
         </div>
     </section>
     
-    <section class="sec_category-content">
+    <section class="sec_post-content">
         <div class="grid gap-xl wrapper">
             <div class="s-9col entry-content">
                 <?= wpautop($presentation); ?>
@@ -77,7 +77,7 @@ get_header();
         </div>
     </section>
 
-    <section class="sec_related-ressources">
+    <section class="sec_related-ressources" id="recommandations">
         <div class="wrapper">
             <h2 class="h2 mb-l">Ressources en lien</h2>
             <div class="flex column gap-l mb-l">

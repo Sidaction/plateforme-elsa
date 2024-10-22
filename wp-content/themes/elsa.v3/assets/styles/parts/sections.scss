@@ -364,38 +364,6 @@
     background-color: $gray-1;
 }
 
-/*------------------------------------*\
-    CATEGORY
-\*------------------------------------*/
-
-.sec_category-hero {
-    padding: 70px 0;
-    margin-bottom: 80px;
-
-    .ressource-meta {
-        margin-bottom: 10px;
-
-        .p {
-            line-height: 1;
-        }
-
-        ul,li {
-            display: inline;
-        }
-
-        li:not(:last-child):after {
-            content: ", ";
-
-        }
-    }
-    
-}
-
-/*** Content ***/
-
-.sec_category-content {
-    margin: 80px 0;
-}
 
 /*------------------------------------*\
     PAGE

@@ -9,6 +9,9 @@
     <?php elseif (is_single()) : ?>
         <a href="<?php echo get_post_type_archive_link('ressource'); ?>">Ressources</a>
         <a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
+    <?php elseif (is_tax()) : ?>
+        <a href="#">Boite à outils</a>
+        <a href="<?php echo get_term_link(get_queried_object_id()); ?>"><?php single_term_title(); ?></a>
     <?php else : ?>
         <a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
     <?php endif; ?>
