@@ -150,46 +150,95 @@ set_query_var( 'cnSite', $cnSite );
     </section>
 
     <section class="sec_home-videos">
-        <div class="wrapper">
+        <div class="container">
             
             <h2 class="title h2"><?php the_field('video_title'); ?></h2>
     
-            <div class="videos grid gap-m">
+            <div class="videos swiper">
                 <?php
                 $featured_posts = get_field('video_url');
-                if( $featured_posts ):
-                    foreach( $featured_posts as $post ): ?>
-                        <div class="video s-6col">
-                            <?php setup_postdata($post); 
-                            set_query_var( 'type', 'media' ); 
-                            set_query_var( 'hide_allmediasbtn', true );
-                            
-                            ?>
+                if( $featured_posts ): ?>
 
-                            <div class="video__infos">
-                                <div class="video__categories">
-                                    <?php
-                                    $categories = get_the_category();
-                                    if (!empty( $categories) ) {
-                                        $category_count = count($categories);
-                                        foreach ( $categories as $index => $category ) {
-                                            echo '<span class="category">' . esc_html( $category->name );
-                                            if ($index < $category_count - 1) echo ', ';
-                                            echo '</span>';
-                                        }
-                                    }
-                                    ?>
-                                </div>
-                                
-                                <div class="video__title-container">
-                                    <a href="<?php the_permalink(); ?>" class="h3 video__title"><?=get_the_title()?></a>
-                                </div>
-                            </div>
-                            <img class="video__cover" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>" alt="video cover">
+                    <div class="navigation">
+                        <div class="swiper-button prev">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.96875 10.9375L1 5.96875L5.96875 1" fill="black"/>
+                                <path d="M5.96875 10.9375L1 5.96875L5.96875 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
-                    <?php endforeach;
-                    wp_reset_postdata();
-                endif; ?>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button next">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 10.9375L5.96875 5.96875L1 1" fill="black"/>
+                                <path d="M1 10.9375L5.96875 5.96875L1 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="swiper-wrapper grid gap-m">
+                        <?php foreach( $featured_posts as $post ): ?>
+                            <div class="video s-6col swiper-slide">
+                                <?php setup_postdata($post); 
+                                set_query_var( 'type', 'media' ); 
+                                set_query_var( 'hide_allmediasbtn', true );
+                                
+                                ?>
+
+                                <div class="video__infos">
+                                    <div class="video__categories">
+                                        <?php
+                                        $categories = get_the_category();
+                                        if (!empty( $categories) ) {
+                                            $category_count = count($categories);
+                                            foreach ( $categories as $index => $category ) {
+                                                echo '<span class="category">' . esc_html( $category->name );
+                                                if ($index < $category_count - 1) echo ', ';
+                                                echo '</span>';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    
+                                    <div class="video__title-container">
+                                        <a href="<?php the_permalink(); ?>" class="h3 video__title"><?=get_the_title()?></a>
+                                    </div>
+                                </div>
+                                <img class="video__cover" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>" alt="video cover">
+                            </div>
+                        <?php endforeach;
+                        foreach( $featured_posts as $post ): ?>
+                            <div class="video s-6col swiper-slide">
+                                <?php setup_postdata($post); 
+                                set_query_var( 'type', 'media' ); 
+                                set_query_var( 'hide_allmediasbtn', true );
+                                
+                                ?>
+
+                                <div class="video__infos">
+                                    <div class="video__categories">
+                                        <?php
+                                        $categories = get_the_category();
+                                        if (!empty( $categories) ) {
+                                            $category_count = count($categories);
+                                            foreach ( $categories as $index => $category ) {
+                                                echo '<span class="category">' . esc_html( $category->name );
+                                                if ($index < $category_count - 1) echo ', ';
+                                                echo '</span>';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    
+                                    <div class="video__title-container">
+                                        <a href="<?php the_permalink(); ?>" class="h3 video__title"><?=get_the_title()?></a>
+                                    </div>
+                                </div>
+                                <img class="video__cover" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>" alt="video cover">
+                            </div>
+                        <?php endforeach;
+                        wp_reset_postdata(); ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="flex center">
