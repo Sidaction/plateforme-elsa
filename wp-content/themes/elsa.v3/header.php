@@ -7,6 +7,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/assets/img/favicon.png" />
+    <script defer src="<?php echo get_bloginfo('stylesheet_directory');?>/assets/swiper/swiper-bundle.min.js"></script>
+    <link href="<?php echo get_bloginfo('stylesheet_directory');?>/assets/swiper/swiper-bundle.min.css" rel="stylesheet">
+
 
 
 
