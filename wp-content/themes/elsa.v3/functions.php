@@ -3,8 +3,6 @@
 @ini_set( 'post_max_size', '64M');
 //@ini_set( 'max_execution_time', '300' );
 
-global $gema75_ril_frontend;
-
 require_once('__core/themeManager.php' );
 $cnSite = new themeManager();
 
@@ -189,72 +187,9 @@ function load_medias() {
 
 
 
-
-
-/*
- * Custom Bookmarks btn. Based on ReadItLater plugin.
- */
-
-// Check that the class exists before trying to use it
-if (class_exists('Gema75_Read_It_Later_Frontend_User')) {
-    class Bookmarks extends Gema75_Read_It_Later_Frontend_User {
-
-        //shows "add to readitlater" link/button on single product page
-        function show_bookmark_btn(){
-
-            global $post , $gema75_read_it_later ;
-            
-            $content = "";
-
-            //if logged in 
-            if( is_user_logged_in() ){
-                
-                    $current_user_id = get_current_user_id();
-                    
-                    $current_user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$current_user_id);
-                    
-                    if(isset($current_user_readitlater_list['posts_in_ril'][$post->ID])){
-                    
-                        $content = ' <div class="bookmark">  <a href="#" class="removeFromRILButton" data-readitlater-id="'. $post->ID .'" alt="'. $gema75_read_it_later->remove_from_readitlater_text .'" title="'. $gema75_read_it_later->remove_from_readitlater_text  .'"><img src="'. get_template_directory_uri() . '/assets/img/book_full.png" alt="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection" title="Cette ressource est déjà dans votre sélection. Cliquer pour la retirer de la sélection"></a></div> ' ;
-                    
-                    }else{
-
-                        $content = ' <div class="bookmark">  <a href="#" title="Ajouter cette ressource à la sélection" alt="Ajouter cette ressource à la sélection"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp;</span></a>  </div>' ;
-                        
-                    }
-                    
-                    return $content;
-
-            }   
-            
-            //Non logged in users
-            if( !is_user_logged_in() ){
-                
-                if(!isset($_SESSION['gema75_ril_post_array'][$post->ID])){
-
-                    $content =  ' <div class="bookmark"> <a href="#" title="Cette ressource est déjà ajoutée à la sélection" alt="Cette ressource est déjà ajoutée à la sélection"><span class="gema75_read_it_later_text addToReadItLaterButton" data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
-                
-                }else {
-
-                    $content =  ' <div class="bookmark">  <a href="#" title="Ajouter cette ressource à la sélection" alt="Ajouter cette ressource à la sélection"><span class="gema75_read_it_later_text " data-readitlater-id="'.$post->ID.'"> &nbsp; </span></a>  </div>' ;
-                    
-                }
-            
-            }           
-            
-            return $content;
-        }
-    }
-
-    $Bookmarks =  new Bookmarks();
-}
-
-
 /**
  * ENQUEUE STYLES & SCRIPTS
  *
- * Use any number above 10 for priority as the default is 10 
- * any number after 10 will load after
  */
 
 // if (!is_admin()) add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
@@ -293,12 +228,25 @@ if (!is_admin()) add_action( 'init', 'remove_from_init', 10 );
 
 
 function my_custom_scripts() {
+
+    // Main Style File
     wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/assets/style.css' );
 
     wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
-    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array('vue', 'jquery'), null, true);
-    wp_enqueue_script('slider', get_template_directory_uri() . '/assets/js/slider.js', null, null, true);
 
+    // Main Script File
+    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array('vue', 'jquery'), null, true);
+
+    // Swiper stuffs
+    wp_register_style('swiper-styles', get_template_directory_uri() . '/assets/swiper/swiper-bundle.min.css', null);
+    wp_register_script('swiper', get_template_directory_uri() . '/assets/swiper/swiper-bundle.min.js', null, true);
+    wp_register_script('slider', get_template_directory_uri() . '/assets/js/slider.js', array('swiper'), null, true);
+
+    // Tarte Au Citron stuffs
+    wp_register_script('tac-src', get_template_directory_uri() . '/assets/js/tarteaucitron/tarteaucitron.js', null, array( 'strategy'  => 'defer', 'in_footer' => true ));
+    wp_register_script('tac-init', get_template_directory_uri() . '/assets/js/tac.js', array('tac-src'), null, array( 'strategy'  => 'defer', 'in_footer' => true ));
+
+    // For Ajax stuffs
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_scripts', 100 );
@@ -513,55 +461,6 @@ function wp_get_attachment( $attachment_id ) {
 }
 
 
-
-
-/*
- * Variable for number of posts in RiL
- */
-
-if( get_current_user_id() > 0 ) {
-  $userid = get_current_user_id();
-  $user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$userid);
-}
-else {
-  //non logged in users
-  $user_readitlater_list = $gema75_ril_frontend->get_ril_non_logged_in(); 
-}
-
-
-
-
-/*
- * Add Selection Item in top menu
- */
-
-add_filter('wp_nav_menu_items','add_selection_item_to_menu', 10, 2);
-function add_selection_item_to_menu( $items, $args ) {
-
-    global $gema75_ril_frontend;
-
-    //logged in users
-    if( get_current_user_id() > 0 ) {
-      $userid = get_current_user_id();
-      $user_readitlater_list = get_option('gema75_readitlater_for_user_id_'.$userid);
-    }
-    else {
-      //non logged in users
-      $user_readitlater_list = $gema75_ril_frontend->get_ril_non_logged_in(); 
-    }
-
-    if( is_array($user_readitlater_list ) ) {
-        $bookmark_posts = count($user_readitlater_list['posts_in_ril']);
-    }
-    else {
-        $bookmark_posts = 0;
-    }
-
-    if( $args->theme_location == 'secondary' )
-        return $items.'<li id="menu-item-7922" class="item-selection menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-7794 current_page_item menu-item-7922"><a href="/ma-selection/">Ma sélection</a><span class="gema75_wc_wc_count_badge">' . $bookmark_posts . '</span></li>';
-
-    return $items;
-}
 
 
 
