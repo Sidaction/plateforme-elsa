@@ -1,6 +1,4 @@
-<?php
-global $gema75_ril_frontend;
-?>
+
 
         <div class="page_tools blocs_group">
           <div class="wrap row">
@@ -10,8 +8,6 @@ global $gema75_ril_frontend;
             </div>
 
             <div class="group_content m-6col">
-
-              <div class="is-on-left btn-secondary"><?php echo $gema75_ril_frontend->show_readitlater_after_content(''); ?></div>
 
               <div class="is-on-left btn-secondary share_links">
                 Partager 
