@@ -47,3 +47,8 @@ Wrapper
         max-width: 800px;
     }
 }
+
+@mixin wrapper-padding {
+    max-width: 1150px;
+    padding: 0 5%;
+}

@@ -297,6 +297,7 @@ function my_custom_scripts() {
 
     wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
     wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array('vue', 'jquery'), null, true);
+    wp_enqueue_script('slider', get_template_directory_uri() . '/assets/js/slider.js', null, null, true);
 
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 }
