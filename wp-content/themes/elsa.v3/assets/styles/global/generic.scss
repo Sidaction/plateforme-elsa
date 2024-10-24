@@ -71,7 +71,7 @@
 
 .on-mobile {
     @include min(medium) {
-        display: none;
+        display: none !important;
     }
 }
 
