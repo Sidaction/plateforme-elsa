@@ -364,6 +364,14 @@
 .sec_search-pagination {
     margin: 80px 0;
 
+    .container {
+        @include max(medium) {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+        }
+    }
+
     ul {
         display: flex;
         gap: 6px;
@@ -386,6 +394,17 @@
 
             &.active {
                 opacity: 1 !important;
+            }
+
+            @include max(medium) {
+                &.next, &.previous {
+                    font-size: 0;
+                    gap: 0;
+                    
+                    svg {
+                        margin: 0 !important;
+                    }
+                }
             }
 
             &.next {

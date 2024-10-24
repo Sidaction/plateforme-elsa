@@ -60,6 +60,10 @@ input[type="text"], input[type="search"] , .input {
     width: 100%;
     background-color: transparent;
 
+    @include max(medium) {
+        padding: 16px 50px 16px 20px;
+    }
+
     &::placeholder {
         color: $primary-color;
         opacity: 0.5;

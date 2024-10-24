@@ -304,10 +304,10 @@ if(strpos($keyword, "\'")) {
         </div>
     </section>
 
-    <section class="sec_search-pagination">
+    <section class="sec_search-pagination on-desktop">
         <div class="wrapper">
             <?php if($wp_query->found_posts > 0) :?>
-              <div class="flex space start-y">
+              <div class="container flex space start-y">
                 <div class="is-relative">
                     <select class="input select" id="pager1">
                         <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
@@ -366,7 +366,7 @@ if(strpos($keyword, "\'")) {
     <section class="sec_search-pagination">
         <div class="wrapper">
             <?php if($wp_query->found_posts > 0) :?>
-              <div class="flex space start-y">
+              <div class="container flex space start-y">
                 <div class="is-relative">
                     <select class="input select" id="pager1">
                         <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
