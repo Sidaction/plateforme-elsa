@@ -197,6 +197,12 @@ jQuery(document).ready(function($){
   }); 
  
 
+  $('.close-dd-btn').on('click', function(event) {
+    event.preventDefault();
+
+    $(this).closest('.e-open').removeClass('e-open');
+  })
+
 
  
   /*

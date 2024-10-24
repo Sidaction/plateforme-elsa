@@ -14,16 +14,24 @@
 
 <div class="dropdown">
   <div class="wrapper">
-
-    <h3 class="h3 mb-l"><?php echo $dd_boite_titre; ?></h3>
+    
+    <div class="flex space start-y">
+      <h3 class="h3 mb-l"><?php echo $dd_boite_titre; ?></h3>
+      <button class="close-dd-btn on-mobile">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
       
     <div class="grid gap-xl">
 
-      <div class="s-5col">
+      <div class="t-12col m-5col">
         <?php echo $dd_boite_texte; ?>
       </div>
 
-      <div class="s-7col">
+      <div class="t-12col m-7col">
         <?php
           $terms = get_terms( 'boiteoutils', array(
               'hide_empty' => false,
