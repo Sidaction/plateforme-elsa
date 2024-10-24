@@ -270,6 +270,12 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+    .h2 {
+        @include max(medium) {
+            margin-bottom: 0;
+        }
+    }
+
     .help {
         position: relative;
         padding: 24px;
@@ -278,6 +284,16 @@
         font-size: 12px;
         background-color: $primary-color;
         clip-path: url(#mask-full-3);
+        transition: opacity 0.3s, visibility 0.3s;
+        
+        @include max(medium) {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            right: 0;
+            top: 100%;
+            z-index: 10;
+        }
 
         &::after {
             content: "";
@@ -301,8 +317,37 @@
         }
     }
 
+    .help-mobile-trigger {
+        color: $primary-color;
+        cursor: pointer;
+        user-select: none;
+        margin: 20px 0;
+    }
+
+    .help-mobile-input:checked ~ .help {
+        opacity: 1;
+        visibility: visible;
+    }
+
     .search-options {
-        width: 60%;
+        @include min(medium) {
+            width: 60%;
+        }
+
+        .cat-filters {
+            @include max(medium) {
+                flex-wrap: wrap;
+                > div {
+                    width: 100%;
+                }
+            } 
+        }
+    }
+
+    .tax-filters {
+        @include max(medium) {
+            flex-wrap: wrap;
+        } 
     }
 
     .input {

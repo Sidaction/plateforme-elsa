@@ -197,14 +197,18 @@ if(strpos($keyword, "\'")) {
     <section class="sec_search" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
         <div class="wrapper">
             
-            <div class="grid mb-l">
-                <div class="s-8col">
+            <div class="grid mb-l is-relative">
+                <div class="t-12col m-8col">
                     <?php get_template_part('components/breadcrumb'); ?>
 
                     <h2 class="h2 mb-s">Votre recherche</h2>
                     <p>Vous avez <?php echo $wp_query->found_posts;?> résultats...</p>
                 </div>
-                <div class="help s-4col" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search-help.png);">
+                
+                <label for="help" class="on-mobile h4 help-mobile-trigger t-12col txt-right">Aide</label>
+                <input type="checkbox" id="help" class="help-mobile-input on-mobile">
+
+                <div class="help t-12col m-4col" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search-help.png);">
               
                     <h4 class="help__title h4">Aide</h4>
 
@@ -232,7 +236,7 @@ if(strpos($keyword, "\'")) {
                             </button>
                         </div>
                     
-                        <div class="flex gap-m">
+                        <div class="cat-filters flex gap-m">
                             <div class="is-relative">
                                 <?php cnLib::custom_taxonomy_dropdown('category','input select','Thématique','','',false);?>
                                 <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -269,7 +273,7 @@ if(strpos($keyword, "\'")) {
             </div>
 
             <div class="mb-l">
-                <div class="flex">
+                <div class="tax-filters flex">
                     <div class="checkbox">
                         <input type="checkbox" <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> 
                         <label for="tous">Tous</label>
