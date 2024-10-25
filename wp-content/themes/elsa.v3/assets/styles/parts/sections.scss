@@ -486,6 +486,10 @@
         display: flex;
         margin: 20px 0;
 
+        @include max(medium) {
+            flex-wrap: wrap;
+        }
+
         .childpage-item {
             font-size: 16px;
             padding: 4px 10px;
