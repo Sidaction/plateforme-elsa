@@ -99,7 +99,7 @@
                     <?php get_template_part('template-parts/loops/loop', 'childpages'); ?>
                 </nav>
 
-                <div class="entry-content wrapper small">
+                <div class="entry-content">
 
                     <?php the_content(); ?>
                 </div>
@@ -108,7 +108,7 @@
             <?php // PAGE SANS ENFANT NI PARANT ?>
             <?php elseif ( empty( $children ) && $level == 0 ) : ?>
 
-                <div class="entry-content wrapper small">
+                <div class="entry-content">
                     <?php if( is_array($large_image_url) ) { ?> 
                         <h1 class="h1">
                             <?php echo $title; ?>
@@ -122,7 +122,7 @@
             <?php // FALLBACK & DEFAULT ?>
             <?php else : ?>                
 
-                <div class="entry-content wrapper small">
+                <div class="entry-content">
 
                     <?php if( is_array($large_image_url) ) { ?> 
                         <h1 class="h1">

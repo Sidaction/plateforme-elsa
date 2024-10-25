@@ -38,11 +38,15 @@ Responsive
 Wrapper
 --------------------------------------------------------------*/
 
-@mixin wrapper {
+@mixin wrapper($size: null) {
     max-width: 1150px;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    
+    @if $size == small {
+        max-width: 800px;
+    }
     &.small {
         max-width: 800px;
     }

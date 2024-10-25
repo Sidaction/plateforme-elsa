@@ -17,7 +17,12 @@ Wrapper
 --------------------------------------------------------------*/
 
 .wrapper {
-    @include wrapper;
+    &:not(.small) {
+        @include wrapper;
+    }
+    &.small {
+        @include wrapper(small);
+    }
 }
 
 .wrapper-padding {
