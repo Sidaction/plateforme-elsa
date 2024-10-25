@@ -66,11 +66,11 @@ get_header();
     </section>
     
     <section class="sec_post-content">
-        <div class="grid gap-xl wrapper">
-            <div class="s-9col entry-content">
+        <div class="container grid wrapper">
+            <div class="t-12col l-9col entry-content">
                 <?= wpautop($presentation); ?>
             </div>
-            <div class="s-3col flex column end-y">
+            <div class="ressources t-12col l-3col flex column end-y">
                 <a href="#recommandations" class="btn btn--secondary mb-m">Nos recommandations</a>
                 <a href="/recherche-documentaire/?totalcat=<?php echo $cat_slug; ?>" class="btn">Toutes les ressources</a>
             </div>

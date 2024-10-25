@@ -191,6 +191,22 @@ button[type="submit"] {
 
 .sec_post-content {
     margin: 80px 0;
+
+    .container {
+        @include min(large) {
+            column-gap: var(--space-xl);
+        }
+        @include max(large) {
+            row-gap: var(--space-l);
+        }
+    }
+
+    @include max(large) {
+        .ressources {
+            order: -1;
+            align-items: flex-start;
+        }
+    }
 }
 
 
