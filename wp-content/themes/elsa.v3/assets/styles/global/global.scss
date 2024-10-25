@@ -23,8 +23,12 @@ body {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-    margin-top: 120px;
+    margin-top: 132px;
     font-size: 16px;
+
+    @include max(medium) {
+        margin-top: 120px;
+    }
 }
 
 main {
