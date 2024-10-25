@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php 
+
+// UNUSED TEMPLATE
+
+get_header(); ?>
 
 
 <section id="contentSite" class="marron home">

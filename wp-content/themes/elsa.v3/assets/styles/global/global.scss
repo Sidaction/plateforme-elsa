@@ -29,6 +29,11 @@ body {
 
 main {
     flex-grow: 1;
+    transition: opacity .3s;
+    
+    &.loading {
+        opacity: 0.6;
+    }
 }
 
 button {
