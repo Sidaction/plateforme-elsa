@@ -349,7 +349,7 @@ jQuery(document).ready(function($){
    * FILTRES SEARCH
    */
 
-  var search = $('.search-results');
+  let search = $('.search-results');
 
 
   if( search.length > 0 ) {
@@ -456,14 +456,16 @@ jQuery(document).ready(function($){
     });
 
 
-    $("#recherche button, #formatbtn").click(function(event) {
-      if($("#advancedSearch").css("display")=="none"){
+    // $("#recherche button, #formatbtn").click(function(event) {
+
+    //   console.log('search')
+    //   if($("#advancedSearch").css("display")=="none"){
         
-      }else{
-        event.preventDefault();
-        submitAdvancedSearch();
-      }
-    });
+    //   }else{
+    //     event.preventDefault();
+    //     submitAdvancedSearch();
+    //   }
+    // });
 
 
 

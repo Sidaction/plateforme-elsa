@@ -232,19 +232,35 @@ function my_custom_scripts() {
     // Main Style File
     wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/assets/style.css' );
 
+
+    // VUE JS for tests
     wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
+
 
     // Main Script File
     wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array('vue', 'jquery'), null, true);
+
+
+    // Search Script File
+    wp_register_script('search', get_template_directory_uri() . '/assets/js/search.js', array('vue'), null, true);
+    
+    wp_add_inline_script( 'search', 'const ajax_datas = ' . json_encode( array(
+        'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+        'nonce' => wp_create_nonce( 'loading_contents_nonce' )
+    ) ), 'before' );
+
+
 
     // Swiper stuffs
     wp_register_style('swiper-styles', get_template_directory_uri() . '/assets/swiper/swiper-bundle.min.css', null);
     wp_register_script('swiper', get_template_directory_uri() . '/assets/swiper/swiper-bundle.min.js', null, true);
     wp_register_script('slider', get_template_directory_uri() . '/assets/js/slider.js', array('swiper'), null, true);
 
+
     // Tarte Au Citron stuffs
     wp_register_script('tac-src', get_template_directory_uri() . '/assets/js/tarteaucitron/tarteaucitron.js', null, array( 'strategy'  => 'defer', 'in_footer' => true ));
     wp_register_script('tac-init', get_template_directory_uri() . '/assets/js/tac.js', array('tac-src'), null, array( 'strategy'  => 'defer', 'in_footer' => true ));
+
 
     // For Ajax stuffs
     wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
@@ -539,3 +555,29 @@ function wp_get_attachment( $attachment_id ) {
 
     //add_action( 'init', 'theme_addrole' );  
 
+
+
+
+add_action('wp_ajax_handle_contents_loading','handle_contents_loading');
+    
+function handle_contents_loading() {
+
+    if ( empty( $_POST['dashify_enabled'] ) ) {
+		return;
+	}
+
+	check_ajax_referer( 'loading_contents_nonce' );
+    
+    ob_start();
+
+    ?>
+
+        <p>hello</p>
+
+    <?php
+
+    $content = ob_get_clean();
+
+    echo $content;
+    die();
+}

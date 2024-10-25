@@ -4,49 +4,50 @@
  * Template Name: Page Resultats Recherche
  */
 
+    wp_enqueue_script('search');
 
-  global $cnSite;
-
-
-  $step = (empty($_GET)) ? 'start':'';
-  $struct = (isset($_GET['totaltags'])) ? wp_strip_all_tags( addslashes( $_GET['totaltags'])):'';
-	$keyword = '';
-	$args['totaltags'] = '';
+    global $cnSite;
 
 
-  if( !empty($_GET['filter_totaltags']) ) {
-    $keyword = $_GET['filter_totaltags'];
-    $args['totaltags'] = $_GET['filter_totaltags'];
-  }
-  else {
-    if( empty($_GET['totaltags']) && !empty($_GET['tag']) ) { 
-      $keyword = $_GET['tag'];
-      $args['totaltags'] = $_GET['tag'];
-      $structure_id = (string)(cnLib::search_ID_by_title($_GET['tag'], 'structure'));
+    $step = (empty($_GET)) ? 'start':'';
+    $struct = (isset($_GET['totaltags'])) ? wp_strip_all_tags( addslashes( $_GET['totaltags'])):'';
+    $keyword = '';
+    $args['totaltags'] = '';
+
+
+    if( !empty($_GET['filter_totaltags']) ) {
+        $keyword = $_GET['filter_totaltags'];
+        $args['totaltags'] = $_GET['filter_totaltags'];
     }
-    elseif( !empty($_GET['totaltags']) ) {
-      $keyword = $_GET['totaltags'];
-      $args['totaltags'] = $_GET['totaltags'];
-      $structure_id = (string)(cnLib::search_ID_by_title($_GET['totaltags'], 'structure'));
-    } 
     else {
+        if( empty($_GET['totaltags']) && !empty($_GET['tag']) ) { 
+        $keyword = $_GET['tag'];
+        $args['totaltags'] = $_GET['tag'];
+        $structure_id = (string)(cnLib::search_ID_by_title($_GET['tag'], 'structure'));
+        }
+        elseif( !empty($_GET['totaltags']) ) {
+        $keyword = $_GET['totaltags'];
+        $args['totaltags'] = $_GET['totaltags'];
+        $structure_id = (string)(cnLib::search_ID_by_title($_GET['totaltags'], 'structure'));
+        } 
+        else {
 
+        }
     }
-  }
 
 
-	$args['pays_assoc'] = (isset($_GET['totalpays']))?$_GET['totalpays']:'';
-	$args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
-	$args['category_name'] = (isset($_GET['totalcat']))?$_GET['totalcat']:'';
-  $args['boiteoutils'] = (isset($_GET['boites']))?$_GET['boites']:'';
-  
-  if( isset($_GET['outils']) && $_GET['outils'] === '1' ) {
-    $args['tax_query'] = array(
-      array(
-        'taxonomy' => 'boiteoutils',
-        'field'    => 'slug',
-        'operator' => 'EXISTS',
-      ),
+    $args['pays_assoc'] = (isset($_GET['totalpays']))?$_GET['totalpays']:'';
+    $args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
+    $args['category_name'] = (isset($_GET['totalcat']))?$_GET['totalcat']:'';
+    $args['boiteoutils'] = (isset($_GET['boites']))?$_GET['boites']:'';
+    
+    if( isset($_GET['outils']) && $_GET['outils'] === '1' ) {
+        $args['tax_query'] = array(
+        array(
+            'taxonomy' => 'boiteoutils',
+            'field'    => 'slug',
+            'operator' => 'EXISTS',
+        ),
     );
     // $args['meta_key'] = 'outil';
     // $args['meta_value'] = '1';
@@ -64,14 +65,13 @@ function strstr_after($haystack, $needle, $case_insensitive = false) {
 }
 
 if(strpos($keyword, "\'")) {
-  $keyword = strstr_after($keyword, '\'');
-
+    $keyword = strstr_after($keyword, '\'');
 }
 
 
 	/// SI STRUCTURE IS SET
 
-  if( !empty($_GET['struct']) ) { 
+    if( !empty($_GET['struct']) ) { 
 		$structure_id = $_GET['struct'];
 	}	
 	
@@ -92,103 +92,95 @@ if(strpos($keyword, "\'")) {
 				)
 		);
 	}
-  else {
-    $args['s'] = $keyword;	
-	  add_filter( 'posts_search', 'cn_tags_search', 500, 2 );
-  }
+    else {
+        $args['s'] = $keyword;	
+        add_filter( 'posts_search', 'cn_tags_search', 500, 2 );
+    }
 
 
 
-  // SI PERIODE  IS SET
-  if( isset($_GET['period']) ) {
+    // SI PERIODE  IS SET
+    if( isset($_GET['period']) ) {
 
-  	$period = $_GET['period'];
-  	switch($period){
-  		case '1semaine':
-  			$after='1 week ago';
-  		break;
-  		case '1mois':
-  			$after='1 month ago';
-  		break;
-  		case '3mois':
-  			$after='3 months ago';
-  		break;
-  		case '6mois':
-  			$after='3 months ago';
-  		break;
-  		case '1an':
-  			$after='1 year ago';
-  		break;
-  		default:
-  			$after='50 years ago';
-  		break;
-  	}
-  	$args['date_query'] = array(
-  		array(
-  			'column' => 'post_date_gmt',
-  			'after' => $after,
-  			'before' => 'today',
-  			'inclusive'         => true,
-  		));
-   }
+        $period = $_GET['period'];
+        switch($period){
+            case '1semaine':
+                $after='1 week ago';
+            break;
+            case '1mois':
+                $after='1 month ago';
+            break;
+            case '3mois':
+                $after='3 months ago';
+            break;
+            case '6mois':
+                $after='3 months ago';
+            break;
+            case '1an':
+                $after='1 year ago';
+            break;
+            default:
+                $after='50 years ago';
+            break;
+        }
+        $args['date_query'] = array(
+            array(
+                'column' => 'post_date_gmt',
+                'after' => $after,
+                'before' => 'today',
+                'inclusive'         => true,
+            ));
+    }
 
 
 
-  // SI FORMAT
-  if(isset($_GET['format'])) {
-    $args['format'] = implode(",", $_GET['format']);
-  } 
-  else {
-    $args['format'] = '';
-  }
+    // SI FORMAT
+    if(isset($_GET['format'])) {
+        $args['format'] = implode(",", $_GET['format']);
+    } 
+    else {
+        $args['format'] = '';
+    }
 
   
 
 
-  // SETTINGS FOR QUERY
+    // SETTINGS FOR QUERY
 
-  if( !empty($_GET['posts_per_page']) ) {
-    $post_per_page = $_GET['posts_per_page'];
-  }
-  else {
-    $post_per_page = 10;
-  }
+    if( !empty($_GET['posts_per_page']) ) {
+        $post_per_page = $_GET['posts_per_page'];
+    }
+    else {
+        $post_per_page = 10;
+    }
 
-  $currentpage = get_query_var('paged');
-  
-  $args['posts_per_page'] = $post_per_page;
-  $args['post_type'] = 'post';
-  $args['paged'] = $currentpage;
+    $currentpage = get_query_var('paged');
+    
+    $args['posts_per_page'] = $post_per_page;
+    $args['post_type'] = 'post';
+    $args['paged'] = $currentpage;
 
-  if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
+    if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
     $_SESSION['args'] = $args;
 
+    $results = array();
 
-  //$args['cat'] = '-1'; // Remove thema "general" from search.
-  
-  $_SESSION['args'] = $args;
+    $wp_query = new WP_Query();
+    $wp_query->query($args);
 
-  $results = array();
-
-  $wp_query = new WP_Query();
-  $wp_query->query($args);
-
-  $totalpages = $wp_query->max_num_pages;
+    $totalpages = $wp_query->max_num_pages;
   
+    function get_valuelist($values, $args){
+        if(!empty($args[$values]))  {
+            $values = explode(",", $args[$values]);
+            
+            foreach($values as $value){
+                echo '<li>'.strtoupper($value).'</li>';
+            }
+        }
+    }
   
-  
-  function get_valuelist($values, $args){
-  	if(!empty($args[$values]))  {
-		  $values = explode(",", $args[$values]);
-		
-  		foreach($values as $value){
-  			echo '<li>'.strtoupper($value).'</li>';
-  		}
-  	}
-  }
-  
-
-  get_header(); 
+    get_header(); 
 
 ?>
 
@@ -224,17 +216,19 @@ if(strpos($keyword, "\'")) {
             <div class="mb-m">
                 <h4 class="h4 mb-l">Affiner votre recherche</h4>
 
-                <form id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                <div id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
             
                     <div id="filtres" class="search-options">
-                        <div class="search-form is-relative mb-s">
+
+
+                        <form id="search_txt_form" class="search-form is-relative mb-s" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                             <input type="search" class="input" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                             <button class="search-form__button" type="submit">
                                 <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14.8319 0.726425L20.3651 6.21277L20.4113 6.2557C20.5965 6.43929 20.7042 6.68141 20.7202 6.96748L20.7193 7.06365C20.7059 7.29026 20.6193 7.50674 20.4486 7.70073L20.384 7.76738L14.8319 13.2736C14.4213 13.6807 13.7574 13.6807 13.3468 13.2736C12.9337 12.864 12.9337 12.198 13.3467 11.7885L17.1804 7.98627L1.77257 7.98665C1.19235 7.98665 0.720215 7.51846 0.720215 6.9387C0.720215 6.35894 1.19236 5.89075 1.77256 5.89075L17.0566 5.89038L13.3468 2.21157C12.9337 1.80197 12.9337 1.13603 13.3468 0.726425C13.7574 0.31926 14.4213 0.31926 14.8319 0.726425Z" fill="white"/>
                                 </svg>
                             </button>
-                        </div>
+                        </form>
                     
                         <div class="cat-filters flex gap-m">
                             <div class="is-relative">
@@ -269,11 +263,13 @@ if(strpos($keyword, "\'")) {
                             </div>
                         </div>
                     </div>
-                </form>
+                </div><!-- #rechRess -->
+
+
             </div>
 
             <div class="mb-l">
-                <div class="tax-filters flex">
+                <div class="tax-filters flex filter-format">
                     <div class="checkbox">
                         <input type="checkbox" <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> 
                         <label for="tous">Tous</label>
@@ -304,6 +300,7 @@ if(strpos($keyword, "\'")) {
         </div>
     </section>
 
+<!--     
     <section class="sec_search-pagination on-desktop">
         <div class="wrapper">
             <?php if($wp_query->found_posts > 0) :?>
@@ -326,10 +323,10 @@ if(strpos($keyword, "\'")) {
               </div>
             <?php endif;?>
         </div>
-    </section>
+    </section> -->
 
     <section class="sec_search-results">
-        <div class="flex column gap-xl wrapper">
+        <div id="search-results_wrapper" class="flex column gap-xl wrapper">
             <?php if ( $wp_query->have_posts() ) : ?>
                 <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
                     <?php  
