@@ -1,8 +1,12 @@
 <?php 
-if($link) {
-  $parse = parse_url($link);
-  $domain = $parse['host'];  
-}
+    wp_enqueue_script('swiper');
+    wp_enqueue_script('slider');
+    wp_enqueue_style('swiper-styles');
+
+    if($link) {
+    $parse = parse_url($link);
+    $domain = $parse['host'];  
+    }
 ?>
 
 <main id="ressource">
@@ -144,9 +148,9 @@ if($link) {
     </section>
 
     <section class="sec_related-ressources">
-        <div class="wrapper">
-            <h2 class="h2 mb-l">Ressources en lien</h2>
-            <div class="flex column gap-l">
+        <div class="container">
+            <h2 class="title h2 mb-l">Ressources en lien</h2>
+            <div class="swiper flex column gap-l">
                 <?php
                 $related = get_posts(array(
                     'category__in' => wp_get_post_categories($post->ID),
@@ -154,34 +158,62 @@ if($link) {
                     'post__not_in' => array($post->ID)
                 ));
 
-                if ($related) {
-                    foreach ($related as $post) {
-                        setup_postdata($post); 
-                        $format = cnLib::get_main_term_slug($post->ID, 'format');
-                        
-                        ?>
-                        <div class="ressource-item">
+                if ($related) { ?>
 
-                            <?php if (!empty($format)) : ?>
-                                <span class="ressource-item__format"><?= $format ?></span>
-                            <?php endif; ?>
-
-                            <h4 class="ressource-item__title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                            <p class="ressource-meta small"><span>Thématiques : </span><?php the_category(', '); ?></p>
-                            
-                            <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
-                                <p class="ressource-meta small">
-                                    <span>Auteur(s) : </span>
-                                    <?php $permalink = get_permalink( $main_author );
-                                    if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
-                                    <?php echo $cnSite->get_authors($post->ID); ?>
-                                </p>
-                            <?php } ?>
-
+                    <div class="navigation">
+                        <div class="swiper-button prev">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.96875 10.9375L1 5.96875L5.96875 1" fill="black"/>
+                                <path d="M5.96875 10.9375L1 5.96875L5.96875 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
-                    <?php }
-                    wp_reset_postdata();
-                } else {
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button next">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 10.9375L5.96875 5.96875L1 1" fill="black"/>
+                                <path d="M1 10.9375L5.96875 5.96875L1 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="swiper-wrapper">
+
+                        <?php foreach ($related as $post) {
+                            setup_postdata($post); 
+                            $format = cnLib::get_main_term_slug($post->ID, 'format');
+                            
+                            ?>
+                            <div class="ressource-item mobile-paper swiper-slide">
+
+                                <?php if (!empty($format)) : ?>
+                                    <span class="metas"><?= $format ?></span>
+                                <?php endif; ?>
+
+                                <h4 class="title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                <p class="ressource-meta small"><span>Thématiques : </span><?php the_category(', '); ?></p>
+                                
+                                <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
+                                    <p class="ressource-meta small small">
+                                        <span>Auteur(s) : </span>
+                                        <?php $permalink = get_permalink( $main_author );
+                                        if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
+                                        <?php echo $cnSite->get_authors($post->ID); ?>
+                                    </p>
+                                <?php } ?>
+
+                                <div class="action on-mobile">
+                                    <a href="<?php the_permalink(); ?>" class="button btn btn--tertiary">
+                                        <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.7132 0.726395L20.2464 6.21274L20.2927 6.25567C20.4778 6.43926 20.5856 6.68138 20.6016 6.96745L20.6007 7.06362C20.5872 7.29023 20.5006 7.50671 20.33 7.7007L20.2654 7.76735L14.7132 13.2735C14.3026 13.6807 13.6387 13.6807 13.2281 13.2735C12.8151 12.8639 12.8151 12.198 13.2281 11.7884L17.0617 7.98624L1.65394 7.98662C1.07373 7.98662 0.601593 7.51843 0.601593 6.93867C0.601593 6.35891 1.07374 5.89072 1.65394 5.89072L16.938 5.89034L13.2281 2.21154C12.8151 1.80194 12.8151 1.136 13.2281 0.726395C13.6387 0.319229 14.3026 0.319229 14.7132 0.726395Z" fill="#ED1B24"/>
+                                        </svg>
+                                    </a>
+                                </div>
+
+                            </div>
+                        <?php }
+                        wp_reset_postdata(); ?>
+                    </div>
+                <?php } else {
                     echo '<p>Aucune ressource liée trouvée.</p>';
                 }
                 ?>

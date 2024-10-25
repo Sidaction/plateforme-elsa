@@ -99,9 +99,9 @@ set_query_var( 'cnSite', $cnSite );
 
                     <div class="swiper-wrapper grid">
                         <?php while ($media_posts->have_posts()) : $media_posts->the_post(); ?>
-                            <div class="ressource swiper-slide s-4col flex column start-y space gap-m">
-                                <div class="ressource__texts">
-                                    <div class="ressource__metas">
+                            <div class="ressource-paper swiper-slide s-4col flex column start-y space gap-m">
+                                <div class="texts">
+                                    <div class="metas">
                                         <?php
                                             $category = get_the_category()[0];
                                             $terms = get_the_terms(get_the_ID(), 'format');
@@ -111,7 +111,7 @@ set_query_var( 'cnSite', $cnSite );
 
 
                                             if (!empty($category)) {
-                                                echo '<p class="category small">' . esc_html($category->name);
+                                                echo '<p class="ressource-meta small">' . esc_html($category->name);
                                             }
                                             if (!empty($category) && !empty($format)) {
                                                 echo ' | ';
@@ -123,11 +123,11 @@ set_query_var( 'cnSite', $cnSite );
                                             }
                                         ?>
                                     </div>
-                                    <h3 class="h3 ressource__title"><?php the_title(); ?></h3>
+                                    <h3 class="h3 title"><?php the_title(); ?></h3>
                                     <div><?php the_excerpt(); ?></div>
                                 </div>
-                                <div class="ressource__action">
-                                    <a href="<?php the_permalink(); ?>" class="ressource__button btn btn--tertiary">
+                                <div class="action">
+                                    <a href="<?php the_permalink(); ?>" class="button btn btn--tertiary">
                                         <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.7132 0.726395L20.2464 6.21274L20.2927 6.25567C20.4778 6.43926 20.5856 6.68138 20.6016 6.96745L20.6007 7.06362C20.5872 7.29023 20.5006 7.50671 20.33 7.7007L20.2654 7.76735L14.7132 13.2735C14.3026 13.6807 13.6387 13.6807 13.2281 13.2735C12.8151 12.8639 12.8151 12.198 13.2281 11.7884L17.0617 7.98624L1.65394 7.98662C1.07373 7.98662 0.601593 7.51843 0.601593 6.93867C0.601593 6.35891 1.07374 5.89072 1.65394 5.89072L16.938 5.89034L13.2281 2.21154C12.8151 1.80194 12.8151 1.136 13.2281 0.726395C13.6387 0.319229 14.3026 0.319229 14.7132 0.726395Z" fill="#ED1B24"/>
                                         </svg>

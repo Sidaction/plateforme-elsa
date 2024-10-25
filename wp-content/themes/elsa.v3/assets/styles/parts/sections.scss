@@ -89,91 +89,6 @@
 
     }
 
-    .ressource {
-        clip-path: url(#mask-full-3);
-        background-color: $primary-color;
-        padding: 40px 24px;
-        position: relative;
-        color: $white;
-
-        &::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: url('/wp-content/themes/elsa.v3/assets/img/bg-texture.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            mix-blend-mode: multiply;
-            z-index: -1;
-        }
-        
-        @include min(medium) {
-            &:nth-child(2),
-            &:nth-child(5) {
-                transform: translateY(-40px);
-            }
-        }
-
-        @include max(medium) {
-            display: flex;
-        }
-
-        &:nth-child(2), &:nth-child(4) {
-            background-color: $black;
-        }
-
-        &:nth-child(3) {
-            background-color: $gray-3;
-        }
-
-        &:last-child {
-            background-color: $gray-2;
-        }
-
-        &__metas {
-            background-color: $white;
-            color: $primary-color;
-            width: fit-content;
-            padding: 0 9px;
-
-            p {
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                line-clamp: 1;
-                -webkit-line-clamp: 1;
-            }
-        }
-
-        &__title {
-            margin: 10px 0;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-clamp: 3;
-            -webkit-line-clamp: 3;
-            hyphens: auto;
-        }
-
-        &__action {
-            margin-top: var(--space-l) ;
-        }
-
-        &__button {
-            aspect-ratio: 1;
-            padding: 18px;
-            font-size: unset;
-            display: inline;
-
-            &::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-            }
-        }
-    }
-
 }
 
 
@@ -528,6 +443,27 @@
 .sec_related-ressources {
     padding: 100px 0;
     background-color: $gray-1;
+
+    @include max(medium) {
+        padding: 50px 0;
+    }
+
+    .container {
+        @include min(medium) {
+            @include wrapper;
+        }
+
+        .title {
+            @include max(medium) {
+                @include wrapper;
+            }
+        }
+    }
+    .swiper {
+        @include max(medium) {
+            @include wrapper-padding;
+        }
+    }
 }
 
 

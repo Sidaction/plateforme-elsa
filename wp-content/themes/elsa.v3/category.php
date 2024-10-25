@@ -77,7 +77,7 @@ get_header();
         </div>
     </section>
 
-    <section class="sec_related-ressources" id="recommandations">
+    <section class="sec_related-ressources on-desktop" id="recommandations">
         <div class="wrapper">
             <h2 class="h2 mb-l">Ressources en lien</h2>
             <div class="flex column gap-l mb-l">

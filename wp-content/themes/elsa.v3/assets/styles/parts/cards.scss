@@ -1,18 +1,116 @@
 /*------------------------------------*\
+    PAPER RESSOURCE
+\*------------------------------------*/
+
+@mixin mobile-paper {
+    clip-path: url(#mask-full-3);
+    background-color: $primary-color;
+    padding: 40px 24px;
+    position: relative;
+    color: $white;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url('/wp-content/themes/elsa.v3/assets/img/bg-texture.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        mix-blend-mode: multiply;
+        z-index: -1;
+    }
+    
+    @include min(medium) {
+        &:nth-child(2),
+        &:nth-child(5) {
+            transform: translateY(-40px);
+        }
+    }
+
+    &:nth-child(2), &:nth-child(4) {
+        background-color: $black;
+    }
+
+    &:nth-child(3) {
+        background-color: $gray-3;
+    }
+
+    &:last-child {
+        background-color: $gray-2;
+    }
+
+    .metas {
+        background-color: $white;
+        color: $primary-color;
+        width: fit-content;
+        padding: 0 9px;
+
+        p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-clamp: 1;
+            -webkit-line-clamp: 1;
+        }
+    }
+
+    .title {
+        margin: 10px 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        hyphens: auto;
+    }
+
+    .action {
+        margin-top: var(--space-l) ;
+    }
+
+    .button {
+        aspect-ratio: 1;
+        padding: 18px;
+        font-size: unset;
+        display: inline;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+        }
+    }
+    .ressource-meta span {
+        color: $white;
+    }
+}
+
+.ressource-paper {
+    @include mobile-paper;
+}
+
+/*------------------------------------*\
     SEARCH RESULTS
 \*------------------------------------*/
 
 .ressource-item {
 
-    &__format {
+    .metas {
         background-color: $primary-color;
         color: $white;
         padding: 4px 8px;
         font-size: 14px;
     }
 
-    &__title {
+    .title {
         margin: 12px 0;
+    }
+
+    &.mobile-paper {
+        @include max(medium) {
+            @include mobile-paper;
+        }
     }
 
 }
