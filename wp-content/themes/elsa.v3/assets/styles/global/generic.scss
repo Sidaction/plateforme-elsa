@@ -77,7 +77,7 @@
 
 .on-desktop {
     @include max(medium) {
-        display: none;
+        display: none !important;
     }
 }
 

@@ -164,6 +164,8 @@
             aspect-ratio: 1;
             padding: 18px;
             font-size: unset;
+            display: inline;
+
             &::after {
                 content: "";
                 position: absolute;
@@ -445,6 +447,15 @@
         width: 100%;
         object-fit: cover;
     }
+
+    .container {
+        @include min(medium) {
+            column-gap: var(--space-l);
+        }
+        @include max(medium) {
+            row-gap: var(--space-l);
+        }
+    }
 }
 
 
@@ -452,6 +463,20 @@
 
 .sec_ressource-content {
     margin: 80px 0;
+
+    .container {
+        @include min(large) {
+            column-gap: var(--space-xxl);
+        }
+        @include max(large) {
+            row-gap: var(--space-l);
+        }
+        .ressources {
+            @include max(large) {
+                align-items: flex-start;
+            }
+        }
+    }
 
     .content {
         a {
