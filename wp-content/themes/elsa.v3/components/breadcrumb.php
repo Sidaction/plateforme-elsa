@@ -7,7 +7,7 @@
     <?php if (is_category()) : ?>
         <a href="<?php echo get_category_link(get_queried_object_id()); ?>"><?php single_cat_title(); ?></a>
     <?php elseif (is_single()) : ?>
-        <a href="<?php echo get_post_type_archive_link('ressource'); ?>">Ressources</a>
+        <a href="<?php echo get_permalink(get_page_by_path('recherche-documentaire')); ?>">Ressources</a>
         <a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
     <?php elseif (is_tax()) : ?>
         <a href="#">Boite à outils</a>

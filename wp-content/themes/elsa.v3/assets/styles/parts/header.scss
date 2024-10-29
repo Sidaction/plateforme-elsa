@@ -136,7 +136,7 @@
                 gap: var(--space-m);
             }
             .menu-item {
-                @include menu-item;
+                @extend .menu-item;
             }
         }
     

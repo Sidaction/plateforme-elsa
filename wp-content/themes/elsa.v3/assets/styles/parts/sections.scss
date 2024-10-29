@@ -404,7 +404,7 @@
 \*------------------------------------*/
 
 .sec_ressource-hero {
-    padding: 70px 0;
+    padding: 35px 0;
     margin-bottom: 80px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -479,12 +479,17 @@
 
         .nav-btn {
             font-size: 16px;
-            font-weight: $font-medium;
+            font-weight: $font-light;
             display: flex;
             gap: 10px;
             color: #7E7E7E;
             align-items: center;
             text-transform: uppercase;
+
+            &:hover {
+                opacity: .8;
+                font-weight: $font-regular;
+            }
         }
     }
 }

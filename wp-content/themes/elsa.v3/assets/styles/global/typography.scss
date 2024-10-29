@@ -140,14 +140,15 @@ a {
     color: var(--black);
 }
 
-@mixin menu-item {
+
+.menu-item {
     white-space: nowrap;
     font-size: 1.5rem;
     font-weight: $font-bold;
-}
 
-.menu-item {
-    @include menu-item;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 

@@ -169,6 +169,14 @@ label {
         width: 100%;
         height: auto;
     }
+
+    iframe {
+        margin: var(--space-xl) 0;
+        width: var(--max-width);
+        aspect-ratio: 16/9;
+        display: block;
+        height: auto;
+    }
 }
 
 /*------------------------------------*\

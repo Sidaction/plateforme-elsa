@@ -39,7 +39,7 @@ Wrapper
 --------------------------------------------------------------*/
 
 @mixin wrapper($size: null) {
-    max-width: 1150px;
+    max-width: var(--max-width);
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -50,7 +50,7 @@ Wrapper
 }
 
 @mixin wrapper-padding {
-    max-width: 1150px;
+    max-width: var(--max-width);
     padding-left: 5%;
     padding-right: 5%;
 }
