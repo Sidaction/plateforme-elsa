@@ -14,9 +14,15 @@ const init = () => {
     const sec_search_results_wrapper = document.querySelector('#search-results_wrapper');
     const sec_search_pagination = document.querySelector('.sec_search-pagination');
     const sec_search_more = document.querySelector('.sec_search-more');
-
+    const sec_rest_to_go = document.querySelector('#load_more_rest_to_go');
+    
     const filter_format_btns = document.querySelectorAll('.filter-format input')
     const found_posts_label = document.querySelector('#foundPostsLabel');
+
+    const filter_category_select = document.querySelector("#select-category");
+    const filter_period_select = document.querySelector("#period");
+    const filter_pays_select = document.querySelector("#select-pays_assoc");
+
 
     // UTILS
     let offset = 0;
@@ -41,7 +47,14 @@ const init = () => {
         setTimeout( () => {
             const nbr = document.querySelector('#foundPosts') ? document.querySelector('#foundPosts').getAttribute('data-posts') : 0;
             found_posts_label.innerHTML = nbr;
+
+            const rest = nbr > 0 ? nbr - offset - step : 0;
+            sec_rest_to_go.innerHTML = rest;
+
+            if( rest <= 0 ) sec_search_more.classList.add('is-hidden');
+
             console.log('nbr', nbr)
+            console.log('rest', rest)
         }, 500)
     }
 
@@ -81,8 +94,8 @@ const init = () => {
         fetchAndDisplayDatas().then( () => {
             page.classList.remove('loading')
         });
-
     }
+
 
 
     /*------------------------------------*\
@@ -106,7 +119,6 @@ const init = () => {
 
             page.classList.remove('loading')
         });
-
     }
 
     const load_more_contents = async (event) => {
@@ -116,24 +128,35 @@ const init = () => {
         data.set('offset', offset);
 
         fetchAndDisplayDatas( true ).then( () => {
+            displayFoundPosts()
             page.classList.remove('loading')
         });
-
     }
 
-
     const filter_format_contents = async (event, el) => {
-
-        console.log(el);
+        const activeFormat = document.querySelector('input.checked');
+        activeFormat.classList.remove('checked')
         el.checked = "checked";
         el.classList.add('checked');
-
-        console.log(el.checked);
-
         let format = el.value;
         data.set('format', format);
         load_contents(event)
+    }
 
+    const filter_category_contents = async (event, el) => {
+        let category = el.value;
+        data.set('thematique', category);
+        load_contents(event)
+    }
+    const filter_period_contents = async (event, el) => {
+        let pariod = el.value;
+        data.set('period', pariod);
+        load_contents(event)
+    }
+    const filter_pays_contents = async (event, el) => {
+        let pays = el.value;
+        data.set('pays', pays);
+        load_contents(event)
     }
 
 
@@ -150,11 +173,22 @@ const init = () => {
 
     filter_format_btns.forEach( el => {
         el.addEventListener('click', event => {
-            const activeFormat = document.querySelector('input.checked');
-            activeFormat.classList.remove('checked')
             filter_format_contents(event, el)
         })
     })
+    
+    filter_category_select.addEventListener('change', event => {
+        filter_category_contents(event, filter_category_select)
+    })
+
+    filter_period_select.addEventListener('change', event => {
+        filter_period_contents(event, filter_period_select)
+    })
+
+    filter_pays_select.addEventListener('change', event => {
+        filter_pays_contents(event, filter_pays_select)
+    })
+
     
 
 

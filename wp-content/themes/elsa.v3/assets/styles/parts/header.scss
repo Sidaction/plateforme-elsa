@@ -6,7 +6,11 @@
     right: 0;
     z-index: 100;
     background-color: $white;
-
+    transition: transform .3s;
+    
+    &.out {
+        transform: translateY(-100%);
+    }
     @include max(medium) {
         background-color: $gray-1;
     }

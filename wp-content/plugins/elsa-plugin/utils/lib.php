@@ -430,21 +430,21 @@ public static function custom_taxonomy_dropdown($taxonomy, $class = '', $libfirs
 
 
 /// case à cocher d'une taxo
-    public static function custom_taxonomy_inputlist($taxonomy, $class = '', $selected ,$hide_empty = true ) {
-  if(empty($selected)) $selected=array();
-        $args = array(
-            'order' => 'slug',
-      'hide_empty' => $hide_empty,
-        );
-        $terms = get_terms($taxonomy);
-        if ($terms) {
+//     public static function custom_taxonomy_inputlist($taxonomy, $class = '', $selected ,$hide_empty = true ) {
+//   if(empty($selected)) $selected=array();
+//         $args = array(
+//             'order' => 'slug',
+//             'hide_empty' => $hide_empty,
+//         );
+//         $terms = get_terms($taxonomy);
+//         if ($terms) {
 
-            foreach ($terms as $term) {
-      $check =in_array($term->slug, $selected)?' checked' :'';
-                printf('<input  name="%s[]" type="checkbox" value="%s" class="%s" %s />%s<br />',$taxonomy, $term->slug, $class, $check,$term->name);
-            }
-        }
-    }
+//             foreach ($terms as $term) {
+//       $check =in_array($term->slug, $selected)?' checked' :'';
+//                 printf('<input  name="%s[]" type="checkbox" value="%s" class="%s" %s />%s<br />',$taxonomy, $term->slug, $class, $check,$term->name);
+//             }
+//         }
+//     }
 
 /// case à cocher d'une list de custom post
     public static function custom_post_inputlist($post_type, $name_id, $selected = array()) {

@@ -94,7 +94,7 @@ if(strpos($keyword, "\'")) {
 	}
     else {
         $args['s'] = $keyword;	
-        add_filter( 'posts_search', 'cn_tags_search', 500, 2 );
+        apply_filters_ref_array( 'posts_search', 'cn_tags_search', 500, 2 );
     }
 
 
@@ -188,18 +188,18 @@ if(strpos($keyword, "\'")) {
     <section class="sec_search" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search.png);">
         <div class="wrapper">
             
-            <div class="grid mb-l is-relative">
+            <div class="sec_search_titles grid mb-l is-relative">
                 <div class="t-12col m-8col">
                     <?php get_template_part('components/breadcrumb'); ?>
 
                     <h2 class="h2 mb-s">Votre recherche</h2>
-                    <p>Vous avez <span id="foundPostsLabel"><?php echo $wp_query->found_posts;?></span> résultats...</p>
+                    <p>Il y a <span id="foundPostsLabel"><?php echo $wp_query->found_posts;?></span> résultats.</p>
                 </div>
                 
                 <label for="help" class="on-mobile h4 help-mobile-trigger t-12col txt-right">Aide</label>
                 <input type="checkbox" id="help" class="help-mobile-input on-mobile">
 
-                <div class="help t-12col m-4col" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search-help.png);">
+                <div class="sec_search_help t-12col m-4col" style="background-image:url(<?= get_template_directory_uri(); ?>/assets/img/search/bg-search-help.png);">
               
                     <h4 class="help__title h4">Aide</h4>
 
@@ -212,8 +212,8 @@ if(strpos($keyword, "\'")) {
                 </div>
             </div>
 
-            <div class="mb-m">
-                <h4 class="h4 mb-l">Affiner votre recherche</h4>
+            <div class="sec_search_filters mb-m">
+                <h4 class="h4 mb-m">Affiner votre recherche</h4>
 
                 <div id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
             
@@ -266,7 +266,7 @@ if(strpos($keyword, "\'")) {
 
             </div>
 
-            <div class="mb-l">
+            <div class="sec_search_btns mb-l">
                 <div class="tax-filters flex filter-format">
                     <div class="checkbox">
                         <input type="checkbox" class="s_checkbox <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>" id="tous" value="" name="format[]"/> 
@@ -290,9 +290,9 @@ if(strpos($keyword, "\'")) {
                 <input type="hidden" id="posts_per_page" name="posts_per_page" value="<?php echo $args['posts_per_page'];?>" />
             </div>
 
-            <div class="flex gap-m">
-                <a id="btnerase" class="btn btn--secondary" href="/recherche-documentaire">Effacer tous les critères</a>
-                <input type="submit" id="formatbtn" class="btn" value="Filtrer">
+            <div class="sec_search_actions flex gap-m">
+                <a id="btnerase" class="btn btn--secondary btn--small" href="/recherche-documentaire">Effacer tous les critères</a>
+                <!-- <input type="submit" id="formatbtn" class="btn" value="Filtrer"> -->
             </div>
 
         </div>
@@ -325,6 +325,9 @@ if(strpos($keyword, "\'")) {
 
     <section class="sec_search-results">
         <div id="search-results_wrapper" class="flex column gap-xl wrapper">
+
+            <div id="foundPosts" style="display:none" data-posts="<?php echo $wp_query->found_posts; ?>"></div>
+
             <?php if ( $wp_query->have_posts() ) : ?>
                 <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
 
@@ -340,7 +343,9 @@ if(strpos($keyword, "\'")) {
 
     <section class="sec_search-more is-hidden">
         <div class="wrapper">
-            <button id="load_more" class="btn btn--secondary">Charger plus de ressources</button>
+            <button id="load_more" class="btn btn--primary">
+                <span>Charger plus de ressources <br>(encore <span id="load_more_rest_to_go">0</span> ressources)</span>
+            </button>
         </div>
     </section>
 

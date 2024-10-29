@@ -33,10 +33,10 @@ body {
 
 main {
     flex-grow: 1;
-    transition: opacity .5s;
+    transition: opacity 1s;
     
     &.loading {
-        opacity: 0.6;
+        opacity: 0.3;
     }
 }
 

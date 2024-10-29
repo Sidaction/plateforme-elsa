@@ -590,14 +590,53 @@ function handle_contents_loading() {
             $args['format'] = '';
         }
 
+        // SI CATEGORY
+        $args['category_name'] = (isset($_REQUEST['thematique']))?$_REQUEST['thematique']:'';
+
+        $args['pays_assoc'] = (isset($_REQUEST['pays']))?$_REQUEST['pays']:'';
+
+        // SI PERIODE  IS SET
+        if( isset($_REQUEST['period']) ) {
+
+            $period = $_REQUEST['period'];
+            switch($period){
+                case '1semaine':
+                    $after='1 week ago';
+                break;
+                case '1mois':
+                    $after='1 month ago';
+                break;
+                case '3mois':
+                    $after='3 months ago';
+                break;
+                case '6mois':
+                    $after='3 months ago';
+                break;
+                case '1an':
+                    $after='1 year ago';
+                break;
+                default:
+                    $after='50 years ago';
+                break;
+            }
+            $args['date_query'] = array(
+                array(
+                    'column'        => 'post_date_gmt',
+                    'after'         => $after,
+                    'before'        => 'today',
+                    'inclusive'     => true,
+                )
+            );
+        }
+
 
         $wp_query = new WP_Query();
-        $wp_query->query($args);
+        $wp_query->query($args); ?>
         
+        <div id="foundPosts" style="display:none" data-posts="<?php echo $wp_query->found_posts; ?>"></div>
 
-        if ( $wp_query->have_posts() ) : ?>
+        <?php if ( $wp_query->have_posts() ) : ?>
 
-            <div id="foundPosts" style="display:none" data-posts="<?php echo $wp_query->found_posts; ?>"></div>
             <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
 
                 <?php get_template_part('template-parts/parts/part', 'ressource'); ?>
