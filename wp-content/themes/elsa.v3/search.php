@@ -355,7 +355,7 @@ if(strpos($keyword, "\'")) {
             <?php if($wp_query->found_posts > 0) :?>
               <div class="container flex space start-y">
                 <div class="is-relative">
-                    <select class="input select" id="pager1">
+                    <select class="input select" id="pager">
                         <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
                         <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
                         <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>

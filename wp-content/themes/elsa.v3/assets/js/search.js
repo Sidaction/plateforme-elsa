@@ -16,6 +16,7 @@ const init = () => {
     const sec_search_more = document.querySelector('.sec_search-more');
     const sec_rest_to_go = document.querySelector('#load_more_rest_to_go');
     
+    const search_pager = document.querySelector('#pager');
     const filter_format_btns = document.querySelectorAll('.filter-format input')
     const found_posts_label = document.querySelector('#foundPostsLabel');
 
@@ -53,8 +54,6 @@ const init = () => {
 
             if( rest <= 0 ) sec_search_more.classList.add('is-hidden');
 
-            console.log('nbr', nbr)
-            console.log('rest', rest)
         }, 500)
     }
 
@@ -72,7 +71,6 @@ const init = () => {
         .then(body => {
         
             if (!body.success) {
-                console.log(body);
                 return;
             }
         
@@ -191,38 +189,23 @@ const init = () => {
 
     
 
+    // XX RESULTS PER PAGE
 
-        // // XX RESULTS PER PAGE
-        // $("#pager1, #pager2").change(function(event){
-        //     event.preventDefault();
-      
-        //     var posts_per_page = $(this).val();
-      
-        //     $.ajax({
-        //       url : myAjax.ajaxurl,
-        //       method : 'post',
-        //       data : {
-        //         action: "load_medias",
-        //         posts_per_page : posts_per_page,
-        //       },
-        
-        //       beforeSend: function( response ) {
-        //         medias_list.html('Nous recherchons les associations correspondantes...');
-        //       },
-        //       success : function( response ) {
-        //         medias_list.html( response );
-        //       },
-      
-        //       error : function( data ) { // en cas d'échec
-        //         // Sinon je traite l'erreur
-        //         // console.log( 'Erreur…' );
-        //       }
-      
-        //     });
-      
-        //   });
+    search_pager.addEventListener('change', () => {
 
+        const params = new URLSearchParams(window.location.search)
+        console.log(params)
 
+        params.set('posts_per_page', search_pager.value);
+        console.log(params)
+
+        let url = location.protocol + '//' + location.host + location.pathname + '?' + params.toString() ;    
+
+        console.log(url)
+
+        window.location.href = url;
+
+    });
 
 
 }
