@@ -60,10 +60,10 @@ ul {
     FORMS
 \*------------------------------------*/
 
-input[type="text"], input[type="search"] , .input {
+input[type="text"], input[type="search"], input[type="email"],textarea, .input {
     border: 1px solid $primary-color;
     padding: 20px 60px 20px 30px;
-    border-radius: 50px;
+    border-radius: 35px;
     font-size: 12px;
     font-weight: 600;
     width: 100%;
@@ -131,6 +131,12 @@ button[type="submit"] {
     &:hover {
         background-color: $black;
     }
+}
+
+label {
+    display: inline-block;
+    padding-bottom: 5px;
+    font-size: 1.6rem;
 }
 
 /*------------------------------------*\
