@@ -157,4 +157,9 @@ a {
     font-weight: $font-extralight;
     text-transform: uppercase;
     line-height: 1.8;
+
+    &:hover {
+        opacity: .8;
+        font-weight: 600;
+    }
 }
