@@ -126,3 +126,37 @@
     }
 }
 
+
+
+/*------------------------------------*\
+    Autocomplete menu
+\*------------------------------------*/
+
+.ui-autocomplete {
+    list-style: none;
+    z-index: 999999;
+    box-shadow: none;
+    margin-top: 10px;
+    background-color: white;
+    color: $black;
+    font-size: 15px;
+    border: none;
+    padding: 20px;
+    opacity: 0.98;
+    max-width: 300px;
+
+    .ui-menu-item {
+        cursor: pointer;
+
+        &:hover {
+            opacity: .4;
+        }
+    }
+  }
+  
+  .ui-widget-content .ui-state-focus {
+    color: $white;
+    font-style: italic;
+    border: none;
+  }
+  

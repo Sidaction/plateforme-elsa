@@ -102,7 +102,8 @@ input[type="text"], input[type="search"] , .input {
 input[type="checkbox"] {
     appearance: none;
 
-    &:checked ~ label {
+    &:checked ~ label,
+    &.checked ~ label {
         background-color: $secondary-color;
         color: $white;
         font-weight: $font-semibold;
@@ -112,7 +113,7 @@ input[type="checkbox"] {
         padding: 3px 8px;
         cursor: pointer;
         user-select: none;
-        @include menu-item2;
+        @extend .menu-item2;
     }
 }
 

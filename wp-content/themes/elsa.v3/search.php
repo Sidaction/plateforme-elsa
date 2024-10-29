@@ -4,6 +4,7 @@
  * Template Name: Page Resultats Recherche
  */
 
+    wp_enqueue_script( 'wp-api' );
     wp_enqueue_script('search');
 
     global $cnSite;
@@ -34,7 +35,6 @@
 
         }
     }
-
 
     $args['pays_assoc'] = (isset($_GET['totalpays']))?$_GET['totalpays']:'';
     $args['region'] = (isset($_GET['totalregions']))?$_GET['totalregions']:'';
@@ -125,10 +125,10 @@ if(strpos($keyword, "\'")) {
         }
         $args['date_query'] = array(
             array(
-                'column' => 'post_date_gmt',
-                'after' => $after,
-                'before' => 'today',
-                'inclusive'         => true,
+                'column'        => 'post_date_gmt',
+                'after'         => $after,
+                'before'        => 'today',
+                'inclusive'     => true,
             ));
     }
 
@@ -141,7 +141,6 @@ if(strpos($keyword, "\'")) {
     else {
         $args['format'] = '';
     }
-
   
 
 
@@ -194,7 +193,7 @@ if(strpos($keyword, "\'")) {
                     <?php get_template_part('components/breadcrumb'); ?>
 
                     <h2 class="h2 mb-s">Votre recherche</h2>
-                    <p>Vous avez <?php echo $wp_query->found_posts;?> résultats...</p>
+                    <p>Vous avez <span id="foundPostsLabel"><?php echo $wp_query->found_posts;?></span> résultats...</p>
                 </div>
                 
                 <label for="help" class="on-mobile h4 help-mobile-trigger t-12col txt-right">Aide</label>
@@ -219,7 +218,6 @@ if(strpos($keyword, "\'")) {
                 <div id="rechRess" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
             
                     <div id="filtres" class="search-options">
-
 
                         <form id="search_txt_form" class="search-form is-relative mb-s" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                             <input type="search" class="input" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
@@ -271,7 +269,7 @@ if(strpos($keyword, "\'")) {
             <div class="mb-l">
                 <div class="tax-filters flex filter-format">
                     <div class="checkbox">
-                        <input type="checkbox" <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>  class="s_checkbox" id="tous" value="" name="format[]"/> 
+                        <input type="checkbox" class="s_checkbox <?php if ( $args['format'] === '' && !isset($_GET['outils']) ) { echo 'checked'; } ?>" id="tous" value="" name="format[]"/> 
                         <label for="tous">Tous</label>
                     </div>
                     <div class="check-item"><input type="checkbox" <?php if (strpos($args['format'], 'pdf') !== false) { echo 'checked'; } ?> class="s_checkbox" id="doc" value="pdf"  name="format[]"/> <label for="doc">Document</label></div>
@@ -293,7 +291,7 @@ if(strpos($keyword, "\'")) {
             </div>
 
             <div class="flex gap-m">
-                <a id="btnerase" class="btn btn--secondary" href="#">Effacer tous les critères</a>
+                <a id="btnerase" class="btn btn--secondary" href="/recherche-documentaire">Effacer tous les critères</a>
                 <input type="submit" id="formatbtn" class="btn" value="Filtrer">
             </div>
 
@@ -329,29 +327,8 @@ if(strpos($keyword, "\'")) {
         <div id="search-results_wrapper" class="flex column gap-xl wrapper">
             <?php if ( $wp_query->have_posts() ) : ?>
                 <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
-                    <?php  
-                        $results[] = $post->ID;
-                        $cat = cnLib::get_term_list_link($post->ID, 'category', 'category/');
-                        $pays = cnLib::get_term_list_link($post->ID, 'pays_assoc', 'pays/');
-                        $main_author = get_post_meta($post->ID, 'first_org', true);
-                        $format = cnLib::get_main_term_slug($post->ID, 'format');
-                    ?>
 
-                    <div class="ressource-item">
-                        <?php if (!empty($format)) : ?>
-                            <span class="metas"><?= $format ?></span>
-                        <?php endif; ?>
-                        <h4 class="title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                        <p class="ressource-meta small"><span>Thématiques :</span> <?= $cat ?></p>
-                        <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
-                            <p class="ressource-meta small">
-                                <span>Auteur(s) : </span>
-                                <?php $permalink = get_permalink( $main_author );
-                                if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
-                                <?php echo $cnSite->get_authors($post->ID); ?>
-                            </p>
-                        <?php } ?>
-                    </div>
+                    <?php get_template_part('template-parts/parts/part', 'ressource'); ?>
 
                 <?php endwhile; ?>
             <?php else : ?>
@@ -359,6 +336,14 @@ if(strpos($keyword, "\'")) {
             <?php endif; ?>
         </div>
     </section>
+
+
+    <section class="sec_search-more is-hidden">
+        <div class="wrapper">
+            <button id="load_more" class="btn btn--secondary">Charger plus de ressources</button>
+        </div>
+    </section>
+
 
     <section class="sec_search-pagination">
         <div class="wrapper">

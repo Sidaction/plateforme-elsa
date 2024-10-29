@@ -150,14 +150,11 @@ a {
     @include menu-item;
 }
 
-@mixin menu-item2 {
+
+.menu-item2 {
     white-space: nowrap;
     font-size: 1.2rem;
     font-weight: $font-extralight;
     text-transform: uppercase;
-    line-height: 22px
-}
-
-.menu-item2 {
-    @include menu-item2;
+    line-height: 22px;
 }

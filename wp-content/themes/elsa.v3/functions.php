@@ -242,11 +242,11 @@ function my_custom_scripts() {
 
 
     // Search Script File
-    wp_register_script('search', get_template_directory_uri() . '/assets/js/search.js', array('vue'), null, true);
+    wp_register_script('search', get_template_directory_uri() . '/assets/js/search.js', array('vue', 'wp-api'), null, true);
     
     wp_add_inline_script( 'search', 'const ajax_datas = ' . json_encode( array(
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-        'nonce' => wp_create_nonce( 'loading_contents_nonce' )
+        'nonce' => wp_create_nonce( 'handle_contents_loading' )
     ) ), 'before' );
 
 
@@ -263,7 +263,7 @@ function my_custom_scripts() {
 
 
     // For Ajax stuffs
-    wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+//    wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_scripts', 100 );
 
@@ -559,25 +559,58 @@ function wp_get_attachment( $attachment_id ) {
 
 
 add_action('wp_ajax_handle_contents_loading','handle_contents_loading');
-    
+add_action( 'wp_ajax_nopriv_handle_contents_loading', 'handle_contents_loading' );
 function handle_contents_loading() {
 
-    if ( empty( $_POST['dashify_enabled'] ) ) {
-		return;
-	}
-
-	check_ajax_referer( 'loading_contents_nonce' );
+     // Vérification de sécurité
+    if( 
+        ! isset( $_REQUEST['nonce'] ) or 
+        ! wp_verify_nonce( $_REQUEST['nonce'], 'handle_contents_loading' ) 
+    ) {
+        wp_send_json_error( "Vous n’avez pas l’autorisation d’effectuer cette action.", 403 );
+    }
     
     ob_start();
 
-    ?>
+        $args = array(
+            'post_type'         => 'post',
+            'posts_per_page'    => 20,
+            'offset'            => $_REQUEST['offset'],
+            'post_status'       => 'publish'
+        );
 
-        <p>hello</p>
+        $args['s'] = $_REQUEST['keyword'];	
+        add_filter( 'posts_search', 'cn_tags_search', 500, 2 );
+        
+        // SI FORMAT
+        if( isset($_REQUEST['format']) ) {
+            $args['format'] = $_REQUEST['format'];
+        } 
+        else {
+            $args['format'] = '';
+        }
 
-    <?php
+
+        $wp_query = new WP_Query();
+        $wp_query->query($args);
+        
+
+        if ( $wp_query->have_posts() ) : ?>
+
+            <div id="foundPosts" style="display:none" data-posts="<?php echo $wp_query->found_posts; ?>"></div>
+            <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
+
+                <?php get_template_part('template-parts/parts/part', 'ressource'); ?>
+
+            <?php endwhile; ?>
+        <?php else : ?>
+            <p>Désolé, il n'y a pas de résultats sur les critères sélectionnés</p>
+        <?php endif;
+
 
     $content = ob_get_clean();
 
-    echo $content;
-    die();
+    wp_send_json_success( $content );
+
+    wp_die();
 }

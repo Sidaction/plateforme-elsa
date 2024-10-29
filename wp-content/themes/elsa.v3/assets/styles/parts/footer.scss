@@ -47,7 +47,7 @@
                 @include min(medium) {
                     margin-bottom: 20px;
                 }
-                @include menu-item2;
+                @extend .menu-item2;
             }
         }
     }
