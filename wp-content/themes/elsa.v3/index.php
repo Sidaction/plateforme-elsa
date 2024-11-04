@@ -157,26 +157,6 @@ get_header(); ?>
            </li>
           <?php endwhile; wp_reset_query();wp_reset_postdata(); $args=null; ?>
    		</ul>
-        <script>	
-		(function($) {
-			$(function() {
-				if($('.prochEvnts').length){
-					$('.prochEvnts').jcarousel({
-						wrap: 'circular'
-					});
-					$('.prochEvnts').jcarouselAutoscroll({
-						autostart: true,
-						interval: 5000
-					});
-					$('.prochEvnts').hover(function() {
-						$(this).jcarouselAutoscroll('stop');
-					}, function() {
-						$(this).jcarouselAutoscroll('start');
-					});
-				}
-			});
-		})(jQuery);
-		</script>
     </div>
    
 
