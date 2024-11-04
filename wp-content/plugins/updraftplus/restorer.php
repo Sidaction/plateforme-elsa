@@ -1301,16 +1301,16 @@ class Updraft_Restorer {
 
 			if ('wp-config.php' == $file && 'wpcore' == $type) {
 				if (empty($this->restore_options['updraft_restorer_wpcore_includewpconfig'])) {
-					$updraftplus->log_e('wp-config.php from backup: will restore as wp-config-backup.php', 'updraftplus');
-					if (!$wpfs->move($working_dir . "/$file", $working_dir . "/wp-config-backup.php", true)) {
-						$this->restore_log_permission_failure_message($working_dir, 'Move '.$working_dir . "/$file -> ".$working_dir . "/wp-config-backup.php", 'Destination');
+					$updraftplus->log_e('wp-config.php from backup: will restore as wp-config-pre-ud-restore-backup.php', 'updraftplus');
+					if (!$wpfs->move($working_dir . "/$file", $working_dir . "/wp-config-pre-ud-restore-backup.php", true)) {
+						$this->restore_log_permission_failure_message($working_dir, 'Move '.$working_dir . "/$file -> ".$working_dir . "/wp-config-pre-ud-restore-backup.php", 'Destination');
 					}
-					$file = "wp-config-backup.php";
+					$file = "wp-config-pre-ud-restore-backup.php";
 					$wpcore_config_moved = true;
 				} else {
 					$updraftplus->log_e("wp-config.php from backup: restoring (as per user's request)", 'updraftplus');
 				}
-			} elseif ('wpcore' == $type && 'wp-config-backup.php' == $file && $wpcore_config_moved) {
+			} elseif ('wpcore' == $type && 'wp-config-pre-ud-restore-backup.php' == $file && $wpcore_config_moved) {
 				// The file is already gone; nothing to do
 				continue;
 			}
@@ -1487,12 +1487,10 @@ class Updraft_Restorer {
 				// Directory
 				if ($wp_filesystem->is_file($dest_dir.'/'.$rname)) @$wp_filesystem->delete($dest_dir.'/'.$rname, false, 'f');// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Silenced to suppress errors that may arise because of the method.
 				// No such directory yet: just move it
-				if (!$wp_filesystem->is_dir($dest_dir.'/'.$rname)) {
-					if (!$wp_filesystem->move($source_dir.'/'.$rname, $dest_dir.'/'.$rname, false)) {
+				if ($wp_filesystem->exists($dest_dir.'/'.$rname) && !$wp_filesystem->is_dir($dest_dir.'/'.$rname) && !$wp_filesystem->move($source_dir.'/'.$rname, $dest_dir.'/'.$rname, false)) {
 						$this->restore_log_permission_failure_message($dest_dir, 'Move '.$source_dir.'/'.$rname.' -> '.$dest_dir.'/'.$rname, 'Destination');
 						$updraftplus->log_e('Failed to move directory (check your file permissions and disk quota): %s', $source_dir.'/'.$rname." -&gt; ".$dest_dir.'/'.$rname);
 						return false;
-					}
 				} elseif (!empty($rfile['files'])) {
 					if (!$wp_filesystem->exists($dest_dir.'/'.$rname)) $wp_filesystem->mkdir($dest_dir.'/'.$rname, $chmod);
 					// There is a directory - and we want to to copy in
@@ -1658,7 +1656,8 @@ class Updraft_Restorer {
 		$working_dir = $this->unpack_package($backup_file, $this->delete, $type);
 		if (is_wp_error($working_dir)) return $working_dir;
 
-		$working_dir_localpath = WP_CONTENT_DIR.'/upgrade/'.basename($working_dir);
+		$working_dir_localpath = apply_filters('updraftplus_working_dir_localpath', WP_CONTENT_DIR.'/upgrade/'.basename($working_dir));
+
 		if (function_exists('set_time_limit')) @set_time_limit(1800);// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Silenced to suppress errors that may arise because of the function.
 
 		// We copy the variable because we may be importing with a different prefix (e.g. on multisite imports of individual blog data)
@@ -3515,13 +3514,16 @@ class Updraft_Restorer {
 			} elseif (preg_match('/^SET @@GLOBAL.GTID_PURGED/i', $sql_line)) {
 				// skip the SET @@GLOBAL.GTID_PURGED command
 				$sql_type = 17;
+			} elseif (preg_match('/^\/\*\!\d+\s+SET\s+(?:[^,].*)?(?=SQL_MODE\s*=)/i', $sql_line)) {
+				// skip the SET SQL_MODE command because we adjust the SQL mode dynamically during restoration and offer users the flexibility to change it themselves using action or filter, we don't use the SQL mode specified in the dumped file. Skipping this line prevents any unintended changes to the default SQL mode already set by our system or any custom mode chosen by the user.
+				$sql_type = 18;
 			} else {
 				// Prevent the previous value of $sql_type being retained for an unknown type
 				$sql_type = 0;
 			}
 
-			// Do not execute "USE" or "CREATE|DROP DATABASE" or "SET @@GLOBAL.GTID_PURGED" commands
-			if (6 != $sql_type && 7 != $sql_type && (9 != $sql_type || false == $this->triggers_forbidden) && 10 != $sql_type && 17 != $sql_type) {
+			// Do not execute "USE" or "CREATE|DROP DATABASE" or "SET @@GLOBAL.GTID_PURGED" or "SET SQL_MODE" commands
+			if (!in_array($sql_type, array(6, 7, 10, 17, 18)) && (9 != $sql_type || false == $this->triggers_forbidden)) {
 				$do_exec = $this->sql_exec($sql_line, $sql_type);
 				if (is_wp_error($do_exec)) return $do_exec;
 			} else {
@@ -3896,6 +3898,7 @@ class Updraft_Restorer {
 	 * 15 UNLOCK
 	 * 16 DROP VIEW
 	 * 17 SET GLOBAL.GTID_PURGED
+	 * 18 SET SQL_MODE|@OLD_SQL_MODE
 	 *
 	 * @param  String  $sql_line            sql line to execute
 	 * @param  Integer $sql_type            sql type
@@ -4215,7 +4218,7 @@ class Updraft_Restorer {
 					// Bad plugin that hard-codes path references - https://wordpress.org/plugins/custom-content-type-manager/
 					$cctm_data = $wpdb->get_row($wpdb->prepare("SELECT option_value FROM $new_table_name WHERE option_name = %s LIMIT 1", 'cctm_data'));
 					if (!empty($cctm_data->option_value)) {
-						$cctm_data = maybe_unserialize($cctm_data->option_value);
+						$cctm_data = empty($cctm_data->option_value) ? array() : $updraftplus->unserialize($cctm_data->option_value);
 						if (is_array($cctm_data) && !empty($cctm_data['cache']) && is_array($cctm_data['cache'])) {
 							$cctm_data['cache'] = array();
 							$updraftplus->log_e("Custom content type manager plugin data detected: clearing option cache");
@@ -4242,7 +4245,7 @@ class Updraft_Restorer {
 						$wp_rocket_settings = $wpdb->get_row($wpdb->prepare("SELECT option_value FROM $new_table_name WHERE option_name = %s LIMIT 1", 'wp_rocket_settings'));
 
 						if (!empty($wp_rocket_settings->option_value)) {
-							$wp_rocket_settings = maybe_unserialize($wp_rocket_settings->option_value);
+							$wp_rocket_settings = empty($wp_rocket_settings->option_value) ? array() : $updraftplus->unserialize($wp_rocket_settings->option_value);
 
 							// if WP Rocket settings is found and cdn is enabled
 							if (isset($wp_rocket_settings['cdn'])) {
@@ -4267,12 +4270,14 @@ class Updraft_Restorer {
 				// if we are importing a single site into a multisite (which means we have the multisite add-on) we need to clear our saved options and crons to prevent unwanted backups
 				if (isset($this->restore_options['updraftplus_migrate_blogname'])) {
 					$wpdb->query("DELETE FROM {$import_table_prefix}{$mprefix}options WHERE option_name LIKE 'updraft_%'");
-					$crons = maybe_unserialize($wpdb->get_var("SELECT option_value FROM {$import_table_prefix}{$mprefix}options WHERE option_name = 'cron'"));
-					foreach ($crons as $timestamp => $cron) {
-						if (!is_array($cron)) continue;
-						foreach (array_keys($cron) as $key) {
-							if (false !== strpos($key, 'updraft_')) unset($crons[$timestamp][$key]);
-							if (empty($crons[$timestamp])) unset($crons[$timestamp]);
+					$crons = $updraftplus->unserialize($wpdb->get_var("SELECT option_value FROM {$import_table_prefix}{$mprefix}options WHERE option_name = 'cron'"));
+					if (is_array($crons)) {
+						foreach ($crons as $timestamp => $cron) {
+							if (!is_array($cron)) continue;
+							foreach (array_keys($cron) as $key) {
+								if (false !== strpos($key, 'updraft_')) unset($crons[$timestamp][$key]);
+								if (empty($crons[$timestamp])) unset($crons[$timestamp]);
+							}
 						}
 					}
 					$crons = serialize($crons);
@@ -4299,7 +4304,7 @@ class Updraft_Restorer {
 				$um_sql = "SELECT umeta_id, meta_key 
 					FROM {$import_table_prefix}usermeta 
 					WHERE meta_key 
-					LIKE '".str_replace('_', '\_', $old_table_prefix)."%'";
+					LIKE '".UpdraftPlus_Database_Utility::esc_like($old_table_prefix)."%'";
 				$meta_keys = $wpdb->get_results($um_sql);
 
 				foreach ($meta_keys as $meta_key) {
@@ -4314,7 +4319,7 @@ class Updraft_Restorer {
 				}
 			} else {
 				// New, fast way: do it in a single query
-				$sql = "UPDATE {$import_table_prefix}usermeta SET meta_key = REPLACE(meta_key, '$old_table_prefix', '{$import_table_prefix}') WHERE meta_key LIKE '".str_replace('_', '\_', $old_table_prefix)."%';";
+				$sql = "UPDATE {$import_table_prefix}usermeta SET meta_key = REPLACE(meta_key, '$old_table_prefix', '{$import_table_prefix}') WHERE meta_key LIKE '".UpdraftPlus_Database_Utility::esc_like($old_table_prefix)."%';";
 				if (false === $wpdb->query($sql)) $errors_occurred = true;
 			}
 
@@ -4438,6 +4443,14 @@ class Updraft_Restorer {
 			$plugins = $wpdb->get_row("SELECT option_value FROM {$import_table_prefix}options WHERE option_name = 'active_plugins'");
 			if (empty($plugins->option_value)) return;
 			$plugins = $this->deactivate_missing_plugins($plugins->option_value);
+			$plugins = UpdraftPlus::unserialize($plugins);
+			if (!is_array($plugins)) $plugins = array();
+			$old_updraftplus_plugin_slug = $this->old_updraftplus_plugin_slug;
+			if (empty($old_updraftplus_plugin_slug) || !file_exists(WP_PLUGIN_DIR.'/'.$old_updraftplus_plugin_slug)) $old_updraftplus_plugin_slug = UPDRAFTPLUS_PLUGIN_SLUG;
+			if (!in_array($old_updraftplus_plugin_slug, $plugins)) {
+				$plugins[] = $old_updraftplus_plugin_slug;
+			}
+			$plugins = serialize($plugins);
 			$wpdb->query($wpdb->prepare("UPDATE {$import_table_prefix}options SET option_value=%s WHERE option_name='active_plugins'", $plugins));
 		}
 	}
@@ -4454,7 +4467,7 @@ class Updraft_Restorer {
 
 		if (!function_exists('get_plugins')) include_once(ABSPATH.'wp-admin/includes/plugin.php');
 		$installed_plugins = array_keys(get_plugins());
-		$plugins = maybe_unserialize($plugins);
+		$plugins = $updraftplus->unserialize($plugins);
 		
 		foreach ($plugins as $key => $path) {
 			// Single site and multisite have a different array structure, in single site the path is the array value, in multisite the path is the array key.

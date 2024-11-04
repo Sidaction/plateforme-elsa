@@ -134,7 +134,7 @@ class UpdraftPlus_BackupModule_s3 extends UpdraftPlus_BackupModule {
 		if (is_string($secret)) $secret = trim($secret);
 
 		// Ignore the 'nossl' setting if the endpoint is DigitalOcean Spaces (https://developers.digitalocean.com/documentation/v2/)
-		if (is_string($endpoint) && preg_match('^/[\.^]digitaloceanspaces\.com$/', $endpoint)) {
+		if (is_string($endpoint) && preg_match('/\.digitaloceanspaces\.com$/i', $endpoint)) {
 			$nossl = apply_filters('updraftplus_gets3_nossl', false, $endpoint, $nossl);
 		}
 		
@@ -913,9 +913,9 @@ Check your permissions and credentials.','updraftplus'), 'error');
 	protected function get_pre_configuration_template_engine($key, $whoweare_short, $whoweare_long, $console_descrip, $console_url, $opening_html = '') {
 		$classes = $this->get_css_classes(false);
 		?>
-		<tr class="<?php echo $classes . ' ' . $whoweare_short . '_pre_config_container';?>">
+		<tr class="<?php echo esc_attr($classes . ' ' . $whoweare_short . '_pre_config_container');?>">
 			<td colspan="2">
-				<?php echo $opening_html.'<br>'; ?>
+				<?php echo wp_kses_post($opening_html).'<br>'; ?>
 				<?php
 
 					global $updraftplus_admin;
@@ -1174,7 +1174,7 @@ Check your permissions and credentials.','updraftplus'), 'error');
 		$ssl_ca = false;
 		$nossl = $this->got_with['nossl'];
 		// Ignore the 'nossl' setting if the endpoint is DigitalOcean Spaces (https://developers.digitalocean.com/documentation/v2/)
-		if (!empty($config['endpoint']) && preg_match('/[\.^]digitaloceanspaces\.com$/', $config['endpoint'])) {
+		if (!empty($config['endpoint']) && preg_match('/\.digitaloceanspaces\.com$/i', $config['endpoint'])) {
 			$nossl = apply_filters('updraftplus_gets3_nossl', false, $config['endpoint'], $this->got_with['nossl']);
 		}
 
@@ -1377,7 +1377,7 @@ Check your permissions and credentials.','updraftplus'), 'error');
 		$useservercerts = isset($posted_settings['useservercerts']) ? absint($posted_settings['useservercerts']) : 0;
 		$disableverify = isset($posted_settings['disableverify']) ? absint($posted_settings['disableverify']) : 0;
 		$nossl = isset($posted_settings['nossl']) ? absint($posted_settings['nossl']) : 0;
-		$endpoint = isset($posted_settings['endpoint']) ? $posted_settings['endpoint'] : '';
+		$endpoint = isset($posted_settings['endpoint']) ? trim($posted_settings['endpoint']) : '';
 		$sse = empty($posted_settings['server_side_encryption']) ? false : true;
 
 		if (preg_match("#^/*([^/]+)/(.*)$#", $path, $bmatches)) {
