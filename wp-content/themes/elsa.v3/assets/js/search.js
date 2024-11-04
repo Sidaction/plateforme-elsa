@@ -44,7 +44,7 @@ const initSearchScript = () => {
     /*------------------------------------*\
         UTILS FUNCS
     \*------------------------------------*/
-
+    
     const displayFoundPosts = async () => {
         setTimeout( () => {
             const nbr = document.querySelector('#foundPosts') ? document.querySelector('#foundPosts').getAttribute('data-posts') : 0;

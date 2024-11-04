@@ -27,7 +27,7 @@ body {
     font-size: 16px;
 
     @include max(medium) {
-        margin-top: 120px;
+        margin-top: 98px;
     }
 }
 
@@ -177,7 +177,8 @@ label {
 
     iframe {
         margin: var(--space-xl) 0;
-        width: var(--max-width);
+        max-width: var(--max-width);
+        width: 90vw;
         aspect-ratio: 16/9;
         display: block;
         height: auto;

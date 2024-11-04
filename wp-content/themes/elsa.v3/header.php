@@ -19,7 +19,7 @@ global $cnSite; ?>
 <header class="site-header">
     <div class="wrapper flex space gap-l center-y">
 
-        <div class="flex gap-l center-y">
+        <div class="flex gap-l center-y site-brand">
             <div class="site-logo">
                 <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction.png" width="auto" height="auto" alt="logo ELSA"></a>
             </div>

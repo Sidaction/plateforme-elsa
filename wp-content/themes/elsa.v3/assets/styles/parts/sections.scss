@@ -74,6 +74,7 @@
         }
         @include max(medium) {
             @include wrapper;
+            margin-bottom: 20px;
         }
     }
 
@@ -284,40 +285,45 @@
     }
 
     &.stickyfied {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 133px;
-        padding: 20px 0;
-        z-index: 9;
-        box-shadow: 0px -1px 9px #8080808c;
 
-        .wrapper {
-            display: flex;
-            align-items: flex-start;
-            font-size: .9em;
-            flex-wrap: wrap;
-        }
-        .sec_search_titles {
-            max-width: 30%;
-            flex: 0 0 30%;
-        }
-        .sec_search_filters {
-            max-width: 70%;
-            flex: 0 0 70%;
-        }
-        .sec_search_btns {
-            max-width: 70%;
-            flex: 0 0 70%;
-            order: 4;
-            margin-bottom: 0;
-        }
-        .sec_search_actions {
-            max-width: 30%;
-            flex: 0 0 30%;
-            order: 3;
-            margin-top: -17px;
-        }
+        @include min(medium) {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 133px;
+            padding: 20px 0;
+            z-index: 9;
+            box-shadow: 0px -1px 9px #8080808c;
+
+            .wrapper {
+                display: flex;
+                align-items: flex-start;
+                font-size: .9em;
+                flex-wrap: wrap;
+            }
+            .sec_search_titles {
+                max-width: 30%;
+                flex: 0 0 30%;
+            }
+            .sec_search_filters {
+                max-width: 70%;
+                flex: 0 0 70%;
+            }
+            .sec_search_btns {
+                max-width: 70%;
+                flex: 0 0 70%;
+                order: 4;
+                margin-bottom: 0;
+            }
+            .sec_search_actions {
+                max-width: 30%;
+                flex: 0 0 30%;
+                order: 3;
+                margin-top: -17px;
+            }
+        } 
+
+
         .breadcrumb, .h2, .sec_search_help, .h4 {
             display: none;
         }

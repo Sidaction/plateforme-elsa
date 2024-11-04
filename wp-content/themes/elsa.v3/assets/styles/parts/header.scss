@@ -15,24 +15,39 @@
         background-color: $gray-1;
     }
 
-    .site-logo {
-        width: 80px;
+    .wrapper {
+        @include max(medium) {
+            gap: 10px
+        }
+    }
+    .site-brand {
+        @include max(medium) {
+            gap: 10px
+        }
     }
 
-    .site-title {
-        font-size: 20px;
-        font-family: "Jarkata", sans-serif;
-        font-weight: 200;
-        line-height: 1;
-        flex-grow: 1;
-        
-        @include min(medium) {
-            margin-top: 24px;
+        .site-logo {
+            width: 80px;
+            @include max(medium) {
+                width: 60px;
+            }
         }
-        @include max(medium) {
-            flex-basis: min-content;
+
+        .site-title {
+            font-size: 20px;
+            font-family: "Jarkata", sans-serif;
+            font-weight: 200;
+            line-height: 1;
+            flex-grow: 1;
+            
+            @include min(medium) {
+                margin-top: 24px;
+            }
+            @include max(medium) {
+                flex-basis: min-content;
+                font-size: 16px;
+            }
         }
-    }
 
 
     
@@ -208,8 +223,8 @@
 
     .burger {
         position: relative;
-        width: 40px;
-        height: 30px;
+        width: 30px;
+        height: 20px;
         background: transparent;
         cursor: pointer;
         display: block;
@@ -218,7 +233,7 @@
         span {
             display: block;
             position: absolute;
-            height: 4px;
+            height: 2px;
             width: 100%;
             background: $black;
             border-radius: 9px;
