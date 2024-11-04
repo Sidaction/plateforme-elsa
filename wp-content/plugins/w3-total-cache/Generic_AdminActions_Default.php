@@ -398,6 +398,10 @@ class Generic_AdminActions_Default {
 					$config->set( 'cdn.azure.cname', $cdn_domains );
 					break;
 
+				case 'azuremi':
+					$config->set( 'cdn.azuremi.cname', $cdn_domains );
+					break;
+
 				case 'cf':
 					$config->set( 'cdn.cf.cname', $cdn_domains );
 					break;
@@ -488,7 +492,7 @@ class Generic_AdminActions_Default {
 		}
 
 		$data['new_config'] = $config;
-		$data               = apply_filters( 'w3tc_save_options', $data );
+		$data               = apply_filters( 'w3tc_save_options', $data, $this->_page );
 		$config             = $data['new_config'];
 
 		do_action( 'w3tc_config_ui_save', $config, $this->_config );
@@ -677,7 +681,7 @@ class Generic_AdminActions_Default {
 
 		foreach ( $request as $request_key => $request_value ) {
 			if ( is_array( $request_value ) ) {
-				array_map( 'stripslashes_deep', $request_value );
+				$request_value = array_map( 'stripslashes_deep', $request_value );
 			} else {
 				$request_value = stripslashes( $request_value );
 			}
