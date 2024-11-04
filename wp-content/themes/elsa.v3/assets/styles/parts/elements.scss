@@ -188,4 +188,101 @@ input[type="submit"] {
   
 
 
+/*------------------------------------*\
+    Contact Forms
+\*------------------------------------*/
+
+.submission_form {
+    input, textarea, .input--file, .input--select {
+        margin-bottom: var(--space-m)
+    }
+    .input--file, .input--select {
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+    input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        z-index: 6;
+    }
+    input[type="file"] + label {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        border: 1px solid #ed1b23;;
+        padding: 20px 60px 20px 30px;
+        background-color: #fff;
+        color: $primary-color;
+        opacity: 0.5;
+        font-size: 12px;
+        text-transform: uppercase;
+        border-radius: 30px;
+        font-weight: 600;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    input[type="file"] + label span {
+        position: absolute;
+        right: 5px;
+        line-height: 42px;
+        top: 0;
+        bottom: 0;
+    }
+    .input--file .msg {
+        font-size: 1.2rem;
+        line-height: 1;
+        color: #555;
+        font-style: italic;
+      }
+
+    .input--select {
+        border: 1px solid #ed1b23;
+        border-radius: 30px;
+    }
+        .input--select select,
+        .input--select option {
+            width: 110%;
+            border: none;
+            padding: 20px 60px 20px 30px;
+            background-color: #fff;
+            color: $primary-color;
+            text-transform: uppercase;
+            opacity: 0.5;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+    select {
+        padding: 10px;
+        text-transform: uppercase;
+        color: rgb(25, 38, 55);
+        font-weight: 600;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    .input--select span {
+        position: absolute;
+        top: 0px;
+        bottom: 0;
+        line-height: 42px;
+        right: 5px;
+    }
+
+.plain {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
  

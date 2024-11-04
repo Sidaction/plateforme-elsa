@@ -18,29 +18,31 @@
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-  <section id="site-content" class="site-content page">
+<main>
 
-    <article class="main-content clearfix noback">
 
-        <?php if( has_post_thumbnail()  ) { ?> 
-            <div class="page_title-outer page_cover bg_cover" style="background-image: url(<?php the_post_thumbnail_url('cover'); ?>)"></div>
+  <section class="sec_page-hero">
+        <div class="wrapper">
 
-        <?php } else { ?>
-            <div class="page_nocover"></div>
+                    <div class="page_title static_title">
+                        <div class="wrap row">
+                            <h1 class="h1 m-6col is-centered text-on-center">
+                                <?php the_title(); ?>
+                            </h1>  
+                        </div>     
+                    </div>
 
-        <?php } ?>
+        </div>
+    </section>
 
-      <div class="page_content clearfix">
-        <div class="wrap row">
 
-          <nav class="m-2col page_sidebar">
-              <?php the_field('sidebar_content') ?>
-          </nav>
+  <section class="sec_page-content">
+    <div class="wrapper">
 
-          <div class="m-5col m-last">
-              <h1 class="h1"><?php the_title(); ?></h1> 
+    <div class="entry-content">
 
-              <?php the_content();?>
+
+          <?php the_content();?>
 
                 <div class="txtListe">
                   <?php if($args['alert']=='missingfields') : ?>           
@@ -54,13 +56,10 @@
                 </div>
 
 
-                <div class="row">
-                  <div class="m-4col m-clearfix">
+                <div class="">
 
 
-                    <form  method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="multipart/form-data" id="contact" >
-
-
+                    <form method="post" class="submission_form" action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="multipart/form-data" id="contact" >
 
                         <br><br>
 
@@ -126,7 +125,7 @@
 
                         <p>En soumettant cette ressource, j'assure avoir pris connaisssance des <a href="/conditions-generales-dutilisation/" target="_blank">conditions générales d'utilisation</a></p>
 
-                        <button class="soumettreRess btn-primary">Soumettre la ressource</button>
+                        <button class="soumettreRess btn">Soumettre la ressource</button>
                     
                     </form>  
 
@@ -134,15 +133,13 @@
                   </div>                        
                 </div>
                 
-            </div>
-
-        </div>                        
       </div>
 
-    </article>
+
 </section>
 
+
+</main>
+
 <?php endwhile; ?>
-
-
 <?php get_footer(); ?>
