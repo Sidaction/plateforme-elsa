@@ -122,6 +122,7 @@ class RWMB_Taxonomy_Field extends RWMB_Object_Choice_Field {
 		// Query only selected items.
 		if ( ! empty( $field['ajax'] ) && ! empty( $meta ) ) {
 			$args['include'] = $meta;
+			$args['number']  = count( $meta );
 		}
 
 		$terms = get_terms( $args );
@@ -307,6 +308,20 @@ class RWMB_Taxonomy_Field extends RWMB_Object_Choice_Field {
 		if ( empty( $field['remove_default'] ) || ! function_exists( 'remove_meta_box' ) ) {
 			return;
 		}
+
+		// Only run in admin.
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		// Do nothing if in Ajax or Rest API.
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			return;
+		}
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			return;
+		}
+
 		foreach ( $field['taxonomy'] as $taxonomy ) {
 			$id = is_taxonomy_hierarchical( $taxonomy ) ? "{$taxonomy}div" : "tagsdiv-{$taxonomy}";
 			remove_meta_box( $id, null, 'side' );

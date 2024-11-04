@@ -1,4 +1,4 @@
-( function( $, rwmb, i18n ) {
+( function ( $, rwmb, i18n ) {
 	'use strict';
 
 	/**
@@ -55,12 +55,12 @@
 		}
 
 		return parts.pop();
-	}
+	};
 
 	/**
 	 * Fix validation not working for cloneable files or fields in groups.
 	 */
-	$.validator.staticRules = function( element ) {
+	$.validator.staticRules = function ( element ) {
 		let rules = {},
 			validator = $.data( element.form, "validator" );
 
@@ -120,7 +120,7 @@
 	 *
 	 * @link https://stackoverflow.com/q/931687/371240
 	 */
-	$.validator.prototype.checkForm = function() {
+	$.validator.prototype.checkForm = function () {
 		this.prepareForm();
 		for ( var i = 0, elements = ( this.currentElements = this.elements() ); elements[ i ]; i++ ) {
 			if ( this.findByName( elements[ i ].name ).length !== undefined && this.findByName( elements[ i ].name ).length > 1 ) {
@@ -137,16 +137,24 @@
 	class Validation {
 		constructor( formSelector ) {
 			this.$form = $( formSelector );
+
+			if ( !this.$form.length ) {
+				return;
+			}
 			this.validationElements = this.$form.find( '.rwmb-validation' );
 			this.showAsterisks();
 			this.getSettings();
 		}
 
 		init() {
+			if ( !this.$form.length ) {
+				return;
+			}
+
 			this.$form
 				// Update underlying textarea before submit.
 				// Don't use submitHandler() because form can be submitted via Ajax on the front end.
-				.on( 'submit', function() {
+				.on( 'submit', function () {
 					if ( typeof tinyMCE !== 'undefined' ) {
 						tinyMCE.triggerSave();
 					}
@@ -155,10 +163,10 @@
 		}
 
 		showAsterisks() {
-			this.validationElements.each( function() {
+			this.validationElements.each( function () {
 				const data = $( this ).data( 'validation' );
 
-				$.each( data.rules, function( k, v ) {
+				$.each( data.rules, function ( k, v ) {
 					if ( !v[ 'required' ] ) {
 						return;
 					}
@@ -175,8 +183,8 @@
 
 		getSettings() {
 			this.settings = {
-				ignore: ':not(.rwmb-media,.rwmb-image_select,.rwmb-wysiwyg,.rwmb-color,.rwmb-map,.rwmb-osm,.rwmb-switch,[class|="rwmb"])',
-				errorPlacement: function( error, element ) {
+				ignore: ':not(.rwmb-media,.rwmb-image_select,.rwmb-wysiwyg,.rwmb-color,.rwmb-map,.rwmb-osm,.rwmb-switch,[class|="rwmb"]), .rwmb-clone-template *',
+				errorPlacement: function ( error, element ) {
 					error.appendTo( element.closest( '.rwmb-input' ) );
 				},
 				errorClass: 'rwmb-error',
@@ -186,7 +194,7 @@
 
 			// Gather all validation rules.
 			var that = this;
-			this.validationElements.each( function() {
+			this.validationElements.each( function () {
 				$.extend( true, that.settings, $( this ).data( 'validation' ) );
 			} );
 		}
@@ -199,7 +207,7 @@
 			}
 			// Custom event for showing error fields inside tabs/hidden divs. Use setTimeout() to run after error class is added to inputs.
 			var that = this;
-			setTimeout( function() {
+			setTimeout( function () {
 				that.$form.trigger( 'after_validate' );
 			}, 200 );
 		}
@@ -216,24 +224,28 @@
 	class GutenbergValidation extends Validation {
 		init() {
 			var that = this,
-				editor = wp.data.dispatch( 'core/editor' ),
-				savePost = editor.savePost; // Reference original method.
+				editor = wp.data.dispatch( 'core/editor' );
+			
+			if ( ! editor || ! that.$form.length ) {
+				return false;
+			}
+
+			const savePost = editor.savePost; // Reference original method.
 
 			if ( that.settings ) {
 				that.$form.validate( that.settings );
 			}
 
 			// Change the editor method.
-			editor.savePost = function( object ) {
+			editor.savePost = function ( options = {} ) {
 				// Bypass the validation when previewing in Gutenberg.
-				if ( typeof object === 'object' && object.isPreview ) {
-					savePost( object );
-					return;
+				if ( typeof options === 'object' && options.isPreview ) {
+					return savePost( options );
 				}
 
 				// Must call savePost() here instead of in submitHandler() because the form has inline onsubmit callback.
 				if ( that.$form.valid() ) {
-					return savePost( object );
+					return savePost( options );
 				}
 			};
 		}
@@ -249,19 +261,20 @@
 	// Run on document ready.
 	function init() {
 		if ( rwmb.isGutenberg ) {
-			var advanced = new GutenbergValidation( '.metabox-location-advanced' ),
-				normal = new GutenbergValidation( '.metabox-location-normal' ),
-				side = new GutenbergValidation( '.metabox-location-side' );
+			const locations = [ 'normal', 'side', 'advanced' ];
 
-			side.init();
-			normal.init();
-			advanced.init();
+			locations.forEach( location => {
+				new GutenbergValidation( `.metabox-location-${ location }` ).init();
+			} );
+
+			new GutenbergValidation( `.mb-block-edit` ).init();
+			
 			return;
 		}
 
 		// Edit post, edit term, edit user, front-end form.
 		var $forms = $( '#post, #edittag, #your-profile, .rwmb-form' );
-		$forms.each( function() {
+		$forms.each( function () {
 			var form = new Validation( this );
 			form.init();
 		} );
