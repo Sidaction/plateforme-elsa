@@ -21,8 +21,8 @@
                 <li class="menu-item"><a href="/contactez-nous" class="btn-inline">Nous écrire</a> </li>
                 <li class="menu-item social_links">
                     <span href="#" class="btn-inline">Nous suivre sur les réseaux</span>
-                    <a href="<?php the_field('url_facebook', 'options'); ?>" target="_blank" class="social_icon icon-facebook"></a>
-                    <a href="<?php the_field('url_twitter', 'options'); ?>" target="_blank" class="social_icon icon-twitter"></a>
+                    <a href="<?php echo wp_kses_post( get_field('url_facebook', 'options')); ?>" target="_blank" class="social_icon icon-facebook"></a>
+                    <a href="<?php echo wp_kses_post( get_field('url_twitter', 'options')); ?>" target="_blank" class="social_icon icon-twitter"></a>
                 </li>
 
                 <li class="menu-item js-newsletter-trigger"><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
