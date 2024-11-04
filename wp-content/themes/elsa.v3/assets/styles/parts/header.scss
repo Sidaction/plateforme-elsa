@@ -1,5 +1,5 @@
 .site-header {
-    padding: 16px 0;
+    padding: 0 0 16px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -39,6 +39,8 @@
             font-weight: 200;
             line-height: 1;
             flex-grow: 1;
+            text-transform: none;
+            letter-spacing: unset;
             
             @include min(medium) {
                 margin-top: 24px;
@@ -111,6 +113,7 @@
     // NAVIGATION
     nav {
         flex-grow: 1;
+        justify-content: space-between;
 
         // Transform the menu into a mobile menu
         @include max(medium) {
@@ -162,6 +165,9 @@
             @include max(medium) {
                 order: 1;
             }
+            @include min(medium) {
+                margin: 10px auto 25px auto;
+            }
             #secondary-menu {
                 @include min(large) {
                     gap: var(--space-l)
@@ -180,6 +186,7 @@
 
         .search-form {
             position: relative;
+            flex: 0 0 40%;
 
             @include max(medium) {
                 order: -1;

@@ -9,6 +9,19 @@
         padding: 40px 0;
     } 
 
+    .footer-text {
+        ul {
+            margin-top: var(--space-l);
+            display: flex;
+            gap: var(--space-m);
+            align-items: center;
+
+            img {
+                max-width: 120px;
+                max-height: 120px;
+            }
+        }
+    }
     .bottom {
         margin-top: 60px;
 

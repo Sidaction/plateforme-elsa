@@ -41,7 +41,7 @@ global $cnSite; ?>
             <?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu', 'menu_class' => 'flex end-x gap-m' ) ); ?>  
 
             <?php $walker = new Menu_With_Description; ?>
-            <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'flex gap-m', 'walker' => $walker ) ); ?>
+            <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'flex gap-l', 'walker' => $walker ) ); ?>
             
 
             <form id="" action="/recherche-documentaire/" class="search-form">   

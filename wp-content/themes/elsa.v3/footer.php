@@ -8,7 +8,26 @@
 <footer class="site-footer">
     <div class="wrapper">
         
-        <?php the_field('elsa_text', 'options'); ?>
+        <div class="footer-text grid gap-l">
+            <div class="t-12col m-6col">
+                <?php the_field('elsa_text', 'options'); ?>
+            </div>
+            <div class="t-12col m-6col">
+                <h4><?php the_field('logos_membres_title', 'options'); ?></h4>
+                <?php 
+                    $images = get_field('logos_membres', 'options');
+                    $size = 'full'; // (thumbnail, medium, large, full or custom size)
+                    if( $images ): ?>
+                        <ul>
+                            <?php foreach( $images as $image ): ?>
+                                <li>
+                                    <?php echo wp_get_attachment_image( $image['id'], $size ); ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+            </div>
+        </div>
         
         <div class="bottom flex gap-xl">
             <div class="site-logo">
