@@ -105,8 +105,8 @@ h2, .h2 {
 
 h3, .h3 {
     font-size: 4rem;
-    // font-weight: $font-black;
     line-height: 1;
+    letter-spacing: .02em;
     @include max(medium) {
         font-size: 3rem;
     }
@@ -146,7 +146,7 @@ a {
     font-size: 1.5rem;
     font-weight: $font-bold;
 
-    &:hover {
+    &:hover, &.e-open {
         text-decoration: underline;
     }
 }

@@ -1,3 +1,10 @@
+
+
+
+<?php get_template_part('components/pdfPopin'); ?>
+
+
+
 <footer class="site-footer">
     <div class="wrapper">
         
@@ -35,40 +42,6 @@
     <?php wp_footer();?>
 </footer>
 
-
-<!--     
-<div class="modal modal-newsletter">
-    <div class="modal_inner wrap">
-
-        <a href="#" id="" class="modal_close">
-            <span class="icon-close"></span>
-        </a>
-
-        <div class="row newsletter_form_outer">
-
-            <iframe  src="https://98f84544.sibforms.com/serve/MUIEAEzCau08VkSdGHDLsYBELXiA_5dcmKKc4raKEO7I1p9mkrx824BxAv4TSBpWDH1I58zndg9EtIYN9tpZX4owo15WdAaobEi8nzczqLWEECna3_b2lCkKJZx2BsoryM4HFchbS_V2ZXTGpI5m9KQHSrfoCAz0DdV29cnz0LLB0HxKcex0UpPRHKqrtlrMWlScnYk8oAkmXEX0" frameborder="0" scrolling="auto" allowfullscreen style="height: 90vh; margin-bottom: 0; display: block;margin-left: auto;margin-right: auto;max-width: 100%;"></iframe>            
-
-        </div>
-        
-    </div>  
-</div> -->
-
-
-<!-- <div id="empty_modal" class="modal modal-empty">
-    <div class="modal_inner wrap">
-        <a href="#" id="" class="modal_close">
-            <span class="icon-close"></span>
-        </a>
-        <div class="modal_content">
-
-            <div id="loading-msg" class="loading-msg">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/bx_loader.gif">
-                <p>Nous cherchons le contenu demandé....</p>
-            </div>
-
-        </div>
-    </div>
-</div> -->
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>

@@ -18,49 +18,6 @@ add_action( 'admin_menu', 'change_post_menu_label' );
 
 
 
-/*
- * GEt & Display content with ajax
- */
-
-add_action("wp_ajax_load_popin", "load_popin");
-add_action("wp_ajax_nopriv_load_popin", "load_popin");
-
-function load_popin() {
-
-    $the_slug = $_REQUEST["this_url"];
-
-    $args = array(
-        'name'  => $the_slug,
-        'post_type' => array('post', 'page'),
-        'post_status' => 'publish',
-    );
-    $search = new WP_Query( $args );
-
-    ob_start();
-
-    ?>
-
-    <div class="page_content">    
-    <?php if ( $search->have_posts() ) : ?>
-
-        <?php while ( $search->have_posts() ) : $search->the_post(); ?>              
-            <h1 class="h1"> <?php the_title(); ?> </h1>
-            <?php the_content(); ?>
-    
-        <?php endwhile; endif; ?>
-
-    <?php wp_reset_postdata(); ?>
-
-    </div>
-
-  <?php
-
-  $content = ob_get_clean();
-
-  echo $content;
-  die();
-
-}
 
 
 /*
@@ -192,13 +149,6 @@ function load_medias() {
  *
  */
 
-// if (!is_admin()) add_action("wp_enqueue_scripts", "my_jquery_enqueue", 11);
-// function my_jquery_enqueue() {
-//    wp_deregister_script('jquery');
-//    wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
-//    wp_enqueue_script('jquery');
-// }
-
 
 function remove_mycred() {
     wp_dequeue_script('jquery-position');
@@ -238,18 +188,16 @@ function my_custom_scripts() {
 
 
     // Main Script File
-    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array('vue', 'jquery'), null, true);
+    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array(), null, true);
 
-
-    // Search Script File
-    wp_register_script('search', get_template_directory_uri() . '/assets/js/search.js', array('vue', 'wp-api'), null, true);
-    
-    wp_add_inline_script( 'search', 'const ajax_datas = ' . json_encode( array(
+    wp_add_inline_script( 'main', 'const ajax_datas = ' . json_encode( array(
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
         'nonce' => wp_create_nonce( 'handle_contents_loading' )
     ) ), 'before' );
 
-
+    // Search Script File
+    wp_register_script('search', get_template_directory_uri() . '/assets/js/search.js', array(), null, true);
+    
 
     // Swiper stuffs
     wp_register_style('swiper-styles', get_template_directory_uri() . '/assets/swiper/swiper-bundle.min.css', null);
@@ -261,9 +209,6 @@ function my_custom_scripts() {
     wp_register_script('tac-src', get_template_directory_uri() . '/assets/js/tarteaucitron/tarteaucitron.js', null, array( 'strategy'  => 'defer', 'in_footer' => true ));
     wp_register_script('tac-init', get_template_directory_uri() . '/assets/js/tac.js', array('tac-src'), null, array( 'strategy'  => 'defer', 'in_footer' => true ));
 
-
-    // For Ajax stuffs
-//    wp_localize_script( 'elsa-scripts', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_scripts', 100 );
 
@@ -480,82 +425,6 @@ function wp_get_attachment( $attachment_id ) {
 
 
 
-   function theme_addrole() {
-
-        global $wp_roles;
-        
-        remove_role( 'partenaire');
-
-        add_role( 'partenaire', 'Compte partenaire',
-            array(
-            'read' => true,
-            'level_0' => 1,
-            ) 
-        );  
-        
-        // ajout de l'acces à la partie privée
-        $part = get_role( 'partenaire' );
-        $part->add_cap( 'edit_pending_parts' );
-        $part->add_cap( 'edit_parts' );
-        $part->add_cap( 'manage_parts' );
-        $part->add_cap( 'edit_pending_conts' );
-        $part->add_cap( 'edit_conts' );
-        $part->add_cap( 'manage_conts' );
-        $part->add_cap( 'publish_conts' );
-        $part->add_cap('upload_files');
-
-
-        // ajout de la bibliotheque media aux contributors
-        $contributor = get_role( 'contributor' );
-        //$contributor->add_cap('upload_files');
-
-
-        // ajouter aux administrateurs et éditeurs l'accès à la partie privée
-        $administrator = get_role( 'administrator' );
-        // $administrator->add_cap( 'access_espace_partenaire' );
-        // $administrator->add_cap( 'publish_parts' );
-        // $administrator->add_cap( 'edit_parts' );
-        // $administrator->add_cap( 'edit_others_parts' );
-        // $administrator->add_cap( 'delete_parts' );
-        // $administrator->add_cap( 'delete_others_parts' );
-        // $administrator->add_cap( 'read_private_parts' );
-        // $administrator->add_cap( 'manage_parts' );
-        // $administrator->add_cap( 'publish_conts' );
-        // $administrator->add_cap( 'edit_conts' );
-        // $administrator->add_cap( 'edit_others_conts' );
-        // $administrator->add_cap( 'delete_conts' );
-        // $administrator->add_cap( 'delete_others_conts' );
-        // $administrator->add_cap( 'read_private_conts' );
-        // $administrator->add_cap( 'manage_conts' );
-        // $administrator->add_cap( 'manage_exports' );
-
-
-
-        $editor = get_role( 'editor' );
-        // $editor->add_cap( 'access_espace_partenaire' );
-        // $editor->add_cap( 'publish_parts' );
-        // $editor->add_cap( 'edit_parts' );
-        // $editor->add_cap( 'edit_others_parts' );
-        // $editor->add_cap( 'delete_parts' );
-        // $editor->add_cap( 'delete_others_parts' );
-        // $editor->add_cap( 'read_private_parts' );
-        // $editor->add_cap( 'manage_parts' );
-        // $editor->add_cap( 'publish_conts' );
-        // $editor->add_cap( 'edit_conts' );
-        // $editor->add_cap( 'edit_others_conts' );
-        // $editor->add_cap( 'delete_conts' );
-        // $editor->add_cap( 'delete_others_conts' );
-        // $editor->add_cap( 'read_private_conts' );
-        // $editor->add_cap( 'manage_conts' );
-        // $editor->add_cap( 'manage_exports' );
-
-
-
-    }  
-
-    //add_action( 'init', 'theme_addrole' );  
-
-
 
 
 add_action('wp_ajax_handle_contents_loading','handle_contents_loading');
@@ -629,7 +498,6 @@ function handle_contents_loading() {
             );
         }
 
-
         $wp_query = new WP_Query();
         $wp_query->query($args); ?>
         
@@ -648,8 +516,52 @@ function handle_contents_loading() {
 
 
     $content = ob_get_clean();
-
     wp_send_json_success( $content );
+    wp_die();
+}
 
+
+
+
+/*
+ * GEt & Display content with ajax
+ */
+
+ add_action("wp_ajax_load_popin", "load_popin");
+ add_action("wp_ajax_nopriv_load_popin", "load_popin");
+ 
+ function load_popin() {
+ 
+    if( $_REQUEST["type"] === 'pdf' ) : ?>
+
+        <iframe id="pdf-popin-iframe" style="width: 100%; height: 100%; border: none;" src="<?php echo $_REQUEST["this_url"] ?>"></iframe>
+    
+    <?php else : 
+
+    $the_slug = $_REQUEST["this_url"];
+ 
+    $args = array(
+         'name'  => $the_slug,
+         'post_type' => array('post', 'page'),
+         'post_status' => 'publish',
+    );
+    $search = new WP_Query( $args );
+ 
+    ob_start(); ?>
+ 
+    <div class="page_content">    
+         <?php if ( $search->have_posts() ) : ?>
+             <?php while ( $search->have_posts() ) : $search->the_post(); ?>              
+                 <h1 class="h1"> <?php the_title(); ?> </h1>
+                 <?php the_content(); ?>
+             <?php endwhile; endif; ?>
+         <?php wp_reset_postdata(); ?>
+    </div>
+ 
+
+    <?php endif;
+
+    $content = ob_get_clean();
+    wp_send_json_success( $content );
     wp_die();
 }

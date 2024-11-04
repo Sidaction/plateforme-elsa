@@ -1,227 +1,215 @@
-
-
 // https://www.smashingmagazine.com/2018/02/jquery-vue-javascript/
 // https://fr.vuejs.org/guide/quick-start.html
 // https://css-tricks.com/how-to-build-vue-components-in-a-wordpress-theme/#lets-do-this
 
 
 
-jQuery(document).ready(function($){
+const initMainScript = () => {
 
 
-  var dropdowns_trigger = $('.js-dropdown-trigger > a');
+  /*------------------------------------*\
+      VARIABLES
+  \*------------------------------------*/
+
+  // Globals
   const header = document.querySelector('.site-header');
+  const body = document.body;
+
+  // Dropdowns
+  const dropdowns_trigger = document.querySelectorAll('.js-dropdown-trigger > a');
+
+  // Search
   const sec_search = document.querySelector('.sec_search');
 
+  // Modals
+  const empty_modal = document.querySelector('#empty_modal');
+  const empty_modal_content = empty_modal?.querySelector('.modal_content');
+  const modal_trigger = document.querySelectorAll('.js-open-modal');
 
-  const empty_modal = $('#empty_modal');
-  const empty_modal_content = empty_modal.find('.modal_content');
-
-  const popin = $('.js-popin');
 
 
-  $('a').each(function() {
-     var a = new RegExp('/' + window.location.host + '/');
-     if (!a.test(this.href)) {
-        $(this).attr("target","_blank");
-     }
-  });
+/*------------------------------------*\
+      ???
+  \*------------------------------------*/
 
-  document.getElementById('tarteaucitronManager').addEventListener('click', function(e) {
+  // document.querySelectorAll('a').forEach( el => {
+  //    const a = new RegExp('/' + window.location.host + '/');
+  //    if ( !a.test(this.href)) {
+  //       el.setAttribute("target","_blank");
+  //    }
+  // });
+
+
+
+  /*------------------------------------*\
+      TARTE AU CITRON
+  \*------------------------------------*/
+
+  document.getElementById('tarteaucitronManager').addEventListener('click', e => {
     e.preventDefault()
   })
 
 
 
-/*
- * Popins
- */
-
-  if( popin.length > 0 ) {
+  /*------------------------------------*\
+      OPEN A MODAL WITH SOME PAGE CONTENT
+  \*------------------------------------*/
   
-    popin.click(function(event){
-      event.preventDefault();
+    modal_trigger.forEach( el => {
 
-      var this_url = $(this).attr('href');
+      el.addEventListener('click', event => {
 
-      $.ajax({
-        url : myAjax.ajaxurl,
-        method : 'post',
-        data : {
-          action: "load_popin",
-          this_url : this_url
-        },
-  
-        beforeSend: function( response ) {
-          empty_modal.show();
-        },
-        success : function( response ) {
-          empty_modal_content.html( response );
-          // $('#loading-msg').hide();
-        },
+        event.preventDefault();
 
-        error : function( data ) { // en cas d'échec
-          // Sinon je traite l'erreur
-          //console.log( 'Erreur…' );
+        // DATAS
+        const data = new FormData();
+        const ajaxurl = ajax_datas.ajaxUrl;
+        data.set('nonce', ajax_datas.nonce);
+        data.set('action', 'load_popin');
+        data.set('type', el.getAttribute('data-type'));
+
+        if( el.getAttribute('data-type') === 'pdf') {
+          data.set('type', el.getAttribute('data-type'));
+          data.set('this_url', el.getAttribute('data-src'));
         }
+        else {
+          data.set('type', 'page_content' );
+          data.set('this_url', el.getAttribute('href'));
+        }
+        console.log('data', data)
+        
+        fetch(ajaxurl, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Cache-Control': 'no-cache',
+          },
+          body: new URLSearchParams(data),
+        })
+        .then(response => response.json())
+        .then(body => {
+        
+            if (!body.success) {
+                return;
+            }
+            empty_modal.classList.add('open');
+            empty_modal_content.innerHTML = body.data;
+
+        });
 
       });
 
     });
+
+
+
+
+
+
+
+  /*------------------------------------*\
+      MODALS
+  \*------------------------------------*/
+
+
+  // $('.js-newsletter-trigger a').on('click', function(event) {
+  //   event.preventDefault();
+
+  //   $('.modal-newsletter').show();
+  //   body.classList.add('no-scroll');
+  // });
+
+  // $('.js-sharebymail').on('click', function(event) {
+  //   event.preventDefault();
+
+  //   $('.modal-sharebymail').show();
+  //   body.classList.add('no-scroll');
+  // });
+
+
+  // $('.modal_close').on('click', function(event) {
+  //   event.preventDefault();
+
+  //   body.classList.remove('no-scroll');
+  //   $('.modal').hide();
+  // }); 
+ 
+
+  // $('.close-dd-btn').on('click', function(event) {
+  //   event.preventDefault();
+
+  //   $(this).closest('.e-open').removeClass('e-open');
+  // })
+
+
+
+  document.addEventListener(
+    "click",
+    function(event) {
+
+      console.log(event.target)
+      if ( event.target.closest('.close-modal-btn') || ! event.target.closest(".modal_inner") ) {
+        closeModal()
+      }
+      if ( ! event.target.matches('.js-dropdown-trigger a') && !event.target.closest(".dropdown-item") ) {
+        closeDropdown()
+      }
+    },
+    false
+  )
+  
+  function closeModal() {
+    empty_modal.classList.remove('open');
+  }
+  function closeDropdown() {
+    document.querySelectorAll('.e-open').forEach( el => el.classList.remove('e-open') );
   }
 
-
-
-
-
-/*
- * VALIDATE 
- */
-
-  jQuery("#contact").validate({
-      rules: {
-        contname: "required",
-        contfirtname: "required",
-        title: "required",
-        contemail: {
-          required: true,
-          email: true
-        },
-        contemail2: {
-          required: true,
-          equalTo: "#contemail",
-        },
-        check: {
-          required: true,
-           range:[4,4]
-        },
-    }
-  });
-  
-  jQuery.extend(jQuery.validator.messages, {
-    minlength: 'Merci de saisir un numéro à 10 chiffres',
-    maxlength: 'Merci de saisir un numéro à 10 chiffres',
-    number: 'Merci de saisir un numéro à 10 chiffres',
-    required: 'Ce champ est obligatoire',
-    range: 'Merci de renseigner le chiffre exact ( = 4)',
-    email: 'Merci de renseigner un mail valide',
-    equalTo: 'Merci de saisir le même email'
-  });
-
-
-
-
-  /*
-   * STICKY MENU
-   */
-
-  var main_nav_trigger = $('.main_nav-trigger');
-  main_nav_trigger.on('click', function() {
-    $('.main-navigation').toggle();
-    $('.top-nav-outer').toggle();
-    $(this).toggleClass('e-open');
-    $('body').toggleClass('no-scroll');
-
-    if( dropdowns_trigger.hasClass('e-open') ) {
-      dropdowns_trigger.removeClass('e-open');
-      $('body').removeClass('no-scroll');
-      $('#site-content').removeClass('dd-open');
-    }
-  });
-
-
-
-
-  /*
-   * MODALS
-   */
-
-  $('.js-newsletter-trigger a').on('click', function(event) {
-    event.preventDefault();
-
-    $('.modal-newsletter').show();
-    $('body').addClass('no-scroll');
-  });
-
-  $('.js-sharebymail').on('click', function(event) {
-    event.preventDefault();
-
-    $('.modal-sharebymail').show();
-    $('body').addClass('no-scroll');
-  });
-
-
-  $('.modal_close').on('click', function(event) {
-    event.preventDefault();
-
-    $('body').removeClass('no-scroll');
-    $('.modal').hide();
-  }); 
  
+  /*------------------------------------*\
+      DROPDOWNS
+  \*------------------------------------*/
 
-  $('.close-dd-btn').on('click', function(event) {
-    event.preventDefault();
+  dropdowns_trigger.forEach( el => {
 
-    $(this).closest('.e-open').removeClass('e-open');
-  })
+    el.addEventListener('click', event => {
 
+      if( ! el.parentNode.classList.contains('direct-link') ) {
 
- 
-  /*
-   * DROPDOWNS
-   */
+        event.preventDefault();
 
-  dropdowns_trigger.on('click', function(event) {
+        const dropdowns_container = el.parentNode
 
-    if( !$(this).parent().hasClass('direct-link') ) {
-
-      event.preventDefault();
-
-      var header = $('.site-header');
-      var viewportHeight = $(window).height();
-      var headerHeight = header.outerHeight();
-      var dropdowns_container = $(this).parent()
-
-      var dropdownHeight = viewportHeight - headerHeight;
-      var dropdownHeightPourcentage = ( dropdownHeight * 100 ) / viewportHeight - 12;
-
-      if( dropdowns_container.hasClass('e-open') ) {
-      
-        if( dropdowns_container.hasClass('e-open') ) {
-          dropdowns_container.removeClass('e-open');
-          $('#site-content').removeClass('dd-open');
-
-          if( main_nav_trigger.hasClass('e-open') ) {
-
+        if( dropdowns_container.classList.contains('e-open') ) {
+        
+          if( dropdowns_container.classList.contains('e-open') ) {
+            dropdowns_container.classList.remove('e-open');
+            body.classList.remove('no-scroll');
           }
           else {
-            $('body').removeClass('no-scroll');
+            dropdowns_container.classList.remove('e-open');
+            dropdowns_container.classList.add('e-open');
+            body.classList.add('no-scroll');
           }
         }
         else {
-          dropdowns_container.removeClass('e-open');
-          dropdowns_container.addClass('e-open');
-          $('#site-content').addClass('dd-open');
-          $('body').addClass('no-scroll');
-          dropdowns_container.siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
+          dropdowns_container.classList.add('e-open');
+          body.classList.add('no-scroll');
         }
       }
-      else {
-        dropdowns_container.addClass('e-open');
-        $('#site-content').addClass('dd-open');
-        $('body').addClass('no-scroll');
-        dropdowns_container.siblings('.dropdown-item').css('max-height', dropdownHeightPourcentage + 'vh');
-      }
-    }
 
-  });
- 
+    });
+  })
 
 
 
 
 
 
+
+  /*------------------------------------*\
+      STICKY MENU
+  \*------------------------------------*/
 
   let didScroll;
   let lastScrollTop = 0;
@@ -250,7 +238,7 @@ jQuery(document).ready(function($){
           header.classList.remove('out');
           header.classList.add('at-top');
       }
-      else if ( st < 300 ) {
+      else if ( st < 700 ) {
         sec_search.classList.remove('stickyfied');
       }
       else if (st > lastScrollTop ){
@@ -276,7 +264,50 @@ jQuery(document).ready(function($){
   document.addEventListener("scroll", documentIsScrolling, false);
 
 
-});
+
+
+
+
+  /*------------------------------------*\
+      VALIDATION
+  \*------------------------------------*/
+
+  jQuery("#contact").validate({
+    rules: {
+      contname: "required",
+      contfirtname: "required",
+      title: "required",
+      contemail: {
+        required: true,
+        email: true
+      },
+      contemail2: {
+        required: true,
+        equalTo: "#contemail",
+      },
+      check: {
+        required: true,
+         range:[4,4]
+      },
+    }
+  });
+
+  jQuery.extend(jQuery.validator.messages, {
+    minlength: 'Merci de saisir un numéro à 10 chiffres',
+    maxlength: 'Merci de saisir un numéro à 10 chiffres',
+    number: 'Merci de saisir un numéro à 10 chiffres',
+    required: 'Ce champ est obligatoire',
+    range: 'Merci de renseigner le chiffre exact ( = 4)',
+    email: 'Merci de renseigner un mail valide',
+    equalTo: 'Merci de saisir le même email'
+  });
+
+
+}
+
+
+document.addEventListener('DOMContentLoaded', initMainScript());
+
 
 
 

@@ -145,10 +145,12 @@ label {
 
 .entry-content {
 
-
     h1, h2, h3, h4, h5, h6 {
         font-weight: $font-semibold;
         margin-bottom: 20px;
+    }
+    h2 {
+        margin-top: 60px;
     }
     a {
         text-decoration: underline;
@@ -158,6 +160,9 @@ label {
     }
     ul {
         list-style: disc;
+        padding-left: 20px;
+        margin-bottom: 1em;
+
         li {
             font-size: 18px;
             font-weight: $font-extralight;
@@ -176,6 +181,10 @@ label {
         aspect-ratio: 16/9;
         display: block;
         height: auto;
+    }
+    &.modal_content iframe {
+        margin-top: 0;
+        aspect-ratio: unset;
     }
 }
 

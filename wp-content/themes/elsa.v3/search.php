@@ -157,6 +157,7 @@ if(strpos($keyword, "\'")) {
     
     $args['posts_per_page'] = $post_per_page;
     $args['post_type'] = 'post';
+    $args['post_status'] = 'publish'; 
     $args['paged'] = $currentpage;
 
     if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
@@ -204,9 +205,9 @@ if(strpos($keyword, "\'")) {
                     <h4 class="help__title h4">Aide</h4>
 
                     <ul class="help__links">
-                        <li><a href="aide-a-la-recherche" class="js-popin btn-inline">Que chercher ? Comment chercher ?</a></li>
-                        <li><a href="../extract" class="btn-inline">Télécharger la liste des résultats en format Excel</a></li>
-                        <li><a href="../extract-word" class="btn-inline">Télécharger la liste des résultats en format Word</a></li>
+                        <li><a href="aide-a-la-recherche" class="js-open-modal menu-item2">Que chercher ? Comment chercher ?</a></li>
+                        <li><a href="../extract" class="menu-item2">Télécharger la liste des résultats en format Excel</a></li>
+                        <li><a href="../extract-word" class="menu-item2">Télécharger la liste des résultats en format Word</a></li>
                     </ul>
 
                 </div>

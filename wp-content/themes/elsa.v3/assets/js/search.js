@@ -1,10 +1,11 @@
 
 
 
-const init = () => {
+const initSearchScript = () => {
 
     console.log('search')
 
+    
     /*------------------------------------*\
         VARIABLES
     \*------------------------------------*/
@@ -211,6 +212,6 @@ const init = () => {
 }
 
 
-document.addEventListener('DOMContentLoaded', init());
+document.addEventListener('DOMContentLoaded', initSearchScript());
 
 
