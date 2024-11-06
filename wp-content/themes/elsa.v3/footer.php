@@ -64,18 +64,6 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
-<script>
- WebFont.load({
-    google: {
-      families: ['Work Sans:300,400,600']
-    }
-  });
-</script>
-
-
-
-
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -11,7 +11,7 @@
             <iframe id="pdf-popin-iframe" style="width: 100%; height: 100%; border: none;" title="Document PDF"></iframe>
 
             <div id="loading-msg" class="loading-msg">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/bx_loader.gif" alt="Animation de chargement de contenu">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/bx_loader.gif" width="32" height="32" alt="Animation de chargement de contenu">
                 <p>Nous cherchons le contenu demandé....</p>
             </div>
         </div>
