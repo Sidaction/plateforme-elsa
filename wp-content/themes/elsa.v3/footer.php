@@ -32,7 +32,7 @@
         
         <div class="bottom flex gap-xl">
             <div class="site-logo">
-                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction-white.png" width="auto" height="auto" alt="logo Sidaction"></a>
+                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction-white.png" width="90" height="90" alt="logo Sidaction"></a>
             </div>
 
             <!-- <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'tertiary-menu' ) ); ?> -->

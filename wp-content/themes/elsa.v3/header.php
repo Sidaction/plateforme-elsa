@@ -21,7 +21,7 @@ global $cnSite; ?>
 
         <div class="flex gap-l center-y site-brand">
             <div class="site-logo">
-                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction.png" width="auto" height="auto" alt="logo Sidaction"></a>
+                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction.png" width="90" height="90" alt="logo Sidaction"></a>
             </div>
             
             <h1 class="site-title on-mobile"><a href="<?php echo esc_url( home_url() ) ?>">Centre de ressources</a></h1>

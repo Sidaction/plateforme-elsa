@@ -57,6 +57,4 @@ tarteaucitron.user.gajsUa = 'UA-43730500-1';
 tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
 (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
 (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
-(tarteaucitron.job = tarteaucitron.job || []).push('facebook');
-(tarteaucitron.job = tarteaucitron.job || []).push('twitter');
 (tarteaucitron.job = tarteaucitron.job || []).push('sendinblue');

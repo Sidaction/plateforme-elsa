@@ -183,7 +183,7 @@ function my_custom_scripts() {
 
     // Main Style File
     wp_enqueue_style( 'elsa-style', get_stylesheet_directory_uri() . '/assets/style.css' );
-
+    wp_dequeue_style( 'wp-block-library' );
 
     // VUE JS for tests
     //wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
@@ -520,3 +520,12 @@ function handle_contents_loading() {
     wp_send_json_success( $content );
     wp_die();
 }
+
+
+
+function add_defer_attribute($tag, $handle) {
+    if ( 'main' !== $handle && 'search' !== $handle  )
+      return $tag;
+    return str_replace( ' src', ' defer="defer" src', $tag );
+}
+add_filter('script_loader_tag', 'add_defer_attribute', 10, 2);

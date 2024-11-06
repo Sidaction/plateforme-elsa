@@ -31,25 +31,7 @@
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-
-    <?php
-      // AIGUILLER SI MEDIAS OU RESSSOURCE "SIMPLE" (pdf, link, etc.)
-      // if( has_term( 'video', 'format' ) || has_term( 'diaporama', 'format' )  || has_term( 'audio', 'format' )) {
-      //   get_template_part('template-parts/content', 'media');
-      // }
-      // else {
-        get_template_part('template-parts/content', 'ressource');
-      // }
-    ?>
-
-
-<!--  get_template_part('template-parts/content', 'rebonds'); ?> -->
-
-
-</div>
-</section>
-
-
+    <?php get_template_part('template-parts/content', 'ressource'); ?>
 
 <?php endwhile; ?>
 
