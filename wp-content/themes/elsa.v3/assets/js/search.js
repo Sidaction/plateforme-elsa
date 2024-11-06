@@ -139,6 +139,8 @@ const initSearchScript = () => {
         el.classList.add('checked');
         let format = el.value;
         data.set('format', format);
+        console.log(format)
+
         load_contents(event)
     }
 

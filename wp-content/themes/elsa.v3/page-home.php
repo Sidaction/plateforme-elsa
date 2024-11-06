@@ -42,7 +42,7 @@ set_query_var( 'cnSite', $cnSite );
         <div class="grid center-y wrapper">
             <div class="left t-12col m-8col">
                 <span class="zoom p big">Zoom sur</span>
-                <h2 class="h2"><?php the_field('zoom_titre'); ?></h2>
+                <h2 class="h2 mb-l"><?php the_field('zoom_titre'); ?></h2>
                 <div class="featured_intro"><?php the_field('zoom_texte'); ?></div>
             </div>
             <div class="right t-12col m-4col">

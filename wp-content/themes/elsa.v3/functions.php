@@ -401,7 +401,14 @@ function handle_contents_loading() {
         
         // SI FORMAT
         if( isset($_REQUEST['format']) ) {
-            $args['format'] = $_REQUEST['format'];
+
+            if( $_REQUEST['format'] === 'outils') {
+                $args['meta_key'] = 'outil';
+                $args['meta_value'] = '1';
+            }
+            else {
+                $args['format'] = $_REQUEST['format'];
+            }
         } 
         else {
             $args['format'] = '';

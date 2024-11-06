@@ -30,7 +30,7 @@
                   limit_words($cat, 5); 
                 }
                 if ($format != ''  & $cat != '') {
-                  echo ' | ';
+                  echo ' | ';
                 }
                 if ($format != '') {
                   echo $format;

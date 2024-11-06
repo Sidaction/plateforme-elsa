@@ -132,6 +132,7 @@
 
         &__infos {
             margin: 0 10px;
+            position: absolute;
         }
 
         &__categories {
@@ -172,7 +173,7 @@
             width: 100%;
             aspect-ratio: 5/3;
             object-fit: cover;
-            margin-top: -15px;
+            margin-top: 65px;
             position: relative;
             z-index: -1;
         }
