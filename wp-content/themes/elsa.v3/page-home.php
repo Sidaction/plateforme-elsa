@@ -206,36 +206,6 @@ set_query_var( 'cnSite', $cnSite );
                                 <img class="video__cover" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>" alt="video cover">
                             </div>
                         <?php endforeach;
-                        foreach( $featured_posts as $post ): ?>
-                            <div class="video s-6col swiper-slide">
-                                <?php setup_postdata($post); 
-                                set_query_var( 'type', 'media' ); 
-                                set_query_var( 'hide_allmediasbtn', true );
-                                
-                                ?>
-
-                                <div class="video__infos">
-                                    <div class="video__categories">
-                                        <?php
-                                        $categories = get_the_category();
-                                        if (!empty( $categories) ) {
-                                            $category_count = count($categories);
-                                            foreach ( $categories as $index => $category ) {
-                                                echo '<span class="category">' . esc_html( $category->name );
-                                                if ($index < $category_count - 1) echo ', ';
-                                                echo '</span>';
-                                            }
-                                        }
-                                        ?>
-                                    </div>
-                                    
-                                    <div class="video__title-container">
-                                        <a href="<?php the_permalink(); ?>" class="h3 video__title"><?=get_the_title()?></a>
-                                    </div>
-                                </div>
-                                <img class="video__cover" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>" alt="video cover">
-                            </div>
-                        <?php endforeach;
                         wp_reset_postdata(); ?>
                     </div>
                 <?php endif; ?>
