@@ -57,10 +57,7 @@
                 <div class="navigation-buttons flex space on-desktop">
                     <?php if (!empty($prev_post)): ?>
                         <a href="<?php echo get_permalink($prev_post->ID); ?>" class="nav-btn">
-                            <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 -0.616308 0.787505 -0.616308 9 13)" stroke="#767676"/>
-                                <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 -0.616308 0.787505 0.616308 1 7.26086)" stroke="#767676"/>
-                            </svg>
+                            <?php get_template_part('svg/svg', 'carotLeft', array( 'strokes' => '#767676' )); ?>
                             Ressource précédente
                         </a>
                     <?php endif; ?>
@@ -68,10 +65,7 @@
                     <?php if (!empty($next_post)): ?>
                         <a href="<?php echo get_permalink($next_post->ID); ?>" class="nav-btn">
                             Ressource Suivante
-                            <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1)" stroke="#767676"/>
-                                <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 6.73914)" stroke="#767676"/>
-                            </svg>
+                            <?php get_template_part('svg/svg', 'carot', array( 'strokes' => '#767676' )); ?>
                         </a>
                     <?php endif; ?>
                 </div>

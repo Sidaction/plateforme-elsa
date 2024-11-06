@@ -23,10 +23,7 @@
     <div class="flex space start-y">
       <h3 class="h3 mb-l">Les thématiques</h3>
       <button class="close-dd-btn on-mobile">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6l-12 12"></path>
-            <path d="M6 6l12 12"></path>
-        </svg>
+        <?php get_template_part('svg/svg', 'close', array( 'strokes' => '#000' )); ?>
       </button>
     </div>
 
@@ -40,9 +37,7 @@
         </div>
 
         <a class="btn" href="/category/<?php echo $theme_1_datas->slug; ?>">
-          <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.7132 0.726395L20.2464 6.21274L20.2927 6.25567C20.4778 6.43926 20.5856 6.68138 20.6016 6.96745L20.6007 7.06362C20.5872 7.29023 20.5006 7.50671 20.33 7.7007L20.2654 7.76735L14.7132 13.2735C14.3026 13.6807 13.6387 13.6807 13.2281 13.2735C12.8151 12.8639 12.8151 12.198 13.2281 11.7884L17.0617 7.98624L1.65394 7.98662C1.07373 7.98662 0.601593 7.51843 0.601593 6.93867C0.601593 6.35891 1.07374 5.89072 1.65394 5.89072L16.938 5.89034L13.2281 2.21154C12.8151 1.80194 12.8151 1.136 13.2281 0.726395C13.6387 0.319229 14.3026 0.319229 14.7132 0.726395Z" fill="#FFFFFF"/>
-          </svg>
+          <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#FFF' )); ?>
         </a>
       </div>
 

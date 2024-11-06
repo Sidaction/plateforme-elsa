@@ -223,19 +223,14 @@ if(strpos($keyword, "\'")) {
                         <form id="search_txt_form" class="search-form is-relative mb-s" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                             <input type="search" class="input" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
                             <button class="search-form__button" type="submit">
-                                <svg width="21" height="14" viewBox="0 0 21 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.8319 0.726425L20.3651 6.21277L20.4113 6.2557C20.5965 6.43929 20.7042 6.68141 20.7202 6.96748L20.7193 7.06365C20.7059 7.29026 20.6193 7.50674 20.4486 7.70073L20.384 7.76738L14.8319 13.2736C14.4213 13.6807 13.7574 13.6807 13.3468 13.2736C12.9337 12.864 12.9337 12.198 13.3467 11.7885L17.1804 7.98627L1.77257 7.98665C1.19235 7.98665 0.720215 7.51846 0.720215 6.9387C0.720215 6.35894 1.19236 5.89075 1.77256 5.89075L17.0566 5.89038L13.3468 2.21157C12.9337 1.80197 12.9337 1.13603 13.3468 0.726425C13.7574 0.31926 14.4213 0.31926 14.8319 0.726425Z" fill="white"/>
-                                </svg>
+                                <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#FFF' )); ?>
                             </button>
                         </form>
                     
                         <div class="cat-filters flex gap-m">
                             <div class="is-relative">
                                 <?php cnLib::custom_taxonomy_dropdown('category','input select','Thématique','','',false);?>
-                                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
-                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
-                                </svg>
+                                <?php get_template_part('svg/svg', 'carot', array( 'strokes' => '#767676' )); ?>
                             </div>
                             
                             <div class="is-relative">
@@ -247,18 +242,12 @@ if(strpos($keyword, "\'")) {
                                     <option value="6mois">Moins de 6 mois</option>
                                     <option value="1an">Moins d'un an</option>
                                 </select>
-                                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
-                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
-                                </svg>
+                                <?php get_template_part('svg/svg', 'carot', array( 'strokes' => '#767676' )); ?>
                             </div>
 
                             <div class="is-relative">
                                 <?php cnLib::custom_taxonomies_dropdown("region, pays_assoc", "input select", "Pays",'','',false,'','pays_assoc',array(351,131,161,126,278)); ?>
-                                <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
-                                    <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
-                                </svg>
+                                <?php get_template_part('svg/svg', 'carot', array( 'strokes' => '#767676' )); ?>
                             </div>
                         </div>
                     </div>
@@ -299,30 +288,6 @@ if(strpos($keyword, "\'")) {
         </div>
     </section>
 
-<!--     
-    <section class="sec_search-pagination on-desktop">
-        <div class="wrapper">
-            <?php if($wp_query->found_posts > 0) :?>
-              <div class="container flex space start-y">
-                <div class="is-relative">
-                    <select class="input select" id="pager1">
-                        <option value="10" <?php if($post_per_page == '10') echo 'selected="selected"' ?>>10 résultats par page</option>
-                        <option value="20" <?php if($post_per_page == '20') echo 'selected="selected"' ?>>20 résultats par page</option>
-                        <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
-                        <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
-                    </select>
-                    <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
-                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
-                    </svg>
-                </div>
-                <div class="search-pagination">
-                    <?php cnLib::pagination($totalpages); ?>
-                </div>
-              </div>
-            <?php endif;?>
-        </div>
-    </section> -->
 
     <section class="sec_search-results">
         <div id="search-results_wrapper" class="flex column gap-xl wrapper">
@@ -362,10 +327,7 @@ if(strpos($keyword, "\'")) {
                         <option value="50" <?php if($post_per_page == '50') echo 'selected="selected"' ?>>50 résultats par page</option>
                         <option value="-1" <?php if($post_per_page == '-1') echo 'selected="selected"' ?>>Tous les résultats</option>
                     </select>
-                    <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(0.787505 0.616308 -0.787505 0.616308 0 1.40308)" stroke="#767676"/>
-                        <line y1="-0.5" x2="10.1587" y2="-0.5" transform="matrix(-0.787505 0.616308 -0.787505 -0.616308 8 7.14221)" stroke="#767676"/>
-                    </svg>
+                    <?php get_template_part('svg/svg', 'carot', array( 'strokes' => '#767676' )); ?>
                 </div>
                 <div class="search-pagination">
                     <?php cnLib::pagination($totalpages); ?>
