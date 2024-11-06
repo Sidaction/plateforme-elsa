@@ -1,0 +1,29 @@
+#tarteaucitronAlertBig {
+    background-color: $secondary-color !important;
+}
+.tarteaucitronCTAButton,
+#tarteaucitronCloseAlert {
+    @extend .btn;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 10px !important;
+    padding: 10px 15px !important;
+    border: 2px solid transparent !important;
+    border-radius: 100px !important;
+    background-color: $primary-color !important;
+    text-transform: uppercase !important;
+    font-weight: $font-semibold !important;
+    color: $white !important;
+    text-align: left;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: background-color .3s linear, border-color .3s linear, color .3s linear, transform .1s linear !important;
+    font-family: inherit !important;
+}
+
+#tarteaucitronCloseAlert {
+    @extend .btn--secondary;
+    background-color: $white !important;
+    color:  $primary-color !important;
+
+}
