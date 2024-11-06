@@ -22,7 +22,7 @@
 
     <div class="flex space start-y">
       <h3 class="h3 mb-l">Les thématiques</h3>
-      <button class="close-dd-btn on-mobile">
+      <button class="close-dd-btn on-mobile" aria-label="Fermer la fenêtre">
         <?php get_template_part('svg/svg', 'close', array( 'strokes' => '#000' )); ?>
       </button>
     </div>

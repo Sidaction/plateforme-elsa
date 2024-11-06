@@ -222,7 +222,7 @@ if(strpos($keyword, "\'")) {
 
                         <form id="search_txt_form" class="search-form is-relative mb-s" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
                             <input type="search" class="input" name="filter_totaltags" placeholder="Mots clés, titre ou auteurs" name="tag" value="<?php echo $keyword; ?>"/>
-                            <button class="search-form__button" type="submit">
+                            <button class="search-form__button" type="submit" aria-label="rechercher un mot clef">
                                 <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#FFF' )); ?>
                             </button>
                         </form>
@@ -309,7 +309,7 @@ if(strpos($keyword, "\'")) {
 
     <section class="sec_search-more is-hidden">
         <div class="wrapper">
-            <button id="load_more" class="btn btn--primary">
+            <button id="load_more" class="btn btn--primary" aria-label="Charger plus de ressources">
                 <span>Charger plus de ressources <br>(encore <span id="load_more_rest_to_go">0</span> ressources)</span>
             </button>
         </div>

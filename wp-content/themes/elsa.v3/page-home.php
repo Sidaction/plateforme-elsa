@@ -37,7 +37,7 @@ set_query_var( 'cnSite', $cnSite );
 
     <section class="sec_home-hero">
 
-        <img class="cover" src="<?= $cover ?>" alt="site cover">
+        <img class="cover" src="<?= $cover ?>" alt="Illustration de la page d'accueil">
             
         <div class="grid center-y wrapper">
             <div class="left t-12col m-8col">
@@ -121,7 +121,7 @@ set_query_var( 'cnSite', $cnSite );
                                     <div><?php the_excerpt(); ?></div>
                                 </div>
                                 <div class="action">
-                                    <a href="<?php the_permalink(); ?>" class="button btn btn--tertiary">
+                                    <a href="<?php the_permalink(); ?>" class="button btn btn--tertiary" aria-label="En savoir plus sur la ressource <?php the_title(); ?>">
                                         <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#ED1B24' ) ); ?>
                                     </a>
                                 </div>

@@ -203,7 +203,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
                                         $image_metas = wp_get_attachment($img_id);
                                         $caption = $image_metas['caption'];
 
-                                        echo "<li ". $class . "><img src='{$src}' /><p class='bx-caption'>{$caption}</p></li>";
+                                        echo "<li ". $class . "><img src='{$src} alt='{$title}' /><p class='bx-caption'>{$caption}</p></li>";
 
                                         $i++;
                                     } ?>

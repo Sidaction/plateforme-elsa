@@ -21,7 +21,7 @@ global $cnSite; ?>
 
         <div class="flex gap-l center-y site-brand">
             <div class="site-logo">
-                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction.png" width="auto" height="auto" alt="logo ELSA"></a>
+                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction.png" width="auto" height="auto" alt="logo Sidaction"></a>
             </div>
             
             <h1 class="site-title on-mobile"><a href="<?php echo esc_url( home_url() ) ?>">Centre de ressources</a></h1>
@@ -47,7 +47,7 @@ global $cnSite; ?>
             <form id="" action="/recherche-documentaire/" class="search-form">   
                 <input type="text" id="main_search" class="search-form__input" placeholder="Rechercher un terme" name="totaltags" value=""/>
 
-                <button class="search-form__button" type="submit">
+                <button class="search-form__button" type="submit" aria-label="Rechercher une ressource">
                     <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#FFF' )); ?>
                 </button>
             </form>

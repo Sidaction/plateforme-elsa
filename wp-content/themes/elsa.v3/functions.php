@@ -186,7 +186,7 @@ function my_custom_scripts() {
 
 
     // VUE JS for tests
-    wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
+    //wp_enqueue_script('vue', 'https://unpkg.com/vue@3/dist/vue.global.js', null, null, true); // change to vue.min.js for production
 
 
     // Main Script File
@@ -489,7 +489,7 @@ function handle_contents_loading() {
  
     if( $_REQUEST["type"] === 'pdf' ) : ?>
 
-        <iframe id="pdf-popin-iframe" style="width: 100%; height: 100%; border: none;" src="<?php echo $_REQUEST["this_url"] ?>"></iframe>
+        <iframe id="pdf-popin-iframe" style="width: 100%; height: 100%; border: none;" src="<?php echo $_REQUEST["this_url"] ?>" title="Document PDF"></iframe>
     
     <?php else : 
 

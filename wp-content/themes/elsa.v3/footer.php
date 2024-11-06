@@ -14,7 +14,7 @@
             </div>
             <div class="m-1col"></div>
             <div class="t-12col m-5col">
-                <h4><?php the_field('logos_membres_title', 'options'); ?></h4>
+                <h3 class="h4"><?php the_field('logos_membres_title', 'options'); ?></h3>
                 <?php 
                     $images = get_field('logos_membres', 'options');
                     $size = 'full'; // (thumbnail, medium, large, full or custom size)
@@ -32,7 +32,7 @@
         
         <div class="bottom flex gap-xl">
             <div class="site-logo">
-                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction-white.png" width="auto" height="auto" alt="logo ELSA"></a>
+                <a href="<?php echo esc_url( home_url() ) ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo-sidaction-white.png" width="auto" height="auto" alt="logo Sidaction"></a>
             </div>
 
             <!-- <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'tertiary-menu' ) ); ?> -->
@@ -41,8 +41,8 @@
                 <li class="menu-item"><a href="/contactez-nous" class="btn-inline">Nous écrire</a> </li>
                 <li class="menu-item social_links">
                     <span href="#" class="btn-inline">Nous suivre sur les réseaux</span>
-                    <a href="<?php echo wp_kses_post( get_field('url_facebook', 'options')); ?>" target="_blank" class="social_icon icon-facebook"></a>
-                    <a href="<?php echo wp_kses_post( get_field('url_twitter', 'options')); ?>" target="_blank" class="social_icon icon-twitter"></a>
+                    <a href="<?php echo wp_kses_post( get_field('url_facebook', 'options')); ?>" target="_blank" class="social_icon icon-facebook" aria-label="Voir notre page Facebook"></a>
+                    <a href="<?php echo wp_kses_post( get_field('url_twitter', 'options')); ?>" target="_blank" class="social_icon icon-twitter"aria-label="Voir notre page X (Twitter)"></a>
                 </li>
 
                 <li class="menu-item js-newsletter-trigger"><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
@@ -52,7 +52,7 @@
             <?php wp_nav_menu( array( 
                 'theme_location'    => 'bottom', 
                 'menu_id'           => 'bottom-menu',   
-                'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s <a href="#" id="tarteaucitronManager" class="menu-item"> Cookies</a></ul>', 
+                'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s <li><a href="#" id="tarteaucitronManager" class="menu-item"> Cookies</a><li></ul>', 
             )); ?>
 
 

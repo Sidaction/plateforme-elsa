@@ -125,7 +125,7 @@
 
                         <p>En soumettant cette ressource, j'assure avoir pris connaisssance des <a href="/conditions-generales-dutilisation/" target="_blank">conditions générales d'utilisation</a></p>
 
-                        <button class="soumettreRess btn">Soumettre la ressource</button>
+                        <button class="soumettreRess btn" aria-label="Soumettre la ressource">Soumettre la ressource</button>
                     
                     </form>  
 

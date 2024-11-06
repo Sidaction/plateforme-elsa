@@ -17,11 +17,8 @@
     
     <div class="flex space start-y">
       <h3 class="h3 mb-l"><?php echo $dd_boite_titre; ?></h3>
-      <button class="close-dd-btn on-mobile">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6l-12 12"></path>
-            <path d="M6 6l12 12"></path>
-        </svg>
+      <button class="close-dd-btn on-mobile" aria-label="Fermer la fenêtre">
+        <?php get_template_part('svg/svg', 'close', array( 'strokes' => '#000' )); ?>
       </button>
     </div>
       
