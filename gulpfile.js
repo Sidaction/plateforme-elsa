@@ -16,8 +16,7 @@ var assets_folder = theme_folder + 'assets/';
 
 var jsfolder = assets_folder + 'js/';
 var mainjs = jsfolder + 'script.js';
-var libjs = jsfolder + 'libs/*.js';
-var alljs = [libjs, mainjs];
+var alljs = [mainjs];
 
 var sassfolder = assets_folder + 'styles/';
 var sassfiles = sassfolder + '**/*.scss';

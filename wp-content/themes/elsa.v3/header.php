@@ -13,7 +13,7 @@ global $cnSite; ?>
     <link rel="icon" type="image/png" href="<?php echo $cnSite->templatelink; ?>/assets/img/favicon.png" />
   
 </head>
-<body>
+<body <?php body_class(); ?>>
 
 
 <header class="site-header">
