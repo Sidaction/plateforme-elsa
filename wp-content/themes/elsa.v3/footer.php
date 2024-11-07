@@ -9,11 +9,11 @@
     <div class="wrapper">
         
         <div class="footer-text grid gap-l">
-            <div class="t-12col m-6col">
+            <div class="t-10col m-6col">
                 <?php the_field('elsa_text', 'options'); ?>
             </div>
-            <div class="m-1col"></div>
-            <div class="t-12col m-5col">
+            <div class="t-10col m-1col"></div>
+            <div class="t-10col m-5col">
                 <h3 class="h4"><?php the_field('logos_membres_title', 'options'); ?></h3>
                 <?php 
                     $images = get_field('logos_membres', 'options');

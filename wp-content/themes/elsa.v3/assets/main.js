@@ -139,11 +139,12 @@ const initMainScript = () => {
   // }); 
  
 
-  // $('.close-dd-btn').on('click', function(event) {
-  //   event.preventDefault();
-
-  //   $(this).closest('.e-open').removeClass('e-open');
-  // })
+  document.querySelectorAll('.close-dd-btn').forEach( el => {
+    el.addEventListener('click', function(event) {
+      event.preventDefault();
+      el.closest('.e-open').classList.remove('e-open');
+    })
+  })
 
 
 

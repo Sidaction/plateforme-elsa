@@ -13,6 +13,7 @@
     @include max(medium) {
         background-color: $gray-1;
         padding: 16px 0;
+        max-width: 100vw;
     }
     @include min(medium) {
         padding: 0 0 16px 0;
@@ -123,7 +124,7 @@
             opacity: 0;
             visibility: hidden;
             position: fixed;
-            top: 80px;
+            top: 98px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -226,7 +227,7 @@
 
             &:nth-of-type(3) {
                 transform: rotate(-45deg);
-                top: 28px;
+                top: 22px;
                 left: 5px;
             }
         }
