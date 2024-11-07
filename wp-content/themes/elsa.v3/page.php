@@ -61,20 +61,15 @@
     <section class="sec_page-hero">
         <div class="wrapper">
 
-            <?php $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $root ), 'large' ); ?>
-
-            <?php if( $large_image_url) { ?> 
-                <div class="page_title-outer page_cover bg_cover" style="background-image: url(<?php echo $large_image_url[0]; ?>)">
-                    <h1>
-                        <?php echo $title; ?>
-                    </h1>
-                </div>
-            <?php } ?>
-
-            <?php if( !$large_image_url ) { ?>
-                <div class="page_nocover"></div>
+            <div class="page_nocover"></div>
                 <?php if( $level != 0 && count($siblings) > 1 ) : ?>
-
+                    <div class="page_title static_title">
+                        <div class="wrap row">
+                            <h1 class="h1 m-6col is-centered text-on-center">
+                                <?php echo $title; ?>
+                            </h1>  
+                        </div>     
+                    </div>
                 <?php else : ?>
                     <div class="page_title static_title">
                         <div class="wrap row">
@@ -86,7 +81,6 @@
 
                 <?php endif; ?>
 
-            <?php } ?>
         </div>
     </section>
 
@@ -100,7 +94,6 @@
                 </nav>
 
                 <div class="entry-content">
-
                     <?php the_content(); ?>
                 </div>
 
@@ -109,12 +102,6 @@
             <?php elseif ( empty( $children ) && $level == 0 ) : ?>
 
                 <div class="entry-content">
-                    <?php if( is_array($large_image_url) ) { ?> 
-                        <h1 class="h1">
-                            <?php echo $title; ?>
-                        </h1>  
-                    <?php } ?>
-
                     <?php the_content(); ?>
                 </div>
 
@@ -123,13 +110,6 @@
             <?php else : ?>                
 
                 <div class="entry-content">
-
-                    <?php if( is_array($large_image_url) ) { ?> 
-                        <h1 class="h1">
-                            <?php echo $title; ?>
-                        </h1>  
-                    <?php } ?>
-
                     <?php echo $content; ?>
                 </div>
 
