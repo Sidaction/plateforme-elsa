@@ -190,7 +190,7 @@ function my_custom_scripts() {
 
 
     // Main Script File
-    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.js', array(), null, true);
+    wp_enqueue_script('main', get_template_directory_uri() . '/assets/main.min.js', array(), null, true);
 
     wp_add_inline_script( 'main', 'const ajax_datas = ' . json_encode( array(
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),

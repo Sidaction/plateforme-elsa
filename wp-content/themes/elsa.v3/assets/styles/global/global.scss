@@ -29,6 +29,10 @@ body {
     @include max(medium) {
         margin-top: 98px;
     }
+
+    &.no-scroll {
+        overflow: hidden;
+    }
 }
 
 main {

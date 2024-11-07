@@ -166,6 +166,7 @@ const initMainScript = () => {
   }
   function closeDropdown() {
     document.querySelectorAll('.e-open').forEach( el => el.classList.remove('e-open') );
+    body.classList.remove('no-scroll');
   }
 
  
@@ -178,24 +179,18 @@ const initMainScript = () => {
     el.addEventListener('click', event => {
 
       if( ! el.parentNode.classList.contains('direct-link') ) {
-
         event.preventDefault();
 
         const dropdowns_container = el.parentNode
 
         if( dropdowns_container.classList.contains('e-open') ) {
-        
-          if( dropdowns_container.classList.contains('e-open') ) {
-            dropdowns_container.classList.remove('e-open');
-            body.classList.remove('no-scroll');
-          }
-          else {
-            dropdowns_container.classList.remove('e-open');
-            dropdowns_container.classList.add('e-open');
-            body.classList.add('no-scroll');
-          }
+          dropdowns_container.classList.remove('e-open');
+          body.classList.remove('no-scroll');
         }
         else {
+          const dropdowns_container_open = document.querySelector('.e-open')
+          if( dropdowns_container_open ) dropdowns_container_open.classList.remove('e-open');
+
           dropdowns_container.classList.add('e-open');
           body.classList.add('no-scroll');
         }
