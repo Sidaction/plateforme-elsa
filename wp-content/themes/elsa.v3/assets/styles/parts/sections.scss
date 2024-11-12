@@ -132,7 +132,7 @@
 
         &__infos {
             margin: 0 10px;
-            position: absolute;
+            margin-bottom: -30px;
         }
 
         &__categories {
@@ -150,7 +150,6 @@
 
         &__title-container {
             background-color: $black;
-
             padding: 12px 20px;
         }
         &__title {
@@ -166,6 +165,19 @@
                 content: "";
                 position: absolute;
                 inset: 0;
+                z-index: 1;
+            }
+        }
+
+        &__cover-container {
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background-color: rgba($black, 0.3);
+                z-index: -1;
             }
         }
 
@@ -173,9 +185,15 @@
             width: 100%;
             aspect-ratio: 5/3;
             object-fit: cover;
-            margin-top: 65px;
             position: relative;
             z-index: -1;
+        }
+
+        &__play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 }

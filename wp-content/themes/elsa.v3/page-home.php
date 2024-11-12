@@ -189,7 +189,12 @@ set_query_var( 'cnSite', $cnSite );
                                         <a href="<?php the_permalink(); ?>" class="h3 video__title"><?=get_the_title()?></a>
                                     </div>
                                 </div>
-                                <img class="video__cover" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>" alt="video cover">
+                                <div class="video__cover-container">
+                                    <img class="video__cover" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url(); }  ?>" alt="video cover">
+                                    <div class="video__play-btn">
+                                        <?php get_template_part('svg/svg', 'play'); ?>
+                                    </div>
+                                </div>
                             </div>
                         <?php endforeach;
                         wp_reset_postdata(); ?>
