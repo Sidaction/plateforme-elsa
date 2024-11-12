@@ -3,7 +3,6 @@
   $cat = cnLib::get_terms_withoutlink($post->ID, 'category');
   $format = cnLib::get_main_term_slug($post->ID, 'format');
   $auteurs = $cnSite->get_authors($post->ID);
-  //$reco = get_field('recommandation');
   $boite = get_the_term_list( $post->ID, 'boiteoutils', 'People: ', ', ' );
   $tools = get_post_meta($post->ID, 'outil', true);
   $reco = get_post_meta($post->ID, 'homefiche', true);

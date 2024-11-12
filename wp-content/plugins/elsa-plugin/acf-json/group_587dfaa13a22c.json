@@ -1,0 +1,60 @@
+{
+    "key": "group_587dfaa13a22c",
+    "title": "Rebonds par défaut",
+    "fields": [
+        {
+            "key": "field_587dfaba91e62",
+            "label": "Liste des blocs à faire apparaitre par défaut",
+            "name": "rebonds_default",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "post",
+                "page",
+                "pays",
+                "structure",
+                "contenu"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": "",
+            "return_format": "object",
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Les rebonds sont les éléments qui apparaissent dans certaines pages sous le titre \"Autres infos utiles\"",
+    "show_in_rest": 0,
+    "modified": 1731408570
+}

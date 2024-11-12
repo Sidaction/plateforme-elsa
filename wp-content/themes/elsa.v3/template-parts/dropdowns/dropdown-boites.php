@@ -4,12 +4,12 @@
   $dd_boite_img_datas = get_field('dd-boite-img', 'options');
   $dd_boite_texte = get_field('dd-boite-text', 'options');
 
-    // thumbnail
-    $thumb_size = 'small';
-    $dd_boite_img = $dd_boite_img_datas['sizes'][ $thumb_size ];
-    $width = $dd_boite_img_datas['sizes'][ $thumb_size . '-width' ];
-    $height = $dd_boite_img_datas['sizes'][ $thumb_size . '-height' ];
-    $alt = $dd_boite_img_datas['alt'];
+    // // thumbnail
+    // $thumb_size = 'small';
+    // $dd_boite_img = $dd_boite_img_datas['sizes'][ $thumb_size ];
+    // $width = $dd_boite_img_datas['sizes'][ $thumb_size . '-width' ];
+    // $height = $dd_boite_img_datas['sizes'][ $thumb_size . '-height' ];
+    // $alt = $dd_boite_img_datas['alt'];
 ?>
 
 <div class="dropdown">

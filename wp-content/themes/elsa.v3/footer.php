@@ -16,7 +16,7 @@
             <div class="t-10col m-5col">
                 <h3 class="h4"><?php the_field('logos_membres_title', 'options'); ?></h3>
                 <?php 
-                    $images = get_field('logos_membres', 'options');
+                    $images = get_field('logos_soutiens', 'options');
                     $size = 'full'; // (thumbnail, medium, large, full or custom size)
                     if( $images ): ?>
                         <ul>

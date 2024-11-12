@@ -48,7 +48,7 @@ get_header();
                 </div>
             <?php endif; ?>
 
-            <?php if( isset($tags_linked) && !empty($tags_linked) ) : ?>
+            <!-- <?php if( isset($tags_linked) && !empty($tags_linked) ) : ?>
                 <div class="ressource-meta">
                     <span class="p small">Mots clefs : </span>
 
@@ -59,7 +59,7 @@ get_header();
                     </ul>
 
                 </div>
-            <?php endif; ?>
+            <?php endif; ?> -->
 
             <?php if( isset($tags_linked) || isset($boites_linked) ) : ?>
                 <div class="page_metas">

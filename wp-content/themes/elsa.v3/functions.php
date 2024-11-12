@@ -201,6 +201,11 @@ function my_custom_scripts() {
     wp_register_script('search', get_template_directory_uri() . '/assets/js/search.js', array(), null, true);
     
 
+    // ACF
+    wp_register_script('myjquery', 'https://code.jquery.com/jquery-2.1.3.min.js', array(), null, true);
+    wp_register_script('acf', WP_CONTENT_DIR . '/plugins/advanced-custom-fields/js/js/input.min.js', array('jquery'), null, true);
+
+
     // Swiper stuffs
     wp_register_style('swiper-styles', get_template_directory_uri() . '/assets/swiper/swiper-bundle.min.css', null);
     wp_register_script('swiper', get_template_directory_uri() . '/assets/swiper/swiper-bundle.min.js', null, true);
@@ -529,3 +534,29 @@ function add_defer_attribute($tag, $handle) {
     return str_replace( ' src', ' defer="defer" src', $tag );
 }
 add_filter('script_loader_tag', 'add_defer_attribute', 10, 2);
+
+
+
+
+add_action('acf/init', 'my_acf_form_init');
+function my_acf_form_init() {
+
+    // Check function exists.
+    if( function_exists('acf_register_form') ) {
+
+        // Register form.
+        acf_register_form(array(
+            'id'       => 'nouvelle-ressource',
+            'post_id'  => 'new_post',
+            'new_post' => array(
+                'post_type'   => 'post',
+                'post_status' => 'publish'
+            ),
+            'post_title'  => true,
+            'post_content'=> true,
+            'field_groups' => array(
+                'group_58778cfe5fe6b'
+            )
+        ));
+    }
+}

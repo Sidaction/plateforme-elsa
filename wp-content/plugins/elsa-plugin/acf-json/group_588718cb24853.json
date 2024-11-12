@@ -1,0 +1,86 @@
+{
+    "key": "group_588718cb24853",
+    "title": "Rebonds par page",
+    "fields": [
+        {
+            "key": "field_588718f7f9ea0",
+            "label": "Listes des pages à lier",
+            "name": "listes_des_pages_à_lier",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "post",
+                "page",
+                "structure",
+                "pays",
+                "contenu"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "object",
+            "bidirectional_target": []
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "structure"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "pays"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "contenu"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Lister ici les pages à afficher dans le module 'Autres infos utiles'. Des pages par défaut ont été défini pour tous. Les pages choisies ici s'ajouteront à ces pages par \"défaut\".",
+    "show_in_rest": 0,
+    "modified": 1731408575
+}
