@@ -43,7 +43,9 @@
         }
     
         .footer-menu {
-            margin-right: 100px;
+            @include min(medium) {
+                margin-right: 100px;
+            }
 
             @include max(medium) {
                 order: -1;
@@ -61,6 +63,24 @@
                     margin-bottom: 20px;
                 }
                 @extend .menu-item2;
+            }
+        }
+
+        .social-links {
+            margin-top: 20px;
+            
+            @include max(medium) {
+                flex-wrap: wrap;
+            }
+
+            > a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $primary-color;
+                border-radius: 50%;
+                aspect-ratio: 1;
+                padding: 10px;
             }
         }
     }
