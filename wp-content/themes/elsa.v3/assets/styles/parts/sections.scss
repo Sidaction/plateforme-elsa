@@ -142,23 +142,37 @@
             display: flex;
             width: fit-content;
             flex-wrap: wrap;
+
+            .line {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                line-clamp: 1;
+                -webkit-line-clamp: 1;
+                hyphens: auto;
+            }
+            
             .category {
                 font-size: 15px;
-                white-space: nowrap;
+                // white-space: nowrap;
             }
         }
 
         &__title-container {
             background-color: $black;
             padding: 12px 20px;
+
+            @include min(small) {
+                width: fit-content;
+            }
         }
         &__title {
             color: $white;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            line-clamp: 2;
-            -webkit-line-clamp: 2;
+            line-clamp: 1;
+            -webkit-line-clamp: 1;
             hyphens: auto;
 
             &::after {

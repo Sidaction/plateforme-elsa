@@ -172,6 +172,7 @@ set_query_var( 'cnSite', $cnSite );
 
                                 <div class="video__infos">
                                     <div class="video__categories">
+                                        <p class="line">
                                         <?php
                                         $categories = get_the_category();
                                         if (!empty( $categories) ) {
@@ -183,6 +184,7 @@ set_query_var( 'cnSite', $cnSite );
                                             }
                                         }
                                         ?>
+                                        <p>
                                     </div>
                                     
                                     <div class="video__title-container">
