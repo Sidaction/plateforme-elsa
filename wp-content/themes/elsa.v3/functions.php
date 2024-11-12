@@ -404,6 +404,7 @@ function handle_contents_loading() {
         $args['s'] = $_REQUEST['keyword'];	
         add_filter( 'posts_search', 'cn_tags_search', 500, 2 );
         
+
         // SI FORMAT
         if( isset($_REQUEST['format']) ) {
 
@@ -419,10 +420,15 @@ function handle_contents_loading() {
             $args['format'] = '';
         }
 
+
+        // SI BOITES A OUTILS
+        $args['boiteoutils'] = (isset($_REQUEST['boites']))?$_REQUEST['boites']:'';
+
+
         // SI CATEGORY
         $args['category_name'] = (isset($_REQUEST['thematique']))?$_REQUEST['thematique']:'';
-
         $args['pays_assoc'] = (isset($_REQUEST['pays']))?$_REQUEST['pays']:'';
+
 
         // SI PERIODE  IS SET
         if( isset($_REQUEST['period']) ) {

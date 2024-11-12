@@ -107,6 +107,7 @@ const initSearchScript = () => {
         
         data.set('action', 'handle_contents_loading');
         data.set('keyword',  document.querySelector('input[name=filter_totaltags]').value );
+        data.set('boites',  document.querySelector('input[name=boites]').value );
         data.set('offset', offset);
 
         fetchAndDisplayDatas().then( () => {
