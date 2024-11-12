@@ -5,7 +5,7 @@
 @mixin mobile-paper {
     clip-path: url(#mask-full-3);
     background-color: $primary-color;
-    padding: 40px 24px;
+    padding: 40px 30px;
     position: relative;
     color: $white;
 
@@ -30,6 +30,7 @@
 
     &:nth-child(2), &:nth-child(4) {
         background-color: $black;
+        clip-path: url(#mask-full);
     }
 
     &:nth-child(3) {
@@ -38,6 +39,7 @@
 
     &:last-child {
         background-color: $gray-2;
+        clip-path: url(#mask-full-2);
     }
 
     .metas {
