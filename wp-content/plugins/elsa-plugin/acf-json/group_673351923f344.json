@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_673351925722a",
-            "label": "Page facebook",
+            "label": "Page Facebook",
             "name": "url_facebook",
             "aria-label": "",
             "type": "url",
@@ -22,8 +22,62 @@
         },
         {
             "key": "field_673351a55722b",
-            "label": "Page X (Twitter)",
+            "label": "Compte X (Twitter)",
             "name": "url_twitter",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6733751a4891a",
+            "label": "Compte LinkedIn",
+            "name": "url_linkedin",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_673375324891b",
+            "label": "Compte YouTube",
+            "name": "url_youtube",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_67337676d1128",
+            "label": "Compte Instagram",
+            "name": "url_instagram",
             "aria-label": "",
             "type": "url",
             "instructions": "",
@@ -57,5 +111,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731416513
+    "modified": 1731425947
 }

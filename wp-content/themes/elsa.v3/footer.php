@@ -42,25 +42,43 @@
                 <li class="menu-item js-newsletter-trigger"><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li>
                 <li class="menu-item">
                     <span class="btn-inline">Nous suivre sur les réseaux :</span>
+
+                    <ul class="social-links flex gap-s">
+
+                        <?php if( get_field('url_facebook', 'options')) :  ?>
+                            <li><a href="<?php echo wp_kses_post( get_field('url_facebook', 'options')); ?>" target="_blank" aria-label="Voir notre page Facebook">
+                                <?php get_template_part('svg/svg-facebook'); ?>
+                            </a></li>
+                        <?php endif; ?>
+
+                        <?php if( get_field('url_twitter', 'options')) :  ?>
+                            <li><a href="<?php echo wp_kses_post( get_field('url_twitter', 'options')); ?>" target="_blank" aria-label="Voir notre page X (Twitter)">
+                                <?php get_template_part('svg/svg-twitter'); ?>
+                            </a></li>
+                        <?php endif; ?>
+
+                        <?php if( get_field('url_instagram', 'options')) :  ?>
+                            <li><a href="<?php echo wp_kses_post( get_field('url_instagram', 'options')); ?>" target="_blank" aria-label="Voir notre page Instagram">
+                                <?php get_template_part('svg/svg-instagram'); ?>
+                            </a></li>
+                        <?php endif; ?>
+
+                        <?php if( get_field('url_youtube', 'options')) :  ?>
+                            <li><a href="<?php echo wp_kses_post( get_field('url_youtube', 'options')); ?>" target="_blank" aria-label="Voir notre chaine Youtube">
+                                <?php get_template_part('svg/svg-youtube'); ?>
+                            </a></li>
+                        <?php endif; ?>
+
+                        <?php if( get_field('url_linkedin', 'options')) :  ?>
+                            <li><a href="<?php echo wp_kses_post( get_field('url_linkedin', 'options')); ?>" target="_blank" aria-label="Voir notre page Linkedin">
+                                <?php get_template_part('svg/svg-linkedin'); ?>
+                            </a></li>
+                        <?php endif; ?>
+
+                    </ul>
                     
                 </li>
-                <div class="social-links flex gap-s">
-                    <a href="<?php echo wp_kses_post( get_field('url_facebook', 'options')); ?>" target="_blank" aria-label="Voir notre page Facebook">
-                        <?php get_template_part('svg/svg-facebook'); ?>
-                    </a>
-                    <a href="<?php echo wp_kses_post( get_field('url_twitter', 'options')); ?>" target="_blank" aria-label="Voir notre page X (Twitter)">
-                        <?php get_template_part('svg/svg-twitter'); ?>
-                    </a>
-                    <a href="<?php echo wp_kses_post( get_field('url_instagram', 'options')); ?>" target="_blank" aria-label="Voir notre page Instagram">
-                        <?php get_template_part('svg/svg-instagram'); ?>
-                    </a>
-                    <a href="<?php echo wp_kses_post( get_field('url_youtube', 'options')); ?>" target="_blank" aria-label="Voir notre chaine Youtube">
-                        <?php get_template_part('svg/svg-youtube'); ?>
-                    </a>
-                    <a href="<?php echo wp_kses_post( get_field('url_linkedin', 'options')); ?>" target="_blank" aria-label="Voir notre page Linkedin">
-                        <?php get_template_part('svg/svg-linkedin'); ?>
-                    </a>
-                </div>
+
 
             </ul>
 

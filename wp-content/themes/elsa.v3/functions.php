@@ -537,26 +537,3 @@ add_filter('script_loader_tag', 'add_defer_attribute', 10, 2);
 
 
 
-
-add_action('acf/init', 'my_acf_form_init');
-function my_acf_form_init() {
-
-    // Check function exists.
-    if( function_exists('acf_register_form') ) {
-
-        // Register form.
-        acf_register_form(array(
-            'id'       => 'nouvelle-ressource',
-            'post_id'  => 'new_post',
-            'new_post' => array(
-                'post_type'   => 'post',
-                'post_status' => 'publish'
-            ),
-            'post_title'  => true,
-            'post_content'=> true,
-            'field_groups' => array(
-                'group_58778cfe5fe6b'
-            )
-        ));
-    }
-}
