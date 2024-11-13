@@ -179,7 +179,7 @@
                         <div class="form-group">
 
                           <div class="form-field">
-                            <input type="text" class="plain" placeholder="Combien font 2+2 ? (anti-spam)" id="check" name="check" >
+                            <input type="text" class="plain" placeholder="Combien font 3+9 ? (anti-spam)" id="check" name="check" >
                             <small></small>
                           </div>
 

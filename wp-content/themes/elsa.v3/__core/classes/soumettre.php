@@ -27,13 +27,8 @@ class doc  {
 		
 		if ( ($_SERVER["REQUEST_METHOD"] == "POST") ) {
 
-			var_dump('REGISTER');
-
 			self::register_doc();
 		}
-
-		var_dump('THIS');
-		var_dump($this);
 		
 	}
 	
@@ -168,7 +163,7 @@ class doc  {
 			$file2 = $_FILES['doc_source'];
 			
 			var_dump($file2);
-			
+
 			if(!in_array($file2['type'], unserialize(TYPE_WHITELIST))){  
 				$this->args['alert'] = 'wrongformat'; 
 			}

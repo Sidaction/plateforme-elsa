@@ -2,6 +2,7 @@ const titleEl = document.querySelector('#title');
 const usernameEl = document.querySelector('#contname');
 const emailEl = document.querySelector('#contemail');
 const email2El = document.querySelector('#contemail2');
+const checkEl = document.querySelector('#check');
 
 const form = document.querySelector('#contact');
 
@@ -22,6 +23,23 @@ const checkUsername = () => {
         showError(usernameEl, `Votre nom doit être compris entre ${min} et ${max} caractères`)
     } else {
         showSuccess(usernameEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkSpam = () => {
+
+    let valid = false;
+
+    const checkvalue = checkEl.value.trim();
+
+    if (!isRequired(checkvalue)) {
+        showError(checkEl, `Cette réponse est requise`);
+    } else if ( checkvalue != 12 ) {
+        showError(checkEl, `Cette réponse n'est pas correcte`)
+    } else {
+        showSuccess(checkEl);
         valid = true;
     }
     return valid;
@@ -123,11 +141,13 @@ form.addEventListener('submit', function (e) {
     let isUsernameValid = checkUsername(),
         isTitleValid = checkTitle(),
         isEmailValid = checkEmail(),
+        ischeckSpamValid = checkSpam()
         isConfirmEmailValid = checkConfirmEmail();
 
     let isFormValid = isUsernameValid &&
         isTitleValid &&
         isEmailValid &&
+        ischeckSpamValid &&
         isConfirmEmailValid;
 
     // submit to the server if the form is valid
