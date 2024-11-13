@@ -26,7 +26,6 @@ class doc  {
 		$this->args['step'] =(isset($_POST['step']))? $_POST['step']:'';
 		
 		if ( ($_SERVER["REQUEST_METHOD"] == "POST") ) {
-
 			self::register_doc();
 		}
 		
@@ -93,18 +92,15 @@ class doc  {
 	}
 	
 	private function insert_post(){
-		 $my_post = array();
-		 $my_post['post_title'] = $this->args['title'];
-		 $my_post['post_content'] = $this->args['desc'];
-		 $my_post['post_author'] = $this->user_id;
-		 $my_post['post_type'] = 'post';
-		 $my_post['post_status'] = 'pending';
-		 $newpost_id = wp_insert_post($my_post);
-
-		var_dump(' $newpost_id');
-		var_dump( $newpost_id);
+		$my_post = array();
+		$my_post['post_title'] = $this->args['title'];
+		$my_post['post_content'] = $this->args['desc'];
+		$my_post['post_author'] = $this->user_id;
+		$my_post['post_type'] = 'post';
+		$my_post['post_status'] = 'pending';
+		$newpost_id = wp_insert_post($my_post);
 		
-		 return $newpost_id;
+		return $newpost_id;
 	}
 	
 	
@@ -115,20 +111,13 @@ class doc  {
 			$this->args['format']				= wp_strip_all_tags( addslashes($_POST['format']));
 			$this->args['date-start']		= wp_strip_all_tags( addslashes($_POST['date-start']));
 			$this->args['link']					= wp_strip_all_tags( addslashes($_POST['link']));
-		//	$this->args['auteur']				= wp_strip_all_tags( addslashes($_POST['auteur']));
 			$this->args['contname']			= wp_strip_all_tags( addslashes($_POST['contname']));
-		//	$this->args['contfirtname']	= wp_strip_all_tags( addslashes($_POST['contfirtname']));
 			$this->args['contemail']		= wp_strip_all_tags( addslashes($_POST['contemail']));
 			$this->args['category']			= wp_strip_all_tags( addslashes($_POST['category']));
 			$this->args['contassoc']		= wp_strip_all_tags( addslashes($_POST['contassoc']));
 			$this->args['pays_assoc']		= $_POST['pays_assoc'];
-		//	$this->args['post_tag']			= $_POST['post_tag'];
-		//	$this->args['organisme']		= $_POST['organisme'];
-			// $this->args['name']					= wp_strip_all_tags( addslashes($_POST['name']));/// contre les spams	  
-	
 		}
-		// if(!empty($this->args['name'])) return;	/// contre les spams
-		if($_POST['check']!=4) return;	/// contre les spams
+		if($_POST['check']!=12) return;
 	}
 	
 	
@@ -138,7 +127,7 @@ class doc  {
 
 			$file   = $_FILES['image_file'];
 			$image_data = getimagesize($file['tmp_name']);  
-	
+
 			if(!in_array($image_data['mime'], unserialize(TYPE_WHITELIST))){  
 				$this->args['alert'] = 'wrongformat';
 			}
@@ -146,7 +135,6 @@ class doc  {
 				$this->args['alert'] = 'wrongsize'; 
 			}  
 			
-			///// upload
 			if(empty($this->args['alert'])):
 				$attach_id = media_handle_upload('image_file',$newpost_id);
 				update_post_meta($newpost_id, '_thumbnail_id', $attach_id); 
@@ -161,17 +149,14 @@ class doc  {
 		if (wp_verify_nonce($this->nonce, 'my-nonce' ) && !empty($_FILES['doc_source']['tmp_name']) ) :
 		
 			$file2 = $_FILES['doc_source'];
-			
-			var_dump($file2);
 
-			if(!in_array($file2['type'], unserialize(TYPE_WHITELIST))){  
+			if( !in_array($file2['type'], unserialize(TYPE_WHITELIST)) ){  
 				$this->args['alert'] = 'wrongformat'; 
 			}
-			elseif(($file2['type'] > MAX_UPLOAD_SIZE)){  
+			elseif(($file2['size'] > MAX_UPLOAD_SIZE)){  
 				$this->args['alert'] = 'wrongsize'; 
 			}  
 
-			///// upload
 			if(empty($this->args['alert'])):
 				$attach_id2 = media_handle_upload('doc_source',$newpost_id);
 				update_post_meta($newpost_id, 'file', $attach_id2);

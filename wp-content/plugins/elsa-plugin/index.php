@@ -24,7 +24,6 @@ define('RESS_FUNC_PATH', RESS_PATH . 'functions/');
 define('RESS_PT_PATH', RESS_PATH . 'post_types/');
 define('RESS_UTILS_PATH', RESS_PATH . 'utils/');
 define('RESS_METAS_PATH', RESS_PATH . 'metas/');
-define('RESS_CLASSES_PATH', RESS_PATH . 'classes/');
 
 
 /**
