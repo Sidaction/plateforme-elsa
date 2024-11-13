@@ -3,6 +3,8 @@ const usernameEl = document.querySelector('#contname');
 const emailEl = document.querySelector('#contemail');
 const email2El = document.querySelector('#contemail2');
 const checkEl = document.querySelector('#check');
+const documentSourceEl = document.querySelector('#doc_source');
+const imageSourceEl = document.querySelector('#image_file');
 
 const form = document.querySelector('#contact');
 
@@ -187,3 +189,25 @@ form.addEventListener('input', debounce(function (e) {
 
     }
 }));
+
+const handleFile = ( el, event ) => {
+
+    const parentEl = el.parentNode;
+    const labelEl = parentEl.querySelector('.label-content');
+
+    let fl_files = event.target.files; 
+    let fl_file = fl_files[0];
+    labelEl.innerHTML = fl_file.name
+    labelEl.classList.add('active')
+
+    console.log(fl_file)
+}
+
+
+documentSourceEl.addEventListener('change', event => {
+    handleFile(documentSourceEl, event)
+})
+
+imageSourceEl.addEventListener('change', event => {
+    handleFile(imageSourceEl, event)
+})

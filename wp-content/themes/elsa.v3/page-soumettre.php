@@ -72,11 +72,11 @@
 
                           <div class="form-field">
                             <div class="input--file">
-                                <input type="file" name="doc_source" id="label" />
+                                <input type="file" name="doc_source" id="doc_source" />
                                 <label class="plain">
-                                  <span>Télécharger la source </span>
-                                  <span class="icon">
-                                    <?php get_template_part('svg/svg', 'carot', array( 'strokes' => '#767676' )); ?>
+                                  <span class="label-content">Document de la ressource (pdf, jpg, png...) </span>
+                                  <span class="btn">
+                                    Choisir le fichier
                                   </span>
                                 </label>
                               </div>
@@ -86,9 +86,9 @@
                               <div class="input--file">
                                 <input type="file" name="image_file" id="image_file" />
                                 <label  class="plain">
-                                  <span>Visuel associé </span>
-                                  <span class="icon">
-                                    <?php get_template_part('svg/svg', 'carot', array( 'strokes' => '#767676' )); ?>
+                                  <span class="label-content">Visuel associé de la ressource </span>
+                                  <span class="btn">
+                                    Choisir le fichier
                                   </span>
                                   </label>
                               </div>

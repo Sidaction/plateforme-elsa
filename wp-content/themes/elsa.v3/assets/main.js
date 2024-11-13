@@ -265,43 +265,6 @@ const initMainScript = () => {
 
 
 
-
-
-  /*------------------------------------*\
-      VALIDATION
-  \*------------------------------------*/
-
-  // jQuery("#contact").validate({
-  //   rules: {
-  //     contname: "required",
-  //     contfirtname: "required",
-  //     title: "required",
-  //     contemail: {
-  //       required: true,
-  //       email: true
-  //     },
-  //     contemail2: {
-  //       required: true,
-  //       equalTo: "#contemail",
-  //     },
-  //     check: {
-  //       required: true,
-  //        range:[4,4]
-  //     },
-  //   }
-  // });
-
-  // jQuery.extend(jQuery.validator.messages, {
-  //   minlength: 'Merci de saisir un numéro à 10 chiffres',
-  //   maxlength: 'Merci de saisir un numéro à 10 chiffres',
-  //   number: 'Merci de saisir un numéro à 10 chiffres',
-  //   required: 'Ce champ est obligatoire',
-  //   range: 'Merci de renseigner le chiffre exact ( = 4)',
-  //   email: 'Merci de renseigner un mail valide',
-  //   equalTo: 'Merci de saisir le même email'
-  // });
-
-
 }
 
 
