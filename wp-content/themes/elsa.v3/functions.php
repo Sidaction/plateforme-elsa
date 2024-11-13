@@ -197,13 +197,13 @@ function my_custom_scripts() {
         'nonce' => wp_create_nonce( 'handle_contents_loading' )
     ) ), 'before' );
 
+
     // Search Script File
     wp_register_script('search', get_template_directory_uri() . '/assets/js/search.js', array(), null, true);
     
 
-    // ACF
-    wp_register_script('myjquery', 'https://code.jquery.com/jquery-2.1.3.min.js', array(), null, true);
-    wp_register_script('acf', WP_CONTENT_DIR . '/plugins/advanced-custom-fields/js/js/input.min.js', array('jquery'), null, true);
+    // Validation 
+    wp_register_script('validation', get_template_directory_uri() . '/assets/js/validation.js', array(), null, true);
 
 
     // Swiper stuffs

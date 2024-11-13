@@ -271,6 +271,8 @@ const initMainScript = () => {
       VALIDATION
   \*------------------------------------*/
 
+  
+
   // jQuery("#contact").validate({
   //   rules: {
   //     contname: "required",

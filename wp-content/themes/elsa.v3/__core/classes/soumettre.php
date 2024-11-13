@@ -9,18 +9,32 @@ class doc  {
 
 	public function __construct() {
 		
+		define('MAX_UPLOAD_SIZE', 2000000);
+		define('TYPE_WHITELIST', serialize(array(  
+			'application/pdf',  
+			'image/jpeg',  
+			'image/png',  
+			'image/gif'
+		)));  
+
 		$this->args['alert'] = '';
 		$this->args['format'] = '';
-		
+		$this->user_id = 3;
+
 		$this->nonce = (isset($_POST['checknc']))?$_POST['checknc']:'';
 		
 		$this->args['step'] =(isset($_POST['step']))? $_POST['step']:'';
 		
 		if ( ($_SERVER["REQUEST_METHOD"] == "POST") ) {
+
+			var_dump('REGISTER');
+
 			self::register_doc();
 		}
+
+		var_dump('THIS');
+		var_dump($this);
 		
-		$user_id = 3;
 	}
 	
 
@@ -92,9 +106,9 @@ class doc  {
 		 $my_post['post_status'] = 'pending';
 		 $newpost_id = wp_insert_post($my_post);
 
-
-
-
+		var_dump(' $newpost_id');
+		var_dump( $newpost_id);
+		
 		 return $newpost_id;
 	}
 	
@@ -115,10 +129,10 @@ class doc  {
 			$this->args['pays_assoc']		= $_POST['pays_assoc'];
 		//	$this->args['post_tag']			= $_POST['post_tag'];
 		//	$this->args['organisme']		= $_POST['organisme'];
-			$this->args['name']					= wp_strip_all_tags( addslashes($_POST['name']));/// contre les spams	  
+			// $this->args['name']					= wp_strip_all_tags( addslashes($_POST['name']));/// contre les spams	  
 	
 		}
-		if(!empty($this->args['name'])) return;	/// contre les spams
+		// if(!empty($this->args['name'])) return;	/// contre les spams
 		if($_POST['check']!=4) return;	/// contre les spams
 	}
 	
@@ -126,20 +140,14 @@ class doc  {
 	private function upload_img($newpost_id){
 
 		if (wp_verify_nonce($this->nonce, 'my-nonce' ) && !empty($_FILES['image_file']['tmp_name']) ) :
+
 			$file   = $_FILES['image_file'];
-			///// Check
-			define('MAX_UPLOAD_SIZE', 2000000);  
-			define('TYPE_WHITELIST', serialize(array(  
-			  'image/jpeg',  
-			  'image/png',  
-			  'image/gif'
-			  )));  
-			  
 			$image_data = getimagesize($file['tmp_name']);  
 	
 			if(!in_array($image_data['mime'], unserialize(TYPE_WHITELIST))){  
 				$this->args['alert'] = 'wrongformat';
-			}elseif(($file['size'] > MAX_UPLOAD_SIZE)){
+			}
+			elseif(($file['size'] > MAX_UPLOAD_SIZE)){
 				$this->args['alert'] = 'wrongsize'; 
 			}  
 			
@@ -158,21 +166,13 @@ class doc  {
 		if (wp_verify_nonce($this->nonce, 'my-nonce' ) && !empty($_FILES['doc_source']['tmp_name']) ) :
 		
 			$file2 = $_FILES['doc_source'];
-
-			define('MAX_UPLOAD_SIZE', 2000000);  
-			define('TYPE_WHITELIST', serialize(array(  
-			  'application/pdf',  
-			  'image/jpeg',  
-			  'image/png',  
-			  'image/gif'
-		  )));  
-			  
 			
-		  if(!in_array($file2['type'], unserialize(TYPE_WHITELIST))){  
+			var_dump($file2);
+			
+			if(!in_array($file2['type'], unserialize(TYPE_WHITELIST))){  
 				$this->args['alert'] = 'wrongformat'; 
-			
-		  }
-		  elseif(($file2['type'] > MAX_UPLOAD_SIZE)){  
+			}
+			elseif(($file2['type'] > MAX_UPLOAD_SIZE)){  
 				$this->args['alert'] = 'wrongsize'; 
 			}  
 
@@ -180,8 +180,7 @@ class doc  {
 			if(empty($this->args['alert'])):
 				$attach_id2 = media_handle_upload('doc_source',$newpost_id);
 				update_post_meta($newpost_id, 'file', $attach_id2);
-				//update_post_meta($attach_id, 'file', $attach_id); 
-				endif;
+			endif;
 
 		endif;
 	}

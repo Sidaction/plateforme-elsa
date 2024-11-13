@@ -197,12 +197,23 @@ input[type="submit"] {
 \*------------------------------------*/
 
 .submission_form {
-    input, textarea, .input--file, .input--select {
-        margin-bottom: var(--space-m)
+
+    .form-field {
+        margin-bottom: var(--space-m);
+
+        input[type="text"],input[type="email"], .input--file {
+            margin-bottom: 5px;
+        }
+        &.error small {
+            color: $primary-color;
+        }
     }
     .input--file, .input--select {
         position: relative;
         overflow: hidden;
+    }
+    .form-group {
+        margin-top: var(--space-xl);
     }
 }
 
@@ -214,6 +225,7 @@ input[type="submit"] {
         top: 0;
         bottom: 0;
         width: 100%;
+        height: 100%;
         margin: 0;
         z-index: 6;
     }
@@ -245,11 +257,8 @@ input[type="submit"] {
     }
     .input--file + .msg {
         display: block;
-        font-size: 1.2rem;
         line-height: 1;
         color: #555;
-        font-style: italic;
-        margin-top: - 10px;
       }
 
     .input--select {
