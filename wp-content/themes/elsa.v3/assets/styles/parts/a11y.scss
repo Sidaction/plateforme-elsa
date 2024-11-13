@@ -16,17 +16,11 @@
         }
     }
     .djacc-popup .djacc__panel {
-        background-color: $gray-2 !important;
-        color: black;
+        background-color: $black !important;
     }
     .djacc-popup .djacc__reset {
         background: $secondary-color !important;
 
-    }
-
-    .djacc-popup .djacc__btn, 
-    .djacc-popup .djacc__arrows {
-        color: white !important;
     }
 
     .djacc__footer {
@@ -40,3 +34,16 @@
     .djacc-popup.djacc--bottom-left:hover .djacc__openbtn {
         margin: 0 !important;
     }
+
+    .djacc-popup .djacc__bar::before {
+        background: $primary-color;
+      }
+
+      .djacc-popup .djacc__dec:hover svg [stroke^="#"], .djacc-popup .djacc__inc:hover svg [stroke^="#"] {
+        stroke: $primary-color;
+      }
+
+      .djacc-popup .djacc__btn:hover {
+        background: #343434;
+        border-color: $primary-color;
+      }
