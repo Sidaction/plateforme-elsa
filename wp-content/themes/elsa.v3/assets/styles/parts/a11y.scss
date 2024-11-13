@@ -1,0 +1,42 @@
+
+    .djacc-popup .djacc__openbtn--default {
+        background: $primary-color !important;
+        border-radius: 50%;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    .djacc-popup .djacc__close {
+        background: $primary-color !important;
+        border-color: transparent;
+        &:hover {
+            opacity: .7;
+        }
+    }
+    .djacc-popup .djacc__panel {
+        background-color: $gray-2 !important;
+        color: black;
+    }
+    .djacc-popup .djacc__reset {
+        background: $secondary-color !important;
+
+    }
+
+    .djacc-popup .djacc__btn, 
+    .djacc-popup .djacc__arrows {
+        color: white !important;
+    }
+
+    .djacc__footer {
+        display: none !important;
+    }
+
+    .djacc-popup .djacc__btn--active {
+        border-color: $primary-color !important;
+        background: $primary-color !important;
+    }
+    .djacc-popup.djacc--bottom-left:hover .djacc__openbtn {
+        margin: 0 !important;
+    }
