@@ -27,6 +27,23 @@ const checkUsername = () => {
     return valid;
 };
 
+const checkTitle = () => {
+
+    let valid = false;
+    const min = 3, max = 100;
+    const title = titleEl.value.trim();
+
+    if (!isRequired(title)) {
+        showError(titleEl, 'Le nom de la ressource est requis');
+    } else if (!isBetween(title.length, min, max)) {
+        showError(titleEl, `Le nom de la ressource doit être compris entre ${min} et ${max} caractères`)
+    } else {
+        showSuccess(titleEl);
+        valid = true;
+    }
+    return valid;
+};
+
 
 const checkEmail = () => {
     let valid = false;
@@ -104,10 +121,12 @@ form.addEventListener('submit', function (e) {
 
     // validate fields
     let isUsernameValid = checkUsername(),
+        isTitleValid = checkTitle(),
         isEmailValid = checkEmail(),
         isConfirmEmailValid = checkConfirmEmail();
 
     let isFormValid = isUsernameValid &&
+        isTitleValid &&
         isEmailValid &&
         isConfirmEmailValid;
 
@@ -137,11 +156,14 @@ form.addEventListener('input', debounce(function (e) {
         case 'username':
             checkUsername();
             break;
+
+        case 'username':
+            checkUsername();
+            break;
+
         case 'email':
             checkEmail();
             break;
-        case 'confirm-password':
-            checkConfirmPassword();
-            break;
+
     }
 }));

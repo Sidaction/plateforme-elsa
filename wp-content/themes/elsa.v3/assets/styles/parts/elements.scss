@@ -15,7 +15,7 @@
     font-weight: $font-semibold;
     color: $white;
     text-align: left;
-    text-decoration: none;
+    text-decoration: none !important;
     cursor: pointer;
     transition: background-color .3s linear, border-color .3s linear, color .3s linear, transform .1s linear;
     

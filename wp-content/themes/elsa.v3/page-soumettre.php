@@ -37,7 +37,6 @@
 
         <div class="entry-content">
       
-      
           <?php if($args['step'] != 'validregister') : ?>
             <?php the_content();?>
           <?php endif; ?>
@@ -53,8 +52,10 @@
               <h2>Merci</h2>
               <p class="msgalert">Votre document a été suggéré.</p> <br />
 
-              <a href="<?php get_bloginfo('url')?>" class="btn">Revenir à l'accueil</a>
-              <a href="" class="btn">Suggérer une autre ressource</a>
+              <div class="flex gap-m">
+                <a href="<?php get_bloginfo('url')?>" class="btn btn--secondary">Revenir à l'accueil</a>
+                <a href="" class="btn btn--primary">Suggérer une autre ressource</a>
+              </div>
             <?php endif; ?>
           </div>
 
