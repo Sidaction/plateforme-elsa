@@ -68,25 +68,6 @@
 
         .social-links {
             margin-top: 15px;
-            
-            @include max(medium) {
-                flex-wrap: wrap;
-            }
-
-            a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: $primary-color;
-                border-radius: 50%;
-                aspect-ratio: 1;
-                padding: 10px;
-                transition: all .3s;
-
-                &:hover {
-                    background-color: $secondary-color;
-                }
-            }
         }
     }
 }

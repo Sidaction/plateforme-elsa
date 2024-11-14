@@ -265,6 +265,39 @@ const initMainScript = () => {
 
 
 
+  /*------------------------------------*\
+      SHARE LINKS
+  \*------------------------------------*/
+
+  const share_link = document.querySelectorAll('.-share-desktop')
+
+  share_link.forEach( el => {
+    el.addEventListener("click", event => {
+
+      event.preventDefault()
+
+      const share_link = el.getAttribute('href');
+      const share_type = el.getAttribute('data-type');
+
+      console.log(share_link);
+
+      if( share_type === 'link' ) {
+        const etiquette = el.parentNode.querySelector('.etiquette');
+        etiquette.classList.add('displayed');
+        navigator.clipboard.writeText(share_link);
+
+        setTimeout( () => {
+          etiquette.classList.remove('displayed');
+        }, 3000)
+      }
+      else {
+        window.open(share_link, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=400");
+      }
+    });
+
+  })
+
+
 }
 
 

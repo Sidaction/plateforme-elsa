@@ -45,9 +45,40 @@
     <section class="sec_ressource-content">
         <div class="container grid wrapper">
             <div class="t-12col l-8col">
-                <div class="entry-content">
+                <div class="entry-content mb-xxl">
                     <?php the_content();?>
                 </div>
+
+                <nav class="social-links">
+                        <h4 class="h4 mb-m">Partager</h4>
+                        <ul class="flex gap-xs">
+                            <li>
+                                <a data-type="facebook" rel="nofollow" aria-label="Partager ce contenu sur Facebook" class="btn -share-desktop" href="https://www.facebook.com/share.php?u=<?php the_permalink(); ?>" data-title="Pour les moins de 26 ans, le dépistage des IST est désormais gratuit">
+                                    <?php get_template_part('svg/svg-facebook'); ?>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a data-type="twitter" rel="nofollow" aria-label="Partager ce contenu sur Twitter" class="btn -share-desktop" href="https://twitter.com/intent/tweet?text=<?php the_title(); ?>+<?php the_permalink(); ?>">
+                                    <?php get_template_part('svg/svg-twitter'); ?>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a data-type="linkedin" rel="nofollow" aria-label="Partager ce contenu sur LinkedIn" class="btn -share-desktop" href="https://www.linkedin.com/sharing/share-offsite/?url=<?php the_permalink(); ?>">
+                                    <?php get_template_part('svg/svg-linkedin'); ?>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a data-type="link" rel="nofollow" aria-label="Copier le lien de l'article" class="btn -share-desktop" href="<?php the_permalink(); ?>">
+                                    <?php get_template_part('svg/svg-link'); ?>
+                                </a>
+                                <div class="etiquette small">Lien copié</div>
+                            </li>
+                        </ul>
+                </nav>
+                    
 
                 <?php
                 $prev_post = get_previous_post();

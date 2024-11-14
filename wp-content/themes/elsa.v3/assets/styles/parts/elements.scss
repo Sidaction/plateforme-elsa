@@ -321,3 +321,47 @@ input[type="submit"] {
   }
 
  
+
+
+.social-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include max(medium) {
+        flex-wrap: wrap;
+    }
+    
+    li {
+        position: relative;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary-color;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        padding: 10px;
+        transition: all .3s;
+
+        &:hover {
+            background-color: $secondary-color;
+        }
+    }
+
+    .etiquette {
+        opacity: 0;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        right: -100%;
+        font-size: .8em;
+        transition: opacity .5s;
+
+        &.displayed {
+            opacity: 1;
+        }
+    }
+}
