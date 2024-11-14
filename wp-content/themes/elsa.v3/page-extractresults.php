@@ -5,6 +5,9 @@
   Template Name: Page Resultats extract xls
  //////////////////////////////////////////////////////////////*/
  		global $cnSite;
+
+		session_start();
+
 		$sitename = sanitize_key( get_bloginfo( 'name' ) );
 		$filename = $sitename . '-resultats-' . date( 'Y-m-d' ) . '.xls';
 		header('Content-type: application/excel');

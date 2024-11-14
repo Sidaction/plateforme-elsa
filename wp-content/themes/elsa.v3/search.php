@@ -9,7 +9,7 @@
 
     global $cnSite;
 
-
+    
     $step = (empty($_GET)) ? 'start':'';
     $struct = (isset($_GET['totaltags'])) ? wp_strip_all_tags( addslashes( $_GET['totaltags'])):'';
     $keyword = '';
@@ -160,9 +160,12 @@ if(strpos($keyword, "\'")) {
     $args['post_status'] = 'publish'; 
     $args['paged'] = $currentpage;
 
-    if( isset($_GET['ref']) && $_GET['ref'] == 'search' )	$args = $_SESSION['args'];
-    $_SESSION['args'] = $args;
+    if( isset($_GET['ref']) && $_GET['ref'] == 'search' ) {
+        $args = $_SESSION['args'];
+    }
 
+    $_SESSION['args'] = $args;
+        
     $results = array();
 
     $wp_query = new WP_Query();

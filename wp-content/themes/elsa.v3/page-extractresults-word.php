@@ -4,6 +4,8 @@
    * Template Name: Page Resultats extract word
  	*/
 
+	session_start();
+
 
  		global $cnSite;
 		$sitename = sanitize_key( get_bloginfo( 'name' ) );

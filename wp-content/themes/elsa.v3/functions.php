@@ -464,6 +464,8 @@ function handle_contents_loading() {
             );
         }
 
+        $_SESSION['args'] = $args;
+
         $wp_query = new WP_Query();
         $wp_query->query($args); ?>
         
