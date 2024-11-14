@@ -275,6 +275,7 @@ msgid "by"
 msgstr "par"
 
 #: patterns/hidden-post-navigation.php:9 patterns/hidden-post-navigation.php:10
+#: patterns/hidden-posts-heading.php:10
 #: patterns/template-index-portfolio.php:16
 msgid "Posts"
 msgstr "Publications"
