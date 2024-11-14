@@ -17,6 +17,7 @@
     }
     .djacc-popup .djacc__panel {
         background-color: $black !important;
+        padding: 32px !important;
     }
     .djacc-popup .djacc__reset {
         background: $secondary-color !important;
@@ -32,7 +33,7 @@
         background: $primary-color !important;
     }
     .djacc-popup.djacc--bottom-left:hover .djacc__openbtn {
-        margin: 0 !important;
+        margin: 10px !important;
     }
 
     .djacc-popup .djacc__bar::before {
