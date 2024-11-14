@@ -6,6 +6,7 @@
     z-index: 100;
     background-color: $white;
     transition: transform .3s;
+    box-shadow: 0 0 10px #00000020;
     
     &.out {
         transform: translateY(-100%);
