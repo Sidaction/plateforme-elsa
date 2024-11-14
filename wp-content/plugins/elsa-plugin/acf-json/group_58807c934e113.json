@@ -42,8 +42,8 @@
         },
         {
             "key": "field_6728f2ac1b0a3",
-            "label": "Titre",
-            "name": "titre",
+            "label": "Titre Soutiens",
+            "name": "logos_soutiens_title",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -108,5 +108,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731416605
+    "modified": 1731591923
 }

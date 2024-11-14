@@ -14,7 +14,7 @@
             </div>
             <div class="t-10col m-1col"></div>
             <div class="t-10col m-5col">
-                <h3 class="h4"><?php the_field('logos_membres_title', 'options'); ?></h3>
+                <h3 class="h4"><?php the_field('logos_soutiens_title', 'options'); ?></h3>
                 <?php 
                     $images = get_field('logos_soutiens', 'options');
                     $size = 'full'; // (thumbnail, medium, large, full or custom size)
@@ -40,12 +40,6 @@
 
             <div class="t-10col m-5col">
                 <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'footer-menu', 'menu_id' => 'tertiary-menu' ) ); ?>
-
-                <!-- <ul class="footer-menu no-bullets">
-                    <li class="menu-item"><a href="/soumettre-une-ressource" class="btn-inline">Nous soumettre une ressource</a> </li>
-                    <li class="menu-item"><a href="/contactez-nous" class="btn-inline">Nous écrire</a> </li>                
-                    <li class="menu-item js-newsletter-trigger"><a href="#" class="btn-inline">Recevoir notre newsletter</a> </li> -->
-
 
                 <nav class="menu-item">
                     <span class="btn-inline">Nous suivre sur les réseaux :</span>
