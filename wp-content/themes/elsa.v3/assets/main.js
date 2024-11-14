@@ -50,9 +50,13 @@ const initMainScript = () => {
       TARTE AU CITRON
   \*------------------------------------*/
 
-  document.getElementById('tarteaucitronManager').addEventListener('click', e => {
-    e.preventDefault()
-  })
+  const tacManager =  document.getElementById('tarteaucitronManager');
+  if(tacManager) {
+    tacManager.addEventListener('click', e => {
+      e.preventDefault()
+    })
+  }
+
 
 
 
