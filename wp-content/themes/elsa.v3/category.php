@@ -71,7 +71,7 @@ get_header();
                 <?= wpautop($presentation); ?>
             </div>
             <div class="ressources t-12col l-3col flex column end-y">
-                <a href="#recommandations" class="btn btn--secondary mb-m">Nos recommandations</a>
+                <a href="#recommandations" class="btn --secondary mb-m">Nos recommandations</a>
                 <a href="/recherche-documentaire/?totalcat=<?php echo $cat_slug; ?>" class="btn">Toutes les ressources</a>
             </div>
         </div>

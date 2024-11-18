@@ -55,7 +55,7 @@ set_query_var( 'cnSite', $cnSite );
                         $zoom_thematique_link = "/category/" . $zoom_thematique->slug;
                     endif; 
                 ?>
-                <a href="/recherche-documentaire/?totalcat=<?php echo $zoom_thematique->slug; ?>" class="btn btn--secondary">Les ressources de la thématique</a>
+                <a href="/recherche-documentaire/?totalcat=<?php echo $zoom_thematique->slug; ?>" class="btn --secondary">Les ressources de la thématique</a>
                 <a class="btn" href="<?php echo $zoom_thematique_link; ?>">En savoir plus</a>
             </div>
 
@@ -121,7 +121,7 @@ set_query_var( 'cnSite', $cnSite );
                                     <div><?php the_excerpt(); ?></div>
                                 </div>
                                 <div class="action">
-                                    <a href="<?php the_permalink(); ?>" class="button btn btn--tertiary" aria-label="En savoir plus sur la ressource <?php the_title(); ?>">
+                                    <a href="<?php the_permalink(); ?>" class="button btn --tertiary" aria-label="En savoir plus sur la ressource <?php the_title(); ?>">
                                         <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#ED1B24' ) ); ?>
                                     </a>
                                 </div>

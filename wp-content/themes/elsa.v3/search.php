@@ -284,7 +284,7 @@ if(strpos($keyword, "\'")) {
             </div>
 
             <div class="sec_search_actions flex gap-m">
-                <a id="btnerase" class="btn btn--secondary btn--small" href="/recherche-documentaire">Effacer tous les critères</a>
+                <a id="btnerase" class="btn --secondary btn--small" href="/recherche-documentaire">Effacer tous les critères</a>
                 <!-- <input type="submit" id="formatbtn" class="btn" value="Filtrer"> -->
             </div>
 

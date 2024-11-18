@@ -53,7 +53,7 @@
               <p class="msgalert">Votre document a été suggéré.</p> <br />
 
               <div class="flex gap-m">
-                <a href="<?php get_bloginfo('url')?>" class="btn btn--secondary">Revenir à l'accueil</a>
+                <a href="<?php get_bloginfo('url')?>" class="btn --secondary">Revenir à l'accueil</a>
                 <a href="" class="btn btn--primary">Suggérer une autre ressource</a>
               </div>
             <?php endif; ?>

@@ -122,7 +122,7 @@
                         $size = false === $size ? 0 : size_format( $size, 2 );
                 ?>
                     <?php if ($kind === 'pdf') : ?>
-                        <button class="btn btn--secondary on-desktop js-open-modal" data-type="pdf" data-src="<?= $info['url'] ?>" aria-label="Prévisualiser le document">
+                        <button class="btn btn --secondary on-desktop js-open-modal" data-type="pdf" data-src="<?= $info['url'] ?>" aria-label="Prévisualiser le document">
                             <?php get_template_part('svg/svg', 'preview', array( 'fill' => '#FFF' )); ?>
                             <span><?= $info['title'] ?> (prévisualisation)</span>
                         </button>
@@ -191,7 +191,7 @@
                                 <?php } ?>
 
                                 <div class="action on-mobile">
-                                    <a href="<?php the_permalink(); ?>" class="button btn btn--tertiary" aria-label="En savoir plus sur la ressource <?php the_title(); ?>">
+                                    <a href="<?php the_permalink(); ?>" class="button btn --tertiary" aria-label="En savoir plus sur la ressource <?php the_title(); ?>">
                                         <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#ED1B24' ) ); ?>
                                     </a>
                                 </div>

@@ -41,7 +41,9 @@
             </div>
 
             <div class="t-10col m-5col">
-                <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'footer-menu', 'menu_id' => 'tertiary-menu' ) ); ?>
+                <nav>
+                    <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'footer-menu', 'menu_id' => 'tertiary-menu' ) ); ?>
+                </nav>
 
                 <nav class="menu-item">
                     <span class="btn-inline">Nous suivre sur les réseaux :</span>
@@ -83,13 +85,13 @@
                 </nav>
             </div>
 
-            <div class="t-10col m-4col">
+            <nav class="t-10col m-4col">
                 <?php wp_nav_menu( array( 
                     'theme_location'    => 'bottom', 
                     'menu_id'           => 'bottom-menu',   
                     'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s <li><a href="#" id="tarteaucitronManager" class="menu-item"> Cookies</a><li></ul>', 
                 )); ?>
-            </div>
+            </nav>
 
         <div>
     </div>

@@ -22,7 +22,8 @@
 }
 
 #tarteaucitronCloseAlert {
-    @extend .btn--secondary;
+    @extend .btn;
+    @extend .--secondary;
     background-color: $white !important;
     color:  $primary-color !important;
 

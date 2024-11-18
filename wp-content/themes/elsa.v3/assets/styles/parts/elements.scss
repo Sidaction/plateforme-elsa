@@ -26,11 +26,11 @@
         transform: scale(0.97);
     }
 
-    &--secondary {
+    &.--secondary {
         background-color: $secondary-color;
     }
 
-    &--tertiary {
+    &.--tertiary {
         background-color: $white;
         border-color: $white;
         &:hover {
