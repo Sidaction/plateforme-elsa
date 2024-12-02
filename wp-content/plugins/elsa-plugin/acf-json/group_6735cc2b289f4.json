@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_6735cc699d62d",
-            "label": "Titre étage Ressources",
+            "label": "Etage Ressources > Titre",
             "name": "grille_titre",
             "aria-label": "",
             "type": "text",
@@ -12,7 +12,28 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_674ddfc963069",
+            "label": "Etage Ressources > Label du bouton",
+            "name": "ressources_btn_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -25,7 +46,7 @@
         },
         {
             "key": "field_6735cc2b9d62c",
-            "label": "Titre étage vidéos",
+            "label": "Etage Vidéos > Titre",
             "name": "video_title",
             "aria-label": "",
             "type": "text",
@@ -33,7 +54,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -43,6 +64,45 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_674de0076306a",
+            "label": "Etage Vidéos > Label du bouton",
+            "name": "video_btn_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_674de092e3fb6",
+            "label": "Etage Vidéos > Lien du bouton",
+            "name": "video_btn_link",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -63,5 +123,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731579015
+    "modified": 1733157040
 }

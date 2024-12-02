@@ -136,7 +136,7 @@ set_query_var( 'cnSite', $cnSite );
             </div>
 
             <div class="more-btn flex center">
-                <a href="/recherche-documentaire/" class="btn">Toutes les ressources</a>
+                <a href="/recherche-documentaire/" class="btn"><?php the_field('ressources_btn_label'); ?></a>
             </div>
         </div>
     </section>
@@ -205,9 +205,7 @@ set_query_var( 'cnSite', $cnSite );
             </div>
 
             <div class="flex center">
-                <a href="<?php the_field('video_btn1_url'); ?>" class="btn"><?php the_field('video_btn1_label'); ?></a>
-
-                <!-- <a href="<?php the_field('video_btn2_url'); ?>" class="btn-primary"><?php the_field('video_btn2_label'); ?></a> -->
+                <a href="<?php the_field('video_btn_link'); ?>" class="btn"><?php the_field('video_btn_label'); ?></a>
             </div>
     
         </div>
