@@ -205,7 +205,7 @@ set_query_var( 'cnSite', $cnSite );
             </div>
 
             <div class="flex center">
-                <a href="<?php the_field('video_btn_link'); ?>" class="btn"><?php the_field('video_btn_label'); ?></a>
+                <a href="<?php the_field('video_btn_link'); ?>" class="btn" target="_blank"><?php the_field('video_btn_label'); ?></a>
             </div>
     
         </div>
