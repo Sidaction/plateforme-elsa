@@ -1,13 +1,14 @@
 <?php 
-	/*
-	 * Resultats Recherche extract word
-   * Template Name: Page Resultats extract word
+	/** 
+	 	* Resultats Recherche extract word
+   		* Template Name: Page Resultats extract word
  	*/
-
-	session_start();
 
 
  		global $cnSite;
+		session_start();
+
+		
 		$sitename = sanitize_key( get_bloginfo( 'name' ) );
 		$filename = $sitename . '-resultats-' . date( 'Y-m-d' ) . '.doc';
 		header('Content-type: application/word');

@@ -1,11 +1,10 @@
 <?php 
-/*///////////////////////////////////////////////////////////////
- Plateforme Elsa by Clair et Net. / www.clair-et-net.com
-  Resultats Recherche extract xls
-  Template Name: Page Resultats extract xls
- //////////////////////////////////////////////////////////////*/
- 		global $cnSite;
+	/**
+		* Resultats Recherche extract xls
+		* Template Name: Page Resultats extract xls
+	*/
 
+ 		global $cnSite;
 		session_start();
 
 		$sitename = sanitize_key( get_bloginfo( 'name' ) );
@@ -38,7 +37,6 @@
 		   <table><tr><td><b></b></td><td><b>Titre</b></td><td><b>Format</b></td><td><b>Auteur(s)</b></td><td><b>Pays</b></td><td><b>Thématiques</b></td><td><b>Date d\'édition</b></td><td><b>Résumé</b></td><td><b>Document(s) à télécharger</b></td><td><b>Lien complémentaire</b></td><td><b>Mots clés</b></td></tr>';
 
 		
-  		
  			if(!empty($_SESSION['args'])){
  				
 				$args = $_SESSION['args'];

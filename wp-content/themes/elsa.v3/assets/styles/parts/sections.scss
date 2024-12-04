@@ -271,7 +271,11 @@
             text-transform: uppercase;
         }
         a {
+            display: inline-block;
             white-space: wrap;
+            line-height: 1.2;
+            padding: 5px 0;
+            max-width: 300px;
         }
     }
 
