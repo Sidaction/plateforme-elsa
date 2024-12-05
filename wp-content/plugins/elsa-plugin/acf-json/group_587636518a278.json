@@ -1,10 +1,10 @@
 {
     "key": "group_587636518a278",
-    "title": "Options Menus",
+    "title": "Options des deux Menus déroulants",
     "fields": [
         {
             "key": "field_587f3e1461a9d",
-            "label": "Dropdown Thématiques",
+            "label": "Menu déroulant 'Thématiques'",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -44,7 +44,7 @@
         },
         {
             "key": "field_587f339d10478",
-            "label": "Thématique à la une n°1",
+            "label": "Quelle Thématique à la une ?",
             "name": "dd-theme-1",
             "aria-label": "",
             "type": "taxonomy",
@@ -52,23 +52,25 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "taxonomy": "category",
-            "field_type": "checkbox",
-            "allow_null": 0,
             "add_term": 1,
             "save_terms": 0,
             "load_terms": 0,
             "return_format": "id",
+            "field_type": "checkbox",
+            "allow_in_bindings": 1,
+            "bidirectional": 0,
             "multiple": 0,
+            "allow_null": 0,
             "bidirectional_target": []
         },
         {
             "key": "field_587f33e01047a",
-            "label": "Thématique à la une n°1 - Texte",
+            "label": "Texte pour cette Thématique à la une",
             "name": "dd-theme-1-text",
             "aria-label": "",
             "type": "textarea",
@@ -76,21 +78,20 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
             "maxlength": "",
+            "allow_in_bindings": 1,
             "rows": "",
-            "new_lines": "wpautop",
-            "readonly": 0,
-            "disabled": 0
+            "placeholder": "",
+            "new_lines": "wpautop"
         },
         {
             "key": "field_587f3e0061a9c",
-            "label": "Dropdown Boite à outils",
+            "label": "Menu déroulant 'Boite à outils'",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -108,7 +109,7 @@
         },
         {
             "key": "field_587f3e2f61a9e",
-            "label": "Titre du dropdown",
+            "label": "Titre du menu déroulant 'Boite à outils'",
             "name": "dd-boite-title",
             "aria-label": "",
             "type": "text",
@@ -116,42 +117,16 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "Toutes les Boites à outils",
+            "maxlength": "",
+            "allow_in_bindings": 1,
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": "",
-            "readonly": 0,
-            "disabled": 0
-        },
-        {
-            "key": "field_587f3e4a61a9f",
-            "label": "Image du dropdown",
-            "name": "dd-boite-img",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "url",
-            "preview_size": "thumbnail",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
+            "append": ""
         },
         {
             "key": "field_587f3eca61aa0",
@@ -163,17 +138,42 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
             "maxlength": "",
+            "allow_in_bindings": 1,
             "rows": "",
-            "new_lines": "wpautop",
-            "readonly": 0,
-            "disabled": 0
+            "placeholder": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_587f3e4a61a9f",
+            "label": "Image du menu déroulant (n'est plus utilisée...)",
+            "name": "dd-boite-img",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "thumbnail"
         }
     ],
     "location": [
@@ -194,5 +194,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731415862
+    "modified": 1733386906
 }
