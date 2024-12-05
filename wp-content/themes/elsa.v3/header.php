@@ -1,8 +1,7 @@
 <?php
 wp_enqueue_script('tac-src');
 wp_enqueue_script('tac-init');
-global $cnSite;
-session_start(); ?>
+global $cnSite; ?>
 
 <!doctype html>
 <html lang="fr">

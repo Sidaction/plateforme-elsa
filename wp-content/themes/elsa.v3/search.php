@@ -6,6 +6,7 @@
 
     wp_enqueue_script( 'wp-api' );
     wp_enqueue_script('search');
+    session_start();
 
     global $cnSite;
 

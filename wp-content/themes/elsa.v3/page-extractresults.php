@@ -109,6 +109,8 @@
 													   
 			$output .= '</table></body></html>';
 			print $output;
+
+			session_destroy();
 			exit;
 			
 		

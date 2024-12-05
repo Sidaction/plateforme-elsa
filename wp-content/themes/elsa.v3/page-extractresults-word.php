@@ -7,7 +7,6 @@
 
  		global $cnSite;
 		session_start();
-
 		
 		$sitename = sanitize_key( get_bloginfo( 'name' ) );
 		$filename = $sitename . '-resultats-' . date( 'Y-m-d' ) . '.doc';
@@ -72,6 +71,9 @@
 													   
 			$output .= '</body></html>';
 			print $output;
+
+			session_destroy();
+
 			exit;
 			
 		
