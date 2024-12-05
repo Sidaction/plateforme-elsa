@@ -1,6 +1,6 @@
 {
     "key": "group_587dfaa13a22c",
-    "title": "Rebonds par défaut",
+    "title": "Rebonds par défaut (n'est plus utilisé)",
     "fields": [
         {
             "key": "field_587dfaba91e62",
@@ -56,5 +56,5 @@
     "active": true,
     "description": "Les rebonds sont les éléments qui apparaissent dans certaines pages sous le titre \"Autres infos utiles\"",
     "show_in_rest": 0,
-    "modified": 1731408570
+    "modified": 1733387026
 }
