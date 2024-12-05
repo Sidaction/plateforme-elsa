@@ -169,35 +169,10 @@
 
                         <?php foreach ($related as $post) {
                             setup_postdata($post); 
-                            $format = cnLib::get_main_term_slug($post->ID, 'format');
                             
-                            ?>
-                            <div class="ressource-item mobile-paper swiper-slide">
+                            get_template_part('template-parts/parts/part', 'ressource', array('slided' => true)); 
 
-                                <?php if (!empty($format)) : ?>
-                                    <span class="metas"><?= $format ?></span>
-                                <?php endif; ?>
-
-                                <h4 class="title h4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                <p class="ressource-meta small"><span>Thématiques : </span><?php the_category(', '); ?></p>
-                                
-                                <?php if( !empty($main_author) || $cnSite->get_authors($post->ID) !== ''){ ?>
-                                    <p class="ressource-meta small small">
-                                        <span>Auteur(s) : </span>
-                                        <?php $permalink = get_permalink( $main_author );
-                                        if(!empty($url)) echo "<a href='{$permalink}'>{$main_author}</a>"; ?>
-                                        <?php echo $cnSite->get_authors($post->ID); ?>
-                                    </p>
-                                <?php } ?>
-
-                                <div class="action on-mobile">
-                                    <a href="<?php the_permalink(); ?>" class="button btn --tertiary" aria-label="En savoir plus sur la ressource <?php the_title(); ?>">
-                                        <?php get_template_part('svg/svg', 'arrow', array( 'fill' => '#ED1B24' ) ); ?>
-                                    </a>
-                                </div>
-
-                            </div>
-                        <?php }
+                        }
                         wp_reset_postdata(); ?>
                     </div>
                 <?php } else {
