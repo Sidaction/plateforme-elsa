@@ -2,6 +2,9 @@
 /*
  * Page détail d'une Boite à outils
  */
+    wp_enqueue_script('swiper');
+    wp_enqueue_script('slider');
+    wp_enqueue_style('swiper-styles');
 
     $boite = get_category( get_queried_object() );  
 
@@ -108,10 +111,10 @@ get_header();
         </div>
     </section>
 
-    <section class="sec_related-ressources on-desktop" id="recommandations">
+    <section class="sec_related-ressources" id="recommandations">
         <div class="wrapper">
             <h2 class="h2 mb-l">Ressources en lien</h2>
-            <div class="flex column gap-l mb-l">
+            <div class="swiper flex column gap-l mb-l">
                 <?php
                 $args = array(
                     'post_type' => array('post'), 
@@ -127,13 +130,27 @@ get_header();
                 );
                 $related_posts = get_posts($args);
 
-                if ($related_posts) {
-                    foreach ($related_posts as $post) {
-                        setup_postdata($post); 
-                        get_template_part('template-parts/parts/part', 'ressource'); 
-                    }
-                    wp_reset_postdata();
-                } else {
+                if ($related_posts) { ?>
+
+                    <div class="navigation">
+                        <div class="swiper-button prev">
+                            <?php get_template_part('svg/svg', 'swiperprev'); ?>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button next">
+                            <?php get_template_part('svg/svg', 'swipernext'); ?>
+                        </div>
+                    </div>
+
+                    <div class="swiper-wrapper">
+
+                        <?php foreach ($related_posts as $post) {
+                            setup_postdata($post); 
+                            get_template_part('template-parts/parts/part', 'ressource', array('slided' => true)); 
+                        }
+                    wp_reset_postdata(); ?>
+                    </div>
+                <?php } else {
                     echo '<p>Aucune ressource liée trouvée.</p>';
                 }
                 ?>

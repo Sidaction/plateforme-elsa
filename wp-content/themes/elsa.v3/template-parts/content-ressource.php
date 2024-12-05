@@ -169,9 +169,7 @@
 
                         <?php foreach ($related as $post) {
                             setup_postdata($post); 
-                            
                             get_template_part('template-parts/parts/part', 'ressource', array('slided' => true)); 
-
                         }
                         wp_reset_postdata(); ?>
                     </div>

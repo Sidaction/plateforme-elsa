@@ -2,7 +2,10 @@
 /*
  * Page détail d'une catégorie
  */
-
+    wp_enqueue_script('swiper');
+    wp_enqueue_script('slider');
+    wp_enqueue_style('swiper-styles');
+    
     $cat = get_category( get_query_var( 'cat' ) );	
 
     $cat_id = $cat->cat_ID;
@@ -77,10 +80,10 @@ get_header();
         </div>
     </section>
 
-    <section class="sec_related-ressources on-desktop" id="recommandations">
+    <section class="sec_related-ressources" id="recommandations">
         <div class="wrapper">
             <h2 class="h2 mb-l">Ressources en lien</h2>
-            <div class="flex column gap-l mb-l">
+            <div class="swiper flex column gap-l mb-l">
                 <?php
                 $related = get_posts(array(
                     'category__in' => wp_get_post_categories($post->ID),
@@ -88,12 +91,27 @@ get_header();
                     'post__not_in' => array($post->ID)
                 ));
 
-                if ($related) {
-                    foreach ($related as $post) {
-                        setup_postdata($post);                         
-                        get_template_part('template-parts/parts/part', 'ressource');  
-                    }
-                    wp_reset_postdata();
+                if ($related) { ?>
+
+                    <div class="navigation">
+                        <div class="swiper-button prev">
+                            <?php get_template_part('svg/svg', 'swiperprev'); ?>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button next">
+                            <?php get_template_part('svg/svg', 'swipernext'); ?>
+                        </div>
+                    </div>
+
+                    <div class="swiper-wrapper">
+
+                        <?php foreach ($related as $post) {
+                            setup_postdata($post);                         
+                            get_template_part('template-parts/parts/part', 'ressource', array('slided' => true));  
+                        }
+                        wp_reset_postdata(); ?>
+                    </div>
+                <?php
                 } else {
                     echo '<p>Aucune ressource liée trouvée.</p>';
                 }
