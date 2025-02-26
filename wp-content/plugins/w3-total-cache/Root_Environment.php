@@ -213,10 +213,17 @@ class Root_Environment {
 	 *
 	 * @since 2.8.3
 	 *
+	 * @param Config $config Config.
+	 *
 	 * @return void
 	 */
-	public static function delete_plugin_data() {
+	public static function delete_plugin_data( $config ) {
 		global $wpdb;
+
+		$license_key = $config->get_string( 'plugin.license_key' );
+		if ( ! empty( $license_key ) ) {
+			Licensing_Core::deactivate_license( $license_key );
+		}
 
 		// Define prefixes for options and transients.
 		$prefixes = array(
@@ -228,12 +235,12 @@ class Root_Environment {
 
 		// Delete options and transients with defined prefixes.
 		foreach ( $prefixes as $prefix ) {
-			$wpdb->query(
-				$wpdb->prepare(
-					"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
-					$prefix . '%'
-				)
-			);
+			$query        = 'SELECT `option_name` FROM ' . $wpdb->options . ' WHERE `option_name` LIKE "' . $prefix . '%";';
+			$option_names = $wpdb->get_col( $query ); // phpcs:ignore WordPress.DB.PreparedSQL
+
+			foreach ( $option_names as $option_name ) {
+				delete_option( $option_name );
+			}
 		}
 
 		// Remove plugin-created directories.
