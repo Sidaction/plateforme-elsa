@@ -18,8 +18,10 @@
             align-items: center;
 
             img {
-                max-width: 120px;
-                max-height: 120px;
+                max-width: 170px;
+                max-height: 115px;
+                object-fit: contain;
+                object-position: left;
             }
         }
     }
