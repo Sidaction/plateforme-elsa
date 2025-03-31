@@ -9,7 +9,7 @@
     <div class="wrapper">
         
         <div class="footer-text grid gap-l">
-            <div class="t-10col m-6col">
+            <div class="t-10col m-5col">
                 <div class="entry-content">
                     <?php the_field('elsa_text', 'options'); ?>
                 </div>
