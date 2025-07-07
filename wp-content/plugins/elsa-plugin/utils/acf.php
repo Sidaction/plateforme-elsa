@@ -1,8 +1,14 @@
 <?php
 
-if( function_exists('acf_add_options_page') ) {
-  acf_add_options_page();
-}
+
+add_action('acf/init', function() { 
+  if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page();
+  }
+});
+
+
+
 
 add_filter('acf/location/rule_types', 'acf_location_rules_types');
 function acf_location_rules_types( $choices ) {
