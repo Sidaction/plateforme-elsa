@@ -1,12 +1,17 @@
 <?php
 
-namespace Smush\Core;
+namespace Smush\Core\Cache;
+
+use Smush\Core\Controller;
+use Smush\Core\Helper;
+use Smush\Core\Settings;
 
 class Cache_Controller extends Controller {
-	const SHOW_CACHE_NOTICE_TRANSIENT = 'wp_smush_show_cache_notice';
-	const CLEAR_CACHE_ACTION = 'wp_smush_clear_page_cache';
+	private Cache_Helper $helper;
 
 	public function __construct() {
+		$this->helper = Cache_Helper::get_instance();
+
 		$this->register_action( 'wp_smush_avif_status_changed', array( $this, 'avif_status_changed' ) );
 		$this->register_action( 'wp_smush_webp_status_changed', array( $this, 'webp_status_changed' ) );
 		$this->register_action( 'wp_smush_webp_method_changed', array( $this, 'webp_method_changed' ) );
@@ -18,27 +23,19 @@ class Cache_Controller extends Controller {
 	}
 
 	public function cdn_status_changed() {
-		$this->clear_third_party_cache( 'cdn' );
+		$this->helper->clear_full_cache( 'cdn' );
 	}
 
 	public function webp_method_changed() {
-		$this->clear_third_party_cache( 'next_gen_method' );
+		$this->helper->clear_full_cache( 'next_gen_method' );
 	}
 
 	public function webp_status_changed() {
-		$this->clear_third_party_cache( 'next_gen' );
+		$this->helper->clear_full_cache( 'next_gen' );
 	}
 
 	public function avif_status_changed() {
-		$this->clear_third_party_cache( 'next_gen' );
-	}
-
-	private function clear_third_party_cache( $notice_key = '' ) {
-		do_action( self::CLEAR_CACHE_ACTION );
-		if ( ! has_action( self::CLEAR_CACHE_ACTION ) && $notice_key ) {
-			// If no one is handling the cache clearing then show a notice
-			set_transient( self::SHOW_CACHE_NOTICE_TRANSIENT, $notice_key );
-		}
+		$this->helper->clear_full_cache( 'next_gen' );
 	}
 
 	public function dismiss_cache_notice() {
@@ -47,7 +44,8 @@ class Cache_Controller extends Controller {
 		if ( ! Helper::is_user_allowed( 'manage_options' ) ) {
 			wp_die( esc_html__( 'Unauthorized', 'wp-smushit' ), 403 );
 		}
-		delete_transient( self::SHOW_CACHE_NOTICE_TRANSIENT );
+		$this->helper->delete_notice_key();
+
 		wp_send_json_success();
 	}
 
@@ -75,7 +73,7 @@ class Cache_Controller extends Controller {
 	}
 
 	private function get_cache_notice() {
-		$notice_key = get_transient( self::SHOW_CACHE_NOTICE_TRANSIENT );
+		$notice_key = $this->helper->get_notice_key();
 		if ( empty( $notice_key ) ) {
 			return;
 		}
@@ -87,7 +85,7 @@ class Cache_Controller extends Controller {
 
 		if ( 'next_gen' === $notice_key || 'next_gen_method' === $notice_key ) {
 			$notice = 'next_gen' === $notice_key ? __( 'Next-Gen Formats status has changed.<br/>If you have a page caching plugin or server caching, please clear it to ensure everything works as expected.', 'wp-smushit' ) :
-												__( 'Next-Gen conversion method has been updated.<br/>If you have a page caching plugin or server caching, please clear it to ensure everything works as expected.', 'wp-smushit' );
+				__( 'Next-Gen conversion method has been updated.<br/>If you have a page caching plugin or server caching, please clear it to ensure everything works as expected.', 'wp-smushit' );
 			return $settings->has_next_gen_page() ? $notice : '';
 		}
 	}
