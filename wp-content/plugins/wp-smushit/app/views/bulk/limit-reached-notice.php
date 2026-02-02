@@ -20,7 +20,7 @@ $smush_type = $smush_type ?? 'bulk-smush';
 				);
 				printf(
 					/* translators: %s1$d - bulk smush limit, %2$s - upgrade link, %3$s - <strong>, %4$s - </strong>, %5$s - Bulk Smush limit */
-					esc_html__( 'The free version of Smush only allows you to compress %1$d images at a time. Skip limits, save time. Bulk Smush unlimited images with Pro — %2$sOn Sale Now!%3$s', 'wp-smushit' ),
+					esc_html__( 'The free version of Smush only allows you to compress %1$d images at a time. Skip limits, save time. Bulk Smush unlimited images — %2$sGet Smush Pro!%3$s', 'wp-smushit' ),
 					Smush\Core\Core::MAX_FREE_BULK,
 					'<a class="smush-upsell-link" href="' . esc_url( $upgrade_url ) . '" target="_blank">',
 					'</a>',

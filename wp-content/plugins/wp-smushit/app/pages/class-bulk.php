@@ -280,7 +280,7 @@ class Bulk extends Abstract_Summary_Page implements Interface_Page {
 		} else {
 			$upsell_text = sprintf(
 				/* translators: 1: Open the link, 2: Close the link */
-				__( 'Want to close this tab? Smush Pro lets you optimize in the background — %1$sOn sale now!%2$s', 'wp-smushit' ),
+				__( 'Want to close this tab? Smush Pro lets you optimize in the background — %1$sGet Smush Pro!%2$s', 'wp-smushit' ),
 				'<a class="smush-upsell-link" target="_blank" href="' . esc_url( $in_progress_upsell_url ) . '">',
 				'</a>'
 			);

@@ -1,15 +1,15 @@
-# Copyright (C) 2025 WPMU DEV
+# Copyright (C) 2026 WPMU DEV
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Smush Pro 3.23.0\n"
+"Project-Id-Version: Smush Pro 3.23.2\n"
 "Report-Msgid-Bugs-To: https://wpmudev.com\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-08T12:44:35+00:00\n"
+"POT-Creation-Date: 2026-01-19T16:49:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-smushit\n"
@@ -252,9 +252,10 @@ msgstr ""
 #: app/class-admin.php:245
 #: app/class-admin.php:358
 #: app/modals/onboarding.php:207
+#: app/views/bulk/global-upsell.php:21
 #: app/views/email/upsell-cdn.php:60
 #: app/views/lazyload/meta-box.php:306
-msgid "SALE - Limited Offer"
+msgid "Get Smush Pro"
 msgstr ""
 
 #: app/class-admin.php:247
@@ -321,7 +322,7 @@ msgstr ""
 #: core/media-library/class-media-library-row.php:719
 #: core/modules/bulk/class-mail.php:65
 #: core/smush/class-smush-optimization.php:77
-#: wp-smush.php:510
+#: wp-smush.php:492
 msgid "Smush"
 msgstr ""
 
@@ -462,7 +463,7 @@ msgstr ""
 #. translators: 1: max free bulk limit, 2: opening a tag, 3: closing a tag.
 #: app/class-admin.php:658
 #, php-format
-msgid "Free users can only Bulk Smush %1$d images at one time. Skip limits, save time. Bulk Smush unlimited images with Pro — %2$sOn Sale Now!%3$s"
+msgid "Free users can only Bulk Smush %1$d images at one time. Skip limits, save time. Bulk Smush unlimited images — %2$sGet Smush Pro%3$s"
 msgstr ""
 
 #. translators: %s: <strong>curl_multi_exec()</strong>
@@ -1761,13 +1762,13 @@ msgid "Go to Image sizing"
 msgstr ""
 
 #: app/modals/updated.php:91
-msgid " UNLOCK PRO – ON SALE "
+msgid "Get Smush Pro "
 msgstr ""
 
 #. translators: 1: Open the link, 2: Close the link
 #: app/pages/class-bulk.php:283
 #, php-format
-msgid "Want to close this tab? Smush Pro lets you optimize in the background — %1$sOn sale now!%2$s"
+msgid "Want to close this tab? Smush Pro lets you optimize in the background — %1$sGet Smush Pro!%2$s"
 msgstr ""
 
 #. translators: %s: Upsell text
@@ -1938,7 +1939,7 @@ msgid "Unlock Ultra Smush, blazing-fast CDN, and more."
 msgstr ""
 
 #: app/views/bulk/cdn-upsell.php:24
-msgid "Smush Pro is on sale!."
+msgid "Get Smush Pro."
 msgstr ""
 
 #. translators: %s1$d - Open link, %2$s - Close the link
@@ -1949,10 +1950,6 @@ msgstr ""
 
 #: app/views/bulk/global-upsell.php:13
 msgid "Smush Upsell Icon"
-msgstr ""
-
-#: app/views/bulk/global-upsell.php:21
-msgid "Smush Pro is on sale!"
 msgstr ""
 
 #: app/views/bulk/hub-connect.php:18
@@ -2035,7 +2032,7 @@ msgstr ""
 #. translators: %s1$d - bulk smush limit, %2$s - upgrade link, %3$s - <strong>, %4$s - </strong>, %5$s - Bulk Smush limit
 #: app/views/bulk/limit-reached-notice.php:23
 #, php-format
-msgid "The free version of Smush only allows you to compress %1$d images at a time. Skip limits, save time. Bulk Smush unlimited images with Pro — %2$sOn Sale Now!%3$s"
+msgid "The free version of Smush only allows you to compress %1$d images at a time. Skip limits, save time. Bulk Smush unlimited images — %2$sGet Smush Pro!%3$s"
 msgstr ""
 
 #: app/views/bulk/list-errors.php:6
@@ -2509,7 +2506,7 @@ msgstr ""
 
 #: app/views/email/upsell-cdn.php:34
 #, php-format
-msgid "Unlock Ultra Smush, blazing-fast CDN, and more. %1$sSmush Pro is on sale!%2$s&#128640;"
+msgid "Unlock Ultra Smush, blazing-fast CDN, and more. %1$sGet Smush Pro%2$s&#128640;"
 msgstr ""
 
 #: app/views/email/upsell-cdn.php:51
@@ -3068,7 +3065,7 @@ msgid "Enable Preloading Critical Images"
 msgstr ""
 
 #: app/views/preload/meta-box.php:62
-msgid "Go Pro for Faster Load Times & Optimized LCP – On Sale Now!"
+msgid "For Faster Load Times & Optimized LCP – Get Smush Pro"
 msgstr ""
 
 #: app/views/preload/meta-box.php:76

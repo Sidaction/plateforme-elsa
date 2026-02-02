@@ -204,7 +204,7 @@ $pro_features        = array(
 						<a class="sui-button sui-button-blue smush-btn-pro-upsell" target="_blank" href="<?php echo esc_url( $upsell_url ); ?>">
 							<?php
 							/* translators: %s: plugin discount */
-							esc_html_e( 'SALE - Limited Offer', 'wp-smushit' );
+							esc_html_e( 'Get Smush Pro', 'wp-smushit' );
 							?>
 						</a>
 						<button type="submit" class="sui-button sui-button-grey sui-button-icon-left" data-modal-close="">

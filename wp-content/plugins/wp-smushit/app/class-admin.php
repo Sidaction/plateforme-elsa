@@ -242,7 +242,7 @@ class Admin {
 			$using_free_version = 'wp-smush-pro/wp-smush.php' !== WP_SMUSH_BASENAME;
 			if ( $using_free_version ) {
 				$label = __( 'Upgrade to Smush Pro', 'wp-smushit' );
-				$text = __( 'SALE - Limited Offer', 'wp-smushit' );
+				$text = __( 'Get Smush Pro', 'wp-smushit' );
 			} else {
 				$label = __( 'Renew Membership', 'wp-smushit' );
 				$text  = __( 'Renew Membership', 'wp-smushit' );
@@ -355,7 +355,7 @@ class Admin {
 			}
 
 			if ( ! WP_Smush::is_pro() ) {
-				new Pages\Upgrade( 'smush_submenu_upsell', __( 'SALE - Limited Offer', 'wp-smushit' ), 'smush', true );
+				new Pages\Upgrade( 'smush_submenu_upsell', __( 'Get Smush Pro', 'wp-smushit' ), 'smush', true );
 			}
 		}
 
@@ -655,7 +655,7 @@ class Admin {
 		);
 		return sprintf(
 			/* translators: 1: max free bulk limit, 2: opening a tag, 3: closing a tag. */
-			esc_html__( 'Free users can only Bulk Smush %1$d images at one time. Skip limits, save time. Bulk Smush unlimited images with Pro — %2$sOn Sale Now!%3$s', 'wp-smushit' ),
+			esc_html__( 'Free users can only Bulk Smush %1$d images at one time. Skip limits, save time. Bulk Smush unlimited images — %2$sGet Smush Pro%3$s', 'wp-smushit' ),
 			Core::MAX_FREE_BULK,
 			'<a class="smush-upsell-link" target="_blank" href="' . $upgrade_url . '">',
 			'</a>'

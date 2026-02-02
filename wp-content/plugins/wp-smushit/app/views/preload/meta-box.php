@@ -59,7 +59,7 @@ if ( ! defined( 'WPINC' ) ) {
 				<a style="margin-left:44px;" class="smush-upsell-link" href="<?php echo esc_url( $upgrade_url ); ?>" target="_blank">
 				<strong>
 					<?php
-						esc_html_e( 'Go Pro for Faster Load Times & Optimized LCP – On Sale Now!', 'wp-smushit' );
+						esc_html_e( 'For Faster Load Times & Optimized LCP – Get Smush Pro', 'wp-smushit' );
 					?>
 				</strong>
 				<span class="sui-icon-open-new-window" aria-hidden="true"></span>
