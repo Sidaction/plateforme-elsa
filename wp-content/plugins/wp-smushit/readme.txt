@@ -1,13 +1,13 @@
 === Smush – Image Optimization, Compression, Lazy Load, WebP & CDN===
 Plugin Name: Smush – Image Optimization, Compression, Lazy Load, WebP & CDN
-Version: 4.0.3
+Version: 4.1.2
 Author: WPMU DEV
 Author URI: https://wpmudev.com/
 Contributors: WPMUDEV, alexdunae
 Tags: optimize images, convert webp, image optimization, compress images, image optimizer
 Requires at least: 6.4
 Tested up to: 7.0
-Stable tag: 4.0.3
+Stable tag: 4.1.0
 Requires PHP: 7.4
 License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -26,7 +26,7 @@ Get everything you need to optimize images and speed up your site. Smush works o
 
 [youtube https://www.youtube.com/watch?v=4E5PgBsi6eI&feature=youtu.be]
 
-### Compress images without losing quality ###
+### Compress images without losing quality ### 
 
 Reduce image file size automatically while keeping your images sharp and clear. Smush is an easy-to-use image optimizer which let’s you compress images using both lossless and lossy compression, giving you the best balance of quality and performance without extra work.
 
@@ -192,6 +192,25 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 5. Serve images at lightning speed via our global CDN.
 
 == Changelog ==
+
+= 4.1.2 ( 2026-06-22 ) =
+- Improvement: UX improvements
+
+= 4.1.1 ( 2026-06-11 ) =
+- Improvement: Stability improvements and minor bug fixes
+
+= 4.1.0 ( 2026-06-01 ) =
+- Improvement: Added notice when images fail to optimize
+- Improvement: CDN generating long database queries resulting in broken images
+- Improvement: Prevented unnecessary settings save and notification when blurring an empty textarea
+- Improvement: UI and UX improvements
+- Fix: Configs created in Smush 4.0 not appearing in Hub "My Configs" list
+- Fix: Activity sidebar sticky position not working correctly on screens wider than 1800px
+- Fix: Optimization action not triggering when Next-Gen formats disabled via dashboard toast notification
+- Fix: Enabling Next-Gen server configuration on multisite triggering console errors
+- Fix: Smush overriding the WordPress dashboard footer
+- Fix: Free version not enforcing 5MB file size limit after downgrading from Pro
+- Fix: PHP warnings and errors
 
 = 4.0.3 ( 2026-04-29 ) =
 - Fix: Resolved issue where Super Smush was not working on main site and subsites.

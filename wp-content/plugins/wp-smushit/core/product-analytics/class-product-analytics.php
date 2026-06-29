@@ -1,9 +1,16 @@
 <?php
 
-namespace Smush\Core;
+namespace Smush\Core\Product_Analytics;
 
+use Smush\Core\Array_Utils;
+use Smush\Core\Format_Utils;
+use Smush\Core\Helper;
 use Smush\Core\Membership\Membership;
+use Smush\Core\Server_Utils;
+use Smush\Core\Settings;
 use Smush\Core\Threads\Thread_Safe_Options;
+use Smush\Core\Time_Utils;
+use Smush\Core\Url_Utils;
 use WPMUDEV_Analytics;
 use WPMUDEV_Analytics_V4;
 

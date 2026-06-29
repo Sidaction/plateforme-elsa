@@ -1,8 +1,10 @@
 <?php
 
-namespace Smush\Core\Modules;
+namespace Smush\Core\Product_Analytics;
 
 use Smush\Core\Array_Utils;
+use Smush\Core\Background\Background_Pre_Flight_Controller;
+use Smush\Core\Background\Background_Process;
 use Smush\Core\Helper;
 use Smush\Core\Hub_Connector;
 use Smush\Core\Media\Media_Item_Cache;
@@ -12,10 +14,6 @@ use Smush\Core\Media_Library\Media_Library_Last_Process;
 use Smush\Core\Media_Library\Media_Library_Scan_Background_Process;
 use Smush\Core\Media_Library\Media_Library_Scanner;
 use Smush\Core\Membership\Membership;
-use Smush\Core\Background\Background_Pre_Flight_Controller;
-use Smush\Core\Background\Background_Process;
-use Smush\Core\Product_Analytics;
-use Smush\Core\Server_Utils;
 use Smush\Core\Settings;
 use Smush\Core\Stats\Global_Stats;
 use WP_Smush;
@@ -184,9 +182,12 @@ class Product_Analytics_Controller {
 			'background_email' => 'Email notification',
 		);
 
+		$core            = WP_Smush::get_instance()->core();
+		$sizes           = $core->image_dimensions();
 		$image_sizes     = Settings::get_instance()->get_setting( 'wp-smush-image_sizes' );
+		$all_selected    = ! is_array( $image_sizes ) || count( $image_sizes ) === count( $sizes );
 		$bulk_properties = array(
-			'Image Sizes'         => empty( $image_sizes ) ? 'All' : 'Custom',
+			'Image Sizes'         => $all_selected ? 'All' : 'Custom',
 			'Mode'                => $this->get_current_lossy_level_label(),
 			'Parallel Processing' => $this->get_parallel_processing_status(),
 			'Smush Type'          => $this->get_smush_type(),
@@ -232,24 +233,8 @@ class Product_Analytics_Controller {
 		return $smush_modes[ $lossy_level ];
 	}
 
-	private function track_detection_feature_toggle( $setting_value ) {
-		return $this->track_feature_toggle( $setting_value, 'Image Resize Detection' );
-	}
-
 	private function track_lazy_load_feature_toggle( $setting_value ) {
-		$this->track_lazy_load_feature_updated_on_toggle( $setting_value );
-
 		return $this->track_feature_toggle( $setting_value, 'Lazy Load' );
-	}
-
-	private function track_lazy_load_feature_updated_on_toggle( $activate ) {
-		$this->track_lazy_load_updated(
-			array(
-				'update_type'       => $activate ? 'activate' : 'deactivate',
-				'modified_settings' => 'na',
-			),
-			$this->settings->get_setting( 'wp-smush-lazy_load', array() )
-		);
 	}
 
 	protected function track_feature_toggle( $active, $feature ) {
@@ -269,21 +254,20 @@ class Product_Analytics_Controller {
 	}
 
 	protected function identify_referrer() {
-		$wizard_setup_actions = array( 'smush_setup', 'smush_free_setup' );
-		$onboarding_request   = ! empty( $_REQUEST['action'] ) && in_array( $_REQUEST['action'], $wizard_setup_actions, true );
-		if ( $onboarding_request ) {
-			return 'Wizard';
-		}
-
 		$page           = $this->get_referer_page();
 		$triggered_from = array(
 			'smush'              => 'Dashboard',
-			'smush-bulk'         => 'Bulk Smush',
 			'smush-lazy-preload' => 'Lazy Load',
+			'lazyload'           => 'Lazy Load',
+			'preload'            => 'Preload',
 			'smush-cdn'          => 'CDN',
-			'smush-next-gen'     => 'Next-Gen Formats',
-			'smush-integrations' => 'Integrations',
-			'smush-settings'     => 'Settings',
+			'smush-directory'    => 'Directory Smush',
+			'smush-settings'     => 'Tools',
+			'tools'              => 'Tools',
+			'nextgen'            => 'Next-Gen Formats',
+			'integrations'       => 'Integrations',
+			'config'              => 'Configs',
+			'other-settings'     => 'Other Settings',
 		);
 
 		return empty( $triggered_from[ $page ] )
@@ -424,10 +408,8 @@ class Product_Analytics_Controller {
 		$settings = $this->remove_unchanged_settings( $old_settings, $settings );
 
 		if ( isset( $settings['usage'] ) ) {
-			// Following the new change, the location for Opt In/Out is lowercase and none whitespace.
-			// @see SMUSH-1538.
-			$location = str_replace( ' ', '_', $this->identify_referrer() );
-			$location = strtolower( $location );
+			$location = $this->identify_referrer();
+			$location = 'Dashboard' === $location ? 'Share Usage Notice' : $location;
 			$this->track(
 				$settings['usage'] ? 'Opt In' : 'Opt Out',
 				array(
@@ -457,7 +439,6 @@ class Product_Analytics_Controller {
 			'gform'      => 'Gravity Forms',
 			'js_builder' => 'WP Bakery',
 			's3'         => 'Amazon S3',
-			'nextgen'    => 'NextGen Gallery',
 		);
 
 		foreach ( $settings as $integration_slug => $is_activated ) {
@@ -642,11 +623,26 @@ class Product_Analytics_Controller {
 	}
 
 	protected function get_referer_page() {
-		$path       = parse_url( wp_get_referer(), PHP_URL_QUERY );
-		$query_vars = array();
-		parse_str( $path, $query_vars );
+		$referer = wp_get_referer();
+		if ( empty( $referer ) ) {
+			$referer = $_SERVER['REQUEST_URI'];
+		}
 
-		return empty( $query_vars['page'] ) ? '' : $query_vars['page'];
+		$query = wp_parse_url( $referer, PHP_URL_QUERY );
+		if ( empty( $query ) ) {
+			return '';
+		}
+
+		$query_vars = array();
+		parse_str( $query, $query_vars );
+
+		$page          = empty( $query_vars['page'] ) ? '' : sanitize_key( $query_vars['page'] );
+		$page_has_tabs = in_array( $page, array( 'smush-settings', 'smush-lazy-preload' ), true );
+		if ( $page_has_tabs && isset( $query_vars['view'] ) ) {
+			$page = sanitize_key( $query_vars['view'] );
+		}
+
+		return $page;
 	}
 
 	public function track_plugin_activation() {
@@ -677,8 +673,8 @@ class Product_Analytics_Controller {
 		}
 
 		$is_dashboard_request = wp_doing_ajax() &&
-								! empty( $_REQUEST['action'] ) &&
-								'wdp-project-deactivate' === wp_unslash( $_REQUEST['action'] );
+		                        ! empty( $_REQUEST['action'] ) &&
+		                        'wdp-project-deactivate' === wp_unslash( $_REQUEST['action'] );
 
 		if ( $is_dashboard_request ) {
 			return 'deactivate_dashboard';
@@ -744,8 +740,6 @@ class Product_Analytics_Controller {
 
 	private function allow_to_track( $event_name, $properties ) {
 		$trackable_events   = array(
-			'Setup Wizard'     => true,
-			'Setup Wizard New' => true,
 			'smush_pro_upsell' => isset( $properties['Location'] ) && 'wizard' === $properties['Location'],
 			'Disconnect Site'  => true,
 		);
@@ -975,7 +969,7 @@ class Product_Analytics_Controller {
 			return;
 		}
 
-		$changed_settings  = $this->remove_unchanged_settings( $old_settings, $settings );
+		$changed_settings = $this->remove_unchanged_settings( $old_settings, $settings );
 		if ( 'Lazy Load' !== $this->identify_referrer() ) {
 			return;
 		}
@@ -994,7 +988,7 @@ class Product_Analytics_Controller {
 
 		$properties = array(
 			'update_type'             => 'modify',
-			'modified_settings'        => $modified_settings,
+			'modified_settings'       => $modified_settings,
 			'auto_resizing_status'    => $settings['auto_resizing'] ? 'Enabled' : 'Disabled',
 			'image_dimensions_status' => $settings['image_dimensions'] ? 'Enabled' : 'Disabled',
 		);
@@ -1004,7 +998,7 @@ class Product_Analytics_Controller {
 		);
 	}
 
-	private function track_lazy_load_updated( $properties, $settings ) {
+	protected function track_lazy_load_updated( $properties, $settings ) {
 		$exclusion_enabled         = $this->is_lazy_load_exclusion_enabled( $settings );
 		$native_lazyload_enabled   = ! empty( $settings['native'] );
 		$noscript_fallback_enabled = ! empty( $settings['noscript_fallback'] );
@@ -1024,7 +1018,7 @@ class Product_Analytics_Controller {
 			$properties
 		);
 
-		$this->track( 'lazy_load_updated', $properties );
+		$this->track( 'lazy_load_updated_new', $properties );
 	}
 
 	private function is_lazy_load_exclusion_enabled( $settings ) {
@@ -1075,5 +1069,11 @@ class Product_Analytics_Controller {
 				'Backup Status' => $this->settings->is_backup_active() ? 'Enabled' : 'Disabled',
 			)
 		);
+	}
+
+	protected function is_syncing_settings() {
+		return wp_doing_ajax() &&
+		       ! empty( $_REQUEST['action'] ) &&
+		       'smush_sync_settings' === wp_unslash( $_REQUEST['action'] );
 	}
 }

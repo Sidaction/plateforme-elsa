@@ -13,7 +13,7 @@
  * Plugin Name:       Smush
  * Plugin URI:        https://wpmudev.com/project/wp-smush-pro/
  * Description:       Reduce image file sizes, improve performance and boost your SEO using the free <a href="https://wpmudev.com/">WPMU DEV</a> WordPress Smush API.
- * Version:           4.0.3
+ * Version:           4.1.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            WPMU DEV
@@ -54,7 +54,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if ( ! defined( 'WP_SMUSH_VERSION' ) ) {
-	define( 'WP_SMUSH_VERSION', '4.0.3' );
+	define( 'WP_SMUSH_VERSION', '4.1.2' );
 }
 if ( ! defined( 'WP_SMUSH_RELEASE_DATE' ) ) {
 	define( 'WP_SMUSH_RELEASE_DATE', '15 April 2026' );
@@ -79,7 +79,7 @@ if ( ! defined( 'WP_SMUSH_URL' ) ) {
 	define( 'WP_SMUSH_URL', plugin_dir_url( __FILE__ ) );
 }
 if ( ! defined( 'WP_SMUSH_MAX_BYTES' ) ) {
-	define( 'WP_SMUSH_MAX_BYTES', 5242880 );
+	define( 'WP_SMUSH_MAX_BYTES', 268435456 );
 }
 if ( ! defined( 'WP_SMUSH_TIMEOUT' ) ) {
 	define( 'WP_SMUSH_TIMEOUT', 420 ); // 7 minutes
@@ -377,8 +377,6 @@ if ( ! class_exists( 'WP_Smush' ) ) {
 					'Smush\Core\Next_Gen',
 					'Smush\Core\S3',
 					'Smush\Core\Integrations\S3',
-					'Smush\Core\Integrations\NextGen', // The class and the namespace are the same.
-					'Smush\Core\Integrations\Nextgen',
 					'Smush\Core\Png2Jpg',
 					'Smush\Core\Modules\Png2jpg',
 					'Smush\Core\Resize\Auto_Resizing_Controller',
