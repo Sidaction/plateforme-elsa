@@ -186,7 +186,7 @@
                           <input type="hidden" name="step" value="register" id="step"/>
                           <input type="hidden" name="checknc" value="<?php echo wp_create_nonce( 'my-nonce' );?>" />
 
-                        </div>
+                        </div> 
 
                         <div class="form-group">
 
