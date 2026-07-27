@@ -366,7 +366,7 @@ class PgCache_Environment {
 			$error .= '<br />Unfortunately disk enhanced page caching will ' .
 				'not function without custom rewrite rules. ' .
 				'Please ask your server administrator for assistance. Also refer to <a href="' .
-				admin_url( 'admin.php?page=w3tc_install' ) .
+				Util_Ui::admin_url( 'admin.php?page=w3tc_install' ) .
 				'">the install page</a>  for the rules for your server.';
 
 			throw new Util_Environment_Exception(
@@ -744,7 +744,6 @@ class PgCache_Environment {
 
 		$rules  = '';
 		$rules .= W3TC_MARKER_BEGIN_PGCACHE_CORE . "\n";
-		$rules .= "Options -MultiViews\n";
 		$rules .= "<IfModule mod_rewrite.c>\n";
 		$rules .= "    RewriteEngine On\n";
 		$rules .= '    RewriteBase ' . $rewrite_base . "\n";
@@ -1267,6 +1266,26 @@ class PgCache_Environment {
 			$rules .= "}\n";
 		}
 
+		/**
+		 * Filter: Allow extensions to append nginx rewrite-suppression conditions.
+		 *
+		 * Mirrors the Apache "w3tc_pagecache_rules_apache_rewrite_cond" filter. The
+		 * returned string is emitted alongside the built-in reject conditions (POST,
+		 * non-empty query string, rejected cookies / user agents); hooked code should
+		 * append `if (...) { set $w3tc_rewrite 0; }` blocks so matching requests skip
+		 * the static page-cache rewrite and fall through to PHP. The returned string
+		 * is normalized to end with a single newline before it is appended.
+		 *
+		 * @since 2.10.1
+		 *
+		 * @param string $rewrite_conditions Nginx rewrite-suppression conditions buffer (starts empty).
+		 */
+		$rewrite_cond = (string) \apply_filters( 'w3tc_pagecache_rules_nginx_rewrite_cond', '' );
+		if ( '' !== $rewrite_cond ) {
+			// Normalize to exactly one trailing newline so a callback that omits it cannot glue the next rule on.
+			$rules .= rtrim( $rewrite_cond, "\n" ) . "\n";
+		}
+
 		// Check mobile groups.
 		if ( $w3tc_config->get_boolean( 'mobile.enabled' ) ) {
 			$mobile_groups = array_reverse( $w3tc_config->get_array( 'mobile.rgroups' ) );
@@ -1645,23 +1664,19 @@ class PgCache_Environment {
 		$charset      = get_option( 'blog_charset' );
 		$pingback_url = get_bloginfo( 'pingback_url' );
 
-		$browsercache         = $w3tc_config->get_boolean( 'browsercache.enabled' );
-		$brotli               = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.brotli' ) );
-		$compression          = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.compression' ) );
-		$expires              = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.expires' ) );
-		$lifetime             = ( $browsercache ? $w3tc_config->get_integer( 'browsercache.html.lifetime' ) : 0 );
-		$cache_control        = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.cache.control' ) );
-		$etag                 = ( $browsercache && $w3tc_config->get_integer( 'browsercache.html.etag' ) );
-		$w3tc                 = ( $browsercache && $w3tc_config->get_integer( 'browsercache.html.w3tc' ) );
-		$compatibility        = $w3tc_config->get_boolean( 'pgcache.compatibility' );
-		$disk_enhanced_apache = (
-			$w3tc_config->get_boolean( 'pgcache.enabled' ) &&
-			'file_generic' === $w3tc_config->get_string( 'pgcache.engine' )
-		);
+		$browsercache  = $w3tc_config->get_boolean( 'browsercache.enabled' );
+		$brotli        = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.brotli' ) );
+		$compression   = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.compression' ) );
+		$expires       = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.expires' ) );
+		$lifetime      = ( $browsercache ? $w3tc_config->get_integer( 'browsercache.html.lifetime' ) : 0 );
+		$cache_control = ( $browsercache && $w3tc_config->get_boolean( 'browsercache.html.cache.control' ) );
+		$etag          = ( $browsercache && $w3tc_config->get_integer( 'browsercache.html.etag' ) );
+		$w3tc          = ( $browsercache && $w3tc_config->get_integer( 'browsercache.html.w3tc' ) );
+		$compatibility = $w3tc_config->get_boolean( 'pgcache.compatibility' );
 
 		$rules  = '';
 		$rules .= W3TC_MARKER_BEGIN_PGCACHE_CACHE . "\n";
-		if ( $compatibility || $disk_enhanced_apache ) {
+		if ( $compatibility ) {
 			$rules .= "Options -MultiViews\n";
 
 			// allow to read files by apache if they are blocked at some level above.
