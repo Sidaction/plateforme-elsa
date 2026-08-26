@@ -907,6 +907,8 @@ class Frontend_Controller extends Controller {
 			}
 		}
 
+		$restore_ids = $this->get_restore_ids();
+
 		$script = ( new Script() )
 			->set_handle( 'smush-ui-settings' )
 			->set_source( WP_SMUSH_URL . 'app/assets/js/smush-ui-settings.min.js' )
@@ -919,7 +921,7 @@ class Frontend_Controller extends Controller {
 					'links'             => array(),
 					'requestsData'      => array(
 						'ImageRestoreData' => array(
-							'restore_ids'        => ( new Backups() )->get_attachments_with_backups(),
+							'restore_ids'        => $restore_ids,
 							'smush_bulk_restore' => wp_create_nonce( 'smush_bulk_restore' ),
 						),
 					),
@@ -954,6 +956,22 @@ class Frontend_Controller extends Controller {
 			->set_styles( array( $style ) );
 	}
 
+	/**
+	 * Get the attachment IDs that have a backup available for restoring.
+	 *
+	 * The restore list is only consumed by the settings page UI, so the backup
+	 * lookup (a full postmeta scan) is skipped on every other wp-admin page.
+	 *
+	 * @return array
+	 */
+	private function get_restore_ids() {
+		if ( self::PAGE_SETTINGS !== $this->get_current_page() ) {
+			return array();
+		}
+
+		return ( new Backups() )->get_attachments_with_backups();
+	}
+
 	public function smush_body_classes( $classes ) {
 		// Exit if function doesn't exists.
 		if ( ! function_exists( 'get_current_screen' ) ) {
@@ -974,6 +992,10 @@ class Frontend_Controller extends Controller {
 
 		if ( $this->show_onboarding_wizard() ) {
 			$classes .= ' smush-onboarding-wizard smush-onboarding-wizard--fullscreen';
+		}
+
+		if ( Settings::get_instance()->get( 'accessible_colors' ) ) {
+			$classes .= ' wpmudev-core-ui__mono';
 		}
 
 		$classes .= Membership::get_instance()->get_guest_value( ' smush-plan-free', ' smush-plan-pro' );
